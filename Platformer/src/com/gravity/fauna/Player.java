@@ -16,6 +16,7 @@ import com.gravity.map.GameWorld;
 import com.gravity.physics.Collision;
 import com.gravity.physics.CollisionEngine;
 import com.gravity.physics.Entity;
+import com.gravity.physics.Physics;
 
 public class Player implements Entity {
     
@@ -36,6 +37,7 @@ public class Player implements Entity {
     
     // PLAYER CURRENT VALUES
     private GameWorld map;
+    private Physics physics;
     
     // position and magnitude
     
@@ -50,7 +52,7 @@ public class Player implements Entity {
     private final String name;
     private Movement requested = Movement.STOP;
     
-    public Player(GameWorld map, String name, Vector2f startpos) {
+    public Player(GameWorld map, Physics physics, String name, Vector2f startpos) {
         position = startpos;
         this.map = map;
         this.myShape = BASE_SHAPE;
@@ -327,7 +329,7 @@ public class Player implements Entity {
      * Sets onGround depending on if the player is on the ground or not
      * 
      * 
-     * /** CALL THIS EVERY TIME YOU DO ANYTHING TO POSITION OR SHAPE >>>>>>> 578f54515a017ccc7211c613d175bbac8740860c
+     * CALL THIS EVERY TIME YOU DO ANYTHING TO POSITION OR SHAPE
      */
     private void updateShape() {
         myShape = BASE_SHAPE.transform(Transform.createTranslateTransform(position.x, position.y));

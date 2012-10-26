@@ -1,11 +1,6 @@
 package com.gravity.physics;
 
-public class SimplePhysics extends AbstractPhysics implements Physics {
-    
-    public SimplePhysics(CollisionEngine collisionEngine) {
-        super(collisionEngine);
-    }
-    
+public class SimplePhysics implements Physics {
     @Override
     public PhysicalState computePhysics(Entity entity, PhysicalState state, float ticks) {
         return state.fastForward(ticks);

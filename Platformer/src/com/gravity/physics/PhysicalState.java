@@ -68,7 +68,6 @@ public class PhysicalState {
     }
     
     public Vector2f getPositionAt(float ticks) {
-        // Not very performant - maybe consider making this class store floats instead?
         //@formatter:off
         return new Vector2f(posX + velX * ticks + accX * ticks * ticks / 2, 
                             posY + velY * ticks + accY * ticks * ticks / 2);

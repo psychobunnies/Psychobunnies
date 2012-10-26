@@ -1,7 +1,7 @@
 package com.gravity.root;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import org.newdawn.slick.Color;
@@ -17,12 +17,13 @@ import org.newdawn.slick.tiled.TiledMap;
 
 import com.gravity.fauna.Player;
 import com.gravity.fauna.PlayerKeyboardController;
-import com.gravity.fauna.PlayerRenderer;
 import com.gravity.fauna.PlayerKeyboardController.Control;
+import com.gravity.fauna.PlayerRenderer;
 import com.gravity.gameplay.GravityGameController;
 import com.gravity.map.TileWorld;
 import com.gravity.map.TileWorldRenderer;
 import com.gravity.physics.CollisionEngine;
+import com.gravity.physics.GravityPhysics;
 
 public class GameplayState extends BasicGameState implements GravityGameController {
     
@@ -40,6 +41,7 @@ public class GameplayState extends BasicGameState implements GravityGameControll
     private CollisionEngine collider;
     private GameContainer container;
     private StateBasedGame game;
+    private GravityPhysics gravityPhysics;
     private final Random rand = new Random();
     private boolean oddStart = true;
     
@@ -61,26 +63,27 @@ public class GameplayState extends BasicGameState implements GravityGameControll
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.container = container;
         this.game = game;
-        resetState();
+        reloadGame();
         GameSounds.playBGM();
     }
     
-    public void resetState() throws SlickException {
+    public void reloadGame() throws SlickException {
         if (oddStart) {
             map = new TileWorld(new TiledMap("assets/game_map_final.tmx"), this);
         } else {
             map = new TileWorld(new TiledMap("assets/level2.tmx"), this);
         }
         oddStart = !oddStart;
-        playerA = new Player(map, "pink", new Vector2f(256, 512));
-        playerB = new Player(map, "yellow", new Vector2f(224, 512));
+        collider = new CollisionEngine(map);
+        gravityPhysics = new GravityPhysics(collider);
+        playerA = new Player(map, gravityPhysics, "pink", new Vector2f(256, 512));
+        playerB = new Player(map, gravityPhysics, "yellow", new Vector2f(224, 512));
         renderers.add(new TileWorldRenderer(map));
         renderers.add(new PlayerRenderer(playerA));
         renderers.add(new PlayerRenderer(playerA));
         controllerA = new PlayerKeyboardController(playerA).setLeft(Input.KEY_A).setRight(Input.KEY_D).setJump(Input.KEY_W).setMisc(Input.KEY_S);
         controllerB = new PlayerKeyboardController(playerB).setLeft(Input.KEY_LEFT).setRight(Input.KEY_RIGHT).setJump(Input.KEY_UP)
                 .setMisc(Input.KEY_DOWN);
-        collider = new CollisionEngine(map);
         collider.addEntity(playerA);
         collider.addEntity(playerB);
         offsetX = 0;

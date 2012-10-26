@@ -35,7 +35,7 @@ public class Player implements Entity {
     private final float GRAVITY = 1.0f / 750f;
     private final float MAX_SLING_STRENGTH = 1f;
     private final float SLING_SPEED = 1f / 500f;
-    private final float FRICTION = 985f / 1000f;
+    private final float FRICTION = 980f / 1000f;
     private final Shape BASE_SHAPE = new Rectangle(1f, 1f, 15f, 32f);
     
     // WORLD KNOWLEDGE
@@ -163,7 +163,6 @@ public class Player implements Entity {
     
     public void slingshotMe(float strength, Vector2f direction) {
         velocity = direction.copy().normalise().scale(strength);
-        slingshot = false;
     }
     
     // //////////////////////////////////////////////////////////////////////////

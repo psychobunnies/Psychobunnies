@@ -1,4 +1,4 @@
-package com.gravity.player;
+package com.gravity.entity;
 
 import java.util.List;
 

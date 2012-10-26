@@ -1,6 +1,6 @@
-package com.gravity.player;
+package com.gravity.entity;
 
-import com.gravity.player.Player.Movement;
+import com.gravity.entity.Player.Movement;
 import com.gravity.root.GameSounds;
 
 /**

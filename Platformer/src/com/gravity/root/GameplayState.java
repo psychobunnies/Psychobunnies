@@ -98,6 +98,21 @@ public class GameplayState extends BasicGameState implements GravityGameControll
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         rendererMap.render(g, (int) offsetX, (int) offsetY);
         
+        // Draw slingshot indicator
+        if (playerA.slingshot) {
+            g.setColor(Color.pink);
+            g.setLineWidth(playerA.slingshotStrength * 10);
+            g.drawLine(playerA.getShape(0).getCenterX() + offsetX, playerA.getShape(0).getCenterY() + offsetY, playerB.getShape(0).getCenterX()
+                    + offsetX, playerB.getShape(0).getCenterY() + offsetY);
+        }
+        if (playerB.slingshot) {
+            g.setColor(Color.yellow);
+            g.setLineWidth(playerB.slingshotStrength * 10);
+            g.drawLine(playerB.getShape(0).getCenterX() + offsetX, playerB.getShape(0).getCenterY() + offsetY, playerA.getShape(0).getCenterX()
+                    + offsetX, playerA.getShape(0).getCenterY() + offsetY);
+            
+        }
+        
         if (remappedDecay > 0) {
             g.pushTransform();
             g.translate(512, 384);
@@ -123,6 +138,7 @@ public class GameplayState extends BasicGameState implements GravityGameControll
                 default:
                     break;
             }
+            
             g.fill(controlArrow);
             g.resetTransform();
             g.popTransform();

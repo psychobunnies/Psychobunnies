@@ -34,7 +34,8 @@ public class Player implements Entity {
     private final float VEL_DAMP = 0.5f;
     private final float GRAVITY = 1.0f / 750f;
     private final float MAX_SLING_STRENGTH = 1f;
-    private final float SLING_SPEED = 1f / 100f;
+    private final float SLING_SPEED = 1f / 500f;
+    private final float FRICTION = 985f / 1000f;
     private final Shape BASE_SHAPE = new Rectangle(1f, 1f, 15f, 32f);
     
     // WORLD KNOWLEDGE
@@ -48,11 +49,11 @@ public class Player implements Entity {
     private Vector2f position;
     private Vector2f velocity = new Vector2f(0, 0);
     private Shape myShape;
-    private float slingshotStrength = 0;
+    public float slingshotStrength = 0;
     
     // GAME STATE STUFF
     private boolean onGround = false;
-    private boolean slingshot = false;
+    public boolean slingshot = false;
     private final String name;
     private Movement requested = Movement.STOP;
     
@@ -162,6 +163,7 @@ public class Player implements Entity {
     
     public void slingshotMe(float strength, Vector2f direction) {
         velocity = direction.copy().normalise().scale(strength);
+        slingshot = false;
     }
     
     // //////////////////////////////////////////////////////////////////////////
@@ -321,16 +323,6 @@ public class Player implements Entity {
             ent.handleCollisions(millis, Lists.newArrayList(new Collision(ent, this, millis, bPoints, aPoints)));
         }
         isDead(millis);
-        switch (requested) {
-            case LEFT:
-                velocity.x = -MOVEMENT_INCREMENT;
-                break;
-            case RIGHT:
-                velocity.x = MOVEMENT_INCREMENT;
-                break;
-            default:
-                // no-op
-        }
     }
     
     public void updateAcceleration(float millis) {
@@ -349,6 +341,14 @@ public class Player implements Entity {
         if (velocity.length() > MAX_VEL * millis) {
             velocity.scale(MAX_VEL * millis / velocity.length());
         }
+        
+        // implement friction
+        if (onGround) {
+            if (velocity.x > MOVEMENT_INCREMENT) {
+                velocity.x = velocity.x * FRICTION;
+            }
+            
+        }
     }
     
     public void updatePosition(float millis) {
@@ -360,6 +360,8 @@ public class Player implements Entity {
         if (slingshot) {
             slingshotStrength += millis * SLING_SPEED;
             slingshotStrength = Math.min(slingshotStrength, MAX_SLING_STRENGTH);
+        } else {
+            slingshotStrength = 0;
         }
     }
     

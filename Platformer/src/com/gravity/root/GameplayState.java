@@ -19,13 +19,12 @@ import com.gravity.fauna.Player;
 import com.gravity.fauna.PlayerKeyboardController;
 import com.gravity.fauna.PlayerKeyboardController.Control;
 import com.gravity.fauna.PlayerRenderer;
-import com.gravity.gameplay.GravityGameController;
 import com.gravity.map.TileWorld;
 import com.gravity.map.TileWorldRenderer;
 import com.gravity.physics.CollisionEngine;
 import com.gravity.physics.GravityPhysics;
 
-public class GameplayState extends BasicGameState implements GravityGameController {
+public class GameplayState extends BasicGameState implements GameplayControl {
     
     static final int ID = 1;
     

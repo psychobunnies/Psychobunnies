@@ -8,10 +8,10 @@ import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.tiled.TiledMap;
 
 import com.google.common.collect.Lists;
-import com.gravity.gameplay.GravityGameController;
 import com.gravity.physics.Entity;
 import com.gravity.physics.SpikeEntity;
 import com.gravity.physics.TileWorldEntity;
+import com.gravity.root.GameplayControl;
 
 public class TileWorld implements GameWorld {
     public final int height;
@@ -27,7 +27,7 @@ public class TileWorld implements GameWorld {
     private final int TILES_LAYER_ID;
     private final int SPIKES_LAYER_ID;
     
-    public TileWorld(TiledMap map, GravityGameController controller) {
+    public TileWorld(TiledMap map, GameplayControl controller) {
         TILES_LAYER_ID = map.getLayerIndex("collisions");
         SPIKES_LAYER_ID = map.getLayerIndex("spikes");
         

@@ -7,14 +7,14 @@ import org.newdawn.slick.geom.Shape;
 
 import com.google.common.collect.Sets;
 import com.gravity.fauna.Player;
-import com.gravity.gameplay.GravityGameController;
+import com.gravity.root.GameplayControl;
 
 public final class SpikeEntity extends TileWorldEntity {
     
-    private final GravityGameController controller;
+    private final GameplayControl controller;
     private final Set<Player> collidedPlayers = Sets.newIdentityHashSet();
     
-    public SpikeEntity(GravityGameController controller, Shape shape) {
+    public SpikeEntity(GameplayControl controller, Shape shape) {
         super(shape);
         this.controller = controller;
     }

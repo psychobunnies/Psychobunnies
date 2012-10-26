@@ -76,7 +76,7 @@ public class GameplayState extends BasicGameState implements GravityGameControll
         playerB = new Player(map, "yellow", new Vector2f(224, 512));
         renderers.add(new TileWorldRenderer(map));
         renderers.add(new PlayerRenderer(playerA));
-        renderers.add(new PlayerRenderer(playerA));
+        renderers.add(new PlayerRenderer(playerB));
         controllerA = new PlayerKeyboardController(playerA).setLeft(Input.KEY_A).setRight(Input.KEY_D).setJump(Input.KEY_W).setMisc(Input.KEY_S);
         controllerB = new PlayerKeyboardController(playerB).setLeft(Input.KEY_LEFT).setRight(Input.KEY_RIGHT).setJump(Input.KEY_UP)
                 .setMisc(Input.KEY_DOWN);

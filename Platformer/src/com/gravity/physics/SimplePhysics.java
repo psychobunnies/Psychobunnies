@@ -1,11 +1,9 @@
 package com.gravity.physics;
 
-
-public class SimplePhysics implements Physics {
-    private CollisionEngine collisionEngine;
+public class SimplePhysics extends AbstractPhysics implements Physics {
     
     public SimplePhysics(CollisionEngine collisionEngine) {
-        this.collisionEngine = collisionEngine;
+        super(collisionEngine);
     }
     
     @Override

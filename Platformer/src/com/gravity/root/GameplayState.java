@@ -70,6 +70,9 @@ public class GameplayState extends BasicGameState implements GravityGameControll
         } else {
             map = new TileWorld(new TiledMap("assets/level2.tmx"), this);
         }
+        // Slingshot testing only:
+        map = new TileWorld(new TiledMap("assets/slingshot_intro.tmx"), this);
+        
         oddStart = !oddStart;
         playerA = new Player(map, "pink", new Vector2f(256, 512), this);
         playerB = new Player(map, "yellow", new Vector2f(224, 512), this);

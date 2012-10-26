@@ -27,14 +27,14 @@ public class Player implements Entity {
     public static int TOP_LEFT = 0, TOP_RIGHT = 1, BOT_RIGHT = 2, BOT_LEFT = 3;
     
     // PLAYER STARTING CONSTANTS (Units = pixels, milliseconds)
-    private final float JUMP_POWER = 0.7f;
+    private final float JUMP_POWER = 0.6f;
     private final float MOVEMENT_INCREMENT = 1f / 8f;
     private final float MAX_VEL = 75f;
     @SuppressWarnings("unused")
     private final float VEL_DAMP = 0.5f;
-    private final float GRAVITY = 1.0f / 500f;
+    private final float GRAVITY = 1.0f / 750f;
     private final float MAX_SLING_STRENGTH = 1f;
-    private final float SLING_SPEED = 4f / 1000f;
+    private final float SLING_SPEED = 1f / 100f;
     private final Shape BASE_SHAPE = new Rectangle(1f, 1f, 15f, 32f);
     
     // WORLD KNOWLEDGE
@@ -124,11 +124,15 @@ public class Player implements Entity {
     public void move(Movement direction) {
         switch (direction) {
             case LEFT: {
-                velocity.x = -MOVEMENT_INCREMENT;
+                if (Math.abs(velocity.x) < MOVEMENT_INCREMENT) {
+                    velocity.x = -MOVEMENT_INCREMENT;
+                }
                 break;
             }
             case RIGHT: {
-                velocity.x = MOVEMENT_INCREMENT;
+                if (Math.abs(velocity.x) < MOVEMENT_INCREMENT) {
+                    velocity.x = MOVEMENT_INCREMENT;
+                }
                 break;
             }
             case STOP: {
@@ -144,7 +148,6 @@ public class Player implements Entity {
      *            true if keydown, false if keyup
      */
     public void specialKey(boolean pressed) {
-        System.out.println("special key pressed");
         if (pressed) {
             slingshot = true;
         } else {
@@ -158,7 +161,7 @@ public class Player implements Entity {
     // //////////////////////////////////////////////////////////////////////////
     
     public void slingshotMe(float strength, Vector2f direction) {
-        velocity.add(direction.copy().normalise().scale(strength));
+        velocity = direction.copy().normalise().scale(strength);
     }
     
     // //////////////////////////////////////////////////////////////////////////

@@ -12,6 +12,7 @@ import org.newdawn.slick.geom.Vector2f;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import com.gravity.gameplay.GravityGameController;
 import com.gravity.map.GameWorld;
 import com.gravity.physics.Collision;
 import com.gravity.physics.CollisionEngine;
@@ -20,7 +21,7 @@ import com.gravity.physics.Entity;
 public class Player implements Entity {
     
     public static enum Movement {
-        LEFT, RIGHT, STOP
+        LEFT, RIGHT, STOP, MISC
     }
     
     public static int TOP_LEFT = 0, TOP_RIGHT = 1, BOT_RIGHT = 2, BOT_LEFT = 3;
@@ -32,29 +33,35 @@ public class Player implements Entity {
     @SuppressWarnings("unused")
     private final float VEL_DAMP = 0.5f;
     private final float GRAVITY = 1.0f / 500f;
+    private final float MAX_SLING_STRENGTH = 1f;
+    private final float SLING_SPEED = 4f / 1000f;
     private final Shape BASE_SHAPE = new Rectangle(1f, 1f, 15f, 32f);
     
-    // PLAYER CURRENT VALUES
+    // WORLD KNOWLEDGE
     private GameWorld map;
+    private GravityGameController controller;
     
-    // position and magnitude
+    // PLAYER CURRENT VALUES
     
     // TODO: bring these back into tile widths instead of pixel widths
     private Vector2f acceleration = new Vector2f(0, 0);
     private Vector2f position;
     private Vector2f velocity = new Vector2f(0, 0);
     private Shape myShape;
+    private float slingshotStrength = 0;
     
     // GAME STATE STUFF
     private boolean onGround = false;
+    private boolean slingshot = false;
     private final String name;
     private Movement requested = Movement.STOP;
     
-    public Player(GameWorld map, String name, Vector2f startpos) {
+    public Player(GameWorld map, String name, Vector2f startpos, GravityGameController c) {
         position = startpos;
         this.map = map;
         this.myShape = BASE_SHAPE;
         this.name = name;
+        this.controller = c;
     }
     
     public String getName() {
@@ -129,6 +136,29 @@ public class Player implements Entity {
                 break;
             }
         }
+    }
+    
+    /**
+     * 
+     * @param pressed
+     *            true if keydown, false if keyup
+     */
+    public void specialKey(boolean pressed) {
+        System.out.println("special key pressed");
+        if (pressed) {
+            slingshot = true;
+        } else {
+            slingshot = false;
+            controller.specialMoveSlingshot(this, slingshotStrength);
+        }
+    }
+    
+    // //////////////////////////////////////////////////////////////////////////
+    // ///////////////////////////RESULTING ACTIONS//////////////////////////////
+    // //////////////////////////////////////////////////////////////////////////
+    
+    public void slingshotMe(float strength, Vector2f direction) {
+        velocity.add(direction.copy().normalise().scale(strength));
     }
     
     // //////////////////////////////////////////////////////////////////////////
@@ -267,6 +297,7 @@ public class Player implements Entity {
         updatePosition(millis);
         updateAcceleration(millis);
         updateVelocity(millis);
+        updateSlingshot(millis);
         Shape hitbox = myShape.transform(Transform.createTranslateTransform(0, 5));
         List<Entity> collisions = map.getTouching(hitbox);
         onGround = false;
@@ -320,6 +351,13 @@ public class Player implements Entity {
     public void updatePosition(float millis) {
         position.add(velocity.copy().scale(millis));
         updateShape();
+    }
+    
+    public void updateSlingshot(float millis) {
+        if (slingshot) {
+            slingshotStrength += millis * SLING_SPEED;
+            slingshotStrength = Math.min(slingshotStrength, MAX_SLING_STRENGTH);
+        }
     }
     
     /**

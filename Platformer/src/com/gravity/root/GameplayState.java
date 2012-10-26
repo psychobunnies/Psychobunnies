@@ -71,8 +71,8 @@ public class GameplayState extends BasicGameState implements GravityGameControll
             map = new TileWorld(new TiledMap("assets/level2.tmx"), this);
         }
         oddStart = !oddStart;
-        playerA = new Player(map, "pink", new Vector2f(256, 512));
-        playerB = new Player(map, "yellow", new Vector2f(224, 512));
+        playerA = new Player(map, "pink", new Vector2f(256, 512), this);
+        playerB = new Player(map, "yellow", new Vector2f(224, 512), this);
         rendererMap = new TileWorldRenderer(map);
         rendererA = new PlayerRenderer(playerA);
         rendererB = new PlayerRenderer(playerB);
@@ -258,5 +258,20 @@ public class GameplayState extends BasicGameState implements GravityGameControll
         System.out.println("Player " + player.toString() + " hit spikes -- remapping controls.");
         System.out.println("ControllerA: " + controllerA.toString());
         System.out.println("ControllerB: " + controllerB.toString());
+    }
+    
+    /**
+     * 
+     */
+    @Override
+    public void specialMoveSlingshot(Player slingshoter, float strength) {
+        if (slingshoter == playerA) {
+            playerB.slingshotMe(strength, playerA.getPosition().copy().sub(playerB.getPosition()));
+        } else if (slingshoter == playerB) {
+            playerA.slingshotMe(strength, playerB.getPosition().copy().sub(playerA.getPosition()));
+        } else {
+            System.out.println("Who the **** called this method?");
+        }
+        
     }
 }

@@ -1,7 +1,7 @@
 package com.gravity.gameplay;
 
-import com.gravity.player.Player;
-import com.gravity.player.PlayerKeyboardController.Control;
+import com.gravity.fauna.Player;
+import com.gravity.fauna.PlayerKeyboardController.Control;
 
 /**
  * Interface which specifies any kind of logic that crosses between model, controller, and renderers.

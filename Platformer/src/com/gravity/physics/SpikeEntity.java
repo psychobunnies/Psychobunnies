@@ -6,8 +6,8 @@ import java.util.Set;
 import org.newdawn.slick.geom.Shape;
 
 import com.google.common.collect.Sets;
+import com.gravity.fauna.Player;
 import com.gravity.gameplay.GravityGameController;
-import com.gravity.player.Player;
 
 public final class SpikeEntity extends TileWorldEntity {
     

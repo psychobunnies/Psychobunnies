@@ -13,14 +13,14 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
+import com.gravity.fauna.Player;
+import com.gravity.fauna.PlayerKeyboardController;
+import com.gravity.fauna.PlayerRenderer;
+import com.gravity.fauna.PlayerKeyboardController.Control;
 import com.gravity.gameplay.GravityGameController;
 import com.gravity.map.TileWorld;
 import com.gravity.map.TileWorldRenderer;
 import com.gravity.physics.CollisionEngine;
-import com.gravity.player.Player;
-import com.gravity.player.PlayerKeyboardController;
-import com.gravity.player.PlayerKeyboardController.Control;
-import com.gravity.player.PlayerRenderer;
 
 public class GameplayState extends BasicGameState implements GravityGameController {
     

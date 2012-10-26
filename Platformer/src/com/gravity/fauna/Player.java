@@ -117,14 +117,15 @@ public class Player implements Entity {
     public void move(Movement direction) {
         switch (direction) {
             case LEFT: {
-                velocity.x = -MOVEMENT_INCREMENT;
+                requested = direction;
                 break;
             }
             case RIGHT: {
-                velocity.x = MOVEMENT_INCREMENT;
+                requested = direction;
                 break;
             }
             case STOP: {
+                requested = direction;
                 velocity.x = 0;
                 break;
             }
@@ -330,10 +331,6 @@ public class Player implements Entity {
      */
     private void updateShape() {
         myShape = BASE_SHAPE.transform(Transform.createTranslateTransform(position.x, position.y));
-    }
-    
-    public void setRequestedMovement(Movement requested) {
-        this.requested = requested;
     }
     
     /**

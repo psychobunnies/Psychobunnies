@@ -5,9 +5,8 @@
     This configuration file was written by the eclipse-cs plugin configuration editor
 -->
 <!--
-    Checkstyle-Configuration: Custom configuration - pgruevski
-    Description: 
-Slightly modified version of Sun Checks that better matches the default code formatter setting of Eclipse.
+    Checkstyle-Configuration: Custom
+    Description: none
 -->
 <module name="Checker">
   <property name="severity" value="warning"/>
@@ -103,16 +102,14 @@ Slightly modified version of Sun Checks that better matches the default code for
     <module name="FinalParameters">
       <property name="tokens" value="CTOR_DEF"/>
     </module>
-    <module name="TodoComment">
-      <property name="severity" value="ignore"/>
-      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
-    </module>
+    <module name="TodoComment"/>
     <module name="UpperEll"/>
     <module name="MissingDeprecated"/>
     <module name="MissingOverride"/>
     <module name="CovariantEquals"/>
     <module name="DefaultComesLast"/>
     <module name="OneStatementPerLine"/>
+    <module name="ArrayTypeStyle"/>
   </module>
   <module name="JavadocPackage">
     <property name="severity" value="ignore"/>

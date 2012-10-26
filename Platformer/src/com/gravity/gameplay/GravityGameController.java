@@ -1,7 +1,7 @@
 package com.gravity.gameplay;
 
-import com.gravity.entity.Player;
-import com.gravity.entity.PlayerKeyboardController.Control;
+import com.gravity.player.Player;
+import com.gravity.player.PlayerKeyboardController.Control;
 
 /**
  * Interface which specifies any kind of logic that crosses between model, controller, and renderers.

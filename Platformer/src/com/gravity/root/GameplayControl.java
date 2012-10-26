@@ -1,4 +1,4 @@
-package com.gravity.gameplay;
+package com.gravity.root;
 
 import com.gravity.fauna.Player;
 import com.gravity.fauna.PlayerKeyboardController.Control;
@@ -8,7 +8,7 @@ import com.gravity.fauna.PlayerKeyboardController.Control;
  * 
  * @author xiao
  */
-public interface GravityGameController {
+public interface GameplayControl {
 
     public void playerDies(Player player);
 

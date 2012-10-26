@@ -2,3 +2,5 @@ bin/
 eclimd.log
 .*.swp
 .metadata/
+/slick/
+!/slick/trunk/Slick

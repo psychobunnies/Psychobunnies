@@ -1,5 +1,7 @@
 package com.gravity.root;
 
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Random;
 
 import org.newdawn.slick.Color;
@@ -33,8 +35,7 @@ public class GameplayState extends BasicGameState implements GravityGameControll
     
     private TileWorld map;
     private Player playerA, playerB;
-    private TileWorldRenderer rendererMap;
-    private PlayerRenderer rendererA, rendererB;
+    private List<Renderer> renderers = new ArrayList<Renderer>();
     private PlayerKeyboardController controllerA, controllerB;
     private CollisionEngine collider;
     private GameContainer container;
@@ -73,9 +74,9 @@ public class GameplayState extends BasicGameState implements GravityGameControll
         oddStart = !oddStart;
         playerA = new Player(map, "pink", new Vector2f(256, 512));
         playerB = new Player(map, "yellow", new Vector2f(224, 512));
-        rendererMap = new TileWorldRenderer(map);
-        rendererA = new PlayerRenderer(playerA);
-        rendererB = new PlayerRenderer(playerB);
+        renderers.add(new TileWorldRenderer(map));
+        renderers.add(new PlayerRenderer(playerA));
+        renderers.add(new PlayerRenderer(playerA));
         controllerA = new PlayerKeyboardController(playerA).setLeft(Input.KEY_A).setRight(Input.KEY_D).setJump(Input.KEY_W).setMisc(Input.KEY_S);
         controllerB = new PlayerKeyboardController(playerB).setLeft(Input.KEY_LEFT).setRight(Input.KEY_RIGHT).setJump(Input.KEY_UP)
                 .setMisc(Input.KEY_DOWN);
@@ -93,7 +94,9 @@ public class GameplayState extends BasicGameState implements GravityGameControll
     
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-        rendererMap.render(g, (int) offsetX, (int) offsetY);
+        for (Renderer r : renderers) {
+            r.render(g, (int) offsetX, (int) offsetY);
+        }
         
         if (remappedDecay > 0) {
             g.pushTransform();
@@ -124,9 +127,6 @@ public class GameplayState extends BasicGameState implements GravityGameControll
             g.resetTransform();
             g.popTransform();
         }
-        
-        rendererB.render(g, (int) offsetX, (int) offsetY);
-        rendererA.render(g, (int) offsetX, (int) offsetY);
         
         g.pushTransform();
         g.translate(32, 32);

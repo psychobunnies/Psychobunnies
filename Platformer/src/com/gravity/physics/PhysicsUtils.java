@@ -6,7 +6,7 @@ public final class PhysicsUtils {
         // never instantiated
     }
     
-    private static final float DEFAULT_GRAVITY = 1.0f / 500f;
+    private static final float DEFAULT_GRAVITY = 1.0f / 5000f;
     private static final float DEFAULT_REHANDLE_BACKSTEP = -15f;
     
     public static GravityPhysics createDefaultGravityPhysics(CollisionEngine engine) {

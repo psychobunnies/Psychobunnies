@@ -15,7 +15,7 @@ import com.gravity.physics.PhysicalState;
 public class TileWorldEntity extends AbstractEntity {
     
     public TileWorldEntity(Shape shape) {
-        super(new PhysicalState(shape, 0f, 0f, 0f, 0f));
+        super(new PhysicalState(shape, shape.getMinX(), shape.getMinY(), 0f, 0f));
     }
     
     @Override

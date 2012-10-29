@@ -4,6 +4,8 @@ import java.util.EnumSet;
 
 import org.newdawn.slick.geom.Vector2f;
 
+import com.google.common.base.Preconditions;
+
 /**
  * A rectangle with sides parallel to axes.
  * Custom built, because the one in slick has bugs and performance issues.
@@ -11,7 +13,9 @@ import org.newdawn.slick.geom.Vector2f;
  * @author xiao
  * 
  */
-public class Rect {
+public class Rect implements Cloneable {
+    private static final float EPS = 1e-6f;
+    
     private final float x, y;
     private final float height, width;
     
@@ -46,11 +50,28 @@ public class Rect {
          */
     }
     
-    public Rect(float x, float y, float height, float width) {
+    public Rect(float x, float y, float width, float height) {
+        Preconditions.checkArgument(height > 0, "Height must be positive");
+        Preconditions.checkArgument(width > 0, "Width must be positive");
         this.x = x;
         this.y = y;
         this.height = height;
         this.width = width;
+    }
+    
+    public Vector2f getPoint(Corner index) {
+        switch (index) {
+            case TOPLEFT:
+                return new Vector2f(x, y);
+            case TOPRIGHT:
+                return new Vector2f(x + width, y);
+            case BOTLEFT:
+                return new Vector2f(x, y + height);
+            case BOTRIGHT:
+                return new Vector2f(x + width, y + height);
+            default:
+                return new Vector2f(x, y);
+        }
     }
     
     /** Given a point (px, py), return if the point is in the rectangle */
@@ -62,7 +83,7 @@ public class Rect {
     public Rect scale(float c) {
         //@formatter:off
         return new Rect(x + (1 - c) * width / 2, y + (1 - c) * height / 2, 
-                        x + (1 + c) * width / 2, y + (1 + c) * height / 2);
+                        width*c, height*c);
         //@formatter:on
     }
     
@@ -81,32 +102,42 @@ public class Rect {
         return new Vector2f(x + width / 2, y + height / 2);
     }
     
+    /** Returns if the specified rectangle intersects with this one. Adjacency does not count. */
     public boolean intersects(Rect other) {
-        if ((x > (other.x + other.width)) || ((x + width) < other.x)) {
+        if ((x >= (other.x + other.width)) || ((x + width) <= other.x)) {
             return false;
         }
-        if ((y > (other.y + other.height)) || ((y + height) < other.y)) {
+        if ((y >= (other.y + other.height)) || ((y + height) <= other.y)) {
             return false;
         }
         return true;
     }
     
-    public EnumSet<Side> getIntersects(Rect other) {
-        if (intersects(other)) {
+    /**
+     * Returns the side of the collision of specified rect with this rectangle. Adjacency does not count.<br>
+     * Will return a single side or two adjacent sides indicating a corner unless:
+     * <ul>
+     * <li>Two rectangles form a cross, where it will return the two opposite sides the other rectangle passes through.
+     * <li>One rectangle is inside the other, where it will return all sides
+     * <li>Rectangles do not collide, where it will return no sides
+     * </ul>
+     */
+    public EnumSet<Side> getCollision(Rect other) {
+        if (!intersects(other)) {
             return EnumSet.noneOf(Side.class);
         }
         int bits = 0;
-        if (x > other.x) {
-            bits += 1;
+        if (x < other.x) {
+            bits += 8;
         }
-        if (x + width < other.x + other.width) {
-            bits += 2;
-        }
-        if (y > other.y) {
+        if (x + width > other.x + other.width) {
             bits += 4;
         }
-        if (y + height < other.y + other.height) {
-            bits += 8;
+        if (y < other.y) {
+            bits += 2;
+        }
+        if (y + height > other.y + other.height) {
+            bits += 1;
         }
         // BIT ORDER: LEFT RIGHT BOTTOM TOP
         switch (bits) {
@@ -180,6 +211,7 @@ public class Rect {
     
     @Override
     public boolean equals(Object obj) {
+        
         if (this == obj)
             return true;
         if (obj == null)
@@ -187,13 +219,13 @@ public class Rect {
         if (getClass() != obj.getClass())
             return false;
         Rect other = (Rect) obj;
-        if (Float.floatToIntBits(height) != Float.floatToIntBits(other.height))
+        if (Math.abs(height - other.height) > EPS)
             return false;
-        if (Float.floatToIntBits(width) != Float.floatToIntBits(other.width))
+        if (Math.abs(width - other.width) > EPS)
             return false;
-        if (Float.floatToIntBits(x) != Float.floatToIntBits(other.x))
+        if (Math.abs(x - other.x) > EPS)
             return false;
-        if (Float.floatToIntBits(y) != Float.floatToIntBits(other.y))
+        if (Math.abs(y - other.y) > EPS)
             return false;
         return true;
     }

@@ -15,6 +15,10 @@ import com.google.common.collect.Sets;
 import com.gravity.entity.Entity;
 import com.gravity.map.GameWorld;
 
+/**
+ * @deprecated use LayeredCollisionEngine instead
+ */
+@Deprecated
 public class StandardCollisionEngine implements CollisionEngine {
     
     private final Set<Entity> entities;

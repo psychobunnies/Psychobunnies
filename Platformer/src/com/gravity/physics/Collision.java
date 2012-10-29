@@ -12,8 +12,10 @@ import com.gravity.entity.Entity;
  * <li>If entityB's side collided eith entityA, then entityB's collisions set will have two integers, one for each end of the side.
  * </ul>
  * 
+ * @deprecated
  * @author xiao
  */
+@Deprecated
 public class Collision {
     
     public final Entity entityA, entityB;

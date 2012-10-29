@@ -5,14 +5,17 @@ import java.util.List;
 import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Vector2f;
 
+import com.gravity.physics.Collidable;
 import com.gravity.physics.Collision;
 import com.gravity.physics.PhysicalState;
 
 /**
  * Represents an object which can move and is subject to collisions
  * 
+ * @deprecated Use {@link Collidable} instead
  * @author xiao
  */
+@Deprecated
 public interface Entity {
     
     /**

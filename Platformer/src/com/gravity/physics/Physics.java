@@ -1,5 +1,9 @@
 package com.gravity.physics;
 
+import java.util.List;
+
+import com.gravity.entity.Entity;
+
 /**
  * Represents a set of physics created at the start of the world. Methods should be stateless.
  * 
@@ -8,9 +12,9 @@ package com.gravity.physics;
  * @author xiao
  */
 public interface Physics {
-    public PhysicalState computePhysics(Entity entity, PhysicalState state, float ticks);
+    public PhysicalState computePhysics(Entity entity, float millis);
     
-    public PhysicalState handleCollision(Entity entity, PhysicalState state, Collision[] collisions);
+    public PhysicalState handleCollision(Entity entity, float millis, List<Collision> collisions);
     
-    public PhysicalState rehandleCollision(Entity entity, PhysicalState state, Collision[] collisions);
+    public PhysicalState rehandleCollision(Entity entity, float millis, List<Collision> collisions);
 }

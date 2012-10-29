@@ -1,4 +1,4 @@
-package com.gravity.physics;
+package com.gravity.entity;
 
 import java.util.List;
 import java.util.Set;
@@ -8,6 +8,8 @@ import org.newdawn.slick.geom.Shape;
 import com.google.common.collect.Sets;
 import com.gravity.fauna.Player;
 import com.gravity.gameplay.GravityGameController;
+import com.gravity.physics.Collision;
+import com.gravity.physics.PhysicalState;
 
 public final class SpikeEntity extends TileWorldEntity {
     
@@ -20,7 +22,7 @@ public final class SpikeEntity extends TileWorldEntity {
     }
     
     @Override
-    public Shape handleCollisions(int ticks, List<Collision> collisions) {
+    public PhysicalState handleCollisions(float ticks, List<Collision> collisions) {
         for (Collision c : collisions) {
             Entity e = c.getOtherEntity(this);
             if (e instanceof Player) {

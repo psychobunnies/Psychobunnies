@@ -24,6 +24,9 @@ import com.gravity.map.TileWorld;
 import com.gravity.map.TileWorldRenderer;
 import com.gravity.physics.CollisionEngine;
 import com.gravity.physics.GravityPhysics;
+import com.gravity.physics.PhysicalState;
+import com.gravity.physics.PhysicsUtils;
+import com.gravity.physics.StandardCollisionEngine;
 
 public class GameplayState extends BasicGameState implements GravityGameController {
     
@@ -74,10 +77,10 @@ public class GameplayState extends BasicGameState implements GravityGameControll
             map = new TileWorld(new TiledMap("assets/level2.tmx"), this);
         }
         oddStart = !oddStart;
-        collider = new CollisionEngine(map);
-        gravityPhysics = new GravityPhysics(collider);
-        playerA = new Player(map, gravityPhysics, "pink", new Vector2f(256, 512));
-        playerB = new Player(map, gravityPhysics, "yellow", new Vector2f(224, 512));
+        collider = new StandardCollisionEngine(map);
+        gravityPhysics = PhysicsUtils.createDefaultGravityPhysics(collider);
+        playerA = new Player(gravityPhysics, "pink", new Vector2f(256, 512));
+        playerB = new Player(gravityPhysics, "yellow", new Vector2f(224, 512));
         renderers.add(new TileWorldRenderer(map));
         renderers.add(new PlayerRenderer(playerA));
         renderers.add(new PlayerRenderer(playerA));
@@ -197,19 +200,20 @@ public class GameplayState extends BasicGameState implements GravityGameControll
     }
     
     private boolean checkWin(Player player) {
-        return (player.getPosition().x + maxOffsetX >= WIN_MARGIN);
+        return (player.getPosition(0f).x + maxOffsetX >= WIN_MARGIN);
     }
     
     private void checkDeath(Player player, float offsetX2) {
-        Vector2f pos = player.getPosition();
+        Vector2f pos = player.getPosition(0f);
         if (pos.x + offsetX2 + 32 < 0) {
             playerDies(player);
         }
     }
     
     private void checkRightSide(Player player, float offsetX2) {
-        Vector2f pos = player.getPosition();
-        player.setPositionX(Math.min(pos.x, -offsetX2 + container.getWidth() - 32));
+        PhysicalState state = player.getCurrentPhysicalState();
+        player.setPhysicalState(new PhysicalState(state.getShape(), Math.min(state.posX, -offsetX2 + container.getWidth() - 32), state.posY,
+                state.velX, state.velY, state.accX, state.accY));
     }
     
     @Override

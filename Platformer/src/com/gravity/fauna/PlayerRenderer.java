@@ -7,13 +7,12 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import com.google.common.collect.Lists;
+import com.gravity.physics.PhysicalState;
 import com.gravity.root.Renderer;
 
 public class PlayerRenderer implements Renderer {
     private Player player;
     private Image bunnyPlayer;
-    private float x;
-    private float y;
     private Image lastImage;
     private List<Image> runningBunny;
     private List<Image> runningBackBunny;
@@ -71,13 +70,11 @@ public class PlayerRenderer implements Renderer {
     
     @Override
     public void render(Graphics g, int offsetX, int offsetY) {
-        this.x = player.getPosition().x;
-        this.y = player.getPosition().y;
-        float velx = player.getVelocity(0).x;
+        PhysicalState state = player.getCurrentPhysicalState();
         if (tweener % 8 == 0) {
-            if (velx > 0) {
+            if (state.velX > 0) {
                 lastImage = runningBunny.get(counter);
-            } else if (velx < 0) {
+            } else if (state.velX < 0) {
                 lastImage = runningBackBunny.get(counter);
             } else {
                 lastImage = bunnyPlayer;
@@ -88,7 +85,7 @@ public class PlayerRenderer implements Renderer {
             }
         }
         
-        g.drawImage(lastImage, this.x + offsetX, this.y + offsetY);
+        g.drawImage(lastImage, state.posX + offsetX, state.posY + offsetY);
         tweener++;
         /*
          * // if we ever need to draw hitboxes again: g.pushTransform(); g.translate(offsetX, offsetY); g.setColor(Color.red);

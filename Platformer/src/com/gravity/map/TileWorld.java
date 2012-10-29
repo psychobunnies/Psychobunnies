@@ -4,16 +4,16 @@ import java.util.List;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Rectangle;
-import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.tiled.TiledMap;
 
 import com.google.common.collect.Lists;
+import com.gravity.entity.Entity;
+import com.gravity.entity.SpikeEntity;
+import com.gravity.entity.TileWorldEntity;
 import com.gravity.gameplay.GravityGameController;
-import com.gravity.physics.Entity;
-import com.gravity.physics.SpikeEntity;
-import com.gravity.physics.TileWorldEntity;
 
 public class TileWorld implements GameWorld {
+    
     public final int height;
     public final int width;
     
@@ -70,33 +70,6 @@ public class TileWorld implements GameWorld {
             }
         }
         
-    }
-    
-    @Override
-    public List<Entity> getCollisions(Shape shape) {
-        List<Entity> collisions = Lists.newArrayList();
-        for (Entity ent : entityNoCalls) {
-            if (shape.intersects(ent.getShape(0))) {
-                collisions.add(ent);
-            }
-        }
-        return collisions;
-    }
-    
-    @Override
-    public List<Entity> getTouching(Shape shape) {
-        List<Entity> touches = Lists.newArrayList();
-        for (Entity terrain : entityNoCalls) {
-            if (shape.intersects(terrain.getShape(0))) {
-                touches.add(terrain);
-            }
-        }
-        for (Entity terrain : entityCallColls) {
-            if (shape.intersects(terrain.getShape(0))) {
-                touches.add(terrain);
-            }
-        }
-        return touches;
     }
     
     @Override

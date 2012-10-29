@@ -2,6 +2,8 @@ package com.gravity.physics;
 
 import java.util.Set;
 
+import com.gravity.entity.Entity;
+
 /**
  * Represents a collision at a certain point in time between two entities <br>
  * Contains the time of the collision, and the set of vertices in each shape which were involved with the collision.
@@ -15,10 +17,10 @@ import java.util.Set;
 public class Collision {
     
     public final Entity entityA, entityB;
-    public final int time;
+    public final float time;
     public final Set<Integer> collisionsA, collisionsB;
     
-    public Collision(Entity entityA, Entity entityB, int time, Set<Integer> collisionA, Set<Integer> collisionB) {
+    public Collision(Entity entityA, Entity entityB, float time, Set<Integer> collisionA, Set<Integer> collisionB) {
         this.entityA = entityA;
         this.entityB = entityB;
         this.time = time;
@@ -59,8 +61,7 @@ public class Collision {
     
     @Override
     public String toString() {
-        return "Collision [entityA=" + entityA + ", entityB=" + entityB + ", time=" + time + ", collisionsA=" + collisionsA + ", collisionsB="
-                + collisionsB + "]";
+        return "Collision [entityA=" + entityA + ", entityB=" + entityB + ", time=" + time + ", collisionsA=" + collisionsA + ", collisionsB=" + collisionsB + "]";
     }
     
 }

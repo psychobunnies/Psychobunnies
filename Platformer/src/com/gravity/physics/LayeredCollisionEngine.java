@@ -155,6 +155,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
         for (float time = increment; time < millis; time += increment) {
             collisions = computeCollisions(time);
             if (collisions.isEmpty()) {
+                System.out.println("Collision Engine: No collisions!");
                 continue;
             }
             for (Collidable coll : collisions.keySet()) {
@@ -165,6 +166,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
             
             collisions = computeCollisions(time);
             if (collisions.isEmpty()) {
+                System.out.println("Collision Engine: Collisions resolved first time!");
                 continue;
             }
             for (Collidable coll : collisions.keySet()) {

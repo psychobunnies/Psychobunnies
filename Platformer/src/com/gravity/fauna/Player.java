@@ -83,9 +83,11 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     // //////////////////////////////////////////////////////////////////////////
     // //////////////////////////ON-TICK METHODS/////////////////////////////////
     // //////////////////////////////////////////////////////////////////////////
+    
     @Override
-    public void updated(float millis) {
-        onGround = physics.isOnGround(this, millis);
+    public void finishUpdate(float millis) {
+        super.finishUpdate(millis);
+        System.out.println("Computing physics! " + this + " state= " + state);
         switch (requested) {
             case LEFT:
                 setPhysicalState(state.setVelocity(-MOVEMENT_INCREMENT, state.velY));
@@ -96,7 +98,6 @@ public class Player extends PhysicsEntity<GravityPhysics> {
             default:
                 // no-op
         }
-        System.out.println(this.toString() + " loc: " + state.toString());
     }
     
 }

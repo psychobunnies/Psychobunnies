@@ -3,6 +3,7 @@ package com.gravity.physics;
 import java.util.Collection;
 
 import com.gravity.entity.Entity;
+import com.gravity.entity.PhysicallyStateful;
 
 public class SimplePhysics implements Physics {
     
@@ -11,7 +12,7 @@ public class SimplePhysics implements Physics {
     }
     
     @Override
-    public PhysicalState computePhysics(Entity entity, float millis) {
+    public PhysicalState computePhysics(PhysicallyStateful entity, float millis) {
         return entity.getPhysicalStateAt(millis);
     }
     
@@ -21,7 +22,7 @@ public class SimplePhysics implements Physics {
     }
     
     @Override
-    public PhysicalState rehandleCollision(Entity entity, float millis, Collection<RectCollision> collisions) {
+    public PhysicalState rehandleCollision(PhysicallyStateful entity, float millis, Collection<RectCollision> collisions) {
         PhysicalState state = entity.getPhysicalStateAt(millis);
         System.err.println("WARNING: Rehandling collision for entity " + entity + " at " + state + " stupidly");
         return state.killMovement();

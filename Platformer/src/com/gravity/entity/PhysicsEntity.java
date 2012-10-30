@@ -8,7 +8,7 @@ import com.gravity.physics.Physics;
 import com.gravity.physics.RectCollision;
 
 /**
- * An entity which obeys a set of physics.
+ * A collidable entity which obeys a set of physics.
  * 
  * @author xiao, predrag
  */
@@ -32,13 +32,12 @@ public abstract class PhysicsEntity<T extends Physics> extends AbstractEntity {
     }
     
     @Override
-    public PhysicalState getPhysicalState() {
-        return state;
+    public void startUpdate(float millis) {
+        state = physics.computePhysics(this, millis);
     }
     
     @Override
-    public PhysicalState getPhysicalStateAt(float millis) {
-        return physics.computePhysics(this, millis);
+    public void finishUpdate(float millis) {
+        state = state.snapshot(millis);
     }
-    
 }

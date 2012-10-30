@@ -3,6 +3,7 @@ package com.gravity.physics;
 import java.util.Collection;
 
 import com.gravity.entity.Entity;
+import com.gravity.entity.PhysicallyStateful;
 
 /**
  * Represents a set of physics created at the start of the world. Methods should be stateless.
@@ -17,7 +18,7 @@ public interface Physics {
      * 
      * @return The PhysicalState of the object <i>AT TIME 0</i>
      */
-    public PhysicalState computePhysics(Entity entity, float millis);
+    public PhysicalState computePhysics(PhysicallyStateful entity, float millis);
     
     /**
      * Bounce, stop, or otherwise handle the physics of collisions.
@@ -32,5 +33,5 @@ public interface Physics {
      */
     public PhysicalState handleCollision(Entity entity, float millis, Collection<RectCollision> collisions);
     
-    public PhysicalState rehandleCollision(Entity entity, float millis, Collection<RectCollision> collisions);
+    public PhysicalState rehandleCollision(PhysicallyStateful entity, float millis, Collection<RectCollision> collisions);
 }

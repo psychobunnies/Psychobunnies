@@ -5,6 +5,7 @@ import java.util.EnumSet;
 
 import com.google.common.base.Preconditions;
 import com.gravity.entity.Entity;
+import com.gravity.entity.PhysicallyStateful;
 import com.gravity.geom.Rect.Side;
 
 /**
@@ -23,15 +24,17 @@ public class GravityPhysics implements Physics {
         this.gravity = gravity;
     }
     
-    public boolean isOnGround(Entity entity, float millis) {
-        return collisionEngine.collidesAgainstLayer(millis, entity.getRect(millis), LayeredCollisionEngine.FLORA_LAYER);
+    public boolean isOnGround(PhysicalState state, float millis) {
+        return collisionEngine.collidesAgainstLayer(millis, state.getRectangleAt(millis), LayeredCollisionEngine.FLORA_LAYER);
     }
     
     @Override
-    public PhysicalState computePhysics(Entity entity, float millis) {
-        if (isOnGround(entity, millis)) {
+    public PhysicalState computePhysics(PhysicallyStateful entity, float millis) {
+        if (isOnGround(entity.getPhysicalState(), millis)) {
+            System.out.println(entity + " is on the ground!");
             return entity.getPhysicalState();
         } else {
+            System.out.println(entity + " is NOT on the ground!");
             return entity.getPhysicalState().addAcceleration(0f, gravity);
         }
     }
@@ -69,7 +72,7 @@ public class GravityPhysics implements Physics {
     }
     
     @Override
-    public PhysicalState rehandleCollision(Entity entity, float millis, Collection<RectCollision> collisions) {
+    public PhysicalState rehandleCollision(PhysicallyStateful entity, float millis, Collection<RectCollision> collisions) {
         System.err.println("Warning: rehandling collisions for: " + entity);
         return entity.getPhysicalState().killMovement();
     }

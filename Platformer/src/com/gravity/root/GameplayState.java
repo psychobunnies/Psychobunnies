@@ -15,6 +15,8 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
+import com.google.common.collect.Lists;
+import com.gravity.entity.UpdateCycling;
 import com.gravity.fauna.Player;
 import com.gravity.fauna.PlayerKeyboardController;
 import com.gravity.fauna.PlayerKeyboardController.Control;
@@ -42,6 +44,7 @@ public class GameplayState extends BasicGameState implements GravityGameControll
     private Player playerA, playerB;
     private List<Renderer> renderers = new ArrayList<Renderer>();
     private PlayerKeyboardController controllerA, controllerB;
+    private List<UpdateCycling> updaters;
     private CollisionEngine collider;
     private GameContainer container;
     private StateBasedGame game;
@@ -85,9 +88,12 @@ public class GameplayState extends BasicGameState implements GravityGameControll
         for (Collidable c : map.getTerrainEntitiesNoCalls()) {
             collider.addCollidable(c, LayeredCollisionEngine.FLORA_LAYER, false);
         }
+        updaters = Lists.newLinkedList();
         gravityPhysics = PhysicsFactory.createDefaultGravityPhysics(collider);
         playerA = new Player(gravityPhysics, "pink", new Vector2f(256, 512));
         playerB = new Player(gravityPhysics, "yellow", new Vector2f(224, 512));
+        updaters.add(playerA);
+        updaters.add(playerB);
         renderers.add(new TileWorldRenderer(map));
         renderers.add(new PlayerRenderer(playerA));
         renderers.add(new PlayerRenderer(playerB));
@@ -180,7 +186,13 @@ public class GameplayState extends BasicGameState implements GravityGameControll
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         totalTime += delta;
+        for (UpdateCycling uc : updaters) {
+            uc.startUpdate(delta);
+        }
         collider.update(delta);
+        for (UpdateCycling uc : updaters) {
+            uc.finishUpdate(delta);
+        }
         offsetX -= delta * getOffsetXDelta();
         offsetX = Math.max(offsetX, maxOffsetX);
         

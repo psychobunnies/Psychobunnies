@@ -19,11 +19,6 @@ public abstract class AbstractEntity implements Entity {
     }
     
     @Override
-    public Vector2f getVelocity(float millis) {
-        return getPhysicalStateAt(millis).getVelocity();
-    }
-    
-    @Override
     public Rect getRect(float millis) {
         PhysicalState newState = getPhysicalStateAt(millis);
         return newState.getRectangle();
@@ -34,4 +29,13 @@ public abstract class AbstractEntity implements Entity {
         state = newState;
     }
     
+    @Override
+    public PhysicalState getPhysicalStateAt(float millis) {
+        return state.snapshot(millis);
+    }
+    
+    @Override
+    public PhysicalState getPhysicalState() {
+        return state;
+    }
 }

@@ -2,7 +2,7 @@ package com.gravity.physics;
 
 import java.util.Set;
 
-import com.gravity.entity.Entity;
+import com.gravity.entity.UpdateCycling;
 
 /**
  * Represents a collision at a certain point in time between two entities <br>
@@ -18,11 +18,11 @@ import com.gravity.entity.Entity;
 @Deprecated
 public class Collision {
     
-    public final Entity entityA, entityB;
+    public final UpdateCycling entityA, entityB;
     public final float time;
     public final Set<Integer> collisionsA, collisionsB;
     
-    public Collision(Entity entityA, Entity entityB, float time, Set<Integer> collisionA, Set<Integer> collisionB) {
+    public Collision(UpdateCycling entityA, UpdateCycling entityB, float time, Set<Integer> collisionA, Set<Integer> collisionB) {
         this.entityA = entityA;
         this.entityB = entityB;
         this.time = time;
@@ -31,7 +31,7 @@ public class Collision {
     }
     
     /** Get the other entity in the collision */
-    public Entity getOtherEntity(Entity me) {
+    public UpdateCycling getOtherEntity(UpdateCycling me) {
         if (me == entityA) {
             return entityB;
         } else {
@@ -42,7 +42,7 @@ public class Collision {
     /**
      * Get the indices of the vertices in my shape which collided with the other entity.
      */
-    public Set<Integer> getMyCollisions(Entity me) {
+    public Set<Integer> getMyCollisions(UpdateCycling me) {
         if (me == entityA) {
             return collisionsA;
         } else {
@@ -53,7 +53,7 @@ public class Collision {
     /**
      * Get the indices of the vertices in the other's shape which collided with my entity.
      */
-    public Set<Integer> getOtherCollisions(Entity me) {
+    public Set<Integer> getOtherCollisions(UpdateCycling me) {
         if (me == entityA) {
             return collisionsB;
         } else {

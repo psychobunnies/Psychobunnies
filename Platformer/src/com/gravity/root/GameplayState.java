@@ -147,21 +147,24 @@ public class GameplayState extends BasicGameState implements GravityGameControll
             g.popTransform();
         }
         
-        g.pushTransform();
-        g.translate(32, 32);
-        g.setColor(lightPink);
-        g.fillRoundRect(0, 0, 320, 64, 10);
-        renderControls(g, "Pink", controllerA);
-        g.resetTransform();
-        g.popTransform();
-        
-        g.pushTransform();
-        g.translate(672, 32);
-        g.setColor(lightYellow);
-        g.fillRoundRect(0, 0, 320, 64, 10);
-        renderControls(g, "Yellow", controllerB);
-        g.resetTransform();
-        g.popTransform();
+        /*
+         * // If we ever need to debug hitboxes again
+         * g.pushTransform();
+         * g.translate(32, 32);
+         * g.setColor(lightPink);
+         * g.fillRoundRect(0, 0, 320, 64, 10);
+         * renderControls(g, "Pink", controllerA);
+         * g.resetTransform();
+         * g.popTransform();
+         * 
+         * g.pushTransform();
+         * g.translate(672, 32);
+         * g.setColor(lightYellow);
+         * g.fillRoundRect(0, 0, 320, 64, 10);
+         * renderControls(g, "Yellow", controllerB);
+         * g.resetTransform();
+         * g.popTransform();
+         */
     }
     
     public void renderControls(Graphics g, String playername, PlayerKeyboardController controller) {

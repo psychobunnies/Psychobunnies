@@ -35,10 +35,8 @@ public class GravityPhysics implements Physics {
     @Override
     public PhysicalState computePhysics(PhysicallyStateful entity, float millis) {
         if (isOnGround(entity.getPhysicalState(), millis)) {
-            System.out.println(entity + " is on the ground!");
             return entity.getPhysicalState();
         } else {
-            System.out.println(entity + " is NOT on the ground!");
             return entity.getPhysicalState().addAcceleration(0f, gravity);
         }
     }

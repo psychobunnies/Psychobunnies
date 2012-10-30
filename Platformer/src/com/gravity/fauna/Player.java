@@ -16,7 +16,7 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     public static int TOP_LEFT = 0, TOP_RIGHT = 1, BOT_RIGHT = 2, BOT_LEFT = 3;
     
     // PLAYER STARTING CONSTANTS (Units = pixels, milliseconds)
-    private static final float JUMP_POWER = 0.6f;
+    private static final float JUMP_POWER = 0.5f;
     private static final float MOVEMENT_INCREMENT = 1f / 8f;
     private static final Rect BASE_SHAPE = new Rect(0f, 0f, 15f, 32f);
     private static final Vector2f DEFAULT_VELOCITY = new Vector2f(0, 0);

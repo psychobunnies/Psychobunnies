@@ -99,7 +99,6 @@ public class LayeredCollisionEngine implements CollisionEngine {
         for (Collidable collB : collidables.get(layer)) {
             sidesA = collidable.getRect(time).getCollision(collB.getRect(time));
             if (!sidesA.isEmpty()) {
-                System.err.println("   Found collision between " + collidable + " , " + collB + " : " + sidesA);
                 sidesB = collB.getRect(time).getCollision(collidable.getRect(time));
                 colls.add(new RectCollision(collidable, collB, time, sidesA, sidesB));
             }

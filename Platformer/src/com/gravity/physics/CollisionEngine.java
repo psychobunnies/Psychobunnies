@@ -1,15 +1,22 @@
 package com.gravity.physics;
 
-import com.gravity.entity.Entity;
+import java.util.List;
+
+import com.google.common.collect.Multimap;
+import com.gravity.geom.Rect;
 
 public interface CollisionEngine {
     
-    public boolean addEntity(Entity entity);
+    public boolean addCollidable(Collidable collidable, Integer layer, boolean handlesCollisions);
     
-    public boolean removeEntity(Entity entity);
-    
-    public boolean isOnGround(Entity entity, float millis);
+    public boolean removeCollidable(Collidable entity);
     
     public void update(float millis);
+    
+    public Multimap<Collidable, RectCollision> computeCollisions(float time);
+    
+    public List<RectCollision> checkAgainstLayer(float time, Collidable collidable, Integer layer);
+    
+    public boolean collidesAgainstLayer(float millis, Rect rect, Integer floraLayer);
     
 }

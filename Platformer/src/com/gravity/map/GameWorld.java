@@ -2,7 +2,7 @@ package com.gravity.map;
 
 import java.util.List;
 
-import com.gravity.entity.Entity;
+import com.gravity.physics.Collidable;
 import com.gravity.root.Renderer;
 
 public interface GameWorld extends Renderer {
@@ -14,9 +14,9 @@ public interface GameWorld extends Renderer {
     public int getWidth();
     
     /** Return a list of entities for use in collision detection that do not wish to be notified of collisions */
-    public List<Entity> getTerrainEntitiesNoCalls();
+    public List<Collidable> getTerrainEntitiesNoCalls();
     
     /** Return a list of entities for use in collision detection that wish to be notified of collisions */
-    public List<Entity> getTerrainEntitiesCallColls();
+    public List<Collidable> getTerrainEntitiesCallColls();
     
 }

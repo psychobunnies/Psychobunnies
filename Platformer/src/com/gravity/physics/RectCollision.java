@@ -28,8 +28,10 @@ public class RectCollision {
     public Collidable getOtherEntity(Collidable me) {
         if (me == entityA) {
             return entityB;
-        } else {
+        } else if (me == entityB) {
             return entityA;
+        } else {
+            return null;
         }
     }
     
@@ -39,8 +41,10 @@ public class RectCollision {
     public EnumSet<Side> getMyCollisions(Collidable me) {
         if (me == entityA) {
             return sidesA;
-        } else {
+        } else if (me == entityB) {
             return sidesB;
+        } else {
+            return null;
         }
     }
     
@@ -50,8 +54,10 @@ public class RectCollision {
     public EnumSet<Side> getOtherCollisions(Collidable me) {
         if (me == entityA) {
             return sidesB;
-        } else {
+        } else if (me == entityB) {
             return sidesA;
+        } else {
+            return null;
         }
     }
     

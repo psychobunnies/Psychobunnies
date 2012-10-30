@@ -1,8 +1,8 @@
 package com.gravity.physics;
 
-public final class PhysicsUtils {
+public final class PhysicsFactory {
     
-    private PhysicsUtils() {
+    private PhysicsFactory() {
         // never instantiated
     }
     
@@ -10,7 +10,7 @@ public final class PhysicsUtils {
     private static final float DEFAULT_REHANDLE_BACKSTEP = -15f;
     
     public static GravityPhysics createDefaultGravityPhysics(CollisionEngine engine) {
-        return new GravityPhysics(engine, DEFAULT_GRAVITY, DEFAULT_REHANDLE_BACKSTEP);
+        return new GravityPhysics(engine, DEFAULT_GRAVITY);
     }
     
     public static SimplePhysics createSimplePhysics() {

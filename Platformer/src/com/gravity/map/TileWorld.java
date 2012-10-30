@@ -3,14 +3,14 @@ package com.gravity.map;
 import java.util.List;
 
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
 import com.google.common.collect.Lists;
-import com.gravity.entity.Entity;
 import com.gravity.entity.SpikeEntity;
 import com.gravity.entity.TileWorldEntity;
 import com.gravity.gameplay.GravityGameController;
+import com.gravity.geom.Rect;
+import com.gravity.physics.Collidable;
 
 public class TileWorld implements GameWorld {
     
@@ -20,7 +20,7 @@ public class TileWorld implements GameWorld {
     public final int tileHeight;
     public final int tileWidth;
     
-    private List<Entity> entityNoCalls, entityCallColls;
+    private List<Collidable> entityNoCalls, entityCallColls;
     
     private TiledMap map;
     
@@ -48,8 +48,8 @@ public class TileWorld implements GameWorld {
                 int tileId = map.getTileId(i, j, layerId);
                 if (tileId != 0) {
                     // Tile exists at this spot
-                    Rectangle r = new Rectangle(i * tileWidth, j * tileHeight, tileWidth, tileHeight);
-                    Entity e = new TileWorldEntity(r);
+                    Rect r = new Rect(i * tileWidth, j * tileHeight, tileWidth, tileHeight);
+                    Collidable e = new TileWorldEntity(r);
                     
                     entityNoCalls.add(e);
                 }
@@ -62,8 +62,8 @@ public class TileWorld implements GameWorld {
                 int tileId = map.getTileId(i, j, layerId);
                 if (tileId != 0) {
                     // Tile exists at this spot
-                    Rectangle r = new Rectangle(i * tileWidth, j * tileHeight, tileWidth, tileHeight);
-                    Entity e = new SpikeEntity(controller, r);
+                    Rect r = new Rect(i * tileWidth, j * tileHeight, tileWidth, tileHeight);
+                    Collidable e = new SpikeEntity(controller, r);
                     
                     entityCallColls.add(e);
                 }
@@ -83,7 +83,7 @@ public class TileWorld implements GameWorld {
     }
     
     @Override
-    public List<Entity> getTerrainEntitiesNoCalls() {
+    public List<Collidable> getTerrainEntitiesNoCalls() {
         return entityNoCalls;
     }
     
@@ -97,7 +97,7 @@ public class TileWorld implements GameWorld {
     }
     
     @Override
-    public List<Entity> getTerrainEntitiesCallColls() {
+    public List<Collidable> getTerrainEntitiesCallColls() {
         return entityCallColls;
     }
 }

@@ -6,7 +6,7 @@ public class LayeredCollisionEngineTest {
     
     @Test
     public void testAddCollidable() {
-        LayeredCollisionEngine engine = new LayeredCollisionEngine();
+        CollisionEngine engine = new LayeredCollisionEngine();
         // TODO: add tests
     }
 }

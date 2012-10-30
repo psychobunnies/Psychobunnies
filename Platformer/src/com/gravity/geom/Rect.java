@@ -45,9 +45,23 @@ public class Rect {
     public static enum Side {
         TOP, LEFT, BOTTOM, RIGHT;
         
-        /**
-         * Given a set of corners in a collision, get the sides involved.
-         */
+        public static boolean isSimpleSet(EnumSet<Side> set) {
+            if (set.size() == 1) {
+                return true;
+            } else {
+                if (set.size() == 4) {
+                    return false;
+                } else {
+                    if (set.equals(EnumSet.of(TOP, BOTTOM))) {
+                        return false;
+                    } else if (set.equals(EnumSet.of(LEFT, RIGHT))) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+            }
+        }
     }
     
     public Rect(float x, float y, float width, float height) {
@@ -187,6 +201,14 @@ public class Rect {
     
     public float getY() {
         return y;
+    }
+    
+    public Vector2f getPosition() {
+        return new Vector2f(x, y);
+    }
+    
+    public Rect setPosition(float x, float y) {
+        return new Rect(x, y, width, height);
     }
     
     public float getHeight() {

@@ -1,9 +1,8 @@
 package com.gravity.entity;
 
-import org.newdawn.slick.geom.Shape;
-import org.newdawn.slick.geom.Transform;
 import org.newdawn.slick.geom.Vector2f;
 
+import com.gravity.geom.Rect;
 import com.gravity.physics.PhysicalState;
 
 public abstract class AbstractEntity implements Entity {
@@ -16,19 +15,18 @@ public abstract class AbstractEntity implements Entity {
     
     @Override
     public Vector2f getPosition(float millis) {
-        return getPhysicalState(millis).getPosition();
+        return getPhysicalStateAt(millis).getPosition();
     }
     
     @Override
     public Vector2f getVelocity(float millis) {
-        return getPhysicalState(millis).getVelocity();
+        return getPhysicalStateAt(millis).getVelocity();
     }
     
     @Override
-    public Shape getShape(float millis) {
-        PhysicalState newState = getPhysicalState(millis);
-        Shape shape = state.getShape();
-        return shape.transform(Transform.createTranslateTransform(newState.posX - shape.getX(), newState.posY - shape.getY()));
+    public Rect getRect(float millis) {
+        PhysicalState newState = getPhysicalStateAt(millis);
+        return newState.getRectangle();
     }
     
     @Override

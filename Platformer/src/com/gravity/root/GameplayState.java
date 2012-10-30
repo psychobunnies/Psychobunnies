@@ -22,11 +22,12 @@ import com.gravity.fauna.PlayerRenderer;
 import com.gravity.gameplay.GravityGameController;
 import com.gravity.map.TileWorld;
 import com.gravity.map.TileWorldRenderer;
+import com.gravity.physics.Collidable;
 import com.gravity.physics.CollisionEngine;
 import com.gravity.physics.GravityPhysics;
+import com.gravity.physics.LayeredCollisionEngine;
 import com.gravity.physics.PhysicalState;
-import com.gravity.physics.PhysicsUtils;
-import com.gravity.physics.StandardCollisionEngine;
+import com.gravity.physics.PhysicsFactory;
 
 public class GameplayState extends BasicGameState implements GravityGameController {
     
@@ -77,8 +78,14 @@ public class GameplayState extends BasicGameState implements GravityGameControll
             map = new TileWorld(new TiledMap("assets/level2.tmx"), this);
         }
         oddStart = !oddStart;
-        collider = new StandardCollisionEngine(map);
-        gravityPhysics = PhysicsUtils.createDefaultGravityPhysics(collider);
+        collider = new LayeredCollisionEngine();
+        for (Collidable c : map.getTerrainEntitiesCallColls()) {
+            collider.addCollidable(c, LayeredCollisionEngine.FLORA_LAYER, true);
+        }
+        for (Collidable c : map.getTerrainEntitiesNoCalls()) {
+            collider.addCollidable(c, LayeredCollisionEngine.FLORA_LAYER, false);
+        }
+        gravityPhysics = PhysicsFactory.createDefaultGravityPhysics(collider);
         playerA = new Player(gravityPhysics, "pink", new Vector2f(256, 512));
         playerB = new Player(gravityPhysics, "yellow", new Vector2f(224, 512));
         renderers.add(new TileWorldRenderer(map));
@@ -87,8 +94,8 @@ public class GameplayState extends BasicGameState implements GravityGameControll
         controllerA = new PlayerKeyboardController(playerA).setLeft(Input.KEY_A).setRight(Input.KEY_D).setJump(Input.KEY_W).setMisc(Input.KEY_S);
         controllerB = new PlayerKeyboardController(playerB).setLeft(Input.KEY_LEFT).setRight(Input.KEY_RIGHT).setJump(Input.KEY_UP)
                 .setMisc(Input.KEY_DOWN);
-        collider.addEntity(playerA);
-        collider.addEntity(playerB);
+        collider.addCollidable(playerA, LayeredCollisionEngine.FAUNA_LAYER, true);
+        collider.addCollidable(playerB, LayeredCollisionEngine.FAUNA_LAYER, true);
         offsetX = 0;
         offsetY = 0;
         maxOffsetX = (map.getWidth() - container.getWidth()) * -1;
@@ -211,9 +218,10 @@ public class GameplayState extends BasicGameState implements GravityGameControll
     }
     
     private void checkRightSide(Player player, float offsetX2) {
-        PhysicalState state = player.getCurrentPhysicalState();
-        player.setPhysicalState(new PhysicalState(state.getShape(), Math.min(state.posX, -offsetX2 + container.getWidth() - 32), state.posY,
-                state.velX, state.velY, state.accX, state.accY));
+        PhysicalState state = player.getPhysicalState();
+        player.setPhysicalState(new PhysicalState(state.getRectangle().setPosition(
+                Math.min(state.getRectangle().getX(), -offsetX2 + container.getWidth() - 32), state.getRectangle().getY()), state.velX, state.velY,
+                state.accX, state.accY));
     }
     
     @Override

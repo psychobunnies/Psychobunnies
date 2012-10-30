@@ -1,15 +1,13 @@
 package com.gravity.fauna;
 
-import org.newdawn.slick.geom.Rectangle;
-import org.newdawn.slick.geom.Shape;
-import org.newdawn.slick.geom.Transform;
 import org.newdawn.slick.geom.Vector2f;
 
-import com.gravity.entity.AbstractGravityPhysicsEntity;
+import com.gravity.entity.PhysicsEntity;
+import com.gravity.geom.Rect;
 import com.gravity.physics.GravityPhysics;
 import com.gravity.physics.PhysicalState;
 
-public class Player extends AbstractGravityPhysicsEntity {
+public class Player extends PhysicsEntity<GravityPhysics> {
     
     public static enum Movement {
         LEFT, RIGHT, STOP
@@ -20,7 +18,7 @@ public class Player extends AbstractGravityPhysicsEntity {
     // PLAYER STARTING CONSTANTS (Units = pixels, milliseconds)
     private static final float JUMP_POWER = 0.7f;
     private static final float MOVEMENT_INCREMENT = 1f / 8f;
-    private static final Shape BASE_SHAPE = new Rectangle(0f, 0f, 15f, 32f);
+    private static final Rect BASE_SHAPE = new Rect(0f, 0f, 15f, 32f);
     private static final Vector2f DEFAULT_VELOCITY = new Vector2f(0, 0);
     
     // GAME STATE STUFF
@@ -29,8 +27,7 @@ public class Player extends AbstractGravityPhysicsEntity {
     private Movement requested = Movement.STOP;
     
     public Player(GravityPhysics physics, String name, Vector2f startpos) {
-        super(new PhysicalState(BASE_SHAPE.transform(Transform.createTranslateTransform(startpos.x, startpos.y)), startpos, DEFAULT_VELOCITY.copy()),
-                physics);
+        super(new PhysicalState(BASE_SHAPE.translate(startpos.x, startpos.y), DEFAULT_VELOCITY.copy()), physics);
         this.name = name;
     }
     

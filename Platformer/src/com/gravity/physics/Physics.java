@@ -1,6 +1,6 @@
 package com.gravity.physics;
 
-import java.util.List;
+import java.util.Collection;
 
 import com.gravity.entity.Entity;
 
@@ -12,9 +12,25 @@ import com.gravity.entity.Entity;
  * @author xiao
  */
 public interface Physics {
+    /**
+     * Compute the state of the entity according to this Physics after specified time, assuming nothing else in the world.
+     * 
+     * @return The PhysicalState of the object <i>AT TIME 0</i>
+     */
     public PhysicalState computePhysics(Entity entity, float millis);
     
-    public PhysicalState handleCollision(Entity entity, float millis, List<RectCollision> collisions);
+    /**
+     * Bounce, stop, or otherwise handle the physics of collisions.
+     * 
+     * @param entity
+     *            The entity being collided.
+     * @param millis
+     *            The time of the collision.
+     * @param collisions
+     *            The collisions the entity participated in.
+     * @return The updated state of the object <i>AT TIME 0</i>
+     */
+    public PhysicalState handleCollision(Entity entity, float millis, Collection<RectCollision> collisions);
     
-    public PhysicalState rehandleCollision(Entity entity, float millis, List<RectCollision> collisions);
+    public PhysicalState rehandleCollision(Entity entity, float millis, Collection<RectCollision> collisions);
 }

@@ -1,46 +1,43 @@
 package com.gravity.entity;
 
-import java.util.List;
+import java.util.Collection;
 
-import org.newdawn.slick.geom.Shape;
+import org.newdawn.slick.geom.Vector2f;
 
-import com.gravity.physics.Collision;
-import com.gravity.physics.PhysicalState;
+import com.gravity.geom.Rect;
+import com.gravity.physics.Collidable;
+import com.gravity.physics.RectCollision;
 
 /**
  * Represents a convex shape in map terrain for collision detection.
  * 
  * @author xiao
  */
-public class TileWorldEntity extends AbstractEntity {
+public class TileWorldEntity implements Collidable {
+    private Rect shape;
     
-    public TileWorldEntity(Shape shape) {
-        super(new PhysicalState(shape, shape.getMinX(), shape.getMinY(), 0f, 0f));
+    public TileWorldEntity(Rect shape) {
+        this.shape = shape;
     }
     
     @Override
-    public PhysicalState handleCollisions(float ticks, List<Collision> collisions) {
-        return state;
+    public Rect handleCollisions(float ticks, Collection<RectCollision> collisions) {
+        return shape;
     }
     
     @Override
-    public PhysicalState rehandleCollisions(float ticks, List<Collision> collisions) {
-        return state;
+    public Rect rehandleCollisions(float ticks, Collection<RectCollision> collisions) {
+        return shape;
     }
     
     @Override
-    public PhysicalState getPhysicalState(float millis) {
-        return state;
+    public Vector2f getPosition(float millis) {
+        return shape.getPosition();
     }
     
     @Override
-    public PhysicalState getCurrentPhysicalState() {
-        return state;
-    }
-    
-    @Override
-    public void updated(float millis) {
-        // no-op
+    public Rect getRect(float millis) {
+        return shape;
     }
     
 }

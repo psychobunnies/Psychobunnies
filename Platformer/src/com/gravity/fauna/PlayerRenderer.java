@@ -5,6 +5,7 @@ import java.util.List;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Vector2f;
 
 import com.google.common.collect.Lists;
 import com.gravity.physics.PhysicalState;
@@ -70,7 +71,7 @@ public class PlayerRenderer implements Renderer {
     
     @Override
     public void render(Graphics g, int offsetX, int offsetY) {
-        PhysicalState state = player.getCurrentPhysicalState();
+        PhysicalState state = player.getPhysicalState();
         if (tweener % 8 == 0) {
             if (state.velX > 0) {
                 lastImage = runningBunny.get(counter);
@@ -85,7 +86,8 @@ public class PlayerRenderer implements Renderer {
             }
         }
         
-        g.drawImage(lastImage, state.posX + offsetX, state.posY + offsetY);
+        Vector2f pos = state.getPosition();
+        g.drawImage(lastImage, pos.x + offsetX, pos.y + offsetY);
         tweener++;
         /*
          * // if we ever need to draw hitboxes again: g.pushTransform(); g.translate(offsetX, offsetY); g.setColor(Color.red);

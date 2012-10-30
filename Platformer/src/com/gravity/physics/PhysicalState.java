@@ -63,6 +63,21 @@ public class PhysicalState {
         //@formatter:on
     }
     
+    /** Return the state of the object after specified time has passed. For this compute ONLY, add specified acceleration to state's acceleration */
+    public PhysicalState snapshot(float millis, float addAccX, float addAccY) {
+        float aX = accX + addAccX;
+        float aY = accY + addAccY;
+        //@formatter:off
+        float newX = velX * millis + aX * millis * Math.abs(millis) / 2;
+        float newY = velY * millis + aY * millis * Math.abs(millis) / 2;
+        return new PhysicalState(shape.translate(newX, newY),
+                                 velX + aX * millis,
+                                 velY + aY * millis,
+                                 accX,
+                                 accY);
+        //@formatter:on
+    }
+    
     public Vector2f getPosition() {
         return new Vector2f(shape.getX(), shape.getY());
     }
@@ -92,6 +107,10 @@ public class PhysicalState {
     
     public PhysicalState setVelocity(float xVel, float yVel) {
         return new PhysicalState(shape, xVel, yVel, accX, accY);
+    }
+    
+    public PhysicalState translate(float x, float y) {
+        return new PhysicalState(shape.translate(x, y), velX, velY, accX, accY);
     }
     
     public Rect getRectangle() {

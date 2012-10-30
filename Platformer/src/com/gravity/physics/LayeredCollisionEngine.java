@@ -11,6 +11,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
+import com.gravity.geom.Rect;
 import com.gravity.geom.Rect.Side;
 
 /**
@@ -20,9 +21,9 @@ import com.gravity.geom.Rect.Side;
  * @author xiao
  * 
  */
-public class LayeredCollisionEngine {
-    public static final Integer FLORA_LAYER = 0;
-    public static final Integer FAUNA_LAYER = 1;
+public class LayeredCollisionEngine implements CollisionEngine {
+    public static final Integer FLORA_LAYER = 1;
+    public static final Integer FAUNA_LAYER = 0;
     
     // package private for testing
     final Map<Integer, Set<Collidable>> collidables;
@@ -44,6 +45,7 @@ public class LayeredCollisionEngine {
      *            whether or not the collidable will have its {@link Collidable#handleCollisions(float, java.util.List)} method called.
      * @return true if the element was not already in the engine.
      */
+    @Override
     public boolean addCollidable(Collidable collidable, Integer layer, boolean handlesCollisions) {
         boolean retval = removeCollidable(collidable);
         if (collidables.containsKey(layer)) {
@@ -62,6 +64,7 @@ public class LayeredCollisionEngine {
      * 
      * @return true if the collidable was found and removed.
      */
+    @Override
     public boolean removeCollidable(Collidable collidable) {
         if (layerMap.containsKey(collidable)) {
             Integer layer = layerMap.remove(collidable);
@@ -85,6 +88,7 @@ public class LayeredCollisionEngine {
      *            the layer to check against
      * @return a list of collisions found
      */
+    @Override
     public List<RectCollision> checkAgainstLayer(float time, Collidable collidable, Integer layer) {
         Preconditions.checkArgument(time >= 0, "Time since last update() call must be nonnegative");
         
@@ -101,6 +105,21 @@ public class LayeredCollisionEngine {
         return colls;
     }
     
+    @Override
+    public boolean collidesAgainstLayer(float time, Rect rect, Integer layer) {
+        Preconditions.checkArgument(time >= 0, "Time since last update() call must be nonnegative");
+        
+        EnumSet<Side> sidesA;
+        for (Collidable collB : collidables.get(layer)) {
+            sidesA = rect.getCollision(collB.getRect(time));
+            if (!sidesA.isEmpty()) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    @Override
     public Multimap<Collidable, RectCollision> computeCollisions(float time) {
         Preconditions.checkArgument(time >= 0, "Time since last update() call must be nonnegative");
         
@@ -127,6 +146,7 @@ public class LayeredCollisionEngine {
     private static final int PARTS_PER_TICK = 5;
     private static final int MIN_INCREMENT = 10;
     
+    @Override
     public void update(float millis) {
         Preconditions.checkArgument(millis >= 0, "Time since last update() call must be nonnegative");
         Multimap<Collidable, RectCollision> collisions;

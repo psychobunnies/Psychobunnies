@@ -24,9 +24,10 @@ public class LayeredCollisionEngine {
     public static final Integer FLORA_LAYER = 0;
     public static final Integer FAUNA_LAYER = 1;
     
-    private final Map<Integer, Set<Collidable>> collidables;
-    private final Map<Collidable, Integer> layerMap;
-    private final Set<Collidable> callMap;
+    // package private for testing
+    final Map<Integer, Set<Collidable>> collidables;
+    final Map<Collidable, Integer> layerMap;
+    final Set<Collidable> callMap;
     
     public LayeredCollisionEngine() {
         collidables = Maps.newHashMapWithExpectedSize(2);
@@ -158,5 +159,18 @@ public class LayeredCollisionEngine {
             }
             throw new RuntimeException("Could not rehandle collisions: " + collisions);
         }
+    }
+    
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        //@formatter:off
+        builder.append("<---LayeredCollisionEngine[\n") 
+                         .append(" * collidables=").append(collidables).append("\n")
+                         .append(" * layerMap=").append(layerMap).append("\n")
+                         .append(" * callMap=").append(callMap).append("\n")
+                         .append("--->");
+        //@formatter:on
+        return builder.toString();
     }
 }

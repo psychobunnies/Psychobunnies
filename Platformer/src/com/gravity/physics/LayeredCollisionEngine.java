@@ -48,7 +48,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
     @Override
     public boolean addCollidable(Collidable collidable, Integer layer, boolean handlesCollisions) {
         boolean retval = removeCollidable(collidable);
-        if (collidables.containsKey(layer)) {
+        if (!collidables.containsKey(layer)) {
             collidables.put(layer, Sets.<Collidable> newIdentityHashSet());
         }
         collidables.get(layer).add(collidable);

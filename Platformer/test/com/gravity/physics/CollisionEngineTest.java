@@ -23,7 +23,7 @@ public class CollisionEngineTest {
         
         List<RectCollision> collisions = engine.checkAgainstLayer(0, a, LayeredCollisionEngine.FAUNA_LAYER);
         Assert.assertTrue("Collisions size", collisions.size() == 1);
-        Assert.assertEquals("Corner collision failed", EnumSet.of(Side.BOTTOM, Side.RIGHT), collisions.get(0));
+        Assert.assertEquals("Corner collision failed", EnumSet.of(Side.BOTTOM, Side.RIGHT), collisions.get(0).getMyCollisions(a));
     }
     
     @Test
@@ -37,7 +37,7 @@ public class CollisionEngineTest {
         
         List<RectCollision> collisions = engine.checkAgainstLayer(0, a, LayeredCollisionEngine.FAUNA_LAYER);
         Assert.assertTrue("Collisions size", collisions.size() == 1);
-        Assert.assertEquals("Cross collision failed", EnumSet.of(Side.LEFT, Side.RIGHT), collisions.get(0));
+        Assert.assertEquals("Cross collision failed", EnumSet.of(Side.LEFT, Side.RIGHT), collisions.get(0).getMyCollisions(a));
     }
     
     @Test
@@ -51,13 +51,13 @@ public class CollisionEngineTest {
         
         List<RectCollision> collisions = engine.checkAgainstLayer(0, a, LayeredCollisionEngine.FAUNA_LAYER);
         Assert.assertTrue("Collisions size", collisions.size() == 1);
-        Assert.assertEquals("Side collision failed", EnumSet.of(Side.TOP), collisions.get(0));
+        Assert.assertEquals("Side collision failed", EnumSet.of(Side.TOP), collisions.get(0).getMyCollisions(a));
     }
     
     @Test
     public void testOverlapCollisions() {
         Collidable a = new TileWorldEntity(new Rect(0, 0, 10, 5));
-        Collidable b = new TileWorldEntity(new Rect(-2, 4, 14, 10));
+        Collidable b = new TileWorldEntity(new Rect(-2, -4, 14, 10));
         
         CollisionEngine engine = new LayeredCollisionEngine();
         engine.addCollidable(a, LayeredCollisionEngine.FLORA_LAYER, true);
@@ -65,7 +65,7 @@ public class CollisionEngineTest {
         
         List<RectCollision> collisions = engine.checkAgainstLayer(0, a, LayeredCollisionEngine.FAUNA_LAYER);
         Assert.assertTrue("Collisions size", collisions.size() == 1);
-        Assert.assertEquals("Overlap collision failed", EnumSet.allOf(Side.class), collisions.get(0));
+        Assert.assertEquals("Overlap collision failed", EnumSet.allOf(Side.class), collisions.get(0).getMyCollisions(a));
     }
     
 }

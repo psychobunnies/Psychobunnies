@@ -40,6 +40,8 @@ public class Player extends PhysicsEntity<GravityPhysics> {
         StringBuilder builder = new StringBuilder();
         builder.append("Player [name=");
         builder.append(name);
+        builder.append(", state=");
+        builder.append(state);
         builder.append("]");
         return builder.toString();
     }
@@ -83,11 +85,20 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     // //////////////////////////////////////////////////////////////////////////
     // //////////////////////////ON-TICK METHODS/////////////////////////////////
     // //////////////////////////////////////////////////////////////////////////
+    @Override
+    public void startUpdate(float millis) {
+        super.startUpdate(millis);
+        System.out.println("Computing physics! " + this + " state= " + state + " millis=" + millis);
+        if (state.snapshot(millis).getRectangle().getY() > 640) {
+            System.err.println("    WARNING!!!" + state.snapshot(millis));
+        }
+    }
     
     @Override
     public void finishUpdate(float millis) {
+        System.out.println("Fast-forwarding! " + this + " state= " + state + " millis=" + millis);
         super.finishUpdate(millis);
-        System.out.println("Computing physics! " + this + " state= " + state);
+        System.out.println("Finishied update! " + this + " state= " + state);
         switch (requested) {
             case LEFT:
                 setPhysicalState(state.setVelocity(-MOVEMENT_INCREMENT, state.velY));

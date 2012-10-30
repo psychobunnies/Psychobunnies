@@ -14,6 +14,7 @@ import com.gravity.physics.RectCollision;
 public abstract class PhysicsEntity<T extends Physics> extends AbstractEntity {
     
     protected final T physics;
+    private float oldAccX, oldAccY;
     
     public PhysicsEntity(PhysicalState state, T physics) {
         super(state);
@@ -32,11 +33,13 @@ public abstract class PhysicsEntity<T extends Physics> extends AbstractEntity {
     
     @Override
     public void startUpdate(float millis) {
+        oldAccX = state.accX;
+        oldAccY = state.accY;
         state = physics.computePhysics(this, millis);
     }
     
     @Override
     public void finishUpdate(float millis) {
-        state = state.snapshot(millis);
+        state = state.snapshotAndSetAccel(millis, oldAccX, oldAccY);
     }
 }

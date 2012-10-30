@@ -26,8 +26,8 @@ public class GravityPhysics implements Physics {
     
     public boolean isOnGround(PhysicalState state, float millis) {
         //@formatter:off
-        return collisionEngine.collidesAgainstLayer(millis, 
-                state.getRectangleAt(millis).translate(0, 5f), 
+        return collisionEngine.collidesAgainstLayer(0, 
+                state.getRectangle().translate(0, 5f), 
                 LayeredCollisionEngine.FLORA_LAYER);
         //@formatter:on
     }

@@ -22,6 +22,7 @@ import com.gravity.geom.Rect.Side;
  * 
  */
 public class LayeredCollisionEngine implements CollisionEngine {
+    private static final float EPS = 1e-6f;
     public static final Integer FLORA_LAYER = 1;
     public static final Integer FAUNA_LAYER = 0;
     
@@ -98,6 +99,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
         for (Collidable collB : collidables.get(layer)) {
             sidesA = collidable.getRect(time).getCollision(collB.getRect(time));
             if (!sidesA.isEmpty()) {
+                System.err.println("   Found collision between " + collidable + " , " + collB + " : " + sidesA);
                 sidesB = collB.getRect(time).getCollision(collidable.getRect(time));
                 colls.add(new RectCollision(collidable, collB, time, sidesA, sidesB));
             }
@@ -126,7 +128,6 @@ public class LayeredCollisionEngine implements CollisionEngine {
         Multimap<Collidable, RectCollision> collList = HashMultimap.create();
         List<RectCollision> colls;
         Set<Integer> layers = collidables.keySet();
-        EnumSet<Side> sidesA, sidesB;
         int size = layers.size();
         for (int i = 0; i < size; i++) {
             for (int j = i + 1; j < size; j++) {
@@ -149,38 +150,46 @@ public class LayeredCollisionEngine implements CollisionEngine {
     @Override
     public void update(float millis) {
         Preconditions.checkArgument(millis >= 0, "Time since last update() call must be nonnegative");
-        Multimap<Collidable, RectCollision> collisions;
         
         float increment = Math.max(MIN_INCREMENT, millis / PARTS_PER_TICK);
-        for (float time = increment; time < millis; time += increment) {
-            collisions = computeCollisions(time);
-            if (collisions.isEmpty()) {
-                System.out.println("Collision Engine: No collisions! tick " + time / increment);
-                continue;
-            }
-            for (Collidable coll : collisions.keySet()) {
-                if (callMap.contains(coll)) {
-                    coll.handleCollisions(millis, collisions.get(coll));
-                }
-            }
-            
-            collisions = computeCollisions(time);
-            if (collisions.isEmpty()) {
-                System.out.println("Collision Engine: Collisions resolved first time! tick " + time / increment);
-                continue;
-            }
-            for (Collidable coll : collisions.keySet()) {
-                if (callMap.contains(coll)) {
-                    coll.rehandleCollisions(millis, collisions.get(coll));
-                }
-            }
-            
-            collisions = computeCollisions(time);
-            if (collisions.isEmpty()) {
-                continue;
-            }
-            throw new RuntimeException("Could not rehandle collisions: " + collisions);
+        float time;
+        for (time = increment; time < millis; time += increment) {
+            runCollisionsAndHandling(time);
         }
+        if (!(time - millis < EPS)) {
+            runCollisionsAndHandling(time);
+        }
+    }
+    
+    public void runCollisionsAndHandling(float millis) {
+        Multimap<Collidable, RectCollision> collisions;
+        collisions = computeCollisions(millis);
+        if (collisions.isEmpty()) {
+            System.out.println("Collision Engine: No collisions! tick " + millis);
+            return;
+        }
+        for (Collidable coll : collisions.keySet()) {
+            if (callMap.contains(coll)) {
+                coll.handleCollisions(millis, collisions.get(coll));
+            }
+        }
+        
+        collisions = computeCollisions(millis);
+        if (collisions.isEmpty()) {
+            System.out.println("Collision Engine: Collisions resolved first time! tick " + millis);
+            return;
+        }
+        for (Collidable coll : collisions.keySet()) {
+            if (callMap.contains(coll)) {
+                coll.rehandleCollisions(millis, collisions.get(coll));
+            }
+        }
+        
+        collisions = computeCollisions(millis);
+        if (collisions.isEmpty()) {
+            return;
+        }
+        throw new RuntimeException("Could not rehandle collisions: " + collisions);
     }
     
     @Override

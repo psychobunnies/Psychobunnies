@@ -16,8 +16,6 @@ public class PhysicalState {
     public final float velX, velY, accX, accY;
     private final Rect shape;
     
-    private static final float EPS = 1e-6f;
-    
     public PhysicalState(Rect rect, float velX, float velY) {
         this(rect, velX, velY, 0, 0);
     }
@@ -63,18 +61,16 @@ public class PhysicalState {
         //@formatter:on
     }
     
-    /** Return the state of the object after specified time has passed. For this compute ONLY, add specified acceleration to state's acceleration */
-    public PhysicalState snapshot(float millis, float addAccX, float addAccY) {
-        float aX = accX + addAccX;
-        float aY = accY + addAccY;
+    /** Return the state of the object after specified time has passed. Then set acceleration to specified */
+    public PhysicalState snapshotAndSetAccel(float millis, float newAccX, float newAccY) {
         //@formatter:off
-        float newX = velX * millis + aX * millis * Math.abs(millis) / 2;
-        float newY = velY * millis + aY * millis * Math.abs(millis) / 2;
+        float newX = velX * millis + accX * millis * Math.abs(millis) / 2;
+        float newY = velY * millis + accY * millis * Math.abs(millis) / 2;
         return new PhysicalState(shape.translate(newX, newY),
-                                 velX + aX * millis,
-                                 velY + aY * millis,
-                                 accX,
-                                 accY);
+                                 velX + accX * millis,
+                                 velY + accY * millis,
+                                 newAccX,
+                                 newAccY);
         //@formatter:on
     }
     

@@ -156,6 +156,7 @@ public class Rect {
         if (!intersects(other)) {
             return EnumSet.noneOf(Side.class);
         }
+        System.err.println("         COLL: " + this + ", " + other);
         int bits = 0;
         if (x < other.x) {
             bits += 8;
@@ -274,7 +275,7 @@ public class Rect {
     
     @Override
     public String toString() {
-        return "Rect [x=" + x + ", y=" + y + ", height=" + height + ", width=" + width + "]";
+        return "Rect [x=" + x + ", y=" + y + ", h=" + height + ", w=" + width + "]";
     }
     
 }

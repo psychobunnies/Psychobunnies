@@ -9,16 +9,13 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Platformer/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/slick.jar" sourcepath="docsource/slick-source.zip">
-		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/Platformer/docsource/slick-javadoc.zip!/"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/Slick"/>
 	<classpathentry kind="lib" path="lib/guava-13.0.1.jar" sourcepath="docsource/guava-13.0.1-sources.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="jar:platform:/resource/Platformer/docsource/guava-13.0.1-sources.jar!/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="lib/mockito-all-1.9.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

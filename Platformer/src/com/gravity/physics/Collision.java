@@ -2,18 +2,27 @@ package com.gravity.physics;
 
 import java.util.Set;
 
+import com.gravity.entity.UpdateCycling;
+
 /**
- * Represents a collision at a certain point in time between two entities
+ * Represents a collision at a certain point in time between two entities <br>
+ * Contains the time of the collision, and the set of vertices in each shape which were involved with the collision.
+ * <ul>
+ * <li>If entityA's corner collided with entityB, then entityA's collisions set will have a single integer, denoting the vertex number.
+ * <li>If entityB's side collided eith entityA, then entityB's collisions set will have two integers, one for each end of the side.
+ * </ul>
  * 
+ * @deprecated
  * @author xiao
  */
+@Deprecated
 public class Collision {
     
-    public final Entity entityA, entityB;
-    public final int    time;
+    public final UpdateCycling entityA, entityB;
+    public final float time;
     public final Set<Integer> collisionsA, collisionsB;
     
-    public Collision(Entity entityA, Entity entityB, int time, Set<Integer> collisionA, Set<Integer> collisionB) {
+    public Collision(UpdateCycling entityA, UpdateCycling entityB, float time, Set<Integer> collisionA, Set<Integer> collisionB) {
         this.entityA = entityA;
         this.entityB = entityB;
         this.time = time;
@@ -22,7 +31,7 @@ public class Collision {
     }
     
     /** Get the other entity in the collision */
-    public Entity getOtherEntity(Entity me) {
+    public UpdateCycling getOtherEntity(UpdateCycling me) {
         if (me == entityA) {
             return entityB;
         } else {
@@ -30,7 +39,10 @@ public class Collision {
         }
     }
     
-    public Set<Integer> getMyCollisions(Entity me) {
+    /**
+     * Get the indices of the vertices in my shape which collided with the other entity.
+     */
+    public Set<Integer> getMyCollisions(UpdateCycling me) {
         if (me == entityA) {
             return collisionsA;
         } else {
@@ -38,7 +50,10 @@ public class Collision {
         }
     }
     
-    public Set<Integer> getOtherCollisions(Entity me) {
+    /**
+     * Get the indices of the vertices in the other's shape which collided with my entity.
+     */
+    public Set<Integer> getOtherCollisions(UpdateCycling me) {
         if (me == entityA) {
             return collisionsB;
         } else {
@@ -48,8 +63,7 @@ public class Collision {
     
     @Override
     public String toString() {
-        return "Collision [entityA=" + entityA + ", entityB=" + entityB + ", time=" + time + ", collisionsA=" + collisionsA + ", collisionsB="
-                + collisionsB + "]";
+        return "Collision [entityA=" + entityA + ", entityB=" + entityB + ", time=" + time + ", collisionsA=" + collisionsA + ", collisionsB=" + collisionsB + "]";
     }
     
 }

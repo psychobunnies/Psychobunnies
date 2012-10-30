@@ -2,7 +2,6 @@ package com.gravity.entity;
 
 import java.util.Collection;
 
-import com.gravity.geom.Rect;
 import com.gravity.physics.PhysicalState;
 import com.gravity.physics.Physics;
 import com.gravity.physics.RectCollision;
@@ -22,13 +21,13 @@ public abstract class PhysicsEntity<T extends Physics> extends AbstractEntity {
     }
     
     @Override
-    public Rect handleCollisions(float millis, Collection<RectCollision> collisions) {
-        return physics.handleCollision(this, millis, collisions).getRectangleAt(millis);
+    public void handleCollisions(float millis, Collection<RectCollision> collisions) {
+        state = physics.handleCollision(this, millis, collisions);
     }
     
     @Override
-    public Rect rehandleCollisions(float millis, Collection<RectCollision> collisions) {
-        return physics.rehandleCollision(this, millis, collisions).getRectangleAt(millis);
+    public void rehandleCollisions(float millis, Collection<RectCollision> collisions) {
+        state = physics.rehandleCollision(this, millis, collisions);
     }
     
     @Override

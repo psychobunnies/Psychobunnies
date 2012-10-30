@@ -2,6 +2,8 @@ package com.gravity.geom;
 
 import java.util.EnumSet;
 
+import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Vector2f;
 
 import com.google.common.base.Preconditions;
@@ -62,6 +64,13 @@ public class Rect {
                 }
             }
         }
+    }
+    
+    public Rect(Shape rect) {
+        x = rect.getMinX();
+        y = rect.getMinY();
+        width = rect.getWidth();
+        height = rect.getHeight();
     }
     
     public Rect(float x, float y, float width, float height) {
@@ -225,6 +234,10 @@ public class Rect {
     
     public float getMaxY() {
         return y + height;
+    }
+    
+    public Shape toShape() {
+        return new Rectangle(x, y, width, height);
     }
     
     @Override

@@ -16,7 +16,7 @@ public class PhysicalState {
     public final float velX, velY, accX, accY;
     private final Rect shape;
     
-    private final float EPS = 1e-6f;
+    private static final float EPS = 1e-6f;
     
     public PhysicalState(Rect rect, float velX, float velY) {
         this(rect, velX, velY, 0, 0);

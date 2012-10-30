@@ -21,7 +21,7 @@ public final class SpikeEntity extends TileWorldEntity {
     }
     
     @Override
-    public Rect handleCollisions(float ticks, Collection<RectCollision> collisions) {
+    public void handleCollisions(float ticks, Collection<RectCollision> collisions) {
         for (RectCollision c : collisions) {
             Collidable e = c.getOtherEntity(this);
             if (e instanceof Player) {
@@ -31,7 +31,7 @@ public final class SpikeEntity extends TileWorldEntity {
                 }
             }
         }
-        return super.handleCollisions(ticks, collisions);
+        super.handleCollisions(ticks, collisions);
     }
     
 }

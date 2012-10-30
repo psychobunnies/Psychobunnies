@@ -21,13 +21,13 @@ public class TileWorldEntity implements Collidable {
     }
     
     @Override
-    public Rect handleCollisions(float ticks, Collection<RectCollision> collisions) {
-        return shape;
+    public void handleCollisions(float ticks, Collection<RectCollision> collisions) {
+        // No-op
     }
     
     @Override
-    public Rect rehandleCollisions(float ticks, Collection<RectCollision> collisions) {
-        return shape;
+    public void rehandleCollisions(float ticks, Collection<RectCollision> collisions) {
+        // No-op
     }
     
     @Override
@@ -38,6 +38,11 @@ public class TileWorldEntity implements Collidable {
     @Override
     public Rect getRect(float millis) {
         return shape;
+    }
+    
+    @Override
+    public String toString() {
+        return "TileWorldEntity [shape=" + shape + "]";
     }
     
 }

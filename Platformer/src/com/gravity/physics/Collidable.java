@@ -36,13 +36,12 @@ public interface Collidable {
      *            a list of collisions which occured with this Collidible
      * @param millis
      *            the length of this timestep
-     * @return the new rectangle for the object at the full time, as specified by ticks
      */
-    public Rect handleCollisions(float millis, Collection<RectCollision> collection);
+    public void handleCollisions(float millis, Collection<RectCollision> collection);
     
     /**
      * Same as {@link Collidible#handleCollisions(float, List<Collision>)}, but may not change collidible's game state (health, etc). Useful for when
      * handleCollision proposes a new position which creates new collision problems.
      */
-    public Rect rehandleCollisions(float millis, Collection<RectCollision> collisions);
+    public void rehandleCollisions(float millis, Collection<RectCollision> collisions);
 }

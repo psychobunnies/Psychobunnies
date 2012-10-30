@@ -14,7 +14,7 @@ import com.gravity.entity.Entity;
 public interface Physics {
     public PhysicalState computePhysics(Entity entity, float millis);
     
-    public PhysicalState handleCollision(Entity entity, float millis, List<Collision> collisions);
+    public PhysicalState handleCollision(Entity entity, float millis, List<RectCollision> collisions);
     
-    public PhysicalState rehandleCollision(Entity entity, float millis, List<Collision> collisions);
+    public PhysicalState rehandleCollision(Entity entity, float millis, List<RectCollision> collisions);
 }

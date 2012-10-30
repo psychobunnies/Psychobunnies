@@ -13,7 +13,7 @@ import com.google.common.base.Preconditions;
  * @author xiao
  * 
  */
-public class Rect implements Cloneable {
+public class Rect {
     private static final float EPS = 1e-6f;
     
     private final float x, y;
@@ -57,6 +57,13 @@ public class Rect implements Cloneable {
         this.y = y;
         this.height = height;
         this.width = width;
+    }
+    
+    public Rect(Rect rect) {
+        this.x = rect.x;
+        this.y = rect.y;
+        this.height = rect.height;
+        this.width = rect.width;
     }
     
     public Vector2f getPoint(Corner index) {

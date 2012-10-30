@@ -156,7 +156,6 @@ public class Rect {
         if (!intersects(other)) {
             return EnumSet.noneOf(Side.class);
         }
-        System.err.println("         COLL: " + this + ", " + other);
         int bits = 0;
         if (x < other.x) {
             bits += 8;

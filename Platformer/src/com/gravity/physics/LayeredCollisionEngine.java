@@ -165,7 +165,6 @@ public class LayeredCollisionEngine implements CollisionEngine {
         Multimap<Collidable, RectCollision> collisions;
         collisions = computeCollisions(millis);
         if (collisions.isEmpty()) {
-            System.out.println("Collision Engine: No collisions! tick " + millis);
             return;
         }
         for (Collidable coll : collisions.keySet()) {
@@ -176,7 +175,6 @@ public class LayeredCollisionEngine implements CollisionEngine {
         
         collisions = computeCollisions(millis);
         if (collisions.isEmpty()) {
-            System.out.println("Collision Engine: Collisions resolved first time! tick " + millis);
             return;
         }
         for (Collidable coll : collisions.keySet()) {

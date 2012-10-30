@@ -16,13 +16,12 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     public static int TOP_LEFT = 0, TOP_RIGHT = 1, BOT_RIGHT = 2, BOT_LEFT = 3;
     
     // PLAYER STARTING CONSTANTS (Units = pixels, milliseconds)
-    private static final float JUMP_POWER = 0.7f;
+    private static final float JUMP_POWER = 0.6f;
     private static final float MOVEMENT_INCREMENT = 1f / 8f;
     private static final Rect BASE_SHAPE = new Rect(0f, 0f, 15f, 32f);
     private static final Vector2f DEFAULT_VELOCITY = new Vector2f(0, 0);
     
     // GAME STATE STUFF
-    private boolean onGround = false;
     private final String name;
     private Movement requested = Movement.STOP;
     
@@ -55,7 +54,7 @@ public class Player extends PhysicsEntity<GravityPhysics> {
      *            true if keydown, false if keyup
      */
     public void jump(boolean jumping) {
-        if (jumping && onGround) {
+        if (jumping && physics.isOnGround(state, 0)) {
             setPhysicalState(state.setVelocity(state.velX, state.velY - JUMP_POWER));
         }
     }
@@ -85,20 +84,10 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     // //////////////////////////////////////////////////////////////////////////
     // //////////////////////////ON-TICK METHODS/////////////////////////////////
     // //////////////////////////////////////////////////////////////////////////
-    @Override
-    public void startUpdate(float millis) {
-        super.startUpdate(millis);
-        System.out.println("Computing physics! " + this + " state= " + state + " millis=" + millis);
-        if (state.snapshot(millis).getRectangle().getY() > 640) {
-            System.err.println("    WARNING!!!" + state.snapshot(millis));
-        }
-    }
     
     @Override
     public void finishUpdate(float millis) {
-        System.out.println("Fast-forwarding! " + this + " state= " + state + " millis=" + millis);
         super.finishUpdate(millis);
-        System.out.println("Finishied update! " + this + " state= " + state);
         switch (requested) {
             case LEFT:
                 setPhysicalState(state.setVelocity(-MOVEMENT_INCREMENT, state.velY));

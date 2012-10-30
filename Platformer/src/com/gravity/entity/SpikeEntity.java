@@ -1,28 +1,29 @@
-package com.gravity.physics;
+package com.gravity.entity;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Set;
-
-import org.newdawn.slick.geom.Shape;
 
 import com.google.common.collect.Sets;
 import com.gravity.fauna.Player;
+import com.gravity.geom.Rect;
+import com.gravity.physics.Collidable;
+import com.gravity.physics.RectCollision;
 import com.gravity.root.GameplayControl;
 
 public final class SpikeEntity extends TileWorldEntity {
-    
+
     private final GameplayControl controller;
     private final Set<Player> collidedPlayers = Sets.newIdentityHashSet();
-    
-    public SpikeEntity(GameplayControl controller, Shape shape) {
+
+    public SpikeEntity(GameplayControl controller, Rect shape) {
         super(shape);
         this.controller = controller;
     }
-    
+
     @Override
-    public Shape handleCollisions(int ticks, List<Collision> collisions) {
-        for (Collision c : collisions) {
-            Entity e = c.getOtherEntity(this);
+    public void handleCollisions(float ticks, Collection<RectCollision> collisions) {
+        for (RectCollision c : collisions) {
+            Collidable e = c.getOtherEntity(this);
             if (e instanceof Player) {
                 Player p = (Player) e;
                 if (collidedPlayers.add(p)) {
@@ -30,7 +31,7 @@ public final class SpikeEntity extends TileWorldEntity {
                 }
             }
         }
-        return super.handleCollisions(ticks, collisions);
+        super.handleCollisions(ticks, collisions);
     }
-    
+
 }

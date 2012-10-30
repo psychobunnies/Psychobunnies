@@ -15,14 +15,20 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
+import com.google.common.collect.Lists;
+import com.gravity.entity.UpdateCycling;
 import com.gravity.fauna.Player;
 import com.gravity.fauna.PlayerKeyboardController;
 import com.gravity.fauna.PlayerKeyboardController.Control;
 import com.gravity.fauna.PlayerRenderer;
 import com.gravity.map.TileWorld;
 import com.gravity.map.TileWorldRenderer;
+import com.gravity.physics.Collidable;
 import com.gravity.physics.CollisionEngine;
 import com.gravity.physics.GravityPhysics;
+import com.gravity.physics.LayeredCollisionEngine;
+import com.gravity.physics.PhysicalState;
+import com.gravity.physics.PhysicsFactory;
 
 public class GameplayState extends BasicGameState implements GameplayControl {
 
@@ -37,6 +43,7 @@ public class GameplayState extends BasicGameState implements GameplayControl {
     private Player playerA, playerB;
     private List<Renderer> renderers = new ArrayList<Renderer>();
     private PlayerKeyboardController controllerA, controllerB;
+    private List<UpdateCycling> updaters;
     private CollisionEngine collider;
     private GameContainer container;
     private StateBasedGame game;
@@ -73,18 +80,27 @@ public class GameplayState extends BasicGameState implements GameplayControl {
     public void reloadGame() throws SlickException {
         pauseRender();
         pauseUpdate();
-        collider = new CollisionEngine(map);
-        gravityPhysics = new GravityPhysics(collider);
-        playerA = new Player(map, gravityPhysics, "pink", new Vector2f(256, 512));
-        playerB = new Player(map, gravityPhysics, "yellow", new Vector2f(224, 512));
+        collider = new LayeredCollisionEngine();
+        updaters = Lists.newLinkedList();
+        for (Collidable c : map.getTerrainEntitiesCallColls()) {
+            collider.addCollidable(c, LayeredCollisionEngine.FLORA_LAYER, true);
+        }
+        for (Collidable c : map.getTerrainEntitiesNoCalls()) {
+            collider.addCollidable(c, LayeredCollisionEngine.FLORA_LAYER, false);
+        }
+        gravityPhysics = PhysicsFactory.createDefaultGravityPhysics(collider);
+        playerA = new Player(gravityPhysics, "pink", new Vector2f(256, 512));
+        playerB = new Player(gravityPhysics, "yellow", new Vector2f(224, 512));
+        updaters.add(playerA);
+        updaters.add(playerB);
         renderers.add(new TileWorldRenderer(map));
         renderers.add(new PlayerRenderer(playerA));
         renderers.add(new PlayerRenderer(playerB));
         controllerA = new PlayerKeyboardController(playerA).setLeft(Input.KEY_A).setRight(Input.KEY_D).setJump(Input.KEY_W).setMisc(Input.KEY_S);
         controllerB = new PlayerKeyboardController(playerB).setLeft(Input.KEY_LEFT).setRight(Input.KEY_RIGHT).setJump(Input.KEY_UP)
                 .setMisc(Input.KEY_DOWN);
-        collider.addEntity(playerA);
-        collider.addEntity(playerB);
+        collider.addCollidable(playerA, LayeredCollisionEngine.FAUNA_LAYER, true);
+        collider.addCollidable(playerB, LayeredCollisionEngine.FAUNA_LAYER, true);
         offsetX = 0;
         offsetY = 0;
         maxOffsetX = (map.getWidth() - container.getWidth()) * -1;
@@ -132,21 +148,13 @@ public class GameplayState extends BasicGameState implements GameplayControl {
             g.popTransform();
         }
 
-        g.pushTransform();
-        g.translate(32, 32);
-        g.setColor(lightPink);
-        g.fillRoundRect(0, 0, 320, 64, 10);
-        renderControls(g, "Pink", controllerA);
-        g.resetTransform();
-        g.popTransform();
-
-        g.pushTransform();
-        g.translate(672, 32);
-        g.setColor(lightYellow);
-        g.fillRoundRect(0, 0, 320, 64, 10);
-        renderControls(g, "Yellow", controllerB);
-        g.resetTransform();
-        g.popTransform();
+        /*
+         * // If we ever need to debug hitboxes again g.pushTransform(); g.translate(32, 32); g.setColor(lightPink); g.fillRoundRect(0, 0, 320, 64,
+         * 10); renderControls(g, "Pink", controllerA); g.resetTransform(); g.popTransform();
+         * 
+         * g.pushTransform(); g.translate(672, 32); g.setColor(lightYellow); g.fillRoundRect(0, 0, 320, 64, 10); renderControls(g, "Yellow",
+         * controllerB); g.resetTransform(); g.popTransform();
+         */
     }
 
     public void renderControls(Graphics g, String playername, PlayerKeyboardController controller) {
@@ -171,7 +179,13 @@ public class GameplayState extends BasicGameState implements GameplayControl {
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         totalTime += delta;
+        for (UpdateCycling uc : updaters) {
+            uc.startUpdate(delta);
+        }
         collider.update(delta);
+        for (UpdateCycling uc : updaters) {
+            uc.finishUpdate(delta);
+        }
         offsetX -= delta * getOffsetXDelta();
         offsetX = Math.max(offsetX, maxOffsetX);
 
@@ -198,19 +212,21 @@ public class GameplayState extends BasicGameState implements GameplayControl {
     }
 
     private boolean checkWin(Player player) {
-        return (player.getPosition().x + maxOffsetX >= WIN_MARGIN);
+        return (player.getPosition(0f).x + maxOffsetX >= WIN_MARGIN);
     }
 
     private void checkDeath(Player player, float offsetX2) {
-        Vector2f pos = player.getPosition();
+        Vector2f pos = player.getPosition(0f);
         if (pos.x + offsetX2 + 32 < 0) {
             playerDies(player);
         }
     }
 
     private void checkRightSide(Player player, float offsetX2) {
-        Vector2f pos = player.getPosition();
-        player.setPositionX(Math.min(pos.x, -offsetX2 + container.getWidth() - 32));
+        PhysicalState state = player.getPhysicalState();
+        player.setPhysicalState(new PhysicalState(state.getRectangle().setPosition(
+                Math.min(state.getRectangle().getX(), -offsetX2 + container.getWidth() - 32), state.getRectangle().getY()), state.velX, state.velY,
+                state.accX, state.accY));
     }
 
     @Override

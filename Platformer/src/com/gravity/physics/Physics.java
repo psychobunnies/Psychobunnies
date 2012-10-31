@@ -18,8 +18,8 @@ public interface Physics {
      * 
      * @return The PhysicalState of the object <i>AT TIME 0</i>
      */
-    public PhysicalState computePhysics(PhysicallyStateful entity, float millis);
-    
+    public PhysicalState computePhysics(PhysicallyStateful entity);
+
     /**
      * Bounce, stop, or otherwise handle the physics of collisions.
      * 
@@ -31,7 +31,7 @@ public interface Physics {
      *            The collisions the entity participated in.
      * @return The updated state of the object <i>AT TIME 0</i>
      */
-    public PhysicalState handleCollision(Entity entity, float millis, Collection<RectCollision> collisions);
-    
-    public PhysicalState rehandleCollision(PhysicallyStateful entity, float millis, Collection<RectCollision> collisions);
+    public PhysicalState handleCollision(Entity entity, Collection<RectCollision> collisions);
+
+    public PhysicalState rehandleCollision(PhysicallyStateful entity, Collection<RectCollision> collisions);
 }

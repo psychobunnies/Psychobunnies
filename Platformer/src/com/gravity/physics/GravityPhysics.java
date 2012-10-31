@@ -15,34 +15,37 @@ import com.gravity.geom.Rect.Side;
  * 
  */
 public class GravityPhysics implements Physics {
-    
+
     private final CollisionEngine collisionEngine;
     private final float gravity;
-    
-    GravityPhysics(CollisionEngine collisionEngine, float gravity) {
+    private final float backstep;
+
+    GravityPhysics(CollisionEngine collisionEngine, float gravity, float backstep) {
+        Preconditions.checkArgument(backstep <= 0f, "Backstep has to be non-positive.");
         this.collisionEngine = collisionEngine;
         this.gravity = gravity;
+        this.backstep = backstep;
     }
-    
-    public boolean isOnGround(PhysicalState state, float millis) {
+
+    public boolean isOnGround(PhysicalState state) {
         //@formatter:off
         return collisionEngine.collidesAgainstLayer(0, 
                 state.getRectangle().translate(0, 5f), 
                 LayeredCollisionEngine.FLORA_LAYER);
         //@formatter:on
     }
-    
+
     @Override
-    public PhysicalState computePhysics(PhysicallyStateful entity, float millis) {
-        if (isOnGround(entity.getPhysicalState(), millis)) {
+    public PhysicalState computePhysics(PhysicallyStateful entity) {
+        if (isOnGround(entity.getPhysicalState())) {
             return entity.getPhysicalState();
         } else {
             return entity.getPhysicalState().addAcceleration(0f, gravity);
         }
     }
-    
+
     @Override
-    public PhysicalState handleCollision(Entity entity, float millis, Collection<RectCollision> collisions) {
+    public PhysicalState handleCollision(Entity entity, Collection<RectCollision> collisions) {
         PhysicalState state = entity.getPhysicalState();
         float velX = state.velX;
         float velY = state.velY;
@@ -50,7 +53,7 @@ public class GravityPhysics implements Physics {
         for (RectCollision c : collisions) {
             EnumSet<Side> sides = c.getMyCollisions(entity);
             Preconditions.checkArgument(sides != null, "Collision passed did not involve entity: " + entity + ", " + c);
-            
+
             if (Side.isSimpleSet(sides)) {
                 if (sides.contains(Side.TOP)) {
                     velY = Math.max(velY, 0);
@@ -72,10 +75,10 @@ public class GravityPhysics implements Physics {
         }
         return new PhysicalState(entity.getRect(0), velX, velY, 0, accY);
     }
-    
+
     @Override
-    public PhysicalState rehandleCollision(PhysicallyStateful entity, float millis, Collection<RectCollision> collisions) {
+    public PhysicalState rehandleCollision(PhysicallyStateful entity, Collection<RectCollision> collisions) {
         System.err.println("Warning: rehandling collisions for: " + entity);
-        return entity.getPhysicalState().killMovement();
+        return entity.getPhysicalState().snapshot(backstep);
     }
 }

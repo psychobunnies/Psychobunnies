@@ -89,8 +89,8 @@ public class GameplayState extends BasicGameState implements GameplayControl {
             collider.addCollidable(c, LayeredCollisionEngine.FLORA_LAYER, false);
         }
         gravityPhysics = PhysicsFactory.createDefaultGravityPhysics(collider);
-        playerA = new Player(gravityPhysics, "pink", new Vector2f(256, 512));
-        playerB = new Player(gravityPhysics, "yellow", new Vector2f(224, 512));
+        playerA = new Player(this, gravityPhysics, "pink", new Vector2f(256, 512));
+        playerB = new Player(this, gravityPhysics, "yellow", new Vector2f(224, 512));
         updaters.add(playerA);
         updaters.add(playerB);
         renderers.add(new TileWorldRenderer(map));
@@ -118,6 +118,22 @@ public class GameplayState extends BasicGameState implements GameplayControl {
             r.render(g, (int) offsetX, (int) offsetY);
         }
 
+        // Draw slingshot indicator
+        if (playerA.slingshot) {
+            g.setColor(Color.pink);
+            g.setLineWidth(playerA.slingshotStrength * 10);
+            g.drawLine(playerA.getRect(0).getCenter().x + offsetX, playerA.getRect(0).getCenter().y + offsetY, playerB.getRect(0).getCenter().x
+                    + offsetX, playerB.getRect(0).getCenter().y + offsetY);
+        }
+        if (playerB.slingshot) {
+            g.setColor(Color.yellow);
+            g.setLineWidth(playerB.slingshotStrength * 10);
+            g.drawLine(playerB.getRect(0).getCenter().x + offsetX, playerB.getRect(0).getCenter().y + offsetY, playerA.getRect(0).getCenter().x
+                    + offsetX, playerA.getRect(0).getCenter().y + offsetY);
+
+        }
+        g.setColor(Color.white);
+
         if (remappedDecay > 0) {
             g.pushTransform();
             g.translate(512, 384);
@@ -143,6 +159,7 @@ public class GameplayState extends BasicGameState implements GameplayControl {
             default:
                 break;
             }
+
             g.fill(controlArrow);
             g.resetTransform();
             g.popTransform();
@@ -286,5 +303,21 @@ public class GameplayState extends BasicGameState implements GameplayControl {
         System.out.println("Player " + player.toString() + " hit spikes -- remapping controls.");
         System.out.println("ControllerA: " + controllerA.toString());
         System.out.println("ControllerB: " + controllerB.toString());
+    }
+
+    /**
+     * 
+     */
+    @Override
+    public void specialMoveSlingshot(Player slingshoter, float strength) {
+        if (slingshoter == playerA) {
+            playerB.slingshotMe(strength, playerA.getPosition(0).copy().sub(playerB.getPosition(0)));
+        } else if (slingshoter == playerB) {
+            playerA.slingshotMe(strength, playerB.getPosition(0).copy().sub(playerA.getPosition(0)));
+        } else {
+            throw new RuntimeException("Who the **** called this method?");
+            // Now now, Kevin, we don't use that kind of language in these parts.
+        }
+
     }
 }

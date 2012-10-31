@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="150" height="30" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="bunnyTile" tilewidth="32" tileheight="32">
+  <image source="bunnyTile.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="2" name="betterBunnyDirt" tilewidth="32" tileheight="32">
+  <image source="betterBunnyDirt.png" width="32" height="32"/>
+ </tileset>
+ <layer name="spikes" width="150" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ8HFAAAAAAAAAAAAAAAAAAAAAAADwa5ZHEYUEYAAA==
+  </data>
+ </layer>
+ <layer name="collisions" width="150" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3ZQQ6CMBQEUPT+h3btAih0fm3lvYSNaf5AMi0atw0AAACAtNfOlZ6XzDjLm2HW070bPxuRO8u8Ec/fa/T+vUqvamdVab3HXz3LXq+qu57O0Ku+dWlHuSudW3rVty5Nr2pnVVm9V6u8D/Wqb11aS+4K59a/9ersN55etdGrbzN+P0jnrvA+1KvaOZW5M59belU7pzJXr8Z5Wq+u/H9w57qbke7VnXtIelKvOJbeXwkjzoLqfQ4AAAAAzOsDRYkaTFBGAAA=
+  </data>
+ </layer>
+</map>

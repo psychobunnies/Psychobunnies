@@ -6,6 +6,7 @@ import java.util.EnumSet;
 import com.google.common.base.Preconditions;
 import com.gravity.entity.Entity;
 import com.gravity.entity.PhysicallyStateful;
+import com.gravity.geom.Rect;
 import com.gravity.geom.Rect.Side;
 
 /**
@@ -19,18 +20,21 @@ public class GravityPhysics implements Physics {
     private final CollisionEngine collisionEngine;
     private final float gravity;
     private final float backstep;
+    private final float offsetGroundCheck;
 
-    GravityPhysics(CollisionEngine collisionEngine, float gravity, float backstep) {
+    GravityPhysics(CollisionEngine collisionEngine, float gravity, float backstep, float offsetGroundCheck) {
         Preconditions.checkArgument(backstep <= 0f, "Backstep has to be non-positive.");
         this.collisionEngine = collisionEngine;
         this.gravity = gravity;
         this.backstep = backstep;
+        this.offsetGroundCheck = offsetGroundCheck;
     }
 
     public boolean isOnGround(PhysicalState state) {
+        Rect collider = state.getRectangle().translate(0, offsetGroundCheck);
         //@formatter:off
         return collisionEngine.collidesAgainstLayer(0, 
-                state.getRectangle().translate(0, 5f), 
+                collider, 
                 LayeredCollisionEngine.FLORA_LAYER);
         //@formatter:on
     }

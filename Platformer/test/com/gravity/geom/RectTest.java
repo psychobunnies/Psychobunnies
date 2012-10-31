@@ -11,12 +11,12 @@ import com.gravity.geom.Rect.Corner;
 import com.gravity.geom.Rect.Side;
 
 public class RectTest {
-    
+
     @Test
     public void testEquals() {
         Assert.assertEquals(new Rect(0, 1, 2, 3), new Rect(0, 1, 2, 3));
     }
-    
+
     @Test
     public void testGetPoint() {
         Rect rect = new Rect(0, 1, 2, 3);
@@ -26,33 +26,34 @@ public class RectTest {
         Assert.assertEquals("getPoint bot right failed", new Vector2f(2, 4), rect.getPoint(Corner.BOTRIGHT));
         Assert.assertEquals("getCenter failed", new Vector2f(1, 2.5f), rect.getCenter());
     }
-    
+
     @Test
     public void testContains() {
         Rect rect = new Rect(0, 1, 2, 3);
         Assert.assertFalse("Point (0, 0) should not be contained", rect.contains(0, 0));
         Assert.assertTrue("Point (1, 2) should be contained", rect.contains(1, 2));
     }
-    
+
     @Test
     public void testScale() {
         Rect rect = new Rect(0, 1, 2, 4);
         Assert.assertEquals(new Rect(-1, -1, 4, 8), rect.scale(2));
+        Assert.assertEquals(new Rect(0.5f, 2, 1, 2), rect.scale(0.5f));
     }
-    
+
     @Test
     public void testTranslate() {
         Rect rect = new Rect(0, 1, 2, 4);
         Assert.assertEquals(new Rect(3, 3, 2, 4), rect.translate(3, 2));
     }
-    
+
     @Test
     public void testIntersects() {
         Rect rect = new Rect(0, 1, 2, 4);
         Assert.assertTrue(rect.intersects(new Rect(1, 2, 2, 4)));
         Assert.assertFalse(rect.intersects(new Rect(2, 2, 2, 4)));
     }
-    
+
     @Test
     public void testGetCollision() {
         Rect rect = new Rect(0, 1, 2, 4);

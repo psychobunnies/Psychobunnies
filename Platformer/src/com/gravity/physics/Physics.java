@@ -18,7 +18,7 @@ public interface Physics {
      * 
      * @return The PhysicalState of the object <i>AT TIME 0</i>
      */
-    public PhysicalState computePhysics(PhysicallyStateful entity);
+    public PhysicalState computePhysics(Entity entity);
 
     /**
      * Bounce, stop, or otherwise handle the physics of collisions.

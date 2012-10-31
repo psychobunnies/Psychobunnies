@@ -2,8 +2,10 @@ package com.gravity.physics;
 
 import java.util.Collection;
 import java.util.EnumSet;
+import java.util.List;
 
 import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
 import com.gravity.entity.Entity;
 import com.gravity.entity.PhysicallyStateful;
 import com.gravity.geom.Rect;
@@ -30,18 +32,19 @@ public class GravityPhysics implements Physics {
         this.offsetGroundCheck = offsetGroundCheck;
     }
 
-    public boolean isOnGround(PhysicalState state) {
-        Rect collider = state.getRectangle().translate(0, offsetGroundCheck);
-        //@formatter:off
-        return collisionEngine.collidesAgainstLayer(0, 
-                collider, 
-                LayeredCollisionEngine.FLORA_LAYER);
-        //@formatter:on
+    public boolean isOnGround(Entity entity) {
+        Rect collider = entity.getPhysicalState().getRectangle().translate(0, offsetGroundCheck);
+        List<Collidable> collisions = collisionEngine.collisionsInLayer(0f, collider, LayeredCollisionEngine.FLORA_LAYER);
+
+        for (Collidable c : collisions) {
+            c.handleCollisions(0f, Lists.newArrayList(new RectCollision(entity, c, 0f, null, null)));
+        }
+        return !collisions.isEmpty();
     }
 
     @Override
-    public PhysicalState computePhysics(PhysicallyStateful entity) {
-        if (isOnGround(entity.getPhysicalState())) {
+    public PhysicalState computePhysics(Entity entity) {
+        if (isOnGround(entity)) {
             return entity.getPhysicalState();
         } else {
             return entity.getPhysicalState().addAcceleration(0f, gravity);

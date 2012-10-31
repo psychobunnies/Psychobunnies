@@ -107,17 +107,18 @@ public class LayeredCollisionEngine implements CollisionEngine {
     }
 
     @Override
-    public boolean collidesAgainstLayer(float time, Rect rect, Integer layer) {
+    public List<Collidable> collisionsInLayer(float time, Rect rect, Integer layer) {
         Preconditions.checkArgument(time >= 0, "Time since last update() call must be nonnegative");
 
         EnumSet<Side> sidesA;
+        List<Collidable> result = Lists.newArrayList();
         for (Collidable collB : collidables.get(layer)) {
             sidesA = rect.getCollision(collB.getRect(time));
             if (!sidesA.isEmpty()) {
-                return true;
+                result.add(collB);
             }
         }
-        return false;
+        return result;
     }
 
     @Override

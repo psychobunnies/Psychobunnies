@@ -12,7 +12,7 @@ public class SimplePhysics implements Physics {
     }
 
     @Override
-    public PhysicalState computePhysics(PhysicallyStateful entity) {
+    public PhysicalState computePhysics(Entity entity) {
         return entity.getPhysicalState();
     }
 

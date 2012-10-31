@@ -54,7 +54,7 @@ public class Player extends PhysicsEntity<GravityPhysics> {
      *            true if keydown, false if keyup
      */
     public void jump(boolean jumping) {
-        if (jumping && physics.isOnGround(state)) {
+        if (jumping && physics.isOnGround(this)) {
             setPhysicalState(state.setVelocity(state.velX, state.velY - JUMP_POWER));
         }
     }

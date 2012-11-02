@@ -29,33 +29,26 @@ public class LayeredCollisionEngine implements CollisionEngine {
     // package private for testing
     final Map<Integer, Set<Collidable>> collidables;
     final Map<Collidable, Integer> layerMap;
-    final Set<Collidable> callMap;
 
     public LayeredCollisionEngine() {
         collidables = Maps.newHashMapWithExpectedSize(2);
         layerMap = Maps.newIdentityHashMap();
-        callMap = Sets.newIdentityHashSet();
     }
 
     /**
      * Add a collidable to the engine. If the collidable is already in the engine, it will be adjusted to the specified layer/handle flags.
-     * 
      * @param layer
      *            The layer to add the collidable to - Collisions will only be checked with collidables from different layers.
-     * @param handlesCollisions
-     *            whether or not the collidable will have its {@link Collidable#handleCollisions(float, java.util.List)} method called.
+     * 
      * @return true if the element was not already in the engine.
      */
     @Override
-    public boolean addCollidable(Collidable collidable, Integer layer, boolean handlesCollisions) {
+    public boolean addCollidable(Collidable collidable, Integer layer) {
         boolean retval = removeCollidable(collidable);
         if (!collidables.containsKey(layer)) {
             collidables.put(layer, Sets.<Collidable> newIdentityHashSet());
         }
         collidables.get(layer).add(collidable);
-        if (handlesCollisions) {
-            callMap.add(collidable);
-        }
         layerMap.put(collidable, layer);
         return retval;
     }
@@ -69,7 +62,6 @@ public class LayeredCollisionEngine implements CollisionEngine {
     public boolean removeCollidable(Collidable collidable) {
         if (layerMap.containsKey(collidable)) {
             Integer layer = layerMap.remove(collidable);
-            callMap.remove(collidable);
             collidables.get(layer).remove(collidable);
             if (collidables.get(layer).isEmpty()) {
                 collidables.remove(layer);
@@ -167,9 +159,14 @@ public class LayeredCollisionEngine implements CollisionEngine {
         if (collisions.isEmpty()) {
             return;
         }
-        for (Collidable coll : collisions.keySet()) {
-            if (callMap.contains(coll)) {
-                coll.handleCollisions(millis, collisions.get(coll));
+        for (Collidable collidable : collisions.keySet()) {
+            for (RectCollision collision : collisions.get(collidable)) {
+                Collidable other = collision.getOtherEntity(collidable);
+                // If any of the entities cause collisions with this one, collide.
+                if (other.causesCollisionsWith(collidable)) {
+                    collidable.handleCollisions(millis, collisions.get(collidable));
+                    break;
+                }
             }
         }
 
@@ -177,17 +174,26 @@ public class LayeredCollisionEngine implements CollisionEngine {
         if (collisions.isEmpty()) {
             return;
         }
-        for (Collidable coll : collisions.keySet()) {
-            if (callMap.contains(coll)) {
-                coll.rehandleCollisions(millis, collisions.get(coll));
+        for (Collidable collidable : collisions.keySet()) {
+            for (RectCollision collision : collisions.get(collidable)) {
+                Collidable other = collision.getOtherEntity(collidable);
+                if (other.causesCollisionsWith(collidable)) {
+                    collidable.rehandleCollisions(millis, collisions.get(collidable));
+                    break;
+                }
             }
         }
 
         collisions = computeCollisions(millis);
-        if (collisions.isEmpty()) {
-            return;
+        for (Collidable collidable : collisions.keySet()) {
+            for (RectCollision collision : collisions.get(collidable)) {
+                Collidable other = collision.getOtherEntity(collidable);
+                if (other.causesCollisionsWith(collidable) && collidable.causesCollisionsWith(other)) {
+                    // Die if we still have any "real" collisions.
+                    throw new RuntimeException("Could not rehandle collisions: " + collisions);
+                }
+            }
         }
-        throw new RuntimeException("Could not rehandle collisions: " + collisions);
     }
 
     @Override
@@ -197,7 +203,6 @@ public class LayeredCollisionEngine implements CollisionEngine {
         builder.append("<---LayeredCollisionEngine[\n") 
                          .append(" * collidables=").append(collidables).append("\n")
                          .append(" * layerMap=").append(layerMap).append("\n")
-                         .append(" * callMap=").append(callMap).append("\n")
                          .append("--->");
         //@formatter:on
         return builder.toString();

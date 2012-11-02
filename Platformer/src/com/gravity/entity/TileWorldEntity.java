@@ -44,5 +44,10 @@ public class TileWorldEntity implements Collidable {
     public String toString() {
         return "TileWorldEntity [shape=" + shape + "]";
     }
+
+    @Override
+    public boolean causesCollisionsWith(Collidable other) {
+        return true;
+    }
     
 }

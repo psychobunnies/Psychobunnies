@@ -51,4 +51,9 @@ public class TriggeredTextEntity implements Collidable {
     public String toString() {
         return "TriggeredTextEntity [shape=" + shape + "]";
     }
+
+    @Override
+    public boolean causesCollisionsWith(Collidable other) {
+        return false;
+    }
 }

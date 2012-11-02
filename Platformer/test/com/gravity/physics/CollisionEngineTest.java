@@ -18,8 +18,8 @@ public class CollisionEngineTest {
         Collidable b = new TileWorldEntity(new Rect(8, 3, 10, 5));
         
         CollisionEngine engine = new LayeredCollisionEngine();
-        engine.addCollidable(a, LayeredCollisionEngine.FLORA_LAYER, true);
-        engine.addCollidable(b, LayeredCollisionEngine.FAUNA_LAYER, true);
+        engine.addCollidable(a, LayeredCollisionEngine.FLORA_LAYER);
+        engine.addCollidable(b, LayeredCollisionEngine.FAUNA_LAYER);
         
         List<RectCollision> collisions = engine.checkAgainstLayer(0, a, LayeredCollisionEngine.FAUNA_LAYER);
         Assert.assertTrue("Collisions size", collisions.size() == 1);
@@ -32,8 +32,8 @@ public class CollisionEngineTest {
         Collidable b = new TileWorldEntity(new Rect(-2, 3, 20, 1));
         
         CollisionEngine engine = new LayeredCollisionEngine();
-        engine.addCollidable(a, LayeredCollisionEngine.FLORA_LAYER, true);
-        engine.addCollidable(b, LayeredCollisionEngine.FAUNA_LAYER, true);
+        engine.addCollidable(a, LayeredCollisionEngine.FLORA_LAYER);
+        engine.addCollidable(b, LayeredCollisionEngine.FAUNA_LAYER);
         
         List<RectCollision> collisions = engine.checkAgainstLayer(0, a, LayeredCollisionEngine.FAUNA_LAYER);
         Assert.assertTrue("Collisions size", collisions.size() == 1);
@@ -46,8 +46,8 @@ public class CollisionEngineTest {
         Collidable b = new TileWorldEntity(new Rect(0, -3, 10, 5));
         
         CollisionEngine engine = new LayeredCollisionEngine();
-        engine.addCollidable(a, LayeredCollisionEngine.FLORA_LAYER, true);
-        engine.addCollidable(b, LayeredCollisionEngine.FAUNA_LAYER, true);
+        engine.addCollidable(a, LayeredCollisionEngine.FLORA_LAYER);
+        engine.addCollidable(b, LayeredCollisionEngine.FAUNA_LAYER);
         
         List<RectCollision> collisions = engine.checkAgainstLayer(0, a, LayeredCollisionEngine.FAUNA_LAYER);
         Assert.assertTrue("Collisions size", collisions.size() == 1);
@@ -60,8 +60,8 @@ public class CollisionEngineTest {
         Collidable b = new TileWorldEntity(new Rect(-2, -4, 14, 10));
         
         CollisionEngine engine = new LayeredCollisionEngine();
-        engine.addCollidable(a, LayeredCollisionEngine.FLORA_LAYER, true);
-        engine.addCollidable(b, LayeredCollisionEngine.FAUNA_LAYER, true);
+        engine.addCollidable(a, LayeredCollisionEngine.FLORA_LAYER);
+        engine.addCollidable(b, LayeredCollisionEngine.FAUNA_LAYER);
         
         List<RectCollision> collisions = engine.checkAgainstLayer(0, a, LayeredCollisionEngine.FAUNA_LAYER);
         Assert.assertTrue("Collisions size", collisions.size() == 1);

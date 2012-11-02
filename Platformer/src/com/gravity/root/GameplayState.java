@@ -15,6 +15,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
+import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.gravity.entity.UpdateCycling;
 import com.gravity.fauna.Player;
@@ -64,9 +65,9 @@ public class GameplayState extends BasicGameState implements GameplayControl {
 
     private static final int WIN_MARGIN = 950;
 
-    public GameplayState(String mapFile, int id) throws SlickException {
+    public GameplayState(String levelName, String mapFile, int id) throws SlickException {
         ID = id;
-        map = new TileWorld(new TiledMap(mapFile), this);
+        map = new TileWorld(levelName, new TiledMap(mapFile), this);
     }
 
     @Override
@@ -90,8 +91,11 @@ public class GameplayState extends BasicGameState implements GameplayControl {
             collider.addCollidable(c, LayeredCollisionEngine.FLORA_LAYER, false);
         }
         gravityPhysics = PhysicsFactory.createDefaultGravityPhysics(collider);
-        playerA = new Player(this, gravityPhysics, "pink", new Vector2f(256, 512));
-        playerB = new Player(this, gravityPhysics, "yellow", new Vector2f(224, 512));
+        List<Vector2f> playerPositions = map.getPlayerStartPositions();
+        Preconditions.checkArgument(playerPositions.size() == 2,
+                "Invalid number of player start positions: expected 2, got " + playerPositions.size());
+        playerA = new Player(this, gravityPhysics, "pink", playerPositions.get(0));
+        playerB = new Player(this, gravityPhysics, "yellow", playerPositions.get(1));
         updaters.add(playerA);
         updaters.add(playerB);
         renderers.add(new TileWorldRenderer(map));

@@ -28,7 +28,7 @@ public class PlatformerGame extends StateBasedGame {
         addState(new MainMenuState());
         addState(new LevelSelectState(levels));
         for (LevelInfo level : levels) {
-            addState(new GameplayState(level.mapfile, level.stateId));
+            addState(new GameplayState(level.title, level.mapfile, level.stateId));
         }
         addState(new CreditsState());
         addState(new GameOverState());

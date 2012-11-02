@@ -73,6 +73,7 @@ public class GameplayState extends BasicGameState implements GameplayControl {
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.container = container;
         this.game = game;
+        map.initialize();
         reloadGame();
         GameSounds.playBGM();
     }

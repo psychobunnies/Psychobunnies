@@ -56,6 +56,7 @@ public class GravityPhysics implements Physics {
         PhysicalState state = entity.getPhysicalState();
         float velX = state.velX;
         float velY = state.velY;
+        float accX = state.accX;
         float accY = state.accY;
         for (RectCollision c : collisions) {
             EnumSet<Side> sides = c.getMyCollisions(entity);
@@ -64,23 +65,28 @@ public class GravityPhysics implements Physics {
             if (Side.isSimpleSet(sides)) {
                 if (sides.contains(Side.TOP)) {
                     velY = Math.max(velY, 0);
+                    accY = Math.max(accY, 0);
                 }
                 if (sides.contains(Side.LEFT)) {
                     velX = Math.max(velX, 0);
+                    accX = Math.max(accX, 0);
                 }
                 if (sides.contains(Side.BOTTOM)) {
                     velY = Math.min(velY, 0);
-                    accY = 0;
+                    accY = Math.min(accY, 0);
                 }
                 if (sides.contains(Side.RIGHT)) {
                     velX = Math.min(velX, 0);
+                    accX = Math.min(accX, 0);
                 }
             } else {
                 velX = 0;
                 velY = 0;
+                accX = 0;
+                accY = 0;
             }
         }
-        return new PhysicalState(entity.getRect(0), velX, velY, 0, accY);
+        return new PhysicalState(entity.getRect(0), velX, velY, accX, accY);
     }
 
     @Override

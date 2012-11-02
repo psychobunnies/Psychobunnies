@@ -15,7 +15,7 @@ import com.gravity.geom.Rect;
 import com.gravity.geom.Rect.Side;
 
 /**
- * Collision engine using the new Shape system. Also supports having multiple collision layers. Collidibles within a layer will not have collisions
+ * Collision engine using the new Rect system. Also supports having multiple collision layers. Collidables within a layer will not have collisions
  * checked between them.
  * 
  * @author xiao
@@ -25,18 +25,18 @@ public class LayeredCollisionEngine implements CollisionEngine {
     private static final float EPS = 1e-6f;
     public static final Integer FLORA_LAYER = 1;
     public static final Integer FAUNA_LAYER = 0;
-    
+
     // package private for testing
     final Map<Integer, Set<Collidable>> collidables;
     final Map<Collidable, Integer> layerMap;
     final Set<Collidable> callMap;
-    
+
     public LayeredCollisionEngine() {
         collidables = Maps.newHashMapWithExpectedSize(2);
         layerMap = Maps.newIdentityHashMap();
         callMap = Sets.newIdentityHashSet();
     }
-    
+
     /**
      * Add a collidable to the engine. If the collidable is already in the engine, it will be adjusted to the specified layer/handle flags.
      * 
@@ -59,7 +59,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
         layerMap.put(collidable, layer);
         return retval;
     }
-    
+
     /**
      * Remove a collidable from the engine.
      * 
@@ -79,7 +79,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
             return false;
         }
     }
-    
+
     /**
      * Given a collidable, check for any collisions with a specified layer
      * 
@@ -92,10 +92,10 @@ public class LayeredCollisionEngine implements CollisionEngine {
     @Override
     public List<RectCollision> checkAgainstLayer(float time, Collidable collidable, Integer layer) {
         Preconditions.checkArgument(time >= 0, "Time since last update() call must be nonnegative");
-        
+
         List<RectCollision> colls = Lists.newLinkedList();
         EnumSet<Side> sidesA, sidesB;
-        
+
         for (Collidable collB : collidables.get(layer)) {
             sidesA = collidable.getRect(time).getCollision(collB.getRect(time));
             if (!sidesA.isEmpty()) {
@@ -105,25 +105,26 @@ public class LayeredCollisionEngine implements CollisionEngine {
         }
         return colls;
     }
-    
+
     @Override
-    public boolean collidesAgainstLayer(float time, Rect rect, Integer layer) {
+    public List<Collidable> collisionsInLayer(float time, Rect rect, Integer layer) {
         Preconditions.checkArgument(time >= 0, "Time since last update() call must be nonnegative");
-        
+
         EnumSet<Side> sidesA;
+        List<Collidable> result = Lists.newArrayList();
         for (Collidable collB : collidables.get(layer)) {
             sidesA = rect.getCollision(collB.getRect(time));
             if (!sidesA.isEmpty()) {
-                return true;
+                result.add(collB);
             }
         }
-        return false;
+        return result;
     }
-    
+
     @Override
     public Multimap<Collidable, RectCollision> computeCollisions(float time) {
         Preconditions.checkArgument(time >= 0, "Time since last update() call must be nonnegative");
-        
+
         Multimap<Collidable, RectCollision> collList = HashMultimap.create();
         List<RectCollision> colls;
         Set<Integer> layers = collidables.keySet();
@@ -139,17 +140,17 @@ public class LayeredCollisionEngine implements CollisionEngine {
                 }
             }
         }
-        
+
         return collList;
     }
-    
+
     private static final int PARTS_PER_TICK = 5;
     private static final int MIN_INCREMENT = 10;
-    
+
     @Override
     public void update(float millis) {
         Preconditions.checkArgument(millis >= 0, "Time since last update() call must be nonnegative");
-        
+
         float increment = Math.max(MIN_INCREMENT, millis / PARTS_PER_TICK);
         float time;
         for (time = increment; time < millis; time += increment) {
@@ -159,8 +160,8 @@ public class LayeredCollisionEngine implements CollisionEngine {
             runCollisionsAndHandling(time);
         }
     }
-    
-    public void runCollisionsAndHandling(float millis) {
+
+    private void runCollisionsAndHandling(float millis) {
         Multimap<Collidable, RectCollision> collisions;
         collisions = computeCollisions(millis);
         if (collisions.isEmpty()) {
@@ -171,7 +172,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
                 coll.handleCollisions(millis, collisions.get(coll));
             }
         }
-        
+
         collisions = computeCollisions(millis);
         if (collisions.isEmpty()) {
             return;
@@ -181,14 +182,14 @@ public class LayeredCollisionEngine implements CollisionEngine {
                 coll.rehandleCollisions(millis, collisions.get(coll));
             }
         }
-        
+
         collisions = computeCollisions(millis);
         if (collisions.isEmpty()) {
             return;
         }
         throw new RuntimeException("Could not rehandle collisions: " + collisions);
     }
-    
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();

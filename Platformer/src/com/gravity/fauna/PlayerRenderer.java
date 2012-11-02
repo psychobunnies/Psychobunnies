@@ -2,6 +2,7 @@ package com.gravity.fauna;
 
 import java.util.List;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -9,6 +10,7 @@ import org.newdawn.slick.geom.Vector2f;
 
 import com.google.common.collect.Lists;
 import com.gravity.physics.PhysicalState;
+import com.gravity.physics.PhysicsFactory;
 import com.gravity.root.Renderer;
 
 public class PlayerRenderer implements Renderer {
@@ -20,14 +22,14 @@ public class PlayerRenderer implements Renderer {
     private List<Image> duckingBunny;
     private int tweener;
     private int counter = 0;
-    
+
     public PlayerRenderer(Player player) {
         this.player = player;
         try {
             runningBunny = Lists.newArrayList();
             runningBackBunny = Lists.newArrayList();
             duckingBunny = Lists.newArrayList();
-            
+
             if (player.getName().equals("pink")) {
                 bunnyPlayer = new Image("./assets/BunnyAssets/bunnyStand.png");
                 runningBunny.add(new Image("./assets/BunnyAssets/bunnyRun1.png"));
@@ -63,12 +65,12 @@ public class PlayerRenderer implements Renderer {
                 runningBackBunny.add(new Image("./assets/BunnyAssets/yellowbunnyRunBack5.png"));
                 runningBackBunny.add(new Image("./assets/BunnyAssets/yellowbunnyRunBack6.png"));
             }
-            
+
         } catch (SlickException e) {
             throw new RuntimeException(e);
         }
     }
-    
+
     @Override
     public void render(Graphics g, int offsetX, int offsetY) {
         PhysicalState state = player.getPhysicalState();
@@ -85,21 +87,21 @@ public class PlayerRenderer implements Renderer {
                 counter = 0;
             }
         }
-        
+
         Vector2f pos = state.getPosition();
         g.drawImage(lastImage, pos.x + offsetX, pos.y + offsetY);
         tweener++;
         /*
-         * // if we ever need to draw hitboxes again:
-         * g.pushTransform();
-         * g.translate(offsetX, offsetY);
-         * g.setColor(Color.red);
-         * g.draw(player.getRect(0).toShape());
-         * g.setColor(Color.green);
-         * g.draw(player.getRect(0).translate(0, 5).toShape());
-         * g.setColor(Color.white);
-         * g.resetTransform();
-         * g.popTransform();
-         */
+         */// if we ever need to draw hitboxes again:
+        g.pushTransform();
+        g.translate(offsetX, offsetY);
+        g.setColor(Color.red);
+        g.draw(player.getRect(0).toShape());
+        g.setColor(Color.green);
+        g.draw(player.getRect(0).translate(0, PhysicsFactory.DEFAULT_OFFSET_GROUND_CHECK).toShape());
+        g.setColor(Color.white);
+        g.resetTransform();
+        g.popTransform();
+
     }
 }

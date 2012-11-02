@@ -1,0 +1,13 @@
+When designing new levels, please follow these guidelines to make sure the level is loaded properly and plays as expected.
+
+1. In case anything in this document is unclear, or you think you followed all the guidelines but the game doesn't work as expected, email mazemaker@mit.edu with an exact description of what is going on and ask the programming team for help. If you want to play with the code to see what is going on, DO NOT PUSH THE CHANGES INTO THE REPOSITORY!
+
+2. The main terrain tiles (not perspective/shading tiles) should all be on a layer named "collisions" (case sensitive, quotes for clarity). This is what the collision engine uses when checking where the player may move; if your terrain is not on this layer then the player will move right through it.
+
+3. Any tiles that would like to be notified when a player steps on them (e.g. spikes) need to be on a layer named "spikes" (case sensitive, quotes for clarity). This layer is NOT to be used for terrain because it will adversely impact performance. If your special tiles are not on this layer then they will not get notified that the player has collided with them (either by running over/into the tile or by falling onto it).
+
+4. If you want to specify custom start positions for the players, create a layer named "players" (case sensitive, quotes for clarity) and add EXACTLY TWO invisible tiles to it. One player will start where the first tile is, the other player will start where the other tile is. You can find invisible tiles in the 'perspective_walls' tileset in Tiled, as part of the last sprite in the tileset.
+
+5. When you are done designing the level, put the .tmx file and any assets it is using in assets/Levels. Use a descriptive name for the tmx file, don't just name it "custom level.tmx" or something like that. Then, go to PlatformerGame.java and add a new entry in the levels array at the top of the file, including the level name, description, filepath and state id. The state id is basically the next number in the sequence (so if the previous levels have state ids of 1001 and 1002, the next level should have a state id of 1003). Everything else should work automagically.
+
+6. In case you need additional functionality for a game mechanic, email mazemaker@mit.edu with a detailed specification of what you need and someone will try to assist as soon as possible. If you want to try your hand at implementing the map mechanic yourself, make a separate branch of the project and develop on that one. DO NOT MERGE THE CHANGES INTO MASTER BEFORE CHECKING WITH THE PROGRAMMING TEAM!

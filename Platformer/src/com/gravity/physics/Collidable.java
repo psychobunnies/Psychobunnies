@@ -12,7 +12,7 @@ import com.gravity.geom.Rect;
  * @author xiao
  */
 public interface Collidable {
-    
+
     /**
      * Get the position of the Entity after specified time has passed
      * 
@@ -20,7 +20,7 @@ public interface Collidable {
      *            time since the last tick() call
      */
     public Vector2f getPosition(float millis);
-    
+
     /**
      * Get the rectangle of the Entity after specified time has passed
      * 
@@ -28,7 +28,7 @@ public interface Collidable {
      *            time since the last tick() call
      */
     public Rect getRect(float millis);
-    
+
     /**
      * Entity will collide with another entity - handle it, adjusting collidible's game state as necessary.
      * 
@@ -38,7 +38,7 @@ public interface Collidable {
      *            the length of this timestep
      */
     public void handleCollisions(float millis, Collection<RectCollision> collection);
-    
+
     /**
      * Same as {@link Collidible#handleCollisions(float, List<Collision>)}, but may not change collidible's game state (health, etc). Useful for when
      * handleCollision proposes a new position which creates new collision problems.

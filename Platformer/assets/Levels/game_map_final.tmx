@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="200" height="24" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="perspective_walls" tilewidth="32" tileheight="32">
+  <image source="perspective_walls.png" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="65" name="bunnyTile" tilewidth="32" tileheight="32">
+  <image source="bunnyTile.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="66" name="betterBunnyDirt" tilewidth="32" tileheight="32">
+  <image source="betterBunnyDirt.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="67" name="bunnyTiles" tilewidth="32" tileheight="32">
+  <image source="bunnyTiles.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="75" name="Spikes" tilewidth="32" tileheight="32">
+  <image source="Spikes.png" width="32" height="32"/>
+ </tileset>
+ <layer name="shading3" width="200" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzt00ENACAMBMEqwAAm8K+O4IAmkBIy877HfTYCAAAAAAAAAAAAAAAAAOBvo/oAFOibu9VHu3kEHpTtQyMAAHDeBE5zAPE=
+  </data>
+ </layer>
+ <layer name="shading2" width="200" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzt180KQEAUgFFZ2NhZyQOI939BZiHSjEYJTefUXbmLSX1+qgqgPPPXBwAAAAAAAAAAAACAh9WnAeLarw8ALzu/E6aLXX1Qqi5zL/TRJK7pgxKFNobM3a2PWCP6oES5bQT9OuNhjt9fT/fhf//fPA/vcb8gTR8AuwX4NwH8
+  </data>
+ </layer>
+ <layer name="shading" width="200" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztm0EKwkAMRQe3xY078RDe/3Z2Uxhs4zSxIaX/Pchm+Hys8WER21prj3luDMOs5tk0mA7KRLJZHUe8BrCZms57jB/gBT/8mUg2q0Nld1Xghz8TyWZ1qOyuCvzwZyLZrA6V3VWBH/5MJJvVobK7KvDDn4lkszpUdlcFfvgzkWxWh8ruqsAPfyaSzepQ2V0V+OHPRLJZHSq7q0LZj/4/BFbG0xcBP86Nsh9b5/gBPfiBH2Cj5sfongo/oEfNj9E5fkAPfuAH2Cj7sdxn4QdYKPuxdf6e5/Vnnwf8ODf4sfbj3vY5gh/XR8EP67nihS0/9jjy/XtYZI7wo/r57KvP1f0YoX79YKPw/TFC/frBhs8GwG8+UIIKEA==
+  </data>
+ </layer>
+ <layer name="collisions" width="200" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztm9GKg0AMRaeUfoAsyz4vpex3uP3/f9odqJAORk0mMUrugbyUazqanjpIO5RSLgnq2yijyXr1sFgDiq+P/7qWHGw5T8m1sLhuvT2yzC6Ka8lzjeEHkAI/5BlN1qtHltlFAT/kGU3Wq0eW2UUBP+QZTdarR5bZRQE/5BlN1qtHltlFAT/kGU3Wq0eW2UUBP+QZTdarR5bZRQE/5BlN1qtHltlFAT/kGU3Wq0eW2UWR1Y/2NwRzGUk/izVFHA+WyeoH9zr8ABT4AT8Az1H9GF9lyU9531dNwA/AcSQ/RlK/r7JEc/+Y+73zWj+LNe11PFgm2o85J2hZ9J+w2F9p7zVb+kUcD5aJ8GPNCSs/2v0Z9/zqTl6vezB6j2iBH7nYyw+JExZ+tG4M5d0DCj3/6set8I7Aj1x4+qF1otePOTfqZ17iB+cI/MiFtR8WTvT4Mb3vRN0/PUitPb/6YvJctvf/zZ+Kc6RYrAHFV/1O7fXD2gmtH/T9Jez9TBecB+39w9MJjR/tOiTAD8BR5z0qytMJWtr1PJXndZR6NnM6+/mcuf4ADOBclw==
+  </data>
+ </layer>
+ <layer name="spikes" width="200" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzt1MEJACAMBMH0l/778SV4DWjAGbh/PpsqAAAAAAAAAAAAAOBX/foAGEYTkDQBSROQNAFJE5A0AUkTkG420ccANr9hhgUH/QRm
+  </data>
+ </layer>
+ <layer name="players" width="200" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztwzENAAAIA7A5w78rnmngoU2aAAAAAAAAAAAAAAAAAADAX9MAAADAnQXzTQB/
+  </data>
+ </layer>
+</map>

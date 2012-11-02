@@ -105,7 +105,7 @@ public class GameplayState extends BasicGameState implements GameplayControl {
         controllerB = new PlayerKeyboardController(playerB).setLeft(Input.KEY_LEFT).setRight(Input.KEY_RIGHT).setJump(Input.KEY_UP)
                 .setMisc(Input.KEY_DOWN);
         collider.addCollidable(playerA, LayeredCollisionEngine.FAUNA_LAYER, true);
-        collider.addCollidable(playerB, LayeredCollisionEngine.FAUNA_LAYER, true);
+        // collider.addCollidable(playerB, LayeredCollisionEngine.FAUNA_LAYER, true);
         offsetX = 0;
         offsetY = 0;
         maxOffsetX = (map.getWidth() - container.getWidth()) * -1;

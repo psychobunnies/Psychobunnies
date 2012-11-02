@@ -6,7 +6,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.gravity.entity.TileWorldEntity;
+import com.gravity.entity.TileWorldCollidable;
 import com.gravity.geom.Rect;
 import com.gravity.geom.Rect.Side;
 
@@ -14,8 +14,8 @@ public class CollisionEngineTest {
     
     @Test
     public void testCornerCollisions() {
-        Collidable a = new TileWorldEntity(new Rect(0, 0, 10, 5));
-        Collidable b = new TileWorldEntity(new Rect(8, 3, 10, 5));
+        Collidable a = new TileWorldCollidable(new Rect(0, 0, 10, 5));
+        Collidable b = new TileWorldCollidable(new Rect(8, 3, 10, 5));
         
         CollisionEngine engine = new LayeredCollisionEngine();
         engine.addCollidable(a, LayeredCollisionEngine.FLORA_LAYER, true);
@@ -28,8 +28,8 @@ public class CollisionEngineTest {
     
     @Test
     public void testCrossCollisions() {
-        Collidable a = new TileWorldEntity(new Rect(0, 0, 10, 5));
-        Collidable b = new TileWorldEntity(new Rect(-2, 3, 20, 1));
+        Collidable a = new TileWorldCollidable(new Rect(0, 0, 10, 5));
+        Collidable b = new TileWorldCollidable(new Rect(-2, 3, 20, 1));
         
         CollisionEngine engine = new LayeredCollisionEngine();
         engine.addCollidable(a, LayeredCollisionEngine.FLORA_LAYER, true);
@@ -42,8 +42,8 @@ public class CollisionEngineTest {
     
     @Test
     public void testSideCollisions() {
-        Collidable a = new TileWorldEntity(new Rect(0, 0, 10, 5));
-        Collidable b = new TileWorldEntity(new Rect(0, -3, 10, 5));
+        Collidable a = new TileWorldCollidable(new Rect(0, 0, 10, 5));
+        Collidable b = new TileWorldCollidable(new Rect(0, -3, 10, 5));
         
         CollisionEngine engine = new LayeredCollisionEngine();
         engine.addCollidable(a, LayeredCollisionEngine.FLORA_LAYER, true);
@@ -56,8 +56,8 @@ public class CollisionEngineTest {
     
     @Test
     public void testOverlapCollisions() {
-        Collidable a = new TileWorldEntity(new Rect(0, 0, 10, 5));
-        Collidable b = new TileWorldEntity(new Rect(-2, -4, 14, 10));
+        Collidable a = new TileWorldCollidable(new Rect(0, 0, 10, 5));
+        Collidable b = new TileWorldCollidable(new Rect(-2, -4, 14, 10));
         
         CollisionEngine engine = new LayeredCollisionEngine();
         engine.addCollidable(a, LayeredCollisionEngine.FLORA_LAYER, true);

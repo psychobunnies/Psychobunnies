@@ -151,14 +151,14 @@ public class LayeredCollisionEngine implements CollisionEngine {
     public void update(float millis) {
         Preconditions.checkArgument(millis >= 0, "Time since last update() call must be nonnegative");
 
-        float increment = Math.max(MIN_INCREMENT, millis / PARTS_PER_TICK);
-        float time;
-        for (time = increment; time < millis; time += increment) {
-            runCollisionsAndHandling(time);
+        if (millis > MIN_INCREMENT) {
+            float increment = Math.max(MIN_INCREMENT, millis / PARTS_PER_TICK);
+            float time;
+            for (time = increment; time <= millis; time += increment) {
+                runCollisionsAndHandling(time);
+            }
         }
-        if (!(time - millis < EPS)) {
-            runCollisionsAndHandling(time);
-        }
+        runCollisionsAndHandling(millis);
     }
 
     private void runCollisionsAndHandling(float millis) {

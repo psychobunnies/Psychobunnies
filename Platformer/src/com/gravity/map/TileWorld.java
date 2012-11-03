@@ -10,7 +10,7 @@ import org.newdawn.slick.tiled.TiledMap;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.gravity.entity.SpikeEntity;
-import com.gravity.entity.TileWorldEntity;
+import com.gravity.entity.TileWorldCollidable;
 import com.gravity.geom.Rect;
 import com.gravity.physics.Collidable;
 import com.gravity.root.GameplayControl;
@@ -110,7 +110,7 @@ public class TileWorld implements GameWorld {
         entityNoCalls = processLayer(TILES_LAYER_ID, new CollidableCreator() {
             @Override
             public Collidable createCollidable(Rect r) {
-                return new TileWorldEntity(r);
+                return new TileWorldCollidable(r);
             }
         });
 

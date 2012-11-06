@@ -13,36 +13,36 @@ import com.gravity.physics.RectCollision;
  * 
  * @author xiao
  */
-public class TileWorldEntity implements Collidable {
+public class TileWorldCollidable implements Collidable {
     private Rect shape;
-    
-    public TileWorldEntity(Rect shape) {
+
+    public TileWorldCollidable(Rect shape) {
         this.shape = shape;
     }
-    
+
     @Override
     public void handleCollisions(float ticks, Collection<RectCollision> collisions) {
         // No-op
     }
-    
+
     @Override
     public void rehandleCollisions(float ticks, Collection<RectCollision> collisions) {
         // No-op
     }
-    
+
     @Override
     public Vector2f getPosition(float millis) {
         return shape.getPosition();
     }
-    
+
     @Override
     public Rect getRect(float millis) {
         return shape;
     }
-    
+
     @Override
     public String toString() {
-        return "TileWorldEntity [shape=" + shape + "]";
+        return "TileWorldCollidable [shape=" + shape + "]";
     }
-    
+
 }

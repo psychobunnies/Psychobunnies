@@ -13,7 +13,7 @@ import org.newdawn.slick.geom.Polygon;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.tiled.TiledMap;
+import org.newdawn.slick.tiled.TiledMapPlus;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -67,7 +67,7 @@ public class GameplayState extends BasicGameState implements GameplayControl {
 
     public GameplayState(String levelName, String mapFile, int id) throws SlickException {
         ID = id;
-        map = new TileWorld(levelName, new TiledMap(mapFile), this);
+        map = new TileWorld(levelName, new TiledMapPlus(mapFile), this);
     }
 
     @Override

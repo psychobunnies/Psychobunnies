@@ -3,4 +3,4 @@ eclimd.log
 .*.swp
 .metadata/
 /slick/
-!/slick/trunk/Slick
+!/slick/trunk/Slick/

@@ -349,9 +349,11 @@ public class Layer {
 		ArrayList<Tile> tiles = new ArrayList<Tile>();
 		for (int x = 0; x < this.width; x++) {
 			for (int y = 0; y < this.height; y++) {
-				String tilesetName = tmap.tileSets.get(this.data[x][y][0]).name;
-				Tile t = new Tile(x, y, this.name, y, tilesetName);
-				tiles.add(t);
+			    if (this.data[x][y][0] != -1) {
+    				String tilesetName = tmap.tileSets.get(this.data[x][y][0]).name;
+    				Tile t = new Tile(x, y, this.name, y, tilesetName);
+    				tiles.add(t);
+			    }
 			}
 		}
 		return tiles;

@@ -4,8 +4,11 @@ import java.util.List;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
-import org.newdawn.slick.tiled.TiledMap;
+import org.newdawn.slick.tiled.Layer;
+import org.newdawn.slick.tiled.Tile;
+import org.newdawn.slick.tiled.TiledMapPlus;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -25,12 +28,8 @@ public class TileWorld implements GameWorld {
     private List<Collidable> entityNoCalls, entityCallColls;
 
     private final String name;
-    private final TiledMap map;
+    private final TiledMapPlus map;
     private final GameplayControl controller;
-
-    private final int TILES_LAYER_ID;
-    private final int SPIKES_LAYER_ID;
-    private final int PLAYERS_LAYER_ID;
 
     private static final String TILES_LAYER_NAME = "collisions";
     private static final String SPIKES_LAYER_NAME = "spikes";
@@ -43,10 +42,7 @@ public class TileWorld implements GameWorld {
         Collidable createCollidable(Rect r);
     }
 
-    public TileWorld(String name, TiledMap map, GameplayControl controller) {
-        TILES_LAYER_ID = map.getLayerIndex(TILES_LAYER_NAME);
-        SPIKES_LAYER_ID = map.getLayerIndex(SPIKES_LAYER_NAME);
-        PLAYERS_LAYER_ID = map.getLayerIndex(PLAYERS_LAYER_NAME);
+    public TileWorld(String name, TiledMapPlus map, GameplayControl controller) {
         this.map = map;
         this.controller = controller;
         this.name = name;
@@ -58,18 +54,35 @@ public class TileWorld implements GameWorld {
         this.height = map.getHeight() * tileHeight;
     }
 
-    private List<Collidable> processLayer(int layerId, CollidableCreator creator) {
+    /**
+     * Process a layer of the map for collisions. Merge adjacent tiles vertically, then horizontally.
+     * 
+     * @param layerName
+     *            the name of the layer in the map to process.
+     * @param creator
+     *            a Creator to create collidables for
+     * @return a list of collidables in this layer. Returns an empty list if the list does not exist.
+     */
+    private List<Collidable> processLayer(String layerName, CollidableCreator creator) {
         boolean[][] visited = new boolean[map.getWidth()][map.getHeight()];
         List<Collidable> res = Lists.newArrayList();
+        int layer = 0;
+        try {
+            layer = map.getLayerID(layerName);
+        } catch (NullPointerException e) {
+            System.err.println("WARNING: Layer " + layerName + " not found, returning empty collidables list.");
+            return res;
+        }
+
         int first, i, j, tileId;
         for (i = 0; i < map.getWidth(); i++) {
             first = 0;
             while (first < map.getHeight()) {
-                tileId = map.getTileId(i, first, layerId);
+                tileId = map.getTileId(i, first, layer);
                 visited[i][first] = true;
                 if (tileId != 0) {
                     j = first + 1;
-                    while (j < map.getHeight() && map.getTileId(i, j, layerId) != 0) {
+                    while (j < map.getHeight() && map.getTileId(i, j, layer) != 0) {
                         visited[i][j] = true;
                         j++;
                     }
@@ -85,10 +98,10 @@ public class TileWorld implements GameWorld {
         for (j = 0; j < map.getHeight(); j++) {
             first = 0;
             while (first < map.getWidth()) {
-                tileId = visited[first][j] ? 0 : map.getTileId(first, j, layerId);
+                tileId = visited[first][j] ? 0 : map.getTileId(first, j, layer);
                 if (tileId != 0) {
                     i = first + 1;
-                    while (i < map.getWidth() && map.getTileId(i, j, layerId) != 0) {
+                    while (i < map.getWidth() && map.getTileId(i, j, layer) != 0) {
                         visited[i][j] = true;
                         i++;
                     }
@@ -107,14 +120,14 @@ public class TileWorld implements GameWorld {
     public void initialize() {
         // Iterate over and find all tiles
 
-        entityNoCalls = processLayer(TILES_LAYER_ID, new CollidableCreator() {
+        entityNoCalls = processLayer(TILES_LAYER_NAME, new CollidableCreator() {
             @Override
             public Collidable createCollidable(Rect r) {
                 return new TileWorldCollidable(r);
             }
         });
 
-        entityCallColls = processLayer(SPIKES_LAYER_ID, new CollidableCreator() {
+        entityCallColls = processLayer(SPIKES_LAYER_NAME, new CollidableCreator() {
             @Override
             public Collidable createCollidable(Rect r) {
                 return new SpikeEntity(controller, r);
@@ -162,21 +175,22 @@ public class TileWorld implements GameWorld {
 
     @Override
     public List<Vector2f> getPlayerStartPositions() {
-        if (PLAYERS_LAYER_ID == -1) {
+        Layer layer = map.getLayer(PLAYERS_LAYER_NAME);
+        if (layer == null) {
             System.err.println("WARNING: Map \"" + name + "\" doesn't contain player start positions, using default positions instead.");
             return Lists.newArrayList(PLAYER_ONE_DEFAULT_STARTPOS, PLAYER_TWO_DEFAULT_STARTPOS);
-        } else {
+        }
+        try {
             List<Vector2f> res = Lists.newArrayList();
-            for (int i = 0; i < map.getWidth(); i++) {
-                for (int j = 0; j < map.getHeight(); j++) {
-                    if (map.getTileId(i, j, PLAYERS_LAYER_ID) != 0) {
-                        res.add(new Vector2f(i * tileWidth, j * tileHeight));
-                    }
-                }
+            for (Tile tile : layer.getTiles()) {
+                res.add(new Vector2f(tile.x * tileWidth, tile.y * tileHeight));
             }
             Preconditions.checkArgument(res.size() == 2, "Wrong number of player start positions in map \"" + name + "\", expected 2 but found "
                     + res.size());
             return res;
+        } catch (SlickException e) {
+            System.err.println(e);
+            return Lists.newArrayList(PLAYER_ONE_DEFAULT_STARTPOS, PLAYER_TWO_DEFAULT_STARTPOS);
         }
     }
 }

@@ -22,6 +22,7 @@ import com.gravity.fauna.Player;
 import com.gravity.fauna.PlayerKeyboardController;
 import com.gravity.fauna.PlayerKeyboardController.Control;
 import com.gravity.fauna.PlayerRenderer;
+import com.gravity.map.LevelFinishZone;
 import com.gravity.map.TileWorld;
 import com.gravity.map.TileWorldRenderer;
 import com.gravity.physics.Collidable;
@@ -49,6 +50,7 @@ public class GameplayState extends BasicGameState implements GameplayControl {
     private GameContainer container;
     private StateBasedGame game;
     private GravityPhysics gravityPhysics;
+    private LevelFinishZone finish;
     private final Random rand = new Random();
 
     private boolean leftRemapped, rightRemapped, jumpRemapped;
@@ -90,6 +92,9 @@ public class GameplayState extends BasicGameState implements GameplayControl {
         for (Collidable c : map.getTerrainEntitiesNoCalls()) {
             collider.addCollidable(c, LayeredCollisionEngine.FLORA_LAYER, false);
         }
+        finish = new LevelFinishZone(map.getFinishRect(), this);
+        System.err.println("Got finish zone at: " + finish + " for map " + map);
+        collider.addCollidable(finish, LayeredCollisionEngine.FLORA_LAYER, true);
         gravityPhysics = PhysicsFactory.createDefaultGravityPhysics(collider);
         List<Vector2f> playerPositions = map.getPlayerStartPositions();
         Preconditions.checkArgument(playerPositions.size() == 2,
@@ -170,6 +175,9 @@ public class GameplayState extends BasicGameState implements GameplayControl {
             g.popTransform();
         }
 
+        g.setColor(Color.green);
+        g.draw(finish.getRect(0).toShape());
+
         g.pushTransform();
         g.translate(32, 32);
         g.setColor(lightPink);
@@ -219,11 +227,6 @@ public class GameplayState extends BasicGameState implements GameplayControl {
         offsetX -= delta * getOffsetXDelta();
         offsetX = Math.max(offsetX, maxOffsetX);
 
-        if (checkWin(playerA) || checkWin(playerB)) {
-            game.enterState(GameWinState.ID);
-            return;
-        }
-
         // Tell player when to die if off the screen
         checkDeath(playerA, offsetX);
         checkDeath(playerB, offsetX);
@@ -239,10 +242,6 @@ public class GameplayState extends BasicGameState implements GameplayControl {
             return 0;
         }
         return 0.035f; // + (float) (totalTime - 1000) / (1000 * 1000);
-    }
-
-    private boolean checkWin(Player player) {
-        return (player.getPosition(0f).x + maxOffsetX >= WIN_MARGIN);
     }
 
     private void checkDeath(Player player, float offsetX2) {
@@ -324,5 +323,10 @@ public class GameplayState extends BasicGameState implements GameplayControl {
             // Now now, Kevin, we don't use that kind of language in these parts.
         }
 
+    }
+
+    @Override
+    public void playerFinishes(Player player) {
+        game.enterState(GameWinState.ID);
     }
 }

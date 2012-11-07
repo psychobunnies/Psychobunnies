@@ -151,6 +151,10 @@ public class GroupObject {
 		if (element.getAttribute("gid") != "") {
 			gid = Integer.parseInt(element.getAttribute("gid"));
 			this.objectType = ObjectType.IMAGE;
+		} else if (element.hasAttribute("width") && element.hasAttribute("height")) {
+			this.objectType = ObjectType.RECTANGLE;
+		} else if (element.getElementsByTagName("polyline").getLength() > 0) {
+			objectType = ObjectType.POLYGON;
 		}
 		if (objectType == ObjectType.IMAGE) {
 			if (element.getAttribute("width") != "") {

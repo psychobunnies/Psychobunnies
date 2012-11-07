@@ -2,18 +2,17 @@ package com.gravity.map;
 
 import java.util.List;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.tiled.GroupObject;
 import org.newdawn.slick.tiled.Layer;
+import org.newdawn.slick.tiled.ObjectGroup;
 import org.newdawn.slick.tiled.Tile;
 import org.newdawn.slick.tiled.TiledMapPlus;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
-import com.gravity.entity.SpikeEntity;
-import com.gravity.entity.TileWorldCollidable;
 import com.gravity.geom.Rect;
 import com.gravity.physics.Collidable;
 import com.gravity.root.GameplayControl;
@@ -34,6 +33,8 @@ public class TileWorld implements GameWorld {
     private static final String TILES_LAYER_NAME = "collisions";
     private static final String SPIKES_LAYER_NAME = "spikes";
     private static final String PLAYERS_LAYER_NAME = "players";
+    private static final String MARKERS_LAYER_NAME = "level markers";
+    private static final String FINISH_MARKER_NAME = "finish";
 
     private static final Vector2f PLAYER_ONE_DEFAULT_STARTPOS = new Vector2f(256, 512);
     private static final Vector2f PLAYER_TWO_DEFAULT_STARTPOS = new Vector2f(224, 512);
@@ -152,8 +153,9 @@ public class TileWorld implements GameWorld {
 
     @Override
     public void render(Graphics g, int offsetX, int offsetY) {
+        //@formatter:off
         /*
-         */// if we need to draw hitboxes again:
+         * // if we need to draw hitboxes again:
 
         g.pushTransform();
         g.translate(offsetX, offsetY);
@@ -164,6 +166,8 @@ public class TileWorld implements GameWorld {
         g.setColor(Color.white);
         g.resetTransform();
         g.popTransform();
+        */ 
+        //@formatter:on
 
         map.render(offsetX, offsetY);
     }
@@ -192,5 +196,23 @@ public class TileWorld implements GameWorld {
             System.err.println(e);
             return Lists.newArrayList(PLAYER_ONE_DEFAULT_STARTPOS, PLAYER_TWO_DEFAULT_STARTPOS);
         }
+    }
+
+    @Override
+    public Rect getFinishRect() {
+        GroupObject object;
+        try {
+            ObjectGroup group = map.getObjectGroup(MARKERS_LAYER_NAME);
+            object = group.getObject(FINISH_MARKER_NAME);
+            return new Rect(object.x, object.y, object.width, object.height);
+        } catch (NullPointerException e) {
+            System.err.println("No marker layer found for map " + map + " using right edge of map instead");
+            return new Rect((map.getWidth() - 1) * tileWidth, 0, tileWidth, getHeight());
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "TileWorld [height=" + height + ", width=" + width + ", name=" + name + ", map=" + map + "]";
     }
 }

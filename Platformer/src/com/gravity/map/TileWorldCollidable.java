@@ -1,4 +1,4 @@
-package com.gravity.entity;
+package com.gravity.map;
 
 import java.util.Collection;
 

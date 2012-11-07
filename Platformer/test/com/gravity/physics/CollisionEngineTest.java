@@ -8,9 +8,9 @@ import org.junit.Test;
 
 import com.gravity.entity.Entity;
 import com.gravity.entity.PhysicsEntity;
-import com.gravity.entity.TileWorldCollidable;
 import com.gravity.geom.Rect;
 import com.gravity.geom.Rect.Side;
+import com.gravity.map.TileWorldCollidable;
 
 public class CollisionEngineTest {
 

@@ -16,4 +16,7 @@
    H4sIAAAAAAAAC+3ZQQ6CMBQEUPT+h3btAih0fm3lvYSNaf5AMi0atw0AAACAtNfOlZ6XzDjLm2HW070bPxuRO8u8Ec/fa/T+vUqvamdVab3HXz3LXq+qu57O0Ku+dWlHuSudW3rVty5Nr2pnVVm9V6u8D/Wqb11aS+4K59a/9ersN55etdGrbzN+P0jnrvA+1KvaOZW5M59belU7pzJXr8Z5Wq+u/H9w57qbke7VnXtIelKvOJbeXwkjzoLqfQ4AAAAAzOsDRYkaTFBGAAA=
   </data>
  </layer>
+ <objectgroup name="level markers" width="150" height="30">
+  <object name="finish" type="finish" x="4768" y="0" width="32" height="608"/>
+ </objectgroup>
 </map>

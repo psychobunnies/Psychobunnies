@@ -116,6 +116,14 @@ public class Rect {
         //@formatter:on
     }
 
+    /** Return a new Rect scaled about the Rectangle's center by xScale in the x direction and by yScale in the y direction. */
+    public Rect scale(float xScale, float yScale) {
+        //@formatter:off
+        return new Rect(x + (1 - xScale) * width / 2, y + (1 - yScale) * height / 2, 
+                        width*xScale, height*yScale);
+        //@formatter:on
+    }
+
     /** Returns a new Rect which is this Rect translated by (x, y) */
     public Rect translate(float tx, float ty) {
         return new Rect(x + tx, y + ty, width, height);

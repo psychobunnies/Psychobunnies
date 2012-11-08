@@ -23,13 +23,18 @@ public class GravityPhysics implements Physics {
     private final float gravity;
     private final float backstep;
     private final float offsetGroundCheck;
+    private final float allowedSideOverlap;
+    private static final float EPS = 1e-6f;
 
-    GravityPhysics(CollisionEngine collisionEngine, float gravity, float backstep, float offsetGroundCheck) {
+    GravityPhysics(CollisionEngine collisionEngine, float gravity, float backstep, float offsetGroundCheck, float allowedSideOverlap) {
         Preconditions.checkArgument(backstep <= 0f, "Backstep has to be non-positive.");
         this.collisionEngine = collisionEngine;
         this.gravity = gravity;
         this.backstep = backstep;
         this.offsetGroundCheck = offsetGroundCheck;
+        this.allowedSideOverlap = allowedSideOverlap; // e.g. if player overlaps tile by this much on bottom-and-side collision, ignore bottom and
+                                                      // move player sideways to compensate
+                                                      // Fixes: residual wall-hanging on corners of tiles
     }
 
     public boolean isOnGround(Entity entity) {
@@ -40,6 +45,26 @@ public class GravityPhysics implements Physics {
             c.handleCollisions(0f, Lists.newArrayList(new RectCollision(entity, c, 0f, null, null)));
         }
         return !collisions.isEmpty();
+    }
+
+    private boolean isRealBottomCollision(Collidable player, Collidable terrain, EnumSet<Side> playerCollisionSides) {
+        if (playerCollisionSides.contains(Side.LEFT)) {
+            return (player.getRect(0f).getX() + allowedSideOverlap) < terrain.getRect(0f).getMaxX();
+        } else if (playerCollisionSides.contains(Side.RIGHT)) {
+            return (player.getRect(0f).getMaxX() - allowedSideOverlap) > terrain.getRect(0f).getX();
+        } else {
+            return true;
+        }
+    }
+
+    private float getFakeBottomCollisionCorrection(Collidable player, Collidable terrain, EnumSet<Side> playerCollisionSides) {
+        if (playerCollisionSides.contains(Side.LEFT)) {
+            return Math.max(0f, terrain.getRect(0f).getMaxX() - player.getRect(0f).getX() + EPS);
+        } else if (playerCollisionSides.contains(Side.RIGHT)) {
+            return Math.min(0f, terrain.getRect(0f).getX() - player.getRect(0f).getMaxX() - EPS);
+        } else {
+            return 0.0f;
+        }
     }
 
     @Override
@@ -58,7 +83,9 @@ public class GravityPhysics implements Physics {
         float velY = state.velY;
         float accX = state.accX;
         float accY = state.accY;
+        float corrX = 0f;
         for (RectCollision c : collisions) {
+            Collidable other = c.getOtherEntity(entity);
             EnumSet<Side> sides = c.getMyCollisions(entity);
             Preconditions.checkArgument(sides != null, "Collision passed did not involve entity: " + entity + ", " + c);
 
@@ -72,8 +99,12 @@ public class GravityPhysics implements Physics {
                     accX = Math.max(accX, 0);
                 }
                 if (sides.contains(Side.BOTTOM)) {
-                    velY = Math.min(velY, 0);
-                    accY = Math.min(accY, 0);
+                    if (isRealBottomCollision(entity, other, sides)) {
+                        velY = Math.min(velY, 0);
+                        accY = Math.min(accY, 0);
+                    } else {
+                        corrX = getFakeBottomCollisionCorrection(entity, other, sides);
+                    }
                 }
                 if (sides.contains(Side.RIGHT)) {
                     velX = Math.min(velX, 0);
@@ -86,7 +117,11 @@ public class GravityPhysics implements Physics {
                 accY = 0;
             }
         }
-        return new PhysicalState(entity.getRect(0), velX, velY, accX, accY);
+        Rect r = entity.getRect(0f);
+        if (corrX != 0.0f) {
+            r.translate(corrX, 0f);
+        }
+        return new PhysicalState(r, velX, velY, accX, accY);
     }
 
     @Override

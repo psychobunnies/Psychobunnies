@@ -65,8 +65,6 @@ public class GameplayState extends BasicGameState implements GameplayControl {
     private float maxOffsetX; // Maximum offset x can ever be
     private int totalTime; // Time since start
 
-    private static final int WIN_MARGIN = 950;
-
     public GameplayState(String levelName, String mapFile, int id) throws SlickException {
         ID = id;
         map = new TileWorld(levelName, new TiledMapPlus(mapFile), this);

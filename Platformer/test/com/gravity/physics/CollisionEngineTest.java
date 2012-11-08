@@ -18,7 +18,6 @@ public class CollisionEngineTest {
     public void testCornerCollisions() {
         Collidable a = new TileWorldCollidable(new Rect(0, 0, 10, 5));
         Collidable b = new TileWorldCollidable(new Rect(8, 3, 10, 5));
-
         CollisionEngine engine = new LayeredCollisionEngine();
         engine.addCollidable(a, LayeredCollisionEngine.FLORA_LAYER, true);
         engine.addCollidable(b, LayeredCollisionEngine.FAUNA_LAYER, true);
@@ -32,7 +31,6 @@ public class CollisionEngineTest {
     public void testCrossCollisions() {
         Collidable a = new TileWorldCollidable(new Rect(0, 0, 10, 5));
         Collidable b = new TileWorldCollidable(new Rect(-2, 3, 20, 1));
-
         CollisionEngine engine = new LayeredCollisionEngine();
         engine.addCollidable(a, LayeredCollisionEngine.FLORA_LAYER, true);
         engine.addCollidable(b, LayeredCollisionEngine.FAUNA_LAYER, true);
@@ -46,7 +44,6 @@ public class CollisionEngineTest {
     public void testSideCollisions() {
         Collidable a = new TileWorldCollidable(new Rect(0, 0, 10, 5));
         Collidable b = new TileWorldCollidable(new Rect(0, -3, 10, 5));
-
         CollisionEngine engine = new LayeredCollisionEngine();
         engine.addCollidable(a, LayeredCollisionEngine.FLORA_LAYER, true);
         engine.addCollidable(b, LayeredCollisionEngine.FAUNA_LAYER, true);
@@ -60,7 +57,6 @@ public class CollisionEngineTest {
     public void testOverlapCollisions() {
         Collidable a = new TileWorldCollidable(new Rect(0, 0, 10, 5));
         Collidable b = new TileWorldCollidable(new Rect(-2, -4, 14, 10));
-
         CollisionEngine engine = new LayeredCollisionEngine();
         engine.addCollidable(a, LayeredCollisionEngine.FLORA_LAYER, true);
         engine.addCollidable(b, LayeredCollisionEngine.FAUNA_LAYER, true);

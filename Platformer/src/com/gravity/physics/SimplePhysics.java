@@ -18,7 +18,12 @@ public class SimplePhysics implements Physics {
 
     @Override
     public PhysicalState handleCollision(Entity entity, Collection<RectCollision> collisions) {
-        return entity.getPhysicalState().killMovement();
+        for (RectCollision c : collisions) {
+            if (!c.getOtherEntity(entity).isPassThrough()) {
+                return entity.getPhysicalState().killMovement();
+            }
+        }
+        return entity.getPhysicalState();
     }
 
     @Override

@@ -13,7 +13,7 @@ public interface CollisionEngine {
 
     public void update(float millis);
 
-    public Multimap<Collidable, RectCollision> computeCollisions(float time);
+    public Multimap<Collidable, RectCollision> computeCollisions(float time, boolean includePassThrough);
 
     public List<RectCollision> checkAgainstLayer(float time, Collidable collidable, Integer layer);
 

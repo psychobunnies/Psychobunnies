@@ -134,4 +134,9 @@ public class Player extends PhysicsEntity<GravityPhysics> {
             slingshotStrength = 0;
         }
     }
+
+    @Override
+    public boolean isPassThrough() {
+        return false;
+    }
 }

@@ -11,6 +11,7 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.gravity.entity.SpikeEntity;
 import com.gravity.entity.TileWorldCollidable;
+import com.gravity.entity.VictoryTile;
 import com.gravity.geom.Rect;
 import com.gravity.physics.Collidable;
 import com.gravity.root.GameplayControl;
@@ -23,6 +24,7 @@ public class TileWorld implements GameWorld {
     public final int tileWidth;
 
     private List<Collidable> entityNoCalls, entityCallColls;
+    private List<VictoryTile> victoryTiles;
 
     private final String name;
     private final TiledMap map;
@@ -31,22 +33,25 @@ public class TileWorld implements GameWorld {
     private final int TILES_LAYER_ID;
     private final int SPIKES_LAYER_ID;
     private final int PLAYERS_LAYER_ID;
+    private final int VICTORY_LAYER_ID;
 
     private static final String TILES_LAYER_NAME = "collisions";
     private static final String SPIKES_LAYER_NAME = "spikes";
     private static final String PLAYERS_LAYER_NAME = "players";
+    private static final String VICTORY_LAYER_NAME = "victory";
 
     private static final Vector2f PLAYER_ONE_DEFAULT_STARTPOS = new Vector2f(256, 512);
     private static final Vector2f PLAYER_TWO_DEFAULT_STARTPOS = new Vector2f(224, 512);
 
-    private interface CollidableCreator {
-        Collidable createCollidable(Rect r);
+    private interface CollidableCreator<T> {
+        T createCollidable(Rect r);
     }
 
     public TileWorld(String name, TiledMap map, GameplayControl controller) {
         TILES_LAYER_ID = map.getLayerIndex(TILES_LAYER_NAME);
         SPIKES_LAYER_ID = map.getLayerIndex(SPIKES_LAYER_NAME);
         PLAYERS_LAYER_ID = map.getLayerIndex(PLAYERS_LAYER_NAME);
+        VICTORY_LAYER_ID = map.getLayerIndex(VICTORY_LAYER_NAME);
         this.map = map;
         this.controller = controller;
         this.name = name;
@@ -58,9 +63,9 @@ public class TileWorld implements GameWorld {
         this.height = map.getHeight() * tileHeight;
     }
 
-    private List<Collidable> processLayer(int layerId, CollidableCreator creator) {
+    private <T> List<T> processLayer(int layerId, CollidableCreator<T> creator) {
         boolean[][] visited = new boolean[map.getWidth()][map.getHeight()];
-        List<Collidable> res = Lists.newArrayList();
+        List<T> res = Lists.newArrayList();
         int first, i, j, tileId;
         for (i = 0; i < map.getWidth(); i++) {
             first = 0;
@@ -107,19 +112,35 @@ public class TileWorld implements GameWorld {
     public void initialize() {
         // Iterate over and find all tiles
 
-        entityNoCalls = processLayer(TILES_LAYER_ID, new CollidableCreator() {
+        entityNoCalls = processLayer(TILES_LAYER_ID, new CollidableCreator<Collidable>() {
             @Override
             public Collidable createCollidable(Rect r) {
                 return new TileWorldCollidable(r);
             }
         });
 
-        entityCallColls = processLayer(SPIKES_LAYER_ID, new CollidableCreator() {
+        if (VICTORY_LAYER_ID == -1) {
+            victoryTiles = createGenericVictoryTiles();
+        } else {
+            victoryTiles = processLayer(VICTORY_LAYER_ID, new CollidableCreator<VictoryTile>() {
+                @Override
+                public VictoryTile createCollidable(Rect r) {
+                    return new VictoryTile(r);
+                }
+            });
+        }
+
+        entityCallColls = processLayer(SPIKES_LAYER_ID, new CollidableCreator<Collidable>() {
             @Override
             public Collidable createCollidable(Rect r) {
                 return new SpikeEntity(controller, r);
             }
         });
+    }
+
+    private List<VictoryTile> createGenericVictoryTiles() {
+        System.err.println("WARNING: Map \"" + name + "\" doesn't contain victory tiles, using default victory tiles on right map edge instead.");
+        return Lists.newArrayList(new VictoryTile(new Rect((map.getWidth() - 2) * tileWidth, 0, 2 * tileWidth, map.getHeight() * tileHeight)));
     }
 
     @Override
@@ -178,5 +199,10 @@ public class TileWorld implements GameWorld {
                     + res.size());
             return res;
         }
+    }
+
+    @Override
+    public List<VictoryTile> getVictoryTiles() {
+        return victoryTiles;
     }
 }

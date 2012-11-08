@@ -44,4 +44,11 @@ public interface Collidable {
      * handleCollision proposes a new position which creates new collision problems.
      */
     public void rehandleCollisions(float millis, Collection<RectCollision> collisions);
+
+    /**
+     * @returns Returns a hint whether other collidables should ignore collisions with this object, and pass straight through (but are still notified
+     *          about the collision). If this is set to true, then the collidable will not receive any rehandleCollisions events.
+     */
+    public boolean isPassThrough();
+
 }

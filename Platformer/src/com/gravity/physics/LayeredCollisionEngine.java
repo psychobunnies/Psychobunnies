@@ -23,6 +23,7 @@ import com.gravity.geom.Rect.Side;
  */
 public class LayeredCollisionEngine implements CollisionEngine {
     private static final float EPS = 1e-6f;
+    public static final Integer MISC_LAYER = 2;
     public static final Integer FLORA_LAYER = 1;
     public static final Integer FAUNA_LAYER = 0;
 
@@ -122,7 +123,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
     }
 
     @Override
-    public Multimap<Collidable, RectCollision> computeCollisions(float time) {
+    public Multimap<Collidable, RectCollision> computeCollisions(float time, boolean includePassThrough) {
         Preconditions.checkArgument(time >= 0, "Time since last update() call must be nonnegative");
 
         Multimap<Collidable, RectCollision> collList = HashMultimap.create();
@@ -134,8 +135,10 @@ public class LayeredCollisionEngine implements CollisionEngine {
                 for (Collidable collA : collidables.get(i)) {
                     colls = checkAgainstLayer(time, collA, j);
                     for (RectCollision coll : colls) {
-                        collList.put(coll.entityA, coll);
-                        collList.put(coll.entityB, coll);
+                        if (includePassThrough || (!coll.entityA.isPassThrough() && !coll.entityB.isPassThrough())) {
+                            collList.put(coll.entityA, coll);
+                            collList.put(coll.entityB, coll);
+                        }
                     }
                 }
             }
@@ -163,7 +166,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
 
     private void runCollisionsAndHandling(float millis) {
         Multimap<Collidable, RectCollision> collisions;
-        collisions = computeCollisions(millis);
+        collisions = computeCollisions(millis, true);
         if (collisions.isEmpty()) {
             return;
         }
@@ -173,7 +176,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
             }
         }
 
-        collisions = computeCollisions(millis);
+        collisions = computeCollisions(millis, false);
         if (collisions.isEmpty()) {
             return;
         }
@@ -183,7 +186,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
             }
         }
 
-        collisions = computeCollisions(millis);
+        collisions = computeCollisions(millis, false);
         if (collisions.isEmpty()) {
             return;
         }

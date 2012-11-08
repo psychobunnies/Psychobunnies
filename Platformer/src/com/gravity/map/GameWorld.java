@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.newdawn.slick.geom.Vector2f;
 
+import com.gravity.entity.VictoryTile;
 import com.gravity.physics.Collidable;
 import com.gravity.root.Renderer;
 
@@ -25,5 +26,7 @@ public interface GameWorld extends Renderer {
     public List<Collidable> getTerrainEntitiesCallColls();
 
     public List<Vector2f> getPlayerStartPositions();
+
+    public List<VictoryTile> getVictoryTiles();
 
 }

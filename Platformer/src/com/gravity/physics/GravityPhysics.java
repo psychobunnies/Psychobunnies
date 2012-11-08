@@ -39,6 +39,7 @@ public class GravityPhysics implements Physics {
         for (Collidable c : collisions) {
             c.handleCollisions(0f, Lists.newArrayList(new RectCollision(entity, c, 0f, null, null)));
         }
+
         return !collisions.isEmpty();
     }
 
@@ -59,31 +60,33 @@ public class GravityPhysics implements Physics {
         float accX = state.accX;
         float accY = state.accY;
         for (RectCollision c : collisions) {
-            EnumSet<Side> sides = c.getMyCollisions(entity);
-            Preconditions.checkArgument(sides != null, "Collision passed did not involve entity: " + entity + ", " + c);
+            if (!c.getOtherEntity(entity).isPassThrough()) {
+                EnumSet<Side> sides = c.getMyCollisions(entity);
+                Preconditions.checkArgument(sides != null, "Collision passed did not involve entity: " + entity + ", " + c);
 
-            if (Side.isSimpleSet(sides)) {
-                if (sides.contains(Side.TOP)) {
-                    velY = Math.max(velY, 0);
-                    accY = Math.max(accY, 0);
+                if (Side.isSimpleSet(sides)) {
+                    if (sides.contains(Side.TOP)) {
+                        velY = Math.max(velY, 0);
+                        accY = Math.max(accY, 0);
+                    }
+                    if (sides.contains(Side.LEFT)) {
+                        velX = Math.max(velX, 0);
+                        accX = Math.max(accX, 0);
+                    }
+                    if (sides.contains(Side.BOTTOM)) {
+                        velY = Math.min(velY, 0);
+                        accY = Math.min(accY, 0);
+                    }
+                    if (sides.contains(Side.RIGHT)) {
+                        velX = Math.min(velX, 0);
+                        accX = Math.min(accX, 0);
+                    }
+                } else {
+                    velX = 0;
+                    velY = 0;
+                    accX = 0;
+                    accY = 0;
                 }
-                if (sides.contains(Side.LEFT)) {
-                    velX = Math.max(velX, 0);
-                    accX = Math.max(accX, 0);
-                }
-                if (sides.contains(Side.BOTTOM)) {
-                    velY = Math.min(velY, 0);
-                    accY = Math.min(accY, 0);
-                }
-                if (sides.contains(Side.RIGHT)) {
-                    velX = Math.min(velX, 0);
-                    accX = Math.min(accX, 0);
-                }
-            } else {
-                velX = 0;
-                velY = 0;
-                accX = 0;
-                accY = 0;
             }
         }
         return new PhysicalState(entity.getRect(0), velX, velY, accX, accY);

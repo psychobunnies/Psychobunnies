@@ -18,6 +18,7 @@ import org.newdawn.slick.tiled.TiledMap;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.gravity.entity.UpdateCycling;
+import com.gravity.entity.VictoryTile;
 import com.gravity.fauna.Player;
 import com.gravity.fauna.PlayerKeyboardController;
 import com.gravity.fauna.PlayerKeyboardController.Control;
@@ -30,6 +31,8 @@ import com.gravity.physics.GravityPhysics;
 import com.gravity.physics.LayeredCollisionEngine;
 import com.gravity.physics.PhysicalState;
 import com.gravity.physics.PhysicsFactory;
+import com.gravity.victory.DefaultVictoryController;
+import com.gravity.victory.VictoryController;
 
 public class GameplayState extends BasicGameState implements GameplayControl {
 
@@ -49,6 +52,7 @@ public class GameplayState extends BasicGameState implements GameplayControl {
     private GameContainer container;
     private StateBasedGame game;
     private GravityPhysics gravityPhysics;
+    private VictoryController victoryController;
     private final Random rand = new Random();
 
     private boolean leftRemapped, rightRemapped, jumpRemapped;
@@ -90,6 +94,9 @@ public class GameplayState extends BasicGameState implements GameplayControl {
         for (Collidable c : map.getTerrainEntitiesNoCalls()) {
             collider.addCollidable(c, LayeredCollisionEngine.FLORA_LAYER, false);
         }
+        for (VictoryTile t : map.getVictoryTiles()) {
+            collider.addCollidable(t, LayeredCollisionEngine.MISC_LAYER, true);
+        }
         gravityPhysics = PhysicsFactory.createDefaultGravityPhysics(collider);
         List<Vector2f> playerPositions = map.getPlayerStartPositions();
         Preconditions.checkArgument(playerPositions.size() == 2,
@@ -106,6 +113,8 @@ public class GameplayState extends BasicGameState implements GameplayControl {
                 .setMisc(Input.KEY_DOWN);
         collider.addCollidable(playerA, LayeredCollisionEngine.FAUNA_LAYER, true);
         collider.addCollidable(playerB, LayeredCollisionEngine.FAUNA_LAYER, true);
+        victoryController = new DefaultVictoryController(Lists.<Collidable> newArrayList(playerA, playerB));
+        victoryController.control(map.getVictoryTiles());
         offsetX = 0;
         offsetY = 0;
         maxOffsetX = (map.getWidth() - container.getWidth()) * -1;
@@ -209,6 +218,7 @@ public class GameplayState extends BasicGameState implements GameplayControl {
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         totalTime += delta;
+        victoryController.startUpdate();
         for (UpdateCycling uc : updaters) {
             uc.startUpdate(delta);
         }
@@ -219,10 +229,14 @@ public class GameplayState extends BasicGameState implements GameplayControl {
         offsetX -= delta * getOffsetXDelta();
         offsetX = Math.max(offsetX, maxOffsetX);
 
-        if (checkWin(playerA) || checkWin(playerB)) {
+        if (victoryController.endUpdate()) {
             game.enterState(GameWinState.ID);
             return;
         }
+
+        /*
+         * if (checkWin(playerA) || checkWin(playerB)) { game.enterState(GameWinState.ID); return; }
+         */
 
         // Tell player when to die if off the screen
         checkDeath(playerA, offsetX);

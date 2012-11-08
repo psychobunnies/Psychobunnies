@@ -45,4 +45,9 @@ public class TileWorldCollidable implements Collidable {
         return "TileWorldCollidable [shape=" + shape + "]";
     }
 
+    @Override
+    public boolean isPassThrough() {
+        return false;
+    }
+
 }

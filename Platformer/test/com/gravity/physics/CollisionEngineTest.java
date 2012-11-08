@@ -78,7 +78,10 @@ public class CollisionEngineTest {
 
         PhysicalState state = new PhysicalState(new Rect(0, 11, 1, 1), 0, 0);
         Entity ent = new PhysicsEntity<GravityPhysics>(state, PhysicsFactory.createDefaultGravityPhysics(engine)) {
-
+            @Override
+            public boolean isPassThrough() {
+                return false;
+            }
         };
 
         engine.addCollidable(ent, LayeredCollisionEngine.FAUNA_LAYER, true);

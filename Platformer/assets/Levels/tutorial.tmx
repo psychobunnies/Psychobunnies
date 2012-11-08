@@ -6,14 +6,22 @@
  <tileset firstgid="2" name="bunnyTile" tilewidth="32" tileheight="32">
   <image source="bunnyTile.png" width="32" height="32"/>
  </tileset>
+ <tileset firstgid="3" name="perspective_walls" tilewidth="32" tileheight="32">
+  <image source="perspective_walls.png" width="256" height="256"/>
+ </tileset>
  <layer name="collisions" width="32" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2VQQ7AIAgE0f8/uteGALsCLT10Ew9CdABRl4iswfGk0P4//1wbjGh/y++tzUjzmHlnL1b51RpU+dUa6BwyfKYfPH82f0tRLbzzepufqTfLj8TEvIf5jH+ab9nQ+2rV1bNn+Iyi/FHcKBeW3/VfZPld/wWqmffOdfK71lmxRufUzT/t76/wmTuv74x3lxjb3XcBsxB8XAAMAAA=
+  <data encoding="base64" compression="zlib">
+   eJztlUEOwCAIBNH/P7rXhgC7Ai09dBMPQnQAUZeIrMHxpND+P/9cG4xof8vvrc1I85h5Zy9W+dUaVPnVGugcMnymHzx/Nn9LUS2883qbn6k3y4/ExLyH+Yx/mm/Z0Ptq1dWzZ/iMovxR3CgXlt/1X2T5Xf8Fqpn3znXyu9ZZsUbn1M0/7e+v8Jk7r++Md5cY2913AWPaATY=
   </data>
  </layer>
  <layer name="spikes" width="32" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3BAQEAAACCIP+vbkhAAQAALwaEyeZnAAwAAA==
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAAC8GDAAAAQ==
+  </data>
+ </layer>
+ <layer name="victory" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztzTEBAAAIA6BVs38pW8xDKEACADTN8x+4tTamAIM=
   </data>
  </layer>
 </map>

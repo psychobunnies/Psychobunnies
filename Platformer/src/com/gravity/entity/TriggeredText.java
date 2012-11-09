@@ -15,7 +15,7 @@ public class TriggeredText implements UpdateCycling {
     public TriggeredText(int x, int y, String text) {
         this.x = x;
         this.y = y;
-        this.text = text;
+        this.text = text.replaceAll("\\$", "\n");
     }
 
     public void trigger() {

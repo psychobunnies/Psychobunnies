@@ -14,7 +14,7 @@
  </tileset>
  <layer name="collisions" width="32" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2WQQ7AIAgE0f8/uteGLLCAxB5K4kEUBrBil4isi2NSIv8/Py87GJ5/vWc5thXRvMz8xFl0+d0adPhoXuHr87X8b8H9gPkerPVKvlbOXi3esd7kZ+qd5XvCxLzBPhTvFJ9Zv81Huqi/orpa+gqfES//KO4oF5bf6ZXdvt/9d0F9n31TJ/gVe2SHYo369El+RfcFPnPn9Z2x7lJW9wD4/zoOAAwAAA==
+   H4sIAAAAAAAAC+2WSw7AIAhE0fsfultjGBh0jC5K4oJWeXwUbWbWLo6Tktn/+bx0ckT25zktWLsiM6+iK2qxy9/NwQ7f01f4c32R/W5+P0D7IdtrGQ/pKOYoF6OvN/mVfFf5kTA+d2ee5+8pPvP/Nt/7xvRYtEbBZySKP/M7i4Xlq+6LVb7qvshyhvqckq9aV62Jml+19QqffVuNZwadpaqdD/ROl30ADAAA
   </data>
  </layer>
  <layer name="spikes" width="32" height="24">
@@ -35,12 +35,122 @@
  </layer>
  <layer name="help1" width="32" height="24">
   <properties>
-   <property name="text" value="lorem ipsum"/>
-   <property name="x" value="100"/>
-   <property name="y" value="100"/>
+   <property name="text" value="Press a/d to move left/right"/>
+   <property name="x" value="40"/>
+   <property name="y" value="650"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkbBKBgFo2BggSsUj1T76QkAp9ArTAAMAAA=
+   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkbBKBgFo4C+wBUPHgn2DyQAAHCIQAkADAAA
+  </data>
+ </layer>
+ <layer name="help2" width="32" height="24">
+  <properties>
+   <property name="text" value="Press w to jump"/>
+   <property name="x" value="275"/>
+   <property name="y" value="650"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkbBKBgFgw24ouFR+0eW/bQEADRob9kADAAA
+  </data>
+ </layer>
+ <layer name="help3" width="32" height="24">
+  <properties>
+   <property name="text" value="Press left/right to move left/right"/>
+   <property name="x" value="675"/>
+   <property name="y" value="650"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3NQQ0AAAjEsDOHf0soAAHQJnsvAQCAW2roy3/TZK+90QAMAAA=
+  </data>
+ </layer>
+ <layer name="help4" width="32" height="24">
+  <properties>
+   <property name="text" value="Press up to jump"/>
+   <property name="x" value="650"/>
+   <property name="y" value="650"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkbBKBgFo2DoAlc0PNLsJxUAAFk3XdYADAAA
+  </data>
+ </layer>
+ <layer name="help5" width="32" height="24">
+  <properties>
+   <property name="text" value="Sometimes you need your partner to help you advance"/>
+   <property name="x" value="485"/>
+   <property name="y" value="600"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkbBKBgFQwW4QvFA2z9Q7hjp9lMDAAC4aQ0PAAwAAA==
+  </data>
+ </layer>
+ <layer name="help6" width="32" height="24">
+  <properties>
+   <property name="text" value="You want to be higher up to use $your special &quot;slingshot&quot; ability"/>
+   <property name="x" value="40"/>
+   <property name="y" value="525"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkYmcEXCo/YPrP3oeCTYPwpGwUABAPqNYbQADAAA
+  </data>
+ </layer>
+ <layer name="help7" width="32" height="24">
+  <properties>
+   <property name="text" value="Hold s to charge your special ability, $release it to fling your partner towards $you"/>
+   <property name="x" value="40"/>
+   <property name="y" value="385"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMglEwCgYPcMWDR4L9o2AUjIJRQGsAAPqYE9UADAAA
+  </data>
+ </layer>
+ <layer name="help8" width="32" height="24">
+  <properties>
+   <property name="text" value="Slingshots work in midair. $Jump to aim your slingshot properly"/>
+   <property name="x" value="250"/>
+   <property name="y" value="160"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYHAAVygeqfYju2Gg3DHQ9o+CUTAKRsEoGAWjgPYAANX56GUADAAA
+  </data>
+ </layer>
+ <layer name="help9" width="32" height="24">
+  <properties>
+   <property name="text" value="Falling off the stage will kill you"/>
+   <property name="x" value="150"/>
+   <property name="y" value="160"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAUDCVyR8Ei0fxSMglEwCkbBKBgFo2AU0BcAAGybo5AADAAA
+  </data>
+ </layer>
+ <layer name="help10" width="32" height="24">
+  <properties>
+   <property name="text" value="Sometimes you have to charge your slingshot $before you need it. $Both bunnies can have a fully-charged slingshot $at the same time"/>
+   <property name="x" value="485"/>
+   <property name="y" value="550"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkYBpcAVDx4J9o+CUTAKhg4AAHRiwOIADAAA
+  </data>
+ </layer>
+ <layer name="help11" width="32" height="24">
+  <properties>
+   <property name="text" value="Win by exiting the right edge of the stage. $ Good Luck!"/>
+   <property name="x" value="640"/>
+   <property name="y" value="640"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAX0Aq5oeKTZj+6OgbR71P6BtX+gwEDaPWr/KBgFo2AUjILBAgAYKYQLAAwAAA==
+  </data>
+ </layer>
+ <layer name="help12" width="32" height="24">
+  <properties>
+   <property name="text" value="You need to be higher up $to help your partner advance"/>
+   <property name="x" value="350"/>
+   <property name="y" value="160"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMgqEHXKF4MLhhIN0xEPa7YsGj9g+M/QMBBjrNj4JRMAooBwApuO+wAAwAAA==
   </data>
  </layer>
 </map>

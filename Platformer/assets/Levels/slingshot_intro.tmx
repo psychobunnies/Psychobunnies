@@ -16,14 +16,4 @@
    eJzt2UEOgjAUBFD0/od27QIodH5t5b2EjWn+QDItGrcNAAAAgLTXzpWel8w4y5th1tO9Gz8bkTvLvBHP32v0/r1Kr2pnVWm9x189y16vqrueztCrvnVpR7krnVt61bcuTa9qZ1VZvVervA/1qm9dWkvuCufWv/Xq7DeeXrXRq28zfj9I567wPtSr2jmVuTOfW3pVO6cyV6/GeVqvrvx/cOe6m5Hu1Z17SHpSrziW3l8JI86C6n0OAAAAAMzrA1zNAUk=
   </data>
  </layer>
- <layer name="text1" width="150" height="30">
-  <properties>
-   <property name="text" value="Hello, world!"/>
-   <property name="x" value="200"/>
-   <property name="y" value="200"/>
-  </properties>
-  <data encoding="base64" compression="zlib">
-   eJzt0rEJADAMwLDQ/4/uCaEFb9LuzTPvzkcDG19R8BUFX1HwFQVfUfAVBV9R8BUFX1HwFQVfUfAVBV9R8BUFX1HwFQVfUfAVBV9R8BUFX1HwFQVfUfAVBV9R8BUFX1HwFQVfsbm+SAA9
-  </data>
- </layer>
 </map>

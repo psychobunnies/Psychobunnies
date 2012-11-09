@@ -39,7 +39,13 @@ public class GravityPhysics implements Physics {
         for (Collidable c : collisions) {
             c.handleCollisions(0f, Lists.newArrayList(new RectCollision(entity, c, 0f, null, null)));
         }
-        return !collisions.isEmpty();
+        
+        for (Collidable c : collisions) {
+            if (c.causesCollisionsWith(entity)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

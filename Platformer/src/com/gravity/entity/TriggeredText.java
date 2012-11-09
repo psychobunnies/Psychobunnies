@@ -19,7 +19,6 @@ public class TriggeredText {
     }
 
     public void trigger() {
-        System.out.println("triggering");
         triggered = true;
     }
 

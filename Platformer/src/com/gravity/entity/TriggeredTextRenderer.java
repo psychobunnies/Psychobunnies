@@ -18,8 +18,10 @@ public class TriggeredTextRenderer implements Renderer {
 
     @Override
     public void render(Graphics g, int offsetX, int offsetY) {
-        g.drawString(triggeredText.text,
-                     offsetX + triggeredText.x,
-                     offsetY + triggeredText.y);
+        if (triggeredText.isTriggered()) {
+            g.drawString(triggeredText.text,
+                         offsetX + triggeredText.x,
+                         offsetY + triggeredText.y);
+        }
     }
 }

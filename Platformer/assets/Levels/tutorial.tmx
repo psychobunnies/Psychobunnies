@@ -9,6 +9,9 @@
  <tileset firstgid="3" name="perspective_walls" tilewidth="32" tileheight="32">
   <image source="perspective_walls.png" width="256" height="256"/>
  </tileset>
+ <tileset firstgid="67" name="markers" tilewidth="32" tileheight="32">
+  <image source="levelMarkers.png" width="128" height="128"/>
+ </tileset>
  <layer name="collisions" width="32" height="24">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2WQQ7AIAgE0f8/uteGLLCAxB5K4kEUBrBil4isi2NSIv8/Py87GJ5/vWc5thXRvMz8xFl0+d0adPhoXuHr87X8b8H9gPkerPVKvlbOXi3esd7kZ+qd5XvCxLzBPhTvFJ9Zv81Huqi/orpa+gqfES//KO4oF5bf6ZXdvt/9d0F9n31TJ/gVe2SHYo369El+RfcFPnPn9Z2x7lJW9wD4/zoOAAwAAA==
@@ -19,12 +22,15 @@
    H4sIAAAAAAAAC+3BAQEAAACCIP+vbkhAAQAALwaEyeZnAAwAAA==
   </data>
  </layer>
- <layer name="players" width="32" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3NAQ0AAAgDoOeyfzBjfDooQAIAAB3z5LhkAVQdMGEADAAA
-  </data>
- </layer>
  <objectgroup name="level markers" width="32" height="24">
   <object name="finish" type="finish" x="896" y="448" width="128" height="64"/>
  </objectgroup>
+ <layer name="players" width="32" height="24">
+  <properties>
+   <property name="visible" value="0"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3NQQkAAAgEsOvmw/6NbHEgbAWWAABA3xSOLRzfHPMotXsADAAA
+  </data>
+ </layer>
 </map>

@@ -89,9 +89,6 @@ public class Layer {
 		if (!opacityS.equals("")) {
 			opacity = Float.parseFloat(opacityS);
 		}
-		if (element.getAttribute("visible").equals("0")) {
-			visible = false;
-		}
 
 		// now read the layer properties
 		Element propsElement = (Element) element.getElementsByTagName(
@@ -106,6 +103,9 @@ public class Layer {
 					String name = propElement.getAttribute("name");
 					String value = propElement.getAttribute("value");
 					props.setProperty(name, value);
+					if (props.getProperty("visible").equals("0")) {
+						visible = false;
+					}
 				}
 			}
 		}

@@ -7,13 +7,13 @@
   <image source="betterBunnyDirt.png" width="32" height="32"/>
  </tileset>
  <layer name="spikes" width="150" height="30">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ8HFAAAAAAAAAAAAAAAAAAAAAAADwa5ZHEYUEYAAA==
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAAAAAAAA8GRlAAAQ==
   </data>
  </layer>
  <layer name="collisions" width="150" height="30">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3ZQQ6CMBQEUPT+h3btAih0fm3lvYSNaf5AMi0atw0AAACAtNfOlZ6XzDjLm2HW070bPxuRO8u8Ec/fa/T+vUqvamdVab3HXz3LXq+qu57O0Ku+dWlHuSudW3rVty5Nr2pnVVm9V6u8D/Wqb11aS+4K59a/9ersN55etdGrbzN+P0jnrvA+1KvaOZW5M59belU7pzJXr8Z5Wq+u/H9w57qbke7VnXtIelKvOJbeXwkjzoLqfQ4AAAAAzOsDRYkaTFBGAAA=
+  <data encoding="base64" compression="zlib">
+   eJzt2UEOgjAUBFD0/od27QIodH5t5b2EjWn+QDItGrcNAAAAgLTXzpWel8w4y5th1tO9Gz8bkTvLvBHP32v0/r1Kr2pnVWm9x189y16vqrueztCrvnVpR7krnVt61bcuTa9qZ1VZvVervA/1qm9dWkvuCufWv/Xq7DeeXrXRq28zfj9I567wPtSr2jmVuTOfW3pVO6cyV6/GeVqvrvx/cOe6m5Hu1Z17SHpSrziW3l8JI86C6n0OAAAAAMzrA1zNAUk=
   </data>
  </layer>
  <objectgroup name="level markers" width="150" height="30">

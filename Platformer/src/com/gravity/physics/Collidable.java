@@ -44,4 +44,9 @@ public interface Collidable {
      * handleCollision proposes a new position which creates new collision problems.
      */
     public void rehandleCollisions(float millis, Collection<RectCollision> collisions);
+
+    /**
+     * Whether or not to trigger a collision in the other object. Should just be "return true;" in most cases.
+     */
+    public boolean causesCollisionsWith(Collidable other);
 }

@@ -14,6 +14,8 @@ import org.newdawn.slick.tiled.TiledMapPlus;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.gravity.geom.Rect;
+import com.gravity.entity.TriggeredTextEntity;
+import com.gravity.entity.TriggeredText;
 import com.gravity.physics.Collidable;
 import com.gravity.root.GameplayControl;
 
@@ -25,6 +27,7 @@ public class TileWorld implements GameWorld {
     public final int tileWidth;
 
     private List<Collidable> entityNoCalls, entityCallColls;
+    private List<TriggeredText> triggeredTexts;
 
     private final String name;
     private final TiledMapPlus map;
@@ -134,6 +137,30 @@ public class TileWorld implements GameWorld {
                 return new SpikeEntity(controller, r);
             }
         });
+
+        triggeredTexts = Lists.newArrayList();
+        for (int layerId = 0; layerId < map.getLayerCount(); layerId++) {
+            int x = Integer.parseInt(map.getLayerProperty(layerId, "x", "-1"));
+            int y = Integer.parseInt(map.getLayerProperty(layerId, "y", "-1"));
+            String text = map.getLayerProperty(layerId, "text", null);
+            TriggeredText triggeredText;
+            if (x > 0 && y > 0 && text != null) {
+                triggeredText = new TriggeredText(x, y, text);
+                System.out.println("found text layer: " + text);
+                triggeredTexts.add(triggeredText);
+                for (int i = 0; i < map.getWidth(); i++) {
+                    for (int j = 0; j < map.getHeight(); j++) {
+                        int tileId = map.getTileId(i, j, layerId);
+                        if (tileId != 0) {
+                            // Tile exists at this spot
+                            Rect r = new Rect(i * tileWidth, j * tileHeight, tileWidth, tileHeight);
+                            TriggeredTextEntity tte = new TriggeredTextEntity(r, triggeredText);
+                            entityCallColls.add(tte);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     @Override
@@ -214,5 +241,9 @@ public class TileWorld implements GameWorld {
     @Override
     public String toString() {
         return "TileWorld [height=" + height + ", width=" + width + ", name=" + name + ", map=" + map + "]";
+    }
+
+    public List<TriggeredText> getTriggeredTexts() {
+        return triggeredTexts;
     }
 }

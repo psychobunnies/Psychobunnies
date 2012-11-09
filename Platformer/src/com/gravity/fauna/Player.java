@@ -4,6 +4,7 @@ import org.newdawn.slick.geom.Vector2f;
 
 import com.gravity.entity.PhysicsEntity;
 import com.gravity.geom.Rect;
+import com.gravity.physics.Collidable;
 import com.gravity.physics.GravityPhysics;
 import com.gravity.physics.PhysicalState;
 import com.gravity.root.GameplayControl;

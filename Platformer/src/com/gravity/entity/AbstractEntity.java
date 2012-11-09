@@ -3,6 +3,7 @@ package com.gravity.entity;
 import org.newdawn.slick.geom.Vector2f;
 
 import com.gravity.geom.Rect;
+import com.gravity.physics.Collidable;
 import com.gravity.physics.PhysicalState;
 
 public abstract class AbstractEntity implements Entity {
@@ -37,5 +38,10 @@ public abstract class AbstractEntity implements Entity {
     @Override
     public PhysicalState getPhysicalState() {
         return state;
+    }
+    
+    @Override
+    public boolean causesCollisionsWith(Collidable other) {
+        return true;
     }
 }

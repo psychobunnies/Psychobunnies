@@ -1,6 +1,4 @@
-package com.gravity.map;
-
-import java.util.Collection;
+package com.gravity.map;  import java.util.Collection;
 
 import org.newdawn.slick.geom.Vector2f;
 
@@ -45,4 +43,9 @@ public class TileWorldCollidable implements Collidable {
         return "TileWorldCollidable [shape=" + shape + "]";
     }
 
+    @Override
+    public boolean causesCollisionsWith(Collidable other) {
+        return true;
+    }
+    
 }

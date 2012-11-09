@@ -7,7 +7,7 @@ import com.gravity.geom.Rect;
 
 public interface CollisionEngine {
 
-    public boolean addCollidable(Collidable collidable, Integer layer, boolean handlesCollisions);
+    public boolean addCollidable(Collidable collidable, Integer layer);
 
     public boolean removeCollidable(Collidable entity);
 

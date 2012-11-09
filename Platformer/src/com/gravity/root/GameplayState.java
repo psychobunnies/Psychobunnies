@@ -85,14 +85,14 @@ public class GameplayState extends BasicGameState implements GameplayControl {
         collider = new LayeredCollisionEngine();
         updaters = Lists.newLinkedList();
         for (Collidable c : map.getTerrainEntitiesCallColls()) {
-            collider.addCollidable(c, LayeredCollisionEngine.FLORA_LAYER, true);
+            collider.addCollidable(c, LayeredCollisionEngine.FLORA_LAYER);
         }
         for (Collidable c : map.getTerrainEntitiesNoCalls()) {
-            collider.addCollidable(c, LayeredCollisionEngine.FLORA_LAYER, false);
+            collider.addCollidable(c, LayeredCollisionEngine.FLORA_LAYER);
         }
         finish = new LevelFinishZone(map.getFinishRect(), this);
         System.err.println("Got finish zone at: " + finish + " for map " + map);
-        collider.addCollidable(finish, LayeredCollisionEngine.FLORA_LAYER, true);
+        collider.addCollidable(finish, LayeredCollisionEngine.FLORA_LAYER);
         gravityPhysics = PhysicsFactory.createDefaultGravityPhysics(collider);
         List<Vector2f> playerPositions = map.getPlayerStartPositions();
         Preconditions.checkArgument(playerPositions.size() == 2,
@@ -107,8 +107,8 @@ public class GameplayState extends BasicGameState implements GameplayControl {
         controllerA = new PlayerKeyboardController(playerA).setLeft(Input.KEY_A).setRight(Input.KEY_D).setJump(Input.KEY_W).setMisc(Input.KEY_S);
         controllerB = new PlayerKeyboardController(playerB).setLeft(Input.KEY_LEFT).setRight(Input.KEY_RIGHT).setJump(Input.KEY_UP)
                 .setMisc(Input.KEY_DOWN);
-        collider.addCollidable(playerA, LayeredCollisionEngine.FAUNA_LAYER, true);
-        collider.addCollidable(playerB, LayeredCollisionEngine.FAUNA_LAYER, true);
+        collider.addCollidable(playerA, LayeredCollisionEngine.FAUNA_LAYER);
+        collider.addCollidable(playerB, LayeredCollisionEngine.FAUNA_LAYER);
         offsetX = 0;
         offsetY = 0;
         maxOffsetX = (map.getWidth() - container.getWidth()) * -1;

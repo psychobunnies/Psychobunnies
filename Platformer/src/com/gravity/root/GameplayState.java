@@ -51,6 +51,7 @@ public class GameplayState extends BasicGameState implements GameplayControl {
     private StateBasedGame game;
     private GravityPhysics gravityPhysics;
     private LevelFinishZone finish;
+    private Player finishedPlayer;
     private final Random rand = new Random();
 
     private boolean leftRemapped, rightRemapped, jumpRemapped;
@@ -91,7 +92,8 @@ public class GameplayState extends BasicGameState implements GameplayControl {
             collider.addCollidable(c, LayeredCollisionEngine.FLORA_LAYER);
         }
         finish = new LevelFinishZone(map.getFinishRect(), this);
-        System.err.println("Got finish zone at: " + finish + " for map " + map);
+        finishedPlayer = null;
+        System.out.println("Got finish zone at: " + finish + " for map " + map);
         collider.addCollidable(finish, LayeredCollisionEngine.FLORA_LAYER);
         gravityPhysics = PhysicsFactory.createDefaultGravityPhysics(collider);
         List<Vector2f> playerPositions = map.getPlayerStartPositions();
@@ -325,6 +327,10 @@ public class GameplayState extends BasicGameState implements GameplayControl {
 
     @Override
     public void playerFinishes(Player player) {
-        game.enterState(GameWinState.ID);
+        if (finishedPlayer == null) {
+            finishedPlayer = player;
+        } else {
+            game.enterState(GameWinState.ID);
+        }
     }
 }

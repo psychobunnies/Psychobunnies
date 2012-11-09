@@ -302,7 +302,8 @@ public class GameplayState extends BasicGameState implements GameplayControl {
 
     @Override
     public void playerHitSpikes(Player player) {
-        swapPlayerControls(Control.getById(rand.nextInt(Control.size())));
+        // swapPlayerControls(Control.getById(rand.nextInt(Control.size())));
+        playerDies(player);
         System.out.println("Player " + player.toString() + " hit spikes -- remapping controls.");
         System.out.println("ControllerA: " + controllerA.toString());
         System.out.println("ControllerB: " + controllerB.toString());

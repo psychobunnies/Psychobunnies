@@ -20,6 +20,11 @@ Your level may also have the following group layer:
 
 * "level markers" is used for level locations, currently only the location of the win zone. By default, this is the right edge of the level. However, if you have a custom win location, create a rectangle object in this layer with name "finish". 
 
+Your level may also include any number of text layers, which may be named any way you want, as long as they include the following layer properties:
+* "text": the text you would like to appear.
+* "x": the x-position, _in pixels_, of the text.
+* "y": the y-position.
+
 ==TILESET FILES==
 
 Please make sure that these files and the .tmx files are in same folder when you create them - otherwise, other people will ask why they're getting "Unable to locate file C:\Users\xiao\Documents\BunnyLevels" errors instead of loading levels. 

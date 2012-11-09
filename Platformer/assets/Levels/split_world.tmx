@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="90" height="24" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="bunnyTiles" tilewidth="32" tileheight="32">
+  <image source="bunnyTiles.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="9" name="Spikes" tilewidth="32" tileheight="32">
+  <image source="Spikes.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="10" name="blank" tilewidth="32" tileheight="32">
+  <image source="../blank.png" width="32" height="32"/>
+ </tileset>
+ <layer name="collisions" width="90" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2ZzQ4DIQiE273t+79wTyaGKDADUtt1kj1VQD8Rf3q9OF2kXaZ26INXbF93GOMOffCqgvM78cvo+zfE8vLatbYZTKSPkc/o3K0SMn6UVT8fVZzRWLKtNQ/sOrT6xORws+vbr+IcrSey7T345O/MWCwbxudoTlbmc+PNxFrBzGvD5nCzHa1Fjx+rXlbUjZ1sZprx9MZA11YV54xzThbnGWMkl609yXvekHVEE3Jumtl49swMzpqfSC4zewd6vkH3dtSmte/3bPRsac1VNJd348zarLo/ZNh7fD6VM3u3OpzXxtfsor5Yzlq97Oskcmc/nPl8Ht0VtfZaHGZ9MLVjxjni65fqRiSn0HWVFf9JnFFpnJl3MXletWJnv72NYuzM+V90ONfocK7R4Vwj632D2SPY/3Qq4lgfKmR8H9p3k3XAIQAA
+  </data>
+ </layer>
+ <layer name="spikes" width="90" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2YSwrAIAwF3Xr/C3dRuhEqadI8ic6AK7+MGj+twUNfPYBDwLMGPGvAcwyrPzzH6EOalYN88KwBzxq8npmfG0tsbi/5lnqevnbGcw5+9TaeuZF6leeL+4aG6p6zx/jXfqruuQoez9lxMqvtlXF+pzVruT/heW/wrAHPGvCsAc8a8KwBz+uZ/eVE36MXlvdBXcAhAAA=
+  </data>
+ </layer>
+ <layer name="players" width="90" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3YoQ0AAAgEsdfsPzArkCBAtBOcvgQAAOCnug4AAAAAWPI3gKkGXq9SnMAhAAA=
+  </data>
+ </layer>
+</map>

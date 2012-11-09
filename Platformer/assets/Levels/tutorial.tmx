@@ -26,16 +26,13 @@
   <object name="finish" type="finish" x="896" y="448" width="128" height="64"/>
  </objectgroup>
  <layer name="players" width="32" height="24">
-  <properties>
-   <property name="visible" value="0"/>
-  </properties>
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3NQQkAAAgEsOvmw/6NbHEgbAWWAABA3xSOLRzfHPMotXsADAAA
   </data>
  </layer>
  <layer name="help1" width="32" height="24">
   <properties>
-   <property name="text" value="lorem ipsum"/>
+   <property name="text" value="lorem ipsum$stuff"/>
    <property name="x" value="100"/>
    <property name="y" value="100"/>
   </properties>

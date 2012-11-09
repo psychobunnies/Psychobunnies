@@ -14,9 +14,10 @@ public class PlatformerGame extends StateBasedGame {
     //@formatter:off
     private LevelInfo[] levels = {
             new LevelInfo("Tutorial", "Controls Turorial", "assets/Levels/tutorial.tmx", 1000),
-            new LevelInfo("Level 1", "Staircases are hard!", "assets/Levels/game_map_final.tmx", 1001),
-            new LevelInfo("Level 2", "More traditional Mario", "assets/Levels/level2.tmx", 1002),
-            new LevelInfo("Slingshot", "Slingshot Turorial", "assets/Levels/slingshot_intro.tmx", 1003)
+            new LevelInfo("Slingshot", "Slingshot Turorial", "assets/Levels/slingshot_intro.tmx", 1001),
+            new LevelInfo("Split World", "Slingshot Fun", "assets/Levels/split_world.tmx", 1002),
+            new LevelInfo("Level 1", "Staircases are hard!", "assets/Levels/game_map_final.tmx", 1003),
+            new LevelInfo("Level 2", "More traditional Mario", "assets/Levels/level2.tmx", 1004)
     };
     //@formatter:on
 

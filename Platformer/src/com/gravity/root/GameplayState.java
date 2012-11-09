@@ -188,9 +188,6 @@ public class GameplayState extends BasicGameState implements GameplayControl {
             g.popTransform();
         }
 
-        g.setColor(Color.green);
-        g.draw(finish.getRect(0).toShape());
-
         g.pushTransform();
         g.translate(32, 32);
         g.setColor(lightPink);
@@ -342,7 +339,7 @@ public class GameplayState extends BasicGameState implements GameplayControl {
     public void playerFinishes(Player player) {
         if (finishedPlayer == null) {
             finishedPlayer = player;
-        } else {
+        } else if (finishedPlayer != player) {
             game.enterState(GameWinState.ID);
         }
     }

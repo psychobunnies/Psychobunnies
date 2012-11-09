@@ -37,6 +37,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
 
     /**
      * Add a collidable to the engine. If the collidable is already in the engine, it will be adjusted to the specified layer/handle flags.
+     * 
      * @param layer
      *            The layer to add the collidable to - Collisions will only be checked with collidables from different layers.
      * 
@@ -126,8 +127,12 @@ public class LayeredCollisionEngine implements CollisionEngine {
                 for (Collidable collA : collidables.get(i)) {
                     colls = checkAgainstLayer(time, collA, j);
                     for (RectCollision coll : colls) {
-                        collList.put(coll.entityA, coll);
-                        collList.put(coll.entityB, coll);
+                        if (coll.entityA.causesCollisionsWith(coll.entityB)) {
+                            collList.put(coll.entityB, coll);
+                        }
+                        if (coll.entityB.causesCollisionsWith(coll.entityA)) {
+                            collList.put(coll.entityA, coll);
+                        }
                     }
                 }
             }
@@ -160,14 +165,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
             return;
         }
         for (Collidable collidable : collisions.keySet()) {
-            for (RectCollision collision : collisions.get(collidable)) {
-                Collidable other = collision.getOtherEntity(collidable);
-                // If any of the entities cause collisions with this one, collide.
-                if (other.causesCollisionsWith(collidable)) {
-                    collidable.handleCollisions(millis, collisions.get(collidable));
-                    break;
-                }
-            }
+            collidable.handleCollisions(millis, collisions.get(collidable));
         }
 
         collisions = computeCollisions(millis);
@@ -175,13 +173,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
             return;
         }
         for (Collidable collidable : collisions.keySet()) {
-            for (RectCollision collision : collisions.get(collidable)) {
-                Collidable other = collision.getOtherEntity(collidable);
-                if (other.causesCollisionsWith(collidable)) {
-                    collidable.rehandleCollisions(millis, collisions.get(collidable));
-                    break;
-                }
-            }
+            collidable.rehandleCollisions(millis, collisions.get(collidable));
         }
 
         collisions = computeCollisions(millis);
@@ -190,6 +182,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
                 Collidable other = collision.getOtherEntity(collidable);
                 if (other.causesCollisionsWith(collidable) && collidable.causesCollisionsWith(other)) {
                     // Die if we still have any "real" collisions.
+                    // TODO: fix this - should separate things that can overlap from things that want to be notified of overlap
                     throw new RuntimeException("Could not rehandle collisions: " + collisions);
                 }
             }

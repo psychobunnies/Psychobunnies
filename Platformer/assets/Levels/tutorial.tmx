@@ -26,6 +26,9 @@
   <object name="finish" type="finish" x="896" y="448" width="128" height="64"/>
  </objectgroup>
  <layer name="players" width="32" height="24">
+  <properties>
+   <property name="visible" value="0"/>
+  </properties>
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3NQQkAAAgEsOvmw/6NbHEgbAWWAABA3xSOLRzfHPMotXsADAAA
   </data>
@@ -92,7 +95,7 @@
  </layer>
  <layer name="help7" width="32" height="24">
   <properties>
-   <property name="text" value="Hold s to charge your special ability, $release it to fling your partner towards $you"/>
+   <property name="text" value="Hold shift to charge your special ability, $release it to fling your partner towards $you"/>
    <property name="x" value="40"/>
    <property name="y" value="385"/>
   </properties>
@@ -142,8 +145,8 @@
  </layer>
  <layer name="help12" width="32" height="24">
   <properties>
-   <property name="text" value="You need to be higher up $to help your partner advance"/>
-   <property name="x" value="350"/>
+   <property name="text" value="Hold space to charge your slingshot $release to fling your partner to you"/>
+   <property name="x" value="275"/>
    <property name="y" value="160"/>
   </properties>
   <data encoding="base64" compression="gzip">

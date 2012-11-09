@@ -11,12 +11,12 @@
  </tileset>
  <layer name="collisions" width="90" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2ZzQ4DIQiE273t+79wTyaGKDADUtt1kj1VQD8Rf3q9OF2kXaZ26INXbF93GOMOffCqgvM78cvo+zfE8vLatbYZTKSPkc/o3K0SMn6UVT8fVZzRWLKtNQ/sOrT6xORws+vbr+IcrSey7T345O/MWCwbxudoTlbmc+PNxFrBzGvD5nCzHa1Fjx+rXlbUjZ1sZprx9MZA11YV54xzThbnGWMkl609yXvekHVEE3Jumtl49swMzpqfSC4zewd6vkH3dtSmte/3bPRsac1VNJd348zarLo/ZNh7fD6VM3u3OpzXxtfsor5Yzlq97Oskcmc/nPl8Ht0VtfZaHGZ9MLVjxjni65fqRiSn0HWVFf9JnFFpnJl3MXletWJnv72NYuzM+V90ONfocK7R4Vwj632D2SPY/3Qq4lgfKmR8H9p3k3XAIQAA
+   H4sIAAAAAAAAC+1Z0Q7DIAjc2r3s/3942UOTxiBwJ1C3ekmf5EBPRbTbg8NG8iIxQx+8YPs6wxhn6IMXFTo/A7+Ivl8BVi8v77CN0KT1IfkcnbssIONHtTrPR5XOaKzW1poHdh9afWJtW/ssnUfzSWv7Fr62nRmLxYla75nr+dCbiZWhmZczkofRNiluDxV5YyYO6scbA91bVTpH1DkROu+KH2QtW2eSt95o84gGZL/2OJ4zMyNvetssO+bsQOsbtK5FOYf9+cxGa0ttrnalTfIjrZHZdGY5WfeHCL7H5111Zu9WS+fc+F+8OrzRdxdWZy1fnvMkcmefQece7yqdvRzprqjZR97hkHrKijPq65fyxsiaQvdVVPw76YxC05l5F2vrVSt29NubFGNmnf8FS+caLJ1rsHSugfW+wZwR7D+dijjWhwAd3wc+1JIQwCEAAA==
   </data>
  </layer>
  <layer name="spikes" width="90" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2YSwrAIAwF3Xr/C3dRuhEqadI8ic6AK7+MGj+twUNfPYBDwLMGPGvAcwyrPzzH6EOalYN88KwBzxq8npmfG0tsbi/5lnqevnbGcw5+9TaeuZF6leeL+4aG6p6zx/jXfqruuQoez9lxMqvtlXF+pzVruT/heW/wrAHPGvCsAc8a8KwBz+uZ/eVE36MXlvdBXcAhAAA=
+   H4sIAAAAAAAAC+3YSwqAMAxF0Uy7/w07clKwxMa8kHoPOPLLVWvRDLdRfQE/QWcNOmvQOcbbj84xY1pW2yEfnTXorEHnGM/YbA/rPfvtnOtkO9/Bt93mb25kv873i/mGRvfO2df41fvUvXMXO52zx8msY1eO8yc9s575E53PRmcNOmvQWYPOGnTWoHO91b+c6Fz0AnA/+k7AIQAA
   </data>
  </layer>
  <layer name="players" width="90" height="24">

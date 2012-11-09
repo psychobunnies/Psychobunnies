@@ -85,6 +85,9 @@ public class GameplayState extends BasicGameState implements GameplayControl {
         pauseUpdate();
         collider = new LayeredCollisionEngine();
         updaters = Lists.newLinkedList();
+        gravityPhysics = PhysicsFactory.createDefaultGravityPhysics(collider);
+
+        // Map initialization
         for (Collidable c : map.getTerrainEntitiesCallColls()) {
             collider.addCollidable(c, LayeredCollisionEngine.FLORA_LAYER);
         }
@@ -92,10 +95,12 @@ public class GameplayState extends BasicGameState implements GameplayControl {
             collider.addCollidable(c, LayeredCollisionEngine.FLORA_LAYER);
         }
         finish = new LevelFinishZone(map.getFinishRect(), this);
+        collider.addCollidable(finish, LayeredCollisionEngine.FLORA_LAYER);
         finishedPlayer = null;
         System.out.println("Got finish zone at: " + finish + " for map " + map);
-        collider.addCollidable(finish, LayeredCollisionEngine.FLORA_LAYER);
-        gravityPhysics = PhysicsFactory.createDefaultGravityPhysics(collider);
+        updaters.addAll(map.getTriggeredTexts());
+
+        // Player initialization
         List<Vector2f> playerPositions = map.getPlayerStartPositions();
         Preconditions.checkArgument(playerPositions.size() == 2,
                 "Invalid number of player start positions: expected 2, got " + playerPositions.size());
@@ -106,18 +111,26 @@ public class GameplayState extends BasicGameState implements GameplayControl {
         renderers.add(new TileWorldRenderer(map));
         renderers.add(new PlayerRenderer(playerA));
         renderers.add(new PlayerRenderer(playerB));
-        controllerA = new PlayerKeyboardController(playerA).setLeft(Input.KEY_A).setRight(Input.KEY_D).setJump(Input.KEY_W).setMisc(Input.KEY_S);
-        controllerB = new PlayerKeyboardController(playerB).setLeft(Input.KEY_LEFT).setRight(Input.KEY_RIGHT).setJump(Input.KEY_UP)
-                .setMisc(Input.KEY_DOWN);
         collider.addCollidable(playerA, LayeredCollisionEngine.FAUNA_LAYER);
         collider.addCollidable(playerB, LayeredCollisionEngine.FAUNA_LAYER);
+        //@formatter:off
+        controllerA = new PlayerKeyboardController(playerA)
+                .setLeft(Input.KEY_A).setRight(Input.KEY_D)
+                .setJump(Input.KEY_W).setMisc(Input.KEY_S);
+        controllerB = new PlayerKeyboardController(playerB)
+                .setLeft(Input.KEY_LEFT).setRight(Input.KEY_RIGHT)
+                .setJump(Input.KEY_UP).setMisc(Input.KEY_DOWN);
+        //@formatter:on
+        leftRemapped = false;
+        jumpRemapped = false;
+        rightRemapped = false;
+
+        // Camera initialization
         offsetX = 0;
         offsetY = 0;
         maxOffsetX = (map.getWidth() - container.getWidth()) * -1;
         totalTime = 0;
-        leftRemapped = false;
-        jumpRemapped = false;
-        rightRemapped = false;
+
         unpauseRender();
         unpauseUpdate();
     }

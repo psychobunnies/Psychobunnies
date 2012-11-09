@@ -1,4 +1,4 @@
-package com.gravity.entity;
+package com.gravity.root;
 
 public interface UpdateCycling {
     

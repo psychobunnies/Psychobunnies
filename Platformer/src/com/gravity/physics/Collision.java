@@ -2,7 +2,7 @@ package com.gravity.physics;
 
 import java.util.Set;
 
-import com.gravity.entity.UpdateCycling;
+import com.gravity.root.UpdateCycling;
 
 /**
  * Represents a collision at a certain point in time between two entities <br>

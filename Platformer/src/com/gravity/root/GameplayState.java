@@ -17,7 +17,8 @@ import org.newdawn.slick.tiled.TiledMapPlus;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
-import com.gravity.entity.UpdateCycling;
+import com.gravity.camera.Camera;
+import com.gravity.camera.PanningCamera;
 import com.gravity.fauna.Player;
 import com.gravity.fauna.PlayerKeyboardController;
 import com.gravity.fauna.PlayerKeyboardController.Control;
@@ -53,6 +54,7 @@ public class GameplayState extends BasicGameState implements GameplayControl {
     private LevelFinishZone finish;
     private Player finishedPlayer;
     private final Random rand = new Random();
+    private Camera camera;
 
     private boolean leftRemapped, rightRemapped, jumpRemapped;
     private Color lightPink = Color.pink.brighter();
@@ -60,11 +62,6 @@ public class GameplayState extends BasicGameState implements GameplayControl {
     private Control remappedControl;
     private float remappedDecay;
     private Polygon controlArrow = new Polygon(new float[] { -50, 10, 20, 10, -10, 50, 10, 50, 50, 0, 10, -50, -10, -50, 20, -10, -50, -10 });
-
-    private float offsetX; // Current offset x... should be negative
-    private float offsetY; // Current offset y
-    private float maxOffsetX; // Maximum offset x can ever be
-    private int totalTime; // Time since start
 
     public GameplayState(String levelName, String mapFile, int id) throws SlickException {
         ID = id;
@@ -126,10 +123,10 @@ public class GameplayState extends BasicGameState implements GameplayControl {
         rightRemapped = false;
 
         // Camera initialization
-        offsetX = 0;
-        offsetY = 0;
-        maxOffsetX = (map.getWidth() - container.getWidth()) * -1;
-        totalTime = 0;
+        PanningCamera pancam = new PanningCamera(2000, new Vector2f(0, 0), new Vector2f(0.035f, 0), new Vector2f(map.getWidth()
+                - container.getWidth(), 0), container.getWidth(), container.getHeight());
+        camera = pancam;
+        updaters.add(pancam);
 
         unpauseRender();
         unpauseUpdate();
@@ -137,22 +134,23 @@ public class GameplayState extends BasicGameState implements GameplayControl {
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+        Vector2f offset = camera.getViewport().getPosition();
         for (Renderer r : renderers) {
-            r.render(g, (int) offsetX, (int) offsetY);
+            r.render(g, (int) offset.x, (int) offset.y);
         }
 
         // Draw slingshot indicator
         if (playerA.slingshot) {
             g.setColor(Color.pink);
             g.setLineWidth(playerA.slingshotStrength * 10);
-            g.drawLine(playerA.getRect(0).getCenter().x + offsetX, playerA.getRect(0).getCenter().y + offsetY, playerB.getRect(0).getCenter().x
-                    + offsetX, playerB.getRect(0).getCenter().y + offsetY);
+            g.drawLine(playerA.getRect(0).getCenter().x + offset.x, playerA.getRect(0).getCenter().y + offset.y, playerB.getRect(0).getCenter().x
+                    + offset.x, playerB.getRect(0).getCenter().y + offset.y);
         }
         if (playerB.slingshot) {
             g.setColor(Color.yellow);
             g.setLineWidth(playerB.slingshotStrength * 10);
-            g.drawLine(playerB.getRect(0).getCenter().x + offsetX, playerB.getRect(0).getCenter().y + offsetY, playerA.getRect(0).getCenter().x
-                    + offsetX, playerA.getRect(0).getCenter().y + offsetY);
+            g.drawLine(playerB.getRect(0).getCenter().x + offset.x, playerB.getRect(0).getCenter().y + offset.y, playerA.getRect(0).getCenter().x
+                    + offset.x, playerA.getRect(0).getCenter().y + offset.y);
 
         }
         g.setColor(Color.white);
@@ -226,7 +224,6 @@ public class GameplayState extends BasicGameState implements GameplayControl {
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-        totalTime += delta;
         for (UpdateCycling uc : updaters) {
             uc.startUpdate(delta);
         }
@@ -234,24 +231,16 @@ public class GameplayState extends BasicGameState implements GameplayControl {
         for (UpdateCycling uc : updaters) {
             uc.finishUpdate(delta);
         }
-        offsetX -= delta * getOffsetXDelta();
-        offsetX = Math.max(offsetX, maxOffsetX);
 
         // Tell player when to die if off the screen
-        checkDeath(playerA, offsetX);
-        checkDeath(playerB, offsetX);
+        float xOffset = camera.getViewport().getX();
+        checkDeath(playerA, xOffset);
+        checkDeath(playerB, xOffset);
 
         // Prevent player from going off right side
-        checkRightSide(playerA, offsetX);
-        checkRightSide(playerB, offsetX);
+        checkRightSide(playerA, xOffset);
+        checkRightSide(playerB, xOffset);
         remappedDecay -= delta / 1000f;
-    }
-
-    private float getOffsetXDelta() {
-        if (totalTime < 1000) {
-            return 0;
-        }
-        return 0.035f; // + (float) (totalTime - 1000) / (1000 * 1000);
     }
 
     private void checkDeath(Player player, float offsetX2) {

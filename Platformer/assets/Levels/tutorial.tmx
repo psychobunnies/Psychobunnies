@@ -26,9 +26,6 @@
   <object name="finish" type="finish" x="896" y="448" width="128" height="64"/>
  </objectgroup>
  <layer name="players" width="32" height="24">
-  <properties>
-   <property name="visible" value="0"/>
-  </properties>
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3NQQkAAAgEsOvmw/6NbHEgbAWWAABA3xSOLRzfHPMotXsADAAA
   </data>

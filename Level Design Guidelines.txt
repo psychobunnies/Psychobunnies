@@ -21,10 +21,10 @@ Your level may also have the following group layer:
 * "level markers" is used for level locations, currently only the location of the win zone. By default, this is the right edge of the level. However, if you have a custom win location, create a rectangle object in this layer with name "finish". (Object properties/names are set by right-clicking the object and selecting "Object Properties") 
 
 Your level may also include any number of text layers, which may be named any way you want, as long as they include the following layer properties:
-* "text": the text you would like to appear.
+* "text": the text you would like to appear. Dollar signs "$" denote new lines
 * "x": the x-position, _in pixels_, of the text.
 * "y": the y-position.
-Text layers will show their text whenever a bunny is overlaps with a tile on the layer. Tiles on the layer will be made invisible by the code, so you can see them while developing, but players will not.
+Text layers will show their text whenever a bunny is overlaps with a tile on the layer. Tiles on the layer will be made invisible by the code, so you can see them while developing, but players will not. 
 
 ==TILESET FILES==
 

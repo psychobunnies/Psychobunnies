@@ -13,9 +13,9 @@ import org.newdawn.slick.tiled.TiledMapPlus;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
-import com.gravity.geom.Rect;
-import com.gravity.entity.TriggeredTextEntity;
 import com.gravity.entity.TriggeredText;
+import com.gravity.entity.TriggeredTextEntity;
+import com.gravity.geom.Rect;
 import com.gravity.physics.Collidable;
 import com.gravity.root.GameplayControl;
 
@@ -139,26 +139,28 @@ public class TileWorld implements GameWorld {
         });
 
         triggeredTexts = Lists.newArrayList();
-        for (int layerId = 0; layerId < map.getLayerCount(); layerId++) {
-            int x = Integer.parseInt(map.getLayerProperty(layerId, "x", "-1"));
-            int y = Integer.parseInt(map.getLayerProperty(layerId, "y", "-1"));
-            String text = map.getLayerProperty(layerId, "text", null);
+        for (Layer layer : map.getLayers()) {
+            int x = Integer.parseInt(layer.props.getProperty("x", "-1"));
+            int y = Integer.parseInt(layer.props.getProperty("y", "-1"));
+            String text = layer.props.getProperty("text", null);
+            if (x < 0 || y < 0 || text == null) {
+                continue;
+            }
+
+            // if text layer is found, make layer invisible
+            layer.visible = false;
             TriggeredText triggeredText;
-            if (x > 0 && y > 0 && text != null) {
-                triggeredText = new TriggeredText(x, y, text);
-                System.out.println("found text layer: " + text);
-                triggeredTexts.add(triggeredText);
-                for (int i = 0; i < map.getWidth(); i++) {
-                    for (int j = 0; j < map.getHeight(); j++) {
-                        int tileId = map.getTileId(i, j, layerId);
-                        if (tileId != 0) {
-                            // Tile exists at this spot
-                            Rect r = new Rect(i * tileWidth, j * tileHeight, tileWidth, tileHeight);
-                            TriggeredTextEntity tte = new TriggeredTextEntity(r, triggeredText);
-                            entityCallColls.add(tte);
-                        }
-                    }
+            triggeredText = new TriggeredText(x, y, text);
+            System.out.println("found text layer: " + text);
+            triggeredTexts.add(triggeredText);
+            try {
+                for (Tile tile : layer.getTiles()) {
+                    Rect r = new Rect(tile.x * tileWidth, tile.y * tileHeight, tileWidth, tileHeight);
+                    TriggeredTextEntity tte = new TriggeredTextEntity(r, triggeredText);
+                    entityCallColls.add(tte);
                 }
+            } catch (SlickException e) {
+                throw new RuntimeException("Unable to get tiles for map layer " + layer.name, e);
             }
         }
     }
@@ -211,6 +213,7 @@ public class TileWorld implements GameWorld {
             System.err.println("WARNING: Map \"" + name + "\" doesn't contain player start positions, using default positions instead.");
             return Lists.newArrayList(PLAYER_ONE_DEFAULT_STARTPOS, PLAYER_TWO_DEFAULT_STARTPOS);
         }
+        layer.visible = false;
         try {
             List<Vector2f> res = Lists.newArrayList();
             for (Tile tile : layer.getTiles()) {

@@ -7,9 +7,8 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import com.google.common.collect.Lists;
-import com.gravity.entity.TriggeredTextRenderer;
-import com.gravity.entity.TriggeredTextEntity;
 import com.gravity.entity.TriggeredText;
+import com.gravity.entity.TriggeredTextRenderer;
 import com.gravity.root.Renderer;
 
 public class TileWorldRenderer implements Renderer {

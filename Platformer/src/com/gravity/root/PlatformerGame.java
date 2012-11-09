@@ -21,7 +21,7 @@ public class PlatformerGame extends StateBasedGame {
     //@formatter:on
 
     public PlatformerGame() {
-        super("Psychic Psycho Bunnies v1.0");
+        super("Psychic Psycho Bunnies v1.1");
     }
 
     @Override

@@ -93,17 +93,17 @@ public class Layer {
 		// now read the layer properties
 		Element propsElement = (Element) element.getElementsByTagName(
 				"properties").item(0);
+		props = new Properties();
 		if (propsElement != null) {
 			NodeList properties = propsElement.getElementsByTagName("property");
 			if (properties != null) {
-				props = new Properties();
 				for (int p = 0; p < properties.getLength(); p++) {
 					Element propElement = (Element) properties.item(p);
 
 					String name = propElement.getAttribute("name");
 					String value = propElement.getAttribute("value");
 					props.setProperty(name, value);
-					if (props.getProperty("visible").equals("0")) {
+					if ("0".equals(props.getProperty("visible"))) {
 						visible = false;
 					}
 				}

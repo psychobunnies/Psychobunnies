@@ -33,4 +33,14 @@
    H4sIAAAAAAAAC+3NQQkAAAgEsOvmw/6NbHEgbAWWAABA3xSOLRzfHPMotXsADAAA
   </data>
  </layer>
+ <layer name="help1" width="32" height="24">
+  <properties>
+   <property name="text" value="lorem ipsum"/>
+   <property name="x" value="100"/>
+   <property name="y" value="100"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkbBKBgFo2BggSsUj1T76QkAp9ArTAAMAAA=
+  </data>
+ </layer>
 </map>

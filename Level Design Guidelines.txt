@@ -14,7 +14,7 @@ Your level should have the following tile layers, in some order:
 
 * "spikes" tiles that have effects when players step on them (e.g. spikes) need to be on this layer. Don't use this layer for regular terrain - "collisions" is much easier on performance.  This layer should be visible.
 
-* "players" if you want custom start positions for the players, set two tiles in this layer. One player will start where the first tile is, the second on the other one. Please make these tiles invisible - either by picking an invisible tile in the perpective_tiles tileset, or by setting the layer property visible=0 (layer properties are set by right-clicking the layer in the layers toolbar and selecting "Layer Properties"
+* "players" if you want custom start positions for the players, set two tiles in this layer. One player will start where the first tile is, the second on the other one. 
 
 Your level may also have the following group layer:
 
@@ -24,6 +24,7 @@ Your level may also include any number of text layers, which may be named any wa
 * "text": the text you would like to appear.
 * "x": the x-position, _in pixels_, of the text.
 * "y": the y-position.
+Text layers will show their text whenever a bunny is overlaps with a tile on the layer. Tiles on the layer will be made invisible by the code, so you can see them while developing, but players will not.
 
 ==TILESET FILES==
 

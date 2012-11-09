@@ -19,6 +19,7 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.gravity.camera.Camera;
 import com.gravity.camera.PanningCamera;
+import com.gravity.camera.PlayerStalkingCamera;
 import com.gravity.fauna.Player;
 import com.gravity.fauna.PlayerKeyboardController;
 import com.gravity.fauna.PlayerKeyboardController.Control;
@@ -126,6 +127,10 @@ public class GameplayState extends BasicGameState implements GameplayControl {
         PanningCamera pancam = new PanningCamera(2000, new Vector2f(0, 0), new Vector2f(0.035f, 0), new Vector2f(map.getWidth()
                 - container.getWidth(), 0), container.getWidth(), container.getHeight());
         camera = pancam;
+        if (ID == 1002) {
+            camera = new PlayerStalkingCamera(container.getWidth(), container.getHeight(), new Vector2f(0, 0), new Vector2f(map.getWidth(),
+                    map.getHeight()), playerA, playerB);
+        }
         updaters.add(pancam);
 
         unpauseRender();

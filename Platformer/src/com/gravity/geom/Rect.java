@@ -73,8 +73,8 @@ public class Rect {
     }
 
     public Rect(float x, float y, float width, float height) {
-        Preconditions.checkArgument(height > 0, "Height must be positive");
-        Preconditions.checkArgument(width > 0, "Width must be positive");
+        Preconditions.checkArgument(height >= 0, "Height must be positive");
+        Preconditions.checkArgument(width >= 0, "Width must be positive");
         this.x = x;
         this.y = y;
         this.height = height;

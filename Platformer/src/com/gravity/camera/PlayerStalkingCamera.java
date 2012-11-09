@@ -16,7 +16,7 @@ public class PlayerStalkingCamera implements Camera {
     float width;
     float height;
 
-    public PlayerStalkingCamera(float width, float height, Vector2f max, Vector2f min, Player... players) {
+    public PlayerStalkingCamera(float width, float height, Vector2f min, Vector2f max, Player... players) {
         this.players = Sets.newIdentityHashSet();
         this.players.addAll(Arrays.asList(players));
         this.width = width;
@@ -31,8 +31,8 @@ public class PlayerStalkingCamera implements Camera {
             pos.add(player.getPosition(0));
         }
         pos.scale(1.0f / players.size());
-        float x = pos.x + width / 2;
-        float y = pos.y + height / 2;
+        float x = pos.x - width / 2;
+        float y = pos.y - height / 2;
         x = Math.max(x, bounding.getX());
         y = Math.max(y, bounding.getY());
         x = Math.min(x, bounding.getMaxX());

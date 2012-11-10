@@ -141,8 +141,8 @@ public class LayeredCollisionEngine implements CollisionEngine {
         return collList;
     }
 
-    private static final int PARTS_PER_TICK = 5;
-    private static final int MIN_INCREMENT = 10;
+    private static final int PARTS_PER_TICK = 10;
+    private static final int MIN_INCREMENT = 5;
 
     @Override
     public void update(float millis) {

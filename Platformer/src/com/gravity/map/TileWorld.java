@@ -123,20 +123,26 @@ public class TileWorld implements GameWorld {
     @Override
     public void initialize() {
         // Iterate over and find all tiles
+        Layer terrain = map.getLayer("map");
+        if (terrain != null) {
 
-        entityNoCalls = processLayer(TILES_LAYER_NAME, new CollidableCreator() {
-            @Override
-            public Collidable createCollidable(Rect r) {
-                return new TileWorldCollidable(r);
-            }
-        });
+        } else {
 
-        entityCallColls = processLayer(SPIKES_LAYER_NAME, new CollidableCreator() {
-            @Override
-            public Collidable createCollidable(Rect r) {
-                return new SpikeEntity(controller, r);
-            }
-        });
+            entityNoCalls = processLayer(TILES_LAYER_NAME, new CollidableCreator() {
+                @Override
+                public Collidable createCollidable(Rect r) {
+                    return new TileWorldCollidable(r);
+                }
+            });
+
+            entityCallColls = processLayer(SPIKES_LAYER_NAME, new CollidableCreator() {
+                @Override
+                public Collidable createCollidable(Rect r) {
+                    return new SpikeEntity(controller, r);
+                }
+            });
+
+        }
 
         triggeredTexts = Lists.newArrayList();
         for (Layer layer : map.getLayers()) {

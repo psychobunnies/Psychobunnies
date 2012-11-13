@@ -23,6 +23,8 @@ import com.gravity.geom.Rect.Side;
  */
 public class LayeredCollisionEngine implements CollisionEngine {
     private static final float EPS = 1e-6f;
+    private static final float TIME_GRAN = 3e-2f;
+    private static final float PIXEL_GRAN = 1e-1f;
     public static final Integer FLORA_LAYER = 1;
     public static final Integer FAUNA_LAYER = 0;
 
@@ -84,7 +86,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
      */
     @Override
     public List<RectCollision> checkAgainstLayer(float time, Collidable collidable, Integer layer) {
-        Preconditions.checkArgument(time >= 0, "Time since last update() call must be nonnegative");
+        Preconditions.checkArgument(time > 0, "Time since last update() call must be nonnegative");
 
         List<RectCollision> colls = Lists.newLinkedList();
         EnumSet<Side> sidesA, sidesB;
@@ -92,11 +94,72 @@ public class LayeredCollisionEngine implements CollisionEngine {
         for (Collidable collB : collidables.get(layer)) {
             sidesA = collidable.getRect(time).getCollision(collB.getRect(time));
             if (!sidesA.isEmpty()) {
-                sidesB = collB.getRect(time).getCollision(collidable.getRect(time));
-                colls.add(new RectCollision(collidable, collB, time, sidesA, sidesB));
+                colls.add(getCollision(time, collidable, collB));
             }
         }
         return colls;
+    }
+
+    /**
+     * Given two collidables that are guaranteed to collide by the specified time, get the RectCollision object representing that collision.
+     * 
+     * @return a RectCollision object with a time set to the moment of collision.
+     */
+    public RectCollision getCollision(float time, Collidable collA, Collidable collB) {
+        float upper = time;
+        float lower = 0;
+        float mid = (upper + lower) / 2;
+        EnumSet<Side> sidesA = null;
+        EnumSet<Side> sidesB;
+        while (upper - lower >= TIME_GRAN) {
+            sidesA = collA.getRect(mid).getCollision(collB.getRect(mid));
+            if (sidesA.isEmpty()) { // No collision, time forward
+                lower = mid;
+                mid = (upper + lower) / 2;
+            } else {
+                upper = mid;
+                mid = (upper + lower) / 2;
+            }
+        }
+        Rect rectA = collA.getRect(upper);
+        Rect rectB = collB.getRect(upper);
+        sidesB = rectB.getCollision(rectA);
+        //@formatter:off
+        return new RectCollision(collA, collB, time, 
+                getSmallestCollisionSide(rectA, rectB, sidesA),
+                getSmallestCollisionSide(rectB, rectA, sidesB));
+        //@formatter:on
+    }
+
+    private EnumSet<Side> getSmallestCollisionSide(Rect rectA, Rect rectB, EnumSet<Side> sidesA) {
+        Side minSide = null;
+        float minDist = Float.MAX_VALUE, curDist = minDist;
+        for (Side side : sidesA) {
+            switch (side) {
+            case TOP:
+                curDist = rectB.getMaxY() - rectA.getY();
+                break;
+            case BOTTOM:
+                curDist = rectA.getMaxY() - rectB.getY();
+                break;
+            case LEFT:
+                curDist = rectB.getMaxX() - rectA.getX();
+                break;
+            case RIGHT:
+                curDist = rectA.getMaxX() - rectB.getX();
+                break;
+            }
+            if (curDist < minDist) {
+                minSide = side;
+                minDist = curDist;
+            }
+        }
+        // If there is no side with a small distance, ignore
+        if (minDist > PIXEL_GRAN) {
+            return sidesA;
+        } else {
+            return EnumSet.of(minSide);
+        }
     }
 
     @Override

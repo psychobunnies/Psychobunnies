@@ -10,6 +10,7 @@ import com.gravity.entity.Entity;
 import com.gravity.entity.PhysicallyStateful;
 import com.gravity.geom.Rect;
 import com.gravity.geom.Rect.Side;
+import com.gravity.map.BouncyTile;
 
 /**
  * A Physics simulator which assumes gravity, but no bouncing.
@@ -44,7 +45,7 @@ public class GravityPhysics implements Physics {
         for (Collidable c : collisions) {
             c.handleCollisions(0f, Lists.newArrayList(new RectCollision(entity, c, 0f, null, null)));
         }
-        
+
         for (Collidable c : collisions) {
             if (c.causesCollisionsWith(entity)) {
                 return true;
@@ -99,6 +100,9 @@ public class GravityPhysics implements Physics {
                 if (sides.contains(Side.TOP)) {
                     velY = Math.max(velY, 0);
                     accY = Math.max(accY, 0);
+                    if (other instanceof BouncyTile) {
+                        velX = -velX;
+                    }
                 }
                 if (sides.contains(Side.LEFT)) {
                     velX = Math.max(velX, 0);

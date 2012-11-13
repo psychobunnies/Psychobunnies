@@ -33,5 +33,4 @@ public final class SpikeEntity extends TileWorldCollidable {
         }
         super.handleCollisions(ticks, collisions);
     }
-
 }

@@ -1,6 +1,7 @@
 package com.gravity.map;
 
 import java.util.List;
+import java.util.Map;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -13,6 +14,7 @@ import org.newdawn.slick.tiled.TiledMapPlus;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.gravity.entity.TriggeredText;
 import com.gravity.entity.TriggeredTextEntity;
 import com.gravity.geom.Rect;
@@ -28,6 +30,7 @@ public class TileWorld implements GameWorld {
 
     private List<Collidable> entityNoCalls, entityCallColls;
     private List<TriggeredText> triggeredTexts;
+    private Map<Layer, List<MovingCollidable>> movingCollMap;
 
     private final String name;
     private final TiledMapPlus map;
@@ -176,6 +179,30 @@ public class TileWorld implements GameWorld {
                 throw new RuntimeException("Unable to get tiles for map layer " + layer.name, e);
             }
         }
+
+        movingCollMap = Maps.newHashMap();
+        for (Layer layer : map.getLayers()) {
+            final float speed = Float.parseFloat(layer.props.getProperty("speed", "-1.0"));
+            final int transX = Integer.parseInt(layer.props.getProperty("translationX", "-1"));
+            final int transY = Integer.parseInt(layer.props.getProperty("translationY", "-1"));
+            if (speed < 0 || transX < 0 || transY < 0) continue;
+
+            // Found a moving layer.
+            layer.visible = false;
+            List<Collidable> colls = processLayer(layer.name, new CollidableCreator() {
+                @Override
+                public Collidable createCollidable(Rect r) {
+                    return new MovingCollidable(tileWidth, tileHeight, r, transX, transY, speed);
+                }
+            });
+            entityNoCalls.addAll(colls);
+            
+            List<MovingCollidable> movingColls = Lists.newArrayList();
+            for (Collidable c : colls) {
+                movingColls.add((MovingCollidable)c);
+            }
+            movingCollMap.put(layer, movingColls);
+        }
     }
 
     @Override
@@ -261,5 +288,9 @@ public class TileWorld implements GameWorld {
 
     public List<TriggeredText> getTriggeredTexts() {
         return triggeredTexts;
+    }
+
+    public Map<Layer, List<MovingCollidable>> getMovingCollMap() {
+        return movingCollMap;
     }
 }

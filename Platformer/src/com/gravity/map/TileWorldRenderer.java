@@ -1,10 +1,12 @@
 package com.gravity.map;
 
 import java.util.List;
+import java.util.Map;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.tiled.Layer;
 
 import com.google.common.collect.Lists;
 import com.gravity.entity.TriggeredText;
@@ -20,7 +22,7 @@ public class TileWorldRenderer implements Renderer {
     private Image lastBackGround;
     private List<Image> backgrounds;
     int tweener;
-    private List<TriggeredTextRenderer> triggeredTextRenderers;
+    private List<Renderer> extraRenderers;
 
     public TileWorldRenderer(TileWorld tileMap) {
         this.tileMap = tileMap;
@@ -39,9 +41,12 @@ public class TileWorldRenderer implements Renderer {
         backgrounds.add(Background2);
         backgrounds.add(Background3);
         backgrounds.add(Background4);
-        triggeredTextRenderers = Lists.newArrayList();
+        extraRenderers = Lists.newArrayList();
         for (TriggeredText tt : tileMap.getTriggeredTexts()) {
-            triggeredTextRenderers.add(new TriggeredTextRenderer(tt));
+            extraRenderers.add(new TriggeredTextRenderer(tt));
+        }
+        for (Layer l : tileMap.getMovingCollMap().keySet()) {
+            extraRenderers.add(new MovingCollidableRenderer(tileMap, l));
         }
     }
 
@@ -67,8 +72,8 @@ public class TileWorldRenderer implements Renderer {
         // Later we'll need to some how adjust x,y for offset/scrolling
         tileMap.render(g, offsetX, offsetY);
 
-        for (TriggeredTextRenderer ttr : triggeredTextRenderers) {
-            ttr.render(g, offsetX, offsetY);
+        for (Renderer renderer : extraRenderers) {
+            renderer.render(g, offsetX, offsetY);
         }
     }
 }

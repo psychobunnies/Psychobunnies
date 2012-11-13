@@ -1,6 +1,7 @@
 package com.gravity.root;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
@@ -25,6 +26,7 @@ import com.gravity.fauna.PlayerKeyboardController;
 import com.gravity.fauna.PlayerKeyboardController.Control;
 import com.gravity.fauna.PlayerRenderer;
 import com.gravity.map.LevelFinishZone;
+import com.gravity.map.MovingCollidable;
 import com.gravity.map.TileWorld;
 import com.gravity.map.TileWorldRenderer;
 import com.gravity.physics.Collidable;
@@ -97,6 +99,10 @@ public class GameplayState extends BasicGameState implements GameplayControl {
         finishedPlayer = null;
         System.out.println("Got finish zone at: " + finish + " for map " + map);
         updaters.addAll(map.getTriggeredTexts());
+        Collection<List<MovingCollidable>> movingColls = map.getMovingCollMap().values();
+        for (List<MovingCollidable> l : movingColls) {
+            updaters.addAll(l);
+        }
 
         // Player initialization
         List<Vector2f> playerPositions = map.getPlayerStartPositions();

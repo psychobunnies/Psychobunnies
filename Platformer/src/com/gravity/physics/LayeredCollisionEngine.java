@@ -90,10 +90,11 @@ public class LayeredCollisionEngine implements CollisionEngine {
 
         List<RectCollision> colls = Lists.newLinkedList();
         EnumSet<Side> sidesA, sidesB;
+        boolean collides;
 
         for (Collidable collB : collidables.get(layer)) {
-            sidesA = collidable.getRect(time).getCollision(collB.getRect(time));
-            if (!sidesA.isEmpty()) {
+            collides = collidable.getRect(time).intersects(collB.getRect(time));
+            if (collides) {
                 colls.add(getCollision(time, collidable, collB));
             }
         }
@@ -111,19 +112,21 @@ public class LayeredCollisionEngine implements CollisionEngine {
         float mid = (upper + lower) / 2;
         EnumSet<Side> sidesA = null;
         EnumSet<Side> sidesB;
+        boolean collides;
         while (upper - lower >= TIME_GRAN) {
-            sidesA = collA.getRect(mid).getCollision(collB.getRect(mid));
-            if (sidesA.isEmpty()) { // No collision, time forward
-                lower = mid;
+            collides = collA.getRect(mid).intersects(collB.getRect(mid));
+            if (collides) { // No collision, time forward
+                upper = mid;
                 mid = (upper + lower) / 2;
             } else {
-                upper = mid;
+                lower = mid;
                 mid = (upper + lower) / 2;
             }
         }
         Rect rectA = collA.getRect(upper);
         Rect rectB = collB.getRect(upper);
         sidesB = rectB.getCollision(rectA);
+        sidesA = rectA.getCollision(rectB);
         //@formatter:off
         return new RectCollision(collA, collB, time, 
                 getSmallestCollisionSide(rectA, rectB, sidesA),
@@ -134,6 +137,9 @@ public class LayeredCollisionEngine implements CollisionEngine {
     private EnumSet<Side> getSmallestCollisionSide(Rect rectA, Rect rectB, EnumSet<Side> sidesA) {
         Side minSide = null;
         float minDist = Float.MAX_VALUE, curDist = minDist;
+        if (sidesA.size() < 2) {
+            return sidesA;
+        }
         for (Side side : sidesA) {
             switch (side) {
             case TOP:
@@ -166,11 +172,11 @@ public class LayeredCollisionEngine implements CollisionEngine {
     public List<Collidable> collisionsInLayer(float time, Rect rect, Integer layer) {
         Preconditions.checkArgument(time >= 0, "Time since last update() call must be nonnegative");
 
-        EnumSet<Side> sidesA;
+        boolean collides;
         List<Collidable> result = Lists.newArrayList();
         for (Collidable collB : collidables.get(layer)) {
-            sidesA = rect.getCollision(collB.getRect(time));
-            if (!sidesA.isEmpty()) {
+            collides = rect.intersects(collB.getRect(time));
+            if (collides) {
                 result.add(collB);
             }
         }

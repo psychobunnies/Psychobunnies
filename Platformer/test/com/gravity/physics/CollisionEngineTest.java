@@ -8,14 +8,14 @@ import org.junit.Test;
 
 import com.gravity.geom.Rect;
 import com.gravity.geom.Rect.Side;
-import com.gravity.map.TileWorldCollidable;
+import com.gravity.map.StaticCollidable;
 
 public class CollisionEngineTest {
 
     @Test
     public void testCornerCollisions() {
-        Collidable a = new TileWorldCollidable(new Rect(0, 0, 10, 5));
-        Collidable b = new TileWorldCollidable(new Rect(8, 3, 10, 5));
+        Collidable a = new StaticCollidable(new Rect(0, 0, 10, 5));
+        Collidable b = new StaticCollidable(new Rect(8, 3, 10, 5));
 
         CollisionEngine engine = new LayeredCollisionEngine();
         engine.addCollidable(a, LayeredCollisionEngine.FLORA_LAYER);
@@ -28,8 +28,8 @@ public class CollisionEngineTest {
 
     @Test
     public void testCrossCollisions() {
-        Collidable a = new TileWorldCollidable(new Rect(0, 0, 10, 5));
-        Collidable b = new TileWorldCollidable(new Rect(-2, 3, 20, 1));
+        Collidable a = new StaticCollidable(new Rect(0, 0, 10, 5));
+        Collidable b = new StaticCollidable(new Rect(-2, 3, 20, 1));
 
         CollisionEngine engine = new LayeredCollisionEngine();
         engine.addCollidable(a, LayeredCollisionEngine.FLORA_LAYER);
@@ -42,8 +42,8 @@ public class CollisionEngineTest {
 
     @Test
     public void testSideCollisions() {
-        Collidable a = new TileWorldCollidable(new Rect(0, 0, 10, 5));
-        Collidable b = new TileWorldCollidable(new Rect(0, -3, 10, 5));
+        Collidable a = new StaticCollidable(new Rect(0, 0, 10, 5));
+        Collidable b = new StaticCollidable(new Rect(0, -3, 10, 5));
 
         CollisionEngine engine = new LayeredCollisionEngine();
         engine.addCollidable(a, LayeredCollisionEngine.FLORA_LAYER);
@@ -56,8 +56,8 @@ public class CollisionEngineTest {
 
     @Test
     public void testOverlapCollisions() {
-        Collidable a = new TileWorldCollidable(new Rect(0, 0, 10, 5));
-        Collidable b = new TileWorldCollidable(new Rect(-2, -4, 14, 10));
+        Collidable a = new StaticCollidable(new Rect(0, 0, 10, 5));
+        Collidable b = new StaticCollidable(new Rect(-2, -4, 14, 10));
 
         CollisionEngine engine = new LayeredCollisionEngine();
         engine.addCollidable(a, LayeredCollisionEngine.FLORA_LAYER);

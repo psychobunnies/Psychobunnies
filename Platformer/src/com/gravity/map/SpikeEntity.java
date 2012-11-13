@@ -10,7 +10,7 @@ import com.gravity.physics.Collidable;
 import com.gravity.physics.RectCollision;
 import com.gravity.root.GameplayControl;
 
-public final class SpikeEntity extends TileWorldCollidable {
+public final class SpikeEntity extends StaticCollidable {
 
     private final GameplayControl controller;
     private final Set<Player> collidedPlayers = Sets.newIdentityHashSet();

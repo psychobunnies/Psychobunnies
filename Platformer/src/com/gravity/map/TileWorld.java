@@ -131,7 +131,7 @@ public class TileWorld implements GameWorld {
             entityNoCalls = processLayer(TILES_LAYER_NAME, new CollidableCreator() {
                 @Override
                 public Collidable createCollidable(Rect r) {
-                    return new TileWorldCollidable(r);
+                    return new StaticCollidable(r);
                 }
             });
 

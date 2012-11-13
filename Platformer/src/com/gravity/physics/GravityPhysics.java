@@ -91,6 +91,7 @@ public class GravityPhysics implements Physics {
         float accX = state.accX;
         float accY = state.accY;
         float corrX = 0f;
+        float corrY = Float.POSITIVE_INFINITY;
         for (RectCollision c : collisions) {
             Collidable other = c.getOtherEntity(entity);
             EnumSet<Side> sides = c.getMyCollisions(entity);
@@ -112,6 +113,7 @@ public class GravityPhysics implements Physics {
                     if (isRealBottomCollision(entity, other, sides)) {
                         velY = Math.min(velY, 0);
                         accY = Math.min(accY, 0);
+                        corrY = Math.max(0f, Math.min(corrY, other.getRect(0f).getY() - entity.getRect(0f).getMaxY() - EPS));
                     } else {
                         corrX = getFakeBottomCollisionCorrection(entity, other, sides);
                     }
@@ -129,7 +131,10 @@ public class GravityPhysics implements Physics {
         }
         Rect r = entity.getRect(0f);
         if (corrX != 0.0f) {
-            r.translate(corrX, 0f);
+            r = r.translate(corrX, 0f);
+        }
+        if (!Float.isInfinite(corrY)) {
+            r = r.translate(0f, corrY);
         }
         return new PhysicalState(r, velX, velY, accX, accY);
     }

@@ -110,28 +110,37 @@ public class LayeredCollisionEngine implements CollisionEngine {
         float upper = time;
         float lower = 0;
         float mid = (upper + lower) / 2;
-        EnumSet<Side> sidesA = null;
+        EnumSet<Side> sidesA;
         EnumSet<Side> sidesB;
         boolean collides;
-        while (upper - lower >= TIME_GRAN) {
-            collides = collA.getRect(mid).intersects(collB.getRect(mid));
-            if (collides) { // No collision, time forward
-                upper = mid;
-                mid = (upper + lower) / 2;
-            } else {
-                lower = mid;
-                mid = (upper + lower) / 2;
+        // if the rectangles start out colliding, forget about binary searching
+        if (collA.getRect(0).intersects(collB.getRect(0))) {
+            Rect rectA = collA.getRect(upper);
+            Rect rectB = collB.getRect(upper);
+            sidesB = rectB.getCollision(rectA);
+            sidesA = rectA.getCollision(rectB);
+            return new RectCollision(collA, collB, 0, sidesA, sidesB);
+        } else {
+            while (upper - lower >= TIME_GRAN) {
+                collides = collA.getRect(mid).intersects(collB.getRect(mid));
+                if (collides) { // No collision, time forward
+                    upper = mid;
+                    mid = (upper + lower) / 2;
+                } else {
+                    lower = mid;
+                    mid = (upper + lower) / 2;
+                }
             }
+            Rect rectA = collA.getRect(upper);
+            Rect rectB = collB.getRect(upper);
+            sidesB = rectB.getCollision(rectA);
+            sidesA = rectA.getCollision(rectB);
+            //@formatter:off
+            return new RectCollision(collA, collB, time, 
+                    getSmallestCollisionSide(rectA, rectB, sidesA),
+                    getSmallestCollisionSide(rectB, rectA, sidesB));
+            //@formatter:on
         }
-        Rect rectA = collA.getRect(upper);
-        Rect rectB = collB.getRect(upper);
-        sidesB = rectB.getCollision(rectA);
-        sidesA = rectA.getCollision(rectB);
-        //@formatter:off
-        return new RectCollision(collA, collB, time, 
-                getSmallestCollisionSide(rectA, rectB, sidesA),
-                getSmallestCollisionSide(rectB, rectA, sidesB));
-        //@formatter:on
     }
 
     private EnumSet<Side> getSmallestCollisionSide(Rect rectA, Rect rectB, EnumSet<Side> sidesA) {

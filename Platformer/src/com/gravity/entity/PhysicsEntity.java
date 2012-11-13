@@ -1,10 +1,7 @@
 package com.gravity.entity;
 
-import java.util.Collection;
-
 import com.gravity.physics.PhysicalState;
 import com.gravity.physics.Physics;
-import com.gravity.physics.RectCollision;
 
 /**
  * A collidable entity which obeys a set of physics.
@@ -19,16 +16,6 @@ public abstract class PhysicsEntity<T extends Physics> extends AbstractEntity {
     public PhysicsEntity(PhysicalState state, T physics) {
         super(state);
         this.physics = physics;
-    }
-
-    @Override
-    public void handleCollisions(float millis, Collection<RectCollision> collisions) {
-        state = physics.handleCollision(this, collisions);
-    }
-
-    @Override
-    public void rehandleCollisions(float millis, Collection<RectCollision> collisions) {
-        state = physics.rehandleCollision(this, collisions);
     }
 
     @Override

@@ -12,7 +12,15 @@ public final class PhysicsFactory {
     public static final float DEFAULT_ALLOWED_SIDE_OVERLAP = 0.5f;
 
     public static GravityPhysics createDefaultGravityPhysics(CollisionEngine engine) {
-        return new GravityPhysics(engine, DEFAULT_GRAVITY, DEFAULT_REHANDLE_BACKSTEP, DEFAULT_OFFSET_GROUND_CHECK, DEFAULT_ALLOWED_SIDE_OVERLAP);
+        return new GravityPhysics(engine, DEFAULT_GRAVITY, DEFAULT_OFFSET_GROUND_CHECK);
+    }
+
+    public static StopCollisionStrategy createDefaultStopCollisionStrategy() {
+        return new StopCollisionStrategy(DEFAULT_ALLOWED_SIDE_OVERLAP);
+    }
+
+    public static RewindCollisionStrategy createDefaultRewindCollisionStrategy() {
+        return new RewindCollisionStrategy(DEFAULT_REHANDLE_BACKSTEP);
     }
 
     public static SimplePhysics createSimplePhysics() {

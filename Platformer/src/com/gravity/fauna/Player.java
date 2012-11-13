@@ -1,12 +1,17 @@
 package com.gravity.fauna;
 
+import java.util.Collection;
+
 import org.newdawn.slick.geom.Vector2f;
 
 import com.gravity.entity.PhysicsEntity;
 import com.gravity.geom.Rect;
-import com.gravity.physics.Collidable;
 import com.gravity.physics.GravityPhysics;
 import com.gravity.physics.PhysicalState;
+import com.gravity.physics.PhysicsFactory;
+import com.gravity.physics.RectCollision;
+import com.gravity.physics.RewindCollisionStrategy;
+import com.gravity.physics.StopCollisionStrategy;
 import com.gravity.root.GameplayControl;
 
 public class Player extends PhysicsEntity<GravityPhysics> {
@@ -27,6 +32,8 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     private final float SLING_SPEED = 1f / 500f;
 
     private final GameplayControl control;
+    private final StopCollisionStrategy stopCollStrat;
+    private final RewindCollisionStrategy rewindCollStrat;
 
     // GAME STATE STUFF
     private final String name;
@@ -39,6 +46,8 @@ public class Player extends PhysicsEntity<GravityPhysics> {
         super(new PhysicalState(BASE_SHAPE.translate(startpos.x, startpos.y), DEFAULT_VELOCITY.copy()), physics);
         this.name = name;
         this.control = control;
+        this.stopCollStrat = PhysicsFactory.createDefaultStopCollisionStrategy();
+        this.rewindCollStrat = PhysicsFactory.createDefaultRewindCollisionStrategy();
     }
 
     public String getName() {
@@ -114,6 +123,16 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     // //////////////////////////////////////////////////////////////////////////
     // //////////////////////////ON-TICK METHODS/////////////////////////////////
     // //////////////////////////////////////////////////////////////////////////
+
+    @Override
+    public void handleCollisions(float millis, Collection<RectCollision> collection) {
+        stopCollStrat.handleCollision(this, collection);
+    }
+
+    @Override
+    public void rehandleCollisions(float millis, Collection<RectCollision> collisions) {
+        rewindCollStrat.handleCollision(this, collisions);
+    }
 
     @Override
     public void finishUpdate(float millis) {

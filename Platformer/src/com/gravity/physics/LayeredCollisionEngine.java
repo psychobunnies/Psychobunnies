@@ -22,7 +22,6 @@ import com.gravity.geom.Rect.Side;
  * 
  */
 public class LayeredCollisionEngine implements CollisionEngine {
-    private static final float EPS = 1e-6f;
     private static final float TIME_GRAN = 3e-2f;
     private static final float PIXEL_GRAN = 1e-1f;
     public static final Integer FLORA_LAYER = 1;
@@ -89,7 +88,6 @@ public class LayeredCollisionEngine implements CollisionEngine {
         Preconditions.checkArgument(time > 0, "Time since last update() call must be nonnegative");
 
         List<RectCollision> colls = Lists.newLinkedList();
-        EnumSet<Side> sidesA, sidesB;
         boolean collides;
 
         for (Collidable collB : collidables.get(layer)) {

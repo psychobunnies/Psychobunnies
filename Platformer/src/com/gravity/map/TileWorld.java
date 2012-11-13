@@ -37,6 +37,7 @@ public class TileWorld implements GameWorld {
     private static final String SPIKES_LAYER_NAME = "spikes";
     private static final String PLAYERS_LAYER_NAME = "players";
     private static final String MARKERS_LAYER_NAME = "level markers";
+    private static final String BOUNCYS_LAYER_NAME = "bouncys";
     private static final String FINISH_MARKER_NAME = "finish";
 
     private static final Vector2f PLAYER_ONE_DEFAULT_STARTPOS = new Vector2f(256, 512);
@@ -142,6 +143,12 @@ public class TileWorld implements GameWorld {
                 }
             });
 
+            entityNoCalls.addAll(processLayer(BOUNCYS_LAYER_NAME, new CollidableCreator() {
+                @Override
+                public Collidable createCollidable(Rect r) {
+                    return new BouncyTile(r);
+                }
+            }));
         }
 
         triggeredTexts = Lists.newArrayList();

@@ -99,28 +99,45 @@ public class GravityPhysics implements Physics {
 
             if (Side.isSimpleSet(sides)) {
                 if (sides.contains(Side.TOP)) {
-                    velY = Math.max(velY, 0);
-                    accY = Math.max(accY, 0);
                     if (other instanceof BouncyTile) {
-                        velX = -velX;
+                        velY = Math.abs(velY);
+                        accY = Math.max(accY, 0);
+                    } else {
+                        velY = Math.max(velY, 0);
+                        accY = Math.max(accY, 0);
                     }
                 }
                 if (sides.contains(Side.LEFT)) {
-                    velX = Math.max(velX, 0);
-                    accX = Math.max(accX, 0);
+                    if (other instanceof BouncyTile) {
+                        velX = Math.abs(velX);
+                        accX = Math.max(accX, 0);
+                    } else {
+                        velX = Math.max(velX, 0);
+                        accX = Math.max(accX, 0);
+                    }
                 }
                 if (sides.contains(Side.BOTTOM)) {
                     if (isRealBottomCollision(entity, other, sides)) {
-                        velY = Math.min(velY, 0);
-                        accY = Math.min(accY, 0);
+                        if (other instanceof BouncyTile) {
+                            velY = -Math.abs(velY);
+                            accY = Math.min(accY, 0);
+                        } else {
+                            velY = Math.min(velY, 0);
+                            accY = Math.min(accY, 0);
+                        }
                         corrY = Math.max(0f, Math.min(corrY, other.getRect(0f).getY() - entity.getRect(0f).getMaxY() - EPS));
                     } else {
                         corrX = getFakeBottomCollisionCorrection(entity, other, sides);
                     }
                 }
                 if (sides.contains(Side.RIGHT)) {
-                    velX = Math.min(velX, 0);
-                    accX = Math.min(accX, 0);
+                    if (other instanceof BouncyTile) {
+                        velX = -Math.abs(velX);
+                        accX = Math.min(accX, 0);
+                    } else {
+                        velX = Math.min(velX, 0);
+                        accX = Math.min(accX, 0);
+                    }
                 }
             } else {
                 velX = 0;

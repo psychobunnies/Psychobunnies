@@ -25,6 +25,6 @@
   </data>
  </layer>
  <objectgroup name="level markers" width="90" height="24">
-  <object name="finish" x="2818" y="32" width="62" height="258"/>
+  <object name="finish" type="finish" x="2818" y="32" width="62" height="258"/>
  </objectgroup>
 </map>

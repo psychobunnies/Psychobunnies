@@ -171,6 +171,10 @@ public class TiledMapPlus extends TiledMap {
         return layerID != null ? this.layers.get(layerID) : null;
     }
     
+    public Layer getLayer(int layerIndex) {
+    	return this.layers.get(layerIndex);
+    }
+    
     /**
      * Gets an ObjectGroup
      * 
@@ -464,8 +468,8 @@ public class TiledMapPlus extends TiledMap {
      * @param tilesetName
      *            The name of the tileset to get the id of
      */
-    public int getTilesetID(String tilesetName) {
-        int tilesetID = this.tilesetNameToIDMap.get(tilesetName);
+    public Integer getTilesetID(String tilesetName) {
+        Integer tilesetID = this.tilesetNameToIDMap.get(tilesetName);
         return tilesetID;
     }
     
@@ -476,8 +480,8 @@ public class TiledMapPlus extends TiledMap {
      * @param layerName
      *            The name of the layer to get the id of
      */
-    public int getLayerID(String layerName) {
-        int layerID = this.layerNameToIDMap.get(layerName);
+    public Integer getLayerID(String layerName) {
+        Integer layerID = this.layerNameToIDMap.get(layerName);
         return layerID;
     }
     

@@ -12,9 +12,11 @@ Your level should have the following tile layers, in some order:
 
 * "collisions" the main terrain tiles which bunnies collide with should go here. Walls, floors, etc., with the exception of spikes or eye candy - those should go on "spikes" and any other level, respectively. This layer should be visible.
 
-* "spikes" tiles that have effects when players step on them (e.g. spikes) need to be on this layer. Don't use this layer for regular terrain - "collisions" is much easier on performance.  This layer should be visible.
+* "spikes" spike tiles need to be on this layer. Don't use this layer for regular terrain - "collisions" is much easier on performance.  This layer should be visible.
 
 * "players" if you want custom start positions for the players, set two tiles in this layer. One player will start where the first tile is, the second on the other one. 
+
+* "bouncys" bouncy tiles should be put here.
 
 Your level may also have the following group layer:
 

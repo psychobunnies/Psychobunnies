@@ -456,4 +456,7 @@ public class Layer {
 		return false;
 	}
 
+	public int getLocalTileId(int x, int y) {
+		return data[x][y][1];
+	}
 }

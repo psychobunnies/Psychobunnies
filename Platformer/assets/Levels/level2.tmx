@@ -22,4 +22,9 @@
    H4sIAAAAAAAAC+3VuQ0AIAgAQFv3X9gRfCKK5q6xAokBKQUAAAAAzqm3CwC2yzzXmWt7iXfkR/oaIJ+Iv7l2zpHY6Htmc63mtvsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADmNCfZPZtAnAAA
   </data>
  </layer>
+ <layer name="bouncys" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DMQ0AAAgDsCnAv1yeKeAkbdIEAAAAAAAAALiaBgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP5YF5fy2ECcAAA=
+  </data>
+ </layer>
 </map>

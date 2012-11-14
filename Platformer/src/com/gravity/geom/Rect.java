@@ -211,6 +211,12 @@ public class Rect {
 
     }
 
+    public float distanceTo(Rect other) {
+        float xd = x - other.x;
+        float yd = y - other.y;
+        return (float) Math.sqrt(xd * xd - yd * yd);
+    }
+
     public float getX() {
         return x;
     }

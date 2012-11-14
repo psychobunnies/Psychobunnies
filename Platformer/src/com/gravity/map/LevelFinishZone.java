@@ -7,7 +7,7 @@ import com.gravity.geom.Rect;
 import com.gravity.physics.RectCollision;
 import com.gravity.root.GameplayControl;
 
-public class LevelFinishZone extends TileWorldCollidable {
+public class LevelFinishZone extends StaticCollidable {
     private final GameplayControl control;
 
     public LevelFinishZone(Rect shape, GameplayControl control) {

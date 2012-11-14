@@ -10,6 +10,7 @@ import com.gravity.entity.Entity;
 import com.gravity.entity.PhysicallyStateful;
 import com.gravity.geom.Rect;
 import com.gravity.geom.Rect.Side;
+import com.gravity.map.BouncyTile;
 
 /**
  * A Physics simulator which assumes gravity, but no bouncing.
@@ -23,13 +24,18 @@ public class GravityPhysics implements Physics {
     private final float gravity;
     private final float backstep;
     private final float offsetGroundCheck;
+    private final float allowedSideOverlap;
+    private static final float EPS = 1e-6f;
 
-    GravityPhysics(CollisionEngine collisionEngine, float gravity, float backstep, float offsetGroundCheck) {
+    GravityPhysics(CollisionEngine collisionEngine, float gravity, float backstep, float offsetGroundCheck, float allowedSideOverlap) {
         Preconditions.checkArgument(backstep <= 0f, "Backstep has to be non-positive.");
         this.collisionEngine = collisionEngine;
         this.gravity = gravity;
         this.backstep = backstep;
         this.offsetGroundCheck = offsetGroundCheck;
+        this.allowedSideOverlap = allowedSideOverlap; // e.g. if player overlaps tile by this much on bottom-and-side collision, ignore bottom and
+                                                      // move player sideways to compensate
+                                                      // Fixes: residual wall-hanging on corners of tiles
     }
 
     public boolean isOnGround(Entity entity) {
@@ -39,7 +45,33 @@ public class GravityPhysics implements Physics {
         for (Collidable c : collisions) {
             c.handleCollisions(0f, Lists.newArrayList(new RectCollision(entity, c, 0f, null, null)));
         }
-        return !collisions.isEmpty();
+
+        for (Collidable c : collisions) {
+            if (c.causesCollisionsWith(entity)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isRealBottomCollision(Collidable player, Collidable terrain, EnumSet<Side> playerCollisionSides) {
+        if (playerCollisionSides.contains(Side.LEFT)) {
+            return (player.getRect(0f).getX() + allowedSideOverlap) < terrain.getRect(0f).getMaxX();
+        } else if (playerCollisionSides.contains(Side.RIGHT)) {
+            return (player.getRect(0f).getMaxX() - allowedSideOverlap) > terrain.getRect(0f).getX();
+        } else {
+            return true;
+        }
+    }
+
+    private float getFakeBottomCollisionCorrection(Collidable player, Collidable terrain, EnumSet<Side> playerCollisionSides) {
+        if (playerCollisionSides.contains(Side.LEFT)) {
+            return Math.max(0f, terrain.getRect(0f).getMaxX() - player.getRect(0f).getX() + EPS);
+        } else if (playerCollisionSides.contains(Side.RIGHT)) {
+            return Math.min(0f, terrain.getRect(0f).getX() - player.getRect(0f).getMaxX() - EPS);
+        } else {
+            return 0.0f;
+        }
     }
 
     @Override
@@ -56,31 +88,72 @@ public class GravityPhysics implements Physics {
         PhysicalState state = entity.getPhysicalState();
         float velX = state.velX;
         float velY = state.velY;
+        float accX = state.accX;
         float accY = state.accY;
+        float corrX = 0f;
+        float corrY = Float.POSITIVE_INFINITY;
         for (RectCollision c : collisions) {
+            Collidable other = c.getOtherEntity(entity);
             EnumSet<Side> sides = c.getMyCollisions(entity);
             Preconditions.checkArgument(sides != null, "Collision passed did not involve entity: " + entity + ", " + c);
 
             if (Side.isSimpleSet(sides)) {
                 if (sides.contains(Side.TOP)) {
-                    velY = Math.max(velY, 0);
+                    if (other instanceof BouncyTile) {
+                        velY = Math.abs(velY);
+                        accY = Math.max(accY, 0);
+                    } else {
+                        velY = Math.max(velY, 0);
+                        accY = Math.max(accY, 0);
+                    }
                 }
                 if (sides.contains(Side.LEFT)) {
-                    velX = Math.max(velX, 0);
+                    if (other instanceof BouncyTile) {
+                        velX = Math.abs(velX);
+                        accX = Math.max(accX, 0);
+                    } else {
+                        velX = Math.max(velX, 0);
+                        accX = Math.max(accX, 0);
+                    }
                 }
                 if (sides.contains(Side.BOTTOM)) {
-                    velY = Math.min(velY, 0);
-                    accY = 0;
+                    if (isRealBottomCollision(entity, other, sides)) {
+                        if (other instanceof BouncyTile) {
+                            velY = -Math.abs(velY);
+                            accY = Math.min(accY, 0);
+                        } else {
+                            velY = Math.min(velY, 0);
+                            accY = Math.min(accY, 0);
+                        }
+                        corrY = Math.max(0f, Math.min(corrY, other.getRect(0f).getY() - entity.getRect(0f).getMaxY() - EPS));
+                    } else {
+                        corrX = getFakeBottomCollisionCorrection(entity, other, sides);
+                    }
                 }
                 if (sides.contains(Side.RIGHT)) {
-                    velX = Math.min(velX, 0);
+                    if (other instanceof BouncyTile) {
+                        velX = -Math.abs(velX);
+                        accX = Math.min(accX, 0);
+                    } else {
+                        velX = Math.min(velX, 0);
+                        accX = Math.min(accX, 0);
+                    }
                 }
             } else {
                 velX = 0;
                 velY = 0;
+                accX = 0;
+                accY = 0;
             }
         }
-        return new PhysicalState(entity.getRect(0), velX, velY, 0, accY);
+        Rect r = entity.getRect(0f);
+        if (corrX != 0.0f) {
+            r = r.translate(corrX, 0f);
+        }
+        if (!Float.isInfinite(corrY)) {
+            r = r.translate(0f, corrY);
+        }
+        return new PhysicalState(r, velX, velY, accX, accY);
     }
 
     @Override

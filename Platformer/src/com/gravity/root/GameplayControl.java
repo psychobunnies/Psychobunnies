@@ -16,4 +16,7 @@ public interface GameplayControl {
 
     public void swapPlayerControls(Control ctrl);
 
+    public void specialMoveSlingshot(Player slingshoter, float strength);
+
+    public void playerFinishes(Player player);
 }

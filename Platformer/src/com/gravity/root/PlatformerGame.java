@@ -13,13 +13,16 @@ public class PlatformerGame extends StateBasedGame {
 
     //@formatter:off
     private LevelInfo[] levels = {
-            new LevelInfo("Level 1", "Staircases are hard!", "assets/Levels/game_map_final.tmx", 1001),
-            new LevelInfo("Level 2", "More traditional Mario", "assets/Levels/level2.tmx", 1002)
+            new LevelInfo("Tutorial", "Controls Turorial", "assets/Levels/tutorial.tmx", 1000),
+            new LevelInfo("Slingshot", "Slingshot Turorial", "assets/Levels/slingshot_intro.tmx", 1001),
+            new LevelInfo("Split World", "Slingshot Fun", "assets/Levels/split_world.tmx", 1002),
+            new LevelInfo("Level 1", "Staircases are hard!", "assets/Levels/game_map_final.tmx", 1003),
+            new LevelInfo("Level 2", "More traditional Mario", "assets/Levels/level2.tmx", 1004)
     };
     //@formatter:on
 
     public PlatformerGame() {
-        super("Psychic Psycho Bunnies v1.0");
+        super("Psychic Psycho Bunnies v1.1");
     }
 
     @Override
@@ -27,7 +30,7 @@ public class PlatformerGame extends StateBasedGame {
         addState(new MainMenuState());
         addState(new LevelSelectState(levels));
         for (LevelInfo level : levels) {
-            addState(new GameplayState(level.mapfile, level.stateId));
+            addState(new GameplayState(level.title, level.mapfile, level.stateId));
         }
         addState(new CreditsState());
         addState(new GameOverState());

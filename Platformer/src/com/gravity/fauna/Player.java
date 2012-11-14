@@ -4,8 +4,10 @@ import org.newdawn.slick.geom.Vector2f;
 
 import com.gravity.entity.PhysicsEntity;
 import com.gravity.geom.Rect;
+import com.gravity.physics.Collidable;
 import com.gravity.physics.GravityPhysics;
 import com.gravity.physics.PhysicalState;
+import com.gravity.root.GameplayControl;
 
 public class Player extends PhysicsEntity<GravityPhysics> {
 
@@ -16,18 +18,27 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     public static int TOP_LEFT = 0, TOP_RIGHT = 1, BOT_RIGHT = 2, BOT_LEFT = 3;
 
     // PLAYER STARTING CONSTANTS (Units = pixels, milliseconds)
-    private static final float JUMP_POWER = 0.5f;
+    private static final float JUMP_POWER = 0.6f;
     private static final float MOVEMENT_INCREMENT = 1f / 8f;
     private static final Rect BASE_SHAPE = new Rect(0f, 0f, 15f, 32f);
     private static final Vector2f DEFAULT_VELOCITY = new Vector2f(0, 0);
+
+    private final float MAX_SLING_STRENGTH = 1f;
+    private final float SLING_SPEED = 1f / 500f;
+
+    private final GameplayControl control;
 
     // GAME STATE STUFF
     private final String name;
     private Movement requested = Movement.STOP;
 
-    public Player(GravityPhysics physics, String name, Vector2f startpos) {
+    public boolean slingshot;
+    public float slingshotStrength = 0;
+
+    public Player(GameplayControl control, GravityPhysics physics, String name, Vector2f startpos) {
         super(new PhysicalState(BASE_SHAPE.translate(startpos.x, startpos.y), DEFAULT_VELOCITY.copy()), physics);
         this.name = name;
+        this.control = control;
     }
 
     public String getName() {
@@ -81,6 +92,25 @@ public class Player extends PhysicsEntity<GravityPhysics> {
         }
     }
 
+    /**
+     * 
+     * @param pressed
+     *            true if keydown, false if keyup
+     */
+    public void specialKey(boolean pressed) {
+        if (pressed) {
+            slingshot = true;
+        } else {
+            slingshot = false;
+            control.specialMoveSlingshot(this, slingshotStrength);
+        }
+    }
+
+    public void slingshotMe(float strength, Vector2f direction) {
+        Vector2f velocity = direction.copy().normalise().scale(strength);
+        state = state.setVelocity(velocity.x, velocity.y);
+    }
+
     // //////////////////////////////////////////////////////////////////////////
     // //////////////////////////ON-TICK METHODS/////////////////////////////////
     // //////////////////////////////////////////////////////////////////////////
@@ -98,6 +128,11 @@ public class Player extends PhysicsEntity<GravityPhysics> {
         default:
             // no-op
         }
+        if (slingshot) {
+            slingshotStrength += millis * SLING_SPEED;
+            slingshotStrength = Math.min(slingshotStrength, MAX_SLING_STRENGTH);
+        } else {
+            slingshotStrength = 0;
+        }
     }
-
 }

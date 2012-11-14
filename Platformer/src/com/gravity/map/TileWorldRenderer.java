@@ -7,6 +7,8 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import com.google.common.collect.Lists;
+import com.gravity.entity.TriggeredText;
+import com.gravity.entity.TriggeredTextRenderer;
 import com.gravity.root.Renderer;
 
 public class TileWorldRenderer implements Renderer {
@@ -18,6 +20,7 @@ public class TileWorldRenderer implements Renderer {
     private Image lastBackGround;
     private List<Image> backgrounds;
     int tweener;
+    private List<TriggeredTextRenderer> triggeredTextRenderers;
 
     public TileWorldRenderer(TileWorld tileMap) {
         this.tileMap = tileMap;
@@ -36,6 +39,10 @@ public class TileWorldRenderer implements Renderer {
         backgrounds.add(Background2);
         backgrounds.add(Background3);
         backgrounds.add(Background4);
+        triggeredTextRenderers = Lists.newArrayList();
+        for (TriggeredText tt : tileMap.getTriggeredTexts()) {
+            triggeredTextRenderers.add(new TriggeredTextRenderer(tt));
+        }
     }
 
     @Override
@@ -59,5 +66,9 @@ public class TileWorldRenderer implements Renderer {
         // TiledMap supports easy rendering. Let's use it!
         // Later we'll need to some how adjust x,y for offset/scrolling
         tileMap.render(g, offsetX, offsetY);
+
+        for (TriggeredTextRenderer ttr : triggeredTextRenderers) {
+            ttr.render(g, offsetX, offsetY);
+        }
     }
 }

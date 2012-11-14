@@ -133,6 +133,9 @@ public class PlayerKeyboardController {
             player.jump(true);
             GameSounds.playSickRabbitBeat(); // TODO: clean this up
             return true;
+        } else if (key == misc) {
+            player.specialKey(true);
+            return true;
         }
         return false;
     }
@@ -152,6 +155,9 @@ public class PlayerKeyboardController {
             return true;
         } else if (key == jump) {
             player.jump(false);
+            return true;
+        } else if (key == misc) {
+            player.specialKey(false);
             return true;
         }
         return false;

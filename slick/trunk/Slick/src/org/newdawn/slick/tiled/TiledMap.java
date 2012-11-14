@@ -422,13 +422,16 @@ public class TiledMap {
 	 */
 	public void render(int x, int y, int sx, int sy, int width, int height,
 			int l, boolean lineByLine) {
+		System.out.println("Rendering...");
 		Layer layer = (Layer) layers.get(l);
 
 		switch (orientation) {
 		case ORTHOGONAL:
 			for (int ty = 0; ty < height; ty++) {
-				layer.render(x, y, sx, sy, width, ty, lineByLine, tileWidth,
-						tileHeight);
+				if (layer.visible) {
+					layer.render(x, y, sx, sy, width, ty, lineByLine, tileWidth,
+							tileHeight);
+				}
 			}
 			break;
 		case ISOMETRIC:
@@ -467,8 +470,10 @@ public class TiledMap {
 			for (int ty = 0; ty < height; ty++) {
 				for (int i = 0; i < layers.size(); i++) {
 					Layer layer = (Layer) layers.get(i);
-					layer.render(x, y, sx, sy, width, ty, lineByLine,
-							tileWidth, tileHeight);
+					if (layer.visible) {
+						layer.render(x, y, sx, sy, width, ty, lineByLine,
+								tileWidth, tileHeight);
+					}
 				}
 			}
 			break;

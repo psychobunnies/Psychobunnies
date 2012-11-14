@@ -1,11 +1,47 @@
-When designing new levels, please follow these guidelines to make sure the level is loaded properly and plays as expected.
+=Designing levels=
 
-1. In case anything in this document is unclear, or you think you followed all the guidelines but the game doesn't work as expected, email mazemaker@mit.edu with an exact description of what is going on and ask the programming team for help. If you want to play with the code to see what is going on, DO NOT PUSH THE CHANGES INTO THE REPOSITORY!
+When designing new levels, please make sure your level follows these guidelines to make sure the level is loaded properly and plays as expected. It's not that long a file, so PLEASE READ ALL OF IT.
 
-2. The main terrain tiles (not perspective/shading tiles) should all be on a layer named "collisions" (case sensitive, quotes for clarity). This is what the collision engine uses when checking where the player may move; if your terrain is not on this layer then the player will move right through it.
+==Absolute Basics==
 
-3. Any tiles that would like to be notified when a player steps on them (e.g. spikes) need to be on a layer named "spikes" (case sensitive, quotes for clarity). This layer is NOT to be used for terrain because it will adversely impact performance. If your special tiles are not on this layer then they will not get notified that the player has collided with them (either by running over/into the tile or by falling onto it).
+Levels are specified by .tmx files, which you can create by a convenient GUI called Tiled, available for free at mapeditor.org. The level tilesets are in the Platformer/assets/Levels directory. 
 
-4. When you are done designing the level, put the .tmx file and any assets it is using in assets/Levels. Use a descriptive name for the tmx file, don't just name it "custom level.tmx" or something like that. Then, go to PlatformerGame.java and add a new entry in the levels array at the top of the file, including the level name, description, filepath and state id. The state id is basically the next number in the sequence (so if the previous levels have state ids of 1001 and 1002, the next level should have a state id of 1003). Everything else should work automagically.
+==.TMX FILES==
 
-5. In case you need additional functionality for a game mechanic, email mazemaker@mit.edu with a detailed specification of what you need and someone will try to assist as soon as possible. If you want to try your hand at implementing the map mechanic yourself, make a separate branch of the project and develop on that one. DO NOT MERGE THE CHANGES INTO MASTER BEFORE CHECKING WITH THE PROGRAMMING TEAM!
+Your level should have the following tile layers, in some order:
+
+* "collisions" the main terrain tiles which bunnies collide with should go here. Walls, floors, etc., with the exception of spikes or eye candy - those should go on "spikes" and any other level, respectively. This layer should be visible.
+
+* "spikes" spike tiles need to be on this layer. Don't use this layer for regular terrain - "collisions" is much easier on performance.  This layer should be visible.
+
+* "players" if you want custom start positions for the players, set two tiles in this layer. One player will start where the first tile is, the second on the other one. 
+
+* "bouncys" bouncy tiles should be put here.
+
+Your level may also have the following group layer:
+
+* "level markers" is used for level locations, currently only the location of the win zone. By default, this is the right edge of the level. However, if you have a custom win location, create a rectangle object in this layer with name "finish". (Object properties/names are set by right-clicking the object and selecting "Object Properties") 
+
+Your level may also include any number of text layers, which may be named any way you want, as long as they include the following layer properties:
+* "text": the text you would like to appear. Dollar signs "$" denote new lines
+* "x": the x-position, _in pixels_, of the text.
+* "y": the y-position.
+Text layers will show their text whenever a bunny is overlaps with a tile on the layer. Tiles on the layer will be made invisible by the code, so you can see them while developing, but players will not. 
+
+==TILESET FILES==
+
+Please make sure that these files and the .tmx files are in same folder when you create them - otherwise, other people will ask why they're getting "Unable to locate file C:\Users\xiao\Documents\BunnyLevels" errors instead of loading levels. 
+
+When you want to playtest, please make sure these files get moved to the Platformer/assets/Levels/ directory. Make sure it's a descriptive name so we know what level this is without having to play it!
+
+==PlatformerGame.java==
+
+When you want to play your new level, open up the PlatformerGame.java file in the Platformer/src/com/gravity/root directory. You'll see a "levels" array near the top of the file. Add a new entry to the list, with a short title, description, path to your new level, and a level id. The level id is nothing special, just some number in sequece after 1000 that no other level has. Start up the game, it should just work!
+
+==Implementing new Mechanics==
+
+If you have a mechanic you want to implement for your level, feel free to implement the mechanic yourself *provided it is on YOUR OWN BRANCH in the repository*.  Also feel free to bring up your new mechanic in meetings or email mazemaker@, and see if the programmers can do it for you ^_^. 
+
+==Final Comment==
+
+If you have any questions, PLEASE EMAIL/CHAT the group or just the programmers so we can help you design your level. We're all in this together, after all.

@@ -1,4 +1,4 @@
-package com.gravity.entity;
+package com.gravity.map;
 
 import java.util.Collection;
 import java.util.Set;
@@ -10,7 +10,7 @@ import com.gravity.physics.Collidable;
 import com.gravity.physics.RectCollision;
 import com.gravity.root.GameplayControl;
 
-public final class SpikeEntity extends TileWorldEntity {
+public final class SpikeEntity extends StaticCollidable {
 
     private final GameplayControl controller;
     private final Set<Player> collidedPlayers = Sets.newIdentityHashSet();
@@ -33,5 +33,4 @@ public final class SpikeEntity extends TileWorldEntity {
         }
         super.handleCollisions(ticks, collisions);
     }
-
 }

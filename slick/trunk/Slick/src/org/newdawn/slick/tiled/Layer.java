@@ -89,23 +89,23 @@ public class Layer {
 		if (!opacityS.equals("")) {
 			opacity = Float.parseFloat(opacityS);
 		}
-		if (element.getAttribute("visible").equals("0")) {
-			visible = false;
-		}
 
 		// now read the layer properties
 		Element propsElement = (Element) element.getElementsByTagName(
 				"properties").item(0);
+		props = new Properties();
 		if (propsElement != null) {
 			NodeList properties = propsElement.getElementsByTagName("property");
 			if (properties != null) {
-				props = new Properties();
 				for (int p = 0; p < properties.getLength(); p++) {
 					Element propElement = (Element) properties.item(p);
 
 					String name = propElement.getAttribute("name");
 					String value = propElement.getAttribute("value");
 					props.setProperty(name, value);
+					if ("0".equals(props.getProperty("visible"))) {
+						visible = false;
+					}
 				}
 			}
 		}
@@ -349,9 +349,11 @@ public class Layer {
 		ArrayList<Tile> tiles = new ArrayList<Tile>();
 		for (int x = 0; x < this.width; x++) {
 			for (int y = 0; y < this.height; y++) {
-				String tilesetName = tmap.tileSets.get(this.data[x][y][0]).name;
-				Tile t = new Tile(x, y, this.name, y, tilesetName);
-				tiles.add(t);
+			    if (this.data[x][y][0] != -1) {
+    				String tilesetName = tmap.tileSets.get(this.data[x][y][0]).name;
+    				Tile t = new Tile(x, y, this.name, y, tilesetName);
+    				tiles.add(t);
+			    }
 			}
 		}
 		return tiles;
@@ -454,4 +456,7 @@ public class Layer {
 		return false;
 	}
 
+	public int getLocalTileId(int x, int y) {
+		return data[x][y][1];
+	}
 }

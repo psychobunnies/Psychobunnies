@@ -2,7 +2,6 @@ package com.gravity.fauna;
 
 import java.util.List;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -10,7 +9,6 @@ import org.newdawn.slick.geom.Vector2f;
 
 import com.google.common.collect.Lists;
 import com.gravity.physics.PhysicalState;
-import com.gravity.physics.PhysicsFactory;
 import com.gravity.root.Renderer;
 
 public class PlayerRenderer implements Renderer {
@@ -91,8 +89,9 @@ public class PlayerRenderer implements Renderer {
         Vector2f pos = state.getPosition();
         g.drawImage(lastImage, pos.x + offsetX, pos.y + offsetY);
         tweener++;
+        //@formatter:off
         /*
-         */// if we ever need to draw hitboxes again:
+         * // if we ever need to draw hitboxes again:
         g.pushTransform();
         g.translate(offsetX, offsetY);
         g.setColor(Color.red);
@@ -102,6 +101,7 @@ public class PlayerRenderer implements Renderer {
         g.setColor(Color.white);
         g.resetTransform();
         g.popTransform();
-
+        */
+        //@formatter:on
     }
 }

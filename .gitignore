@@ -4,3 +4,4 @@ eclimd.log
 .metadata/
 /slick/
 !/slick/trunk/Slick
+*.psd

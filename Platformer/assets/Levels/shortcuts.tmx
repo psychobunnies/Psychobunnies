@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="67" height="24" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="betterBunnyDirt" tilewidth="32" tileheight="32">
+  <image source="betterBunnyDirt.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="2" name="bunnyTile" tilewidth="32" tileheight="32">
+  <image source="bunnyTile.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="3" name="perspective_walls" tilewidth="32" tileheight="32">
+  <image source="perspective_walls.png" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="67" name="markers" tilewidth="32" tileheight="32">
+  <image source="levelMarkers.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="83" name="spikes" tilewidth="32" tileheight="32">
+  <image source="Spikes.png" width="32" height="32"/>
+ </tileset>
+ <layer name="players" width="67" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzt0jEKACAMA8D+zcHF/7/HUemgmyLeQaBjCI0AAAAAAHhPS/mZLYbdFmW665FG9/iLtQ7iBwVL
+  </data>
+ </layer>
+ <layer name="collisions" width="67" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztWNEOwyAItP3F/v+/LE3mRogIyknZ4iW8tA0HJ4L2KKUc2z62sbWg2Fp8kU2Lkxn6+x6yaUERHVekFnwNtbX8Zy0k/t67Ee0oJN017dFajMSeaX+urgvN9y9p4e3TEbnecV0AP566yND/zoKr7Yg9gpj9EZC0QJ1fNHD/K3it+8dTF5RjNgeJG1mrVl8jWvA8UXvU8tzTw2e16HFxnx4trreh66J1tlpRF57cW/H1uJ84d6DnyGgdZ5ozLS2Q92ALv4YonbxnLQS/5xukTk/PEQu0uyySZ7Z3ZtGiziQEj/SfQJtNWp+p1opT46r5aTORzqNef7Pkd9sLzckExQ==
+  </data>
+ </layer>
+ <objectgroup name="finish" width="67" height="24">
+  <object x="1978" y="607" width="128" height="128"/>
+ </objectgroup>
+</map>

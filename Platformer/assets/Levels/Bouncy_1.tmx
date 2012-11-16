@@ -8,12 +8,12 @@
  </tileset>
  <layer name="collisions" width="200" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt3M0KgzAYRFHTVd//iYuLQghqfsxnZuQeEFxYmMUMaC3dNg3fjgNAvE/QtcAbsA9ESsXRQ6Fv7AORejeRe6Jv5X7LHbMPzHDWM/V91LAPrNCyJYW+sQ+oKPul0Lc8w8x7MaDX6n0cdT/PUMvDPhBp9T6OsA+o+PdrxrP9LHumlJ3XrgVa3e23Wt/YB5So9Y19YNTI/VDtM2p9Yx+Ikk7Or65T+P6q510n+8CT3Prmlhfe3Prmlhfe3Prmlhfe3Prmlhfe3Prmlhfe3Prmlhfe3Prmlhfe1PpWe2+j8Hsx6Mg70fJubeRocee/fVbkxbv8ANXAAVg=
+   eJzt3LEKwzAUQ9G4U///i0M3Y9LYD/vFUrgHAhk8aJAgbUqPQ8M3cAHI90k6C7wB+0Cm0lwRCn1jH8gU3UTtib61+213zD6wSq9rUQp9Yx/YYWRLCn1jH1DR9kuhb3WGlc9iQNTufVx1v87Qy8M+kGn3Pq6wDyia/Wy/yq/zpbrvnQVGzfZbrW/sA0rU+sY+MCP6TNQ7r9Y39oEs5c/93TmF768i7zrZB57k1je3vPDm1je3vPDm1je3vPDm1je3vPDm1je3vPDm1je3vPDm1je3vPCm1rfeexuF34tBx8j7tNlrxMx/++zIi3c5ARt8AVU=
   </data>
  </layer>
  <layer name="bouncys" width="200" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt2kEKwyAURdEM3f+KO2995Ruqpsk5IASJ6MA78zg+tQ1jxI7zjZ6R+9p1F6r7fvvPPWY2fUCmD8ju0IdOmOVKfVTmWudbH8yiD8j0AZk+INMHZPqA7Kl9vL8j8baEnqf2ARW9+7Z635E5fbCSPiDTB2T6gEwfkOkDMn1AtquPnsr++mClf+5jZB2coQ/IVvXRCuPMGm+m+JUXoLkHOQ==
+   eJzt2kEOgyAURVGH7n/Fnbc8+zEFrJ6TkBiigQF3YMK2fdoXjB4r9te7R+5r1Vmornv0nnPMaPqATB+Q3aEPnTDKlfqozO2NZ30wij4g0wdk+oBMH5DpA7Kn9vF+j8TdElqe2gdUHJ2/metW5/TBTPqATB+Q6QMyfUCmD8j0AdmqPloqa+uDmf65j57v4Ax9QDbzf+PbOPONO1P8yguHeQcx
   </data>
  </layer>
  <layer name="spikes" width="200" height="24">

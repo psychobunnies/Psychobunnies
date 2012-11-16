@@ -34,7 +34,6 @@ public class MovingCollidable implements Collidable, UpdateCycling {
         Vector2f trans = new Vector2f(tileTransX * tileWidth, tileTransY * tileHeight);
         vel = trans.getNormal();
         vel.scale(speed / 1000.0f);
-        System.out.println("Vel: " + vel);
         finalPosition = origPosition.copy().add(trans);
         
         reversed = false;
@@ -104,13 +103,9 @@ public class MovingCollidable implements Collidable, UpdateCycling {
 
     @Override
     public void finishUpdate(float millis) {
-        System.out.println("old position: " + shape);
-        System.out.println("vel: " + vel + ", millis: " + millis);
         RectWithReversal result = getRectWithReversal(millis);
         reversed = result.reverse;
         shape = result.rect;
-        System.out.println("new position: " + shape);
-        System.out.println("");
     }
 
     @Override

@@ -183,16 +183,17 @@ public class TileWorld implements GameWorld {
         movingCollMap = Maps.newHashMap();
         for (Layer layer : map.getLayers()) {
             final float speed = Float.parseFloat(layer.props.getProperty("speed", "-1.0"));
-            final int transX = Integer.parseInt(layer.props.getProperty("translationX", "-1"));
-            final int transY = Integer.parseInt(layer.props.getProperty("translationY", "-1"));
-            if (speed < 0 || transX < 0 || transY < 0) continue;
+            final int transX = Integer.parseInt(layer.props.getProperty("translationX", "-22222"));
+            final int transY = Integer.parseInt(layer.props.getProperty("translationY", "-22222"));
+            System.out.println(layer.name + ": " + speed + ", " + transX + ", " + transY);
+            if (speed < 0 || transX == -22222 || transY  == -22222) continue;
 
             // Found a moving layer.
             layer.visible = false;
             List<Collidable> colls = processLayer(layer.name, new CollidableCreator() {
                 @Override
                 public Collidable createCollidable(Rect r) {
-                    return new MovingCollidable(tileWidth, tileHeight, r, transX, transY, speed);
+                    return new MovingCollidable(controller, tileWidth, tileHeight, r, transX, transY, speed);
                 }
             });
             entityNoCalls.addAll(colls);

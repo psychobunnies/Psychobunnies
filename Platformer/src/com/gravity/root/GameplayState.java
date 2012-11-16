@@ -133,7 +133,7 @@ public class GameplayState extends BasicGameState implements GameplayControl {
         PanningCamera pancam = new PanningCamera(2000, new Vector2f(0, 0), new Vector2f(0.035f, 0), new Vector2f(map.getWidth()
                 - container.getWidth(), 0), container.getWidth(), container.getHeight());
         camera = pancam;
-        if (ID == 1002) {
+        if (ID == 1002 || ID == 1005) {
             camera = new PlayerStalkingCamera(container.getWidth(), container.getHeight(), new Vector2f(0, 0), new Vector2f(map.getWidth(),
                     map.getHeight()), playerA, playerB);
         }

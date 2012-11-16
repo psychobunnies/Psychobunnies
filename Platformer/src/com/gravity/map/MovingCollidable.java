@@ -4,9 +4,11 @@ import java.util.Collection;
 
 import org.newdawn.slick.geom.Vector2f;
 
+import com.gravity.fauna.Player;
 import com.gravity.geom.Rect;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.RectCollision;
+import com.gravity.root.GameplayControl;
 import com.gravity.root.UpdateCycling;
 
 /**
@@ -16,16 +18,19 @@ import com.gravity.root.UpdateCycling;
  */
 
 public class MovingCollidable implements Collidable, UpdateCycling {
-
+    
+    private GameplayControl controller;
     private Rect shape;
     private Vector2f origPosition;
     private int tileWidth, tileHeight;
     private Vector2f vel, finalPosition;
     private boolean reversed;
     
-    public MovingCollidable(int tileWidth, int tileHeight, Rect shape,
+    public MovingCollidable(GameplayControl controller,
+            int tileWidth, int tileHeight, Rect shape,
             int tileTransX, int tileTransY, float speed) {
         //System.out.println("making MC");
+        this.controller = controller;
         this.shape = shape;
         this.origPosition = shape.getPoint(Rect.Corner.TOPLEFT);
         this.tileWidth = tileWidth;
@@ -63,7 +68,7 @@ public class MovingCollidable implements Collidable, UpdateCycling {
         }
     }
     
-    public RectWithReversal getRectWithReversal (float millis) {
+    public RectWithReversal getRectWithReversal(float millis) {
         boolean reverse;
         Vector2f position;
         if (reversed) {
@@ -83,7 +88,7 @@ public class MovingCollidable implements Collidable, UpdateCycling {
                 position = potentialResult;
             }
         }
-        return new RectWithReversal(reverse, shape.setPosition(position.x, position.y));
+        return new RectWithReversal(reverse ^ reversed, shape.setPosition(position.x, position.y));
     }
 
     @Override
@@ -93,7 +98,13 @@ public class MovingCollidable implements Collidable, UpdateCycling {
 
     @Override
     public void rehandleCollisions(float millis, Collection<RectCollision> collisions) {
-        // no-op
+        // This should mean we're trying to crush a player.
+        for (RectCollision coll : collisions) {
+            Collidable c = coll.getOtherEntity(this);
+            if (c instanceof Player) {
+                controller.playerDies((Player)c);
+            }
+        }
     }
 
     @Override

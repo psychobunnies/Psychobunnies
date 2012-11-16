@@ -17,7 +17,8 @@ public class PlatformerGame extends StateBasedGame {
             new LevelInfo("Slingshot", "Slingshot Turorial", "assets/Levels/slingshot_intro.tmx", 1001),
             new LevelInfo("Split World", "Slingshot Fun", "assets/Levels/split_world.tmx", 1002),
             new LevelInfo("Level 1", "Staircases are hard!", "assets/Levels/game_map_final.tmx", 1003),
-            new LevelInfo("Level 2", "More traditional Mario", "assets/Levels/level2.tmx", 1004)
+            new LevelInfo("Level 2", "More traditional Mario", "assets/Levels/level2.tmx", 1004),
+            new LevelInfo("Bouncy 1", "A first brush with bouncing", "assets/Levels/Bouncy_1.tmx", 1004),
     };
     //@formatter:on
 

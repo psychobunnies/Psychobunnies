@@ -17,7 +17,7 @@
  </tileset>
  <layer name="players" width="67" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt0jEKACAMA8D+zcHF/7/HUemgmyLeQaBjCI0AAAAAAHhPS/mZLYbdFmW665FG9/iLtQ7iBwVL
+   eJztzqENAAAIwDB+Q/D/R1g+gIRWTS4CAAAAAAB+yNG1dsEFDTBTAIs=
   </data>
  </layer>
  <layer name="collisions" width="67" height="24">

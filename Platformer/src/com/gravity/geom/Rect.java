@@ -23,8 +23,8 @@ public class Rect {
     /**
      * Enum representing the corners of the rectangle.
      * <ul>
-     * <li>BOTLEFT is (x, y)
-     * <li>TOPRIGHT is (x + width, y + height)
+     * <li>TOPLEFT is (x, y)
+     * <li>BOTRIGHT is (x + width, y + height)
      * </ul>
      * 
      * @author xiao

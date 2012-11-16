@@ -29,6 +29,7 @@ Your level may also include any number of text layers, which may be named any wa
 Text layers will show their text whenever a bunny is overlaps with a tile on the layer. Tiles on the layer will be made invisible by the code, so you can see them while developing, but players will not. 
 
 For each set of moving tiles, create a new layer with properties "speed", which is floating-point and in tiles per second, and "translationX" and "translationY", which specify how far away the final position is, in tiles.
+NOTE: the collision engine does not yet handle players being crushed by moving platforms, so make sure you don't let that happen.
 
 ==TILESET FILES==
 

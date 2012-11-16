@@ -22,14 +22,4 @@
  <objectgroup name="level markers" width="150" height="30">
   <object name="finish" type="finish" x="4768" y="0" width="32" height="608"/>
  </objectgroup>
- <layer name="moving" width="150" height="30">
-  <properties>
-   <property name="speed" value="1.0"/>
-   <property name="translationX" value="0"/>
-   <property name="translationY" value="4"/>
-  </properties>
-  <data encoding="base64" compression="zlib">
-   eJztw6ENAAAIA7Dx/9PYeQSmTZoAAAAAAAAAAABwNRUAAAAAAAAA4MsCqJAABA==
-  </data>
- </layer>
 </map>

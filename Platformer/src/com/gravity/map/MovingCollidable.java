@@ -17,41 +17,74 @@ import com.gravity.root.UpdateCycling;
 
 public class MovingCollidable implements Collidable, UpdateCycling {
 
-    private Rect origShape;
-    private float velX, velY;
-    private float timeSinceStart;
+    private Rect shape;
+    private Vector2f origPosition;
     private int tileWidth, tileHeight;
-    private int transX, transY;
-
+    private Vector2f vel, finalPosition;
+    private boolean reversed;
+    
     public MovingCollidable(int tileWidth, int tileHeight, Rect shape,
-            int transX, int transY, float speed) {
+            int tileTransX, int tileTransY, float speed) {
         //System.out.println("making MC");
-        this.origShape = shape;
-        this.transX = transX;
-        this.transY = transY;
+        this.shape = shape;
+        this.origPosition = shape.getPoint(Rect.Corner.TOPLEFT);
         this.tileWidth = tileWidth;
         this.tileHeight = tileHeight;
 
-        float normalizer = (float) (1 / Math.sqrt(transX * transX + transY * transY) / 1000.0);
-        this.velX = transX * tileWidth * normalizer * speed;
-        this.velY = transY * tileHeight * normalizer * speed;
-
-        this.timeSinceStart = 0;
+        Vector2f trans = new Vector2f(tileTransX * tileWidth, tileTransY * tileHeight);
+        vel = trans.getNormal();
+        vel.scale(speed / 1000.0f);
+        System.out.println("Vel: " + vel);
+        finalPosition = origPosition.copy().add(trans);
+        
+        reversed = false;
     }
 
     public Vector2f getOrigPosition() {
-        return origShape.getPoint(Rect.Corner.BOTLEFT);
+        return origPosition;
     }
 
     @Override
     public Vector2f getPosition(float millis) {
-        return getRect(millis).getPoint(Rect.Corner.BOTLEFT);
+        return getRect(millis).getPoint(Rect.Corner.TOPLEFT);
     }
 
     @Override
     public Rect getRect(float millis) {
-        float t = timeSinceStart + millis;
-        return origShape.translate(velX * t, velY * t);
+        return getRectWithReversal(millis).rect;
+    }
+    
+    private class RectWithReversal {
+        public final boolean reverse;
+        public final Rect rect;
+        
+        public RectWithReversal(boolean reverse, Rect rect) {
+            this.reverse = reverse;
+            this.rect = rect;
+        }
+    }
+    
+    public RectWithReversal getRectWithReversal (float millis) {
+        boolean reverse;
+        Vector2f position;
+        if (reversed) {
+            Vector2f potentialResult = shape.translate(vel.copy().scale(-millis)).getPoint(Rect.Corner.TOPLEFT);
+            reverse = potentialResult.distance(finalPosition) > origPosition.distance(finalPosition);
+            if (reverse) {
+                position = origPosition.copy().scale(2.0f).sub(potentialResult);
+            } else {
+                position = potentialResult;
+            }
+        } else {
+            Vector2f potentialResult = shape.translate(vel.copy().scale(millis)).getPoint(Rect.Corner.TOPLEFT);
+            reverse = potentialResult.distance(origPosition) > finalPosition.distance(origPosition);
+            if (reverse) {
+                position = finalPosition.copy().scale(2.0f).sub(potentialResult);
+            } else {
+                position = potentialResult;
+            }
+        }
+        return new RectWithReversal(reverse, shape.setPosition(position.x, position.y));
     }
 
     @Override
@@ -71,7 +104,13 @@ public class MovingCollidable implements Collidable, UpdateCycling {
 
     @Override
     public void finishUpdate(float millis) {
-        timeSinceStart += millis;
+        System.out.println("old position: " + shape);
+        System.out.println("vel: " + vel + ", millis: " + millis);
+        RectWithReversal result = getRectWithReversal(millis);
+        reversed = result.reverse;
+        shape = result.rect;
+        System.out.println("new position: " + shape);
+        System.out.println("");
     }
 
     @Override

@@ -31,6 +31,9 @@ public class PlatformerGame extends StateBasedGame {
             new LevelInfo("Bouncy 1", "A first brush with bouncing", "assets/Levels/Bouncy_1.tmx", 1006),
             new LevelInfo("Checkpointing", "", "assets/Levels/checkpointing.tmx", 1007),
             new LevelInfo("Falling", "So you thought you understood gravity...", "assets/Levels/falling.tmx", 1008),
+            new LevelInfo("Level 1", "Staircases are hard!", "assets/Levels/game_map_final.tmx", 1003),
+            new LevelInfo("Level 2", "More traditional Mario", "assets/Levels/level2.tmx", 1004),
+            new LevelInfo("Shortcuts", "Timetest", "assets/levels/shortcuts.tmx", 1009)
     };
     //@formatter:on
 

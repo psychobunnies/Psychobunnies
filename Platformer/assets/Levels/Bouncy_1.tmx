@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="200" height="24" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Bunny Dirt" tilewidth="32" tileheight="32">
+  <image source="bunnyTiles.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="9" name="Spikes" tilewidth="32" tileheight="32">
+  <image source="Spikes.png" width="32" height="32"/>
+ </tileset>
+ <layer name="collisions" width="200" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzt3LEKwzAUQ9G4U///i0M3Y9LYD/vFUrgHAhk8aJAgbUqPQ8M3cAHI90k6C7wB+0Cm0lwRCn1jH8gU3UTtib61+213zD6wSq9rUQp9Yx/YYWRLCn1jH1DR9kuhb3WGlc9iQNTufVx1v87Qy8M+kGn3Pq6wDyia/Wy/yq/zpbrvnQVGzfZbrW/sA0rU+sY+MCP6TNQ7r9Y39oEs5c/93TmF768i7zrZB57k1je3vPDm1je3vPDm1je3vPDm1je3vPDm1je3vPDm1je3vPDm1je3vPCm1rfeexuF34tBx8j7tNlrxMx/++zIi3c5ARt8AVU=
+  </data>
+ </layer>
+ <layer name="bouncys" width="200" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzt2kEOgyAURVGH7n/Fnbc8+zEFrJ6TkBiigQF3YMK2fdoXjB4r9te7R+5r1Vmornv0nnPMaPqATB+Q3aEPnTDKlfqozO2NZ30wij4g0wdk+oBMH5DpA7Kn9vF+j8TdElqe2gdUHJ2/metW5/TBTPqATB+Q6QMyfUCmD8j0AdmqPloqa+uDmf65j57v4Ax9QDbzf+PbOPONO1P8yguHeQcx
+  </data>
+ </layer>
+ <layer name="spikes" width="200" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzt2yEKADAMA8DY/v/DMxODiVEzUe4gLjI2CQAA9NQO/GJvAAAAAAAAAAAAAAAAADDD+VN9fVYrdx+AORa2aABk
+  </data>
+ </layer>
+ <objectgroup name="level markers" width="200" height="24">
+  <object name="finish" type="finish" x="2145" y="259">
+   <polygon points="0,0 0,92 223,91 221,-5"/>
+  </object>
+ </objectgroup>
+ <layer name="players" width="200" height="24" opacity="0">
+  <data encoding="base64" compression="zlib">
+   eJztw6ENAAAIA7A5/v8YM4tDtkkTAAAAAAAAAAAAAAAAAAAAuE0DAAB8WfiUAA8=
+  </data>
+ </layer>
+</map>

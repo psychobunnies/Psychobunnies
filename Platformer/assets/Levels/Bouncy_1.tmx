@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="200" height="24" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="202" height="30" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="Bunny Dirt" tilewidth="32" tileheight="32">
   <image source="bunnyTiles.png" width="128" height="64"/>
  </tileset>
  <tileset firstgid="9" name="Spikes" tilewidth="32" tileheight="32">
   <image source="Spikes.png" width="32" height="32"/>
  </tileset>
- <layer name="collisions" width="200" height="24">
+ <layer name="collisions" width="202" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt3LEKwzAUQ9G4U///i0M3Y9LYD/vFUrgHAhk8aJAgbUqPQ8M3cAHI90k6C7wB+0Cm0lwRCn1jH8gU3UTtib61+213zD6wSq9rUQp9Yx/YYWRLCn1jH1DR9kuhb3WGlc9iQNTufVx1v87Qy8M+kGn3Pq6wDyia/Wy/yq/zpbrvnQVGzfZbrW/sA0rU+sY+MCP6TNQ7r9Y39oEs5c/93TmF768i7zrZB57k1je3vPDm1je3vPDm1je3vPDm1je3vPDm1je3vPDm1je3vPDm1je3vPCm1rfeexuF34tBx8j7tNlrxMx/++zIi3c5ARt8AVU=
+   eJzt2+2KwjAQBVC7vv87y8KWBNGN0XY6Y8+BgEKx98dc0g+8XAAAONLPxPr0PMD/9ATG9ATGrkcHgCDL36pqZk+z/3FWesIelgdr5tj++AxzpydkFN2TLbuqJ7xr9l7cfsK3ug7W7G+tMsydnpBdhrnrM1S4n+J8Iu9P7r+vq88wyqMnHCHD3OkJmWV5P/k7+0v3eXQsRMs2d4/y9H3OlpdzyDZ39hO2MnOtNLq2yjZ3esK71uv3dT17X3L/TOmZys9Zq+Ulzp6zUW3uquUljp401fISR0+aanmJoydNtbzE0ZOmWl7i6ElTLS9x9KSplpc4etJUy8u+Xv3/+xbngexu1voA+Q==
   </data>
  </layer>
- <layer name="bouncys" width="200" height="24">
+ <layer name="bouncys" width="202" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt2kEOgyAURVGH7n/Fnbc8+zEFrJ6TkBiigQF3YMK2fdoXjB4r9te7R+5r1Vmornv0nnPMaPqATB+Q3aEPnTDKlfqozO2NZ30wij4g0wdk+oBMH5DpA7Kn9vF+j8TdElqe2gdUHJ2/metW5/TBTPqATB+Q6QMyfUCmD8j0AdmqPloqa+uDmf65j57v4Ax9QDbzf+PbOPONO1P8yguHeQcx
+   eJzt20EKgzAUBFChG+9/4lJod9IEtZ3/9T0ISBBiZAZd6LIAAJCy7jh/74Cu5BfG9ATG/tmTI+9sqQEv6SzMrv/tvPQeuL50xvSEDtIZ0xM6SGfszJ6k98J1pbO1tf7M3LpxnN4L1/Utf4n1Z+f0hH9Kv/frCR3oCYzpCYzpCYyls5XuyeM9tubh4+49gRnpbOkJHaSz9aueHP0+OH1fqCWdB88TOkhnS0/oIJ0tPaGDdLb0hA4qZmvmmmb7BWeomC09oZqK2dITqqmYLT2hmsR/WZ0G9/MEGHoIKg==
   </data>
  </layer>
- <layer name="spikes" width="200" height="24">
+ <layer name="spikes" width="202" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt2yEKADAMA8DY/v/DMxODiVEzUe4gLjI2CQAA9NQO/GJvAAAAAAAAAAAAAAAAADDD+VN9fVYrdx+AORa2aABk
+   eJztzrEJAAAIwDBX/3/YFxwUERLo3ggAAAAAAACm5fUAAAAAAAAAAAAAAAAAAAAAAG25FHxQ/vwA0A==
   </data>
  </layer>
- <objectgroup name="level markers" width="200" height="24">
-  <object name="finish" type="finish" x="2145" y="259">
+ <objectgroup name="level markers" width="202" height="30">
+  <object name="finish" type="finish" x="2209" y="451">
    <polygon points="0,0 0,92 223,91 221,-5"/>
   </object>
  </objectgroup>
- <layer name="players" width="200" height="24" opacity="0">
+ <layer name="players" width="202" height="30">
   <data encoding="base64" compression="zlib">
-   eJztw6ENAAAIA7A5/v8YM4tDtkkTAAAAAAAAAAAAAAAAAAAAuE0DAAB8WfiUAA8=
+   eJztw7EJAAAIA7Bu/v+xSz9wEhJIAgAAAAAAAAAAAAAAAAAAAAAAAFxNAwAAAMAnC2ZzAA8=
   </data>
  </layer>
 </map>

@@ -153,4 +153,9 @@
    eJxjYBgFo2AUjIKhB1yheDC4YSDdMRD2u2LBo/YPjP0DAQY6zY+CUTAKKAcAep0HSA==
   </data>
  </layer>
+ <layer name="disappearing" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztzjEBAAAIw7Dh3zQuGEdioE2ApnnQbz8AAHcWJHAABA==
+  </data>
+ </layer>
 </map>

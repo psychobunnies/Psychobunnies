@@ -33,18 +33,8 @@ public class TileWorld implements GameWorld {
     private Map<Layer, List<MovingCollidable>> movingCollMap;
 
     private final String name;
-    private final TiledMapPlus map;
+    public final TiledMapPlus map;
     private final GameplayControl controller;
-
-    private static final String TILES_LAYER_NAME = "collisions";
-    private static final String SPIKES_LAYER_NAME = "spikes";
-    private static final String PLAYERS_LAYER_NAME = "players";
-    private static final String MARKERS_LAYER_NAME = "level markers";
-    private static final String BOUNCYS_LAYER_NAME = "bouncys";
-    private static final String FINISH_MARKER_NAME = "finish";
-
-    private static final Vector2f PLAYER_ONE_DEFAULT_STARTPOS = new Vector2f(256, 512);
-    private static final Vector2f PLAYER_TWO_DEFAULT_STARTPOS = new Vector2f(224, 512);
 
     private interface CollidableCreator {
         Collidable createCollidable(Rect r);
@@ -219,6 +209,11 @@ public class TileWorld implements GameWorld {
     @Override
     public List<Collidable> getTerrainEntitiesNoCalls() {
         return entityNoCalls;
+    }
+
+    @Override
+    public Layer getLayer(String name) {
+        return map.getLayer(name);
     }
 
     @Override

@@ -14,6 +14,7 @@ import org.newdawn.slick.geom.Polygon;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.tiled.Layer;
 import org.newdawn.slick.tiled.TiledMapPlus;
 
 import com.google.common.base.Preconditions;
@@ -25,6 +26,8 @@ import com.gravity.fauna.Player;
 import com.gravity.fauna.PlayerKeyboardController;
 import com.gravity.fauna.PlayerKeyboardController.Control;
 import com.gravity.fauna.PlayerRenderer;
+import com.gravity.map.DisappearingTileController;
+import com.gravity.map.GameWorld;
 import com.gravity.map.LevelFinishZone;
 import com.gravity.map.MovingCollidable;
 import com.gravity.map.TileWorld;
@@ -59,6 +62,8 @@ public class GameplayState extends BasicGameState implements GameplayControl {
     private final Random rand = new Random();
     private Camera camera;
 
+    private DisappearingTileController dis;
+
     private boolean leftRemapped, rightRemapped, jumpRemapped;
     private Color lightPink = Color.pink.brighter();
     private Color lightYellow = new Color(1, 1, 0.5f);
@@ -83,8 +88,10 @@ public class GameplayState extends BasicGameState implements GameplayControl {
     public void reloadGame() {
         pauseRender();
         pauseUpdate();
+
         collider = new LayeredCollisionEngine();
         updaters = Lists.newLinkedList();
+
         gravityPhysics = PhysicsFactory.createDefaultGravityPhysics(collider);
 
         // Map initialization
@@ -138,6 +145,12 @@ public class GameplayState extends BasicGameState implements GameplayControl {
                     map.getHeight()), playerA, playerB);
         }
         updaters.add(pancam);
+
+        Layer l = map.getLayer(GameWorld.DISAPPEARING_LAYER_NAME);
+        if (l != null) {
+            dis = new DisappearingTileController(1000f, 1000f, 3000f, 0f, 0.4f, 3, l);
+            updaters.add(dis);
+        }
 
         unpauseRender();
         unpauseUpdate();

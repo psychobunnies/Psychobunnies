@@ -17,6 +17,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.gravity.entity.TriggeredText;
 import com.gravity.entity.TriggeredTextEntity;
+import com.gravity.fauna.Player;
 import com.gravity.geom.Rect;
 import com.gravity.physics.Collidable;
 import com.gravity.root.GameplayControl;
@@ -31,6 +32,8 @@ public class TileWorld implements GameWorld {
     private List<Collidable> entityNoCalls, entityCallColls;
     private List<TriggeredText> triggeredTexts;
     private Map<Layer, List<MovingCollidable>> movingCollMap;
+    
+    private List<Vector2f> startPositions = null;
 
     private final String name;
     public final TiledMapPlus map;
@@ -193,6 +196,41 @@ public class TileWorld implements GameWorld {
             }
             movingCollMap.put(layer, movingColls);
         }
+        
+        for (Layer layer : map.getLayers()) {
+            String type = layer.props.getProperty("type", "");
+            if (!type.equals("checkpoint")) continue;
+            
+            try {
+                System.out.println("checkpoint layer " + layer.name + " !");
+                Vector2f startPosA = null, startPosB = null;
+                for (Tile tile : layer.getTiles()) {
+                    int tileID = layer.getTileID(tile.x, tile.y);
+                    if (tileID == 18) {
+                        // Pink start
+                        startPosA = new Vector2f(tile.x * tileWidth, tile.y * tileHeight);
+                    } else if (tileID == 22) { // !!!!
+                        // Yellow start
+                        startPosB = new Vector2f(tile.x * tileWidth, tile.y * tileHeight);
+                    }
+                }
+                if (startPosA == null || startPosB == null) {
+                    System.err.println("WARNING: skipping checkpoint layer " + layer.name);
+                    continue;
+                }
+                
+                List<Vector2f> newStartPositions = Lists.newArrayList(startPosA, startPosB);
+                Checkpoint checkpoint = new Checkpoint(controller, newStartPositions);
+                for (Tile tile : layer.getTiles()) {
+                    if (layer.getTileID(tile.x, tile.y) == 14) {
+                        Rect r = new Rect(tile.x * tileWidth, tile.y * tileHeight, tileWidth, tileHeight);
+                        entityCallColls.add(new CheckpointCollidable(checkpoint, r));
+                    }
+                }
+            } catch (SlickException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -243,6 +281,10 @@ public class TileWorld implements GameWorld {
 
     @Override
     public List<Vector2f> getPlayerStartPositions() {
+        if (startPositions != null) {
+            return startPositions;
+        }
+        
         Layer layer = map.getLayer(PLAYERS_LAYER_NAME);
         if (layer == null) {
             System.err.println("WARNING: Map \"" + name + "\" doesn't contain player start positions, using default positions instead.");
@@ -287,5 +329,9 @@ public class TileWorld implements GameWorld {
 
     public Map<Layer, List<MovingCollidable>> getMovingCollMap() {
         return movingCollMap;
+    }
+    
+    public void setStartPositions(List<Vector2f> startPositions) {
+        this.startPositions = startPositions;
     }
 }

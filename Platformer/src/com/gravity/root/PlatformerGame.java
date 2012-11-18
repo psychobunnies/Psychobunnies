@@ -18,6 +18,7 @@ public class PlatformerGame extends StateBasedGame {
             new LevelInfo("Split World", "Slingshot Fun", "assets/Levels/split_world.tmx", 1002),
             new LevelInfo("Test Moving", "", "assets/Levels/moving_test.tmx", 1005),
             new LevelInfo("Bouncy 1", "A first brush with bouncing", "assets/Levels/Bouncy_1.tmx", 1006),
+            new LevelInfo("Checkpointing", "", "assets/Levels/checkpointing.tmx", 1007),
     };
     //@formatter:on
 

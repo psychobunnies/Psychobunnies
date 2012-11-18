@@ -3,6 +3,7 @@ package com.gravity.root;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.newdawn.slick.Color;
@@ -140,7 +141,7 @@ public class GameplayState extends BasicGameState implements GameplayControl {
         PanningCamera pancam = new PanningCamera(2000, new Vector2f(0, 0), new Vector2f(0.035f, 0), new Vector2f(map.getWidth()
                 - container.getWidth(), 0), container.getWidth(), container.getHeight());
         camera = pancam;
-        if (ID == 1002 || ID == 1005) {
+        if (ID == 1002 || ID == 1005 || ID == 1007) {
             camera = new PlayerStalkingCamera(container.getWidth(), container.getHeight(), new Vector2f(0, 0), new Vector2f(map.getWidth(),
                     map.getHeight()), playerA, playerB);
         }
@@ -356,5 +357,11 @@ public class GameplayState extends BasicGameState implements GameplayControl {
         } else if (finishedPlayer != player) {
             game.enterState(GameWinState.ID);
         }
+    }
+
+    @Override
+    public void newStartPositions(List<Vector2f> startPositions) {
+        Preconditions.checkArgument(startPositions.size() == 2);
+        map.setStartPositions(startPositions);
     }
 }

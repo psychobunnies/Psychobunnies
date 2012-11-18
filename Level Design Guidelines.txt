@@ -31,6 +31,8 @@ Text layers will show their text whenever a bunny is overlaps with a tile on the
 For each set of moving tiles, create a new layer with properties "speed", which is floating-point and in tiles per second, and "translationX" and "translationY", which specify how far away the final position is, in tiles.
 NOTE: the collision engine does not yet handle players being crushed by moving platforms, so make sure you don't let that happen.
 
+For each checkpoint, create a new layer with property "type" equal to "checkpoint". Use the tileset in levelMarkers.png, using the green "C" tiles for the triggering wall and the pink and yellow "C" tiles for respawn positions. See split_world for an example.
+
 ==TILESET FILES==
 
 Please make sure that these files and the .tmx files are in same folder when you create them - otherwise, other people will ask why they're getting "Unable to locate file C:\Users\xiao\Documents\BunnyLevels" errors instead of loading levels. 

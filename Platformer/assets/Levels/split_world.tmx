@@ -35,7 +35,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0iEOgEAMAMF7AQJx/38qBokAcUsIM0lNVbPpGAB81X6x285hPZ0bOjd0bujc0LmhM3/i3xs6N3Ru6NzQGQC4Y759ADxwAKtIAN8=
+   eJzt1TEKACEMRcGcwMLC+x9VBKuFLf2gzECaVOE1qQLgJW0P5+mcoXOGzhk6Z3w7t/IfT1g9+89+zcieAwAAAADXm0clAN8=
   </data>
  </layer>
  <layer name="checkpoint2" width="90" height="24" opacity="0.37">

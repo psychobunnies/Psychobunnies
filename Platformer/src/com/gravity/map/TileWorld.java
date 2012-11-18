@@ -175,7 +175,6 @@ public class TileWorld implements GameWorld {
             final float speed = Float.parseFloat(layer.props.getProperty("speed", "-1.0"));
             final int transX = Integer.parseInt(layer.props.getProperty("translationX", "-22222"));
             final int transY = Integer.parseInt(layer.props.getProperty("translationY", "-22222"));
-            System.out.println(layer.name + ": " + speed + ", " + transX + ", " + transY);
             if (speed < 0 || transX == -22222 || transY  == -22222) continue;
 
             // Found a moving layer.

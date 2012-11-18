@@ -202,6 +202,7 @@ public class TileWorld implements GameWorld {
             String type = layer.props.getProperty("type", "");
             if (!type.equals("checkpoint")) continue;
             
+            layer.visible = false;
             try {
                 //System.out.println("checkpoint layer " + layer.name + " !");
                 Vector2f startPosA = null, startPosB = null;

@@ -243,6 +243,17 @@ public class TileSet {
 	public Properties getProperties(int globalID) {
 		return (Properties) tileProperties.get(new Integer(globalID));
 	}
+	
+	/**
+	 * Get a tile's global ID by its position in the sheet.
+	 * 
+	 * @param x
+	 * @param y
+	 * @return The globalID of the tile at that position
+	 */
+	public int getGlobalIDByPosition(int x, int y) {
+		return firstGID + y * tilesAcross + x;
+	}
 
 	/**
 	 * Get the x position of a tile on this sheet

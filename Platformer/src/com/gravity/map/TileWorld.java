@@ -10,6 +10,7 @@ import org.newdawn.slick.tiled.GroupObject;
 import org.newdawn.slick.tiled.Layer;
 import org.newdawn.slick.tiled.ObjectGroup;
 import org.newdawn.slick.tiled.Tile;
+import org.newdawn.slick.tiled.TileSet;
 import org.newdawn.slick.tiled.TiledMapPlus;
 
 import com.google.common.base.Preconditions;
@@ -206,10 +207,13 @@ public class TileWorld implements GameWorld {
                 Vector2f startPosA = null, startPosB = null;
                 for (Tile tile : layer.getTiles()) {
                     int tileID = layer.getTileID(tile.x, tile.y);
-                    if (tileID == 18) {
+                    TileSet tileSet = map.getTileSetByGID(tileID);
+                    int startIDA = tileSet.getGlobalIDByPosition(3, 1);
+                    int startIDB = tileSet.getGlobalIDByPosition(3, 2);
+                    if (tileID == startIDA) {
                         // Pink start
                         startPosA = new Vector2f(tile.x * tileWidth, tile.y * tileHeight);
-                    } else if (tileID == 22) { // !!!!
+                    } else if (tileID == startIDB) { // !!!!
                         // Yellow start
                         startPosB = new Vector2f(tile.x * tileWidth, tile.y * tileHeight);
                     }
@@ -222,6 +226,9 @@ public class TileWorld implements GameWorld {
                 List<Vector2f> newStartPositions = Lists.newArrayList(startPosA, startPosB);
                 Checkpoint checkpoint = new Checkpoint(controller, newStartPositions);
                 for (Tile tile : layer.getTiles()) {
+                    int tileID = layer.getTileID(tile.x, tile.y);
+                    TileSet tileSet = map.getTileSetByGID(tileID);
+                    int checkID = tileSet.getGlobalIDByPosition(3, 0);
                     if (layer.getTileID(tile.x, tile.y) == 14) {
                         Rect r = new Rect(tile.x * tileWidth, tile.y * tileHeight, tileWidth, tileHeight);
                         entityCallColls.add(new CheckpointCollidable(checkpoint, r));

@@ -723,7 +723,20 @@ public class Image implements Renderable {
 	 */
 	public void drawEmbedded(float x,float y,float width,float height) {
 		init();
+		
+		Color filter = null;
+		if (alpha != 1) {
+			if (filter == null) {
+				filter = Color.white;
+			}
 
+			filter = new Color(filter);
+			filter.a *= alpha;
+		}
+		if (filter != null) { 
+			filter.bind(); 
+		} 
+		
 		if (corners == null) {
 			GL.glTexCoord2f(textureOffsetX, textureOffsetY);
 			GL.glVertex3f(x, y, 0);

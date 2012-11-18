@@ -326,6 +326,7 @@ public class SpriteSheet extends Image {
 	 * @param sy The y location of the cell to render
 	 */
 	public void renderInUse(int x, int y, int width, int height, float rotation, int sx, int sy) {
+		subImages[sx][sy].alpha = this.alpha;
 		subImages[sx][sy].drawEmbedded(x, y, width, height, rotation);
 	}
 
@@ -363,6 +364,7 @@ public class SpriteSheet extends Image {
 	}
 	
 	public void renderInUse(int x, int y, int sx, int sy, byte transform) {
+		subImages[sx][sy].alpha = this.alpha;
 		subImages[sx][sy].drawEmbedded(x, y, tw, th, transform);
 	}
 

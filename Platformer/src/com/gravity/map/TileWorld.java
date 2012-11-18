@@ -229,7 +229,7 @@ public class TileWorld implements GameWorld {
                     int tileID = layer.getTileID(tile.x, tile.y);
                     TileSet tileSet = map.getTileSetByGID(tileID);
                     int checkID = tileSet.getGlobalIDByPosition(3, 0);
-                    if (layer.getTileID(tile.x, tile.y) == 14) {
+                    if (layer.getTileID(tile.x, tile.y) == checkID) {
                         Rect r = new Rect(tile.x * tileWidth, tile.y * tileHeight, tileWidth, tileHeight);
                         entityCallColls.add(new CheckpointCollidable(checkpoint, r));
                     }

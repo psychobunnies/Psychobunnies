@@ -342,27 +342,22 @@ public class TileWorld implements GameWorld {
     /** Returns a list of DisappearingTileController instances if any disappearing tile layers are found. */
     @Override
     public List<DisappearingTileController> reinitializeDisappearingLayers(final CollisionEngine engine) {
-        int counter = 0;
-        String name = DISAPPEARING_LAYER_NAME_BASE + counter;
-        Layer l = map.getLayer(name);
-
         disappearingTileControllers = Lists.newArrayList();
-        while (l != null) {
-            final DisappearingTileController controller = createDisappearingTileController(l);
-            List<DisappearingTile> coll = processLayer(name, new CollidableCreator<DisappearingTile>() {
-                @Override
-                public DisappearingTile createCollidable(Rect r) {
-                    return new DisappearingTile(r, controller, engine);
+        for (Layer l : map.getLayers()) {
+            if (l.props.getProperty("type", "").equals(DISAPPEARING_LAYER_TYPE)) {
+                final DisappearingTileController controller = createDisappearingTileController(l);
+                List<DisappearingTile> coll = processLayer(l.name, new CollidableCreator<DisappearingTile>() {
+                    @Override
+                    public DisappearingTile createCollidable(Rect r) {
+                        return new DisappearingTile(r, controller, engine);
+                    }
+                });
+                entityNoCalls.addAll(coll);
+                disappearingTileControllers.add(controller);
+                for (DisappearingTile c : coll) {
+                    controller.register(c);
                 }
-            });
-            entityNoCalls.addAll(coll);
-            disappearingTileControllers.add(controller);
-            for (DisappearingTile c : coll) {
-                controller.register(c);
             }
-            counter++;
-            name = DISAPPEARING_LAYER_NAME_BASE + counter;
-            l = map.getLayer(name);
         }
         return disappearingTileControllers;
     }

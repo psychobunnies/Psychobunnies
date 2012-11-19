@@ -18,7 +18,8 @@ Your level should have the following tile layers, in some order:
 
 * "bouncys" bouncy tiles should be put here.
 
-* a number of layers named "disappearingX", where X is a number starting from 0 (e.g. disappearing0, disappearing1 etc.). Each of these layers should have a set of layer properties (right-click the layer -> Layer Properties) that define how the disappearing tiles on that layer behave:
+* a number of layers containing disappearing tiles. Each of these layers should have a set of layer properties (right-click the layer -> Layer Properties) that define how the disappearing tiles on that layer behave:
+	- type - this value must be set to "disappearing" (quotes for clarity). IF YOU DON'T DO THIS, THE LAYER WILL BE IGNORED!
 	- flicker_count - the number of times the tile should flicker. Currently the reference number is 3, and should not be changed without Turner's consent.
 	- flicker_time - total time spent flickering into and out of view. Players can stand on the tile while it's flickering out, but not when it's flickering into view. In fact, any collision with any tile while it's flickering into view will reset the flicker timer.
 	- geometric - the parameter for the geometric progression that the flicker pause intervals follow. Lower numbers = more drastic differences in how long the intervals between flickers are. Should never be negative or greater than 1! Currently the reference value is 0.4 and should not be changed without Turner's consent.

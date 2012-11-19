@@ -35,7 +35,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1TEKACEMRcGcwMLC+x9VBKuFLf2gzECaVOE1qQLgJW0P5+mcoXOGzhk6Z3w7t/IfT1g9+89+zcieAwAAAADXm0clAN8=
+   eJzt0LEJACAQBMGvwMDA/ks1erABfdQZuPzYCF7Qqg98QuczsnMvfQEAvKItY79sPaqPAAAAAMBlJmJSAJk=
   </data>
  </layer>
  <layer name="checkpoint2" width="90" height="24" opacity="0.37">
@@ -43,7 +43,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0jEKwDAQA0G/wEWK/P+pxm0qVxLBM3C9WG4MAKBltgdcQucMnTN0ztA5Y3d+2yMu4J8zdM7QuW9+DuDE0x4AAPATC4E5AN8=
+   eJzt1KENACAUQ0EmQCDYf1QUCZ7QL7iboHmirQEAAAAA3OvVAz6hc4bOGWfnUbYC3vInGTpn6JyxO8/SFVRYSZQAmQ==
   </data>
  </layer>
  <layer name="checkpoint3" width="90" height="24" opacity="0.46">
@@ -51,7 +51,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2akNADAMA8BMUFDQ/UctL20ecieZW4FxBADUWE+os6cLAAAAAADf/FF7uHMdu0CvM12AdBdi7wC1
+   eJzt1SEOACAMA8C9AIHg/0/FoHAkgyHukvqmphEAAAAAAP9oKwAnenUBSOD/3rDzPW0Ld43qAqSboJ0AmQ==
   </data>
  </layer>
 </map>

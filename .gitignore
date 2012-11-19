@@ -5,3 +5,4 @@ eclimd.log
 /slick/
 !/slick/trunk/Slick
 *.psd
+.DS_Store

@@ -456,6 +456,13 @@ public class Layer {
 		return false;
 	}
 
+	@Override
+	public String toString() {
+		return "Layer [name=" + name + ", width=" + width + ", height="
+				+ height + ", opacity=" + opacity + ", visible=" + visible
+				+ ", props=" + props + "]";
+	}
+
 	public int getLocalTileId(int x, int y) {
 		return data[x][y][1];
 	}

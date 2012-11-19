@@ -246,6 +246,9 @@ public class GameplayState extends BasicGameState implements GameplayControl {
         checkRightSide(playerA, xOffset);
         checkRightSide(playerB, xOffset);
         remappedDecay -= delta / 1000f;
+
+        // if both bunnies did not collide with win box this turn, reset
+        finishedPlayer = null;
     }
 
     private void checkDeath(Player player, float offsetX2) {

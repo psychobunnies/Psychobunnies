@@ -6,6 +6,17 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
+ * Main root class for the entire game. In order to add levels to the game, please add an entry to the levels table below, using the style of previous
+ * levels before you. Namely:
+ * 
+ * <pre>
+ * <code>
+ * new LevelInfo("Level Title", "Short Description for us", "path/to/level", levelID),
+ * </code>
+ * </pre>
+ * 
+ * The level id can be any number greater than 1000 which is not used by another level already. Try to be sane about it and pick the next highest one.
+ * ^_^
  * 
  * @author dxiao
  */

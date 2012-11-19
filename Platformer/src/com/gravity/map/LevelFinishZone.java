@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import com.gravity.fauna.Player;
 import com.gravity.geom.Rect;
+import com.gravity.physics.Collidable;
 import com.gravity.physics.RectCollision;
 import com.gravity.root.GameplayControl;
 
@@ -25,7 +26,13 @@ public class LevelFinishZone extends StaticCollidable {
     }
 
     @Override
+    public boolean causesCollisionsWith(Collidable other) {
+        return false;
+    }
+
+    @Override
     public String toString() {
         return "LevelFinishZone [" + super.toString() + "]";
     }
+
 }

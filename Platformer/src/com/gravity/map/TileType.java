@@ -5,26 +5,35 @@ import org.newdawn.slick.tiled.Tile;
 import org.newdawn.slick.tiled.TileSet;
 import org.newdawn.slick.tiled.TiledMapPlus;
 
+/**
+ * Convenience class which provides a good place to put hardcoded constants between Tiled's system and our level format.
+ * 
+ * To add a new tile type, specify the tileset which the tile can be found in, and the x and y position of the tile in the tileset. Also specify the
+ * type of tile it is.
+ * 
+ * To use, call the static method toTileType with a Tile or a layer and x,y within the layer. You'll get the tile type back.
+ * 
+ * @author xiao
+ * 
+ */
 public enum TileType {
     //@formatter:off
-    GROUND_TOP  (MapType.GROUND, "collisions", "bunnyTile", 0, 0), 
-    GROUND_MID  (MapType.GROUND, "collisions", "betterBunnyDirt", 0, 0),
-    SPIKE       (MapType.SPIKE, "spikes", "spikes", 0, 0), 
-    BOUNCY      (MapType.BOUNCY, "map", "mapTiles", 0, 0),
+    GROUND_TOP  (MapType.GROUND, "bunnyTile", 0, 0), 
+    GROUND_MID  (MapType.GROUND, "betterBunnyDirt", 0, 0),
+    SPIKE       (MapType.SPIKE, "spikes", 0, 0), 
+    BOUNCY      (MapType.BOUNCY, "mapTiles", 0, 0),
     
-    PINK_START  (MapType.START, "players", "markers", 0, 0),
-    YELLOW_START(MapType.START, "players", "markers", 1, 0),
-    HELP_TRIGGER(MapType.TEXT, "*", "markers", 2, 0);
+    PINK_START  (MapType.START, "markers", 0, 0),
+    YELLOW_START(MapType.START, "markers", 1, 0),
+    HELP_TRIGGER(MapType.TEXT, "markers", 2, 0);
     //@formatter:on
 
     public final MapType type;
-    public final String layer;
     public final String tileSet;
     public final int tileSetX, tileSetY;
 
-    private TileType(MapType type, String layer, String tileSet, int tileSetX, int tileSetY) {
+    private TileType(MapType type, String tileSet, int tileSetX, int tileSetY) {
         this.type = type;
-        this.layer = layer;
         this.tileSet = tileSet;
         this.tileSetX = tileSetX;
         this.tileSetY = tileSetY;
@@ -43,7 +52,7 @@ public enum TileType {
         int ly = tileSet.getTileY(id);
 
         for (TileType type : TileType.values()) {
-            if (type.layer.equals(tile.layerName) && type.tileSet.equals(tileSet.name) && type.tileSetX == lx && type.tileSetY == ly) {
+            if (type.tileSet.equals(tileSet.name) && type.tileSetX == lx && type.tileSetY == ly) {
                 return type;
             }
         }
@@ -62,7 +71,7 @@ public enum TileType {
         int lx = tileSet.getTileX(id);
         int ly = tileSet.getTileY(id);
         for (TileType type : TileType.values()) {
-            if (layer.name.equals(type.layer) && type.tileSet.equals(tileSet.name) && type.tileSetX == lx && type.tileSetY == ly) {
+            if (type.tileSet.equals(tileSet.name) && type.tileSetX == lx && type.tileSetY == ly) {
                 return type;
             }
         }

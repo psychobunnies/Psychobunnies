@@ -1,5 +1,9 @@
 package com.gravity.root;
 
+import java.util.List;
+
+import org.newdawn.slick.geom.Vector2f;
+
 import com.gravity.fauna.Player;
 import com.gravity.fauna.PlayerKeyboardController.Control;
 
@@ -19,4 +23,6 @@ public interface GameplayControl {
     public void specialMoveSlingshot(Player slingshoter, float strength);
 
     public void playerFinishes(Player player);
+    
+    public void newStartPositions(List<Vector2f> startPositions);
 }

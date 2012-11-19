@@ -6,6 +6,17 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
+ * Main root class for the entire game. In order to add levels to the game, please add an entry to the levels table below, using the style of previous
+ * levels before you. Namely:
+ * 
+ * <pre>
+ * <code>
+ * new LevelInfo("Level Title", "Short Description for us", "path/to/level", levelID),
+ * </code>
+ * </pre>
+ * 
+ * The level id can be any number greater than 1000 which is not used by another level already. Try to be sane about it and pick the next highest one.
+ * ^_^
  * 
  * @author dxiao
  */
@@ -18,6 +29,7 @@ public class PlatformerGame extends StateBasedGame {
             new LevelInfo("Split World", "Slingshot Fun", "assets/Levels/split_world.tmx", 1002),
             new LevelInfo("Test Moving", "", "assets/Levels/moving_test.tmx", 1005),
             new LevelInfo("Bouncy 1", "A first brush with bouncing", "assets/Levels/Bouncy_1.tmx", 1006),
+            new LevelInfo("Checkpointing", "", "assets/Levels/checkpointing.tmx", 1007),
     };
     //@formatter:on
 

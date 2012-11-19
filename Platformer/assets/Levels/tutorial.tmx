@@ -153,9 +153,17 @@
    eJxjYBgFo2AUjIKhB1yheDC4YSDdMRD2u2LBo/YPjP0DAQY6zY+CUTAKKAcAep0HSA==
   </data>
  </layer>
- <layer name="disappearing" width="32" height="24">
+ <layer name="disappearing_example" width="32" height="24">
+  <properties>
+   <property name="flicker_count" value="3"/>
+   <property name="flicker_time" value="3000"/>
+   <property name="geometric" value="0.4"/>
+   <property name="invisible_time" value="1000"/>
+   <property name="normal_visible_time" value="1000"/>
+   <property name="type" value="disappearing"/>
+  </properties>
   <data encoding="base64" compression="zlib">
-   eJztzjEBAAAIw7Dh3zQuGEdioE2ApnnQbz8AAHcWJHAABA==
+   eJztzjENAAAIA7AF/6J5ZoHwtAqaAAAA1+Y7UAsNEAAD
   </data>
  </layer>
 </map>

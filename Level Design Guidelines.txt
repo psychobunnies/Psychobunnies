@@ -18,6 +18,14 @@ Your level should have the following tile layers, in some order:
 
 * "bouncys" bouncy tiles should be put here.
 
+* a number of layers containing disappearing tiles. Each of these layers should have a set of layer properties (right-click the layer -> Layer Properties) that define how the disappearing tiles on that layer behave:
+	- type - this value must be set to "disappearing" (quotes for clarity). IF YOU DON'T DO THIS, THE LAYER WILL BE IGNORED!
+	- flicker_count - the number of times the tile should flicker. Currently the reference number is 3, and should not be changed without Turner's consent.
+	- flicker_time - total time spent flickering into and out of view. Players can stand on the tile while it's flickering out, but not when it's flickering into view. In fact, any collision with any tile while it's flickering into view will reset the flicker timer.
+	- geometric - the parameter for the geometric progression that the flicker pause intervals follow. Lower numbers = more drastic differences in how long the intervals between flickers are. Should never be negative or greater than 1! Currently the reference value is 0.4 and should not be changed without Turner's consent.
+	- invisible_time - time the tile spends being completely invisible (i.e. not flickering)
+	- normal_visible_time - time the tile spends being completely visible (i.e. not flickering)
+
 Your level may also have the following group layer:
 
 * "level markers" is used for level locations, currently only the location of the win zone. By default, this is the right edge of the level. However, if you have a custom win location, create a rectangle object in this layer with name "finish". (Object properties/names are set by right-clicking the object and selecting "Object Properties") 
@@ -30,6 +38,12 @@ Text layers will show their text whenever a bunny is overlaps with a tile on the
 
 For each set of moving tiles, create a new layer with properties "speed", which is floating-point and in tiles per second, and "translationX" and "translationY", which specify how far away the final position is, in tiles.
 NOTE: the collision engine does not yet handle players being crushed by moving platforms, so make sure you don't let that happen.
+
+For each checkpoint, create a new layer with property "type" equal to "checkpoint". Use the tileset in levelMarkers.png, using the green "C" tiles for the triggering wall and the pink and yellow "C" tiles for respawn positions. See split_world for an example.
+
+===LEVEL PROPERTIES===
+
+If you want a different camera system, go into Map > Map Properties in Tiled, and set a property "camera". The value "panning" is the default wall of death camera, "stalking" is the other one with no wall of death, but follows the players as they move in the level.
 
 ==TILESET FILES==
 

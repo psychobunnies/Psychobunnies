@@ -14,7 +14,6 @@ import org.newdawn.slick.geom.Polygon;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.tiled.Layer;
 import org.newdawn.slick.tiled.TiledMapPlus;
 
 import com.google.common.base.Preconditions;
@@ -27,7 +26,6 @@ import com.gravity.fauna.PlayerKeyboardController;
 import com.gravity.fauna.PlayerKeyboardController.Control;
 import com.gravity.fauna.PlayerRenderer;
 import com.gravity.map.DisappearingTileController;
-import com.gravity.map.GameWorld;
 import com.gravity.map.LevelFinishZone;
 import com.gravity.map.MovingCollidable;
 import com.gravity.map.TileWorld;
@@ -42,6 +40,9 @@ import com.gravity.physics.PhysicsFactory;
 public class GameplayState extends BasicGameState implements GameplayControl {
 
     final int ID;
+
+    public static final String PANNING_CAMERA = "panning";
+    public static final String STALKING_CAMERA = "stalking";
 
     @Override
     public int getID() {
@@ -61,8 +62,6 @@ public class GameplayState extends BasicGameState implements GameplayControl {
     private Player finishedPlayer;
     private final Random rand = new Random();
     private Camera camera;
-
-    private DisappearingTileController dis;
 
     private boolean leftRemapped, rightRemapped, jumpRemapped;
     private Color lightPink = Color.pink.brighter();
@@ -91,6 +90,10 @@ public class GameplayState extends BasicGameState implements GameplayControl {
 
         collider = new LayeredCollisionEngine();
         updaters = Lists.newLinkedList();
+
+        for (DisappearingTileController controller : map.reinitializeDisappearingLayers(collider)) {
+            updaters.add(controller);
+        }
 
         gravityPhysics = PhysicsFactory.createDefaultGravityPhysics(collider);
 
@@ -140,17 +143,11 @@ public class GameplayState extends BasicGameState implements GameplayControl {
         PanningCamera pancam = new PanningCamera(2000, new Vector2f(0, 0), new Vector2f(0.035f, 0), new Vector2f(map.getWidth()
                 - container.getWidth(), 0), container.getWidth(), container.getHeight());
         camera = pancam;
-        if (ID == 1002 || ID == 1005) {
+        if (map.map.getMapProperty("camera", PANNING_CAMERA).equals(STALKING_CAMERA)) {
             camera = new PlayerStalkingCamera(container.getWidth(), container.getHeight(), new Vector2f(0, 0), new Vector2f(map.getWidth(),
                     map.getHeight()), playerA, playerB);
         }
         updaters.add(pancam);
-
-        Layer l = map.getLayer(GameWorld.DISAPPEARING_LAYER_NAME);
-        if (l != null) {
-            dis = new DisappearingTileController(1000f, 1000f, 3000f, 0f, 0.9f, 6, l);
-            updaters.add(dis);
-        }
 
         unpauseRender();
         unpauseUpdate();
@@ -209,22 +206,6 @@ public class GameplayState extends BasicGameState implements GameplayControl {
             g.resetTransform();
             g.popTransform();
         }
-
-        g.pushTransform();
-        g.translate(32, 32);
-        g.setColor(lightPink);
-        g.fillRoundRect(0, 0, 320, 64, 10);
-        renderControls(g, "Pink", controllerA);
-        g.resetTransform();
-        g.popTransform();
-
-        g.pushTransform();
-        g.translate(672, 32);
-        g.setColor(lightYellow);
-        g.fillRoundRect(0, 0, 320, 64, 10);
-        renderControls(g, "Yellow", controllerB);
-        g.resetTransform();
-        g.popTransform();
     }
 
     public void renderControls(Graphics g, String playername, PlayerKeyboardController controller) {
@@ -265,6 +246,9 @@ public class GameplayState extends BasicGameState implements GameplayControl {
         checkRightSide(playerA, xOffset);
         checkRightSide(playerB, xOffset);
         remappedDecay -= delta / 1000f;
+
+        // if both bunnies did not collide with win box this turn, reset
+        finishedPlayer = null;
     }
 
     private void checkDeath(Player player, float offsetX2) {
@@ -356,5 +340,11 @@ public class GameplayState extends BasicGameState implements GameplayControl {
         } else if (finishedPlayer != player) {
             game.enterState(GameWinState.ID);
         }
+    }
+
+    @Override
+    public void newStartPositions(List<Vector2f> startPositions) {
+        Preconditions.checkArgument(startPositions.size() == 2);
+        map.setStartPositions(startPositions);
     }
 }

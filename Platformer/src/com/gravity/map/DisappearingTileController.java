@@ -10,24 +10,24 @@ import com.gravity.root.UpdateCycling;
 
 public final class DisappearingTileController implements UpdateCycling {
 
-    private final float invisibleTime, visibleTime, normalVisibleTime, flickerTime, minFlickerOpacity;
-    private final int totalFlickers;
+    private final float invisibleTime, visibleTime, normalVisibleTime, flickerTime;
+    private final int flickerCount;
     private final Layer layer;
 
     private final List<Float> flickerIntervals = Lists.newArrayList();
+    private final List<DisappearingTile> tiles = Lists.newArrayList();
 
     private static final float flickerLength = 200.0f;
 
     private float count = 0f;
     private boolean visible = true;
 
-    public DisappearingTileController(float invisibleTime, float normalVisibleTime, float flickerTime, float minFlickerOpacity,
-            float geometricParameter, int totalFlickers, Layer layer) {
+    public DisappearingTileController(float invisibleTime, float normalVisibleTime, float flickerTime, float geometricParameter, int totalFlickers,
+            Layer layer) {
         this.invisibleTime = invisibleTime;
         this.flickerTime = flickerTime;
         this.normalVisibleTime = normalVisibleTime;
-        this.minFlickerOpacity = minFlickerOpacity;
-        this.totalFlickers = totalFlickers;
+        this.flickerCount = totalFlickers;
         this.layer = layer;
         this.visibleTime = 2 * flickerTime + normalVisibleTime;
 
@@ -49,8 +49,6 @@ public final class DisappearingTileController implements UpdateCycling {
         Preconditions.checkArgument(flickerTime >= 0, "Flicker time must be non-negative.");
         Preconditions.checkArgument(flickerTime > totalFlickers * flickerLength,
                 "Flicker time must be greater than number of flickers * flicker length");
-        Preconditions.checkArgument(minFlickerOpacity >= 0 && minFlickerOpacity <= 1, "Minimum flicker opacity must be between 0 and 1, but was "
-                + minFlickerOpacity);
         Preconditions.checkArgument(totalFlickers > 0, "Total number of flickers must be positive.");
         Preconditions.checkArgument(geometricParameter > 0, "The geometric parameter must be positive.");
         Preconditions.checkNotNull(layer, "Layer may not be null.");
@@ -58,7 +56,12 @@ public final class DisappearingTileController implements UpdateCycling {
 
     @Override
     public void startUpdate(float millis) {
-        // no-op
+        count += millis;
+        resolveState();
+    }
+
+    public void register(DisappearingTile tile) {
+        tiles.add(tile);
     }
 
     private void resolveState() {
@@ -74,9 +77,12 @@ public final class DisappearingTileController implements UpdateCycling {
         } else {
             if (count >= invisibleTime) {
                 count -= invisibleTime;
-                // TODO check if layer is allowed to become visible
-                visible = true;
-                resolveState();
+                if (checkForExistingCollisions()) {
+                    count = invisibleTime;
+                } else {
+                    visible = true;
+                    resolveState();
+                }
             } else {
                 setLayerOpacity(0f);
             }
@@ -90,22 +96,27 @@ public final class DisappearingTileController implements UpdateCycling {
 
     private float opacityFlickerOut(float progress) {
         float sinContrib = Math.abs((float) Math.sin(progress * (float) Math.PI));
-        return sinContrib * (1 - minFlickerOpacity) + minFlickerOpacity;
+        return sinContrib;
     }
 
     private float calculateDesiredOpacity(float time) {
         if (time <= flickerTime) {
-            for (int i = 0; i < totalFlickers; i++) {
-                if (time <= flickerIntervals.get(i)) {
-                    return 0f;
+            if (checkForExistingCollisions()) {
+                count = 0;
+                return 0f;
+            } else {
+                for (int i = 0; i < flickerCount; i++) {
+                    if (time <= flickerIntervals.get(i)) {
+                        return 0f;
+                    }
+                    time -= flickerIntervals.get(i);
+                    if (time <= flickerLength) {
+                        return opacityFlickerIn(time / flickerLength);
+                    }
+                    time -= flickerLength;
                 }
-                time -= flickerIntervals.get(i);
-                if (time <= flickerLength) {
-                    return opacityFlickerIn(time / flickerLength);
-                }
-                time -= flickerLength;
+                return 1f;
             }
-            return 1f;
         }
         time -= flickerTime;
 
@@ -115,7 +126,7 @@ public final class DisappearingTileController implements UpdateCycling {
         time -= normalVisibleTime;
 
         if (time <= flickerTime) {
-            for (int i = 0; i < totalFlickers; i++) {
+            for (int i = 0; i < flickerCount; i++) {
                 if (time <= flickerIntervals.get(i)) {
                     return 1f;
                 }
@@ -139,8 +150,24 @@ public final class DisappearingTileController implements UpdateCycling {
 
     @Override
     public void finishUpdate(float millis) {
-        count += millis;
-        resolveState();
+        // no-op
+    }
+
+    private boolean checkForExistingCollisions() {
+        for (DisappearingTile t : tiles) {
+            if (t.isColliding()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean collisionsEnabled() {
+        return visible && count > flickerTime;
+    }
+
+    public List<DisappearingTile> getTiles() {
+        return tiles;
     }
 
 }

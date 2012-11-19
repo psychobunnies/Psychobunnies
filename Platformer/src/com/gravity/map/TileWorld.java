@@ -18,9 +18,9 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.gravity.entity.TriggeredText;
 import com.gravity.entity.TriggeredTextEntity;
-import com.gravity.fauna.Player;
 import com.gravity.geom.Rect;
 import com.gravity.physics.Collidable;
+import com.gravity.physics.CollisionEngine;
 import com.gravity.root.GameplayControl;
 
 public class TileWorld implements GameWorld {
@@ -33,15 +33,16 @@ public class TileWorld implements GameWorld {
     private List<Collidable> entityNoCalls, entityCallColls;
     private List<TriggeredText> triggeredTexts;
     private Map<Layer, List<MovingCollidable>> movingCollMap;
-    
+
     private List<Vector2f> startPositions = null;
+    private List<DisappearingTileController> disappearingTileControllers;
 
     private final String name;
     public final TiledMapPlus map;
     private final GameplayControl controller;
 
-    private interface CollidableCreator {
-        Collidable createCollidable(Rect r);
+    private interface CollidableCreator<T extends Collidable> {
+        T createCollidable(Rect r);
     }
 
     public TileWorld(String name, TiledMapPlus map, GameplayControl controller) {
@@ -65,9 +66,9 @@ public class TileWorld implements GameWorld {
      *            a Creator to create collidables for
      * @return a list of collidables in this layer. Returns an empty list if the list does not exist.
      */
-    private List<Collidable> processLayer(String layerName, CollidableCreator creator) {
+    private <T extends Collidable> List<T> processLayer(String layerName, CollidableCreator<T> creator) {
         boolean[][] visited = new boolean[map.getWidth()][map.getHeight()];
-        List<Collidable> res = Lists.newArrayList();
+        List<T> res = Lists.newArrayList();
         int layer = 0;
         try {
             layer = map.getLayerID(layerName);
@@ -125,27 +126,27 @@ public class TileWorld implements GameWorld {
         if (terrain != null) {
 
         } else {
-
-            entityNoCalls = processLayer(TILES_LAYER_NAME, new CollidableCreator() {
+            entityNoCalls = processLayer(TILES_LAYER_NAME, new CollidableCreator<Collidable>() {
                 @Override
                 public Collidable createCollidable(Rect r) {
                     return new StaticCollidable(r);
                 }
             });
 
-            entityCallColls = processLayer(SPIKES_LAYER_NAME, new CollidableCreator() {
+            entityCallColls = processLayer(SPIKES_LAYER_NAME, new CollidableCreator<Collidable>() {
                 @Override
                 public Collidable createCollidable(Rect r) {
                     return new SpikeEntity(controller, r);
                 }
             });
 
-            entityNoCalls.addAll(processLayer(BOUNCYS_LAYER_NAME, new CollidableCreator() {
+            entityNoCalls.addAll(processLayer(BOUNCYS_LAYER_NAME, new CollidableCreator<Collidable>() {
                 @Override
                 public Collidable createCollidable(Rect r) {
                     return new BouncyTile(r);
                 }
             }));
+
         }
 
         triggeredTexts = Lists.newArrayList();
@@ -179,32 +180,35 @@ public class TileWorld implements GameWorld {
             final float speed = Float.parseFloat(layer.props.getProperty("speed", "-1.0"));
             final int transX = Integer.parseInt(layer.props.getProperty("translationX", "-22222"));
             final int transY = Integer.parseInt(layer.props.getProperty("translationY", "-22222"));
-            if (speed < 0 || transX == -22222 || transY  == -22222) continue;
+
+            if (speed < 0 || transX == -22222 || transY == -22222)
+                continue;
 
             // Found a moving layer.
             layer.visible = false;
-            List<Collidable> colls = processLayer(layer.name, new CollidableCreator() {
+            List<Collidable> colls = processLayer(layer.name, new CollidableCreator<Collidable>() {
                 @Override
                 public Collidable createCollidable(Rect r) {
                     return new MovingCollidable(controller, tileWidth, tileHeight, r, transX, transY, speed);
                 }
             });
             entityNoCalls.addAll(colls);
-            
+
             List<MovingCollidable> movingColls = Lists.newArrayList();
             for (Collidable c : colls) {
-                movingColls.add((MovingCollidable)c);
+                movingColls.add((MovingCollidable) c);
             }
             movingCollMap.put(layer, movingColls);
         }
-        
+
         for (Layer layer : map.getLayers()) {
             String type = layer.props.getProperty("type", "");
-            if (!type.equals("checkpoint")) continue;
-            
+            if (!type.equals("checkpoint"))
+                continue;
+
             layer.visible = false;
             try {
-                //System.out.println("checkpoint layer " + layer.name + " !");
+                // System.out.println("checkpoint layer " + layer.name + " !");
                 Vector2f startPosA = null, startPosB = null;
                 for (Tile tile : layer.getTiles()) {
                     int tileID = layer.getTileID(tile.x, tile.y);
@@ -223,7 +227,7 @@ public class TileWorld implements GameWorld {
                     System.err.println("WARNING: skipping checkpoint layer " + layer.name);
                     continue;
                 }
-                
+
                 List<Vector2f> newStartPositions = Lists.newArrayList(startPosA, startPosB);
                 Checkpoint checkpoint = new Checkpoint(controller, newStartPositions);
                 for (Tile tile : layer.getTiles()) {
@@ -292,7 +296,7 @@ public class TileWorld implements GameWorld {
         if (startPositions != null) {
             return startPositions;
         }
-        
+
         Layer layer = map.getLayer(PLAYERS_LAYER_NAME);
         if (layer == null) {
             System.err.println("WARNING: Map \"" + name + "\" doesn't contain player start positions, using default positions instead.");
@@ -335,11 +339,50 @@ public class TileWorld implements GameWorld {
         return triggeredTexts;
     }
 
+    /** Returns a list of DisappearingTileController instances if any disappearing tile layers are found. */
+    @Override
+    public List<DisappearingTileController> reinitializeDisappearingLayers(final CollisionEngine engine) {
+        int counter = 0;
+        String name = DISAPPEARING_LAYER_NAME_BASE + counter;
+        Layer l = map.getLayer(name);
+
+        disappearingTileControllers = Lists.newArrayList();
+        while (l != null) {
+            final DisappearingTileController controller = createDisappearingTileController(l);
+            List<DisappearingTile> coll = processLayer(name, new CollidableCreator<DisappearingTile>() {
+                @Override
+                public DisappearingTile createCollidable(Rect r) {
+                    return new DisappearingTile(r, controller, engine);
+                }
+            });
+            entityNoCalls.addAll(coll);
+            disappearingTileControllers.add(controller);
+            for (DisappearingTile c : coll) {
+                controller.register(c);
+            }
+            counter++;
+            name = DISAPPEARING_LAYER_NAME_BASE + counter;
+            l = map.getLayer(name);
+        }
+        return disappearingTileControllers;
+    }
+
+    private DisappearingTileController createDisappearingTileController(Layer l) {
+        float invisibleTime = Float.parseFloat(l.props.getProperty(INVISIBLE_TIME_PROPERTY));
+        float normalVisibleTime = Float.parseFloat(l.props.getProperty(NORMAL_VISIBLE_TIME_PROPERTY));
+        float flickerTime = Float.parseFloat(l.props.getProperty(FLICKER_TIME_PROPERTY));
+        float geometricParameter = Float.parseFloat(l.props.getProperty(GEOMETRIC_PARAMETER_PROPERTY));
+        int flickerCount = Integer.parseInt(l.props.getProperty(FLICKER_COUNT_PROPERTY));
+
+        return new DisappearingTileController(invisibleTime, normalVisibleTime, flickerTime, geometricParameter, flickerCount, l);
+    }
+
     public Map<Layer, List<MovingCollidable>> getMovingCollMap() {
         return movingCollMap;
     }
-    
+
     public void setStartPositions(List<Vector2f> startPositions) {
         this.startPositions = startPositions;
     }
+
 }

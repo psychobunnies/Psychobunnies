@@ -5,6 +5,17 @@ import org.newdawn.slick.tiled.Tile;
 import org.newdawn.slick.tiled.TileSet;
 import org.newdawn.slick.tiled.TiledMapPlus;
 
+/**
+ * Convenience class which provides a good place to put hardcoded constants between Tiled's system and our level format.
+ * 
+ * To add a new tile type, specify the tileset which the tile can be found in, and the x and y position of the tile in the tileset. Also specify the
+ * type of tile it is.
+ * 
+ * To use, call the static method toTileType with a Tile or a layer and x,y within the layer. You'll get the tile type back.
+ * 
+ * @author xiao
+ * 
+ */
 public enum TileType {
     //@formatter:off
     GROUND_TOP  (MapType.GROUND, "bunnyTile", 0, 0), 

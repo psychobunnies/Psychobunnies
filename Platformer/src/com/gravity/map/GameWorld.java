@@ -7,6 +7,7 @@ import org.newdawn.slick.tiled.Layer;
 
 import com.gravity.geom.Rect;
 import com.gravity.physics.Collidable;
+import com.gravity.physics.CollisionEngine;
 import com.gravity.root.Renderer;
 
 public interface GameWorld extends Renderer {
@@ -17,7 +18,13 @@ public interface GameWorld extends Renderer {
     public static final String MARKERS_LAYER_NAME = "level markers";
     public static final String BOUNCYS_LAYER_NAME = "bouncys";
     public static final String FINISH_MARKER_NAME = "finish";
-    public static final String DISAPPEARING_LAYER_NAME = "disappearing";
+    public static final String DISAPPEARING_LAYER_NAME_BASE = "disappearing";
+
+    public static final String INVISIBLE_TIME_PROPERTY = "invisible_time";
+    public static final String NORMAL_VISIBLE_TIME_PROPERTY = "normal_visible_time";
+    public static final String FLICKER_TIME_PROPERTY = "flicker_time";
+    public static final String GEOMETRIC_PARAMETER_PROPERTY = "geometric";
+    public static final String FLICKER_COUNT_PROPERTY = "flicker_count";
 
     public static final Vector2f PLAYER_ONE_DEFAULT_STARTPOS = new Vector2f(256, 512);
     public static final Vector2f PLAYER_TWO_DEFAULT_STARTPOS = new Vector2f(224, 512);
@@ -45,5 +52,8 @@ public interface GameWorld extends Renderer {
 
     /** Return the layer with the given name */
     public Layer getLayer(String name);
+
+    /** Reinitializes the disappearing layers with the given collision engine */
+    public List<DisappearingTileController> reinitializeDisappearingLayers(CollisionEngine engine);
 
 }

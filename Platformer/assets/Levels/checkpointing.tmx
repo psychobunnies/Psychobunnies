@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="90" height="24" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="camera" value="stalking"/>
+ </properties>
  <tileset firstgid="1" name="bunnyTiles" tilewidth="32" tileheight="32">
   <image source="bunnyTiles.png" width="128" height="64"/>
  </tileset>
@@ -13,18 +16,18 @@
   <image source="levelMarkers.png" width="128" height="128"/>
  </tileset>
  <layer name="collisions" width="90" height="24">
-  <data encoding="base64" compression="zlib">
-   eJztWe0KwyAMVNs/e/8XHoUVSjDfMXWtB2FQc4neNFrbSiltWYpZYOVFYoY+SLF0zoGmr/ViM4xxhj5Ioemrdlz7AJP0xxOzdoxrlxinndUX+kfMPRijlb4Wnrnz6Rhst4yF40TN91E6n7+V8NPEzORY6jDlG1XPMZ05P03MmTjaOKNyZOnsqUseDsRGxJHO5fqLA59Rawtbi7COUNCsV4wj2TNHrGdpG+dn2Tsa0SaNgeHUUavZ+T5InUe4vNh/tRFtvTi9OTKbzlaO573bk1fCl8R8q87SmojxuWca3hN1tuY/sCM8772LVWeqXl7rpKSuXnPcrTPGu0tnKaf3rkj5R557NecpLo831j/VDc+c0q6rqPxv0lkLSmfLvRg8r3K5o+/eejlm1vkpWDrnYOmcg6VzDrj7DcseYf2mk5GHMw204/sCF2MDjA==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+1Z7QrDIAxU2z97/xcehRVKMN8xda0HYVBzid40WttKKW1Zillg5UVihj5IsXTOgaav9WIzjHGGPkih6at2XPsAk/THE7N2jGuXGKed1Rf6R8w9GKOVvhaeufPpGGy3jIXjRM33UTqfv5Xw08TM5FjqMOUbVc8xnTk/TcyZONo4o3Jk6eypSx4OxEbEkc7l+osDn1FrC1uLsI5Q0KxXjCPZM0esZ2kb52fZOxrRJo2B4dRRq9n5PkidR7i82H+1EW29OL05MpvOVo7nvduTV8KXxHyrztKaiPG5ZxreE3W25j+wIzzvvYtVZ6peXuukpK5ec9ytM8a7S2cpp/euSPlHnns15ykujzfWP9UNz5zSrquo/G/SWQtKZ8u9GDyvcrmj7956OWbW+SlYOudg6ZyDpXMOuPsNyx5h/aaTkYczDbTj+wKGuNccwCEAAA==
   </data>
  </layer>
  <layer name="spikes" width="90" height="24">
-  <data encoding="base64" compression="zlib">
-   eJzt2EsKgDAMRdFMu/8NOy9YamJeSHsPOPLLVWvRDNAa1RdwCTpr0FmDzjFjWlbbIR+dNeisQeeYnbHZXtbv7Oc518k838Gv3eZvbmS/zveL+YZG987Z1/jX+9S9cxeeztnjZNaxK8f5k57ZnfkTnc9GZw06a9BZg84adNagc73Vv5zoXPQBgTUC9Q==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3YSwqAMAxF0Uy7/w07L1hqYl5Iew848stVa9EM0BrVF3AJOmvQWYPOMWNaVtshH5016KxB55idsdle1u/s5znXyTzfwa/d5m9uZL/O94v5hkb3ztnX+Nf71L1zF57O2eNk1rErx/mTntmd+ROdz0ZnDTpr0FmDzhp01qBzvdW/nOhc9AHuRhhMwCEAAA==
   </data>
  </layer>
  <layer name="players" width="90" height="24" opacity="0.47">
-  <data encoding="base64" compression="zlib">
-   eJztzrENAAAEADC7wf/fOoLEoL2gEQAAAHyW1wEAAACAoboOwIIGI78AGw==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OsQ0AAAQAMLvB/986gsSgvaARAAAAfJbXAQAAAIChug7AggZ7GhH+wCEAAA==
   </data>
  </layer>
  <objectgroup name="level markers" width="90" height="24">
@@ -34,8 +37,8 @@
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJzt2LEJACAMRUEnsLBw/1HtUwomSO4g/eeVGQOAX63qAQBNzXC8p3MOnQEAAPrw38inc47YeZesgDsHEb0A0Q==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3YsQkAIAxFQSewsHD/Ue1TCiZI7iD955UZA4BfreoBAE3NcLyncw6dAQAA+vDfyKdzjth5l6yAOwc9wh9dwCEAAA==
   </data>
  </layer>
 </map>

@@ -40,6 +40,10 @@ NOTE: the collision engine does not yet handle players being crushed by moving p
 
 For each checkpoint, create a new layer with property "type" equal to "checkpoint". Use the tileset in levelMarkers.png, using the green "C" tiles for the triggering wall and the pink and yellow "C" tiles for respawn positions. See split_world for an example.
 
+===LEVEL PROPERTIES===
+
+If you want a different camera system, go into Map > Map Properties in Tiled, and set a property "camera". The value "panning" is the default wall of death camera, "stalking" is the other one with no wall of death, but follows the players as they move in the level.
+
 ==TILESET FILES==
 
 Please make sure that these files and the .tmx files are in same folder when you create them - otherwise, other people will ask why they're getting "Unable to locate file C:\Users\xiao\Documents\BunnyLevels" errors instead of loading levels. 

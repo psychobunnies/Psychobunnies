@@ -3,7 +3,6 @@ package com.gravity.root;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 import org.newdawn.slick.Color;
@@ -41,6 +40,9 @@ import com.gravity.physics.PhysicsFactory;
 public class GameplayState extends BasicGameState implements GameplayControl {
 
     final int ID;
+
+    public static final String PANNING_CAMERA = "panning";
+    public static final String STALKING_CAMERA = "stalking";
 
     @Override
     public int getID() {
@@ -141,7 +143,7 @@ public class GameplayState extends BasicGameState implements GameplayControl {
         PanningCamera pancam = new PanningCamera(2000, new Vector2f(0, 0), new Vector2f(0.035f, 0), new Vector2f(map.getWidth()
                 - container.getWidth(), 0), container.getWidth(), container.getHeight());
         camera = pancam;
-        if (ID == 1002 || ID == 1005 || ID == 1007) {
+        if (map.map.getMapProperty("camera", PANNING_CAMERA).equals(STALKING_CAMERA)) {
             camera = new PlayerStalkingCamera(container.getWidth(), container.getHeight(), new Vector2f(0, 0), new Vector2f(map.getWidth(),
                     map.getHeight()), playerA, playerB);
         }

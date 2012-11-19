@@ -1,6 +1,7 @@
 package com.gravity.map;
 
 import java.util.List;
+import java.util.Random;
 
 import org.newdawn.slick.tiled.Layer;
 
@@ -32,15 +33,34 @@ public final class DisappearingTileController implements UpdateCycling {
         this.visibleTime = 2 * flickerTime + normalVisibleTime;
 
         float total = 0f, current = 1f;
+        float[] offsets = new float[totalFlickers];
+        float last = 1f/geometricParameter;
+        Random rand = new Random();
         for (int i = 0; i < totalFlickers; i++) {
-            total += current;
+            // generate a random offset to each flicker
+            if (i != 1) {
+                // each offset is some fraction of the last spacing
+                float newOffset = current * (10 + rand.nextInt(10)) / 20.0f;
+                if (rand.nextInt(2) == 1) {
+                    newOffset = -newOffset;
+                }
+                offsets[i] = newOffset;
+            }
+            
+            // update the total
+            total = total + offsets[i] + current;
+
+            // update the current time between flickers
+            last *= geometricParameter;
             current *= geometricParameter;
         }
+
+        // store the flicker times
         float timeBetweenFlickers = flickerTime - flickerLength * totalFlickers;
         float base = timeBetweenFlickers / total;
         current = 1f;
         for (int i = 0; i < totalFlickers; i++) {
-            flickerIntervals.add(base * current);
+            flickerIntervals.add(base * (current + offsets[i]));
             current *= geometricParameter;
         }
 
@@ -84,12 +104,14 @@ public final class DisappearingTileController implements UpdateCycling {
     }
 
     private float opacityFlickerIn(float progress) {
-        float cosineContrib = Math.abs((float) Math.cos(progress * (float) Math.PI));
+        float angleProgress = progress * (float) Math.PI/2f;
+        float cosineContrib = Math.abs((float) Math.cos(angleProgress));
         return cosineContrib;
     }
 
     private float opacityFlickerOut(float progress) {
-        float sinContrib = Math.abs((float) Math.sin(progress * (float) Math.PI));
+        float angleProgress = progress * (float) Math.PI/2f;
+        float sinContrib = Math.abs((float) Math.sin(angleProgress));
         return sinContrib * (1 - minFlickerOpacity) + minFlickerOpacity;
     }
 

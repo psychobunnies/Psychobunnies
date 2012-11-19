@@ -148,7 +148,7 @@ public class GameplayState extends BasicGameState implements GameplayControl {
 
         Layer l = map.getLayer(GameWorld.DISAPPEARING_LAYER_NAME);
         if (l != null) {
-            dis = new DisappearingTileController(1000f, 1000f, 3000f, 0f, 0.4f, 3, l);
+            dis = new DisappearingTileController(1000f, 1000f, 3000f, 0f, 0.9f, 6, l);
             updaters.add(dis);
         }
 

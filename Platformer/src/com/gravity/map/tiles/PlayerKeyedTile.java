@@ -2,6 +2,7 @@ package com.gravity.map.tiles;
 
 import java.util.Collection;
 
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.Layer;
@@ -12,9 +13,10 @@ import com.gravity.map.TileType;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.CollisionEngine;
 import com.gravity.physics.RectCollision;
+import com.gravity.root.Renderer;
 import com.gravity.root.UpdateCycling;
 
-public class PlayerKeyedTile implements Collidable, UpdateCycling {
+public class PlayerKeyedTile implements Collidable, UpdateCycling, Renderer {
 
     private final float TIME_TO_GTFO = 1000;
     private final Rect shape;
@@ -24,17 +26,19 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling {
     private boolean ticking;
 
     private CollisionEngine collider;
+    private final TileRendererDelegate renderer;
 
     private Layer layer;
     private int x, y;
 
-    public PlayerKeyedTile(Rect shape, CollisionEngine collider, Layer layer, int x, int y) {
+    public PlayerKeyedTile(Rect shape, CollisionEngine collider, TileRendererDelegate renderer, Layer layer, int x, int y) {
         this.shape = shape;
         this.keyedPlayer = null;
         this.collider = collider;
         this.layer = layer;
         this.x = x;
         this.y = y;
+        this.renderer = renderer;
     }
 
     @Override
@@ -107,6 +111,11 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling {
     @Override
     public String toString() {
         return "PlayerKeyedTile [shape=" + shape + ", keyedPlayer=" + keyedPlayer + ", millisElapsed=" + millisElapsed + ", ticking=" + ticking + "]";
+    }
+
+    @Override
+    public void render(Graphics g, int offsetX, int offsetY) {
+        renderer.render(g, offsetX, offsetY, shape);
     }
 
 }

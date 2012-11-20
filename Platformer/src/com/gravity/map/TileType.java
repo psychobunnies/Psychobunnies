@@ -23,6 +23,10 @@ public enum TileType {
     SPIKE       (MapType.SPIKE, "spikes", 0, 0), 
     BOUNCY      (MapType.BOUNCY, "mapTiles", 0, 0),
     
+    PLAYER_KEYED_UNSET(MapType.PLAYER_KEYED, "levelMarkers", 1, 2),
+    PLAYER_KEYED_PINK(MapType.PLAYER_KEYED, "levelMarkers", 1, 0),
+    PLAYER_KEYED_YELLOW(MapType.PLAYER_KEYED, "levelMarkers", 1, 1),
+    
     PINK_START  (MapType.START, "markers", 0, 0),
     YELLOW_START(MapType.START, "markers", 1, 0),
     HELP_TRIGGER(MapType.TEXT, "markers", 2, 0);

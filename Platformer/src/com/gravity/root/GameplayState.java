@@ -3,7 +3,6 @@ package com.gravity.root;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Random;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -14,6 +13,8 @@ import org.newdawn.slick.geom.Polygon;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.tiled.Layer;
+import org.newdawn.slick.tiled.Tile;
 import org.newdawn.slick.tiled.TiledMapPlus;
 
 import com.google.common.base.Preconditions;
@@ -25,9 +26,11 @@ import com.gravity.fauna.Player;
 import com.gravity.fauna.PlayerKeyboardController;
 import com.gravity.fauna.PlayerKeyboardController.Control;
 import com.gravity.fauna.PlayerRenderer;
+import com.gravity.geom.Rect;
 import com.gravity.map.DisappearingTileController;
 import com.gravity.map.LevelFinishZone;
 import com.gravity.map.MovingCollidable;
+import com.gravity.map.PlayerKeyedTile;
 import com.gravity.map.TileWorld;
 import com.gravity.map.TileWorldRenderer;
 import com.gravity.physics.Collidable;
@@ -60,12 +63,9 @@ public class GameplayState extends BasicGameState implements GameplayControl {
     private GravityPhysics gravityPhysics;
     private LevelFinishZone finish;
     private Player finishedPlayer;
-    private final Random rand = new Random();
     private Camera camera;
 
     private boolean leftRemapped, rightRemapped, jumpRemapped;
-    private Color lightPink = Color.pink.brighter();
-    private Color lightYellow = new Color(1, 1, 0.5f);
     private Control remappedControl;
     private float remappedDecay;
     private Polygon controlArrow = new Polygon(new float[] { -50, 10, 20, 10, -10, 50, 10, 50, 50, 0, 10, -50, -10, -50, 20, -10, -50, -10 });
@@ -138,6 +138,21 @@ public class GameplayState extends BasicGameState implements GameplayControl {
         leftRemapped = false;
         jumpRemapped = false;
         rightRemapped = false;
+
+        // Map-tile construction
+        TiledMapPlus tiledMap = map.map;
+        Layer pkLayer = tiledMap.getLayer(TileWorld.PLAYERKEYED_LAYER_NAME);
+        if (pkLayer != null) {
+            try {
+                for (Tile tile : pkLayer.getTiles()) {
+                    PlayerKeyedTile pkTile = new PlayerKeyedTile(new Rect(tile.x * 32, tile.y * 32, 32, 32), collider, pkLayer, tile.x, tile.y);
+                    updaters.add(pkTile);
+                    collider.addCollidable(pkTile, LayeredCollisionEngine.FLORA_LAYER);
+                }
+            } catch (SlickException e) {
+                throw new RuntimeException("Unable to make keyedplayertile", e);
+            }
+        }
 
         // Camera initialization
         PanningCamera pancam = new PanningCamera(2000, new Vector2f(0, 0), new Vector2f(0.035f, 0), new Vector2f(map.getWidth()

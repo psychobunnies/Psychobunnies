@@ -195,7 +195,7 @@ public class Layer {
 	 * @param y
 	 *            The y location to set
 	 * @param tile
-	 *            The tile value to set
+	 *            The tile value to set - if this is zero, will clear tile
 	 */
 	public void setTileID(int x, int y, int tile) {
 		if (tile == 0) {
@@ -399,6 +399,13 @@ public class Layer {
 	 */
 	public void removeTile(int x, int y) {
 		this.data[x][y][0] = -1;
+	}
+	
+	public void setTile(int x, int y, int tileSetX, int tileSetY, String tilesetName) 
+			throws SlickException {
+		int tilesetID = tmap.getTilesetID(tilesetName);
+		TileSet tileset = tmap.getTileSet(tilesetID);
+		setTile(x, y, tileSetX + tileSetY*tileset.tilesAcross, tilesetName);
 	}
 
 	/**

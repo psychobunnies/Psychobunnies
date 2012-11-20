@@ -24,6 +24,16 @@ import com.gravity.physics.CollisionEngine;
 import com.gravity.root.GameplayControl;
 
 public class TileWorld implements GameWorld {
+
+    public static final String TILES_LAYER_NAME = "collisions";
+    public static final String SPIKES_LAYER_NAME = "spikes";
+    public static final String PLAYERS_LAYER_NAME = "players";
+    public static final String MARKERS_LAYER_NAME = "level markers";
+    public static final String BOUNCYS_LAYER_NAME = "bouncys";
+    public static final String FINISH_MARKER_NAME = "finish";
+    public static final String DISAPPEARING_LAYER_TYPE = "disappearing";
+    public static final String PLAYERKEYED_LAYER_NAME = "playerkeyed";
+
     public final int height;
     public final int width;
 
@@ -66,7 +76,7 @@ public class TileWorld implements GameWorld {
      *            a Creator to create collidables for
      * @return a list of collidables in this layer. Returns an empty list if the list does not exist.
      */
-    private <T extends Collidable> List<T> processLayer(String layerName, CollidableCreator<T> creator) {
+    public <T extends Collidable> List<T> processLayer(String layerName, CollidableCreator<T> creator) {
         boolean[][] visited = new boolean[map.getWidth()][map.getHeight()];
         List<T> res = Lists.newArrayList();
         int layer = 0;

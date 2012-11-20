@@ -12,14 +12,6 @@ import com.gravity.root.Renderer;
 
 public interface GameWorld extends Renderer {
 
-    public static final String TILES_LAYER_NAME = "collisions";
-    public static final String SPIKES_LAYER_NAME = "spikes";
-    public static final String PLAYERS_LAYER_NAME = "players";
-    public static final String MARKERS_LAYER_NAME = "level markers";
-    public static final String BOUNCYS_LAYER_NAME = "bouncys";
-    public static final String FINISH_MARKER_NAME = "finish";
-    public static final String DISAPPEARING_LAYER_TYPE = "disappearing";
-
     public static final String INVISIBLE_TIME_PROPERTY = "invisible_time";
     public static final String NORMAL_VISIBLE_TIME_PROPERTY = "normal_visible_time";
     public static final String FLICKER_TIME_PROPERTY = "flicker_time";

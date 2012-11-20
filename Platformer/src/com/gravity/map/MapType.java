@@ -13,6 +13,7 @@ public enum MapType {
     BOUNCY,
     START,
     FINISH,
-    TEXT;
+    TEXT,
+    PLAYER_KEYED,
     //@formatter:on
 }

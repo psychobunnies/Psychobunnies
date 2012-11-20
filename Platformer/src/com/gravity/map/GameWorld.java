@@ -6,6 +6,7 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.Layer;
 
 import com.gravity.geom.Rect;
+import com.gravity.map.tiles.DisappearingTileController;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.CollisionEngine;
 import com.gravity.root.Renderer;

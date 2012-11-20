@@ -1,4 +1,4 @@
-package com.gravity.map;
+package com.gravity.map.tiles;
 
 import java.util.List;
 import java.util.Random;

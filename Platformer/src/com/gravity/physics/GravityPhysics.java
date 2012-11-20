@@ -10,7 +10,7 @@ import com.gravity.entity.Entity;
 import com.gravity.entity.PhysicallyStateful;
 import com.gravity.geom.Rect;
 import com.gravity.geom.Rect.Side;
-import com.gravity.map.BouncyTile;
+import com.gravity.map.tiles.BouncyTile;
 
 /**
  * A Physics simulator which assumes gravity, but no bouncing.

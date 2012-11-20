@@ -1,4 +1,4 @@
-package com.gravity.map;
+package com.gravity.map.tiles;
 
 import java.util.Collection;
 
@@ -8,6 +8,7 @@ import org.newdawn.slick.tiled.Layer;
 
 import com.gravity.fauna.Player;
 import com.gravity.geom.Rect;
+import com.gravity.map.TileType;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.CollisionEngine;
 import com.gravity.physics.RectCollision;

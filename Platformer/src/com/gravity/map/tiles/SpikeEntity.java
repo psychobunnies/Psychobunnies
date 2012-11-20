@@ -1,4 +1,4 @@
-package com.gravity.map;
+package com.gravity.map.tiles;
 
 import java.util.Collection;
 import java.util.Set;
@@ -6,6 +6,7 @@ import java.util.Set;
 import com.google.common.collect.Sets;
 import com.gravity.fauna.Player;
 import com.gravity.geom.Rect;
+import com.gravity.map.StaticCollidable;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.RectCollision;
 import com.gravity.root.GameplayControl;

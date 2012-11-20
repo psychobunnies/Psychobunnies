@@ -1,4 +1,4 @@
-package com.gravity.map;
+package com.gravity.map.tiles;
 
 import java.util.List;
 import java.util.Map;
@@ -7,6 +7,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.Layer;
 
+import com.gravity.map.TileWorld;
 import com.gravity.root.Renderer;
 
 /**

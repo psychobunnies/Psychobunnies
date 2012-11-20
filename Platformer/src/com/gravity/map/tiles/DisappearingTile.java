@@ -1,8 +1,9 @@
-package com.gravity.map;
+package com.gravity.map.tiles;
 
 import com.google.common.base.Preconditions;
 import com.gravity.fauna.Player;
 import com.gravity.geom.Rect;
+import com.gravity.map.StaticCollidable;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.CollisionEngine;
 import com.gravity.physics.LayeredCollisionEngine;

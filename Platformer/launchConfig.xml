@@ -2,7 +2,7 @@
   <dontWrapJar>true</dontWrapJar>
   <headerType>gui</headerType>
   <jar>Platformer.jar</jar>
-  <outfile>C:\Users\xiao\git\Gravity\Platformer\PPBunnies.exe</outfile>
+  <outfile>C:\Users\xiao\git\PPBunnies\Platformer\PPBunnies.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
   <chdir>.</chdir>

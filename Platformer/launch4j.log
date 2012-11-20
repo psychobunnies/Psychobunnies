@@ -1,0 +1,19 @@
+
+
+CmdLine:	C:\Users\xiao\git\PPBunnies\Platformer\PPBunnies.exe --l4j-debug
+WOW64:		yes
+Working dir:	C:\Users\xiao\git\PPBunnies\Platformer\.
+Check launcher:	 (n/a)
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+Ignore:		SOFTWARE\JavaSoft\Java Runtime Environment\1.6
+Match:		SOFTWARE\JavaSoft\Java Runtime Environment\1.6.0_30
+Using 64-bit runtime.
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Ignore:		SOFTWARE\JavaSoft\Java Development Kit\1.6
+Ignore:		SOFTWARE\JavaSoft\Java Development Kit\1.6.0_30
+Using 64-bit runtime.
+Check launcher:	C:\Program Files\Java\jre6\bin\javaw.exe (OK)
+Launcher:	C:\Program Files\Java\jre6\bin\javaw.exe
+Launcher args:	-Djava.library.path=lib -jar "C:\Users\xiao\git\PPBunnies\Platformer\Platformer.jar"
+Args length:	84/32768 chars
+Exit code:	0

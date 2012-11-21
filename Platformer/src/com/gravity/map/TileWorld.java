@@ -38,6 +38,7 @@ public class TileWorld implements GameWorld {
     public static final String FINISH_MARKER_NAME = "finish";
     public static final String DISAPPEARING_LAYER_TYPE = "disappearing";
     public static final String PLAYERKEYED_LAYER_NAME = "playerkeyed";
+    public static final String FALLING_SPIKE_LAYER_NAME = "falling spikes";
 
     public final int height;
     public final int width;

@@ -13,6 +13,7 @@ import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
 import com.gravity.geom.Rect;
 import com.gravity.geom.Rect.Side;
+import com.gravity.map.LevelFinishZone;
 
 /**
  * Collision engine using the new Rect system. Also supports having multiple collision layers. Collidables within a layer will not have collisions
@@ -27,6 +28,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
     private static final float PIXEL_GRAN = 1e-1f;
     public static final Integer FLORA_LAYER = 1;
     public static final Integer FAUNA_LAYER = 0;
+    public static final Integer FALLING_LAYER = 2;
 
     // package private for testing
     final Map<Integer, Set<Collidable>> collidables;
@@ -95,6 +97,11 @@ public class LayeredCollisionEngine implements CollisionEngine {
         for (Collidable collB : collidables.get(layer)) {
             collides = collidable.getRect(time).intersects(collB.getRect(time));
             if (collides) {
+                if (!(collidable instanceof LevelFinishZone)) {
+                    System.out.println(collidable);
+                    System.out.println(collB);
+                    collides = collidable.getRect(time).intersects(collB.getRect(time));
+                }
                 colls.add(getCollision(time, collidable, collB));
             }
         }

@@ -27,11 +27,15 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling, Renderer {
 
     private CollisionEngine collider;
     private final TileRendererDelegate renderer;
+    private final TileRendererDelegate yellowRenderer;
+    private final TileRendererDelegate pinkRenderer;
+    private boolean exists = true;
 
     private Layer layer;
     private int x, y;
 
-    public PlayerKeyedTile(Rect shape, CollisionEngine collider, TileRendererDelegate renderer, Layer layer, int x, int y) {
+    public PlayerKeyedTile(Rect shape, CollisionEngine collider, TileRendererDelegate renderer, TileRendererDelegate yellowRenderer,
+            TileRendererDelegate pinkRenderer, Layer layer, int x, int y) {
         this.shape = shape;
         this.keyedPlayer = null;
         this.collider = collider;
@@ -39,6 +43,8 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling, Renderer {
         this.x = x;
         this.y = y;
         this.renderer = renderer;
+        this.yellowRenderer = yellowRenderer;
+        this.pinkRenderer = pinkRenderer;
     }
 
     @Override
@@ -47,6 +53,7 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling, Renderer {
         if (millisElapsed > TIME_TO_GTFO) {
             collider.removeCollidable(this);
             layer.setTileID(x, y, 0);
+            exists = false;
         }
         // END HACK
     }
@@ -115,7 +122,14 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling, Renderer {
 
     @Override
     public void render(Graphics g, int offsetX, int offsetY) {
-        renderer.render(g, offsetX, offsetY, shape);
+        if (!exists) {
+            return;
+        } else if (keyedPlayer == null) {
+            renderer.render(g, offsetX, offsetY, shape);
+        } else if (keyedPlayer.getName().equals("pink")) {
+            pinkRenderer.render(g, offsetX, offsetY, shape);
+        } else if (keyedPlayer.getName().equals("yellow")) {
+            yellowRenderer.render(g, offsetX, offsetY, shape);
+        }
     }
-
 }

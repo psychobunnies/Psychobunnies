@@ -88,7 +88,6 @@ public class GravityPhysics implements Physics {
             if (Math.abs(state.velX) <= frictionStopCutoff) {
                 state = state.setVelocity(0f, state.velY);
             } else {
-                System.out.println("" + groundFriction + " | " + (Math.abs(state.velX) / frictionAccelRatio));
                 state = state.addAcceleration(-Math.signum(state.velX) * Math.min(groundFriction, Math.abs(state.velX) / frictionAccelRatio), 0);
             }
             return state;

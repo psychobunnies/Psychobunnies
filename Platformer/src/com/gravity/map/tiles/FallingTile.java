@@ -69,7 +69,7 @@ public class FallingTile implements Collidable, Renderer, UpdateCycling {
     public void render(Graphics g, int offsetX, int offsetY) {
         renderer.render(g, offsetX, offsetY, state.getRectangle());
         g.setColor(Color.cyan);
-        g.draw(state.getRectangle().toShape());
+        g.draw(state.getRectangle().translate(offsetX, offsetY).toShape());
 
     }
 

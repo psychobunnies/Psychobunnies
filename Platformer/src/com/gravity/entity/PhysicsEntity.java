@@ -40,6 +40,9 @@ public abstract class PhysicsEntity<T extends Physics> extends AbstractEntity {
 
     @Override
     public void finishUpdate(float millis) {
+        if (state.accX != 0f) {
+            System.out.println(state.toString());
+        }
         state = state.snapshotAndSetAccel(millis, oldAccX, oldAccY);
     }
 }

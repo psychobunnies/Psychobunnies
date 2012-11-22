@@ -17,7 +17,7 @@
  </tileset>
  <layer name="collisions" width="32" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2W2w6AIAiGecdOdlHv/xjllpuxHwWjw0VsrAL1g0RmT0RDpuF4zszupSF7H+le6S76f74vv6fznkf/uutC9VqIc0t1GcAanI++O8HXIhqexOf/5mk+8lsF7a/ET2ORrVWu5p9iQL0p2Uv9y4MvjeU+FIMnvySamNFeovq4i6/xe/OnhnlS/eXKe562ZjXxeeaviZ1rK9+rX7/Nl+5GpTvSV/O3rvUFfu3MIpmEeda14nh0ZqxnyHLn5rW1AeZMnEgADAAA
+   H4sIAAAAAAAAC+2W2w6AIAiGWa/YyS7q/R+j3HIz9mNgdLiIjVWgfhjI7IiozzTsz4nZvTRk7wPdK+1F/8/35Xd0zHn0L5vOdF4LcW6pLgNYg/PRdyv4akTDk/j83zzNR36roPxK/DQW2Wrl6v5TDKg3JXupf3nwpbHch2Lw5JdEEzPKJaqPu/havyd/dOCnOsuV9zxtzaL4Gqae+9fEzrWW79Wv3+ZLd6PSHemr+7eu9QX+2ZlFMgrzrGvF8ejMWM+Q5c7Na2sFBW4+AgAMAAA=
   </data>
  </layer>
  <layer name="spikes" width="32" height="24" visible="0">
@@ -25,8 +25,8 @@
    H4sIAAAAAAAAC+3BAQEAAACCIP+vbkhAAQAALwaEyeZnAAwAAA==
   </data>
  </layer>
- <objectgroup name="level markers" width="32" height="24" visible="0">
-  <object name="finish" type="finish" x="896" y="448" width="128" height="64"/>
+ <objectgroup name="level markers" width="32" height="24">
+  <object name="finish" type="finish" x="896" y="416" width="128" height="64"/>
  </objectgroup>
  <layer name="players" width="32" height="24" visible="0">
   <properties>

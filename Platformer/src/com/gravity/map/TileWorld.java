@@ -38,6 +38,11 @@ public class TileWorld implements GameWorld {
     public static final String FINISH_MARKER_NAME = "finish";
     public static final String DISAPPEARING_LAYER_TYPE = "disappearing";
     public static final String PLAYERKEYED_LAYER_NAME = "playerkeyed";
+    public static final String STOMPS_LAYER_NAME = "stomps";
+    
+    public static final float STOMP_SPEED_FORWARD = 50.0f;
+    public static final float STOMP_SPEED_BACKWARD = 30.0f;
+
 
     public final int height;
     public final int width;
@@ -204,7 +209,7 @@ public class TileWorld implements GameWorld {
             List<Collidable> colls = processLayer(layer.name, new CollidableCreator<Collidable>() {
                 @Override
                 public Collidable createCollidable(Rect r) {
-                    return new MovingCollidable(controller, tileWidth, tileHeight, r, transX, transY, speed);
+                    return new MovingCollidable(controller, r, transX * tileWidth, transY * tileHeight, speed);
                 }
             });
             entityNoCalls.addAll(colls);
@@ -214,6 +219,31 @@ public class TileWorld implements GameWorld {
                 movingColls.add((MovingCollidable) c);
             }
             movingCollMap.put(layer, movingColls);
+        }
+        
+        Layer stomps = map.getLayer(STOMPS_LAYER_NAME);
+        if (stomps != null) {
+            stomps.visible = false;
+            try {
+                for (Tile tile : stomps.getTiles()) {
+                    Rect r = new Rect(tile.x * tileWidth, tile.y * tileWidth, tileWidth, tileHeight);
+                    float minBelowY = 22222222f;
+                    for (Collidable coll : entityNoCalls) {
+                        Rect c = coll.getRect(0);
+                        if (r.getMaxX() > c.getX() && r.getX() < c.getMaxX()
+                                && c.getY() > r.getMaxY() && c.getY() < minBelowY) {
+                            minBelowY = c.getY();
+                        }
+                    }
+                    MovingCollidable stompColl = 
+                            new MovingCollidable(controller, r, 0, (int) (minBelowY - r.getMaxY()),
+                                                 STOMP_SPEED_FORWARD, STOMP_SPEED_BACKWARD);
+                    movingCollMap.put(stomps, Lists.newArrayList(stompColl));
+                    entityNoCalls.add(stompColl);
+                }
+            } catch (SlickException e) {
+                throw new RuntimeException("Unable to get tiles for stomps", e);
+            }
         }
 
         for (Layer layer : map.getLayers()) {

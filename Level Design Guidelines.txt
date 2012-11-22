@@ -18,6 +18,8 @@ Your level should have the following tile layers, in some order:
 
 * "bouncys" bouncy tiles should be put here.
 
+* "stomps" stomps, tiles which drop down to crush the player. Speed can be adjusted in TileWorld.java.
+
 * a number of layers containing disappearing tiles. Each of these layers should have a set of layer properties (right-click the layer -> Layer Properties) that define how the disappearing tiles on that layer behave:
 	- type - this value must be set to "disappearing" (quotes for clarity). IF YOU DON'T DO THIS, THE LAYER WILL BE IGNORED!
 	- flicker_count - the number of times the tile should flicker. Currently the reference number is 3, and should not be changed without Turner's consent.

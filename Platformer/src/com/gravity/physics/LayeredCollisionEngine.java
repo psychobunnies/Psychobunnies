@@ -27,6 +27,9 @@ public class LayeredCollisionEngine implements CollisionEngine {
     public static final Integer FAUNA_LAYER = 0;
     public static final Integer FALLING_LAYER = 1;
 
+    private static final int PARTS_PER_TICK = 4;
+    private static final int MIN_INCREMENT = 5;
+
     // package private for testing
     final Map<Integer, CollidableContainer> collidables;
     final Map<Collidable, Integer> layerMap;
@@ -223,9 +226,6 @@ public class LayeredCollisionEngine implements CollisionEngine {
 
         return collList;
     }
-
-    private static final int PARTS_PER_TICK = 10;
-    private static final int MIN_INCREMENT = 5;
 
     @Override
     public void update(float millis) {

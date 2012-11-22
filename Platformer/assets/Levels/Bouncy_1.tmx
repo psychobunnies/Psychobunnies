@@ -10,28 +10,26 @@
   <image source="Spikes.png" width="32" height="32"/>
  </tileset>
  <layer name="collisions" width="72" height="27">
-  <data encoding="base64" compression="zlib">
-   eJztmIEKgzAMRNv5//88hBWC2MtiXXbL7kFAMbL4mta61lp7BGKF1furIz8Y+cFs3y4ggf6KXyXSw//Y73f76ScRybX5DOPB1j/Zfu4coyv1RtfYiv2zORHB5lfx8ynY/LCtl5nrz/F8hK3Bq6eiHw9WPyz7yv2Zuzn2cjNh6B/LWT12HOVn7fpOZE54c6iCnzE/R8z2O8d3xAy2/WGEmZ/M32NGfjDyg5EfjPxg5AcjPxj5wYx63/1/eRWG79MoT18AAPk=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2YgQqDMAxE2/n//zyEFYLYy2JddsvuQUAxsvia1rrWWnsEYoXV+6sjPxj5wWzfLiCB/opfJdLD/9jvd/vpJxHJtfkM48HWP9l+7hyjK/VG19iK/bM5EcHmV/HzKdj8sK2XmevP8XyErcGrp6IfD1Y/LPvK/Zm7OfZyM2HoH8tZPXYc5Wft+k5kTnhzqIKfMT9HzPY7x3fEDLb9YYSZn8zfY0Z+MPKDkR+M/GDkByM/GPnBjHrf/X95FYbv0yhPJf1dmWAeAAA=
   </data>
  </layer>
  <layer name="bouncys" width="72" height="27">
-  <data encoding="base64" compression="zlib">
-   eJztl0sKgDAMBQU3uf+J3bgsz3yaxOgbKEgVpx0UVA4bEhgTmbruKtgHU9kn8m52jk60fnRd5h7Yx++tgH32+DV9Mvbyxj6aOVkcV/Sp7jWtj/Zcpp99sIN9sIN9sGNKnwq6+5z3WM1777mT7j5PsA/mq32i/+qZzS3w+bH72Qf72Qf72QejWZO2axT2sXu6YR/Mn/t4v9u6xgXj1ggq
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2XSwqAMAwFBTe5/4nduCzPfJrE6BsoSBWnHRRUDhsSGBOZuu4q2AdT2SfybnaOTrR+dF3mHtjH762Affb4NX0y9vLGPpo5WRxX9KnuNa2P9lymn32wg32wg32wY0qfCrr7nPdYzXvvuZPuPk+wD+arfaL/6pnNLfD5sfvZB/vZB/vZB6NZk7ZrFPaxe7phH8yf+3i/27rGBczMSshgHgAA
   </data>
  </layer>
  <layer name="spikes" width="72" height="27">
-  <data encoding="base64" compression="zlib">
-   eJztzrEJAAAIBDHb339hpxBRErj+qgD4INsDAAAAAADwVIa6qAGqSwDQ
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OsQkAAAgEMdvff2GnEFESuP6qAPgg2wMAAAAAAPBUhrqoAWOYCvhgHgAA
   </data>
  </layer>
  <objectgroup name="level markers" width="72" height="27">
-  <object name="finish" type="finish" x="2049" y="355">
-   <polygon points="0,0 0,92 223,91 221,-5"/>
-  </object>
+  <object name="finish" type="finish" x="2050" y="354" width="219" height="93"/>
  </objectgroup>
  <layer name="players" width="72" height="27">
-  <data encoding="base64" compression="zlib">
-   eJztw7EJAAAIA7Bu/v+xS38QIYEkAAAAAADAhWkA+GIBfIwADw==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DsQkAAAgDsG7+/7FLfxAhgSQAAAAAAMCFaQD4YgEpjOuBYB4AAA==
   </data>
  </layer>
 </map>

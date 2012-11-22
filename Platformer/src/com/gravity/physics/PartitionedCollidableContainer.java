@@ -17,7 +17,7 @@ public final class PartitionedCollidableContainer implements CollidableContainer
     /** how much to the left and right of a given collidable is considered "nearby" */
     private static final float BUFFER_ZONE_SIZE = 48f;
 
-    private static final float REFRESH_INTERVAL = 1f;
+    private static final float REFRESH_INTERVAL = 1000f;
 
     private float elapsedTime = 0f;
 

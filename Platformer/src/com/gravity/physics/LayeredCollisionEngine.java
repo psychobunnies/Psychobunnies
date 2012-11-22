@@ -21,13 +21,13 @@ import com.gravity.geom.Rect.Side;
  */
 public class LayeredCollisionEngine implements CollisionEngine {
     private static final float EPS = 1e-6f;
-    private static final float TIME_GRAN = 3e-2f;
+    private static final float TIME_GRAN = 3e-1f;
     private static final float PIXEL_GRAN = 1e-1f;
     public static final Integer FLORA_LAYER = 2;
     public static final Integer FAUNA_LAYER = 0;
     public static final Integer FALLING_LAYER = 1;
 
-    private static final int PARTS_PER_TICK = 4;
+    private static final int PARTS_PER_TICK = 3;
     private static final int MIN_INCREMENT = 5;
 
     // package private for testing

@@ -239,6 +239,9 @@ public class LayeredCollisionEngine implements CollisionEngine {
             }
         }
         runCollisionsAndHandling(millis);
+        for (CollidableContainer cont : collidables.values()) {
+            cont.update(millis);
+        }
     }
 
     private void runCollisionsAndHandling(float millis) {

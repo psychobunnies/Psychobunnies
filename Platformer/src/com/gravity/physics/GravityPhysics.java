@@ -25,14 +25,21 @@ public class GravityPhysics implements Physics {
     private final float backstep;
     private final float offsetGroundCheck;
     private final float allowedSideOverlap;
+    private final float groundFriction;
+    private final float frictionStopCutoff; // the velocity below which friction makes you stop completely
+    private final float frictionAccelRatio; // the maximum fraction of your velocity that friction acceleration may represent
     private static final float EPS = 1e-6f;
 
-    GravityPhysics(CollisionEngine collisionEngine, float gravity, float backstep, float offsetGroundCheck, float allowedSideOverlap) {
+    GravityPhysics(CollisionEngine collisionEngine, float gravity, float backstep, float offsetGroundCheck, float allowedSideOverlap,
+            float groundFriction, float frictionStopCutoff, float frictionAccelRatio) {
         Preconditions.checkArgument(backstep <= 0f, "Backstep has to be non-positive.");
         this.collisionEngine = collisionEngine;
         this.gravity = gravity;
         this.backstep = backstep;
         this.offsetGroundCheck = offsetGroundCheck;
+        this.groundFriction = groundFriction;
+        this.frictionStopCutoff = frictionStopCutoff;
+        this.frictionAccelRatio = frictionAccelRatio;
         this.allowedSideOverlap = allowedSideOverlap; // e.g. if player overlaps tile by this much on bottom-and-side collision, ignore bottom and
                                                       // move player sideways to compensate
                                                       // Fixes: residual wall-hanging on corners of tiles
@@ -77,7 +84,13 @@ public class GravityPhysics implements Physics {
     @Override
     public PhysicalState computePhysics(Entity entity) {
         if (isOnGround(entity)) {
-            return entity.getPhysicalState();
+            PhysicalState state = entity.getPhysicalState();
+            if (Math.abs(state.velX) <= frictionStopCutoff) {
+                state = state.setVelocity(0f, state.velY);
+            } else {
+                state = state.addAcceleration(-Math.signum(state.velX) * Math.min(groundFriction, Math.abs(state.velX) / frictionAccelRatio), 0);
+            }
+            return state;
         } else {
             return entity.getPhysicalState().addAcceleration(0f, gravity);
         }

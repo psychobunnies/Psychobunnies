@@ -4,13 +4,13 @@
   <property name="camera" value="stalking"/>
  </properties>
  <tileset firstgid="1" name="bunnyTiles" tilewidth="32" tileheight="32">
-  <image source="../Documents/GitHub/PPBunnies/Platformer/assets/Levels/bunnyTiles.png" width="128" height="64"/>
+  <image source="bunnyTiles.png" width="128" height="64"/>
  </tileset>
  <tileset firstgid="9" name="Spikes" tilewidth="32" tileheight="32">
-  <image source="../Documents/GitHub/PPBunnies/Platformer/assets/Levels/Spikes.png" width="32" height="32"/>
+  <image source="Spikes.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="10" name="levelMarkers" tilewidth="32" tileheight="32">
-  <image source="../Documents/GitHub/PPBunnies/Platformer/assets/Levels/levelMarkers.png" width="128" height="128"/>
+  <image source="levelMarkers.png" width="128" height="128"/>
  </tileset>
  <layer name="players" width="90" height="24">
   <data encoding="base64" compression="zlib">

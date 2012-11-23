@@ -6,6 +6,7 @@ import com.gravity.entity.PhysicsEntity;
 import com.gravity.geom.Rect;
 import com.gravity.physics.GravityPhysics;
 import com.gravity.physics.PhysicalState;
+import com.gravity.root.GameSounds;
 import com.gravity.root.GameplayControl;
 
 public class Player extends PhysicsEntity<GravityPhysics> {
@@ -72,6 +73,7 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     public void jump(boolean jumping) {
         if (jumping && physics.isOnGround(this)) {
             moving = false;
+            GameSounds.playSickRabbitBeat(); // TODO: clean this up
             setPhysicalState(state.setVelocity(state.velX, state.velY - JUMP_POWER));
         }
     }

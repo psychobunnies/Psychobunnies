@@ -73,10 +73,12 @@ public class PlayerRenderer implements Renderer {
     public void render(Graphics g, int offsetX, int offsetY) {
         PhysicalState state = player.getPhysicalState();
         if (tweener % 8 == 0) {
-            if (state.velX > 0) {
-                lastImage = runningBunny.get(counter);
-            } else if (state.velX < 0) {
-                lastImage = runningBackBunny.get(counter);
+            if (player.isRunning()) {
+                if (state.velX > 0) {
+                    lastImage = runningBunny.get(counter);
+                } else if (state.velX < 0) {
+                    lastImage = runningBackBunny.get(counter);
+                }
             } else {
                 lastImage = bunnyPlayer;
             }

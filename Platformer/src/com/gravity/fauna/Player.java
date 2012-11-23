@@ -30,6 +30,8 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     // GAME STATE STUFF
     private final String name;
     private Movement requested = Movement.STOP;
+    // for rendering
+    private boolean moving = false;
 
     public boolean slingshot;
     public float slingshotStrength = 0;
@@ -42,6 +44,10 @@ public class Player extends PhysicsEntity<GravityPhysics> {
 
     public String getName() {
         return name;
+    }
+    
+    public boolean isRunning() {
+        return moving && physics.isOnGround(this);
     }
 
     @Override
@@ -65,6 +71,7 @@ public class Player extends PhysicsEntity<GravityPhysics> {
      */
     public void jump(boolean jumping) {
         if (jumping && physics.isOnGround(this)) {
+            moving = false;
             setPhysicalState(state.setVelocity(state.velX, state.velY - JUMP_POWER));
         }
     }
@@ -75,15 +82,13 @@ public class Player extends PhysicsEntity<GravityPhysics> {
      */
     public void move(Movement direction) {
         switch (direction) {
-        case LEFT: {
-            requested = direction;
-            break;
-        }
-        case RIGHT: {
+        case LEFT: case RIGHT: {
+            moving = true;
             requested = direction;
             break;
         }
         case STOP: {
+            moving = false;
             requested = direction;
             setPhysicalState(state.setVelocity(0f, state.velY));
             break;

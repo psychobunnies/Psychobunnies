@@ -6,7 +6,7 @@
  <tileset firstgid="1" name="bunnyTiles" tilewidth="32" tileheight="32">
   <image source="bunnyTiles.png" width="128" height="64"/>
  </tileset>
- <tileset firstgid="9" name="Spikes" tilewidth="32" tileheight="32">
+ <tileset firstgid="9" name="spikes" tilewidth="32" tileheight="32">
   <image source="Spikes.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="10" name="levelMarkers" tilewidth="32" tileheight="32">

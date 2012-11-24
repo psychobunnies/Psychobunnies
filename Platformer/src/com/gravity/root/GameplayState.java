@@ -43,7 +43,7 @@ import com.gravity.physics.LayeredCollisionEngine;
 import com.gravity.physics.PhysicalState;
 import com.gravity.physics.PhysicsFactory;
 
-public class GameplayState extends BasicGameState implements GameplayControl {
+public class GameplayState extends BasicGameState implements GameplayControl, Resetable {
 
     final int ID;
 
@@ -73,6 +73,8 @@ public class GameplayState extends BasicGameState implements GameplayControl {
     private float remappedDecay;
     private Polygon controlArrow = new Polygon(new float[] { -50, 10, 20, 10, -10, 50, 10, 50, 50, 0, 10, -50, -10, -50, 20, -10, -50, -10 });
 
+    private final List<Resetable> resetableTiles = Lists.newArrayList();
+
     public GameplayState(String levelName, String mapFile, int id) throws SlickException {
         ID = id;
         map = new TileWorld(levelName, new TiledMapPlus(mapFile), this);
@@ -93,6 +95,7 @@ public class GameplayState extends BasicGameState implements GameplayControl {
 
         collider = new LayeredCollisionEngine();
         updaters = Lists.newLinkedList();
+        resetableTiles.clear();
 
         for (DisappearingTileController controller : map.reinitializeDisappearingLayers(collider)) {
             updaters.add(controller);
@@ -157,6 +160,7 @@ public class GameplayState extends BasicGameState implements GameplayControl {
                     updaters.add(pkTile);
                     collider.addCollidable(pkTile, LayeredCollisionEngine.FLORA_LAYER);
                     renderers.add(pkTile);
+                    resetableTiles.add(pkTile);
                 }
             } catch (SlickException e) {
                 throw new RuntimeException("Unable to make keyedplayertile", e);
@@ -321,6 +325,7 @@ public class GameplayState extends BasicGameState implements GameplayControl {
 
     @Override
     public void playerDies(Player player) {
+        reset();
         game.enterState(GameOverState.ID);
     }
 
@@ -378,6 +383,7 @@ public class GameplayState extends BasicGameState implements GameplayControl {
         if (finishedPlayer == null) {
             finishedPlayer = player;
         } else if (finishedPlayer != player) {
+            reset();
             game.enterState(GameWinState.ID);
         }
     }
@@ -386,5 +392,12 @@ public class GameplayState extends BasicGameState implements GameplayControl {
     public void newStartPositions(List<Vector2f> startPositions) {
         Preconditions.checkArgument(startPositions.size() == 2);
         map.setStartPositions(startPositions);
+    }
+
+    @Override
+    public void reset() {
+        for (Resetable r : resetableTiles) {
+            r.reset();
+        }
     }
 }

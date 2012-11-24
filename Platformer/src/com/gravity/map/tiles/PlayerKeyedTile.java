@@ -12,21 +12,23 @@ import com.gravity.map.TileType;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.CollisionEngine;
 import com.gravity.physics.RectCollision;
+import com.gravity.root.Resetable;
 import com.gravity.root.UpdateCycling;
 
-public class PlayerKeyedTile implements Collidable, UpdateCycling {
+public class PlayerKeyedTile implements Collidable, UpdateCycling, Resetable {
 
     private final float TIME_TO_GTFO = 1000;
     private final Rect shape;
 
+    private final CollisionEngine collider;
+
+    private final Layer layer;
+    private final int x, y;
+    private final int originalTileId;
+
     private Player keyedPlayer;
     private float millisElapsed;
     private boolean ticking;
-
-    private CollisionEngine collider;
-
-    private Layer layer;
-    private int x, y;
 
     public PlayerKeyedTile(Rect shape, CollisionEngine collider, Layer layer, int x, int y) {
         this.shape = shape;
@@ -35,6 +37,10 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling {
         this.layer = layer;
         this.x = x;
         this.y = y;
+        originalTileId = layer.getTileID(x, y);
+        if (originalTileId != 6) {
+            System.out.println(originalTileId);
+        }
     }
 
     @Override
@@ -107,6 +113,12 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling {
     @Override
     public String toString() {
         return "PlayerKeyedTile [shape=" + shape + ", keyedPlayer=" + keyedPlayer + ", millisElapsed=" + millisElapsed + ", ticking=" + ticking + "]";
+    }
+
+    @Override
+    public void reset() {
+        millisElapsed = Float.NEGATIVE_INFINITY;
+        layer.setTileID(x, y, originalTileId);
     }
 
 }

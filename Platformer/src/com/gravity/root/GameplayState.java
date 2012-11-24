@@ -257,10 +257,10 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         }
 
         // Tell player when to die if off the screen
-        float xOffset = camera.getViewport().getX();
-        checkDeath(playerA, xOffset);
-        checkDeath(playerB, xOffset);
+        checkDeath(playerA);
+        checkDeath(playerB);
 
+        float xOffset = camera.getViewport().getX();
         // Prevent player from going off right side
         checkRightSide(playerA, xOffset);
         checkRightSide(playerB, xOffset);
@@ -270,9 +270,11 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         finishedPlayer = null;
     }
 
-    private void checkDeath(Player player, float offsetX2) {
+    private void checkDeath(Player player) {
         Vector2f pos = player.getPosition(0f);
-        if (pos.x + offsetX2 + 32 < 0) {
+        Rect r = camera.getViewport();
+        if (pos.x + r.getX() + 32 < 0 || pos.y > r.getMaxY()) {
+            // if (pos.x + offsetX2 + 32 < 0) {
             playerDies(player);
         }
     }

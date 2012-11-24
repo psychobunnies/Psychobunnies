@@ -251,7 +251,6 @@ public class TileWorld implements GameWorld {
 
             layer.visible = false;
             try {
-                // System.out.println("checkpoint layer " + layer.name + " !");
                 Vector2f startPosA = null, startPosB = null;
                 for (Tile tile : layer.getTiles()) {
                     int tileID = layer.getTileID(tile.x, tile.y);

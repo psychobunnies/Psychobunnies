@@ -12,7 +12,7 @@
  <tileset firstgid="67" name="markers" tilewidth="32" tileheight="32">
   <image source="levelMarkers.png" width="128" height="128"/>
  </tileset>
- <layer name="collisions" width="32" height="24">
+ <layer name="collisions" width="32" height="24" visible="0">
   <data encoding="base64" compression="zlib">
    eJztlksOwCAIRJX7H7qbNjFmgEGwdlESForwAD9tb631g7pTvPg//12+3DraBcwjEVItPhp3xbYiDM/iez3YyUf2Ff68vxpfFH6mB9n6xxzmPKrOm8fX1iK/SL+jfEuYnAWsQ/nu4jP203w0x7xxmk8FnxGrfi9vrxaWn30rnzir/KrvhdczVGc1v8ovuifV/Gisr/DZf5vxzmh3KRrnAod6ATo=
   </data>
@@ -25,7 +25,7 @@
  <objectgroup name="level markers" width="32" height="24" visible="0">
   <object name="finish" type="finish" x="896" y="448" width="128" height="64"/>
  </objectgroup>
- <layer name="players" width="32" height="24">
+ <layer name="players" width="32" height="24" visible="0">
   <properties>
    <property name="visible" value="0"/>
   </properties>
@@ -33,7 +33,7 @@
    eJztzUEJAAAIBLDr5sP+jWxxIGwFlgAAQN8Uji0c3xy69ACL
   </data>
  </layer>
- <layer name="help1" width="32" height="24" visible="0">
+ <layer name="help1" width="32" height="24">
   <properties>
    <property name="text" value="Press a/d to move left/right"/>
    <property name="x" value="40"/>
@@ -95,7 +95,7 @@
  </layer>
  <layer name="help7" width="32" height="24" visible="0">
   <properties>
-   <property name="text" value="Hold space to charge your special ability, $release it to fling your partner towards $you"/>
+   <property name="text" value="Hold tab to charge your special ability, $release it to fling your partner towards $you"/>
    <property name="x" value="40"/>
    <property name="y" value="385"/>
   </properties>
@@ -113,7 +113,7 @@
    eJxjYBgFo2AUgIArFA8GNwyUOwbafmQ3jIJRMApGwSgYBaOANgAAFgoCsw==
   </data>
  </layer>
- <layer name="help9" width="32" height="24">
+ <layer name="help9" width="32" height="24" visible="0">
   <properties>
    <property name="text" value="Falling off the stage will kill you"/>
    <property name="x" value="150"/>
@@ -123,7 +123,7 @@
    eJxjYBgFAwlckfBItH8UjIJRMApGwSgYBaNgFNAXAACZ+AGf
   </data>
  </layer>
- <layer name="help10" width="32" height="24">
+ <layer name="help10" width="32" height="24" visible="0">
   <properties>
    <property name="text" value="Sometimes you have to charge your slingshot $before you need it. $Both bunnies can have a fully-charged slingshot $at the same time"/>
    <property name="x" value="485"/>
@@ -133,7 +133,7 @@
    eJxjYBgFo2AUjIJRMApGAaXAFQ8eCfaPglEwCoYOAACeSAPH
   </data>
  </layer>
- <layer name="help11" width="32" height="24">
+ <layer name="help11" width="32" height="24" visible="0">
   <properties>
    <property name="text" value="Win by exiting the right edge of the stage. $ Good Luck!"/>
    <property name="x" value="640"/>
@@ -143,9 +143,9 @@
    eJxjYBgF9AKuaHik2Y/ujoG0e9T+gbV/oMBA2j1q/ygYBaNgFIyCwQIAiIMGeQ==
   </data>
  </layer>
- <layer name="help12" width="32" height="24">
+ <layer name="help12" width="32" height="24" visible="0">
   <properties>
-   <property name="text" value="Hold enter to charge your slingshot $release to fling your partner to you"/>
+   <property name="text" value="Hold space to charge your slingshot $release to fling your partner to you"/>
    <property name="x" value="275"/>
    <property name="y" value="200"/>
   </properties>

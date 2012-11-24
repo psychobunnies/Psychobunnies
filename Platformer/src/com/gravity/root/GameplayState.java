@@ -136,10 +136,10 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         //@formatter:off
         controllerA = new PlayerKeyboardController(playerA)
                 .setLeft(Input.KEY_A).setRight(Input.KEY_D)
-                .setJump(Input.KEY_W).setMisc(Input.KEY_SPACE);
+                .setJump(Input.KEY_W).setMisc(Input.KEY_TAB);
         controllerB = new PlayerKeyboardController(playerB)
                 .setLeft(Input.KEY_LEFT).setRight(Input.KEY_RIGHT)
-                .setJump(Input.KEY_UP).setMisc(Input.KEY_ENTER);
+                .setJump(Input.KEY_UP).setMisc(Input.KEY_SPACE);
         //@formatter:on
         leftRemapped = false;
         jumpRemapped = false;

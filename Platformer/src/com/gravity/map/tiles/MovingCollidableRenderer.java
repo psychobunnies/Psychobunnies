@@ -18,7 +18,6 @@ public class MovingCollidableRenderer implements Renderer {
     private Layer layer;
 
     public MovingCollidableRenderer(TileWorld world, Layer layer) {
-        //System.out.println("making MCR");
         this.world = world;
         this.layer = layer;
     }
@@ -27,13 +26,11 @@ public class MovingCollidableRenderer implements Renderer {
     public void render(Graphics g, int offsetX, int offsetY) {
         List<MovingCollidable> movingColls = world.getMovingCollMap().get(layer);
         MovingCollidable canonicalMovingColl = movingColls.get(0);
-        Vector2f moveOffset = canonicalMovingColl.getPosition(0).sub(
-                canonicalMovingColl.getOrigPosition());
+        Vector2f moveOffset = canonicalMovingColl.getPosition(0).sub(canonicalMovingColl.getOrigPosition());
 
-        //System.out.println("rendering MC at (" + (moveOffset.x + offsetX) + ", " + (moveOffset.y + offsetY) + ")");
         for (int ty = 0; ty < world.getHeight(); ty++) {
-            layer.render((int)(offsetX + moveOffset.x), (int)(offsetY + moveOffset.y), 0, 0,
-                    world.getWidth(), ty, false, world.tileWidth, world.tileHeight);
+            layer.render((int) (offsetX + moveOffset.x), (int) (offsetY + moveOffset.y), 0, 0, world.getWidth(), ty, false, world.tileWidth,
+                    world.tileHeight);
         }
     }
 }

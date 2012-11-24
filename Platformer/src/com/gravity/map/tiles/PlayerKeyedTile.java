@@ -38,9 +38,6 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling, Resetable {
         this.x = x;
         this.y = y;
         originalTileId = layer.getTileID(x, y);
-        if (originalTileId != 6) {
-            System.out.println(originalTileId);
-        }
     }
 
     @Override

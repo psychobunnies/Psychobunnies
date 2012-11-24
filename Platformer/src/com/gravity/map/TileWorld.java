@@ -39,10 +39,9 @@ public class TileWorld implements GameWorld {
     public static final String DISAPPEARING_LAYER_TYPE = "disappearing";
     public static final String PLAYERKEYED_LAYER_NAME = "playerkeyed";
     public static final String STOMPS_LAYER_NAME = "stomps";
-    
+
     public static final float STOMP_SPEED_FORWARD = 50.0f;
     public static final float STOMP_SPEED_BACKWARD = 30.0f;
-
 
     public final int height;
     public final int width;
@@ -220,7 +219,7 @@ public class TileWorld implements GameWorld {
             }
             movingCollMap.put(layer, movingColls);
         }
-        
+
         Layer stomps = map.getLayer(STOMPS_LAYER_NAME);
         if (stomps != null) {
             stomps.visible = false;
@@ -230,14 +229,12 @@ public class TileWorld implements GameWorld {
                     float minBelowY = 22222222f;
                     for (Collidable coll : entityNoCalls) {
                         Rect c = coll.getRect(0);
-                        if (r.getMaxX() > c.getX() && r.getX() < c.getMaxX()
-                                && c.getY() > r.getMaxY() && c.getY() < minBelowY) {
+                        if (r.getMaxX() > c.getX() && r.getX() < c.getMaxX() && c.getY() > r.getMaxY() && c.getY() < minBelowY) {
                             minBelowY = c.getY();
                         }
                     }
-                    MovingCollidable stompColl = 
-                            new MovingCollidable(controller, r, 0, (int) (minBelowY - r.getMaxY()),
-                                                 STOMP_SPEED_FORWARD, STOMP_SPEED_BACKWARD);
+                    MovingCollidable stompColl = new MovingCollidable(controller, r, 0, (int) (minBelowY - r.getMaxY()), STOMP_SPEED_FORWARD,
+                            STOMP_SPEED_BACKWARD);
                     movingCollMap.put(stomps, Lists.newArrayList(stompColl));
                     entityNoCalls.add(stompColl);
                 }
@@ -253,7 +250,6 @@ public class TileWorld implements GameWorld {
 
             layer.visible = false;
             try {
-                // System.out.println("checkpoint layer " + layer.name + " !");
                 Vector2f startPosA = null, startPosB = null;
                 for (Tile tile : layer.getTiles()) {
                     int tileID = layer.getTileID(tile.x, tile.y);

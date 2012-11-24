@@ -3,17 +3,14 @@ package com.gravity.physics;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
-import com.google.common.collect.Sets;
 import com.gravity.geom.Rect;
 import com.gravity.geom.Rect.Side;
-import com.gravity.map.LevelFinishZone;
 
 /**
  * Collision engine using the new Rect system. Also supports having multiple collision layers. Collidables within a layer will not have collisions
@@ -24,18 +21,21 @@ import com.gravity.map.LevelFinishZone;
  */
 public class LayeredCollisionEngine implements CollisionEngine {
     private static final float EPS = 1e-6f;
-    private static final float TIME_GRAN = 3e-2f;
+    private static final float TIME_GRAN = 3e-1f;
     private static final float PIXEL_GRAN = 1e-1f;
-    public static final Integer FLORA_LAYER = 1;
+    public static final Integer FLORA_LAYER = 2;
     public static final Integer FAUNA_LAYER = 0;
-    public static final Integer FALLING_LAYER = 2;
+    public static final Integer FALLING_LAYER = 1;
+
+    private static final int PARTS_PER_TICK = 3;
+    private static final int MIN_INCREMENT = 5;
 
     // package private for testing
-    final Map<Integer, Set<Collidable>> collidables;
+    final Map<Integer, CollidableContainer> collidables;
     final Map<Collidable, Integer> layerMap;
 
     public LayeredCollisionEngine() {
-        collidables = Maps.newHashMapWithExpectedSize(2);
+        collidables = Maps.newHashMapWithExpectedSize(3);
         layerMap = Maps.newIdentityHashMap();
     }
 
@@ -51,11 +51,11 @@ public class LayeredCollisionEngine implements CollisionEngine {
     public boolean addCollidable(Collidable collidable, Integer layer) {
         boolean retval = removeCollidable(collidable);
         if (!collidables.containsKey(layer)) {
-            collidables.put(layer, Sets.<Collidable> newIdentityHashSet());
+            collidables.put(layer, new PartitionedCollidableContainer());
         }
-        collidables.get(layer).add(collidable);
+        collidables.get(layer).addCollidable(collidable);
         layerMap.put(collidable, layer);
-        return retval;
+        return !retval;
     }
 
     /**
@@ -67,7 +67,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
     public boolean removeCollidable(Collidable collidable) {
         if (layerMap.containsKey(collidable)) {
             Integer layer = layerMap.remove(collidable);
-            collidables.get(layer).remove(collidable);
+            collidables.get(layer).removeCollidable(collidable);
             if (collidables.get(layer).isEmpty()) {
                 collidables.remove(layer);
             }
@@ -91,18 +91,16 @@ public class LayeredCollisionEngine implements CollisionEngine {
         Preconditions.checkArgument(time > 0, "Time since last update() call must be nonnegative");
 
         List<RectCollision> colls = Lists.newLinkedList();
-        EnumSet<Side> sidesA, sidesB;
         boolean collides;
+        Rect collidableRect = collidable.getRect(time);
 
-        for (Collidable collB : collidables.get(layer)) {
-            collides = collidable.getRect(time).intersects(collB.getRect(time));
-            if (collides) {
-                if (!(collidable instanceof LevelFinishZone)) {
-                    System.out.println(collidable);
-                    System.out.println(collB);
-                    collides = collidable.getRect(time).intersects(collB.getRect(time));
+        CollidableContainer cont = collidables.get(layer);
+        if (cont != null) {
+            for (Collidable collB : cont.getNearbyCollidables(collidableRect)) {
+                collides = collidableRect.intersects(collB.getRect(time));
+                if (collides) {
+                    colls.add(getCollision(time, collidable, collB));
                 }
-                colls.add(getCollision(time, collidable, collB));
             }
         }
         return colls;
@@ -190,7 +188,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
 
         boolean collides;
         List<Collidable> result = Lists.newArrayList();
-        for (Collidable collB : collidables.get(layer)) {
+        for (Collidable collB : collidables.get(layer).getNearbyCollidables(rect)) {
             collides = rect.intersects(collB.getRect(time));
             if (collides) {
                 result.add(collB);
@@ -205,18 +203,21 @@ public class LayeredCollisionEngine implements CollisionEngine {
 
         Multimap<Collidable, RectCollision> collList = HashMultimap.create();
         List<RectCollision> colls;
-        Set<Integer> layers = collidables.keySet();
+        List<Integer> layers = Lists.newArrayList(collidables.keySet());
         int size = layers.size();
         for (int i = 0; i < size; i++) {
             for (int j = i + 1; j < size; j++) {
-                for (Collidable collA : collidables.get(i)) {
-                    colls = checkAgainstLayer(time, collA, j);
-                    for (RectCollision coll : colls) {
-                        if (coll.entityA.causesCollisionsWith(coll.entityB)) {
-                            collList.put(coll.entityB, coll);
-                        }
-                        if (coll.entityB.causesCollisionsWith(coll.entityA)) {
-                            collList.put(coll.entityA, coll);
+                CollidableContainer cont = collidables.get(layers.get(i));
+                if (cont != null) {
+                    for (Collidable collA : cont.collidables()) {
+                        colls = checkAgainstLayer(time, collA, layers.get(j));
+                        for (RectCollision coll : colls) {
+                            if (coll.entityA.causesCollisionsWith(coll.entityB)) {
+                                collList.put(coll.entityB, coll);
+                            }
+                            if (coll.entityB.causesCollisionsWith(coll.entityA)) {
+                                collList.put(coll.entityA, coll);
+                            }
                         }
                     }
                 }
@@ -225,9 +226,6 @@ public class LayeredCollisionEngine implements CollisionEngine {
 
         return collList;
     }
-
-    private static final int PARTS_PER_TICK = 10;
-    private static final int MIN_INCREMENT = 5;
 
     @Override
     public void update(float millis) {
@@ -241,6 +239,9 @@ public class LayeredCollisionEngine implements CollisionEngine {
             }
         }
         runCollisionsAndHandling(millis);
+        for (CollidableContainer cont : collidables.values()) {
+            cont.update(millis);
+        }
     }
 
     private void runCollisionsAndHandling(float millis) {

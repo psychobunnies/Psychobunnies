@@ -22,10 +22,15 @@
  </layer>
  <layer name="collisions" width="67" height="24">
   <data encoding="base64" compression="zlib">
-   eJztmGEOwyAIhW2v2PvfZWkyN0IQpDzRLb6EP60R/ESwPUopx7aPbW0WVJvFV6uxOJmhx2tajQVVdlyZLPgeWnv5zyxa/rV3HnZULe4WezQLT+wrnc/ReWHN/UssonU6Y613XBdgnmheWJxGszgLLrczzgii92dodh/hjFD3Jqre88NZeGJBnVHPc6QPaVzvWM7nKcPWHNrzSA0fwYKPi+zd9TZ0Xkh3qwwWHknxab5n1LDZtXOlPiOxiN6v0L0gi1MkLzJjzIgB1UdGyvqWRfqZ0Uc8sljUnoTw0/pPYPUmq85Uk+K0fNX1WT2R9iOtRvWs77YXkTUEvw==
+   eJztl1EOwyAMQ2mv2PvfZZo0OhQBJo0T2ISl/LSIpA+I6ZFSOnbcsbVZlNosvlqNxSmCPb6n1ViUiq4rkoVcQ7SW/8yilb/3TsOuVIs7Ys9moal9pfPpvS/Q3L/EwtqnI77V6h9Z1n2BOHmzOBNvb0ecEYb3R2i2j0hGrHvTE0kW0bW01oG5PqNzafaF5MNgOMrC0sM9WMhxrH6leY5Uu1tFsNCoVl8v94weNrt3ruQzNRbW+xW7/0b2ccvZjBC6FzPzMHzEU+hflplnpo88yetVQ2bR+99veRPqMzmuSl6U6/oE8sTSj3o9auT73vECSd4Ceg==
   </data>
  </layer>
  <objectgroup name="finish" width="67" height="24">
   <object x="1978" y="607" width="128" height="128"/>
  </objectgroup>
+ <layer name="spikes" width="67" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzt1LENACAIBEB2ZP9dLLHUQo16l9DDE4gAAABG5OkG4GI77seNluyKMpvJDxm+Pt+MH/YN3MuPWqMBueME3g==
+  </data>
+ </layer>
 </map>

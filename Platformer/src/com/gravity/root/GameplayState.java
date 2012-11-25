@@ -28,11 +28,14 @@ import com.gravity.fauna.PlayerKeyboardController.Control;
 import com.gravity.fauna.PlayerRenderer;
 import com.gravity.geom.Rect;
 import com.gravity.map.LevelFinishZone;
+import com.gravity.map.TileType;
 import com.gravity.map.TileWorld;
 import com.gravity.map.TileWorldRenderer;
 import com.gravity.map.tiles.DisappearingTileController;
+import com.gravity.map.tiles.FallingTile;
 import com.gravity.map.tiles.MovingCollidable;
 import com.gravity.map.tiles.PlayerKeyedTile;
+import com.gravity.map.tiles.TileRendererDelegate;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.CollisionEngine;
 import com.gravity.physics.GravityPhysics;
@@ -146,12 +149,34 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         TiledMapPlus tiledMap = map.map;
         Layer pkLayer = tiledMap.getLayer(TileWorld.PLAYERKEYED_LAYER_NAME);
         if (pkLayer != null) {
+            pkLayer.visible = false;
+            TileRendererDelegate rendererDelegate = new TileRendererDelegate(tiledMap, TileType.PLAYER_KEYED_UNSET);
+            TileRendererDelegate rendererDelegateYellow = new TileRendererDelegate(tiledMap, TileType.PLAYER_KEYED_YELLOW);
+            TileRendererDelegate rendererDelegatePink = new TileRendererDelegate(tiledMap, TileType.PLAYER_KEYED_PINK);
             try {
                 for (Tile tile : pkLayer.getTiles()) {
-                    PlayerKeyedTile pkTile = new PlayerKeyedTile(new Rect(tile.x * 32, tile.y * 32, 32, 32), collider, pkLayer, tile.x, tile.y);
+                    PlayerKeyedTile pkTile = new PlayerKeyedTile(new Rect(tile.x * 32, tile.y * 32, 32, 32), collider, rendererDelegate,
+                            rendererDelegateYellow, rendererDelegatePink, pkLayer, tile.x, tile.y);
                     resetableTiles.add(pkTile);
                     updaters.add(pkTile);
                     collider.addCollidable(pkTile, LayeredCollisionEngine.FLORA_LAYER);
+                    renderers.add(pkTile);
+                }
+            } catch (SlickException e) {
+                throw new RuntimeException("Unable to make keyedplayertile", e);
+            }
+        }
+
+        Layer fallSpike = tiledMap.getLayer(TileWorld.FALLING_SPIKE_LAYER_NAME);
+        if (fallSpike != null) {
+            fallSpike.visible = false;
+            TileRendererDelegate rd = new TileRendererDelegate(tiledMap, TileType.SPIKE);
+            try {
+                for (Tile tile : fallSpike.getTiles()) {
+                    FallingTile fsTile = new FallingTile(this, new Rect(tile.x * 32, tile.y * 32, 32, 32), collider, rd, fallSpike, tile.x, tile.y);
+                    updaters.add(fsTile);
+                    collider.addCollidable(fsTile, LayeredCollisionEngine.FALLING_LAYER);
+                    renderers.add(fsTile);
                 }
             } catch (SlickException e) {
                 throw new RuntimeException("Unable to make keyedplayertile", e);

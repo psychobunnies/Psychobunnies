@@ -273,7 +273,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     private void checkDeath(Player player) {
         Vector2f pos = player.getPosition(0f);
         Rect r = camera.getViewport();
-        if (pos.x + r.getX() + 32 < 0 || pos.y > r.getMaxY()) {
+        if (pos.x + r.getX() + 32 < 0 || pos.y + r.getY() > r.getHeight() + 32) {
             // if (pos.x + offsetX2 + 32 < 0) {
             playerDies(player);
         }

@@ -26,6 +26,6 @@
   </data>
  </layer>
  <objectgroup name="finish" width="67" height="24">
-  <object x="1978" y="607" width="128" height="128"/>
+  <object x="1978" y="607" width="132" height="129"/>
  </objectgroup>
 </map>

@@ -28,11 +28,14 @@ import com.gravity.fauna.PlayerKeyboardController.Control;
 import com.gravity.fauna.PlayerRenderer;
 import com.gravity.geom.Rect;
 import com.gravity.map.LevelFinishZone;
+import com.gravity.map.TileType;
 import com.gravity.map.TileWorld;
 import com.gravity.map.TileWorldRenderer;
 import com.gravity.map.tiles.DisappearingTileController;
+import com.gravity.map.tiles.FallingTile;
 import com.gravity.map.tiles.MovingCollidable;
 import com.gravity.map.tiles.PlayerKeyedTile;
+import com.gravity.map.tiles.TileRendererDelegate;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.CollisionEngine;
 import com.gravity.physics.GravityPhysics;
@@ -133,10 +136,10 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         //@formatter:off
         controllerA = new PlayerKeyboardController(playerA)
                 .setLeft(Input.KEY_A).setRight(Input.KEY_D)
-                .setJump(Input.KEY_W).setMisc(Input.KEY_SPACE);
+                .setJump(Input.KEY_W).setMisc(Input.KEY_TAB);
         controllerB = new PlayerKeyboardController(playerB)
                 .setLeft(Input.KEY_LEFT).setRight(Input.KEY_RIGHT)
-                .setJump(Input.KEY_UP).setMisc(Input.KEY_ENTER);
+                .setJump(Input.KEY_UP).setMisc(Input.KEY_SPACE);
         //@formatter:on
         leftRemapped = false;
         jumpRemapped = false;
@@ -146,12 +149,34 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         TiledMapPlus tiledMap = map.map;
         Layer pkLayer = tiledMap.getLayer(TileWorld.PLAYERKEYED_LAYER_NAME);
         if (pkLayer != null) {
+            pkLayer.visible = false;
+            TileRendererDelegate rendererDelegate = new TileRendererDelegate(tiledMap, TileType.PLAYER_KEYED_UNSET);
+            TileRendererDelegate rendererDelegateYellow = new TileRendererDelegate(tiledMap, TileType.PLAYER_KEYED_YELLOW);
+            TileRendererDelegate rendererDelegatePink = new TileRendererDelegate(tiledMap, TileType.PLAYER_KEYED_PINK);
             try {
                 for (Tile tile : pkLayer.getTiles()) {
-                    PlayerKeyedTile pkTile = new PlayerKeyedTile(new Rect(tile.x * 32, tile.y * 32, 32, 32), collider, pkLayer, tile.x, tile.y);
+                    PlayerKeyedTile pkTile = new PlayerKeyedTile(new Rect(tile.x * 32, tile.y * 32, 32, 32), collider, rendererDelegate,
+                            rendererDelegateYellow, rendererDelegatePink, pkLayer, tile.x, tile.y);
                     resetableTiles.add(pkTile);
                     updaters.add(pkTile);
                     collider.addCollidable(pkTile, LayeredCollisionEngine.FLORA_LAYER);
+                    renderers.add(pkTile);
+                }
+            } catch (SlickException e) {
+                throw new RuntimeException("Unable to make keyedplayertile", e);
+            }
+        }
+
+        Layer fallSpike = tiledMap.getLayer(TileWorld.FALLING_SPIKE_LAYER_NAME);
+        if (fallSpike != null) {
+            fallSpike.visible = false;
+            TileRendererDelegate rd = new TileRendererDelegate(tiledMap, TileType.SPIKE);
+            try {
+                for (Tile tile : fallSpike.getTiles()) {
+                    FallingTile fsTile = new FallingTile(this, new Rect(tile.x * 32, tile.y * 32, 32, 32), collider, rd, fallSpike, tile.x, tile.y);
+                    updaters.add(fsTile);
+                    collider.addCollidable(fsTile, LayeredCollisionEngine.FALLING_LAYER);
+                    renderers.add(fsTile);
                 }
             } catch (SlickException e) {
                 throw new RuntimeException("Unable to make keyedplayertile", e);
@@ -257,10 +282,10 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         }
 
         // Tell player when to die if off the screen
-        float xOffset = camera.getViewport().getX();
-        checkDeath(playerA, xOffset);
-        checkDeath(playerB, xOffset);
+        checkDeath(playerA);
+        checkDeath(playerB);
 
+        float xOffset = camera.getViewport().getX();
         // Prevent player from going off right side
         checkRightSide(playerA, xOffset);
         checkRightSide(playerB, xOffset);
@@ -270,9 +295,11 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         finishedPlayer = null;
     }
 
-    private void checkDeath(Player player, float offsetX2) {
+    private void checkDeath(Player player) {
         Vector2f pos = player.getPosition(0f);
-        if (pos.x + offsetX2 + 32 < 0) {
+        Rect r = camera.getViewport();
+        if (pos.x + r.getX() + 32 < 0 || pos.y + r.getY() > r.getHeight() + 32) {
+            // if (pos.x + offsetX2 + 32 < 0) {
             playerDies(player);
         }
     }

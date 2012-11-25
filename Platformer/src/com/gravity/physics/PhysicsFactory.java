@@ -6,7 +6,7 @@ public final class PhysicsFactory {
         // never instantiated
     }
 
-    private static final float DEFAULT_GRAVITY = 1.0f / 1150f; // 750 before change
+    public static final float DEFAULT_GRAVITY = 1.0f / 1150f; // 750 before change
     public static final float DEFAULT_GROUND_FRICTION = 1.0f / 500f;
     public static final float DEFAULT_FRICTION_STOP_CUTOFF = 1.0f / 200f;
     public static final float DEFAULT_FRICTION_ACCEL_RATIO = 50f;

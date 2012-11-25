@@ -13,27 +13,23 @@ import com.gravity.root.UpdateCycling;
 
 /**
  * Represents a moving platform, e.g.
- *
+ * 
  * @author phulin
  */
 
 public class MovingCollidable implements Collidable, UpdateCycling {
-    
+
     private GameplayControl controller;
     private Rect shape;
     private Vector2f origPosition;
     private Vector2f velForward, velBackward, finalPosition;
     private boolean reversed;
-    
-    public MovingCollidable(GameplayControl controller, Rect shape,
-            int transX, int transY, float speed) {
-        this(controller, shape,
-             transX, transY, speed, speed);
+
+    public MovingCollidable(GameplayControl controller, Rect shape, int transX, int transY, float speed) {
+        this(controller, shape, transX, transY, speed, speed);
     }
 
-    public MovingCollidable(GameplayControl controller, Rect shape,
-            int transX, int transY, float speedForward, float speedBackward) {
-        //System.out.println("making MC");
+    public MovingCollidable(GameplayControl controller, Rect shape, int transX, int transY, float speedForward, float speedBackward) {
         this.controller = controller;
         this.shape = shape;
         this.origPosition = shape.getPoint(Rect.Corner.TOPLEFT);
@@ -42,9 +38,9 @@ public class MovingCollidable implements Collidable, UpdateCycling {
         velForward = trans.getNormal();
         velForward.scale(speedForward / 1000.0f);
         velBackward = trans.getNormal();
-        velBackward.scale(- speedBackward / 1000.0f);
+        velBackward.scale(-speedBackward / 1000.0f);
         finalPosition = origPosition.copy().add(trans);
-        
+
         reversed = false;
     }
 
@@ -61,17 +57,17 @@ public class MovingCollidable implements Collidable, UpdateCycling {
     public Rect getRect(float millis) {
         return getRectWithReversal(millis).rect;
     }
-    
+
     private class RectWithReversal {
         public final boolean reverse;
         public final Rect rect;
-        
+
         public RectWithReversal(boolean reverse, Rect rect) {
             this.reverse = reverse;
             this.rect = rect;
         }
     }
-    
+
     public RectWithReversal getRectWithReversal(float millis) {
         boolean reverse;
         Vector2f position;
@@ -106,7 +102,7 @@ public class MovingCollidable implements Collidable, UpdateCycling {
         for (RectCollision coll : collisions) {
             Collidable c = coll.getOtherEntity(this);
             if (c instanceof Player) {
-                controller.playerDies((Player)c);
+                controller.playerDies((Player) c);
             }
         }
     }

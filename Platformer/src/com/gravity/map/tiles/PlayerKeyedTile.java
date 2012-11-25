@@ -2,6 +2,7 @@ package com.gravity.map.tiles;
 
 import java.util.Collection;
 
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.Layer;
@@ -12,15 +13,20 @@ import com.gravity.map.TileType;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.CollisionEngine;
 import com.gravity.physics.RectCollision;
+import com.gravity.root.Renderer;
 import com.gravity.root.Resetable;
 import com.gravity.root.UpdateCycling;
 
-public class PlayerKeyedTile implements Collidable, UpdateCycling, Resetable {
+public class PlayerKeyedTile implements Collidable, UpdateCycling, Renderer, Resetable {
 
     private final float TIME_TO_GTFO = 1000;
     private final Rect shape;
 
     private final CollisionEngine collider;
+    private final TileRendererDelegate renderer;
+    private final TileRendererDelegate yellowRenderer;
+    private final TileRendererDelegate pinkRenderer;
+    private boolean exists = true;
 
     private final Layer layer;
     private final int x, y;
@@ -30,7 +36,8 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling, Resetable {
     private float millisElapsed;
     private boolean ticking;
 
-    public PlayerKeyedTile(Rect shape, CollisionEngine collider, Layer layer, int x, int y) {
+    public PlayerKeyedTile(Rect shape, CollisionEngine collider, TileRendererDelegate renderer, TileRendererDelegate yellowRenderer,
+            TileRendererDelegate pinkRenderer, Layer layer, int x, int y) {
         this.shape = shape;
         this.keyedPlayer = null;
         this.collider = collider;
@@ -38,9 +45,9 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling, Resetable {
         this.x = x;
         this.y = y;
         originalTileId = layer.getTileID(x, y);
-        if (originalTileId != 6) {
-            System.out.println(originalTileId);
-        }
+        this.renderer = renderer;
+        this.yellowRenderer = yellowRenderer;
+        this.pinkRenderer = pinkRenderer;
     }
 
     @Override
@@ -49,6 +56,7 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling, Resetable {
         if (millisElapsed > TIME_TO_GTFO) {
             collider.removeCollidable(this);
             layer.setTileID(x, y, 0);
+            exists = false;
         }
         // END HACK
     }
@@ -121,4 +129,16 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling, Resetable {
         layer.setTileID(x, y, originalTileId);
     }
 
+    @Override
+    public void render(Graphics g, int offsetX, int offsetY) {
+        if (!exists) {
+            return;
+        } else if (keyedPlayer == null) {
+            renderer.render(g, offsetX, offsetY, shape);
+        } else if (keyedPlayer.getName().equals("pink")) {
+            pinkRenderer.render(g, offsetX, offsetY, shape);
+        } else if (keyedPlayer.getName().equals("yellow")) {
+            yellowRenderer.render(g, offsetX, offsetY, shape);
+        }
+    }
 }

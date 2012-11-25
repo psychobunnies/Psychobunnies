@@ -30,7 +30,7 @@
  <objectgroup name="level markers" width="90" height="24"/>
  <layer name="playerkeyed" width="90" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3WSw6AIAxF0Y66/yU7YGIIn1ZMaeCexIEgpXkSowgAAMAddHcDlyBnAAAAePEP+T8yjZct81E/0b3W+2lnfFajXpch88geWnv19vdmlSHLkaj+vGdytUYGary8z1tqSePeOmeZR/H+DnzNbPYevWtXzw1wsgf17sxDwCEAAA==
+   H4sIAAAAAAAAC+3WSw6AIAxF0Y66/yUzcGIInxZIqeaexIEgpXkSowgAAABwjt5uAAAAAJ/DP+R5ZBovW+ajfqJ7rffTzvisRr0uQ+aRPbT26u3vzSpDliNR/XnP5G6NDNR4eZ+31JLGvXXOMo/H+zuwmtnsPXrX7p4b4M8K6+HJEcAhAAA=
   </data>
  </layer>
  <layer name="falling spikes" width="90" height="24">
@@ -38,7 +38,7 @@
    H4sIAAAAAAAAC+3DoQ0AAAwCMCz/P7wLkHNt0iap7wEAAAAAAAAAlgN1hLe1wCEAAA==
   </data>
  </layer>
- <layer name="checkpoint1" width="90" height="24">
+ <layer name="checkpoint1" width="90" height="24" visible="0">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
@@ -46,7 +46,7 @@
    H4sIAAAAAAAAC+3QQQ3AMBDAsBLoY4/xpzoSU65SbQRR1uJEezrgEj43fG743PC54XPD54bPDZ8bPjd8bvjc8Lnhc8Pnxl5eV3xuvNMBl3imAwDgJx/viEBswCEAAA==
   </data>
  </layer>
- <layer name="checkpoint2" width="90" height="24">
+ <layer name="checkpoint2" width="90" height="24" visible="0">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
@@ -54,7 +54,7 @@
    H4sIAAAAAAAAC+3QsQ2AMBAEwW/AAQH9twpNsJbMjHT5aWcAAIATrN0HfkLnhs4NnRs6N3Ru6NzQuaFzQ+fvrdG5cL27d58A4HgPHexeLMAhAAA=
   </data>
  </layer>
- <layer name="checkpoint3" width="90" height="24">
+ <layer name="checkpoint3" width="90" height="24" visible="0">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
@@ -62,7 +62,7 @@
    H4sIAAAAAAAAC+3QsQ0AIAwDQRagoGD/VQlLOEjcSe6tH+M9s/vAJ3TO0DlD5wydM3TOuJ1XbXcfAQAAAAAAKAcebZDewCEAAA==
   </data>
  </layer>
- <layer name="checkpoint4" width="90" height="24">
+ <layer name="checkpoint4" width="90" height="24" visible="0">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>

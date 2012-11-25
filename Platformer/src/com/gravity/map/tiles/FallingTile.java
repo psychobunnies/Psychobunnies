@@ -40,7 +40,7 @@ public class FallingTile implements Collidable, Renderer, UpdateCycling {
         this.renderer = renderer;
         this.layer = layer;
         this.gameState = gameState;
-        this.state = new PhysicalState(shape.setPosition(x * 32, y * 32), 0, 0, 0, 0);
+        this.state = new PhysicalState(shape.translateTo(x * 32, y * 32), 0, 0, 0, 0);
         this.startX = this.state.getPosition().x;
         this.startY = this.state.getPosition().y;
     }

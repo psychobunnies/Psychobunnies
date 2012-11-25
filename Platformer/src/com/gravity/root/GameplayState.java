@@ -306,7 +306,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
 
     private void checkRightSide(Player player, float offsetX2) {
         PhysicalState state = player.getPhysicalState();
-        player.setPhysicalState(new PhysicalState(state.getRectangle().setPosition(
+        player.setPhysicalState(new PhysicalState(state.getRectangle().translateTo(
                 Math.min(state.getRectangle().getX(), -offsetX2 + container.getWidth() - 32), state.getRectangle().getY()), state.velX, state.velY,
                 state.accX, state.accY));
     }

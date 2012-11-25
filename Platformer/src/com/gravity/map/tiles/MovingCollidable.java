@@ -88,7 +88,7 @@ public class MovingCollidable implements Collidable, UpdateCycling {
                 position = potentialResult;
             }
         }
-        return new RectWithReversal(reverse ^ reversed, shape.setPosition(position.x, position.y));
+        return new RectWithReversal(reverse ^ reversed, shape.translateTo(position.x, position.y));
     }
 
     @Override

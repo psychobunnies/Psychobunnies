@@ -14,25 +14,28 @@ import com.gravity.physics.Collidable;
 import com.gravity.physics.CollisionEngine;
 import com.gravity.physics.RectCollision;
 import com.gravity.root.Renderer;
+import com.gravity.root.Resetable;
 import com.gravity.root.UpdateCycling;
 
-public class PlayerKeyedTile implements Collidable, UpdateCycling, Renderer {
+public class PlayerKeyedTile implements Collidable, UpdateCycling, Renderer, Resetable {
 
     private final float TIME_TO_GTFO = 1000;
     private final Rect shape;
 
+    private final CollisionEngine collider;
+
+    private final Layer layer;
+    private final int x, y;
+    private final int originalTileId;
+
     private Player keyedPlayer;
     private float millisElapsed;
     private boolean ticking;
+    private boolean exists = true;
 
-    private CollisionEngine collider;
     private final TileRendererDelegate renderer;
     private final TileRendererDelegate yellowRenderer;
     private final TileRendererDelegate pinkRenderer;
-    private boolean exists = true;
-
-    private Layer layer;
-    private int x, y;
 
     public PlayerKeyedTile(Rect shape, CollisionEngine collider, TileRendererDelegate renderer, TileRendererDelegate yellowRenderer,
             TileRendererDelegate pinkRenderer, Layer layer, int x, int y) {
@@ -45,6 +48,7 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling, Renderer {
         this.renderer = renderer;
         this.yellowRenderer = yellowRenderer;
         this.pinkRenderer = pinkRenderer;
+        originalTileId = layer.getTileID(x, y);
     }
 
     @Override
@@ -132,4 +136,11 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling, Renderer {
             yellowRenderer.render(g, offsetX, offsetY, shape);
         }
     }
+
+    @Override
+    public void reset() {
+        millisElapsed = Float.NEGATIVE_INFINITY;
+        layer.setTileID(x, y, originalTileId);
+    }
+
 }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="90" height="24" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="camera" value="stalking"/>
+ </properties>
+ <tileset firstgid="1" name="bunnyTiles" tilewidth="32" tileheight="32">
+  <image source="bunnyTiles.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="9" name="Spikes" tilewidth="32" tileheight="32">
+  <image source="Spikes.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="10" name="levelMarkers" tilewidth="32" tileheight="32">
+  <image source="levelMarkers.png" width="128" height="128"/>
+ </tileset>
+ <layer name="players" width="90" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztzkERAAAEADBvD/3jiuGwJVgEAADsV9OBJ3I6AAAAAABwVAM5jgAZ
+  </data>
+ </layer>
+ <layer name="spikes" width="90" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzt18EKgCAQRVFrN///wxG0ydRGE0ebe0BqERHvMVYh+LBbP4AT5DxGr5zlWkj7kjPZ6mlzJtN2Z27sz2OQczvm+0mC3d7ntQ/eNf7Qd5pER8zhrY9Z+5LMwhq0XbFv1GEO/kfTJ53fkcfa6A8rqP2OscK3MnrZrB+gs9xclM7j63P/o6W508xizX1b1gGUVwMx
+  </data>
+ </layer>
+ <layer name="collisions" width="90" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztl9kKAyEMRXX6//9c+iANqdHskeIFYTqj3vQYt9a+eppO2nYWVXh6+V/OOf6Xc47/5czzHcXSR2Y7izI9rVxn/WW2syjK05sp5ZHZzqLq9dmiKM5d2a/FE/tWj0sHMURxjviPY36vxvAhnquUwdljn9b4Qv+ZIubaRy9UcDwaSfNZyxszkfienM8dFFinE99m2n3XxEn9XtWn6mafD2eeHjFErhMn5TNn/flnzrs18dR8xnvabo+p5sytm6GofJa059SVxiPhPPaaCmk5c/ZHzZkjknOlqu7hVG5pOXPGNHoc8HkalirOFBfpHLj5/CuYwyvO2jg88xne8TyUyRmfwbw5n6xozlQOe3KetfFcIz1EnZXxvVtyD5/1v3rG9TXxU+85d4AMUfFwiqT/1TOur4mfep/J+A0O9wID
+  </data>
+ </layer>
+ <objectgroup name="level markers" width="90" height="24">
+  <object name="finish" x="2784" y="167" width="98" height="120"/>
+ </objectgroup>
+ <layer name="playerkeyed" width="90" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzt10sKwCAMAFFX3v/I3booRdTYIZkHLlvyM7StSaqkD0dnWEsRedeZsvSjT5wK6Hmu9oSel9Z99TZL3zPsoMj4o3bBbN1v9YY8A+TYIlDmOVJ0HDfz3P2We3suw17+027tIutPf69zJwLKPFf8X6er3IuqeSun2/N8apd7D/ke/HgBhw==
+  </data>
+ </layer>
+ <layer name="Checkpoint A" width="90" height="24">
+  <properties>
+   <property name="type" value="checkpoint"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0KERgDAABME0EBFB/60GEYnlEOzOvP+5MQAA/mee8S6dGzo3dG7o3NC5oXND54bODZ0b17319QkAAHiwAWfIASs=
+  </data>
+ </layer>
+ <layer name="Checkpoint B" width="90" height="24">
+  <properties>
+   <property name="type" value="checkpoint"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0CEOgDAABMF+oKKC/3+1iGocS0hmkvOXHQMAAP5rnvEunRs6N3Ru6NzQuaFzQ+eGzg2dGzo3dG7o3Ljura9PADzY9eUBeQ==
+  </data>
+ </layer>
+ <layer name="moving" width="90" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20MH6AAAAAAAAAAAHgaIcAAAQ==
+  </data>
+ </layer>
+</map>

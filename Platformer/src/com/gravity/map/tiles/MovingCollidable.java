@@ -13,34 +13,34 @@ import com.gravity.root.UpdateCycling;
 
 /**
  * Represents a moving platform, e.g.
- *
+ * 
  * @author phulin
  */
 
 public class MovingCollidable implements Collidable, UpdateCycling {
-    
+
     private GameplayControl controller;
     private Rect shape;
     private Vector2f origPosition;
-    private int tileWidth, tileHeight;
-    private Vector2f vel, finalPosition;
+    private Vector2f velForward, velBackward, finalPosition;
     private boolean reversed;
-    
-    public MovingCollidable(GameplayControl controller,
-            int tileWidth, int tileHeight, Rect shape,
-            int tileTransX, int tileTransY, float speed) {
-        //System.out.println("making MC");
+
+    public MovingCollidable(GameplayControl controller, Rect shape, int transX, int transY, float speed) {
+        this(controller, shape, transX, transY, speed, speed);
+    }
+
+    public MovingCollidable(GameplayControl controller, Rect shape, int transX, int transY, float speedForward, float speedBackward) {
         this.controller = controller;
         this.shape = shape;
         this.origPosition = shape.getPoint(Rect.Corner.TOPLEFT);
-        this.tileWidth = tileWidth;
-        this.tileHeight = tileHeight;
 
-        Vector2f trans = new Vector2f(tileTransX * tileWidth, tileTransY * tileHeight);
-        vel = trans.getNormal();
-        vel.scale(speed / 1000.0f);
+        Vector2f trans = new Vector2f(transX, transY);
+        velForward = trans.getNormal();
+        velForward.scale(speedForward / 1000.0f);
+        velBackward = trans.getNormal();
+        velBackward.scale(-speedBackward / 1000.0f);
         finalPosition = origPosition.copy().add(trans);
-        
+
         reversed = false;
     }
 
@@ -57,22 +57,22 @@ public class MovingCollidable implements Collidable, UpdateCycling {
     public Rect getRect(float millis) {
         return getRectWithReversal(millis).rect;
     }
-    
+
     private class RectWithReversal {
         public final boolean reverse;
         public final Rect rect;
-        
+
         public RectWithReversal(boolean reverse, Rect rect) {
             this.reverse = reverse;
             this.rect = rect;
         }
     }
-    
+
     public RectWithReversal getRectWithReversal(float millis) {
         boolean reverse;
         Vector2f position;
         if (reversed) {
-            Vector2f potentialResult = shape.translate(vel.copy().scale(-millis)).getPoint(Rect.Corner.TOPLEFT);
+            Vector2f potentialResult = shape.translate(velBackward.copy().scale(millis)).getPoint(Rect.Corner.TOPLEFT);
             reverse = potentialResult.distance(finalPosition) > origPosition.distance(finalPosition);
             if (reverse) {
                 position = origPosition.copy().scale(2.0f).sub(potentialResult);
@@ -80,7 +80,7 @@ public class MovingCollidable implements Collidable, UpdateCycling {
                 position = potentialResult;
             }
         } else {
-            Vector2f potentialResult = shape.translate(vel.copy().scale(millis)).getPoint(Rect.Corner.TOPLEFT);
+            Vector2f potentialResult = shape.translate(velForward.copy().scale(millis)).getPoint(Rect.Corner.TOPLEFT);
             reverse = potentialResult.distance(origPosition) > finalPosition.distance(origPosition);
             if (reverse) {
                 position = finalPosition.copy().scale(2.0f).sub(potentialResult);
@@ -102,7 +102,7 @@ public class MovingCollidable implements Collidable, UpdateCycling {
         for (RectCollision coll : collisions) {
             Collidable c = coll.getOtherEntity(this);
             if (c instanceof Player) {
-                controller.playerDies((Player)c);
+                controller.playerDies((Player) c);
             }
         }
     }
@@ -122,13 +122,5 @@ public class MovingCollidable implements Collidable, UpdateCycling {
     @Override
     public void startUpdate(float millis) {
         // no-op
-    }
-
-    public int getTileWidth() {
-        return tileWidth;
-    }
-
-    public int getTileHeight() {
-        return tileHeight;
     }
 }

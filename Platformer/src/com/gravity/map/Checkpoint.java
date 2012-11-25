@@ -26,8 +26,6 @@ public class Checkpoint {
     }
     
     public void playerPassed(Player player) {
-        if (!passed)
-            System.out.println("Player passed: " + player);
         playersPassed.add(player);
         if (!passed && playersPassed.size() == restartPositions.size()) {
             System.out.println("Checkpoint passed.");

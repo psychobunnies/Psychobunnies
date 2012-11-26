@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="32" height="24" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="lab-sheet" tilewidth="32" tileheight="32">
+  <image source="lab-sheet.png" width="128" height="96"/>
+ </tileset>
+ <tileset firstgid="13" name="levelMarkers" tilewidth="32" tileheight="32">
+  <image source="Levels/levelMarkers.png" width="128" height="128"/>
+ </tileset>
+ <layer name="collisions" width="32" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2W0QrAIAhFb9so6P8/eAwmC0kZjF19SPDJ6KRepQJgD/Jye5Qtfk7+hkcjhxMbvRlnu3GPx2eZ8Cvm72Px2TWQHkbxodjZ+FKfBnt3Vic2c62vzPmz+dZ++MuW/t/p/6vmx/lZ+rf5UlfGDFy9lb7o3Bl10LwM/Mj/9wno3rt9AAwAAA==
+  </data>
+ </layer>
+ <layer name="helptext1" width="32" height="24">
+  <properties>
+   <property name="text" value="press '6' while both bunnies$are in a cage to start level"/>
+   <property name="type" value="help"/>
+   <property name="x" value="384"/>
+   <property name="y" value="192"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAVDEfCj4ZFm/ygYBaNgFIyCUTAKRsEoIA8AAMAQgAIADAAA
+  </data>
+ </layer>
+ <layer name="players" width="32" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAVDFfACseBAO2IUjIJRMApGwSgYBaNgFAwpAACpVy4nAAwAAA==
+  </data>
+ </layer>
+ <layer name="level markers" width="32" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMglGADQhTmT8KRsFQAqPpfxSMZDDc0z8AIfayowAMAAA=
+  </data>
+ </layer>
+ <objectgroup name="special levels" width="32" height="24">
+  <object name="controls" type="level" x="208" y="128" width="32" height="32"/>
+  <object name="tutorial" type="level" x="496" y="128" width="32" height="32"/>
+  <object name="quit" type="level" x="784" y="128" width="32" height="32"/>
+ </objectgroup>
+</map>

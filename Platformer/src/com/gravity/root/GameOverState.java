@@ -7,18 +7,20 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import com.gravity.levels.MainMenuState;
+
 public class GameOverState extends BasicGameState {
-    
-    static final int ID = 10;
-    
+
+    public static final int ID = 10;
+
     private StateBasedGame game;
     private Rectangle restart;
-    
+
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.game = game;
     }
-    
+
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         g.drawString("Game Over! (One of the bunnies fell off the screen! Why would you do that?)", 50, 100);
@@ -34,21 +36,21 @@ public class GameOverState extends BasicGameState {
         		"back to you.", 350, 150);
         //@formatter:on
     }
-    
+
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
     }
-    
+
     @Override
     public void mouseClicked(int button, int x, int y, int clickCount) {
         if (restart.contains(x, y)) {
             game.enterState(MainMenuState.ID);
         }
     }
-    
+
     @Override
     public int getID() {
         return ID;
     }
-    
+
 }

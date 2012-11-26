@@ -20,6 +20,7 @@ import com.gravity.geom.Rect.Side;
  * 
  */
 public class LayeredCollisionEngine implements CollisionEngine {
+    @SuppressWarnings("unused")
     private static final float EPS = 1e-6f;
     private static final float TIME_GRAN = 3e-1f;
     private static final float PIXEL_GRAN = 1e-1f;

@@ -5,6 +5,10 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import com.gravity.levels.GameplayState;
+import com.gravity.levels.LevelInfo;
+import com.gravity.levels.MainMenuState;
+
 /**
  * Main root class for the entire game. In order to add levels to the game, please add an entry to the levels table below, using the style of previous
  * levels before you. Namely:
@@ -24,16 +28,16 @@ public class PlatformerGame extends StateBasedGame {
 
     //@formatter:off
     private LevelInfo[] levels = {
-            new LevelInfo("Tutorial", "Controls Turorial", "assets/Levels/tutorial.tmx", 1000),
-            new LevelInfo("Slingshot", "Slingshot Turorial", "assets/Levels/slingshot_intro.tmx", 1001),
-            new LevelInfo("Split World", "Slingshot Fun", "assets/Levels/split_world.tmx", 1002),
-            new LevelInfo("Test Moving", "", "assets/Levels/moving_test.tmx", 1005),
-            new LevelInfo("Bouncy 1", "A first brush with bouncing", "assets/Levels/Bouncy_1.tmx", 1006),
-            new LevelInfo("Test Stomps", "", "assets/Levels/checkpointing.tmx", 1007),
-            new LevelInfo("Checkpointing", "", "assets/Levels/checkpointing.tmx", 1008),
-            new LevelInfo("Falling", "So you thought you understood gravity...", "assets/Levels/falling.tmx", 1009),
-            new LevelInfo("Shortcuts", "Timetest", "assets/levels/shortcuts.tmx", 1010),
-            new LevelInfo("Elevators","","assets/levels/Elevators.tmx",1011)
+            new LevelInfo("Tutorial", "Controls Turorial", "assets/Levels/tutorial.tmx", 0),
+            new LevelInfo("Slingshot", "Slingshot Turorial", "assets/Levels/slingshot_intro.tmx", 1),
+            new LevelInfo("Split World", "Slingshot Fun", "assets/Levels/split_world.tmx", 2),
+            new LevelInfo("Test Moving", "", "assets/Levels/moving_test.tmx", 6),
+            new LevelInfo("Bouncy 1", "A first brush with bouncing", "assets/Levels/Bouncy_1.tmx", 11),
+            new LevelInfo("Test Stomps", "", "assets/Levels/checkpointing.tmx", 7),
+            new LevelInfo("Checkpointing", "", "assets/Levels/checkpointing.tmx", 8),
+            new LevelInfo("Falling", "So you thought you understood gravity...", "assets/Levels/falling.tmx", 12),
+            new LevelInfo("Shortcuts", "Timetest", "assets/levels/shortcuts.tmx", 13),
+            new LevelInfo("Elevators","","assets/levels/Elevators.tmx",14),
     };
     //@formatter:on
 
@@ -43,8 +47,7 @@ public class PlatformerGame extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {
-        addState(new MainMenuState());
-        addState(new LevelSelectState(levels));
+        addState(new MainMenuState(levels));
         for (LevelInfo level : levels) {
             addState(new GameplayState(level.title, level.mapfile, level.stateId));
         }

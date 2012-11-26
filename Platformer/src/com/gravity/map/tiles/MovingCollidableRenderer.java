@@ -6,8 +6,8 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.Layer;
 
+import com.gravity.levels.Renderer;
 import com.gravity.map.TileWorld;
-import com.gravity.root.Renderer;
 
 /**
  * Renders a moving collidable.

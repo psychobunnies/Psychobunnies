@@ -4,9 +4,9 @@ import java.util.Collection;
 
 import com.gravity.fauna.Player;
 import com.gravity.geom.Rect;
+import com.gravity.levels.GameplayControl;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.RectCollision;
-import com.gravity.root.GameplayControl;
 
 public class LevelFinishZone extends StaticCollidable {
     private final GameplayControl control;

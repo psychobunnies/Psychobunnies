@@ -10,6 +10,7 @@ import org.newdawn.slick.tiled.Layer;
 import com.google.common.collect.Lists;
 import com.gravity.entity.TriggeredText;
 import com.gravity.entity.TriggeredTextRenderer;
+import com.gravity.map.tiles.MovingCollidable;
 import com.gravity.map.tiles.MovingCollidableRenderer;
 import com.gravity.root.Renderer;
 
@@ -29,8 +30,8 @@ public class TileWorldRenderer implements Renderer {
         for (TriggeredText tt : tileMap.getTriggeredTexts()) {
             extraRenderers.add(new TriggeredTextRenderer(tt));
         }
-        for (Layer l : tileMap.getMovingCollMap().keySet()) {
-            extraRenderers.add(new MovingCollidableRenderer(tileMap, l));
+        for (List<MovingCollidable> mcs : tileMap.getMovingCollMap().values()) {
+            extraRenderers.addAll(mcs);
         }
     }
 

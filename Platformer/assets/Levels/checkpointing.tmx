@@ -25,7 +25,7 @@
    eJzt2EsKgDAMRdFMu/8NOy9YamJeSHsPOPLLVWvRDNAa1RdwCTpr0FmDzjFjWlbbIR+dNeisQeeYnbHZXtbv7Oc518k838Gv3eZvbmS/zveL+YZG987Z1/jX+9S9cxeeztnjZNaxK8f5k57ZnfkTnc9GZw06a9BZg84adNagc73Vv5zoXPQBgTUC9Q==
   </data>
  </layer>
- <layer name="players" width="90" height="24" opacity="0.47">
+ <layer name="players" width="90" height="24" opacity="0.46">
   <data encoding="base64" compression="zlib">
    eJztzrENAAAEADC7wf/fOoLEoL2gEQAAAHyW1wEAAACAoboOwIIGI78AGw==
   </data>
@@ -39,11 +39,6 @@
   </properties>
   <data encoding="base64" compression="zlib">
    eJzt2LEJACAMRUEnsLBw/1HtUwomSO4g/eeVGQOAX63qAQBNzXC8p3MOnQEAAPrw38inc47YeZesgDsHEb0A0Q==
-  </data>
- </layer>
- <layer name="stomps" width="90" height="24">
-  <data encoding="base64" compression="zlib">
-   eJztwzENAAAIA7ApwL9cnimAt02aAAAAX9MAAAAAAHCxlQYAHQ==
   </data>
  </layer>
 </map>

@@ -1,6 +1,7 @@
 package com.gravity.map;
 
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.Layer;
 import org.newdawn.slick.tiled.Tile;
 import org.newdawn.slick.tiled.TileSet;
@@ -19,8 +20,22 @@ import org.newdawn.slick.tiled.TiledMapPlus;
  */
 public enum TileType {
     //@formatter:off
+    TABLE_LEG   (MapType.GROUND, "lab-sheet", 0, 0),
+    TABLE_FOOT  (MapType.GROUND, "lab-sheet", 0, 1),
+    TABLE_SINGLE(MapType.GROUND, "lab-sheet", 0, 2),
+    TABLE_LEFT  (MapType.GROUND, "lab-sheet", 1, 0),
+    TABLE_MID   (MapType.GROUND, "lab-sheet", 2, 0),
+    TABLE_RIGHT (MapType.GROUND, "lab-sheet", 3, 0),
+    TABLE_LSHEEN(MapType.GROUND, "lab-sheet", 1, 1),
+    TABLE_MSHEEN(MapType.GROUND, "lab-sheet", 2, 1),
+    TABLE_RSHEEN(MapType.GROUND, "lab-sheet", 3, 1),
+    TABLE_LBLOOD(MapType.GROUND, "lab-sheet", 1, 2),
+    TABLE_MBLOOD(MapType.GROUND, "lab-sheet", 2, 2),
+    TABLE_RBLOOD(MapType.GROUND, "lab-sheet", 3, 2),
+    
     GROUND_TOP  (MapType.GROUND, "bunnyTile", 0, 0), 
     GROUND_MID  (MapType.GROUND, "betterBunnyDirt", 0, 0),
+    
     SPIKE       (MapType.SPIKE, "spikes", 0, 0), 
     BOUNCY      (MapType.BOUNCY, "mapTiles", 0, 0),
     
@@ -32,8 +47,19 @@ public enum TileType {
     YELLOW_START(MapType.START, "markers", 1, 0),
     HELP_TRIGGER(MapType.TEXT,  "markers", 2, 0),
     
-    LEVEL_CAGE  (MapType.LEVEL, "levelMarkers", 2, 1);
+    LEVEL_CAGE  (MapType.LEVEL, "levelMarkers", 2, 1),
+    
+    UNKNOWN (MapType.UNKNOWN, "", 0, 0);
     //@formatter:on
+
+    public static Image UNKNOWN_IMAGE = null;
+    static {
+        try {
+            UNKNOWN_IMAGE = new Image(1, 1);
+        } catch (SlickException e) {
+            throw new RuntimeException();
+        }
+    }
 
     public final MapType type;
     public final String tileSet;
@@ -63,7 +89,7 @@ public enum TileType {
                 return type;
             }
         }
-        return null;
+        return UNKNOWN;
     }
 
     /**
@@ -82,10 +108,13 @@ public enum TileType {
                 return type;
             }
         }
-        return null;
+        return UNKNOWN;
     }
 
     public Image getImage(TiledMapPlus map) {
+        if (this == UNKNOWN) {
+            return UNKNOWN_IMAGE;
+        }
         Integer id = map.getTilesetID(this.tileSet);
         if (id == null) {
             throw new RuntimeException("Could not find tileset for " + this);

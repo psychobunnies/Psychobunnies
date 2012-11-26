@@ -15,14 +15,17 @@
  <tileset firstgid="4" name="levelMarkers" tilewidth="32" tileheight="32">
   <image source="levelMarkers.png" width="128" height="128"/>
  </tileset>
+ <tileset firstgid="20" name="bunnyTiles" tilewidth="32" tileheight="32">
+  <image source="bunnyTiles.png" width="128" height="64"/>
+ </tileset>
  <layer name="spikes" width="150" height="30">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3DwQkAAAgAoYP237klgj4KFgAAAAAAAAAAAAAA1BwFAAAAAAD+LFeBFVdQRgAA
+  <data encoding="base64" compression="zlib">
+   eJztw8EJAAAIAKGD9t+5JYI+ChYAAAAAAAAAAAAAANQcBQAAAAAA/ixMDwA3
   </data>
  </layer>
  <layer name="collisions" width="150" height="30">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3ZUQ7CIBCE4er9D+0J2rI7M5TK/yW+GNgFM0iNxwEAAAAAAAC3z8nLXc/Z467fCrV29x18T6mnjHP3nV0rZfb5rSJX2VopT33Oo85y1c16Zb/O80SutHFuV307a6rOce2bXGnj3MhVtlbK23NVvas6uXLch+RKG+c20reytu4+1P3/W67ufuORq+w81/xUra4Vnw/cfSt3lZIr5T4kV9k6yb7u7zbnfHKVrZPsS67m2S1XI8+Tlf8YXPPdueqswWmnXOGacp5S50Q950+vHwAAAAAAAMDafszNXt9QRgAA
+  <data encoding="base64" compression="zlib">
+   eJzt2VEOwiAQhOHq/Q/tCdqyOzOUyv8lvhjYBTNIjccBAAAAAAAAt8/Jy13P2eOu3wq1dvcdfE+pp4xz951dK2X2+a0iV9laKU99zqPOctXNemW/zvNErrRxbld9O2uqznHtm1xp49zIVbZWyttzVb2rOrly3IfkShvnNtK3srbuPtT9/1uu7n7jkavsPNf8VK2uFZ8P3H0rd5WSK+U+JFfZOsm+7u8253xyla2T7Euu5tktVyPPk5X/GFzz3bnqrMFpp1zhmnKeUudEPedPrx8AAAAAAADA2n7EDgFg
   </data>
  </layer>
  <objectgroup name="level markers" width="150" height="30">
@@ -34,13 +37,13 @@
    <property name="translationX" value="4"/>
    <property name="translationY" value="0"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3DsQ0AAAgDoPr/064dPMABEhIAAAAAAAAAAAAAuE0FAAAAAAAA/ltKDP7aUEYAAA==
+  <data encoding="base64" compression="zlib">
+   eJztwzENAAAIA7CJwL9W3h0I4GiTJgAAAAAAAAAAAABwmwoAAAAAAAD8t88qAD0=
   </data>
  </layer>
  <layer name="playerkeyed" width="150" height="30">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3DoQ0AAAgDsD3A/+/iJzGYNmkCAAAAAAAAcDcVAAAAAAAAAAAAgD8Lfu8DYVBGAAA=
+  <data encoding="base64" compression="zlib">
+   eJztw6ENAAAIA7A9wP/v4icxmDZpAgAAAAAAAHA3FQAAAAAAAAAAAIA/C8ZAADU=
   </data>
  </layer>
 </map>

@@ -166,7 +166,7 @@ public class GravityPhysics implements Physics {
                 possiblePos = possiblePos.setSide(s, otherRect.getSide(s.getOpposite()));
                 if (possiblePos == null) {
                     if (entity instanceof Player) {
-                        throw new RuntimeException("crushed!");
+                        System.err.println("WARNING: Would kill player here.");
                     }
                     break;
                 }
@@ -181,7 +181,7 @@ public class GravityPhysics implements Physics {
         }
         r = r.translateInto(possiblePos);
         if (r == null) {
-            throw new RuntimeException("crushed again!");
+            System.err.println("WARNING: Would kill player here (2).");
         }
         return new PhysicalState(r, velX, velY, accX, accY);
     }

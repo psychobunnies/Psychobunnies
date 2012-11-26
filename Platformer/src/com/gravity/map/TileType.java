@@ -1,5 +1,6 @@
 package com.gravity.map;
 
+import org.newdawn.slick.Image;
 import org.newdawn.slick.tiled.Layer;
 import org.newdawn.slick.tiled.Tile;
 import org.newdawn.slick.tiled.TileSet;
@@ -23,13 +24,15 @@ public enum TileType {
     SPIKE       (MapType.SPIKE, "spikes", 0, 0), 
     BOUNCY      (MapType.BOUNCY, "mapTiles", 0, 0),
     
-    PLAYER_KEYED_UNSET(MapType.PLAYER_KEYED, "levelMarkers", 1, 2),
-    PLAYER_KEYED_PINK(MapType.PLAYER_KEYED, "levelMarkers", 1, 0),
+    PLAYER_KEYED_UNSET (MapType.PLAYER_KEYED, "levelMarkers", 1, 2),
+    PLAYER_KEYED_PINK  (MapType.PLAYER_KEYED, "levelMarkers", 1, 0),
     PLAYER_KEYED_YELLOW(MapType.PLAYER_KEYED, "levelMarkers", 1, 1),
     
     PINK_START  (MapType.START, "markers", 0, 0),
     YELLOW_START(MapType.START, "markers", 1, 0),
-    HELP_TRIGGER(MapType.TEXT, "markers", 2, 0);
+    HELP_TRIGGER(MapType.TEXT,  "markers", 2, 0),
+    
+    LEVEL_CAGE  (MapType.LEVEL, "levelMarkers", 2, 1);
     //@formatter:on
 
     public final MapType type;
@@ -80,5 +83,17 @@ public enum TileType {
             }
         }
         return null;
+    }
+
+    public Image getImage(TiledMapPlus map) {
+        Integer id = map.getTilesetID(this.tileSet);
+        if (id == null) {
+            throw new RuntimeException("Could not find tileset for " + this);
+        }
+        TileSet tileSet = map.findTileSet(id);
+        if (tileSet == null) {
+            throw new RuntimeException("Could not get tileset for " + this);
+        }
+        return tileSet.tiles.getSubImage(tileSetX, tileSetY);
     }
 }

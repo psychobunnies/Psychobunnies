@@ -34,7 +34,6 @@ public class PlatformerGame extends StateBasedGame {
             new LevelInfo("Falling", "So you thought you understood gravity...", "assets/Levels/falling.tmx", 1009),
             new LevelInfo("Shortcuts", "Timetest", "assets/levels/shortcuts.tmx", 1010),
             new LevelInfo("Elevators","","assets/levels/Elevators.tmx",1011),
-            new LevelInfo("Main Menu","","assets/mainmenu.tmx",999)
     };
     //@formatter:on
 

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="32" height="24" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="camera" value="stalking"/>
+ </properties>
  <tileset firstgid="1" name="lab-sheet" tilewidth="32" tileheight="32">
   <image source="lab-sheet.png" width="128" height="96"/>
  </tileset>
@@ -29,12 +32,11 @@
  </layer>
  <layer name="level markers" width="32" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSMglGADQhTmT8KRsFQAqPpfxSMZDDc0z8AIfayowAMAAA=
+   H4sIAAAAAAAAC2NgGAWjgHwgPNAOGAWjgIYAPX1Tyh8Fo2AogdH0PwpGMhju6R8Ax63ClQAMAAA=
   </data>
  </layer>
  <objectgroup name="special levels" width="32" height="24">
-  <object name="controls" type="level" x="208" y="128" width="32" height="32"/>
-  <object name="tutorial" type="level" x="496" y="128" width="32" height="32"/>
+  <object name="options" type="level" x="208" y="128" width="32" height="32"/>
   <object name="quit" type="level" x="784" y="128" width="32" height="32"/>
  </objectgroup>
 </map>

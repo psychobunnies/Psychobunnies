@@ -15,5 +15,6 @@ public enum MapType {
     FINISH,
     TEXT,
     PLAYER_KEYED,
+    LEVEL
     //@formatter:on
 }

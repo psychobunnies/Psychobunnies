@@ -55,25 +55,25 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         return ID;
     }
 
-    private TileWorld map;
-    private Player playerA, playerB;
-    private List<Renderer> renderers = new ArrayList<Renderer>();
-    private PlayerKeyboardController controllerA, controllerB;
-    private List<UpdateCycling> updaters;
-    private CollisionEngine collider;
-    private GameContainer container;
-    private StateBasedGame game;
-    private GravityPhysics gravityPhysics;
-    private LevelFinishZone finish;
-    private Player finishedPlayer;
-    private Camera camera;
+    protected TileWorld map;
+    protected Player playerA, playerB;
+    protected List<Renderer> renderers = new ArrayList<Renderer>();
+    protected PlayerKeyboardController controllerA, controllerB;
+    protected List<UpdateCycling> updaters;
+    protected CollisionEngine collider;
+    protected GameContainer container;
+    protected StateBasedGame game;
+    protected GravityPhysics gravityPhysics;
+    protected LevelFinishZone finish;
+    protected Player finishedPlayer;
+    protected Camera camera;
 
     private boolean leftRemapped, rightRemapped, jumpRemapped;
     private Control remappedControl;
     private float remappedDecay;
     private Polygon controlArrow = new Polygon(new float[] { -50, 10, 20, 10, -10, 50, 10, 50, 50, 0, 10, -50, -10, -50, 20, -10, -50, -10 });
 
-    private final List<Resetable> resetableTiles = Lists.newArrayList();
+    protected final List<Resetable> resetableTiles = Lists.newArrayList();
 
     public GameplayState(String levelName, String mapFile, int id) throws SlickException {
         ID = id;
@@ -89,7 +89,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         GameSounds.playBGM();
     }
 
-    public void reloadGame() {
+    public void reloadGame() throws SlickException {
         pauseRender();
         pauseUpdate();
 

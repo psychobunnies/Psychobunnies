@@ -1,6 +1,5 @@
 package com.gravity.root;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -57,7 +56,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
 
     protected TileWorld map;
     protected Player playerA, playerB;
-    protected List<Renderer> renderers = new ArrayList<Renderer>();
+    protected RenderList renderers;
     protected PlayerKeyboardController controllerA, controllerB;
     protected List<UpdateCycling> updaters;
     protected CollisionEngine collider;
@@ -95,6 +94,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
 
         collider = new LayeredCollisionEngine();
         updaters = Lists.newLinkedList();
+        renderers = new RenderList();
         resetableTiles.clear();
 
         for (DisappearingTileController controller : map.reinitializeDisappearingLayers(collider)) {
@@ -128,9 +128,9 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         playerB = new Player(this, gravityPhysics, "yellow", playerPositions.get(1));
         updaters.add(playerA);
         updaters.add(playerB);
-        renderers.add(new TileWorldRenderer(map));
-        renderers.add(new PlayerRenderer(playerA));
-        renderers.add(new PlayerRenderer(playerB));
+        renderers.add(new TileWorldRenderer(map), RenderList.TERRA);
+        renderers.add(new PlayerRenderer(playerA), RenderList.FAUNA);
+        renderers.add(new PlayerRenderer(playerB), RenderList.FAUNA);
         collider.addCollidable(playerA, LayeredCollisionEngine.FAUNA_LAYER);
         collider.addCollidable(playerB, LayeredCollisionEngine.FAUNA_LAYER);
         //@formatter:off
@@ -160,7 +160,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
                     resetableTiles.add(pkTile);
                     updaters.add(pkTile);
                     collider.addCollidable(pkTile, LayeredCollisionEngine.FLORA_LAYER);
-                    renderers.add(pkTile);
+                    renderers.add(pkTile, RenderList.TERRA);
                 }
             } catch (SlickException e) {
                 throw new RuntimeException("Unable to make keyedplayertile", e);
@@ -176,7 +176,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
                     FallingTile fsTile = new FallingTile(this, new Rect(tile.x * 32, tile.y * 32, 32, 32), collider, rd, fallSpike, tile.x, tile.y);
                     updaters.add(fsTile);
                     collider.addCollidable(fsTile, LayeredCollisionEngine.FALLING_LAYER);
-                    renderers.add(fsTile);
+                    renderers.add(fsTile, RenderList.TERRA);
                 }
             } catch (SlickException e) {
                 throw new RuntimeException("Unable to make keyedplayertile", e);
@@ -200,9 +200,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         Vector2f offset = camera.getViewport().getPosition();
-        for (Renderer r : renderers) {
-            r.render(g, (int) offset.x, (int) offset.y);
-        }
+        renderers.render(g, (int) offset.x, (int) offset.y);
 
         // Draw slingshot indicator
         if (playerA.slingshot) {

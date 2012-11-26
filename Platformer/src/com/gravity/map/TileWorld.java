@@ -2,6 +2,7 @@ package com.gravity.map;
 
 import java.util.List;
 import java.util.Map;
+import java.util.SortedSet;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -16,6 +17,7 @@ import org.newdawn.slick.tiled.TiledMapPlus;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 import com.gravity.entity.TriggeredText;
 import com.gravity.entity.TriggeredTextEntity;
 import com.gravity.geom.Rect;
@@ -423,11 +425,11 @@ public class TileWorld implements GameWorld {
     /**
      * Returns the bottom center of all level cage locations.
      */
-    public List<Vector2f> getLevelLocations() {
+    public SortedSet<Vector2f> getLevelLocations() {
         Layer layer;
         if ((layer = map.getLayer(MARKERS_LAYER_NAME)) != null) {
             layer.visible = false;
-            List<Vector2f> locs = Lists.newArrayList();
+            SortedSet<Vector2f> locs = Sets.newTreeSet();
             try {
                 for (Tile tile : layer.getTiles()) {
                     locs.add(new Vector2f(tile.x * tileWidth, (tile.y + 1) * tileHeight));
@@ -438,7 +440,7 @@ public class TileWorld implements GameWorld {
             }
         }
         System.err.println("WARNING: could not get level cage locations: level markers layer does not exist");
-        return Lists.newArrayList();
+        return Sets.newTreeSet();
     }
 
     /**

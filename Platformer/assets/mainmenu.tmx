@@ -11,12 +11,12 @@
  </tileset>
  <layer name="collisions" width="32" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2W0QrAIAhFb9so6P8/eAwmC0kZjF19SPDJ6KRepQJgD/Jye5Qtfk7+hkcjhxMbvRlnu3GPx2eZ8Cvm72Px2TWQHkbxodjZ+FKfBnt3Vic2c62vzPmz+dZ++MuW/t/p/6vmx/lZ+rf5UlfGDFy9lb7o3Bl10LwM/Mj/9wno3rt9AAwAAA==
+   H4sIAAAAAAAAC+2W0QqAMAhFrxUb9P8fHEHSkClBTH1Q8Mmxg9frGAHYg5KejIri5+RveD1yGLUxu3L2VO6x+F6Rhd8w12dV8AwJcRoQ8vJZnw797WxGbZZyvpn79+Zr78OqKP9/8/9fz4/7U/7X+ayrxw7cs+W5yN49dJC8DPzI//cFCv+BcwAMAAA=
   </data>
  </layer>
  <layer name="helptext1" width="32" height="24">
   <properties>
-   <property name="text" value="press '6' while both bunnies$are in a cage to start level"/>
+   <property name="text" value="press 'Enter' while both bunnies$are in a cage to start level"/>
    <property name="type" value="help"/>
    <property name="x" value="384"/>
    <property name="y" value="192"/>

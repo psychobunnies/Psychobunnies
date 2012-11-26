@@ -24,16 +24,16 @@ public class PlatformerGame extends StateBasedGame {
 
     //@formatter:off
     private LevelInfo[] levels = {
-            new LevelInfo("Tutorial", "Controls Turorial", "assets/Levels/tutorial.tmx", 1000),
-            new LevelInfo("Slingshot", "Slingshot Turorial", "assets/Levels/slingshot_intro.tmx", 1001),
-            new LevelInfo("Split World", "Slingshot Fun", "assets/Levels/split_world.tmx", 1002),
-            new LevelInfo("Test Moving", "", "assets/Levels/moving_test.tmx", 1005),
-            new LevelInfo("Bouncy 1", "A first brush with bouncing", "assets/Levels/Bouncy_1.tmx", 1006),
-            new LevelInfo("Test Stomps", "", "assets/Levels/checkpointing.tmx", 1007),
-            new LevelInfo("Checkpointing", "", "assets/Levels/checkpointing.tmx", 1008),
-            new LevelInfo("Falling", "So you thought you understood gravity...", "assets/Levels/falling.tmx", 1009),
-            new LevelInfo("Shortcuts", "Timetest", "assets/levels/shortcuts.tmx", 1010),
-            new LevelInfo("Elevators","","assets/levels/Elevators.tmx",1011),
+            new LevelInfo("Tutorial", "Controls Turorial", "assets/Levels/tutorial.tmx", 0),
+            new LevelInfo("Slingshot", "Slingshot Turorial", "assets/Levels/slingshot_intro.tmx", 1),
+            new LevelInfo("Split World", "Slingshot Fun", "assets/Levels/split_world.tmx", 2),
+            new LevelInfo("Test Moving", "", "assets/Levels/moving_test.tmx", 5),
+            new LevelInfo("Bouncy 1", "A first brush with bouncing", "assets/Levels/Bouncy_1.tmx", 6),
+            new LevelInfo("Test Stomps", "", "assets/Levels/checkpointing.tmx", 7),
+            new LevelInfo("Checkpointing", "", "assets/Levels/checkpointing.tmx", 8),
+            new LevelInfo("Falling", "So you thought you understood gravity...", "assets/Levels/falling.tmx", 9),
+            new LevelInfo("Shortcuts", "Timetest", "assets/levels/shortcuts.tmx", 10),
+            new LevelInfo("Elevators","","assets/levels/Elevators.tmx",11),
     };
     //@formatter:on
 
@@ -43,7 +43,7 @@ public class PlatformerGame extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {
-        addState(new MainMenuState());
+        addState(new MainMenuState(levels));
         addState(new LevelSelectState(levels));
         for (LevelInfo level : levels) {
             addState(new GameplayState(level.title, level.mapfile, level.stateId));

@@ -9,7 +9,7 @@ import org.newdawn.slick.util.FastTrig;
  * 
  * @author Kevin Glass
  */
-public strictfp class Vector2f implements Serializable {
+public strictfp class Vector2f implements Serializable, Comparable {
 	/** The version ID for this class  */
 	private static final long serialVersionUID = 1339934L;
 	
@@ -392,5 +392,18 @@ public strictfp class Vector2f implements Serializable {
 		}
 		
 		return false;
+	}
+
+	@Override
+	public int compareTo(Object obj) {
+		if (obj != null && obj instanceof Vector2f) {
+			Vector2f other = (Vector2f)obj;
+			if (other.y == this.y){
+				return (int)Math.signum(this.x - other.x);
+			} else {
+				return (int)Math.signum(this.y - other.y);
+			}
+		}
+		return -1;
 	}
 }

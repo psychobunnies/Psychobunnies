@@ -1,6 +1,5 @@
-package com.gravity.root;
+package com.gravity.levels;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -13,6 +12,9 @@ import org.newdawn.slick.geom.Polygon;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
+import org.newdawn.slick.state.transition.Transition;
 import org.newdawn.slick.tiled.Layer;
 import org.newdawn.slick.tiled.Tile;
 import org.newdawn.slick.tiled.TiledMapPlus;
@@ -42,6 +44,9 @@ import com.gravity.physics.GravityPhysics;
 import com.gravity.physics.LayeredCollisionEngine;
 import com.gravity.physics.PhysicalState;
 import com.gravity.physics.PhysicsFactory;
+import com.gravity.root.GameOverState;
+import com.gravity.root.GameSounds;
+import com.gravity.root.GameWinState;
 
 public class GameplayState extends BasicGameState implements GameplayControl, Resetable {
 
@@ -55,30 +60,35 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         return ID;
     }
 
-    private TileWorld map;
-    private Player playerA, playerB;
-    private List<Renderer> renderers = new ArrayList<Renderer>();
-    private PlayerKeyboardController controllerA, controllerB;
-    private List<UpdateCycling> updaters;
-    private CollisionEngine collider;
-    private GameContainer container;
-    private StateBasedGame game;
-    private GravityPhysics gravityPhysics;
-    private LevelFinishZone finish;
-    private Player finishedPlayer;
-    private Camera camera;
+    protected TileWorld map;
+    protected Player playerA, playerB;
+    protected RenderList renderers;
+    protected PlayerKeyboardController controllerA, controllerB;
+    protected List<UpdateCycling> updaters;
+    protected CollisionEngine collider;
+    protected GameContainer container;
+    protected StateBasedGame game;
+    protected GravityPhysics gravityPhysics;
+    protected LevelFinishZone finish;
+    protected Player finishedPlayer;
+    protected Camera camera;
 
     private boolean leftRemapped, rightRemapped, jumpRemapped;
     private Control remappedControl;
     private float remappedDecay;
     private Polygon controlArrow = new Polygon(new float[] { -50, 10, 20, 10, -10, 50, 10, 50, 50, 0, 10, -50, -10, -50, 20, -10, -50, -10 });
 
-    private final List<Resetable> resetableTiles = Lists.newArrayList();
+    private Transition deathFadeIn;
+    private Transition deathFadeOut;
+
+    protected final List<Resetable> resetableTiles = Lists.newArrayList();
     private String levelName;
 
     public GameplayState(String levelName, String mapFile, int id) throws SlickException {
         ID = id;
         map = new TileWorld(levelName, new TiledMapPlus(mapFile), this);
+        deathFadeIn = new FadeInTransition(Color.red.darker());
+        deathFadeOut = new FadeOutTransition(Color.red.darker());
         this.levelName = levelName;
     }
 
@@ -91,13 +101,14 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         GameSounds.playBGM();
     }
 
-    public void reloadGame() {
+    public void reloadGame() throws SlickException {
         System.err.println(">>>Loading level " + levelName);
         pauseRender();
         pauseUpdate();
 
         collider = new LayeredCollisionEngine();
         updaters = Lists.newLinkedList();
+        renderers = new RenderList();
         resetableTiles.clear();
 
         for (DisappearingTileController controller : map.reinitializeDisappearingLayers(collider)) {
@@ -131,9 +142,9 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         playerB = new Player(this, gravityPhysics, "yellow", playerPositions.get(1));
         updaters.add(playerA);
         updaters.add(playerB);
-        renderers.add(new TileWorldRenderer(map));
-        renderers.add(new PlayerRenderer(playerA));
-        renderers.add(new PlayerRenderer(playerB));
+        renderers.add(new TileWorldRenderer(map), RenderList.TERRA);
+        renderers.add(new PlayerRenderer(playerA), RenderList.FAUNA);
+        renderers.add(new PlayerRenderer(playerB), RenderList.FAUNA);
         collider.addCollidable(playerA, LayeredCollisionEngine.FAUNA_LAYER);
         collider.addCollidable(playerB, LayeredCollisionEngine.FAUNA_LAYER);
         //@formatter:off
@@ -164,7 +175,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
                     resetableTiles.add(pkTile);
                     updaters.add(pkTile);
                     collider.addCollidable(pkTile, LayeredCollisionEngine.FLORA_LAYER);
-                    renderers.add(pkTile);
+                    renderers.add(pkTile, RenderList.TERRA);
                 }
             } catch (SlickException e) {
                 throw new RuntimeException("Unable to make keyedplayertile", e);
@@ -180,7 +191,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
                     FallingTile fsTile = new FallingTile(this, new Rect(tile.x * 32, tile.y * 32, 32, 32), collider, rd, fallSpike, tile.x, tile.y);
                     updaters.add(fsTile);
                     collider.addCollidable(fsTile, LayeredCollisionEngine.FALLING_LAYER);
-                    renderers.add(fsTile);
+                    renderers.add(fsTile, RenderList.TERRA);
                 }
             } catch (SlickException e) {
                 throw new RuntimeException("Unable to make keyedplayertile", e);
@@ -204,9 +215,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         Vector2f offset = camera.getViewport().getPosition();
-        for (Renderer r : renderers) {
-            r.render(g, (int) offset.x, (int) offset.y);
-        }
+        renderers.render(g, (int) offset.x, (int) offset.y);
 
         // Draw slingshot indicator
         if (playerA.slingshot) {
@@ -332,7 +341,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     @Override
     public void playerDies(Player player) {
         reset();
-        game.enterState(GameOverState.ID);
+        game.enterState(GameOverState.ID, deathFadeOut, deathFadeIn);
     }
 
     @Override

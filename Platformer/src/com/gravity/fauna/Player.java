@@ -4,10 +4,10 @@ import org.newdawn.slick.geom.Vector2f;
 
 import com.gravity.entity.PhysicsEntity;
 import com.gravity.geom.Rect;
+import com.gravity.levels.GameplayControl;
 import com.gravity.physics.GravityPhysics;
 import com.gravity.physics.PhysicalState;
 import com.gravity.root.GameSounds;
-import com.gravity.root.GameplayControl;
 
 public class Player extends PhysicsEntity<GravityPhysics> {
 

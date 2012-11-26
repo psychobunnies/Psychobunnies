@@ -7,7 +7,7 @@ import org.newdawn.slick.geom.Vector2f;
 
 import com.google.common.collect.Sets;
 import com.gravity.fauna.Player;
-import com.gravity.root.GameplayControl;
+import com.gravity.levels.GameplayControl;
 
 public class Checkpoint {
         

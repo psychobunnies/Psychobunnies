@@ -1,16 +1,20 @@
-package com.gravity.root;
+package com.gravity.levels;
 
 public class LevelInfo {
+    static private final int STATE_ID_OFFSET = 1000;
+
     public final String title;
     public final String description;
     public final String mapfile;
     public final int stateId;
+    public final int levelOrder;
 
-    public LevelInfo(String title, String description, String mapfile, int stateId) {
+    public LevelInfo(String title, String description, String mapfile, int order) {
         this.title = title;
         this.description = description;
         this.mapfile = mapfile;
-        this.stateId = stateId;
+        this.stateId = order + STATE_ID_OFFSET;
+        this.levelOrder = order;
     }
 
     @Override

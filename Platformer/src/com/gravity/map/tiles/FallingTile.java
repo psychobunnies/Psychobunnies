@@ -10,23 +10,21 @@ import org.newdawn.slick.tiled.Layer;
 
 import com.gravity.fauna.Player;
 import com.gravity.geom.Rect;
+import com.gravity.levels.GameplayState;
+import com.gravity.levels.Renderer;
+import com.gravity.levels.UpdateCycling;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.CollisionEngine;
 import com.gravity.physics.PhysicalState;
 import com.gravity.physics.PhysicsFactory;
 import com.gravity.physics.RectCollision;
-import com.gravity.root.GameplayState;
-import com.gravity.root.Renderer;
-import com.gravity.root.UpdateCycling;
 
 public class FallingTile implements Collidable, Renderer, UpdateCycling {
     public final int MILLIS_TO_FALL = 20000;
     public final float FALL_ACC = PhysicsFactory.DEFAULT_GRAVITY * 2;
     public final float MAX_VEL = 0.15f;
 
-    private CollisionEngine collider;
     private TileRendererDelegate renderer;
-    private Layer layer;
     private GameplayState gameState;
 
     private float startX, startY;
@@ -36,9 +34,7 @@ public class FallingTile implements Collidable, Renderer, UpdateCycling {
     private PhysicalState state;
 
     public FallingTile(GameplayState gameState, Rect shape, CollisionEngine collider, TileRendererDelegate renderer, Layer layer, int x, int y) {
-        this.collider = collider;
         this.renderer = renderer;
-        this.layer = layer;
         this.gameState = gameState;
         this.state = new PhysicalState(shape.translateTo(x * 32, y * 32), 0, 0, 0, 0);
         this.startX = this.state.getPosition().x;

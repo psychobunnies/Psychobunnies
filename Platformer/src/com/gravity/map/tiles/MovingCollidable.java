@@ -2,17 +2,16 @@ package com.gravity.map.tiles;
 
 import java.util.Collection;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
 
 import com.gravity.fauna.Player;
 import com.gravity.geom.Rect;
+import com.gravity.levels.GameplayControl;
+import com.gravity.levels.Renderer;
+import com.gravity.levels.UpdateCycling;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.RectCollision;
-import com.gravity.root.GameplayControl;
-import com.gravity.root.Renderer;
-import com.gravity.root.UpdateCycling;
 
 /**
  * Represents a moving platform, e.g.
@@ -33,7 +32,8 @@ public class MovingCollidable implements Collidable, UpdateCycling, Renderer {
         this(controller, renderer, shape, transX, transY, speed, speed);
     }
 
-    public MovingCollidable(GameplayControl controller, TileRendererDelegate renderer, Rect shape, int transX, int transY, float speedForward, float speedBackward) {
+    public MovingCollidable(GameplayControl controller, TileRendererDelegate renderer, Rect shape, int transX, int transY, float speedForward,
+            float speedBackward) {
         this.controller = controller;
         this.renderer = renderer;
         this.shape = shape;

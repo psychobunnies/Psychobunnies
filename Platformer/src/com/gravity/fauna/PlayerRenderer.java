@@ -8,8 +8,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import com.google.common.collect.Lists;
+import com.gravity.levels.Renderer;
 import com.gravity.physics.PhysicalState;
-import com.gravity.root.Renderer;
 
 public class PlayerRenderer implements Renderer {
     private Player player;

@@ -2,6 +2,7 @@ package com.gravity.map;
 
 import java.util.List;
 import java.util.Map;
+import java.util.SortedSet;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -16,9 +17,11 @@ import org.newdawn.slick.tiled.TiledMapPlus;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 import com.gravity.entity.TriggeredText;
 import com.gravity.entity.TriggeredTextEntity;
 import com.gravity.geom.Rect;
+import com.gravity.levels.GameplayControl;
 import com.gravity.map.tiles.BouncyTile;
 import com.gravity.map.tiles.DisappearingTile;
 import com.gravity.map.tiles.DisappearingTileController;
@@ -27,7 +30,6 @@ import com.gravity.map.tiles.SpikeEntity;
 import com.gravity.map.tiles.TileRendererDelegate;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.CollisionEngine;
-import com.gravity.root.GameplayControl;
 
 public class TileWorld implements GameWorld {
 
@@ -41,6 +43,10 @@ public class TileWorld implements GameWorld {
     public static final String PLAYERKEYED_LAYER_NAME = "playerkeyed";
     public static final String FALLING_SPIKE_LAYER_NAME = "falling spikes";
     public static final String STOMPS_LAYER_NAME = "stomps";
+
+    public static final String SPECIAL_LEVELS_LAYER_NAME = "special levels";
+    public static final String QUIT_OBJECT_NAME = "quit";
+    public static final String OPTIONS_OBJECT_NAME = "options";
 
     public static final float STOMP_SPEED_FORWARD = 50.0f;
     public static final float STOMP_SPEED_BACKWARD = 30.0f;
@@ -143,32 +149,26 @@ public class TileWorld implements GameWorld {
     @Override
     public void initialize() {
         // Iterate over and find all tiles
-        Layer terrain = map.getLayer("map");
-        if (terrain != null) {
+        entityNoCalls = processLayer(TILES_LAYER_NAME, new CollidableCreator<Collidable>() {
+            @Override
+            public Collidable createCollidable(Rect r) {
+                return new StaticCollidable(r);
+            }
+        });
 
-        } else {
-            entityNoCalls = processLayer(TILES_LAYER_NAME, new CollidableCreator<Collidable>() {
-                @Override
-                public Collidable createCollidable(Rect r) {
-                    return new StaticCollidable(r);
-                }
-            });
+        entityCallColls = processLayer(SPIKES_LAYER_NAME, new CollidableCreator<Collidable>() {
+            @Override
+            public Collidable createCollidable(Rect r) {
+                return new SpikeEntity(controller, r);
+            }
+        });
 
-            entityCallColls = processLayer(SPIKES_LAYER_NAME, new CollidableCreator<Collidable>() {
-                @Override
-                public Collidable createCollidable(Rect r) {
-                    return new SpikeEntity(controller, r);
-                }
-            });
-
-            entityNoCalls.addAll(processLayer(BOUNCYS_LAYER_NAME, new CollidableCreator<Collidable>() {
-                @Override
-                public Collidable createCollidable(Rect r) {
-                    return new BouncyTile(r);
-                }
-            }));
-
-        }
+        entityNoCalls.addAll(processLayer(BOUNCYS_LAYER_NAME, new CollidableCreator<Collidable>() {
+            @Override
+            public Collidable createCollidable(Rect r) {
+                return new BouncyTile(r);
+            }
+        }));
 
         triggeredTexts = Lists.newArrayList();
         for (Layer layer : map.getLayers()) {
@@ -427,4 +427,60 @@ public class TileWorld implements GameWorld {
         this.startPositions = startPositions;
     }
 
+    /**
+     * Returns the bottom center of all level cage locations.
+     */
+    public SortedSet<Vector2f> getLevelLocations() {
+        Layer layer;
+        if ((layer = map.getLayer(MARKERS_LAYER_NAME)) != null) {
+            layer.visible = false;
+            SortedSet<Vector2f> locs = Sets.newTreeSet();
+            try {
+                for (Tile tile : layer.getTiles()) {
+                    locs.add(new Vector2f(tile.x * tileWidth, (tile.y + 1) * tileHeight));
+                }
+                return locs;
+            } catch (SlickException e) {
+                throw new RuntimeException("Error while trying to get level locations from layer", e);
+            }
+        }
+        System.err.println("WARNING: could not get level cage locations: level markers layer does not exist");
+        return Sets.newTreeSet();
+    }
+
+    /**
+     * Return the location of the quit cage.
+     * 
+     * @return null if the location cannot be found.
+     */
+    public Vector2f getQuitLocation() {
+        ObjectGroup group;
+        if ((group = map.getObjectGroup(SPECIAL_LEVELS_LAYER_NAME)) != null) {
+            GroupObject object;
+            if ((object = group.getObject(QUIT_OBJECT_NAME)) != null) {
+                return new Vector2f(object.x, object.y + tileHeight);
+            }
+            System.err.println("WARNING: could not find quit location: quit object does not exit on special levels layer");
+        }
+        System.err.println("WARNING: could not find quit location: special levels layer does not exist");
+        return null;
+    }
+
+    /**
+     * Return the location of the options cage.
+     * 
+     * @return null if the location cannot be found.
+     */
+    public Vector2f getOptionsLocation() {
+        ObjectGroup group;
+        if ((group = map.getObjectGroup(SPECIAL_LEVELS_LAYER_NAME)) != null) {
+            GroupObject object;
+            if ((object = group.getObject(OPTIONS_OBJECT_NAME)) != null) {
+                return new Vector2f(object.x, object.y + tileHeight);
+            }
+            System.err.println("WARNING: could not find options location: options object does not exit on special levels layer");
+        }
+        System.err.println("WARNING: could not find options location: special levels layer does not exist");
+        return null;
+    }
 }

@@ -9,11 +9,14 @@
  <tileset firstgid="2" name="betterBunnyDirt" tilewidth="32" tileheight="32">
   <image source="betterBunnyDirt.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="3" name="Spikes" tilewidth="32" tileheight="32">
+ <tileset firstgid="3" name="spikes" tilewidth="32" tileheight="32">
   <image source="Spikes.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="4" name="levelMarkers" tilewidth="32" tileheight="32">
   <image source="levelMarkers.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="20" name="bunnyTiles" tilewidth="32" tileheight="32">
+  <image source="bunnyTiles.png" width="128" height="64"/>
  </tileset>
  <layer name="spikes" width="150" height="30">
   <data encoding="base64" compression="gzip">

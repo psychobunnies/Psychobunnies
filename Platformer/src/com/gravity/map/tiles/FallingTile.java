@@ -20,9 +20,9 @@ import com.gravity.root.Renderer;
 import com.gravity.root.UpdateCycling;
 
 public class FallingTile implements Collidable, Renderer, UpdateCycling {
-    public final int MILLIS_TO_FALL = 10000;
-    public final float FALL_ACC = PhysicsFactory.DEFAULT_GRAVITY * 0.9999f;
-    public final float MAX_VEL = 0.01f;
+    public final int MILLIS_TO_FALL = 20000;
+    public final float FALL_ACC = PhysicsFactory.DEFAULT_GRAVITY * 2;
+    public final float MAX_VEL = 0.15f;
 
     private CollisionEngine collider;
     private TileRendererDelegate renderer;

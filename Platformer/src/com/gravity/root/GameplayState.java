@@ -74,10 +74,12 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     private Polygon controlArrow = new Polygon(new float[] { -50, 10, 20, 10, -10, 50, 10, 50, 50, 0, 10, -50, -10, -50, 20, -10, -50, -10 });
 
     private final List<Resetable> resetableTiles = Lists.newArrayList();
+    private String levelName;
 
     public GameplayState(String levelName, String mapFile, int id) throws SlickException {
         ID = id;
         map = new TileWorld(levelName, new TiledMapPlus(mapFile), this);
+        this.levelName = levelName;
     }
 
     @Override
@@ -90,6 +92,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     }
 
     public void reloadGame() {
+        System.err.println(">>>Loading level " + levelName);
         pauseRender();
         pauseUpdate();
 
@@ -151,12 +154,13 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         if (pkLayer != null) {
             pkLayer.visible = false;
             TileRendererDelegate rendererDelegate = new TileRendererDelegate(tiledMap, TileType.PLAYER_KEYED_UNSET);
+            TileRendererDelegate rendererDelegateWarning = new TileRendererDelegate(tiledMap, TileType.PLAYER_KEYED_WARNING);
             TileRendererDelegate rendererDelegateYellow = new TileRendererDelegate(tiledMap, TileType.PLAYER_KEYED_YELLOW);
             TileRendererDelegate rendererDelegatePink = new TileRendererDelegate(tiledMap, TileType.PLAYER_KEYED_PINK);
             try {
                 for (Tile tile : pkLayer.getTiles()) {
                     PlayerKeyedTile pkTile = new PlayerKeyedTile(new Rect(tile.x * 32, tile.y * 32, 32, 32), collider, rendererDelegate,
-                            rendererDelegateYellow, rendererDelegatePink, pkLayer, tile.x, tile.y);
+                            rendererDelegateYellow, rendererDelegatePink, rendererDelegateWarning, pkLayer, tile.x, tile.y);
                     resetableTiles.add(pkTile);
                     updaters.add(pkTile);
                     collider.addCollidable(pkTile, LayeredCollisionEngine.FLORA_LAYER);

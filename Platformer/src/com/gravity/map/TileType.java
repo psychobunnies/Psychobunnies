@@ -18,8 +18,8 @@ import org.newdawn.slick.tiled.TiledMapPlus;
  */
 public enum TileType {
     //@formatter:off
-    GROUND_TOP  (MapType.GROUND, "bunnyTile", 0, 0), 
-    GROUND_MID  (MapType.GROUND, "betterBunnyDirt", 0, 0),
+    GROUND_TOP  (MapType.GROUND, "bunnyTiles", 0, 0), 
+    GROUND_MID  (MapType.GROUND, "bunnyTiles", 1, 0),
     SPIKE       (MapType.SPIKE, "spikes", 0, 0), 
     BOUNCY      (MapType.BOUNCY, "mapTiles", 0, 0),
     
@@ -28,9 +28,9 @@ public enum TileType {
     PLAYER_KEYED_PINK(MapType.PLAYER_KEYED, "levelMarkers", 1, 0),
     PLAYER_KEYED_YELLOW(MapType.PLAYER_KEYED, "levelMarkers", 1, 1),
     
-    PINK_START  (MapType.START, "markers", 0, 0),
-    YELLOW_START(MapType.START, "markers", 1, 0),
-    HELP_TRIGGER(MapType.TEXT, "markers", 2, 0);
+    PINK_START  (MapType.START, "levelMarkers", 0, 0),
+    YELLOW_START(MapType.START, "levelMarkers", 0, 1),
+    HELP_TRIGGER(MapType.TEXT, "levelMarkers", 2, 0);
     //@formatter:on
 
     public final MapType type;
@@ -75,6 +75,7 @@ public enum TileType {
         int id = layer.getLocalTileId(x, y);
         int lx = tileSet.getTileX(id);
         int ly = tileSet.getTileY(id);
+
         for (TileType type : TileType.values()) {
             if (type.tileSet.equals(tileSet.name) && type.tileSetX == lx && type.tileSetY == ly) {
                 return type;

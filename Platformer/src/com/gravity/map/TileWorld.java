@@ -24,6 +24,7 @@ import com.gravity.map.tiles.DisappearingTile;
 import com.gravity.map.tiles.DisappearingTileController;
 import com.gravity.map.tiles.MovingCollidable;
 import com.gravity.map.tiles.SpikeEntity;
+import com.gravity.map.tiles.TileRendererDelegate;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.CollisionEngine;
 import com.gravity.root.GameplayControl;
@@ -196,7 +197,7 @@ public class TileWorld implements GameWorld {
         }
 
         movingCollMap = Maps.newHashMap();
-        for (Layer layer : map.getLayers()) {
+        for (final Layer layer : map.getLayers()) {
             final float speed = Float.parseFloat(layer.props.getProperty("speed", "-1.0"));
             final int transX = Integer.parseInt(layer.props.getProperty("translationX", "-22222"));
             final int transY = Integer.parseInt(layer.props.getProperty("translationY", "-22222"));
@@ -209,7 +210,9 @@ public class TileWorld implements GameWorld {
             List<Collidable> colls = processLayer(layer.name, new CollidableCreator<Collidable>() {
                 @Override
                 public Collidable createCollidable(Rect r) {
-                    return new MovingCollidable(controller, r, transX * tileWidth, transY * tileHeight, speed);
+                    TileType tileType = TileType.toTileType(map, (int) (r.getX() / tileWidth), (int) (r.getY() / tileHeight), layer.index);
+                    TileRendererDelegate renderer = new TileRendererDelegate(map, tileType);
+                    return new MovingCollidable(controller, renderer, r, transX * tileWidth, transY * tileHeight, speed);
                 }
             });
             entityNoCalls.addAll(colls);
@@ -234,7 +237,9 @@ public class TileWorld implements GameWorld {
                             minBelowY = c.getY();
                         }
                     }
-                    MovingCollidable stompColl = new MovingCollidable(controller, r, 0, (int) (minBelowY - r.getMaxY()), STOMP_SPEED_FORWARD,
+                    TileType tileType = TileType.toTileType(map, tile);
+                    TileRendererDelegate renderer = new TileRendererDelegate(map, tileType);
+                    MovingCollidable stompColl = new MovingCollidable(controller, renderer, r, 0, (int) (minBelowY - r.getMaxY()), STOMP_SPEED_FORWARD,
                             STOMP_SPEED_BACKWARD);
                     movingCollMap.put(stomps, Lists.newArrayList(stompColl));
                     entityNoCalls.add(stompColl);

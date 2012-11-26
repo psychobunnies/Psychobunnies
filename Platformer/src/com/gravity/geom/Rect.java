@@ -31,6 +31,36 @@ public class Rect {
      */
     public static enum Corner {
         TOPLEFT, TOPRIGHT, BOTLEFT, BOTRIGHT;
+        
+        public EnumSet<Side> getSides() {
+            return EnumSet.of(getVertical(), getHorizontal());
+        }
+        
+        public Side getVertical() {
+            switch (this) {
+            case TOPLEFT:
+            case TOPRIGHT:
+                return Side.TOP;
+            case BOTLEFT:
+            case BOTRIGHT:
+                return Side.BOTTOM;
+            default:
+                throw new RuntimeException("Bad corner");
+            }
+        }
+        
+        public Side getHorizontal() {
+            switch (this) {
+            case TOPLEFT:
+            case BOTLEFT:
+                return Side.LEFT;
+            case TOPRIGHT:
+            case BOTRIGHT:
+                return Side.RIGHT;
+            default:
+                throw new RuntimeException("Bad corner");
+            }
+        }
     }
 
     /**
@@ -46,6 +76,12 @@ public class Rect {
     public static enum Side {
         TOP, LEFT, BOTTOM, RIGHT;
 
+        /**
+         * Checks whether a set contains no opposing sides.
+         * 
+         * @param set Set to check
+         * @return Whether or not set is "simple."
+         */
         public static boolean isSimpleSet(EnumSet<Side> set) {
             if (set.size() == 1) {
                 return true;
@@ -61,6 +97,16 @@ public class Rect {
                         return true;
                     }
                 }
+            }
+        }
+        
+        public Side getOpposite() {
+            switch (this) {
+            case TOP: return BOTTOM;
+            case LEFT: return RIGHT;
+            case RIGHT: return LEFT;
+            case BOTTOM: return TOP;
+            default: throw new RuntimeException("Bad side");
             }
         }
     }
@@ -229,8 +275,82 @@ public class Rect {
         return new Vector2f(x, y);
     }
 
-    public Rect setPosition(float x, float y) {
+    public Rect translateTo(float x, float y) {
         return new Rect(x, y, width, height);
+    }
+    
+    public Rect translateSideTo(Side side, float pos) {
+        switch (side) {
+        case TOP:
+        case BOTTOM:
+            return translate(0, pos - getSide(side));
+        case LEFT:
+        case RIGHT:
+            return translate(pos - getSide(side), 0);
+        default:
+            throw new RuntimeException("Bad side");
+        }
+    }
+
+    public float getSide(Side side) {
+        switch (side) {
+        case TOP:
+            return y;
+        case LEFT:
+            return x;
+        case BOTTOM:
+            return y + height;
+        case RIGHT:
+            return x + width;
+        default:
+            throw new RuntimeException("Bad side");
+        }
+    }
+    
+    public Rect setSide(Side side, float pos) {
+        System.out.println("setSide: " + this + "\n\t" + side + ": " + pos);
+        switch (side) {
+        case TOP:
+            if (height + y - pos < 0) return null;
+            return new Rect(x, pos, width, height + y - pos);
+        case LEFT:
+            if (width + x - pos < 0) return null;
+            return new Rect(pos, y, width + x - pos, height);
+        case BOTTOM:
+            if (pos - y < 0) return null;
+            return new Rect(x, y, width, pos - y);
+        case RIGHT:
+            if (pos - x < 0) return null;
+            return new Rect(x, y, pos - x, height);
+        default:
+            throw new RuntimeException("Bad side");
+        }
+    }
+    
+    public boolean isInsideSide(Side side, Rect other) {
+        switch (side) {
+        case TOP:
+        case LEFT:
+            return other.getSide(side) < getSide(side);
+        case BOTTOM:
+        case RIGHT:
+            return other.getSide(side) > getSide(side);
+        default:
+            throw new RuntimeException("Bad side");
+        }
+    }
+
+    public Rect translateInto(Rect other) {
+        if (width > other.getWidth() || height > other.getHeight()) {
+            return null;
+        }
+        Rect result = this;
+        for (Side s : Side.values()) {
+            if (!isInsideSide(s, other)) {
+                result = result.translateSideTo(s, other.getSide(s));
+            }
+        }
+        return result;
     }
 
     public float getHeight() {

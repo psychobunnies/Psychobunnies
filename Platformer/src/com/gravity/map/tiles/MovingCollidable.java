@@ -2,6 +2,8 @@ package com.gravity.map.tiles;
 
 import java.util.Collection;
 
+import org.newdawn.slick.Color;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
 
 import com.gravity.fauna.Player;
@@ -9,6 +11,7 @@ import com.gravity.geom.Rect;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.RectCollision;
 import com.gravity.root.GameplayControl;
+import com.gravity.root.Renderer;
 import com.gravity.root.UpdateCycling;
 
 /**
@@ -17,20 +20,22 @@ import com.gravity.root.UpdateCycling;
  * @author phulin
  */
 
-public class MovingCollidable implements Collidable, UpdateCycling {
+public class MovingCollidable implements Collidable, UpdateCycling, Renderer {
 
     private GameplayControl controller;
+    private TileRendererDelegate renderer;
     private Rect shape;
     private Vector2f origPosition;
     private Vector2f velForward, velBackward, finalPosition;
     private boolean reversed;
 
-    public MovingCollidable(GameplayControl controller, Rect shape, int transX, int transY, float speed) {
-        this(controller, shape, transX, transY, speed, speed);
+    public MovingCollidable(GameplayControl controller, TileRendererDelegate renderer, Rect shape, int transX, int transY, float speed) {
+        this(controller, renderer, shape, transX, transY, speed, speed);
     }
 
-    public MovingCollidable(GameplayControl controller, Rect shape, int transX, int transY, float speedForward, float speedBackward) {
+    public MovingCollidable(GameplayControl controller, TileRendererDelegate renderer, Rect shape, int transX, int transY, float speedForward, float speedBackward) {
         this.controller = controller;
+        this.renderer = renderer;
         this.shape = shape;
         this.origPosition = shape.getPoint(Rect.Corner.TOPLEFT);
 
@@ -88,7 +93,7 @@ public class MovingCollidable implements Collidable, UpdateCycling {
                 position = potentialResult;
             }
         }
-        return new RectWithReversal(reverse ^ reversed, shape.setPosition(position.x, position.y));
+        return new RectWithReversal(reverse ^ reversed, shape.translateTo(position.x, position.y));
     }
 
     @Override
@@ -122,5 +127,10 @@ public class MovingCollidable implements Collidable, UpdateCycling {
     @Override
     public void startUpdate(float millis) {
         // no-op
+    }
+
+    @Override
+    public void render(Graphics g, int offsetX, int offsetY) {
+        renderer.render(g, offsetX, offsetY, getRect(0));
     }
 }

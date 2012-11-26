@@ -8,6 +8,7 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.gravity.entity.Entity;
 import com.gravity.entity.PhysicallyStateful;
+import com.gravity.fauna.Player;
 import com.gravity.geom.Rect;
 import com.gravity.geom.Rect.Side;
 import com.gravity.map.tiles.BouncyTile;
@@ -105,8 +106,11 @@ public class GravityPhysics implements Physics {
         float accY = state.accY;
         float corrX = 0f;
         float corrY = Float.POSITIVE_INFINITY;
+        Rect possiblePos = new Rect(-100000000.0f, -100000000.0f,
+                                    200000000.0f, 200000000.0f);
         for (RectCollision c : collisions) {
             Collidable other = c.getOtherEntity(entity);
+            Rect otherRect = other.getRect(0);
             EnumSet<Side> sides = c.getMyCollisions(entity);
             Preconditions.checkArgument(sides != null, "Collision passed did not involve entity: " + entity + ", " + c);
 
@@ -158,6 +162,15 @@ public class GravityPhysics implements Physics {
                 accX = 0;
                 accY = 0;
             }
+            for (Side s : sides) {
+                possiblePos = possiblePos.setSide(s, otherRect.getSide(s.getOpposite()));
+                if (possiblePos == null) {
+                    if (entity instanceof Player) {
+                        System.err.println("WARNING: Would kill player here.");
+                    }
+                    break;
+                }
+            }
         }
         Rect r = entity.getRect(0f);
         if (corrX != 0.0f) {
@@ -165,6 +178,10 @@ public class GravityPhysics implements Physics {
         }
         if (!Float.isInfinite(corrY)) {
             r = r.translate(0f, corrY);
+        }
+        r = r.translateInto(possiblePos);
+        if (r == null) {
+            System.err.println("WARNING: Would kill player here (2).");
         }
         return new PhysicalState(r, velX, velY, accX, accY);
     }

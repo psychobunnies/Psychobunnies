@@ -49,7 +49,7 @@ public class PhysicalState {
     }
 
     public PhysicalState teleport(float x, float y) {
-        return new PhysicalState(shape.setPosition(x, y), 0, 0, 0, 0);
+        return new PhysicalState(shape.translateTo(x, y), 0, 0, 0, 0);
     }
 
     /** Return the state of the object after specified time has passed. On negative values, "rewinds" the state backward in time */
@@ -123,7 +123,7 @@ public class PhysicalState {
 
     public Rect getRectangleAt(float millis) {
         Vector2f v = getPositionAt(millis);
-        return shape.setPosition(v.x, v.y);
+        return shape.translateTo(v.x, v.y);
     }
 
     @Override

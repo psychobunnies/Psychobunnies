@@ -1,4 +1,4 @@
-package com.gravity.root;
+package com.gravity.levels;
 
 import org.newdawn.slick.Graphics;
 

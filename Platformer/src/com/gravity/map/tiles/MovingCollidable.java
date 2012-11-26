@@ -6,10 +6,10 @@ import org.newdawn.slick.geom.Vector2f;
 
 import com.gravity.fauna.Player;
 import com.gravity.geom.Rect;
+import com.gravity.levels.GameplayControl;
+import com.gravity.levels.UpdateCycling;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.RectCollision;
-import com.gravity.root.GameplayControl;
-import com.gravity.root.UpdateCycling;
 
 /**
  * Represents a moving platform, e.g.

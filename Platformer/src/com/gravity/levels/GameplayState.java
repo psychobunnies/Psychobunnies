@@ -1,4 +1,4 @@
-package com.gravity.root;
+package com.gravity.levels;
 
 import java.util.Collection;
 import java.util.List;
@@ -12,6 +12,9 @@ import org.newdawn.slick.geom.Polygon;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
+import org.newdawn.slick.state.transition.Transition;
 import org.newdawn.slick.tiled.Layer;
 import org.newdawn.slick.tiled.Tile;
 import org.newdawn.slick.tiled.TiledMapPlus;
@@ -41,6 +44,9 @@ import com.gravity.physics.GravityPhysics;
 import com.gravity.physics.LayeredCollisionEngine;
 import com.gravity.physics.PhysicalState;
 import com.gravity.physics.PhysicsFactory;
+import com.gravity.root.GameOverState;
+import com.gravity.root.GameSounds;
+import com.gravity.root.GameWinState;
 
 public class GameplayState extends BasicGameState implements GameplayControl, Resetable {
 
@@ -72,11 +78,16 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     private float remappedDecay;
     private Polygon controlArrow = new Polygon(new float[] { -50, 10, 20, 10, -10, 50, 10, 50, 50, 0, 10, -50, -10, -50, 20, -10, -50, -10 });
 
+    private Transition deathFadeIn;
+    private Transition deathFadeOut;
+
     protected final List<Resetable> resetableTiles = Lists.newArrayList();
 
     public GameplayState(String levelName, String mapFile, int id) throws SlickException {
         ID = id;
         map = new TileWorld(levelName, new TiledMapPlus(mapFile), this);
+        deathFadeIn = new FadeInTransition(Color.red.darker());
+        deathFadeOut = new FadeOutTransition(Color.red.darker());
     }
 
     @Override
@@ -326,7 +337,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     @Override
     public void playerDies(Player player) {
         reset();
-        game.enterState(GameOverState.ID);
+        game.enterState(GameOverState.ID, deathFadeOut, deathFadeIn);
     }
 
     @Override

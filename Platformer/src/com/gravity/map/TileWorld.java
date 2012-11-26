@@ -21,6 +21,7 @@ import com.google.common.collect.Sets;
 import com.gravity.entity.TriggeredText;
 import com.gravity.entity.TriggeredTextEntity;
 import com.gravity.geom.Rect;
+import com.gravity.levels.GameplayControl;
 import com.gravity.map.tiles.BouncyTile;
 import com.gravity.map.tiles.DisappearingTile;
 import com.gravity.map.tiles.DisappearingTileController;
@@ -28,7 +29,6 @@ import com.gravity.map.tiles.MovingCollidable;
 import com.gravity.map.tiles.SpikeEntity;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.CollisionEngine;
-import com.gravity.root.GameplayControl;
 
 public class TileWorld implements GameWorld {
 

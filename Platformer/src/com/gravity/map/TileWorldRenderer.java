@@ -10,8 +10,8 @@ import org.newdawn.slick.tiled.Layer;
 import com.google.common.collect.Lists;
 import com.gravity.entity.TriggeredText;
 import com.gravity.entity.TriggeredTextRenderer;
+import com.gravity.levels.Renderer;
 import com.gravity.map.tiles.MovingCollidableRenderer;
-import com.gravity.root.Renderer;
 
 public class TileWorldRenderer implements Renderer {
     private TileWorld tileMap;

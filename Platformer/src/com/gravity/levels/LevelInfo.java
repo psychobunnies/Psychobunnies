@@ -1,4 +1,4 @@
-package com.gravity.root;
+package com.gravity.levels;
 
 public class LevelInfo {
     static private final int STATE_ID_OFFSET = 1000;

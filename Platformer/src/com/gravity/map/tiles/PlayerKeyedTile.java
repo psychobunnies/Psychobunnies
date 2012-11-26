@@ -9,13 +9,13 @@ import org.newdawn.slick.tiled.Layer;
 
 import com.gravity.fauna.Player;
 import com.gravity.geom.Rect;
+import com.gravity.levels.Renderer;
+import com.gravity.levels.Resetable;
+import com.gravity.levels.UpdateCycling;
 import com.gravity.map.TileType;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.CollisionEngine;
 import com.gravity.physics.RectCollision;
-import com.gravity.root.Renderer;
-import com.gravity.root.Resetable;
-import com.gravity.root.UpdateCycling;
 
 public class PlayerKeyedTile implements Collidable, UpdateCycling, Renderer, Resetable {
 

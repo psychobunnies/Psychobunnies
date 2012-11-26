@@ -10,14 +10,14 @@ import org.newdawn.slick.tiled.Layer;
 
 import com.gravity.fauna.Player;
 import com.gravity.geom.Rect;
+import com.gravity.levels.GameplayState;
+import com.gravity.levels.Renderer;
+import com.gravity.levels.UpdateCycling;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.CollisionEngine;
 import com.gravity.physics.PhysicalState;
 import com.gravity.physics.PhysicsFactory;
 import com.gravity.physics.RectCollision;
-import com.gravity.root.GameplayState;
-import com.gravity.root.Renderer;
-import com.gravity.root.UpdateCycling;
 
 public class FallingTile implements Collidable, Renderer, UpdateCycling {
     public final int MILLIS_TO_FALL = 10000;

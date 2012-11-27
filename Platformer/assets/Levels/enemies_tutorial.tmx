@@ -84,9 +84,9 @@
  </layer>
  <layer name="help4" width="80" height="24">
   <properties>
-   <property name="text" value="Always pay attention to new objects in your environment. $ They may behave in unexpected ways"/>
+   <property name="text" value="Always pay attention to $ new objects in your environment. $ They may behave in unexpected ways"/>
    <property name="x" value="1600"/>
-   <property name="y" value="475"/>
+   <property name="y" value="450"/>
   </properties>
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3QAQ0AAAjDsJvDvyVkAKFNZmAJAAAAAMBONdx1/gHAPw1Uxj/kAB4AAA==

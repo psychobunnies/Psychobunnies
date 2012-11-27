@@ -137,19 +137,17 @@ public class MovingCollidable implements Collidable, UpdateCycling, Renderer {
 
     @Override
     public PhysicalState getPhysicalState() {
-        // TODO Patrick should fill this in
-        return new PhysicalState(getRect(0f), 0, 0);
+        return getPhysicalStateAt(0);
     }
 
     @Override
     public PhysicalState getPhysicalStateAt(float millis) {
-        // TODO Patrick should fill this in too
-        return new PhysicalState(getRect(millis), 0, 0);
+        RectWithReversal result = getRectWithReversal(millis);
+        return new PhysicalState(result.rect, result.reverse ? velBackward : velForward);
     }
 
     @Override
     public void setPhysicalState(PhysicalState newState) {
-        // TODO Patrick should fill this in as well
-
+        shape = newState.getRectangle();
     }
 }

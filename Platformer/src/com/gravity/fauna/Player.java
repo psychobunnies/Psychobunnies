@@ -61,6 +61,10 @@ public class Player extends PhysicsEntity<GravityPhysics> {
         builder.append("]");
         return builder.toString();
     }
+    
+    public void kill() {
+        control.playerDies(this);
+    }
 
     // //////////////////////////////////////////////////////////////////////////
     // //////////////////////////KEY-PRESS METHODS///////////////////////////////

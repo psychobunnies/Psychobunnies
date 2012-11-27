@@ -50,6 +50,17 @@ public class MovingCollidable implements Entity, Renderer {
 
         reversed = false;
     }
+    
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("MovingCollidable [shape=");
+        builder.append(shape);
+        builder.append(", reversed=");
+        builder.append(reversed);
+        builder.append("]");
+        return builder.toString();
+    }
 
     public Vector2f getOrigPosition() {
         return origPosition;
@@ -105,13 +116,7 @@ public class MovingCollidable implements Entity, Renderer {
 
     @Override
     public void rehandleCollisions(float millis, Collection<RectCollision> collisions) {
-        // This should mean we're trying to crush a player.
-        for (RectCollision coll : collisions) {
-            Collidable c = coll.getOtherEntity(this);
-            if (c instanceof Player) {
-                controller.playerDies((Player) c);
-            }
-        }
+        // no-op
     }
 
     @Override

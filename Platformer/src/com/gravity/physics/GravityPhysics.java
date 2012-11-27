@@ -86,7 +86,8 @@ public class GravityPhysics implements Physics {
     }
 
     @Override
-    public PhysicalState handleCollision(Entity entity, Collection<RectCollision> collisions) {
+    public PhysicalState handleCollision(Entity entity, float millis, Collection<RectCollision> collisions) {
+        System.err.println("handleCollision");
         PhysicalState state = entity.getPhysicalState();
         float velX = state.velX;
         float velY = state.velY;
@@ -158,20 +159,22 @@ public class GravityPhysics implements Physics {
     }
 
     @Override
-    public PhysicalState rehandleCollision(Entity entity, Collection<RectCollision> collisions) {
+    public PhysicalState rehandleCollision(Entity entity, float millis, Collection<RectCollision> collisions) {
         System.err.println("Warning: rehandling collisions for: " + entity);
-        Rect possiblePos = new Rect(-100000000.0f, -100000000.0f, 200000000.0f, 200000000.0f);
+        Rect possiblePos = new Rect(-1000000.0f, -1000000.0f, 2000000.0f, 2000000.0f);
         for (RectCollision c : collisions) {
             Collidable other = c.getOtherEntity(entity);
-            Rect otherRect = other.getPhysicalState().getRectangle();
+            Rect otherRect = other.getPhysicalStateAt(millis).getRectangle();
             EnumSet<Side> sides = c.getMyCollisions(entity);
             Preconditions.checkArgument(sides != null, "Collision passed did not involve entity: " + entity + ", " + c);
 
             for (Side s : sides) {
                 possiblePos = possiblePos.setSide(s, otherRect.getSide(s.getOpposite()));
+                System.out.println("possiblePos: " + possiblePos);
                 if (possiblePos == null) {
                     if (entity instanceof Player) {
-                        System.err.println("WARNING: Would kill player here.");
+                        System.err.println("killing 1");
+                        ((Player)entity).kill();
                     }
                     break;
                 }
@@ -179,9 +182,12 @@ public class GravityPhysics implements Physics {
         }
         Rect r = entity.getPhysicalState().getRectangle();
 
-        r = r.translateInto(possiblePos);
+        r = r.translateIntoWithMargin(possiblePos, 0.5f);
         if (r == null) {
-            System.err.println("WARNING: Would kill player here (2).");
+            if (entity instanceof Player) {
+                System.err.println("killing 2");
+                ((Player)entity).kill();
+            }
             return entity.getPhysicalState().snapshot(backstep);
         }
         return entity.getPhysicalState().teleport(r.getX(), r.getY());

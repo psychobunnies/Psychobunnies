@@ -2,10 +2,9 @@ package com.gravity.entity;
 
 import java.util.Collection;
 
-import org.newdawn.slick.geom.Vector2f;
-
 import com.gravity.fauna.Player;
 import com.gravity.geom.Rect;
+import com.gravity.map.StaticCollidable;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.RectCollision;
 
@@ -14,15 +13,14 @@ import com.gravity.physics.RectCollision;
  * 
  * @author phulin
  */
-public class TriggeredTextEntity implements Collidable {
-    private Rect shape;
+public class TriggeredTextCollidable extends StaticCollidable {
     private TriggeredText triggeredText;
-    
-    public TriggeredTextEntity(Rect shape, TriggeredText triggeredText) {
-        this.shape = shape;
+
+    public TriggeredTextCollidable(Rect shape, TriggeredText triggeredText) {
+        super(shape);
         this.triggeredText = triggeredText;
     }
-    
+
     @Override
     public void handleCollisions(float ticks, Collection<RectCollision> collisions) {
         for (RectCollision c : collisions) {
@@ -31,29 +29,20 @@ public class TriggeredTextEntity implements Collidable {
             }
         }
     }
-    
+
     @Override
     public void rehandleCollisions(float ticks, Collection<RectCollision> collisions) {
         // No-op
     }
-    
-    @Override
-    public Vector2f getPosition(float millis) {
-        return shape.getPosition();
-    }
-    
-    @Override
-    public Rect getRect(float millis) {
-        return shape;
-    }
-    
+
     @Override
     public String toString() {
-        return "TriggeredTextEntity [shape=" + shape + "]";
+        return "TriggeredTextCollidable [shape=" + shape + "]";
     }
 
     @Override
     public boolean causesCollisionsWith(Collidable other) {
         return false;
     }
+
 }

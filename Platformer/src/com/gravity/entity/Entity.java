@@ -8,5 +8,5 @@ import com.gravity.physics.Collidable;
  * 
  * @author xiao
  */
-public interface Entity extends UpdateCycling, PhysicallyStateful, Collidable {
+public interface Entity extends UpdateCycling, Collidable {
 }

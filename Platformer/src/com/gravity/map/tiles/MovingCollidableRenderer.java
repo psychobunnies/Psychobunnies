@@ -26,7 +26,7 @@ public class MovingCollidableRenderer implements Renderer {
     public void render(Graphics g, int offsetX, int offsetY) {
         List<MovingCollidable> movingColls = world.getMovingCollMap().get(layer);
         MovingCollidable canonicalMovingColl = movingColls.get(0);
-        Vector2f moveOffset = canonicalMovingColl.getPosition(0).sub(canonicalMovingColl.getOrigPosition());
+        Vector2f moveOffset = canonicalMovingColl.getPhysicalState().getPosition().sub(canonicalMovingColl.getOrigPosition());
 
         for (int ty = 0; ty < world.getHeight(); ty++) {
             layer.render((int) (offsetX + moveOffset.x), (int) (offsetY + moveOffset.y), 0, 0, world.getWidth(), ty, false, world.tileWidth,

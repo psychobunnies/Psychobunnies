@@ -19,7 +19,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.gravity.entity.TriggeredText;
-import com.gravity.entity.TriggeredTextEntity;
+import com.gravity.entity.TriggeredTextCollidable;
 import com.gravity.geom.Rect;
 import com.gravity.levels.GameplayControl;
 import com.gravity.map.tiles.BouncyTile;
@@ -64,7 +64,7 @@ public class TileWorld implements GameWorld {
     private List<Vector2f> startPositions = null;
     private List<DisappearingTileController> disappearingTileControllers;
 
-    private final String name;
+    public final String name;
     public final TiledMapPlus map;
     private final GameplayControl controller;
 
@@ -188,7 +188,7 @@ public class TileWorld implements GameWorld {
             try {
                 for (Tile tile : layer.getTiles()) {
                     Rect r = new Rect(tile.x * tileWidth, tile.y * tileHeight, tileWidth, tileHeight);
-                    TriggeredTextEntity tte = new TriggeredTextEntity(r, triggeredText);
+                    TriggeredTextCollidable tte = new TriggeredTextCollidable(r, triggeredText);
                     entityCallColls.add(tte);
                 }
             } catch (SlickException e) {
@@ -207,19 +207,20 @@ public class TileWorld implements GameWorld {
 
             // Found a moving layer.
             layer.visible = false;
-            List<Collidable> colls = processLayer(layer.name, new CollidableCreator<Collidable>() {
+            List<MovingCollidable> colls = processLayer(layer.name, new CollidableCreator<MovingCollidable>() {
                 @Override
-                public Collidable createCollidable(Rect r) {
+                public MovingCollidable createCollidable(Rect r) {
                     TileType tileType = TileType.toTileType(map, (int) (r.getX() / tileWidth), (int) (r.getY() / tileHeight), layer.index);
                     TileRendererDelegate renderer = new TileRendererDelegate(map, tileType);
                     return new MovingCollidable(controller, renderer, r, transX * tileWidth, transY * tileHeight, speed);
+                    // return new MovingTile(controller, r, transX * tileWidth, transY * tileHeight, speed);
                 }
             });
             entityNoCalls.addAll(colls);
 
             List<MovingCollidable> movingColls = Lists.newArrayList();
-            for (Collidable c : colls) {
-                movingColls.add((MovingCollidable) c);
+            for (MovingCollidable c : colls) {
+                movingColls.add(c);
             }
             movingCollMap.put(layer, movingColls);
         }
@@ -232,15 +233,19 @@ public class TileWorld implements GameWorld {
                     Rect r = new Rect(tile.x * tileWidth, tile.y * tileWidth, tileWidth, tileHeight);
                     float minBelowY = 22222222f;
                     for (Collidable coll : entityNoCalls) {
-                        Rect c = coll.getRect(0);
+                        Rect c = coll.getPhysicalState().getRectangle();
                         if (r.getMaxX() > c.getX() && r.getX() < c.getMaxX() && c.getY() > r.getMaxY() && c.getY() < minBelowY) {
                             minBelowY = c.getY();
                         }
                     }
+
                     TileType tileType = TileType.toTileType(map, tile);
                     TileRendererDelegate renderer = new TileRendererDelegate(map, tileType);
-                    MovingCollidable stompColl = new MovingCollidable(controller, renderer, r, 0, (int) (minBelowY - r.getMaxY()), STOMP_SPEED_FORWARD,
-                            STOMP_SPEED_BACKWARD);
+                    MovingCollidable stompColl = new MovingCollidable(controller, renderer, r, 0, (int) (minBelowY - r.getMaxY()),
+                            STOMP_SPEED_FORWARD, STOMP_SPEED_BACKWARD);
+                    // MovingTile stompColl = new MovingTile(controller, r, 0, (int) (minBelowY - r.getMaxY()), STOMP_SPEED_FORWARD,
+                    // STOMP_SPEED_BACKWARD);
+
                     movingCollMap.put(stomps, Lists.newArrayList(stompColl));
                     entityNoCalls.add(stompColl);
                 }

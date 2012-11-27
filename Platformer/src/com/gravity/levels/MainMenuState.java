@@ -47,7 +47,7 @@ public class MainMenuState extends GameplayState {
     }
 
     @Override
-    public void reloadGame() throws SlickException {
+    public void reloadGame() {
         super.reloadGame();
 
         game.pauseRender();
@@ -58,8 +58,14 @@ public class MainMenuState extends GameplayState {
         Vector2f quitLoc = map.getQuitLocation();
         Vector2f optLoc = map.getOptionsLocation();
 
-        CageRenderer quitRend = new CageRenderer(quitLoc.x, quitLoc.y, "Quit Game");
-        CageRenderer optRend = new CageRenderer(optLoc.x, optLoc.y, "Credits");
+        CageRenderer quitRend, optRend, levelRend;
+        try {
+            quitRend = new CageRenderer(quitLoc.x, quitLoc.y, "Quit Game");
+            optRend = new CageRenderer(optLoc.x, optLoc.y, "Credits");
+        } catch (SlickException e) {
+            throw new RuntimeException(e);
+        }
+
         MenuCage quitCage = new MenuCage(quitRend.getRect(), MainMenuState.ID);
         MenuCage optCage = new MenuCage(optRend.getRect(), CreditsState.ID);
         renderers.add(quitRend, RenderList.FLORA);
@@ -81,7 +87,11 @@ public class MainMenuState extends GameplayState {
             if (info == null) {
                 continue;
             }
-            CageRenderer levelRend = new CageRenderer(loc.x, loc.y, info.title);
+            try {
+                levelRend = new CageRenderer(loc.x, loc.y, info.title);
+            } catch (SlickException e) {
+                throw new RuntimeException(e);
+            }
             MenuCage levelCage = new MenuCage(levelRend.getRect(), info.stateId);
             renderers.add(levelRend, RenderList.FLORA);
             cages.add(levelCage);
@@ -109,7 +119,7 @@ public class MainMenuState extends GameplayState {
     public void keyPressed(int key, char c) {
         if (key == LEVEL_SELECT_KEY) {
             for (MenuCage cage : cages) {
-                if (cage.intersects(playerA.getRect(0), playerB.getRect(0))) {
+                if (cage.intersects(playerA.getPhysicalState().getRectangle(), playerB.getPhysicalState().getRectangle())) {
                     try {
                         game.getState(cage.getToState()).init(container, game);
                         game.enterState(cage.getToState(), fadeOut, fadeIn);

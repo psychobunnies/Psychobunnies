@@ -15,7 +15,7 @@ import com.google.common.base.Preconditions;
  * 
  */
 public class Rect {
-    private static final float EPS = 1e-6f;
+    private static final float EPS = 1e-4f;
 
     private final float x, y;
     private final float height, width;
@@ -31,11 +31,11 @@ public class Rect {
      */
     public static enum Corner {
         TOPLEFT, TOPRIGHT, BOTLEFT, BOTRIGHT;
-        
+
         public EnumSet<Side> getSides() {
             return EnumSet.of(getVertical(), getHorizontal());
         }
-        
+
         public Side getVertical() {
             switch (this) {
             case TOPLEFT:
@@ -48,7 +48,7 @@ public class Rect {
                 throw new RuntimeException("Bad corner");
             }
         }
-        
+
         public Side getHorizontal() {
             switch (this) {
             case TOPLEFT:
@@ -79,7 +79,8 @@ public class Rect {
         /**
          * Checks whether a set contains no opposing sides.
          * 
-         * @param set Set to check
+         * @param set
+         *            Set to check
          * @return Whether or not set is "simple."
          */
         public static boolean isSimpleSet(EnumSet<Side> set) {
@@ -99,16 +100,45 @@ public class Rect {
                 }
             }
         }
-        
+
         public Side getOpposite() {
             switch (this) {
-            case TOP: return BOTTOM;
-            case LEFT: return RIGHT;
-            case RIGHT: return LEFT;
-            case BOTTOM: return TOP;
-            default: throw new RuntimeException("Bad side");
+            case TOP:
+                return BOTTOM;
+            case LEFT:
+                return RIGHT;
+            case RIGHT:
+                return LEFT;
+            case BOTTOM:
+                return TOP;
+            default:
+                throw new RuntimeException("Bad side");
             }
         }
+
+        public static EnumSet<Side> opposite(EnumSet<Side> set) {
+            if (isSimpleSet(set)) {
+                if (set.size() == 1) {
+                    switch (set.iterator().next()) {
+                    case BOTTOM:
+                        return EnumSet.of(Side.TOP);
+                    case LEFT:
+                        return EnumSet.of(Side.RIGHT);
+                    case RIGHT:
+                        return EnumSet.of(Side.LEFT);
+                    case TOP:
+                        return EnumSet.of(Side.BOTTOM);
+                    default:
+                        return set;
+                    }
+                } else {
+                    return EnumSet.complementOf(set);
+                }
+            } else {
+                return set;
+            }
+        }
+
     }
 
     public Rect(Shape rect) {
@@ -277,6 +307,7 @@ public class Rect {
 
     /**
      * Translate rect to a different origin.
+     * 
      * @param x
      * @param y
      * @return
@@ -284,9 +315,10 @@ public class Rect {
     public Rect translateTo(float x, float y) {
         return new Rect(x, y, width, height);
     }
-    
+
     /**
      * Translate rect so that the given side is at the given coordinate.
+     * 
      * @param side
      * @param pos
      * @return
@@ -306,6 +338,7 @@ public class Rect {
 
     /**
      * Get the coordinate of a given side.
+     * 
      * @param side
      * @return
      */
@@ -323,9 +356,10 @@ public class Rect {
             throw new RuntimeException("Bad side");
         }
     }
-    
+
     /**
      * Grow or shrink a rect so that the given side is at the given coordinate.
+     * 
      * @param side
      * @param pos
      * @return
@@ -334,24 +368,29 @@ public class Rect {
         System.out.println("setSide: " + this + "\n\t" + side + ": " + pos);
         switch (side) {
         case TOP:
-            if (height + y - pos < 0) return null;
+            if (height + y - pos < 0)
+                return null;
             return new Rect(x, pos, width, height + y - pos);
         case LEFT:
-            if (width + x - pos < 0) return null;
+            if (width + x - pos < 0)
+                return null;
             return new Rect(pos, y, width + x - pos, height);
         case BOTTOM:
-            if (pos - y < 0) return null;
+            if (pos - y < 0)
+                return null;
             return new Rect(x, y, width, pos - y);
         case RIGHT:
-            if (pos - x < 0) return null;
+            if (pos - x < 0)
+                return null;
             return new Rect(x, y, pos - x, height);
         default:
             throw new RuntimeException("Bad side");
         }
     }
-    
+
     /**
      * Return true if this is on the "inside" side of the extension of the given side on other.
+     * 
      * @param side
      * @param other
      * @return
@@ -371,6 +410,7 @@ public class Rect {
 
     /**
      * Translate this the smallest distance such that it is inside other.
+     * 
      * @param other
      * @return
      */
@@ -428,13 +468,17 @@ public class Rect {
         if (getClass() != obj.getClass())
             return false;
         Rect other = (Rect) obj;
-        if (Math.abs(height - other.height) > EPS)
+        float diff = Math.abs(height - other.height);
+        if (diff > EPS && diff / height > EPS)
             return false;
-        if (Math.abs(width - other.width) > EPS)
+        diff = Math.abs(width - other.width);
+        if (diff > EPS && diff / width > EPS)
             return false;
-        if (Math.abs(x - other.x) > EPS)
+        diff = Math.abs(x - other.x);
+        if (diff > EPS && diff / x > EPS)
             return false;
-        if (Math.abs(y - other.y) > EPS)
+        diff = Math.abs(y - other.y);
+        if (diff > EPS && diff / y > EPS)
             return false;
         return true;
     }

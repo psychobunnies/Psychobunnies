@@ -46,7 +46,7 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     public String getName() {
         return name;
     }
-    
+
     public boolean isRunning() {
         return moving && physics.isOnGround(this);
     }
@@ -84,7 +84,8 @@ public class Player extends PhysicsEntity<GravityPhysics> {
      */
     public void move(Movement direction) {
         switch (direction) {
-        case LEFT: case RIGHT: {
+        case LEFT:
+        case RIGHT: {
             moving = true;
             requested = direction;
             break;

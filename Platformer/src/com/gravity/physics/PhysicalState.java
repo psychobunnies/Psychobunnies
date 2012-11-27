@@ -90,8 +90,8 @@ public class PhysicalState {
 
     public Vector2f getPositionAt(float millis) {
         //@formatter:off
-        return new Vector2f(shape.getX() + velX * millis + accX * millis * millis / 2, 
-                            shape.getY() + velY * millis + accY * millis * millis / 2);
+        return new Vector2f(shape.getX() + velX * millis + accX * millis * Math.abs(millis) / 2, 
+                            shape.getY() + velY * millis + accY * millis * Math.abs(millis) / 2);
         //@formatter:on
     }
 
@@ -107,11 +107,11 @@ public class PhysicalState {
         return new Vector2f(accX, accY);
     }
 
-    public PhysicalState addAcceleration(float newAccX, float newAccY) {
+    public PhysicalState setAcceleration(float newAccX, float newAccY) {
         return new PhysicalState(shape, velX, velY, newAccX, newAccY);
     }
 
-    public PhysicalState setAcceleration(float addX, float addY) {
+    public PhysicalState addAcceleration(float addX, float addY) {
         return new PhysicalState(shape, velX, velY, accX + addX, accY + addY);
     }
 
@@ -124,7 +124,8 @@ public class PhysicalState {
     }
 
     public Rect getRectangle() {
-        return new Rect(shape);
+        // Rect is immutable
+        return shape;
     }
 
     public Rect getRectangleAt(float millis) {

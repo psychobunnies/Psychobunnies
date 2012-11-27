@@ -5,21 +5,17 @@ import java.util.Random;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.geom.Vector2f;
-import org.newdawn.slick.tiled.Layer;
 
+import com.gravity.entity.AbstractEntity;
 import com.gravity.fauna.Player;
 import com.gravity.geom.Rect;
 import com.gravity.levels.GameplayState;
 import com.gravity.levels.Renderer;
-import com.gravity.levels.UpdateCycling;
-import com.gravity.physics.Collidable;
-import com.gravity.physics.CollisionEngine;
 import com.gravity.physics.PhysicalState;
 import com.gravity.physics.PhysicsFactory;
 import com.gravity.physics.RectCollision;
 
-public class FallingTile implements Collidable, Renderer, UpdateCycling {
+public class FallingTile extends AbstractEntity implements Renderer {
     public final int MILLIS_TO_FALL = 20000;
     public final float FALL_ACC = PhysicsFactory.DEFAULT_GRAVITY * 2;
     public final float MAX_VEL = 0.15f;
@@ -31,12 +27,10 @@ public class FallingTile implements Collidable, Renderer, UpdateCycling {
     private boolean falling = false;
     private Random rand = new Random();
 
-    private PhysicalState state;
-
-    public FallingTile(GameplayState gameState, Rect shape, CollisionEngine collider, TileRendererDelegate renderer, Layer layer, int x, int y) {
+    public FallingTile(GameplayState gameState, Rect shape, TileRendererDelegate renderer, int x, int y) {
+        super(new PhysicalState(shape.translateTo(x * 32, y * 32), 0, 0, 0, 0));
         this.renderer = renderer;
         this.gameState = gameState;
-        this.state = new PhysicalState(shape.translateTo(x * 32, y * 32), 0, 0, 0, 0);
         this.startX = this.state.getPosition().x;
         this.startY = this.state.getPosition().y;
     }
@@ -66,17 +60,6 @@ public class FallingTile implements Collidable, Renderer, UpdateCycling {
         renderer.render(g, offsetX, offsetY, state.getRectangle());
         g.setColor(Color.cyan);
         g.draw(state.getRectangle().translate(offsetX, offsetY).toShape());
-
-    }
-
-    @Override
-    public Vector2f getPosition(float millis) {
-        return state.getPositionAt(millis);
-    }
-
-    @Override
-    public Rect getRect(float millis) {
-        return state.getRectangleAt(millis);
     }
 
     @Override
@@ -88,23 +71,16 @@ public class FallingTile implements Collidable, Renderer, UpdateCycling {
         }
         state = state.killMovement();
         state = state.teleport(startX, startY);
+    }
 
+    @Override
+    public void rehandleCollisions(float millis, Collection<RectCollision> collisions) {
+        // no-op
     }
 
     @Override
     public String toString() {
         return "FallingTile [startX=" + startX + ", startY=" + startY + ", falling=" + falling + ", state=" + state + "]";
-    }
-
-    @Override
-    public void rehandleCollisions(float millis, Collection<RectCollision> collisions) {
-        // No-Op
-
-    }
-
-    @Override
-    public boolean causesCollisionsWith(Collidable other) {
-        return true;
     }
 
 }

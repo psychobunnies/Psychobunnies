@@ -2,13 +2,11 @@ package com.gravity.map.tiles;
 
 import java.util.Collection;
 
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
 
 import com.gravity.fauna.Player;
 import com.gravity.geom.Rect;
 import com.gravity.levels.GameplayControl;
-import com.gravity.levels.Renderer;
 import com.gravity.levels.UpdateCycling;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.PhysicalState;
@@ -20,25 +18,27 @@ import com.gravity.physics.RectCollision;
  * @author phulin
  */
 
-public class MovingCollidable implements Collidable, UpdateCycling, Renderer {
+// TODO implement entity instead of Collidable, until that's done this class WILL NOT WORK AT ALL
+public class MovingTile implements Collidable, UpdateCycling {
 
     private GameplayControl controller;
-    private TileRendererDelegate renderer;
     private Rect shape;
     private Vector2f origPosition;
     private Vector2f velForward, velBackward, finalPosition;
     private boolean reversed;
+    private PhysicalState state;
 
-    public MovingCollidable(GameplayControl controller, TileRendererDelegate renderer, Rect shape, int transX, int transY, float speed) {
-        this(controller, renderer, shape, transX, transY, speed, speed);
+    public MovingTile(GameplayControl controller, Rect shape, int transX, int transY, float speed) {
+        this(controller, shape, transX, transY, speed, speed);
     }
 
-    public MovingCollidable(GameplayControl controller, TileRendererDelegate renderer, Rect shape, int transX, int transY, float speedForward,
-            float speedBackward) {
+    public MovingTile(GameplayControl controller, Rect shape, int transX, int transY, float speedForward, float speedBackward) {
         this.controller = controller;
-        this.renderer = renderer;
         this.shape = shape;
         this.origPosition = shape.getPoint(Rect.Corner.TOPLEFT);
+
+        // HACK - see TODO at top of class
+        this.state = new PhysicalState(shape, 0f, 0f);
 
         Vector2f trans = new Vector2f(transX, transY);
         velForward = trans.getNormal();
@@ -54,15 +54,39 @@ public class MovingCollidable implements Collidable, UpdateCycling, Renderer {
         return origPosition;
     }
 
-    // @Override
+    @Override
+    public PhysicalState getPhysicalState() {
+        return state;
+    }
+
+    @Override
+    public PhysicalState getPhysicalStateAt(float millis) {
+        return state;
+    }
+
+    @Override
+    public void setPhysicalState(PhysicalState newState) {
+        state = newState;
+    }
+
+    //@formatter:off
+    /*
+    @Override
     public Vector2f getPosition(float millis) {
         return getRect(millis).getPoint(Rect.Corner.TOPLEFT);
     }
 
-    // @Override
+    @Override
+    public Vector2f getInstantaneousVelocity() {
+        return getPosition(0.5f).sub(getPosition(-0.5f));
+    }
+
+    @Override
     public Rect getRect(float millis) {
         return getRectWithReversal(millis).rect;
     }
+    */
+    //@formatter:on
 
     private class RectWithReversal {
         public final boolean reverse;
@@ -74,7 +98,7 @@ public class MovingCollidable implements Collidable, UpdateCycling, Renderer {
         }
     }
 
-    public RectWithReversal getRectWithReversal(float millis) {
+    private RectWithReversal getRectWithReversal(float millis) {
         boolean reverse;
         Vector2f position;
         if (reversed) {
@@ -130,26 +154,4 @@ public class MovingCollidable implements Collidable, UpdateCycling, Renderer {
         // no-op
     }
 
-    @Override
-    public void render(Graphics g, int offsetX, int offsetY) {
-        renderer.render(g, offsetX, offsetY, getRect(0));
-    }
-
-    @Override
-    public PhysicalState getPhysicalState() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public PhysicalState getPhysicalStateAt(float millis) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void setPhysicalState(PhysicalState newState) {
-        // TODO Auto-generated method stub
-
-    }
 }

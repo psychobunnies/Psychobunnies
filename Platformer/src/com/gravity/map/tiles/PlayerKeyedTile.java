@@ -4,20 +4,20 @@ import java.util.Collection;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.Layer;
 
+import com.gravity.entity.AbstractEntity;
 import com.gravity.fauna.Player;
 import com.gravity.geom.Rect;
 import com.gravity.levels.Renderer;
 import com.gravity.levels.Resetable;
-import com.gravity.levels.UpdateCycling;
 import com.gravity.map.TileType;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.CollisionEngine;
+import com.gravity.physics.PhysicalState;
 import com.gravity.physics.RectCollision;
 
-public class PlayerKeyedTile implements Collidable, UpdateCycling, Renderer, Resetable {
+public class PlayerKeyedTile extends AbstractEntity implements Renderer, Resetable {
 
     private final float TIME_TO_GTFO = 1000;
     private final Rect shape;
@@ -40,6 +40,7 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling, Renderer, Res
 
     public PlayerKeyedTile(Rect shape, CollisionEngine collider, TileRendererDelegate renderer, TileRendererDelegate yellowRenderer,
             TileRendererDelegate pinkRenderer, TileRendererDelegate warningRenderer, Layer layer, int x, int y) {
+        super(new PhysicalState(shape, 0f, 0f));
         this.shape = shape;
         this.keyedPlayer = null;
         this.collider = collider;
@@ -69,16 +70,6 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling, Renderer, Res
         if (ticking) {
             millisElapsed += millis;
         }
-    }
-
-    @Override
-    public Vector2f getPosition(float millis) {
-        return shape.getPosition();
-    }
-
-    @Override
-    public Rect getRect(float millis) {
-        return shape;
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.gravity.physics;
 
+import java.util.Set;
+
 import com.gravity.geom.Rect;
 
 public interface CollidableContainer {
@@ -18,9 +20,9 @@ public interface CollidableContainer {
     public Iterable<Collidable> collidables();
 
     /**
-     * Returns an iterable of collidables that will be near the given rectangle at the given time point.
+     * Returns a set of collidables that will be near the given rectangle at the given time point.
      */
-    public Iterable<Collidable> getNearbyCollidables(Rect rect);
+    public Set<Collidable> getNearbyCollidables(Rect rect);
 
     public void update(float millis);
 

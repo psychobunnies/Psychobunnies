@@ -25,7 +25,7 @@ public final class SimpleCollidableContainer implements CollidableContainer {
     }
 
     @Override
-    public Iterable<Collidable> getNearbyCollidables(Rect rect) {
+    public Set<Collidable> getNearbyCollidables(Rect rect) {
         return collidables;
     }
 

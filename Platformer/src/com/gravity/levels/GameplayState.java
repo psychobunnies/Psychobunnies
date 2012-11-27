@@ -82,7 +82,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     private Transition deathFadeOut;
 
     protected final List<Resetable> resetableTiles = Lists.newArrayList();
-    private String levelName;
+    private final String levelName;
 
     public GameplayState(String levelName, String mapFile, int id) throws SlickException {
         ID = id;
@@ -101,7 +101,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         GameSounds.playBGM();
     }
 
-    public void reloadGame() throws SlickException {
+    public void reloadGame() {
         System.err.println(">>>Loading level " + levelName);
         pauseRender();
         pauseUpdate();
@@ -188,7 +188,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
             TileRendererDelegate rd = new TileRendererDelegate(tiledMap, TileType.SPIKE);
             try {
                 for (Tile tile : fallSpike.getTiles()) {
-                    FallingTile fsTile = new FallingTile(this, new Rect(tile.x * 32, tile.y * 32, 32, 32), collider, rd, fallSpike, tile.x, tile.y);
+                    FallingTile fsTile = new FallingTile(this, new Rect(tile.x * 32, tile.y * 32, 32, 32), rd, tile.x, tile.y);
                     updaters.add(fsTile);
                     collider.addCollidable(fsTile, LayeredCollisionEngine.FALLING_LAYER);
                     renderers.add(fsTile, RenderList.TERRA);
@@ -221,14 +221,18 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         if (playerA.slingshot) {
             g.setColor(Color.pink);
             g.setLineWidth(playerA.slingshotStrength * 10);
-            g.drawLine(playerA.getRect(0).getCenter().x + offset.x, playerA.getRect(0).getCenter().y + offset.y, playerB.getRect(0).getCenter().x
-                    + offset.x, playerB.getRect(0).getCenter().y + offset.y);
+            g.drawLine(playerA.getPhysicalState().getRectangle().getCenter().x + offset.x, playerA.getPhysicalState().getRectangle().getCenter().y
+                    + offset.y, playerB.getPhysicalState().getRectangle().getCenter().x + offset.x, playerB.getPhysicalState().getRectangle()
+                    .getCenter().y
+                    + offset.y);
         }
         if (playerB.slingshot) {
             g.setColor(Color.yellow);
             g.setLineWidth(playerB.slingshotStrength * 10);
-            g.drawLine(playerB.getRect(0).getCenter().x + offset.x, playerB.getRect(0).getCenter().y + offset.y, playerA.getRect(0).getCenter().x
-                    + offset.x, playerA.getRect(0).getCenter().y + offset.y);
+            g.drawLine(playerB.getPhysicalState().getRectangle().getCenter().x + offset.x, playerB.getPhysicalState().getRectangle().getCenter().y
+                    + offset.y, playerA.getPhysicalState().getRectangle().getCenter().x + offset.x, playerA.getPhysicalState().getRectangle()
+                    .getCenter().y
+                    + offset.y);
 
         }
         g.setColor(Color.white);
@@ -309,7 +313,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     }
 
     private void checkDeath(Player player) {
-        Vector2f pos = player.getPosition(0f);
+        Vector2f pos = player.getPhysicalState().getPosition();
         Rect r = camera.getViewport();
         if (pos.x + r.getX() + 32 < 0 || pos.y + r.getY() > r.getHeight() + 32) {
             // if (pos.x + offsetX2 + 32 < 0) {
@@ -383,9 +387,9 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     @Override
     public void specialMoveSlingshot(Player slingshoter, float strength) {
         if (slingshoter == playerA) {
-            playerB.slingshotMe(strength, playerA.getPosition(0).copy().sub(playerB.getPosition(0)));
+            playerB.slingshotMe(strength, playerA.getPhysicalState().getPosition().sub(playerB.getPhysicalState().getPosition()));
         } else if (slingshoter == playerB) {
-            playerA.slingshotMe(strength, playerB.getPosition(0).copy().sub(playerA.getPosition(0)));
+            playerA.slingshotMe(strength, playerB.getPhysicalState().getPosition().sub(playerA.getPhysicalState().getPosition()));
         } else {
             throw new RuntimeException("Who the **** called this method?");
             // Now now, Kevin, we don't use that kind of language in these parts.

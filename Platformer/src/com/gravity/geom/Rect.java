@@ -275,10 +275,22 @@ public class Rect {
         return new Vector2f(x, y);
     }
 
+    /**
+     * Translate rect to a different origin.
+     * @param x
+     * @param y
+     * @return
+     */
     public Rect translateTo(float x, float y) {
         return new Rect(x, y, width, height);
     }
     
+    /**
+     * Translate rect so that the given side is at the given coordinate.
+     * @param side
+     * @param pos
+     * @return
+     */
     public Rect translateSideTo(Side side, float pos) {
         switch (side) {
         case TOP:
@@ -292,6 +304,11 @@ public class Rect {
         }
     }
 
+    /**
+     * Get the coordinate of a given side.
+     * @param side
+     * @return
+     */
     public float getSide(Side side) {
         switch (side) {
         case TOP:
@@ -307,6 +324,12 @@ public class Rect {
         }
     }
     
+    /**
+     * Grow or shrink a rect so that the given side is at the given coordinate.
+     * @param side
+     * @param pos
+     * @return
+     */
     public Rect setSide(Side side, float pos) {
         System.out.println("setSide: " + this + "\n\t" + side + ": " + pos);
         switch (side) {
@@ -327,7 +350,13 @@ public class Rect {
         }
     }
     
-    public boolean isInsideSide(Side side, Rect other) {
+    /**
+     * Return true if this is on the "inside" side of the extension of the given side on other.
+     * @param side
+     * @param other
+     * @return
+     */
+    private boolean isInsideSide(Side side, Rect other) {
         switch (side) {
         case TOP:
         case LEFT:
@@ -340,6 +369,11 @@ public class Rect {
         }
     }
 
+    /**
+     * Translate this the smallest distance such that it is inside other.
+     * @param other
+     * @return
+     */
     public Rect translateInto(Rect other) {
         if (width > other.getWidth() || height > other.getHeight()) {
             return null;

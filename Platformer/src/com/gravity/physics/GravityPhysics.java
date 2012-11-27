@@ -7,7 +7,6 @@ import java.util.List;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.gravity.entity.Entity;
-import com.gravity.entity.PhysicallyStateful;
 import com.gravity.fauna.Player;
 import com.gravity.geom.Rect;
 import com.gravity.geom.Rect.Side;
@@ -106,8 +105,6 @@ public class GravityPhysics implements Physics {
         float accY = state.accY;
         float corrX = 0f;
         float corrY = Float.POSITIVE_INFINITY;
-        Rect possiblePos = new Rect(-100000000.0f, -100000000.0f,
-                                    200000000.0f, 200000000.0f);
         for (RectCollision c : collisions) {
             Collidable other = c.getOtherEntity(entity);
             Rect otherRect = other.getRect(0);
@@ -162,6 +159,38 @@ public class GravityPhysics implements Physics {
                 accX = 0;
                 accY = 0;
             }
+        }
+        Rect r = entity.getRect(0f);
+        if (corrX != 0.0f) {
+            r = r.translate(corrX, 0f);
+        }
+        if (!Float.isInfinite(corrY)) {
+            r = r.translate(0f, corrY);
+        }
+        return new PhysicalState(r, velX, velY, accX, accY);
+    }
+
+    @Override
+    public PhysicalState rehandleCollision(Entity entity, Collection<RectCollision> collisions) {
+        System.err.println("Warning: rehandling collisions for: " + entity);
+        Rect possiblePos = new Rect(-100000000.0f, -100000000.0f, 200000000.0f, 200000000.0f);
+        float corrX = 0f;
+        float corrY = Float.POSITIVE_INFINITY;
+        for (RectCollision c : collisions) {
+            Collidable other = c.getOtherEntity(entity);
+            Rect otherRect = other.getRect(0);
+            EnumSet<Side> sides = c.getMyCollisions(entity);
+            Preconditions.checkArgument(sides != null, "Collision passed did not involve entity: " + entity + ", " + c);
+
+            if (Side.isSimpleSet(sides)) {
+                if (sides.contains(Side.BOTTOM)) {
+                    if (isRealBottomCollision(entity, other, sides)) {
+                        corrY = Math.max(0f, Math.min(corrY, other.getRect(0f).getY() - entity.getRect(0f).getMaxY() - EPS));
+                    } else {
+                        corrX = getFakeBottomCollisionCorrection(entity, other, sides);
+                    }
+                }
+            }
             for (Side s : sides) {
                 possiblePos = possiblePos.setSide(s, otherRect.getSide(s.getOpposite()));
                 if (possiblePos == null) {
@@ -182,13 +211,8 @@ public class GravityPhysics implements Physics {
         r = r.translateInto(possiblePos);
         if (r == null) {
             System.err.println("WARNING: Would kill player here (2).");
+            return entity.getPhysicalState().snapshot(backstep);
         }
-        return new PhysicalState(r, velX, velY, accX, accY);
-    }
-
-    @Override
-    public PhysicalState rehandleCollision(PhysicallyStateful entity, Collection<RectCollision> collisions) {
-        System.err.println("Warning: rehandling collisions for: " + entity);
-        return entity.getPhysicalState().snapshot(backstep);
+        return entity.getPhysicalState().teleport(r.getX(), r.getY());
     }
 }

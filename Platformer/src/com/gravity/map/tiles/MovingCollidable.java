@@ -5,6 +5,7 @@ import java.util.Collection;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
 
+import com.gravity.entity.Entity;
 import com.gravity.fauna.Player;
 import com.gravity.geom.Rect;
 import com.gravity.levels.GameplayControl;
@@ -20,7 +21,7 @@ import com.gravity.physics.RectCollision;
  * @author phulin
  */
 
-public class MovingCollidable implements Collidable, UpdateCycling, Renderer {
+public class MovingCollidable implements Entity, Renderer {
 
     private GameplayControl controller;
     private TileRendererDelegate renderer;

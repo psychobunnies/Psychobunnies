@@ -5,14 +5,12 @@ import java.util.List;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.tiled.Layer;
 
 import com.google.common.collect.Lists;
 import com.gravity.entity.TriggeredText;
 import com.gravity.entity.TriggeredTextRenderer;
+import com.gravity.levels.Renderer;
 import com.gravity.map.tiles.MovingCollidable;
-import com.gravity.map.tiles.MovingCollidableRenderer;
-import com.gravity.root.Renderer;
 
 public class TileWorldRenderer implements Renderer {
     private TileWorld tileMap;

@@ -1,4 +1,4 @@
-package com.gravity.root;
+package com.gravity.levels;
 
 import java.util.List;
 

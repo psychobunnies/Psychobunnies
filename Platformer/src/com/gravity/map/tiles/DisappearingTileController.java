@@ -7,7 +7,7 @@ import org.newdawn.slick.tiled.Layer;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
-import com.gravity.root.UpdateCycling;
+import com.gravity.levels.UpdateCycling;
 
 public final class DisappearingTileController implements UpdateCycling {
 

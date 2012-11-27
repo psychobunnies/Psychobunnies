@@ -9,13 +9,13 @@ import org.newdawn.slick.tiled.Layer;
 
 import com.gravity.fauna.Player;
 import com.gravity.geom.Rect;
+import com.gravity.levels.Renderer;
+import com.gravity.levels.Resetable;
+import com.gravity.levels.UpdateCycling;
 import com.gravity.map.TileType;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.CollisionEngine;
 import com.gravity.physics.RectCollision;
-import com.gravity.root.Renderer;
-import com.gravity.root.Resetable;
-import com.gravity.root.UpdateCycling;
 
 public class PlayerKeyedTile implements Collidable, UpdateCycling, Renderer, Resetable {
 
@@ -26,6 +26,8 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling, Renderer, Res
     private final TileRendererDelegate renderer;
     private final TileRendererDelegate yellowRenderer;
     private final TileRendererDelegate pinkRenderer;
+    private final TileRendererDelegate warningRenderer;
+
     private boolean exists = true;
 
     private final Layer layer;
@@ -37,7 +39,7 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling, Renderer, Res
     private boolean ticking;
 
     public PlayerKeyedTile(Rect shape, CollisionEngine collider, TileRendererDelegate renderer, TileRendererDelegate yellowRenderer,
-            TileRendererDelegate pinkRenderer, Layer layer, int x, int y) {
+            TileRendererDelegate pinkRenderer, TileRendererDelegate warningRenderer, Layer layer, int x, int y) {
         this.shape = shape;
         this.keyedPlayer = null;
         this.collider = collider;
@@ -48,6 +50,7 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling, Renderer, Res
         this.renderer = renderer;
         this.yellowRenderer = yellowRenderer;
         this.pinkRenderer = pinkRenderer;
+        this.warningRenderer = warningRenderer;
     }
 
     @Override
@@ -133,6 +136,8 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling, Renderer, Res
     public void render(Graphics g, int offsetX, int offsetY) {
         if (!exists) {
             return;
+        } else if (ticking) {
+            warningRenderer.render(g, offsetX, offsetY, shape);
         } else if (keyedPlayer == null) {
             renderer.render(g, offsetX, offsetY, shape);
         } else if (keyedPlayer.getName().equals("pink")) {

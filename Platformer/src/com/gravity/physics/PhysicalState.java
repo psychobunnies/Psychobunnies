@@ -2,6 +2,7 @@ package com.gravity.physics;
 
 import org.newdawn.slick.geom.Vector2f;
 
+import com.google.common.base.Preconditions;
 import com.gravity.geom.Rect;
 
 /**
@@ -21,6 +22,7 @@ public class PhysicalState {
     }
 
     public PhysicalState(Rect rect, float velX, float velY, float accX, float accY) {
+        Preconditions.checkArgument(rect != null, "Rect is null!");
         this.shape = rect;
         this.velX = velX;
         this.velY = velY;
@@ -33,6 +35,7 @@ public class PhysicalState {
     }
 
     public PhysicalState(Rect sha, Vector2f vel, Vector2f acc) {
+        Preconditions.checkArgument(sha != null, "Rect is null!");
         velX = vel.x;
         velY = vel.y;
         accX = acc.x;
@@ -57,6 +60,9 @@ public class PhysicalState {
         //@formatter:off
         float newX = velX * millis + accX * millis * Math.abs(millis) / 2;
         float newY = velY * millis + accY * millis * Math.abs(millis) / 2;
+        if (shape == null) {
+            System.err.println("WTF??");
+        }
         return new PhysicalState(shape.translate(newX, newY),
                                  velX + accX * millis,
                                  velY + accY * millis,

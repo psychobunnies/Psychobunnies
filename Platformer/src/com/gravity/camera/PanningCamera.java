@@ -3,7 +3,7 @@ package com.gravity.camera;
 import org.newdawn.slick.geom.Vector2f;
 
 import com.gravity.geom.Rect;
-import com.gravity.root.UpdateCycling;
+import com.gravity.levels.UpdateCycling;
 
 /** A camera that pans at a constant rate */
 public class PanningCamera implements Camera, UpdateCycling {

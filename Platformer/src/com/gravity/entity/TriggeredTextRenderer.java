@@ -2,7 +2,7 @@ package com.gravity.entity;
 
 import org.newdawn.slick.Graphics;
 
-import com.gravity.root.Renderer;
+import com.gravity.levels.Renderer;
 
 /**
  * Renders a TriggeredText.

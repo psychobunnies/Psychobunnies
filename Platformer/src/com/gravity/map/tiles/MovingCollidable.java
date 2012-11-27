@@ -137,19 +137,19 @@ public class MovingCollidable implements Collidable, UpdateCycling, Renderer {
 
     @Override
     public PhysicalState getPhysicalState() {
-        // TODO Auto-generated method stub
-        return null;
+        // TODO Patrick should fill this in
+        return new PhysicalState(getRect(0f), 0, 0);
     }
 
     @Override
     public PhysicalState getPhysicalStateAt(float millis) {
-        // TODO Auto-generated method stub
-        return null;
+        // TODO Patrick should fill this in too
+        return new PhysicalState(getRect(millis), 0, 0);
     }
 
     @Override
     public void setPhysicalState(PhysicalState newState) {
-        // TODO Auto-generated method stub
+        // TODO Patrick should fill this in as well
 
     }
 }

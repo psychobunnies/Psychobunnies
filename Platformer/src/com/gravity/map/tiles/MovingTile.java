@@ -69,25 +69,6 @@ public class MovingTile implements Collidable, UpdateCycling {
         state = newState;
     }
 
-    //@formatter:off
-    /*
-    @Override
-    public Vector2f getPosition(float millis) {
-        return getRect(millis).getPoint(Rect.Corner.TOPLEFT);
-    }
-
-    @Override
-    public Vector2f getInstantaneousVelocity() {
-        return getPosition(0.5f).sub(getPosition(-0.5f));
-    }
-
-    @Override
-    public Rect getRect(float millis) {
-        return getRectWithReversal(millis).rect;
-    }
-    */
-    //@formatter:on
-
     private class RectWithReversal {
         public final boolean reverse;
         public final Rect rect;

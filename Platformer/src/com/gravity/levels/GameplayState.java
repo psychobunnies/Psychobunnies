@@ -14,7 +14,6 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
-import org.newdawn.slick.state.transition.Transition;
 import org.newdawn.slick.tiled.Layer;
 import org.newdawn.slick.tiled.Tile;
 import org.newdawn.slick.tiled.TiledMapPlus;
@@ -78,17 +77,12 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     private float remappedDecay;
     private Polygon controlArrow = new Polygon(new float[] { -50, 10, 20, 10, -10, 50, 10, 50, 50, 0, 10, -50, -10, -50, 20, -10, -50, -10 });
 
-    private Transition deathFadeIn;
-    private Transition deathFadeOut;
-
     protected final List<Resetable> resetableTiles = Lists.newArrayList();
     private final String levelName;
 
     public GameplayState(String levelName, String mapFile, int id) throws SlickException {
         ID = id;
         map = new TileWorld(levelName, new TiledMapPlus(mapFile), this);
-        deathFadeIn = new FadeInTransition(Color.red.darker());
-        deathFadeOut = new FadeOutTransition(Color.red.darker());
         this.levelName = levelName;
     }
 
@@ -345,7 +339,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     @Override
     public void playerDies(Player player) {
         reset();
-        game.enterState(GameOverState.ID, deathFadeOut, deathFadeIn);
+        game.enterState(GameOverState.ID, new FadeOutTransition(Color.red.darker()), new FadeInTransition(Color.red.darker()));
     }
 
     @Override

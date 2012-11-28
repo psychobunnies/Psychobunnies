@@ -236,10 +236,9 @@ public class GravityPhysics implements Physics {
 
             for (Side s : sides) {
                 possiblePos = possiblePos.setSide(s, otherRect.getSide(s.getOpposite()));
-                System.out.println("possiblePos: " + possiblePos);
                 if (possiblePos == null) {
                     if (entity instanceof Player) {
-                        System.err.println("killing 1");
+                        System.err.println("Crushing player; no possible positions");
                         ((Player) entity).kill();
                     }
                     break;
@@ -248,10 +247,10 @@ public class GravityPhysics implements Physics {
         }
         Rect r = entity.getPhysicalState().getRectangle();
 
-        r = r.translateIntoWithMargin(possiblePos, 0.5f);
+        r = r.translateIntoWithMargin(possiblePos, 0.2f);
         if (r == null) {
             if (entity instanceof Player) {
-                System.err.println("killing 2");
+                System.err.println("Crushing player; possible positions too small");
                 ((Player) entity).kill();
             }
             return entity.getPhysicalState().snapshot(backstep);

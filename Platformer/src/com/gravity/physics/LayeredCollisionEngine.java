@@ -175,7 +175,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
         SidesAndTime b = getCollisionSide(time, collB, collA, sidesB);
 
         Preconditions.checkArgument(!(collA.causesCollisionsWith(collB) && collB.causesCollisionsWith(collA)) || (Math.abs(a.time - b.time) < EPS),
-                "Collision time mismatch: a=" + a.toString() + "; b=" + b.toString());
+                "Collision time mismatch: a=" + a.toString() + "; b=" + b.toString() + "; collA=" + collA.toString() + "; collB=" + collB.toString());
 
         //@formatter:off
         return new RectCollision(collA, collB, Math.max(a.time, b.time), 

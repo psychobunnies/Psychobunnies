@@ -34,7 +34,7 @@ import com.gravity.map.TileWorld;
 import com.gravity.map.TileWorldRenderer;
 import com.gravity.map.tiles.DisappearingTileController;
 import com.gravity.map.tiles.FallingTile;
-import com.gravity.map.tiles.MovingCollidable;
+import com.gravity.map.tiles.MovingEntity;
 import com.gravity.map.tiles.PlayerKeyedTile;
 import com.gravity.map.tiles.TileRendererDelegate;
 import com.gravity.physics.Collidable;
@@ -123,8 +123,8 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         finishedPlayer = null;
         System.out.println("Got finish zone at: " + finish + " for map " + map);
         updaters.addAll(map.getTriggeredTexts());
-        Collection<List<MovingCollidable>> movingColls = map.getMovingCollMap().values();
-        for (List<MovingCollidable> l : movingColls) {
+        Collection<List<MovingEntity>> movingColls = map.getMovingCollMap().values();
+        for (List<MovingEntity> l : movingColls) {
             updaters.addAll(l);
         }
 
@@ -411,6 +411,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
 
     @Override
     public void reset() {
+        collider.stop();
         for (Resetable r : resetableTiles) {
             r.reset();
         }

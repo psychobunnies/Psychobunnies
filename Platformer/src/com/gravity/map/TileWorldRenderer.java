@@ -10,7 +10,7 @@ import com.google.common.collect.Lists;
 import com.gravity.entity.TriggeredText;
 import com.gravity.entity.TriggeredTextRenderer;
 import com.gravity.levels.Renderer;
-import com.gravity.map.tiles.MovingCollidable;
+import com.gravity.map.tiles.MovingEntity;
 
 public class TileWorldRenderer implements Renderer {
     private TileWorld tileMap;
@@ -28,7 +28,7 @@ public class TileWorldRenderer implements Renderer {
         for (TriggeredText tt : tileMap.getTriggeredTexts()) {
             extraRenderers.add(new TriggeredTextRenderer(tt));
         }
-        for (List<MovingCollidable> mcs : tileMap.getMovingCollMap().values()) {
+        for (List<MovingEntity> mcs : tileMap.getMovingCollMap().values()) {
             extraRenderers.addAll(mcs);
         }
     }

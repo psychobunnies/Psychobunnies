@@ -23,12 +23,12 @@ public abstract class PhysicsEntity<T extends Physics> extends AbstractEntity {
 
     @Override
     public void handleCollisions(float millis, Collection<RectCollision> collisions) {
-        state = physics.handleCollision(this, collisions);
+        state = physics.handleCollision(this, millis, collisions);
     }
 
     @Override
     public void rehandleCollisions(float millis, Collection<RectCollision> collisions) {
-        state = physics.rehandleCollision(this, collisions);
+        state = physics.rehandleCollision(this, millis, collisions);
     }
 
     @Override

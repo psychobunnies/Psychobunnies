@@ -6,11 +6,8 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
 
 import com.gravity.entity.Entity;
-import com.gravity.fauna.Player;
 import com.gravity.geom.Rect;
-import com.gravity.levels.GameplayControl;
 import com.gravity.levels.Renderer;
-import com.gravity.levels.UpdateCycling;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.PhysicalState;
 import com.gravity.physics.RectCollision;
@@ -21,22 +18,19 @@ import com.gravity.physics.RectCollision;
  * @author phulin
  */
 
-public class MovingCollidable implements Entity, Renderer {
+public class MovingEntity implements Entity, Renderer {
 
-    private GameplayControl controller;
     private TileRendererDelegate renderer;
     private Rect shape;
     private Vector2f origPosition;
     private Vector2f velForward, velBackward, finalPosition;
     private boolean reversed;
 
-    public MovingCollidable(GameplayControl controller, TileRendererDelegate renderer, Rect shape, int transX, int transY, float speed) {
-        this(controller, renderer, shape, transX, transY, speed, speed);
+    public MovingEntity(TileRendererDelegate renderer, Rect shape, int transX, int transY, float speed) {
+        this(renderer, shape, transX, transY, speed, speed);
     }
 
-    public MovingCollidable(GameplayControl controller, TileRendererDelegate renderer, Rect shape, int transX, int transY, float speedForward,
-            float speedBackward) {
-        this.controller = controller;
+    public MovingEntity(TileRendererDelegate renderer, Rect shape, int transX, int transY, float speedForward, float speedBackward) {
         this.renderer = renderer;
         this.shape = shape;
         this.origPosition = shape.getPoint(Rect.Corner.TOPLEFT);
@@ -49,6 +43,17 @@ public class MovingCollidable implements Entity, Renderer {
         finalPosition = origPosition.copy().add(trans);
 
         reversed = false;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("MovingCollidable [shape=");
+        builder.append(shape);
+        builder.append(", reversed=");
+        builder.append(reversed);
+        builder.append("]");
+        return builder.toString();
     }
 
     public Vector2f getOrigPosition() {
@@ -105,13 +110,7 @@ public class MovingCollidable implements Entity, Renderer {
 
     @Override
     public void rehandleCollisions(float millis, Collection<RectCollision> collisions) {
-        // This should mean we're trying to crush a player.
-        for (RectCollision coll : collisions) {
-            Collidable c = coll.getOtherEntity(this);
-            if (c instanceof Player) {
-                controller.playerDies((Player) c);
-            }
-        }
+        // no-op
     }
 
     @Override
@@ -151,4 +150,10 @@ public class MovingCollidable implements Entity, Renderer {
     public void setPhysicalState(PhysicalState newState) {
         shape = newState.getRectangle();
     }
+
+    @Override
+    public void unavoidableCollisionFound() {
+        // no-op
+    }
+
 }

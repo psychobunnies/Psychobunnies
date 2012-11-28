@@ -29,10 +29,11 @@ public class GravityPhysics implements Physics {
     private final float frictionStopCutoff; // the velocity below which friction makes you stop completely
     private final float frictionAccelRatio; // the maximum fraction of your velocity that friction acceleration may represent
     private final float movingTilePositionFeather;
+    private final float maxOnGroundFallSpeed;
     private static final float EPS = 1e-4f;
 
     GravityPhysics(CollisionEngine collisionEngine, float gravity, float backstep, float offsetGroundCheck, float groundFriction,
-            float frictionStopCutoff, float frictionAccelRatio, float movingTilePositionFeather) {
+            float frictionStopCutoff, float frictionAccelRatio, float movingTilePositionFeather, float maxOnGroundFallSpeed) {
         Preconditions.checkArgument(backstep <= 0f, "Backstep has to be non-positive.");
         Preconditions.checkArgument(movingTilePositionFeather > 0, "Moving tile position feather amount must be positive.");
         this.collisionEngine = collisionEngine;
@@ -43,6 +44,7 @@ public class GravityPhysics implements Physics {
         this.frictionStopCutoff = frictionStopCutoff;
         this.frictionAccelRatio = frictionAccelRatio;
         this.movingTilePositionFeather = movingTilePositionFeather;
+        this.maxOnGroundFallSpeed = maxOnGroundFallSpeed;
     }
 
     public List<Collidable> entitiesHitOnGround(Entity entity) {
@@ -67,7 +69,8 @@ public class GravityPhysics implements Physics {
         List<Collidable> coll = entitiesHitOnGround(entity);
         if (!coll.isEmpty()) {
             PhysicalState state = entity.getPhysicalState();
-            if (state.velY > 0 || state.accY > 0) {
+            if (state.velY >= 0 || state.accY >= 0) {
+                float minPositiveYVel = 0f;
                 float minY = Float.POSITIVE_INFINITY;
                 boolean isBouncy = false;
                 for (Collidable c : coll) {
@@ -75,12 +78,19 @@ public class GravityPhysics implements Physics {
                         isBouncy = true;
                         break;
                     } else {
-                        minY = Math.min(minY, c.getPhysicalState().getRectangle().getY());
+                        float tmp = c.getPhysicalState().getRectangle().getY();
+                        if (minY >= tmp) {
+                            minY = tmp;
+                            minPositiveYVel = Math.min(minPositiveYVel, c.getPhysicalState().velY);
+                        }
                     }
                 }
                 if (!isBouncy) {
-                    state = new PhysicalState(state.getRectangle().translate(0, minY - state.getRectangle().getMaxY() - EPS), state.velX, 0,
-                            state.accX, Math.min(state.accY, 0));
+                    Rect r = state.getRectangle().translate(0, minY - state.getRectangle().getMaxY() - EPS);
+                    if (minPositiveYVel > maxOnGroundFallSpeed) {
+                        r = state.getRectangle();
+                    }
+                    state = new PhysicalState(r, state.velX, Math.min(state.velY, 0f), state.accX, Math.min(state.accY, 0));
                 }
             }
             if (Math.abs(state.velX) <= frictionStopCutoff) {

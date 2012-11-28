@@ -41,6 +41,7 @@ public class PlatformerGame extends StateBasedGame {
             new LevelInfo("Checkpointing", "", "assets/Levels/checkpointing.tmx", 10),
             new LevelInfo("Shortcuts", "Timetest", "assets/levels/shortcuts.tmx", 11),
             new LevelInfo("Elevators","","assets/levels/Elevators.tmx",12),
+            new LevelInfo("Bouncy 2", "", "assets/Levels/Bouncy_2.tmx", 13),
     };
     //@formatter:on
 

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="90" height="24" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="camera" value="stalking"/>
+ </properties>
+ <tileset firstgid="1" name="BunnyTiles" tilewidth="32" tileheight="32">
+  <image source="bunnyTiles.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="9" name="LevelMarkers" tilewidth="32" tileheight="32">
+  <image source="levelMarkers.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="25" name="Spikes" tilewidth="32" tileheight="32">
+  <image source="Spikes.png" width="32" height="32"/>
+ </tileset>
+ <layer name="collisions" width="90" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztmdEOgyAMRdH9/z8vPpgYQqEtt6VVTsLLNi/sCJWxs5Ry7ubSWlCva0HkocfkRc+zRV8RMlaA8HwgBsLMR3q2HvcThOfr+oNoqExOX6O+JZ9Fg/KMxuuZ4cX27EMUz/U6fmZy9kYSfo3+rLnHPlO37u++ou5lQTJHqHvBvT7rmkegWYtaXx6eo66lrJ6jeRyh9czZv9a5vX5G3jT7ZU1GK0tyHZVhOZ9Hnut7ojmDyYJmv4F67lm4+2J99vAczSfFSs8StGcaUbCsfdrcDN6ktDyj5snIc5a5iMDy/xRJfd6e57Jn3n8T27MP27MPvd8p1p7fUpO5ZxB/A4QCMw==
+  </data>
+ </layer>
+ <layer name="players" width="90" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztw6ENAAAIA7A5/v8YswMQyDZpAsDVNAAAAAAAAMCnBbFbAA8=
+  </data>
+ </layer>
+ <layer name="spikes" width="90" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzt10EKgDAMBMB+I///qBePxopom8AM7LUklw0dA+A7cQYAeKf6LY0kXVzN2nUXoKasJ3f0i24DAABghbu/8Cx/v18lTx3+4Aiy
+  </data>
+ </layer>
+ <layer name="bouncys" width="90" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzt1MEKgCAQAFGP+/9fHN0iyA7WuKvzQAgUXOdQa9IcMXuATVTuXGn2SrOe4uGb9nb3fb9a56vMnUfPZ2Jnhp3/U+X/rG/YmZGxc8aZRq34pozszLAzw84MOzPszLAzw84MOzPszLAzY/XO0Vm7OQC0qgFZ
+  </data>
+ </layer>
+</map>

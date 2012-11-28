@@ -83,4 +83,9 @@ public class FallingTile extends AbstractEntity implements Renderer {
         return "FallingTile [startX=" + startX + ", startY=" + startY + ", falling=" + falling + ", state=" + state + "]";
     }
 
+    @Override
+    public void unavoidableCollisionFound() {
+        // no-op
+    }
+
 }

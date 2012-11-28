@@ -40,6 +40,8 @@ public class LayeredCollisionEngine implements CollisionEngine {
     final Map<Integer, CollidableContainer> collidables;
     final Map<Collidable, Integer> layerMap;
 
+    private boolean stopped = false;
+
     private final List<Integer> layers = Lists.newArrayList();
 
     public LayeredCollisionEngine() {
@@ -735,11 +737,11 @@ public class LayeredCollisionEngine implements CollisionEngine {
         if (millis > MIN_INCREMENT) {
             float increment = Math.max(MIN_INCREMENT, millis / PARTS_PER_TICK);
             float time;
-            for (time = increment; time < millis; time += increment) {
+            for (time = increment; !stopped && time < millis; time += increment) {
                 time = runCollisionsAndHandling(time, false);
             }
         }
-        while (millis > runCollisionsAndHandling(millis, false))
+        while (!stopped && millis > runCollisionsAndHandling(millis, false))
             ;
 
         //@formatter:off
@@ -787,12 +789,20 @@ public class LayeredCollisionEngine implements CollisionEngine {
             collidable.handleCollisions(cutoff, collisionsToReport);
         }
 
+        if (stopped) {
+            return Float.NaN;
+        }
+
         collisions = computeCollisions(cutoff);
         if (collisions.isEmpty()) {
             return Math.min(millis, cutoff);
         }
         for (Collidable collidable : collisions.keySet()) {
             collidable.rehandleCollisions(cutoff, collisions.get(collidable));
+        }
+
+        if (stopped) {
+            return Float.NaN;
         }
 
         collisions = computeCollisions(cutoff);
@@ -835,5 +845,10 @@ public class LayeredCollisionEngine implements CollisionEngine {
             return "SidesAndTime [sides=" + sides + ", time=" + time + "]";
         }
 
+    }
+
+    @Override
+    public void stop() {
+        stopped = true;
     }
 }

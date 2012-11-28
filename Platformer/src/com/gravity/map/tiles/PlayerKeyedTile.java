@@ -137,4 +137,9 @@ public class PlayerKeyedTile extends AbstractEntity implements Renderer, Resetab
             yellowRenderer.render(g, offsetX, offsetY, shape);
         }
     }
+
+    @Override
+    public void unavoidableCollisionFound() {
+        // no-op
+    }
 }

@@ -61,7 +61,7 @@ public class Player extends PhysicsEntity<GravityPhysics> {
         builder.append("]");
         return builder.toString();
     }
-    
+
     public void kill() {
         control.playerDies(this);
     }
@@ -145,5 +145,11 @@ public class Player extends PhysicsEntity<GravityPhysics> {
         } else {
             slingshotStrength = 0;
         }
+    }
+
+    @Override
+    public void unavoidableCollisionFound() {
+        System.out.println("Player " + this.toString() + " was probably squashed by a moving platform.");
+        kill();
     }
 }

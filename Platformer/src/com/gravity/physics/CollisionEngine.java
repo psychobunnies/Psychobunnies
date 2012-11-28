@@ -19,4 +19,6 @@ public interface CollisionEngine {
 
     public List<Collidable> collisionsInLayer(float millis, Rect rect, Integer layer);
 
+    public void stop();
+
 }

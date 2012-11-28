@@ -48,7 +48,7 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     }
 
     public boolean isRunning() {
-        return moving && physics.isOnGround(this);
+        return moving && !physics.entitiesHitOnGround(this).isEmpty();
     }
 
     @Override
@@ -71,7 +71,7 @@ public class Player extends PhysicsEntity<GravityPhysics> {
      *            true if keydown, false if keyup
      */
     public void jump(boolean jumping) {
-        if (jumping && physics.isOnGround(this)) {
+        if (jumping && !physics.entitiesHitOnGround(this).isEmpty()) {
             moving = false;
             GameSounds.playSickRabbitBeat(); // TODO: clean this up
             setPhysicalState(state.setVelocity(state.velX, state.velY - JUMP_POWER));

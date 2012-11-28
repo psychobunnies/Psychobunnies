@@ -41,7 +41,7 @@ public class GravityPhysics implements Physics {
         this.frictionAccelRatio = frictionAccelRatio;
     }
 
-    public boolean isOnGround(Entity entity) {
+    public List<Collidable> entitiesHitOnGround(Entity entity) {
         // System.out.println(entity.getPhysicalState().getRectangle().toString());
         Rect collider = entity.getPhysicalState().getRectangle().translate(0, offsetGroundCheck);
         // System.out.println(collider);
@@ -55,20 +55,31 @@ public class GravityPhysics implements Physics {
             c.handleCollisions(0f, Lists.newArrayList(new RectCollision(entity, c, 0f, null, null)));
         }
 
+        List<Collidable> soln = Lists.newArrayList();
         for (Collidable c : collisions) {
             if (c.causesCollisionsWith(entity)) {
-                return true;
+                soln.add(c);
             }
         }
-        return false;
+        return soln;
     }
 
     @Override
     public PhysicalState computePhysics(Entity entity) {
-        if (isOnGround(entity)) {
+        List<Collidable> coll = entitiesHitOnGround(entity);
+        if (!coll.isEmpty()) {
             PhysicalState state = entity.getPhysicalState();
             if (state.velY > 0) {
-                state = state.setVelocity(state.velX, 0);
+                boolean isBouncy = false;
+                for (Collidable c : coll) {
+                    if (c instanceof BouncyTile) {
+                        isBouncy = true;
+                        break;
+                    }
+                }
+                if (!isBouncy) {
+                    state = state.setVelocity(state.velX, 0);
+                }
             }
             if (Math.abs(state.velX) <= frictionStopCutoff) {
                 state = state.setVelocity(0f, state.velY);

@@ -62,6 +62,10 @@ public class Player extends PhysicsEntity<GravityPhysics> {
         return builder.toString();
     }
 
+    public void kill() {
+        control.playerDies(this);
+    }
+
     // //////////////////////////////////////////////////////////////////////////
     // //////////////////////////KEY-PRESS METHODS///////////////////////////////
     // //////////////////////////////////////////////////////////////////////////
@@ -127,10 +131,10 @@ public class Player extends PhysicsEntity<GravityPhysics> {
         super.finishUpdate(millis);
         switch (requested) {
         case LEFT:
-            setPhysicalState(state.setVelocity(-MOVEMENT_INCREMENT, state.velY));
+            setPhysicalState(state.setVelocity(Math.min(state.velX, -MOVEMENT_INCREMENT), state.velY));
             break;
         case RIGHT:
-            setPhysicalState(state.setVelocity(MOVEMENT_INCREMENT, state.velY));
+            setPhysicalState(state.setVelocity(Math.max(state.velX, MOVEMENT_INCREMENT), state.velY));
             break;
         default:
             // no-op
@@ -141,5 +145,11 @@ public class Player extends PhysicsEntity<GravityPhysics> {
         } else {
             slingshotStrength = 0;
         }
+    }
+
+    @Override
+    public void unavoidableCollisionFound() {
+        System.out.println("Player " + this.toString() + " was probably squashed by a moving platform.");
+        kill();
     }
 }

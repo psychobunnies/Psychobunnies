@@ -9,4 +9,7 @@ import com.gravity.physics.Collidable;
  * @author xiao
  */
 public interface Entity extends UpdateCycling, Collidable {
+
+    public void unavoidableCollisionFound();
+
 }

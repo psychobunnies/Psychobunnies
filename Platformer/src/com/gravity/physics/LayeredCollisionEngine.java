@@ -14,6 +14,7 @@ import com.google.common.collect.Multimap;
 import com.gravity.entity.TriggeredTextCollidable;
 import com.gravity.geom.Rect;
 import com.gravity.geom.Rect.Side;
+import com.gravity.map.LevelFinishZone;
 
 /**
  * Collision engine using the new Rect system. Also supports having multiple collision layers. Collidables within a layer will not have collisions
@@ -39,6 +40,8 @@ public class LayeredCollisionEngine implements CollisionEngine {
     // package private for testing
     final Map<Integer, CollidableContainer> collidables;
     final Map<Collidable, Integer> layerMap;
+
+    private boolean stopped = false;
 
     private final List<Integer> layers = Lists.newArrayList();
 
@@ -673,12 +676,15 @@ public class LayeredCollisionEngine implements CollisionEngine {
     }
 
     @Override
-    public List<Collidable> collisionsInLayer(float time, Rect rect, Integer layer) {
+    public List<Collidable> collisionsInLayer(float time, Rect rect, Integer layer, boolean ignoreTextAndFinish) {
         Preconditions.checkArgument(time >= 0, "Time since last update() call must be nonnegative");
 
         boolean collides;
         List<Collidable> result = Lists.newArrayList();
         for (Collidable collB : collidables.get(layer).getNearbyCollidables(rect)) {
+            if (ignoreTextAndFinish && (collB instanceof TriggeredTextCollidable || collB instanceof LevelFinishZone)) {
+                continue;
+            }
             collides = rect.intersects(collB.getPhysicalState().getRectangleAt(time));
             if (collides) {
                 result.add(collB);
@@ -735,11 +741,11 @@ public class LayeredCollisionEngine implements CollisionEngine {
         if (millis > MIN_INCREMENT) {
             float increment = Math.max(MIN_INCREMENT, millis / PARTS_PER_TICK);
             float time;
-            for (time = increment; time < millis; time += increment) {
+            for (time = increment; !stopped && time < millis; time += increment) {
                 time = runCollisionsAndHandling(time, false);
             }
         }
-        while (millis > runCollisionsAndHandling(millis, false))
+        while (!stopped && millis > runCollisionsAndHandling(millis, false))
             ;
 
         //@formatter:off
@@ -787,12 +793,20 @@ public class LayeredCollisionEngine implements CollisionEngine {
             collidable.handleCollisions(cutoff, collisionsToReport);
         }
 
+        if (stopped) {
+            return Float.NaN;
+        }
+
         collisions = computeCollisions(cutoff);
         if (collisions.isEmpty()) {
             return Math.min(millis, cutoff);
         }
         for (Collidable collidable : collisions.keySet()) {
             collidable.rehandleCollisions(cutoff, collisions.get(collidable));
+        }
+
+        if (stopped) {
+            return Float.NaN;
         }
 
         collisions = computeCollisions(cutoff);
@@ -835,5 +849,10 @@ public class LayeredCollisionEngine implements CollisionEngine {
             return "SidesAndTime [sides=" + sides + ", time=" + time + "]";
         }
 
+    }
+
+    @Override
+    public void stop() {
+        stopped = true;
     }
 }

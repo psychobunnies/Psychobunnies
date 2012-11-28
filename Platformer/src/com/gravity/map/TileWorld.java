@@ -25,7 +25,7 @@ import com.gravity.levels.GameplayControl;
 import com.gravity.map.tiles.BouncyTile;
 import com.gravity.map.tiles.DisappearingTile;
 import com.gravity.map.tiles.DisappearingTileController;
-import com.gravity.map.tiles.MovingCollidable;
+import com.gravity.map.tiles.MovingEntity;
 import com.gravity.map.tiles.SpikeEntity;
 import com.gravity.map.tiles.TileRendererDelegate;
 import com.gravity.physics.Collidable;
@@ -59,7 +59,7 @@ public class TileWorld implements GameWorld {
 
     private List<Collidable> entityNoCalls, entityCallColls;
     private List<TriggeredText> triggeredTexts;
-    private Map<Layer, List<MovingCollidable>> movingCollMap;
+    private Map<Layer, List<MovingEntity>> movingCollMap;
 
     private List<Vector2f> startPositions = null;
     private List<DisappearingTileController> disappearingTileControllers;
@@ -207,19 +207,19 @@ public class TileWorld implements GameWorld {
 
             // Found a moving layer.
             layer.visible = false;
-            List<MovingCollidable> colls = processLayer(layer.name, new CollidableCreator<MovingCollidable>() {
+            List<MovingEntity> colls = processLayer(layer.name, new CollidableCreator<MovingEntity>() {
                 @Override
-                public MovingCollidable createCollidable(Rect r) {
+                public MovingEntity createCollidable(Rect r) {
                     TileType tileType = TileType.toTileType(map, (int) (r.getX() / tileWidth), (int) (r.getY() / tileHeight), layer.index);
                     TileRendererDelegate renderer = new TileRendererDelegate(map, tileType);
-                    return new MovingCollidable(controller, renderer, r, transX * tileWidth, transY * tileHeight, speed);
+                    return new MovingEntity(renderer, r, transX * tileWidth, transY * tileHeight, speed);
                     // return new MovingTile(controller, r, transX * tileWidth, transY * tileHeight, speed);
                 }
             });
             entityNoCalls.addAll(colls);
 
-            List<MovingCollidable> movingColls = Lists.newArrayList();
-            for (MovingCollidable c : colls) {
+            List<MovingEntity> movingColls = Lists.newArrayList();
+            for (MovingEntity c : colls) {
                 movingColls.add(c);
             }
             movingCollMap.put(layer, movingColls);
@@ -241,8 +241,8 @@ public class TileWorld implements GameWorld {
 
                     TileType tileType = TileType.toTileType(map, tile);
                     TileRendererDelegate renderer = new TileRendererDelegate(map, tileType);
-                    MovingCollidable stompColl = new MovingCollidable(controller, renderer, r, 0, (int) (minBelowY - r.getMaxY()),
-                            STOMP_SPEED_FORWARD, STOMP_SPEED_BACKWARD);
+                    MovingEntity stompColl = new MovingEntity(renderer, r, 0, (int) (minBelowY - r.getMaxY()), STOMP_SPEED_FORWARD,
+                            STOMP_SPEED_BACKWARD);
                     // MovingTile stompColl = new MovingTile(controller, r, 0, (int) (minBelowY - r.getMaxY()), STOMP_SPEED_FORWARD,
                     // STOMP_SPEED_BACKWARD);
 
@@ -424,7 +424,7 @@ public class TileWorld implements GameWorld {
         return new DisappearingTileController(invisibleTime, normalVisibleTime, flickerTime, geometricParameter, flickerCount, l);
     }
 
-    public Map<Layer, List<MovingCollidable>> getMovingCollMap() {
+    public Map<Layer, List<MovingEntity>> getMovingCollMap() {
         return movingCollMap;
     }
 

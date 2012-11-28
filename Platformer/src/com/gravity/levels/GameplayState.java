@@ -14,7 +14,6 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
-import org.newdawn.slick.state.transition.Transition;
 import org.newdawn.slick.tiled.Layer;
 import org.newdawn.slick.tiled.Tile;
 import org.newdawn.slick.tiled.TiledMapPlus;
@@ -35,7 +34,7 @@ import com.gravity.map.TileWorld;
 import com.gravity.map.TileWorldRenderer;
 import com.gravity.map.tiles.DisappearingTileController;
 import com.gravity.map.tiles.FallingTile;
-import com.gravity.map.tiles.MovingCollidable;
+import com.gravity.map.tiles.MovingEntity;
 import com.gravity.map.tiles.PlayerKeyedTile;
 import com.gravity.map.tiles.TileRendererDelegate;
 import com.gravity.physics.Collidable;
@@ -78,17 +77,12 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     private float remappedDecay;
     private Polygon controlArrow = new Polygon(new float[] { -50, 10, 20, 10, -10, 50, 10, 50, 50, 0, 10, -50, -10, -50, 20, -10, -50, -10 });
 
-    private Transition deathFadeIn;
-    private Transition deathFadeOut;
-
     protected final List<Resetable> resetableTiles = Lists.newArrayList();
     private final String levelName;
 
     public GameplayState(String levelName, String mapFile, int id) throws SlickException {
         ID = id;
         map = new TileWorld(levelName, new TiledMapPlus(mapFile), this);
-        deathFadeIn = new FadeInTransition(Color.red.darker());
-        deathFadeOut = new FadeOutTransition(Color.red.darker());
         this.levelName = levelName;
     }
 
@@ -129,8 +123,8 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         finishedPlayer = null;
         System.out.println("Got finish zone at: " + finish + " for map " + map);
         updaters.addAll(map.getTriggeredTexts());
-        Collection<List<MovingCollidable>> movingColls = map.getMovingCollMap().values();
-        for (List<MovingCollidable> l : movingColls) {
+        Collection<List<MovingEntity>> movingColls = map.getMovingCollMap().values();
+        for (List<MovingEntity> l : movingColls) {
             updaters.addAll(l);
         }
 
@@ -345,7 +339,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     @Override
     public void playerDies(Player player) {
         reset();
-        game.enterState(GameOverState.ID, deathFadeOut, deathFadeIn);
+        game.enterState(GameOverState.ID, new FadeOutTransition(Color.red.darker()), new FadeInTransition(Color.red.darker()));
     }
 
     @Override
@@ -415,6 +409,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
 
     @Override
     public void reset() {
+        collider.stop();
         for (Resetable r : resetableTiles) {
             r.reset();
         }

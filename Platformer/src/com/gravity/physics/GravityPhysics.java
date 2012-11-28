@@ -129,7 +129,7 @@ public class GravityPhysics implements Physics {
                         velY = Math.abs(velY);
                         accY = Math.max(accY, 0);
                     } else if (other instanceof MovingEntity && other.getPhysicalState().getVelocity().y > 0) {
-                        r = r.translate(0f, movingTilePositionFeather);
+                        r = r.translate(0f, Math.max(movingTilePositionFeather, other.getPhysicalState().getVelocity().y * millis));
                         if (collisionEngine.collisionsInLayer(millis, r, LayeredCollisionEngine.FLORA_LAYER, true).isEmpty()) {
                             velY = Math.max(velY, 0);
                             accY = Math.max(accY, 0);
@@ -146,7 +146,7 @@ public class GravityPhysics implements Physics {
                         velX = Math.abs(velX);
                         accX = Math.max(accX, 0);
                     } else if (other instanceof MovingEntity && other.getPhysicalState().getVelocity().x > 0) {
-                        r = r.translate(movingTilePositionFeather, 0f);
+                        r = r.translate(Math.max(movingTilePositionFeather, other.getPhysicalState().getVelocity().x * millis), 0f);
                         if (collisionEngine.collisionsInLayer(millis, r, LayeredCollisionEngine.FLORA_LAYER, true).isEmpty()) {
                             velX = Math.max(velX, 0);
 
@@ -175,7 +175,7 @@ public class GravityPhysics implements Physics {
                         velY = -Math.abs(velY);
                         accY = Math.min(accY, 0);
                     } else if (other instanceof MovingEntity && other.getPhysicalState().getVelocity().y < 0) {
-                        r = r.translate(0f, -movingTilePositionFeather);
+                        r = r.translate(0f, Math.min(-movingTilePositionFeather, other.getPhysicalState().getVelocity().y * millis));
                         if (collisionEngine.collisionsInLayer(millis, r, LayeredCollisionEngine.FLORA_LAYER, true).isEmpty()) {
                             velY = Math.min(velY, 0);
                             accY = Math.min(accY, 0);
@@ -200,7 +200,7 @@ public class GravityPhysics implements Physics {
                         velX = -Math.abs(velX);
                         accX = Math.min(accX, 0);
                     } else if (other instanceof MovingEntity && other.getPhysicalState().getVelocity().x < 0) {
-                        r = r.translate(-movingTilePositionFeather, 0f);
+                        r = r.translate(Math.min(-movingTilePositionFeather, other.getPhysicalState().getVelocity().x * millis), 0f);
                         if (collisionEngine.collisionsInLayer(millis, r, LayeredCollisionEngine.FLORA_LAYER, true).isEmpty()) {
                             velX = Math.min(velX, 0);
 

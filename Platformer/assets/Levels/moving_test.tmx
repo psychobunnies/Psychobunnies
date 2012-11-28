@@ -34,11 +34,11 @@
  <layer name="moving" width="150" height="30">
   <properties>
    <property name="speed" value="25.0"/>
-   <property name="translationX" value="6"/>
-   <property name="translationY" value="0"/>
+   <property name="translationX" value="4"/>
+   <property name="translationY" value="-4"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztw0EJAAAIBLALYf+sfs8IwgZLAAAAAAAAAAAAAOCaCgAAAAAAAPyx0QoAPQ==
+   eJztwzEJAAAMA7CKqH+t/edgkEASAAAAAAAAAAAAAAAAegIAAAAAfDTOigBR
   </data>
  </layer>
  <layer name="playerkeyed" width="150" height="30">

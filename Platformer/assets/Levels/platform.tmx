@@ -23,12 +23,12 @@
  </tileset>
  <layer name="collisions" width="110" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2aCwrCMBBE946xH8H7n0MKFprYfLruphOZB0Fs7DrOuKHVBBGZGsYjeb5+Hp+N518dq1PdfxlB8EDUhAaiR4ia0ED0CFETGogeIWpCA9EjRE1oIHqEqAkNRI/ONCHqvBNEP5hbHUQ/UHKbLs7XXr9h9TmYmx6NJuZ2P8wtxjK3/XfVuTCfm6vB3GJ695u2NnOL2TUd/4Ngbj51vGFutnWOPTFnjrdcH9dgbj51vMnpTL8fmmuMILr1mLnV6dVvzM2WkXIr3XuEzPEc6XqCvE/hjJFysz7Hs443zO27zi/7ilp6PtfrpfGSfuvCiLktRnW82XR67WlblO+j8c7K7zef/H+tQCkAAA==
+   H4sIAAAAAAAAC+2ajQrDIAyEfUf7N9j7P8cQVqiuUZcl9tLlAyltabzeVXHMGEKYO9pUnG/v46Pz+W/bplT3Li0GPBA1cdF6F0SPEDWhgegRoiY0ED1C1IQGokeImtBA9OhME5rOfX29XNQ/mh8JC7klrtRkxQ8rOv+hbwqk3ObKPc8tBym3GhxNte9Au29t7pyb1HtY8YOrs7Xumyr3WnhuOaPHG7e255azazr+B+G56dTRxnOTrXMcEwtxXWIN5bnp1NGG0ll+H5w1Rgy8+dhzazNqvHlusljKrfbbIxLXKcr5BHmfwhmWcpN+RrOONp7bZ51f9hX1jHlqrNfaM4ybFyzmtgrV0Sbp1NrTtjL74Xgn5fcLz9ac7UApAAA=
   </data>
  </layer>
  <layer name="spikes" width="110" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3aMQoAIAgF0G7a/W/R3mJBSOJ70OBmOIjwx4Ac88HL9mtfmfb/RXUVVfvuztwAAPrpcnsB8Jdo/9hLAJxwywAAcKt7Ruk2R/Yij7YAp1sYikApAAA=
+   H4sIAAAAAAAAC+3aOQoAIAwEQH/q/39hKzYqiFdmwMIuYrOETQn2yAvOrfP+rH1f7/6KV+eOzr8BkdW5I0oOAQCAU3qZWxYHYIT9DQAAs6J3lGb7Wiv6aAUp5ULzQCkAAA==
   </data>
  </layer>
  <objectgroup name="level markers" width="110" height="24">
@@ -44,7 +44,7 @@
  </layer>
  <layer name="playerkeyed" width="110" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3YQQoAIAgEwD7b/7/QtaAEISpoBkQ9r10qBQAgryaKd/yex+w2Z3O/R/0E72i0yi3TuaMu5n6XGQAAAADs5Y8NAGINE6aZOUApAAA=
+   H4sIAAAAAAAAC+3YQQrAIAwEwHzW/3+h1yAaLAVb6gyI5iS65mIEAMAzbVDnwXf0uZyW1ei8s/uIhXmXar8Tcstmud2Zd6je2in91muTda7f7jUAAAAA+Bt/bABQuwBVfaAzQCkAAA==
   </data>
  </layer>
  <layer name="fast5" width="110" height="24">

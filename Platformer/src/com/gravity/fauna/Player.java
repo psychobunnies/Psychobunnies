@@ -131,10 +131,10 @@ public class Player extends PhysicsEntity<GravityPhysics> {
         super.finishUpdate(millis);
         switch (requested) {
         case LEFT:
-            setPhysicalState(state.setVelocity(-MOVEMENT_INCREMENT, state.velY));
+            setPhysicalState(state.setVelocity(Math.min(state.velX, -MOVEMENT_INCREMENT), state.velY));
             break;
         case RIGHT:
-            setPhysicalState(state.setVelocity(MOVEMENT_INCREMENT, state.velY));
+            setPhysicalState(state.setVelocity(Math.max(state.velX, MOVEMENT_INCREMENT), state.velY));
             break;
         default:
             // no-op

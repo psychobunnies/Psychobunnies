@@ -45,9 +45,9 @@
    H4sIAAAAAAAAC+3WQQkAAAgEQcvav4IV7iMozMB22CoAALivgwAAtiVP4ksAAAAAAH4YidRrOkApAAA=
   </data>
  </layer>
- <layer name="slow5" width="110" height="24">
+ <layer name="fast5" width="110" height="24">
   <properties>
-   <property name="speed" value="20"/>
+   <property name="speed" value="30"/>
    <property name="translationX" value="5"/>
    <property name="translationY" value="0"/>
   </properties>

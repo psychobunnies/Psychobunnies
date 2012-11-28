@@ -1,6 +1,6 @@
 package com.gravity.entity;
 
-import com.gravity.root.UpdateCycling;
+import com.gravity.levels.UpdateCycling;
 
 /**
  * Represents a piece of text which can be triggered to display on screen.

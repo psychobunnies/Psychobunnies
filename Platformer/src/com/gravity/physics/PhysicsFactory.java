@@ -11,12 +11,13 @@ public final class PhysicsFactory {
     public static final float DEFAULT_FRICTION_STOP_CUTOFF = 1.0f / 200f;
     public static final float DEFAULT_FRICTION_ACCEL_RATIO = 50f;
     public static final float DEFAULT_REHANDLE_BACKSTEP = -15f;
-    public static final float DEFAULT_OFFSET_GROUND_CHECK = 2f;
-    public static final float DEFAULT_ALLOWED_SIDE_OVERLAP = 0.5f;
+    public static final float DEFAULT_OFFSET_GROUND_CHECK = 5f;
+    public static final float DEFAULT_MOVING_FEATHER = 0.5f;
+    public static final float DEFAULT_MAX_ON_GROUND_FALL_SPEED = 1.0f / 200f;
 
     public static GravityPhysics createDefaultGravityPhysics(CollisionEngine engine) {
-        return new GravityPhysics(engine, DEFAULT_GRAVITY, DEFAULT_REHANDLE_BACKSTEP, DEFAULT_OFFSET_GROUND_CHECK, DEFAULT_ALLOWED_SIDE_OVERLAP,
-                DEFAULT_GROUND_FRICTION, DEFAULT_FRICTION_STOP_CUTOFF, DEFAULT_FRICTION_ACCEL_RATIO);
+        return new GravityPhysics(engine, DEFAULT_GRAVITY, DEFAULT_REHANDLE_BACKSTEP, DEFAULT_OFFSET_GROUND_CHECK, DEFAULT_GROUND_FRICTION,
+                DEFAULT_FRICTION_STOP_CUTOFF, DEFAULT_FRICTION_ACCEL_RATIO, DEFAULT_MOVING_FEATHER, DEFAULT_MAX_ON_GROUND_FALL_SPEED);
     }
 
     public static SimplePhysics createSimplePhysics() {

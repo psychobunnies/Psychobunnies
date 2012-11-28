@@ -12,20 +12,16 @@ public final class PartitionedCollidableContainer implements CollidableContainer
     private final Map<Integer, CollidableContainer> partitions = Maps.newIdentityHashMap();
     private final SimpleCollidableContainer allCollidables = new SimpleCollidableContainer();
 
-    private static final int PARTITION_SIZE = 64;
+    private static final int PARTITION_SIZE = 32;
 
     /** how much to the left and right of a given collidable is considered "nearby" */
-    private static final float BUFFER_ZONE_SIZE = 48f;
-
-    private static final float REFRESH_INTERVAL = 1000f;
-
-    private float elapsedTime = 0f;
+    private static final float BUFFER_ZONE_SIZE = 24f;
 
     @Override
     public void addCollidable(Collidable collidable) {
         allCollidables.addCollidable(collidable);
         int start, end;
-        Rect r = collidable.getRect(0f);
+        Rect r = collidable.getPhysicalState().getRectangle();
         start = getPartition(r.getX());
         end = getPartition(r.getMaxX());
         for (int i = start; i <= end; i++) {
@@ -56,7 +52,7 @@ public final class PartitionedCollidableContainer implements CollidableContainer
         boolean result = allCollidables.removeCollidable(collidable);
         if (result) {
             int start, end;
-            Rect r = collidable.getRect(0f);
+            Rect r = collidable.getPhysicalState().getRectangle();
             start = getPartition(r.getX());
             end = getPartition(r.getMaxX());
             for (int i = start; i <= end; i++) {
@@ -77,7 +73,7 @@ public final class PartitionedCollidableContainer implements CollidableContainer
     }
 
     @Override
-    public Iterable<Collidable> getNearbyCollidables(Rect r) {
+    public Set<Collidable> getNearbyCollidables(Rect r) {
         int start, end;
         Set<Collidable> result = Sets.newIdentityHashSet();
 
@@ -95,20 +91,11 @@ public final class PartitionedCollidableContainer implements CollidableContainer
         return result;
     }
 
-    private void refresh() {
+    @Override
+    public void update(float millis) {
         partitions.clear();
         for (Collidable c : allCollidables.collidables()) {
             addCollidable(c);
-        }
-    }
-
-    @Override
-    public void update(float millis) {
-        elapsedTime += millis;
-        // TODO Predrag: This is slightly hacky, but I don't think there is a need to constantly update the container whenever a collidable moves
-        if (elapsedTime >= REFRESH_INTERVAL) {
-            refresh();
-            elapsedTime = 0f;
         }
     }
 

@@ -19,62 +19,57 @@
  </layer>
  <layer name="spikes" width="90" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3V0QrAIAiF4W59/xfebYTJtJFM/w+C2KLawdUYAAAAAAAAAIDqJHsDBWmZkvP3ROn/Iefbe1zX82YlRuvE8197s7LGdMp5l8PumVbbVl7Rd9XMOa3n6Nu6jdZsx5xPz87IPBn3TGbLcvs7H/8ZemfAIQAA
+   H4sIAAAAAAAAC+3U0Q6AIAiFYW95/xfutjFkwTQL/m9za1mpR3IMAAAAAAAAAEB1cnoCBVmZkvN6Ylz/Iee356jHi2YlTusk8l9Hs/Ke6ZTzLIfZPau2vbyyfTuc3Nd7TvocfVq32Zrdse4v7asee8XZmfmO907F1sUF14sBOcAhAAA=
   </data>
  </layer>
  <layer name="collisions" width="90" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3YsQ7AIAgEUK3+/zc3DKYuDE2AU7iXuFY8SVttjYiIiKieroxhPKro6AIcTGWQrQddwCZjHy8n5ZwZOufMPbxD5Fzx/R+d8wTMeYLINY/g+U6CXrd2Psh2bvDKWfLhv/gH3c9VMOcYVjlH79dt/aHV+/cbJM9Z92ee1v1clpwrs75Pk95gzlTBC+AEfrfAIQAA
+   H4sIAAAAAAAAC+3YsQ6AIAxF0Sr8/zcbBjZqYigt0nsSFgcLz0ZQEQAAAGDO9XJ9NIrxACxofYx5NXoCOIq2t6yUsYdv53o1oOYOPNdcnOvtJHrd2rn1tPPsqpxbPlVyvotHovs5C3L2YZWz9/P6W39o8/26B7X7eHw39/9Gp+Sc2Yr9m5yRwQNmROKxwCEAAA==
   </data>
  </layer>
  <objectgroup name="level markers" width="90" height="24">
-  <object name="finish" x="2784" y="99" width="98" height="120"/>
+  <object name="finish" type="finish" x="2817" y="33" width="64" height="320"/>
  </objectgroup>
  <layer name="playerkeyed" width="90" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3WQQrAIAxEUVe5/5G7FdHExJKG+h90UzAOo5S2BgAAcAf5OsAl6BkAAABe/EO+j07zVetcy5OdddxPFu+tGeO6Cp1nZpjttdrf21WFLjVZ+bx38nRGBbL5RNbsztKyWdlh678D0c6sc4ysP7k3wJ89hLxgRsAhAAA=
+   H4sIAAAAAAAAC+3WSw6AIAxF0Y66/yUzcGIInxZIqeaexIEgpXkSowgAAABwjt5uAAAAAJ/DP+R5ZBovW+ajfqJ7rffTzvisRr0uQ+aRPbT26u3vzSpDliNR/XnP5G6NDNR4eZ+31JLGvXXOMo/H+zuwmtnsPXrX7p4b4M8K6+HJEcAhAAA=
   </data>
  </layer>
  <layer name="falling spikes" width="90" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3DoQ0AAAwCMCz/P7wLkHNt0iap7wEAAAAAAAAAlgN1hLe1wCEAAA==
+   H4sIAAAAAAAAC+3DoQ0AAAwCMCz/P7wTUHNt0iapbwEAAAAAAAAAlgOesSIewCEAAA==
   </data>
  </layer>
- <layer name="checkpoint1" width="90" height="24">
+ <layer name="checkpoint1" width="90" height="24" visible="0">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3QsQ2AMBAEwW/AAYH7bxWKQGskZqTLTzvDF63TB35C54bODZ0bOjd0bujc0Lmhc0Pnhs4NnRs6N3Ru6NxYo3VF54bOjevZPn0CAF5wA6MptC3AIQAA
+   H4sIAAAAAAAAC+3QQQ3AMBDAsBLoY4/xpzoSU65SbQRR1uJEezrgEj43fG743PC54XPD54bPDZ8bPjd8bvjc8Lnhc8Pnxl5eV3xuvNMBl3imAwDgJx/viEBswCEAAA==
   </data>
  </layer>
- <layer name="checkpoint2" width="90" height="24">
+ <layer name="checkpoint2" width="90" height="24" visible="0">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3QsQ2AMBAEwW/AAQH9twpNeC3BjHT5aWcAAGCvdfrAT+jc0Lmhc0Pnhs4NnRs6N3Ru6NzQeb81Oheud/fpEwB83gPaq8MRwCEAAA==
+   H4sIAAAAAAAAC+3QsQ2AMBAEwW/AAQH9twpNsJbMjHT5aWcAAIATrN0HfkLnhs4NnRs6N3Ru6NzQuaFzQ+fvrdG5cL27d58A4HgPHexeLMAhAAA=
   </data>
  </layer>
- <layer name="checkpoint3" width="90" height="24">
+ <layer name="checkpoint3" width="90" height="24" visible="0">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3SsQ0AIAhFQRawsHD/VdUlwMhdQv/zQsR7RvWAJnTOoXMOnXPczvPcqh7yOf8MAAAAAADQzwYjb7ZiwCEAAA==
+   H4sIAAAAAAAAC+3QsQ0AIAwDQRagoGD/VQlLOEjcSe6tH+M9s/vAJ3TO0DlD5wydM3TOuJ1XbXcfAQAAAAAAKAcebZDewCEAAA==
   </data>
  </layer>
- <layer name="checkpoint4" width="90" height="24">
+ <layer name="checkpoint4" width="90" height="24" visible="0">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3QoRGAMAAEwTSAQNB/qwQfy0Vkd+b9z40B/7p2HziEzg2dGzo3dG7o3NC5oXND54bODZ0bOjd0bujc0Lmhc0Pnhs4NnRtf53vu2X0EYOEFGBfA/8AhAAA=
-  </data>
- </layer>
- <layer name="moving" width="90" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3QMQ0AAAgEMVb8G8YEeQZaBZerAgAAAAAAoK8DnvA5w+cMn4FNA48LKyjAIQAA
+   H4sIAAAAAAAAC+3QsRGAMBDAsCxAQcH+q3IZgBJ/EWkCn9eCf13TAYfwueFzw+eGzw2fGz43fG743PC54XPD54bPDZ8bPjd8bvjc8LmxPz/TEQfYn+/pCIAPL8UKcoXAIQAA
   </data>
  </layer>
 </map>

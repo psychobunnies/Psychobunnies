@@ -7,6 +7,8 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import com.gravity.levels.MainMenuState;
+
 public class CreditsState extends BasicGameState {
     
     static public final int ID = 5;

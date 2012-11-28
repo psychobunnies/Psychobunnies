@@ -11,11 +11,11 @@ import com.gravity.geom.Rect.Side;
  * @author xiao
  */
 public class RectCollision {
-    
+
     public final Collidable entityA, entityB;
     public final float time;
     public final EnumSet<Side> sidesA, sidesB;
-    
+
     public RectCollision(Collidable entityA, Collidable entityB, float time, EnumSet<Side> sidesA, EnumSet<Side> sidesB) {
         this.entityA = entityA;
         this.entityB = entityB;
@@ -23,7 +23,7 @@ public class RectCollision {
         this.sidesA = sidesA;
         this.sidesB = sidesB;
     }
-    
+
     /** Get the other entity in the collision */
     public Collidable getOtherEntity(Collidable me) {
         if (me == entityA) {
@@ -34,7 +34,7 @@ public class RectCollision {
             return null;
         }
     }
-    
+
     /**
      * Get the indices of the vertices in my shape which collided with the other entity.
      */
@@ -47,7 +47,7 @@ public class RectCollision {
             return null;
         }
     }
-    
+
     /**
      * Get the indices of the vertices in the other's shape which collided with my entity.
      */
@@ -60,10 +60,10 @@ public class RectCollision {
             return null;
         }
     }
-    
+
     @Override
     public String toString() {
-        return "Collision [A=" + entityA + ", B=" + entityB + ", time=" + time + ", sidesA=" + sidesA + ", sidesB=" + sidesB + "]";
+        return "RectCollision [A=" + entityA + ", B=" + entityB + ", time=" + time + ", sidesA=" + sidesA + ", sidesB=" + sidesB + "]";
     }
-    
+
 }

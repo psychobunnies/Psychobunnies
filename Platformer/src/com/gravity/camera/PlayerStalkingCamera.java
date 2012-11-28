@@ -28,7 +28,7 @@ public class PlayerStalkingCamera implements Camera {
     public Rect getViewport() {
         Vector2f pos = new Vector2f();
         for (Player player : players) {
-            pos.add(player.getPosition(0));
+            pos.add(player.getPhysicalState().getPosition());
         }
         pos.scale(1.0f / players.size());
         float x = pos.x - width / 2;

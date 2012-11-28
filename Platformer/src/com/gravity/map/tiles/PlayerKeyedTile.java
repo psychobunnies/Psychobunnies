@@ -4,20 +4,20 @@ import java.util.Collection;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.Layer;
 
+import com.gravity.entity.AbstractEntity;
 import com.gravity.fauna.Player;
 import com.gravity.geom.Rect;
+import com.gravity.levels.Renderer;
+import com.gravity.levels.Resetable;
 import com.gravity.map.TileType;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.CollisionEngine;
+import com.gravity.physics.PhysicalState;
 import com.gravity.physics.RectCollision;
-import com.gravity.root.Renderer;
-import com.gravity.root.Resetable;
-import com.gravity.root.UpdateCycling;
 
-public class PlayerKeyedTile implements Collidable, UpdateCycling, Renderer, Resetable {
+public class PlayerKeyedTile extends AbstractEntity implements Renderer, Resetable {
 
     private final float TIME_TO_GTFO = 1000;
     private final Rect shape;
@@ -26,6 +26,8 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling, Renderer, Res
     private final TileRendererDelegate renderer;
     private final TileRendererDelegate yellowRenderer;
     private final TileRendererDelegate pinkRenderer;
+    private final TileRendererDelegate warningRenderer;
+
     private boolean exists = true;
 
     private final Layer layer;
@@ -37,7 +39,8 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling, Renderer, Res
     private boolean ticking;
 
     public PlayerKeyedTile(Rect shape, CollisionEngine collider, TileRendererDelegate renderer, TileRendererDelegate yellowRenderer,
-            TileRendererDelegate pinkRenderer, Layer layer, int x, int y) {
+            TileRendererDelegate pinkRenderer, TileRendererDelegate warningRenderer, Layer layer, int x, int y) {
+        super(new PhysicalState(shape, 0f, 0f));
         this.shape = shape;
         this.keyedPlayer = null;
         this.collider = collider;
@@ -48,6 +51,7 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling, Renderer, Res
         this.renderer = renderer;
         this.yellowRenderer = yellowRenderer;
         this.pinkRenderer = pinkRenderer;
+        this.warningRenderer = warningRenderer;
     }
 
     @Override
@@ -66,16 +70,6 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling, Renderer, Res
         if (ticking) {
             millisElapsed += millis;
         }
-    }
-
-    @Override
-    public Vector2f getPosition(float millis) {
-        return shape.getPosition();
-    }
-
-    @Override
-    public Rect getRect(float millis) {
-        return shape;
     }
 
     @Override
@@ -133,6 +127,8 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling, Renderer, Res
     public void render(Graphics g, int offsetX, int offsetY) {
         if (!exists) {
             return;
+        } else if (ticking) {
+            warningRenderer.render(g, offsetX, offsetY, shape);
         } else if (keyedPlayer == null) {
             renderer.render(g, offsetX, offsetY, shape);
         } else if (keyedPlayer.getName().equals("pink")) {
@@ -140,5 +136,10 @@ public class PlayerKeyedTile implements Collidable, UpdateCycling, Renderer, Res
         } else if (keyedPlayer.getName().equals("yellow")) {
             yellowRenderer.render(g, offsetX, offsetY, shape);
         }
+    }
+
+    @Override
+    public void unavoidableCollisionFound() {
+        // no-op
     }
 }

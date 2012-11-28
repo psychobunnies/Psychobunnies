@@ -2,6 +2,7 @@ package com.gravity.physics;
 
 import org.newdawn.slick.geom.Vector2f;
 
+import com.google.common.base.Preconditions;
 import com.gravity.geom.Rect;
 
 /**
@@ -21,6 +22,7 @@ public class PhysicalState {
     }
 
     public PhysicalState(Rect rect, float velX, float velY, float accX, float accY) {
+        Preconditions.checkArgument(rect != null, "Rect is null!");
         this.shape = rect;
         this.velX = velX;
         this.velY = velY;
@@ -33,6 +35,7 @@ public class PhysicalState {
     }
 
     public PhysicalState(Rect sha, Vector2f vel, Vector2f acc) {
+        Preconditions.checkArgument(sha != null, "Rect is null!");
         velX = vel.x;
         velY = vel.y;
         accX = acc.x;
@@ -49,7 +52,7 @@ public class PhysicalState {
     }
 
     public PhysicalState teleport(float x, float y) {
-        return new PhysicalState(shape.setPosition(x, y), 0, 0, 0, 0);
+        return new PhysicalState(shape.translateTo(x, y), 0, 0, 0, 0);
     }
 
     /** Return the state of the object after specified time has passed. On negative values, "rewinds" the state backward in time */
@@ -57,6 +60,9 @@ public class PhysicalState {
         //@formatter:off
         float newX = velX * millis + accX * millis * Math.abs(millis) / 2;
         float newY = velY * millis + accY * millis * Math.abs(millis) / 2;
+        if (shape == null) {
+            System.err.println("WTF??");
+        }
         return new PhysicalState(shape.translate(newX, newY),
                                  velX + accX * millis,
                                  velY + accY * millis,
@@ -84,8 +90,8 @@ public class PhysicalState {
 
     public Vector2f getPositionAt(float millis) {
         //@formatter:off
-        return new Vector2f(shape.getX() + velX * millis + accX * millis * millis / 2, 
-                            shape.getY() + velY * millis + accY * millis * millis / 2);
+        return new Vector2f(shape.getX() + velX * millis + accX * millis * Math.abs(millis) / 2, 
+                            shape.getY() + velY * millis + accY * millis * Math.abs(millis) / 2);
         //@formatter:on
     }
 
@@ -101,11 +107,11 @@ public class PhysicalState {
         return new Vector2f(accX, accY);
     }
 
-    public PhysicalState addAcceleration(float newAccX, float newAccY) {
+    public PhysicalState setAcceleration(float newAccX, float newAccY) {
         return new PhysicalState(shape, velX, velY, newAccX, newAccY);
     }
 
-    public PhysicalState setAcceleration(float addX, float addY) {
+    public PhysicalState addAcceleration(float addX, float addY) {
         return new PhysicalState(shape, velX, velY, accX + addX, accY + addY);
     }
 
@@ -118,12 +124,13 @@ public class PhysicalState {
     }
 
     public Rect getRectangle() {
-        return new Rect(shape);
+        // Rect is immutable
+        return shape;
     }
 
     public Rect getRectangleAt(float millis) {
         Vector2f v = getPositionAt(millis);
-        return shape.setPosition(v.x, v.y);
+        return shape.translateTo(v.x, v.y);
     }
 
     @Override

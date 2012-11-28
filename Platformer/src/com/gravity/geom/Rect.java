@@ -15,7 +15,7 @@ import com.google.common.base.Preconditions;
  * 
  */
 public class Rect {
-    private static final float EPS = 1e-6f;
+    private static final float EPS = 1e-4f;
 
     private final float x, y;
     private final float height, width;
@@ -31,6 +31,36 @@ public class Rect {
      */
     public static enum Corner {
         TOPLEFT, TOPRIGHT, BOTLEFT, BOTRIGHT;
+
+        public EnumSet<Side> getSides() {
+            return EnumSet.of(getVertical(), getHorizontal());
+        }
+
+        public Side getVertical() {
+            switch (this) {
+            case TOPLEFT:
+            case TOPRIGHT:
+                return Side.TOP;
+            case BOTLEFT:
+            case BOTRIGHT:
+                return Side.BOTTOM;
+            default:
+                throw new RuntimeException("Bad corner");
+            }
+        }
+
+        public Side getHorizontal() {
+            switch (this) {
+            case TOPLEFT:
+            case BOTLEFT:
+                return Side.LEFT;
+            case TOPRIGHT:
+            case BOTRIGHT:
+                return Side.RIGHT;
+            default:
+                throw new RuntimeException("Bad corner");
+            }
+        }
     }
 
     /**
@@ -46,6 +76,13 @@ public class Rect {
     public static enum Side {
         TOP, LEFT, BOTTOM, RIGHT;
 
+        /**
+         * Checks whether a set contains no opposing sides.
+         * 
+         * @param set
+         *            Set to check
+         * @return Whether or not set is "simple."
+         */
         public static boolean isSimpleSet(EnumSet<Side> set) {
             if (set.size() == 1) {
                 return true;
@@ -63,6 +100,45 @@ public class Rect {
                 }
             }
         }
+
+        public Side getOpposite() {
+            switch (this) {
+            case TOP:
+                return BOTTOM;
+            case LEFT:
+                return RIGHT;
+            case RIGHT:
+                return LEFT;
+            case BOTTOM:
+                return TOP;
+            default:
+                throw new RuntimeException("Bad side");
+            }
+        }
+
+        public static EnumSet<Side> opposite(EnumSet<Side> set) {
+            if (isSimpleSet(set)) {
+                if (set.size() == 1) {
+                    switch (set.iterator().next()) {
+                    case BOTTOM:
+                        return EnumSet.of(Side.TOP);
+                    case LEFT:
+                        return EnumSet.of(Side.RIGHT);
+                    case RIGHT:
+                        return EnumSet.of(Side.LEFT);
+                    case TOP:
+                        return EnumSet.of(Side.BOTTOM);
+                    default:
+                        return set;
+                    }
+                } else {
+                    return EnumSet.complementOf(set);
+                }
+            } else {
+                return set;
+            }
+        }
+
     }
 
     public Rect(Shape rect) {
@@ -229,8 +305,133 @@ public class Rect {
         return new Vector2f(x, y);
     }
 
-    public Rect setPosition(float x, float y) {
+    /**
+     * Translate rect to a different origin.
+     * 
+     * @param x
+     * @param y
+     * @return
+     */
+    public Rect translateTo(float x, float y) {
         return new Rect(x, y, width, height);
+    }
+
+    /**
+     * Translate rect so that the given side is at the given coordinate.
+     * 
+     * @param side
+     * @param pos
+     * @return
+     */
+    public Rect translateSideTo(Side side, float pos) {
+        switch (side) {
+        case TOP:
+        case BOTTOM:
+            return translate(0, pos - getSide(side));
+        case LEFT:
+        case RIGHT:
+            return translate(pos - getSide(side), 0);
+        default:
+            throw new RuntimeException("Bad side");
+        }
+    }
+
+    /**
+     * Get the coordinate of a given side.
+     * 
+     * @param side
+     * @return
+     */
+    public float getSide(Side side) {
+        switch (side) {
+        case TOP:
+            return y;
+        case LEFT:
+            return x;
+        case BOTTOM:
+            return y + height;
+        case RIGHT:
+            return x + width;
+        default:
+            throw new RuntimeException("Bad side");
+        }
+    }
+
+    /**
+     * Grow or shrink a rect so that the given side is at the given coordinate.
+     * 
+     * @param side
+     * @param pos
+     * @return
+     */
+    public Rect setSide(Side side, float pos) {
+        switch (side) {
+        case TOP:
+            if (height + y - pos < 0)
+                return null;
+            return new Rect(x, pos, width, height + y - pos);
+        case LEFT:
+            if (width + x - pos < 0)
+                return null;
+            return new Rect(pos, y, width + x - pos, height);
+        case BOTTOM:
+            if (pos - y < 0)
+                return null;
+            return new Rect(x, y, width, pos - y);
+        case RIGHT:
+            if (pos - x < 0)
+                return null;
+            return new Rect(x, y, pos - x, height);
+        default:
+            throw new RuntimeException("Bad side");
+        }
+    }
+
+    /**
+     * Return true if this is on the "inside" side of the extension of the given side on other.
+     * 
+     * @param side
+     * @param other
+     * @return
+     */
+    private boolean isInsideSide(Side side, Rect other) {
+        switch (side) {
+        case TOP:
+        case LEFT:
+            return other.getSide(side) < getSide(side);
+        case BOTTOM:
+        case RIGHT:
+            return other.getSide(side) > getSide(side);
+        default:
+            throw new RuntimeException("Bad side");
+        }
+    }
+
+    /**
+     * Translate this the smallest distance such that it is inside other.
+     * 
+     * @param other
+     * @return
+     */
+    public Rect translateInto(Rect other) {
+        if (width > other.getWidth() || height > other.getHeight()) {
+            return null;
+        }
+        Rect result = this;
+        for (Side s : Side.values()) {
+            if (!isInsideSide(s, other)) {
+                result = result.translateSideTo(s, other.getSide(s));
+            }
+        }
+        return result;
+    }
+    
+    public Rect translateIntoWithMargin(Rect other, float margin) {
+        other = other.setSide(Side.TOP, other.getSide(Side.TOP) + 2 * margin);
+        other = other.setSide(Side.LEFT, other.getSide(Side.LEFT) + 2 * margin);
+        other = other.translate(-margin, -margin);
+        
+        return translateInto(other);
     }
 
     public float getHeight() {
@@ -274,13 +475,17 @@ public class Rect {
         if (getClass() != obj.getClass())
             return false;
         Rect other = (Rect) obj;
-        if (Math.abs(height - other.height) > EPS)
+        float diff = Math.abs(height - other.height);
+        if (diff > EPS && diff / height > EPS)
             return false;
-        if (Math.abs(width - other.width) > EPS)
+        diff = Math.abs(width - other.width);
+        if (diff > EPS && diff / width > EPS)
             return false;
-        if (Math.abs(x - other.x) > EPS)
+        diff = Math.abs(x - other.x);
+        if (diff > EPS && diff / x > EPS)
             return false;
-        if (Math.abs(y - other.y) > EPS)
+        diff = Math.abs(y - other.y);
+        if (diff > EPS && diff / y > EPS)
             return false;
         return true;
     }

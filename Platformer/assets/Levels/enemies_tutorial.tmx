@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="80" height="24" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="betterBunnyDirt" tilewidth="32" tileheight="32">
+  <image source="betterBunnyDirt.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="2" name="bunnyTile" tilewidth="32" tileheight="32">
+  <image source="bunnyTile.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="3" name="perspective_walls" tilewidth="32" tileheight="32">
+  <image source="perspective_walls.png" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="67" name="levelMarkers" tilewidth="32" tileheight="32">
+  <image source="levelMarkers.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="83" name="lab-sheet" tilewidth="32" tileheight="32">
+  <image source="../lab-sheet.png" width="128" height="96"/>
+ </tileset>
+ <tileset firstgid="95" name="spikes" tilewidth="32" tileheight="32">
+  <image source="Spikes.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="96" name="bunnyTiles" tilewidth="32" tileheight="32">
+  <image source="bunnyTiles.png" width="128" height="64"/>
+ </tileset>
+ <layer name="collisions" width="80" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2ZUQqAIBAF945aGXT/c/RTEFEUzpaKb2ARpB7LGIgZzWw4VNrG+TTvVemj3FIVTBDkjyF/DPljyB9D/hjyx5A/hvwx5I8hf4wa/EXLO3uOJZo9UYO/3B5a7t0T+WPIH0P+GL37u9o/l5tnPf/hhkPG3+z7v4c/mtH79yd/ZTNa9jc5ZPTs783Z6ekuk65B7vsea09ZAafELTMAHgAA
+  </data>
+ </layer>
+ <layer name="spikes" width="80" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3VwQkAIAwDwG7q/lu4QH8BrXIHWSAptAoAAAAAAN6ymjDLzU1+uAf9ZfSX0V+m+1EnswGreDalAB4AAA==
+  </data>
+ </layer>
+ <objectgroup name="level markers" width="80" height="24">
+  <object name="finish" type="finish" x="2496" y="480" width="64" height="96"/>
+ </objectgroup>
+ <layer name="players" width="80" height="24">
+  <properties>
+   <property name="visible" value="0"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OoQ0AAAjAMH5D8P9HcAFITJvMLwIAAAAAAABuNeX3BLBqEQL2ywAeAAA=
+  </data>
+ </layer>
+ <layer name="help1" width="80" height="24">
+  <properties>
+   <property name="text" value="Do NOT fall off the left edge of the screen (WE NEED WALL OF DEATH ASSET)"/>
+   <property name="x" value="40"/>
+   <property name="y" value="540"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3QoQ0AAAgEsV+O/VdCoxEI2uQWuAQAAAAAAACmWvadf1xpxALfFgAeAAA=
+  </data>
+ </layer>
+ <layer name="help2" width="80" height="24">
+  <properties>
+   <property name="text" value="Do NOT walk on the spikes"/>
+   <property name="x" value="550"/>
+   <property name="y" value="450"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3QMQ0AAAgEsTeHf0soYCJhoU3OwCUAAAAAALNa9p1/AMClBqtFSuQAHgAA
+  </data>
+ </layer>
+ <layer name="falling spikes" width="80" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DMQ0AAAgDsDnFvwtE7IK0SROumyIAAAAAAADwxwJGuIafAB4AAA==
+  </data>
+ </layer>
+ <layer name="playerkeyed" width="80" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DMQ0AAAgDsJnFvwUU7CLhapMmAAAAAABAM88B4GIBsWmK3wAeAAA=
+  </data>
+ </layer>
+ <layer name="help3" width="80" height="24">
+  <properties>
+   <property name="text" value="In fact, don't touch the spikes at all"/>
+   <property name="x" value="1060"/>
+   <property name="y" value="275"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3QQQ0AAAgDsZnDvyVE7ENCm5yBSwAAAP6YIvwDAACA6xYv62C5AB4AAA==
+  </data>
+ </layer>
+ <layer name="help4" width="80" height="24">
+  <properties>
+   <property name="text" value="Always pay attention to $ new objects in your environment. $ They may behave in unexpected ways"/>
+   <property name="x" value="1600"/>
+   <property name="y" value="450"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3QAQ0AAAjDsJvDvyVkAKFNZmAJAAAAAMBONdx1/gHAPw1Uxj/kAB4AAA==
+  </data>
+ </layer>
+</map>

@@ -4,10 +4,10 @@ import org.newdawn.slick.geom.Vector2f;
 
 import com.gravity.entity.PhysicsEntity;
 import com.gravity.geom.Rect;
+import com.gravity.levels.GameplayControl;
 import com.gravity.physics.GravityPhysics;
 import com.gravity.physics.PhysicalState;
 import com.gravity.root.GameSounds;
-import com.gravity.root.GameplayControl;
 
 public class Player extends PhysicsEntity<GravityPhysics> {
 
@@ -46,9 +46,9 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     public String getName() {
         return name;
     }
-    
+
     public boolean isRunning() {
-        return moving && physics.isOnGround(this);
+        return moving && !physics.entitiesHitOnGround(this).isEmpty();
     }
 
     @Override
@@ -62,6 +62,10 @@ public class Player extends PhysicsEntity<GravityPhysics> {
         return builder.toString();
     }
 
+    public void kill() {
+        control.playerDies(this);
+    }
+
     // //////////////////////////////////////////////////////////////////////////
     // //////////////////////////KEY-PRESS METHODS///////////////////////////////
     // //////////////////////////////////////////////////////////////////////////
@@ -71,7 +75,7 @@ public class Player extends PhysicsEntity<GravityPhysics> {
      *            true if keydown, false if keyup
      */
     public void jump(boolean jumping) {
-        if (jumping && physics.isOnGround(this)) {
+        if (jumping && !physics.entitiesHitOnGround(this).isEmpty()) {
             moving = false;
             GameSounds.playSickRabbitBeat(); // TODO: clean this up
             setPhysicalState(state.setVelocity(state.velX, state.velY - JUMP_POWER));
@@ -84,7 +88,8 @@ public class Player extends PhysicsEntity<GravityPhysics> {
      */
     public void move(Movement direction) {
         switch (direction) {
-        case LEFT: case RIGHT: {
+        case LEFT:
+        case RIGHT: {
             moving = true;
             requested = direction;
             break;
@@ -126,10 +131,10 @@ public class Player extends PhysicsEntity<GravityPhysics> {
         super.finishUpdate(millis);
         switch (requested) {
         case LEFT:
-            setPhysicalState(state.setVelocity(-MOVEMENT_INCREMENT, state.velY));
+            setPhysicalState(state.setVelocity(Math.min(state.velX, -MOVEMENT_INCREMENT), state.velY));
             break;
         case RIGHT:
-            setPhysicalState(state.setVelocity(MOVEMENT_INCREMENT, state.velY));
+            setPhysicalState(state.setVelocity(Math.max(state.velX, MOVEMENT_INCREMENT), state.velY));
             break;
         default:
             // no-op
@@ -140,5 +145,11 @@ public class Player extends PhysicsEntity<GravityPhysics> {
         } else {
             slingshotStrength = 0;
         }
+    }
+
+    @Override
+    public void unavoidableCollisionFound() {
+        System.out.println("Player " + this.toString() + " was probably squashed by a moving platform.");
+        kill();
     }
 }

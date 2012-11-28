@@ -23,12 +23,12 @@
  </tileset>
  <layer name="collisions" width="110" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2ajQrDIAyEfUf7N9j7P8cQVqiuUZcl9tLlAyltabzeVXHMGEKYO9pUnG/v46Pz+W/bplT3Li0GPBA1cdF6F0SPEDWhgegRoiY0ED1C1IQGokeImtBA9OhME5rOfX29XNQ/mh8JC7klrtRkxQ8rOv+hbwqk3ObKPc8tBym3GhxNte9Au29t7pyb1HtY8YOrs7Xumyr3WnhuOaPHG7e255azazr+B+G56dTRxnOTrXMcEwtxXWIN5bnp1NGG0ll+H5w1Rgy8+dhzazNqvHlusljKrfbbIxLXKcr5BHmfwhmWcpN+RrOONp7bZ51f9hX1jHlqrNfaM4ybFyzmtgrV0Sbp1NrTtjL74Xgn5fcLz9ac7UApAAA=
+   H4sIAAAAAAAAC+2agQ6DIAxE+UfmdMn+/zsWkpk4RlnpOD20LyHbXChnjyJGYwhhUrRb9nt5fz6U/VvbAop7lhYDH4yarKDOhTFHjJrYYMwRoyY2GHPEqIkNxhwxamKDMUclTWw61/31/aDx2fKRGMG3xJGaRsnHKDqvMLYEk29T5T/37RMm32pYNNXmAXpsNCP51ro36XUerPnQHOtB2hda94QWTe4bdjxUvyv4tn0GYdW5jSHVlfuGg73etPfhLL5J81kzz1tg9w09FioOGkln/jzXMkfWfWHreuy+/WavenPf+mK5V2qJXfre0m9L7VoXheMS+XrC/J5CCa83TBw07tt3nH/eK9LUvFTrtfYM+60LI/o2d4qDJulEvdM2G8ex5K5Xvl9dewy2QCkAAA==
   </data>
  </layer>
  <layer name="spikes" width="110" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3aOQoAIAwEQH/q/39hKzYqiFdmwMIuYrOETQn2yAvOrfP+rH1f7/6KV+eOzr8BkdW5I0oOAQCAU3qZWxYHYIT9DQAAs6J3lGb7Wiv6aAUp5ULzQCkAAA==
+   H4sIAAAAAAAAC+3aQQrAIAwEQH/a//+ix0ovUghiujPgwVtkCQTJGLDHVXBOrffP3u9b3bvoWnc6uQHJ5rkjZQ6B3fRUT3LrSW49yQ0e+gHqJP23AwAArKTvKH3d16rYR7sBFVQdYUApAAA=
   </data>
  </layer>
  <objectgroup name="level markers" width="110" height="24">
@@ -44,17 +44,17 @@
  </layer>
  <layer name="playerkeyed" width="110" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3YQQrAIAwEwHzW/3+h1yAaLAVb6gyI5iS65mIEAMAzbVDnwXf0uZyW1ei8s/uIhXmXar8Tcstmud2Zd6je2in91muTda7f7jUAAAAA+Bt/bABQuwBVfaAzQCkAAA==
+   H4sIAAAAAAAAC+3YSwrAIAwFQC/r/a/QbQgqLaUfzAyIZiX6zMbWAADu6YM6Dv4j51Itq9F5Z/fRTsxvWe1XIbdoltuV+Wn5nVXtt6xP1rH+utcAAAAAYDf+2ABg7QAzimCSQCkAAA==
   </data>
  </layer>
- <layer name="fast5" width="110" height="24">
+ <layer name="fast2" width="110" height="24">
   <properties>
-   <property name="speed" value="30"/>
-   <property name="translationX" value="5"/>
+   <property name="speed" value="32"/>
+   <property name="translationX" value="2"/>
    <property name="translationY" value="0"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAHwZojM89EApAAA=
+   H4sIAAAAAAAAC+3OQQkAAAgAMUOK/aNoC0U2uP9FAADAPznV9gQAAAAAAAAAZzUnG44mQCkAAA==
   </data>
  </layer>
 </map>

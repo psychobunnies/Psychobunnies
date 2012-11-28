@@ -193,7 +193,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         }
 
         // Camera initialization
-        float panX = (playerA.getPhysicalState().getPosition().x + playerB.getPhysicalState().getPosition().x) / 2;
+        float panX = Math.min(playerA.getPhysicalState().getPosition().x, playerB.getPhysicalState().getPosition().x);
         panX = Math.max(0, panX - 300);
         PanningCamera pancam = new PanningCamera(2000, new Vector2f(panX, 0), new Vector2f(0.035f, 0), new Vector2f(map.getWidth()
                 - container.getWidth(), 0), container.getWidth(), container.getHeight());

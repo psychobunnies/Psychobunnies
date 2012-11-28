@@ -29,10 +29,11 @@ public class GravityPhysics implements Physics {
     private final float frictionStopCutoff; // the velocity below which friction makes you stop completely
     private final float frictionAccelRatio; // the maximum fraction of your velocity that friction acceleration may represent
     private final float movingTilePositionFeather;
+    private final float maxOnGroundFallSpeed;
     private static final float EPS = 1e-4f;
 
     GravityPhysics(CollisionEngine collisionEngine, float gravity, float backstep, float offsetGroundCheck, float groundFriction,
-            float frictionStopCutoff, float frictionAccelRatio, float movingTilePositionFeather) {
+            float frictionStopCutoff, float frictionAccelRatio, float movingTilePositionFeather, float maxOnGroundFallSpeed) {
         Preconditions.checkArgument(backstep <= 0f, "Backstep has to be non-positive.");
         Preconditions.checkArgument(movingTilePositionFeather > 0, "Moving tile position feather amount must be positive.");
         this.collisionEngine = collisionEngine;
@@ -43,6 +44,7 @@ public class GravityPhysics implements Physics {
         this.frictionStopCutoff = frictionStopCutoff;
         this.frictionAccelRatio = frictionAccelRatio;
         this.movingTilePositionFeather = movingTilePositionFeather;
+        this.maxOnGroundFallSpeed = maxOnGroundFallSpeed;
     }
 
     public List<Collidable> entitiesHitOnGround(Entity entity) {
@@ -67,7 +69,8 @@ public class GravityPhysics implements Physics {
         List<Collidable> coll = entitiesHitOnGround(entity);
         if (!coll.isEmpty()) {
             PhysicalState state = entity.getPhysicalState();
-            if (state.velY > 0 || state.accY > 0) {
+            if (state.velY >= 0 || state.accY >= 0) {
+                float minPositiveYVel = 0f;
                 float minY = Float.POSITIVE_INFINITY;
                 boolean isBouncy = false;
                 for (Collidable c : coll) {
@@ -75,12 +78,19 @@ public class GravityPhysics implements Physics {
                         isBouncy = true;
                         break;
                     } else {
-                        minY = Math.min(minY, c.getPhysicalState().getRectangle().getY());
+                        float tmp = c.getPhysicalState().getRectangle().getY();
+                        if (minY >= tmp) {
+                            minY = tmp;
+                            minPositiveYVel = Math.min(minPositiveYVel, c.getPhysicalState().velY);
+                        }
                     }
                 }
                 if (!isBouncy) {
-                    state = new PhysicalState(state.getRectangle().translate(0, minY - state.getRectangle().getMaxY() - EPS), state.velX, 0,
-                            state.accX, Math.min(state.accY, 0));
+                    Rect r = state.getRectangle().translate(0, minY - state.getRectangle().getMaxY() - EPS);
+                    if (minPositiveYVel > maxOnGroundFallSpeed) {
+                        r = state.getRectangle();
+                    }
+                    state = new PhysicalState(r, state.velX, Math.min(state.velY, 0f), state.accX, Math.min(state.accY, 0));
                 }
             }
             if (Math.abs(state.velX) <= frictionStopCutoff) {
@@ -119,7 +129,7 @@ public class GravityPhysics implements Physics {
                         velY = Math.abs(velY);
                         accY = Math.max(accY, 0);
                     } else if (other instanceof MovingEntity && other.getPhysicalState().getVelocity().y > 0) {
-                        r = r.translate(0f, movingTilePositionFeather);
+                        r = r.translate(0f, Math.max(movingTilePositionFeather, other.getPhysicalState().getVelocity().y * millis));
                         if (collisionEngine.collisionsInLayer(millis, r, LayeredCollisionEngine.FLORA_LAYER, true).isEmpty()) {
                             velY = Math.max(velY, 0);
                             accY = Math.max(accY, 0);
@@ -136,7 +146,7 @@ public class GravityPhysics implements Physics {
                         velX = Math.abs(velX);
                         accX = Math.max(accX, 0);
                     } else if (other instanceof MovingEntity && other.getPhysicalState().getVelocity().x > 0) {
-                        r = r.translate(movingTilePositionFeather, 0f);
+                        r = r.translate(Math.max(movingTilePositionFeather, other.getPhysicalState().getVelocity().x * millis), 0f);
                         if (collisionEngine.collisionsInLayer(millis, r, LayeredCollisionEngine.FLORA_LAYER, true).isEmpty()) {
                             velX = Math.max(velX, 0);
 
@@ -165,7 +175,7 @@ public class GravityPhysics implements Physics {
                         velY = -Math.abs(velY);
                         accY = Math.min(accY, 0);
                     } else if (other instanceof MovingEntity && other.getPhysicalState().getVelocity().y < 0) {
-                        r = r.translate(0f, -movingTilePositionFeather);
+                        r = r.translate(0f, Math.min(-movingTilePositionFeather, other.getPhysicalState().getVelocity().y * millis));
                         if (collisionEngine.collisionsInLayer(millis, r, LayeredCollisionEngine.FLORA_LAYER, true).isEmpty()) {
                             velY = Math.min(velY, 0);
                             accY = Math.min(accY, 0);
@@ -190,7 +200,7 @@ public class GravityPhysics implements Physics {
                         velX = -Math.abs(velX);
                         accX = Math.min(accX, 0);
                     } else if (other instanceof MovingEntity && other.getPhysicalState().getVelocity().x < 0) {
-                        r = r.translate(-movingTilePositionFeather, 0f);
+                        r = r.translate(Math.min(-movingTilePositionFeather, other.getPhysicalState().getVelocity().x * millis), 0f);
                         if (collisionEngine.collisionsInLayer(millis, r, LayeredCollisionEngine.FLORA_LAYER, true).isEmpty()) {
                             velX = Math.min(velX, 0);
 
@@ -236,10 +246,9 @@ public class GravityPhysics implements Physics {
 
             for (Side s : sides) {
                 possiblePos = possiblePos.setSide(s, otherRect.getSide(s.getOpposite()));
-                System.out.println("possiblePos: " + possiblePos);
                 if (possiblePos == null) {
                     if (entity instanceof Player) {
-                        System.err.println("killing 1");
+                        System.err.println("Crushing player; no possible positions");
                         ((Player) entity).kill();
                     }
                     break;
@@ -248,10 +257,10 @@ public class GravityPhysics implements Physics {
         }
         Rect r = entity.getPhysicalState().getRectangle();
 
-        r = r.translateIntoWithMargin(possiblePos, 0.5f);
+        r = r.translateIntoWithMargin(possiblePos, 0.2f);
         if (r == null) {
             if (entity instanceof Player) {
-                System.err.println("killing 2");
+                System.err.println("Crushing player; possible positions too small");
                 ((Player) entity).kill();
             }
             return entity.getPhysicalState().snapshot(backstep);

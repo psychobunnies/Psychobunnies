@@ -2,6 +2,7 @@ package com.gravity.root;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
@@ -35,6 +36,13 @@ public class GameWinState extends BasicGameState {
     @Override
     public void mouseClicked(int button, int x, int y, int clickCount) {
         if (restart.contains(x, y)) {
+            game.enterState(MainMenuState.ID);
+        }
+    }
+
+    @Override
+    public void keyPressed(int key, char c) {
+        if (key == Input.KEY_RETURN) {
             game.enterState(MainMenuState.ID);
         }
     }

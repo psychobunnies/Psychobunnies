@@ -14,6 +14,7 @@ import com.google.common.collect.Multimap;
 import com.gravity.entity.TriggeredTextCollidable;
 import com.gravity.geom.Rect;
 import com.gravity.geom.Rect.Side;
+import com.gravity.map.LevelFinishZone;
 
 /**
  * Collision engine using the new Rect system. Also supports having multiple collision layers. Collidables within a layer will not have collisions
@@ -675,12 +676,15 @@ public class LayeredCollisionEngine implements CollisionEngine {
     }
 
     @Override
-    public List<Collidable> collisionsInLayer(float time, Rect rect, Integer layer) {
+    public List<Collidable> collisionsInLayer(float time, Rect rect, Integer layer, boolean ignoreTextAndFinish) {
         Preconditions.checkArgument(time >= 0, "Time since last update() call must be nonnegative");
 
         boolean collides;
         List<Collidable> result = Lists.newArrayList();
         for (Collidable collB : collidables.get(layer).getNearbyCollidables(rect)) {
+            if (ignoreTextAndFinish && (collB instanceof TriggeredTextCollidable || collB instanceof LevelFinishZone)) {
+                continue;
+            }
             collides = rect.intersects(collB.getPhysicalState().getRectangleAt(time));
             if (collides) {
                 result.add(collB);

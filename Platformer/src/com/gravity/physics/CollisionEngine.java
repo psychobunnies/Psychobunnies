@@ -17,7 +17,7 @@ public interface CollisionEngine {
 
     public List<RectCollision> checkAgainstLayer(float time, Collidable collidable, Integer layer);
 
-    public List<Collidable> collisionsInLayer(float millis, Rect rect, Integer layer);
+    public List<Collidable> collisionsInLayer(float millis, Rect rect, Integer layer, boolean ignoreTextAndFinish);
 
     public void stop();
 

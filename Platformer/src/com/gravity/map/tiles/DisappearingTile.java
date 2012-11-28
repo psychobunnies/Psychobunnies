@@ -28,7 +28,7 @@ public final class DisappearingTile extends StaticCollidable {
 
     /** Method that the controller uses to check if it's safe for all tiles to materialize */
     public boolean isColliding() {
-        return !engine.collisionsInLayer(0f, this.getPhysicalState().getRectangle(), LayeredCollisionEngine.FAUNA_LAYER).isEmpty();
+        return !engine.collisionsInLayer(0f, this.getPhysicalState().getRectangle(), LayeredCollisionEngine.FAUNA_LAYER, false).isEmpty();
     }
 
 }

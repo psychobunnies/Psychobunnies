@@ -19,7 +19,7 @@
  </layer>
  <layer name="players" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJztw6ENAAAIA7Bp/j8YM43DtUkT4DINAAAAAAAAAF8WheYAFQ==
+   eJztzjENAAAIwDAkcOBfK5ggcLTJ/kUAAAAAAAAAsKWmvJ4A3mu3sAAl
   </data>
  </layer>
  <layer name="spikes" width="90" height="24">
@@ -81,7 +81,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztzqENADAIAEEGqEB0/1nbBMMGCO6S9x8BsFv+7vTEIqcFAAAAAAAAlAcBWABJ
+   eJzt0CEOACAMA8A9AIHY/98KGr1sgrukpqppBNRY0wM+4ed6+yafzs8AAAAAAABApwNleABJ
   </data>
  </layer>
 </map>

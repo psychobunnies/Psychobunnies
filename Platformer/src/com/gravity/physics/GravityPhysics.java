@@ -186,11 +186,11 @@ public class GravityPhysics implements Physics {
                         velY = Math.min(velY, 0);
                         accY = Math.min(accY, 0);
                         if (!movedToGround) {
-                            movedToGround = true;
                             Rect nr = r.translate(0f, other.getPhysicalState().getRectangle().getY() - r.getMaxY() - EPS);
                             if (collisionEngine.collisionsInLayer(millis, nr, LayeredCollisionEngine.FLORA_LAYER, true).isEmpty()) {
                                 // move the collidable exactly on the ground
                                 r = nr;
+                                movedToGround = true;
                             }
                         }
                     }

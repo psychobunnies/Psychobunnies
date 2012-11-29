@@ -69,7 +69,7 @@ public class GravityPhysics implements Physics {
         List<Collidable> coll = entitiesHitOnGround(entity);
         if (!coll.isEmpty()) {
             PhysicalState state = entity.getPhysicalState();
-            if (state.velY >= 0 || state.accY >= 0) {
+            if (state.velY >= 0) {
                 float minPositiveYVel = 0f;
                 float minY = Float.POSITIVE_INFINITY;
                 boolean isBouncy = false;

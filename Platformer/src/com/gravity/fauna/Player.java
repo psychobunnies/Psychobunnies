@@ -25,12 +25,16 @@ public class Player extends PhysicsEntity<GravityPhysics> {
 
     private final float MAX_SLING_STRENGTH = 0.75f; // 1 before reset
     private final float SLING_SPEED = 1f / 400f; // 500f before reset
+    private final float JUMP_COOLDOWN = 50f;
 
     private final GameplayControl control;
 
     // GAME STATE STUFF
     private final String name;
     private Movement requested = Movement.STOP;
+    private boolean jumpExecuted = false;
+    private float jumpCooldown = JUMP_COOLDOWN;
+
     // for rendering
     private boolean moving = false;
 
@@ -75,8 +79,9 @@ public class Player extends PhysicsEntity<GravityPhysics> {
      *            true if keydown, false if keyup
      */
     public void jump(boolean jumping) {
-        if (jumping && !physics.entitiesHitOnGround(this).isEmpty()) {
+        if (jumping && !jumpExecuted && !physics.entitiesHitOnGround(this).isEmpty()) {
             moving = false;
+            jumpExecuted = true;
             GameSounds.playSickRabbitBeat(); // TODO: clean this up
             setPhysicalState(state.setVelocity(state.velX, state.velY - JUMP_POWER));
         }
@@ -125,6 +130,18 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     // //////////////////////////////////////////////////////////////////////////
     // //////////////////////////ON-TICK METHODS/////////////////////////////////
     // //////////////////////////////////////////////////////////////////////////
+
+    @Override
+    public void startUpdate(float millis) {
+        super.startUpdate(millis);
+        if (jumpExecuted) {
+            jumpCooldown -= millis;
+            if (jumpCooldown <= 0f) {
+                jumpCooldown = JUMP_COOLDOWN;
+                jumpExecuted = false;
+            }
+        }
+    }
 
     @Override
     public void finishUpdate(float millis) {

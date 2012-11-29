@@ -249,8 +249,8 @@ public class GravityPhysics implements Physics {
                 if (possiblePos == null) {
                     if (entity instanceof Player) {
                         System.err.println("Crushing player; no possible positions");
-                        ((Player) entity).kill();
                     }
+                    entity.unavoidableCollisionFound();
                     break;
                 }
             }
@@ -261,10 +261,10 @@ public class GravityPhysics implements Physics {
         if (r == null) {
             if (entity instanceof Player) {
                 System.err.println("Crushing player; possible positions too small");
-                ((Player) entity).kill();
             }
+            entity.unavoidableCollisionFound();
             return entity.getPhysicalState().snapshot(backstep);
         }
-        return entity.getPhysicalState().teleport(r.getX(), r.getY());
+        return entity.getPhysicalState().teleport(r.getX(), r.getY()).killMovement();
     }
 }

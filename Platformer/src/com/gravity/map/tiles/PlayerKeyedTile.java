@@ -40,7 +40,7 @@ public class PlayerKeyedTile extends AbstractEntity implements Renderer, Resetab
 
     public PlayerKeyedTile(Rect shape, CollisionEngine collider, TileRendererDelegate renderer, TileRendererDelegate yellowRenderer,
             TileRendererDelegate pinkRenderer, TileRendererDelegate warningRenderer, Layer layer, int x, int y) {
-        super(new PhysicalState(shape, 0f, 0f));
+        super(new PhysicalState(shape, 0f, 0f, 0f));
         this.shape = shape;
         this.keyedPlayer = null;
         this.collider = collider;

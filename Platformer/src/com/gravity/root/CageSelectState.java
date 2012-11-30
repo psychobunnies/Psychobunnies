@@ -1,4 +1,4 @@
-package com.gravity.levels;
+package com.gravity.root;
 
 import java.util.List;
 
@@ -12,6 +12,10 @@ import org.newdawn.slick.state.transition.Transition;
 
 import com.google.common.collect.Lists;
 import com.gravity.fauna.Player;
+import com.gravity.levels.GameplayState;
+import com.gravity.levels.MenuCage;
+import com.gravity.levels.RenderList;
+import com.gravity.levels.Renderer;
 
 public abstract class CageSelectState extends GameplayState {
 

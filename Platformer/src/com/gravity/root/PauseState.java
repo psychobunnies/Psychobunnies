@@ -1,4 +1,4 @@
-package com.gravity.levels;
+package com.gravity.root;
 
 import java.util.List;
 
@@ -6,6 +6,10 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import com.google.common.collect.Lists;
+import com.gravity.levels.CageRenderer;
+import com.gravity.levels.GameplayState;
+import com.gravity.levels.MenuCage;
+import com.gravity.levels.Renderer;
 
 public class PauseState extends CageSelectState {
     

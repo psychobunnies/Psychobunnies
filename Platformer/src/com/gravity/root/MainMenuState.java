@@ -1,4 +1,4 @@
-package com.gravity.levels;
+package com.gravity.root;
 
 import java.util.List;
 import java.util.SortedSet;
@@ -7,7 +7,10 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import com.google.common.collect.Lists;
-import com.gravity.root.CreditsState;
+import com.gravity.levels.CageRenderer;
+import com.gravity.levels.LevelInfo;
+import com.gravity.levels.MenuCage;
+import com.gravity.levels.Renderer;
 
 /**
  * The main menu loop.
@@ -21,7 +24,7 @@ public class MainMenuState extends CageSelectState {
     private final LevelInfo[] levels;
 
     public MainMenuState(LevelInfo[] levels) throws SlickException {
-        super("Main Menu", "assets/mainmenu.tmx", ID);
+        super("Main Menu", "assets/mainmenu2.tmx", ID);
         this.levels = levels;
     }
 
@@ -41,7 +44,7 @@ public class MainMenuState extends CageSelectState {
             throw new RuntimeException(e);
         }
 
-        MenuCage quitCage = new MenuCage(quitRend.getRect(), MainMenuState.ID);
+        MenuCage quitCage = new MenuCage(quitRend.getRect(), GameQuitState.ID);
         MenuCage optCage = new MenuCage(optRend.getRect(), CreditsState.ID);
         renderers.add(quitRend);
         renderers.add(optRend);

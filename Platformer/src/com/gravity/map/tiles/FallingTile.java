@@ -3,7 +3,6 @@ package com.gravity.map.tiles;
 import java.util.Collection;
 import java.util.Random;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 
 import com.gravity.entity.AbstractEntity;
@@ -27,8 +26,8 @@ public class FallingTile extends AbstractEntity implements Renderer {
     private boolean falling = false;
     private Random rand = new Random();
 
-    public FallingTile(GameplayState gameState, Rect shape, TileRendererDelegate renderer, int x, int y) {
-        super(new PhysicalState(shape.translateTo(x * 32, y * 32), 0, 0, 0, 0));
+    public FallingTile(GameplayState gameState, Rect shape, TileRendererDelegate renderer) {
+        super(new PhysicalState(shape, 0, 0, 0, 0, 0));
         this.renderer = renderer;
         this.gameState = gameState;
         this.startX = this.state.getPosition().x;
@@ -58,8 +57,9 @@ public class FallingTile extends AbstractEntity implements Renderer {
     @Override
     public void render(Graphics g, int offsetX, int offsetY) {
         renderer.render(g, offsetX, offsetY, state.getRectangle());
-        g.setColor(Color.cyan);
-        g.draw(state.getRectangle().translate(offsetX, offsetY).toShape());
+        // if we ever need hitboxes again
+        // g.setColor(Color.cyan);
+        // g.draw(state.getRectangle().translate(offsetX, offsetY).toShape());
     }
 
     @Override

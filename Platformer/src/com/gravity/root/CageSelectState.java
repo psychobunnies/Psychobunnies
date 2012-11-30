@@ -8,8 +8,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
-import org.newdawn.slick.state.transition.Transition;
-
 import com.google.common.collect.Lists;
 import com.gravity.fauna.Player;
 import com.gravity.levels.GameplayState;
@@ -21,15 +19,11 @@ public abstract class CageSelectState extends GameplayState {
 
     private static final int SELECT_KEY = Input.KEY_ENTER;
     private List<MenuCage> cages;
-    protected Transition fadeIn;
-    protected Transition fadeOut;
 
     public CageSelectState(String levelName, String mapFile, int id) throws SlickException {
         super(levelName, mapFile, id);
         
         cages = Lists.newLinkedList();
-        fadeIn = new FadeInTransition();
-        fadeOut = new FadeOutTransition();
     }
 
     @Override
@@ -40,7 +34,7 @@ public abstract class CageSelectState extends GameplayState {
     public void enterCageState(MenuCage cage) {
         try {
             game.getState(cage.getToState()).init(container, game);
-            game.enterState(cage.getToState(), fadeOut, fadeIn);
+            game.enterState(cage.getToState(), new FadeOutTransition(), new FadeInTransition());
         } catch (SlickException e) {
             e.printStackTrace();
         }

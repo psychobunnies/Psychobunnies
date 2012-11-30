@@ -210,10 +210,9 @@ public class TileWorld implements GameWorld {
             List<MovingEntity> colls = processLayer(layer.name, new CollidableCreator<MovingEntity>() {
                 @Override
                 public MovingEntity createCollidable(Rect r) {
-                    TileType tileType = TileType.toTileType(map, (int) (r.getX() / tileWidth), (int) (r.getY() / tileHeight), layer.index);
+                    TileType tileType = TileType.toTileType(map, Math.round(r.getX()) / tileWidth, Math.round(r.getY()) / tileHeight, layer.index);
                     TileRendererDelegate renderer = new TileRendererDelegate(map, tileType);
                     return new MovingEntity(renderer, r, transX * tileWidth, transY * tileHeight, speed);
-                    // return new MovingTile(controller, r, transX * tileWidth, transY * tileHeight, speed);
                 }
             });
             entityNoCalls.addAll(colls);
@@ -241,10 +240,8 @@ public class TileWorld implements GameWorld {
 
                     TileType tileType = TileType.toTileType(map, tile);
                     TileRendererDelegate renderer = new TileRendererDelegate(map, tileType);
-                    MovingEntity stompColl = new MovingEntity(renderer, r, 0, (int) (minBelowY - r.getMaxY()), STOMP_SPEED_FORWARD,
+                    MovingEntity stompColl = new MovingEntity(renderer, r, 0, (Math.round(minBelowY - r.getMaxY())), STOMP_SPEED_FORWARD,
                             STOMP_SPEED_BACKWARD);
-                    // MovingTile stompColl = new MovingTile(controller, r, 0, (int) (minBelowY - r.getMaxY()), STOMP_SPEED_FORWARD,
-                    // STOMP_SPEED_BACKWARD);
 
                     movingCollMap.put(stomps, Lists.newArrayList(stompColl));
                     entityNoCalls.add(stompColl);

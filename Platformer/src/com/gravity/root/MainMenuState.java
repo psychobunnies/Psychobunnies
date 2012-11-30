@@ -1,4 +1,4 @@
-package com.gravity.levels;
+package com.gravity.root;
 
 import java.util.List;
 import java.util.SortedSet;
@@ -14,7 +14,11 @@ import org.newdawn.slick.state.transition.Transition;
 
 import com.google.common.collect.Lists;
 import com.gravity.fauna.Player;
-import com.gravity.root.CreditsState;
+import com.gravity.levels.CageRenderer;
+import com.gravity.levels.GameplayState;
+import com.gravity.levels.LevelInfo;
+import com.gravity.levels.MenuCage;
+import com.gravity.levels.RenderList;
 
 /**
  * The main menu loop.
@@ -66,7 +70,7 @@ public class MainMenuState extends GameplayState {
             throw new RuntimeException(e);
         }
 
-        MenuCage quitCage = new MenuCage(quitRend.getRect(), MainMenuState.ID);
+        MenuCage quitCage = new MenuCage(quitRend.getRect(), GameQuitState.ID);
         MenuCage optCage = new MenuCage(optRend.getRect(), CreditsState.ID);
         renderers.add(quitRend, RenderList.FLORA);
         renderers.add(optRend, RenderList.FLORA);
@@ -96,6 +100,8 @@ public class MainMenuState extends GameplayState {
             renderers.add(levelRend, RenderList.FLORA);
             cages.add(levelCage);
         }
+
+        collider.removeCollidable(finish);
 
         game.unpauseRender();
         game.unpauseUpdate();

@@ -7,7 +7,6 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import com.gravity.levels.GameplayState;
 import com.gravity.levels.LevelInfo;
-import com.gravity.levels.MainMenuState;
 
 /**
  * Main root class for the entire game. In order to add levels to the game, please add an entry to the levels table below, using the style of previous
@@ -58,6 +57,7 @@ public class PlatformerGame extends StateBasedGame {
         addState(new CreditsState());
         addState(new GameOverState());
         addState(new GameWinState());
+        addState(new GameQuitState());
     }
 
     public static void main(String args[]) throws SlickException {

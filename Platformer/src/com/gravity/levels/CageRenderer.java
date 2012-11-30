@@ -6,7 +6,7 @@ import org.newdawn.slick.SlickException;
 
 import com.gravity.geom.Rect;
 
-class CageRenderer implements Renderer {
+public class CageRenderer implements Renderer {
     private final Image image;
     private final String label;
     private final float x, y;

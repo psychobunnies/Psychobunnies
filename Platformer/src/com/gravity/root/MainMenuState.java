@@ -1,5 +1,6 @@
 package com.gravity.root;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.SortedSet;
 
@@ -32,7 +33,7 @@ public class MainMenuState extends CageSelectState {
     protected CagesAndRenderers constructCagesAndRenderers() {
         List<MenuCage> cages = Lists.newLinkedList();
         List<Renderer> renderers = Lists.newLinkedList();
-        
+
         Vector2f quitLoc = map.getQuitLocation();
         Vector2f optLoc = map.getOptionsLocation();
 
@@ -52,8 +53,12 @@ public class MainMenuState extends CageSelectState {
         cages.add(optCage);
 
         SortedSet<Vector2f> levelLocs = map.getLevelLocations();
-        int i = -1;
+        LinkedList<Vector2f> reversedLevelLocs = Lists.newLinkedList();
         for (Vector2f loc : levelLocs) {
+            reversedLevelLocs.addFirst(loc);
+        }
+        int i = -1;
+        for (Vector2f loc : reversedLevelLocs) {
             i++;
             LevelInfo info = null;
             for (LevelInfo level : levels) {
@@ -74,7 +79,7 @@ public class MainMenuState extends CageSelectState {
             renderers.add(levelRend);
             cages.add(levelCage);
         }
-        
+
         return new CagesAndRenderers(cages, renderers);
     }
 

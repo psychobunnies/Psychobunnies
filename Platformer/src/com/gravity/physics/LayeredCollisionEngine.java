@@ -34,8 +34,8 @@ public class LayeredCollisionEngine implements CollisionEngine {
     public static final Integer FAUNA_LAYER = 0;
     public static final Integer FALLING_LAYER = 1;
 
-    private static final int PARTS_PER_TICK = 3;
-    private static final int MIN_INCREMENT = 5;
+    private static final int PARTS_PER_TICK = 7;
+    private static final float MIN_INCREMENT = 3f;
 
     // package private for testing
     final Map<Integer, CollidableContainer> collidables;
@@ -287,6 +287,8 @@ public class LayeredCollisionEngine implements CollisionEngine {
         Vector2f avel, bvel, aacc, bacc, xSolnT, ySolnT;
         avel = a.getPhysicalState().getVelocity();
         bvel = b.getPhysicalState().getVelocity();
+        avel.x += a.getPhysicalState().getSurfaceVelocityX();
+        bvel.x += b.getPhysicalState().getSurfaceVelocityX();
         aacc = a.getPhysicalState().getAcceleration();
         bacc = b.getPhysicalState().getAcceleration();
         Rect arect, brect;

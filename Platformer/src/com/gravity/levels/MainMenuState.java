@@ -35,7 +35,7 @@ public class MainMenuState extends GameplayState {
     private Transition fadeOut;
 
     public MainMenuState(LevelInfo[] levels) throws SlickException {
-        super("Main Menu", "assets/mainmenu.tmx", ID);
+        super("Main Menu", "assets/mainmenu2.tmx", ID);
         this.levels = levels;
         fadeIn = new FadeInTransition();
         fadeOut = new FadeOutTransition();
@@ -145,6 +145,6 @@ public class MainMenuState extends GameplayState {
 
     @Override
     public void playerFinishes(Player player) {
-        throw new RuntimeException("Player " + player + " just found level finish in the main menu!");
+        // throw new RuntimeException("Player " + player + " just found level finish in the main menu!");
     }
 }

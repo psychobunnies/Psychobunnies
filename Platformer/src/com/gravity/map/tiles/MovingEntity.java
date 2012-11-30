@@ -20,10 +20,10 @@ import com.gravity.physics.RectCollision;
 
 public class MovingEntity implements Entity, Renderer {
 
-    private TileRendererDelegate renderer;
+    private final TileRendererDelegate renderer;
     private Rect shape;
-    private Vector2f origPosition;
-    private Vector2f velForward, velBackward, finalPosition;
+    private final Vector2f origPosition;
+    private final Vector2f velForward, velBackward, finalPosition;
     private boolean reversed;
 
     public MovingEntity(TileRendererDelegate renderer, Rect shape, int transX, int transY, float speed) {
@@ -48,12 +48,24 @@ public class MovingEntity implements Entity, Renderer {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("MovingCollidable [shape=");
+        builder.append("MovingEntity [shape=");
         builder.append(shape);
+        builder.append(", origPosition=");
+        builder.append(origPosition);
+        builder.append(", velForward=");
+        builder.append(velForward);
+        builder.append(", velBackward=");
+        builder.append(velBackward);
+        builder.append(", finalPosition=");
+        builder.append(finalPosition);
         builder.append(", reversed=");
         builder.append(reversed);
         builder.append("]");
         return builder.toString();
+    }
+
+    public boolean isReversed() {
+        return reversed;
     }
 
     public Vector2f getOrigPosition() {
@@ -143,7 +155,7 @@ public class MovingEntity implements Entity, Renderer {
     @Override
     public PhysicalState getPhysicalStateAt(float millis) {
         RectWithReversal result = getRectWithReversal(millis);
-        return new PhysicalState(result.rect, result.reverse ? velBackward : velForward);
+        return new PhysicalState(result.rect, result.reverse ? velBackward : velForward, 0);
     }
 
     @Override

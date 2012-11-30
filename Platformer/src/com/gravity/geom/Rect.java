@@ -365,7 +365,6 @@ public class Rect {
      * @return
      */
     public Rect setSide(Side side, float pos) {
-        System.out.println("setSide: " + this + "\n\t" + side + ": " + pos);
         switch (side) {
         case TOP:
             if (height + y - pos < 0)

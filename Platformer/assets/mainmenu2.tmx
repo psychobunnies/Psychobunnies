@@ -10,8 +10,8 @@
   <image source="Levels/levelMarkers.png" width="128" height="128"/>
  </tileset>
  <layer name="collisions" width="32" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NkYGBgxoEZ8cgRi/GZwQjFuAA+OWIBIfNH7R889pOSdtABKekPl/30BqP2j9pPahnLgsc8JhLNGiz+H7V/ZNtPjbQPA6TkgcHi/1H7R7b9lLaxKWmbAwB1voamAAwAAA==
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYMaBGfHIEYvxmcEIxbgAPjliASHzR+0fPPaTknbQASnpD5f99Aaj9o/aT2oZy4LHPCYSzRos/h+1f2TbT420DwOk5IHB4v9R+0e2/ZS2sSlpmwMAYzYBsQ==
   </data>
  </layer>
  <layer name="helptext1" width="32" height="24">
@@ -21,22 +21,22 @@
    <property name="x" value="360"/>
    <property name="y" value="500"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkbBKBgFo2DwAn4CeLjbT20AAJMGuqMADAAA
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSgYBaNg8AJ+Ani4209tAAD94ADx
   </data>
  </layer>
  <layer name="players" width="32" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkbBKBgFo2AUEAMEgZh3oB1BIQAA2N6FiAAMAAA=
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSgYBaNgFBADBIGYd6AdQSEAACLEAB8=
   </data>
  </layer>
  <layer name="level markers" width="32" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjAAGEyZSjlv5RMAoGEqCnUUrSLDXNGgWjgB5gNP2PglGAANRM/4MRAADDniwzAAwAAA==
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFowABhMmUI1YNMWaMglEwUAA9fVKSXqlp1igYBfQAo+l/FIwCVEBuuh0K6R0ALVYBCw==
   </data>
  </layer>
  <objectgroup name="special levels" width="32" height="24">
-  <object name="options" type="level" x="96" y="704" width="32" height="32"/>
+  <object name="options" type="level" x="128" y="702" width="32" height="32"/>
   <object name="quit" type="level" x="896" y="704" width="32" height="32"/>
  </objectgroup>
  <layer name="moving2" width="32" height="24">
@@ -45,8 +45,8 @@
    <property name="translationX" value="2"/>
    <property name="translationY" value="0"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3HMQoAAAjEsAP//2cXV92FBDo0gT9q2h4AgFsD5F48GAAMAAA=
+  <data encoding="base64" compression="zlib">
+   eJztxzEKAAAIxLAD//9nF1fdhQQ6NIE/atoeAIBbA3tIAA0=
   </data>
  </layer>
 </map>

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.SortedSet;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
@@ -206,16 +207,28 @@ public class TileWorld implements GameWorld {
                 continue;
             }
 
+            int r, g, b;
+            Color color;
+            r = Integer.parseInt(layer.props.getProperty("r", "-1"));
+            g = Integer.parseInt(layer.props.getProperty("g", "-1"));
+            b = Integer.parseInt(layer.props.getProperty("b", "-1"));
+
+            if (r < 0 || g < 0 || b < 0 || r > 1 || g > 1 || b > 1) {
+                color = Color.white;
+            } else {
+                color = new Color(r, g, b);
+            }
+
             // if text layer is found, make layer invisible
             layer.visible = false;
             TriggeredText triggeredText;
-            triggeredText = new TriggeredText(x, y, text);
+            triggeredText = new TriggeredText(x, y, text, color);
             System.out.println("found text layer: " + text);
             triggeredTexts.add(triggeredText);
             try {
                 for (Tile tile : layer.getTiles()) {
-                    Rect r = new Rect(tile.x * tileWidth, tile.y * tileHeight, tileWidth, tileHeight);
-                    TriggeredTextCollidable tte = new TriggeredTextCollidable(r, triggeredText);
+                    Rect rect = new Rect(tile.x * tileWidth, tile.y * tileHeight, tileWidth, tileHeight);
+                    TriggeredTextCollidable tte = new TriggeredTextCollidable(rect, triggeredText);
                     entityCallColls.add(tte);
                 }
             } catch (SlickException e) {
@@ -484,7 +497,8 @@ public class TileWorld implements GameWorld {
     /**
      * Return the location of a cage in the special levels layer.
      * 
-     * @param name Name of the object to find.
+     * @param name
+     *            Name of the object to find.
      * @return null if the location cannot be found.
      */
     public Vector2f getSpecialLocation(String name) {
@@ -499,7 +513,7 @@ public class TileWorld implements GameWorld {
         System.err.println("WARNING: could not find " + name + " location: special levels layer does not exist");
         return null;
     }
-    
+
     /**
      * Return the location of the quit cage.
      * 

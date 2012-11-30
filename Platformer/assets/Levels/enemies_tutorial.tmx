@@ -124,14 +124,14 @@
    <property name="y" value="450"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3RAQkAAAjAMMvZv5IhVFDY4AkeAQAAAAAAsCcbMc+PW/wAAPivADYRCXqAJQAA
+   H4sIAAAAAAAAC+3RQQ0AAAjEMMzh3xIi4HEkbTIFqwIAAAAAYKsXcc+PLH5k8SOLHwAA/w0gKk/YgCUAAA==
   </data>
  </layer>
  <layer name="moving2" width="100" height="24">
   <properties>
    <property name="speed" value="96"/>
    <property name="translationX" value="0"/>
-   <property name="translationY" value="-6"/>
+   <property name="translationY" value="-3"/>
   </properties>
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3RoREAIBDAMHZEsP8mrPAGriJR9V2L1/ag+cePFj9a/Gjxo8WPFj9a/Gjxo8WPFj9a/Gjxo8WPFj9a/Gjxo+UMGgCANy4Jr/ZYgCUAAA==
@@ -139,12 +139,12 @@
  </layer>
  <layer name="help7" width="100" height="24">
   <properties>
-   <property name="text" value="But sometimes it will crush you instead"/>
+   <property name="text" value="But sometimes it will $ crush you instead"/>
    <property name="x" value="2650"/>
    <property name="y" value="450"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3RMQ0AAAzDsJIbf0pjsHPqYUtBkAQAAAAAAKDDHPHPjy5+AAB0WlmnJH2AJQAA
+   H4sIAAAAAAAAC+3RMQ0AAAzDsJEbf0pjsLPqYUtBkBkAAAAAAJL2iTw/uvjRxY8ufgAAdDrJPUH8gCUAAA==
   </data>
  </layer>
 </map>

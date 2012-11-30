@@ -21,6 +21,7 @@ public final class GameSounds {
 
     static {
         try {
+            //@formatter:off
             jumpSounds = Lists.newArrayList(
                     new Sound("./assets/Sound/jump_ha.ogg"),
                     new Sound("./assets/Sound/jump_ho.ogg"),
@@ -32,8 +33,10 @@ public final class GameSounds {
                     new Sound("./assets/Sound/slingshot_2.ogg"),
                     new Sound("./assets/Sound/slingshot_3.ogg"),
                     new Sound("./assets/Sound/slingshot_4.ogg"),
-                    new Sound("./assets/Sound/slingshot_5.ogg"));
+                    new Sound("./assets/Sound/slingshot_5.ogg"),
+                    new Sound("./assets/Sound/slingshot_whee.ogg"));
             backgroundMusic = new Music("./assets/Sound/Caketown 1.ogg");
+            //@formatter:on
         } catch (SlickException e) {
             throw new RuntimeException(e);
         }
@@ -44,7 +47,7 @@ public final class GameSounds {
         backgroundMusic.loop();
 
     }
-    
+
     private static void playRandomSound(List<Sound> sounds) {
         sounds.get(random.nextInt(sounds.size())).play();
     }
@@ -52,7 +55,7 @@ public final class GameSounds {
     public static void playJumpSound() {
         playRandomSound(jumpSounds);
     }
-    
+
     public static void playSlingshotSound() {
         playRandomSound(slingshotSounds);
     }

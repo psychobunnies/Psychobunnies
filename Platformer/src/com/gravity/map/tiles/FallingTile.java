@@ -59,7 +59,8 @@ public class FallingTile extends AbstractEntity implements Renderer {
     public void render(Graphics g, int offsetX, int offsetY) {
         renderer.render(g, offsetX, offsetY, state.getRectangle());
         g.setColor(Color.cyan);
-        g.draw(state.getRectangle().translate(offsetX, offsetY).toShape());
+        // if we ever need hitboxes again
+        // g.draw(state.getRectangle().translate(offsetX, offsetY).toShape());
     }
 
     @Override

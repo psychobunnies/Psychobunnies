@@ -14,28 +14,26 @@ public final class GameSounds {
     private GameSounds() {
     }
 
-    @SuppressWarnings("unused")
-    private static final Music gameMusic;
     private static final List<Sound> jumpSounds;
     private static final List<Sound> slingshotSounds;
-    private static final Music gameMusic3;
+    private static final Music backgroundMusic;
     private static final Random random;
 
     static {
         try {
-            gameMusic = new Music("./assets/Sound/Forminas.wav");
             jumpSounds = Lists.newArrayList(
                     new Sound("./assets/Sound/jump_ha.ogg"),
                     new Sound("./assets/Sound/jump_ho.ogg"),
                     new Sound("./assets/Sound/jump_woo.ogg"),
-                    new Sound("./assets/Sound/jump_hup.ogg"));
+                    new Sound("./assets/Sound/jump_hup.ogg"),
+                    new Sound("./assets/Sound/yippee.wav"));
             slingshotSounds = Lists.newArrayList(
                     new Sound("./assets/Sound/slingshot_1.ogg"),
                     new Sound("./assets/Sound/slingshot_2.ogg"),
                     new Sound("./assets/Sound/slingshot_3.ogg"),
                     new Sound("./assets/Sound/slingshot_4.ogg"),
                     new Sound("./assets/Sound/slingshot_5.ogg"));
-            gameMusic3 = new Music("./assets/Sound/Caketown 1.ogg");
+            backgroundMusic = new Music("./assets/Sound/Caketown 1.ogg");
         } catch (SlickException e) {
             throw new RuntimeException(e);
         }
@@ -43,7 +41,7 @@ public final class GameSounds {
     }
 
     public static void playBGM() {
-        gameMusic3.loop();
+        backgroundMusic.loop();
 
     }
     

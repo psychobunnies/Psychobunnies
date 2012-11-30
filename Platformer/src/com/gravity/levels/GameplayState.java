@@ -47,6 +47,8 @@ import com.gravity.physics.PhysicsFactory;
 import com.gravity.root.GameOverState;
 import com.gravity.root.GameSounds;
 import com.gravity.root.GameWinState;
+import com.gravity.root.MainMenuState;
+import com.gravity.root.RestartGameplayState;
 import com.gravity.root.PauseState;
 
 public class GameplayState extends BasicGameState implements GameplayControl, Resetable {
@@ -394,8 +396,9 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
 
     @Override
     public void playerDies(Player player) {
-        reset();
-        game.enterState(GameOverState.ID, new FadeOutTransition(Color.red.darker()), new FadeInTransition(Color.red.darker()));
+        RestartGameplayState pts = (RestartGameplayState)(game.getState(RestartGameplayState.ID));
+        pts.setToState(this);
+        game.enterState(RestartGameplayState.ID, new FadeOutTransition(Color.red.darker(), 300), null);
     }
 
     @Override

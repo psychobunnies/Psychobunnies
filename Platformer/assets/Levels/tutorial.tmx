@@ -17,7 +17,7 @@
  </tileset>
  <layer name="collisions" width="32" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2W6wqAMAiFfcdu6/1fpEYNhhxLt1P0I0GqXfy0qWwUkanSdD5XNc7SVL3Puw7ynNzZHn7+q/xRjjNv4ee9V3mZlG3ER9/M+D08xM9+63/zJt+ajwo6X4tf1qKxVumNv/hQehMa1/2LzbfW6jnkA5N/JR6f0Vn21H+U751n8hcCv+RZrbrneXPW4x8zfo/vWlv5jL7dk38svnU3snoMm8+MP2rrC/y7mkWyGPuitvJ6VDPRGorcuXVubb93ulMADAAA
+   H4sIAAAAAAAAC+2W6w6DMAiFecfqrO//Iq5xTRpyqNAeN3+MhKi98EGA2kVE1kbz57mrcZbm5v311iT3yZXt9Od/lb/ImfMRftnbq8usbCM++mbG7+EhftsPv+Bb81FB+bX4dS0aG5XZ+KsPKBd1XJ9fbL61Vs8hH5j8nnh8Rrmc6f8o3zvP5G8Efq2zVvWZ561Zj3/M+D2+ax3lM87tmfpj8a27Ue+f8NT4o7aewL/qWSSbsS9qq6xHPRPtocidW9fWAZ4c948ADAAA
   </data>
  </layer>
  <layer name="spikes" width="32" height="24" visible="0">
@@ -28,7 +28,7 @@
  <objectgroup name="level markers" width="32" height="24">
   <object name="finish" type="finish" x="896" y="448" width="128" height="64"/>
  </objectgroup>
- <layer name="players" width="32" height="24" visible="0">
+ <layer name="players" width="32" height="24">
   <properties>
    <property name="visible" value="0"/>
   </properties>

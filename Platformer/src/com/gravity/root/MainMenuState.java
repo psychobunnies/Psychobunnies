@@ -1,4 +1,4 @@
-package com.gravity.levels;
+package com.gravity.root;
 
 import java.util.List;
 import java.util.SortedSet;
@@ -14,7 +14,12 @@ import org.newdawn.slick.state.transition.Transition;
 
 import com.google.common.collect.Lists;
 import com.gravity.fauna.Player;
-import com.gravity.root.CreditsState;
+import com.gravity.fauna.Player.Movement;
+import com.gravity.levels.CageRenderer;
+import com.gravity.levels.GameplayState;
+import com.gravity.levels.LevelInfo;
+import com.gravity.levels.MenuCage;
+import com.gravity.levels.RenderList;
 
 /**
  * The main menu loop.
@@ -35,7 +40,7 @@ public class MainMenuState extends GameplayState {
     private Transition fadeOut;
 
     public MainMenuState(LevelInfo[] levels) throws SlickException {
-        super("Main Menu", "assets/mainmenu.tmx", ID);
+        super("Main Menu", "assets/mainmenu2.tmx", ID);
         this.levels = levels;
         fadeIn = new FadeInTransition();
         fadeOut = new FadeOutTransition();
@@ -66,7 +71,7 @@ public class MainMenuState extends GameplayState {
             throw new RuntimeException(e);
         }
 
-        MenuCage quitCage = new MenuCage(quitRend.getRect(), MainMenuState.ID);
+        MenuCage quitCage = new MenuCage(quitRend.getRect(), GameQuitState.ID);
         MenuCage optCage = new MenuCage(optRend.getRect(), CreditsState.ID);
         renderers.add(quitRend, RenderList.FLORA);
         renderers.add(optRend, RenderList.FLORA);
@@ -75,6 +80,7 @@ public class MainMenuState extends GameplayState {
 
         SortedSet<Vector2f> levelLocs = map.getLevelLocations();
         int i = -1;
+        int size = levelLocs.size();
         for (Vector2f loc : levelLocs) {
             i++;
             LevelInfo info = null;
@@ -93,9 +99,11 @@ public class MainMenuState extends GameplayState {
                 throw new RuntimeException(e);
             }
             MenuCage levelCage = new MenuCage(levelRend.getRect(), info.stateId);
-            renderers.add(levelRend, RenderList.FLORA);
+            renderers.add(levelRend, RenderList.FLORA + size - i);
             cages.add(levelCage);
         }
+
+        collider.removeCollidable(finish);
 
         game.unpauseRender();
         game.unpauseUpdate();
@@ -106,6 +114,8 @@ public class MainMenuState extends GameplayState {
         for (MenuCage cage : cages) {
             if (cage.getRect().contains(x, y)) {
                 try {
+                    playerA.move(Movement.STOP);
+                    playerB.move(Movement.STOP);
                     game.getState(cage.getToState()).init(container, game);
                     game.enterState(cage.getToState(), fadeOut, fadeIn);
                 } catch (SlickException e) {
@@ -121,6 +131,8 @@ public class MainMenuState extends GameplayState {
             for (MenuCage cage : cages) {
                 if (cage.intersects(playerA.getPhysicalState().getRectangle(), playerB.getPhysicalState().getRectangle())) {
                     try {
+                        playerA.move(Movement.STOP);
+                        playerB.move(Movement.STOP);
                         game.getState(cage.getToState()).init(container, game);
                         game.enterState(cage.getToState(), fadeOut, fadeIn);
                     } catch (SlickException e) {
@@ -145,6 +157,6 @@ public class MainMenuState extends GameplayState {
 
     @Override
     public void playerFinishes(Player player) {
-        throw new RuntimeException("Player " + player + " just found level finish in the main menu!");
+        // throw new RuntimeException("Player " + player + " just found level finish in the main menu!");
     }
 }

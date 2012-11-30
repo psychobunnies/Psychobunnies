@@ -13,7 +13,7 @@ public final class PhysicsFactory {
     public static final float DEFAULT_REHANDLE_BACKSTEP = -15f;
     public static final float DEFAULT_OFFSET_GROUND_CHECK = 5f;
     public static final float DEFAULT_MOVING_FEATHER = 0.5f;
-    public static final float DEFAULT_MAX_ON_GROUND_FALL_SPEED = 1.0f / 200f;
+    public static final float DEFAULT_MAX_ON_GROUND_FALL_SPEED = 1.0f / 800f;
 
     public static GravityPhysics createDefaultGravityPhysics(CollisionEngine engine) {
         return new GravityPhysics(engine, DEFAULT_GRAVITY, DEFAULT_REHANDLE_BACKSTEP, DEFAULT_OFFSET_GROUND_CHECK, DEFAULT_GROUND_FRICTION,

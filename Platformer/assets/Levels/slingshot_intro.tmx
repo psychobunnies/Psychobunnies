@@ -1,25 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="150" height="30" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="150" height="24" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="bunnyTile" tilewidth="32" tileheight="32">
   <image source="bunnyTile.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="2" name="betterBunnyDirt" tilewidth="32" tileheight="32">
   <image source="betterBunnyDirt.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="3" name="Spikes" tilewidth="32" tileheight="32">
+ <tileset firstgid="3" name="spikes" tilewidth="32" tileheight="32">
   <image source="Spikes.png" width="32" height="32"/>
  </tileset>
- <layer name="spikes" width="150" height="30">
-  <data encoding="base64" compression="zlib">
-   eJztw8EJAAAIAKGD9t+5JYI+ChYAAAAAAAAAAAAAANQcBQAAAAAA/ixMDwA3
+ <tileset firstgid="4" name="lab-sheet" tilewidth="32" tileheight="32">
+  <image source="../lab-sheet.png" width="128" height="96"/>
+ </tileset>
+ <tileset firstgid="16" name="levelMarkers" tilewidth="32" tileheight="32">
+  <image source="levelMarkers.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="32" name="bunnyTiles" tilewidth="32" tileheight="32">
+  <image source="bunnyTiles.png" width="128" height="64"/>
+ </tileset>
+ <layer name="spikes" width="150" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3QAQkAAAgEsQf7dzaAAVTY4ApcAgAAAAAAAAAAAAAAAABTLfTZtRcNndFUAUA4AAA=
   </data>
  </layer>
- <layer name="collisions" width="150" height="30">
-  <data encoding="base64" compression="zlib">
-   eJzt2VEOwiAQhOHq/Q/tCdqyOzOUyv8lvhjYBTNIjccBAAAAAAAAt8/Jy13P2eOu3wq1dvcdfE+pp4xz951dK2X2+a0iV9laKU99zqPOctXNemW/zvNErrRxbld9O2uqznHtm1xp49zIVbZWyttzVb2rOrly3IfkShvnNtK3srbuPtT9/1uu7n7jkavsPNf8VK2uFZ8P3H0rd5WSK+U+JFfZOsm+7u8253xyla2T7Euu5tktVyPPk5X/GFzz3bnqrMFpp1zhmnKeUudEPedPrx8AAAAAAADA2n7EDgFg
+ <layer name="collisions" width="150" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3ZbQvCIBSG4UGt+v+/ePVBWJF6XnW1+wLpQ85zpAdltCwAAAAAAAAAAAA4u/U5boJxn9zf3uye0HcNnhetVdfS07ectliyW2pk5D5z7Uhny5X2uRE1jrR2FHIVNzfiudlrR/n1XFnuBG2usmtokSs/yXml7c1yXmXW0DpCrnrve+RKNpdcvev18C+50txV1lxl1dAiV36a8ypjLyNqaJErP3I1dm2ps+VKcld5cxVdQ4tc+aydurWzJGrPo2poWdeW/F8nHQ/n9/t5M7zqXiqj9F77bO2ltmZkjWjl3V76m32ODZkdDwpAOAAA
   </data>
  </layer>
- <objectgroup name="level markers" width="150" height="30">
-  <object name="finish" type="finish" x="4768" y="0" width="32" height="608"/>
+ <objectgroup name="level markers" width="150" height="24">
+  <object name="finish" type="finish" x="4768" y="64" width="32" height="672"/>
  </objectgroup>
+ <layer name="fast15" width="150" height="24">
+  <properties>
+   <property name="speed" value="30"/>
+   <property name="translationX" value="-16"/>
+   <property name="translationY" value="0"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OoQ0AMAwEsSdt9t84XSEooLZ0/BIAAAAAAAAAAAAAAADgd+d1B9XOJjDQ/3ee1kA4AAA=
+  </data>
+ </layer>
+ <layer name="falling spikes" width="150" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3QwQkAMAgDQMH9d+4GbaFB+riD4C+KVTl9SLIrnZt7djPhdcf0TwAAAAAAAAAAAAAAAAD41wL+mrBKQDgAAA==
+  </data>
+ </layer>
+ <layer name="slow10" width="150" height="24">
+  <properties>
+   <property name="speed" value="16"/>
+   <property name="translationX" value="10"/>
+   <property name="translationY" value="0"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ8HFAAAAAAAAAAAAAAAAADwZkvEChtAOAAA
+  </data>
+ </layer>
+ <layer name="fast3" width="150" height="24">
+  <properties>
+   <property name="speed" value="34"/>
+   <property name="translationX" value="-2"/>
+   <property name="translationY" value="0"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3IsQkAAAjAMBfx/4/1CBclgS6NAAAAAAAAAOC6nGrhAwAAAAAA8EcDYp/WeEA4AAA=
+  </data>
+ </layer>
+ <layer name="checkpoint1" width="150" height="24">
+  <properties>
+   <property name="type" value="checkpoint"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3SsQkAIBAEwe/BwMD++xQzC/B4kBm4/IKtYlyD13RFgq5I0BUJuiJBVyToigRdkaArEk5Xq/sE3zldze4TAAAAAAAAAEBt3PFRfEA4AAA=
+  </data>
+ </layer>
+ <layer name="players" width="150" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OMQ0AAAjAMFxw4N8nKCDh4mmT/YsAAAAAAAAAAAAAAAAArnKq7wmARQO4Z3DGQDgAAA==
+  </data>
+ </layer>
+ <layer name="checkpoint2" width="150" height="24">
+  <properties>
+   <property name="type" value="checkpoint"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3SIQ6AMAAEwf4BgeD//yzYajYNYSY5f2LH4MuOZfAGLVHQFQVdUdAVBV1R0BUFXVHQFQVdUdAVhaer8961+wgAAAAAAADwWxM92jrDQDgAAA==
+  </data>
+ </layer>
+ <layer name="vfast10" width="150" height="24">
+  <properties>
+   <property name="speed" value="42"/>
+   <property name="translationX" value="10"/>
+   <property name="translationY" value="0"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OsQ0AMAjAMJbC/x/TD1iQOtSWsicCAAAAAAAAAAAAAAAA4C/nlkP17A52NDsgCiNAOAAA
+  </data>
+ </layer>
+ <layer name="playerkeyed" width="150" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DoQkAAAgAMJ/x/xetRougsMEiAAAAAAAA4Ids4aocBgAAAAAAgG0FkV4N9EA4AAA=
+  </data>
+ </layer>
 </map>

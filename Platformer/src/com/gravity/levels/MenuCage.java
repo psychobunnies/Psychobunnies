@@ -2,7 +2,7 @@ package com.gravity.levels;
 
 import com.gravity.geom.Rect;
 
-class MenuCage {
+public class MenuCage {
     private Rect rect;
     private int state;
 

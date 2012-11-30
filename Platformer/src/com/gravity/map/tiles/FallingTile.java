@@ -3,7 +3,6 @@ package com.gravity.map.tiles;
 import java.util.Collection;
 import java.util.Random;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 
 import com.gravity.entity.AbstractEntity;
@@ -58,8 +57,8 @@ public class FallingTile extends AbstractEntity implements Renderer {
     @Override
     public void render(Graphics g, int offsetX, int offsetY) {
         renderer.render(g, offsetX, offsetY, state.getRectangle());
-        g.setColor(Color.cyan);
-        g.draw(state.getRectangle().translate(offsetX, offsetY).toShape());
+        // g.setColor(Color.cyan);
+        // g.draw(state.getRectangle().translate(offsetX, offsetY).toShape());
     }
 
     @Override

@@ -9,7 +9,7 @@ import com.gravity.geom.Rect;
 
 public final class PartitionedCollidableContainer implements CollidableContainer {
 
-    private final Map<Integer, CollidableContainer> partitions = Maps.newIdentityHashMap();
+    private final Map<Integer, CollidableContainer> partitions = Maps.newHashMap();
     private final SimpleCollidableContainer allCollidables = new SimpleCollidableContainer();
 
     private static final int PARTITION_SIZE = 32;
@@ -39,7 +39,7 @@ public final class PartitionedCollidableContainer implements CollidableContainer
     }
 
     private int getPartition(float x) {
-        return ((int) x / PARTITION_SIZE);
+        return (Math.round(x) / PARTITION_SIZE);
     }
 
     @Override

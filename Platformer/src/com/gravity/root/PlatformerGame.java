@@ -70,6 +70,7 @@ public class PlatformerGame extends StateBasedGame {
         addState(new CreditsState());
         addState(new GameOverState());
         addState(new GameWinState());
+        addState(new PauseState());
         addState(new GameQuitState());
     }
 

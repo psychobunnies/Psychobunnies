@@ -18,6 +18,10 @@ public class MenuCage {
     public int getToState() {
         return state;
     }
+    
+    public void setToState(int state) {
+        this.state = state;
+    }
 
     public boolean intersects(Rect... rects) {
         for (Rect rect : rects) {

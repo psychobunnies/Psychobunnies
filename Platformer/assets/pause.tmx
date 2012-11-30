@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="32" height="24" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="camera" value="stalking"/>
+ </properties>
+ <tileset firstgid="1" name="lab-sheet" tilewidth="32" tileheight="32">
+  <image source="lab-sheet.png" width="128" height="96"/>
+ </tileset>
+ <tileset firstgid="13" name="levelMarkers" tilewidth="32" tileheight="32">
+  <image source="Levels/levelMarkers.png" width="128" height="128"/>
+ </tileset>
+ <layer name="collisions" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYB4gzAjFAwVG7R+1f9R+TMDEAMmf7Ay48y4bHjlsmIUE++kFRu0ftR9f+qc0zSPnn9H0P2r/qP2j9mOzfyDb3wD3lAF3
+  </data>
+ </layer>
+ <layer name="helptext1" width="32" height="24">
+  <properties>
+   <property name="text" value="click on a cage or$press 'Enter' while both bunnies$are in a cage to select"/>
+   <property name="type" value="help"/>
+   <property name="x" value="384"/>
+   <property name="y" value="192"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjILBAxgH2MxR+wkDfjQ8nOwfaDAU4n/U/lH7h6v9rDSwnxZmUgMAAA3hAJs=
+  </data>
+ </layer>
+ <layer name="players" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztzqENAAAIwDAeQPD/s/ACGEybzC8CAHZyqu8JAE4auLQAHw==
+  </data>
+ </layer>
+ <objectgroup name="special levels" width="32" height="24">
+  <object name="resume" type="level" x="746" y="416" width="32" height="32"/>
+  <object name="mainmenu" type="level" x="244" y="417" width="32" height="32"/>
+ </objectgroup>
+</map>

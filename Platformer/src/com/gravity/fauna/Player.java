@@ -79,7 +79,7 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     public void jump(boolean jumping) {
         if (jumping && !jumpExecuted && !physics.entitiesHitOnGround(this).isEmpty()) {
             jumpExecuted = true;
-            GameSounds.playSickRabbitBeat(); // TODO: clean this up
+            GameSounds.playJumpSound(); // TODO: clean this up
             setPhysicalState(state.setVelocity(state.velX, state.velY - JUMP_POWER));
         }
     }

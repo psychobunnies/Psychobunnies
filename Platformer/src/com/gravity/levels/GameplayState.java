@@ -6,6 +6,7 @@ import java.util.List;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Polygon;
@@ -46,6 +47,7 @@ import com.gravity.physics.PhysicsFactory;
 import com.gravity.root.GameOverState;
 import com.gravity.root.GameSounds;
 import com.gravity.root.GameWinState;
+import com.gravity.root.PauseState;
 
 public class GameplayState extends BasicGameState implements GameplayControl, Resetable {
 
@@ -79,6 +81,8 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
 
     protected final List<Resetable> resetableTiles = Lists.newArrayList();
     private final String levelName;
+    private Image pinkHand;
+    private Image yellowHand;
 
     public GameplayState(String levelName, String mapFile, int id) throws SlickException {
         ID = id;
@@ -213,24 +217,63 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         Vector2f offset = camera.getViewport().getPosition();
         renderers.render(g, (int) offset.x, (int) offset.y);
+        float playerBX = playerB.getPhysicalState().getRectangle().getCenter().x + offset.x;
+        float playerAX = playerA.getPhysicalState().getRectangle().getCenter().x + offset.x;
 
         // Draw slingshot indicator
         if (playerA.slingshot) {
-            g.setColor(Color.pink);
-            g.setLineWidth(playerA.slingshotStrength * 10);
-            g.drawLine(playerA.getPhysicalState().getRectangle().getCenter().x + offset.x, playerA.getPhysicalState().getRectangle().getCenter().y
-                    + offset.y, playerB.getPhysicalState().getRectangle().getCenter().x + offset.x, playerB.getPhysicalState().getRectangle()
-                    .getCenter().y
-                    + offset.y);
+
+            if (playerAX < playerBX) {
+                pinkHand = new Image("./assets/HandAssets/HandRight.png");
+                g.setColor(new Color(255, 168, 236));
+                g.setLineWidth(playerA.slingshotStrength * 10);
+                g.drawImage(pinkHand, playerB.getPhysicalState().getRectangle().getCenter().x + offset.x - 15, playerB.getPhysicalState()
+                        .getRectangle().getCenter().y
+                        + offset.y);
+                g.drawLine(playerA.getPhysicalState().getRectangle().getCenter().x + offset.x,
+                        playerA.getPhysicalState().getRectangle().getCenter().y + offset.y + 15, playerB.getPhysicalState().getRectangle()
+                                .getCenter().x
+                                + offset.x - 8, playerB.getPhysicalState().getRectangle().getCenter().y + offset.y + 15);
+            } else {
+                pinkHand = new Image("./assets/HandAssets/HandLeft.png");
+                g.setColor(new Color(255, 168, 236));
+                g.setLineWidth(playerA.slingshotStrength * 10);
+                g.drawImage(pinkHand, playerB.getPhysicalState().getRectangle().getCenter().x + offset.x - 15, playerB.getPhysicalState()
+                        .getRectangle().getCenter().y
+                        + offset.y);
+                g.drawLine(playerA.getPhysicalState().getRectangle().getCenter().x + offset.x,
+                        playerA.getPhysicalState().getRectangle().getCenter().y + offset.y + 15, playerB.getPhysicalState().getRectangle()
+                                .getCenter().x
+                                + offset.x + 10, playerB.getPhysicalState().getRectangle().getCenter().y + offset.y + 15);
+
+            }
+
         }
         if (playerB.slingshot) {
-            g.setColor(Color.yellow);
-            g.setLineWidth(playerB.slingshotStrength * 10);
-            g.drawLine(playerB.getPhysicalState().getRectangle().getCenter().x + offset.x, playerB.getPhysicalState().getRectangle().getCenter().y
-                    + offset.y, playerA.getPhysicalState().getRectangle().getCenter().x + offset.x, playerA.getPhysicalState().getRectangle()
-                    .getCenter().y
-                    + offset.y);
+            if (playerBX < playerAX) {
+                pinkHand = new Image("./assets/HandAssets/HandRightYellow.png");
+                g.setColor(new Color(255, 246, 0));
+                g.setLineWidth(playerB.slingshotStrength * 10);
+                g.drawImage(pinkHand, playerA.getPhysicalState().getRectangle().getCenter().x + offset.x - 15, playerA.getPhysicalState()
+                        .getRectangle().getCenter().y
+                        + offset.y);
+                g.drawLine(playerB.getPhysicalState().getRectangle().getCenter().x + offset.x,
+                        playerB.getPhysicalState().getRectangle().getCenter().y + offset.y + 15, playerA.getPhysicalState().getRectangle()
+                                .getCenter().x
+                                + offset.x - 8, playerA.getPhysicalState().getRectangle().getCenter().y + offset.y + 15);
+            } else {
+                pinkHand = new Image("./assets/HandAssets/HandLeftYellow.png");
+                g.setColor(new Color(255, 246, 0));
+                g.setLineWidth(playerB.slingshotStrength * 10);
+                g.drawImage(pinkHand, playerA.getPhysicalState().getRectangle().getCenter().x + offset.x - 15, playerA.getPhysicalState()
+                        .getRectangle().getCenter().y
+                        + offset.y);
+                g.drawLine(playerB.getPhysicalState().getRectangle().getCenter().x + offset.x,
+                        playerB.getPhysicalState().getRectangle().getCenter().y + offset.y + 15, playerA.getPhysicalState().getRectangle()
+                                .getCenter().x
+                                + offset.x + 10, playerA.getPhysicalState().getRectangle().getCenter().y + offset.y + 15);
 
+            }
         }
         g.setColor(Color.white);
 
@@ -337,6 +380,16 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         if (!controllerA.handleKeyRelease(key)) {
             controllerB.handleKeyRelease(key);
         }
+        
+        if (key == Input.KEY_ESCAPE && canPause()) {
+            PauseState pause = (PauseState)(game.getState(PauseState.ID));
+            pause.setGameplayState(this);
+            game.enterState(PauseState.ID, new FadeOutTransition(), new FadeInTransition());
+        }
+    }
+    
+    public boolean canPause() {
+        return true;
     }
 
     @Override
@@ -383,6 +436,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
      */
     @Override
     public void specialMoveSlingshot(Player slingshoter, float strength) {
+        GameSounds.playSlingshotSound();
         if (slingshoter == playerA) {
             playerB.slingshotMe(strength, playerA.getPhysicalState().getPosition().sub(playerB.getPhysicalState().getPosition()));
         } else if (slingshoter == playerB) {

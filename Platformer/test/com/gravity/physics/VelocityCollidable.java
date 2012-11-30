@@ -9,7 +9,7 @@ import com.gravity.geom.Rect;
 public class VelocityCollidable extends AbstractCollidable {
 
     public VelocityCollidable(Rect pos, float velX, float velY) {
-        super(new PhysicalState(pos, new Vector2f(velX, velY)));
+        super(new PhysicalState(pos, new Vector2f(velX, velY), 0f));
     }
 
     @Override

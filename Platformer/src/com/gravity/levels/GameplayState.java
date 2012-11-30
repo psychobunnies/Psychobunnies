@@ -322,7 +322,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         PhysicalState state = player.getPhysicalState();
         player.setPhysicalState(new PhysicalState(state.getRectangle().translateTo(
                 Math.min(state.getRectangle().getX(), -offsetX2 + container.getWidth() - 32), state.getRectangle().getY()), state.velX, state.velY,
-                state.accX, state.accY));
+                state.accX, state.accY, state.surfaceVelX));
     }
 
     @Override

@@ -35,14 +35,12 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     private boolean jumpExecuted = false;
     private float jumpCooldown = JUMP_COOLDOWN;
 
-    // for rendering
-    private boolean moving = false;
-
+    private boolean moveInProgress = false;
     public boolean slingshot;
     public float slingshotStrength = 0;
 
     public Player(GameplayControl control, GravityPhysics physics, String name, Vector2f startpos) {
-        super(new PhysicalState(BASE_SHAPE.translate(startpos.x, startpos.y), DEFAULT_VELOCITY.copy()), physics);
+        super(new PhysicalState(BASE_SHAPE.translate(startpos.x, startpos.y), DEFAULT_VELOCITY.copy(), 0f), physics);
         this.name = name;
         this.control = control;
     }
@@ -52,7 +50,7 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     }
 
     public boolean isRunning() {
-        return moving && !physics.entitiesHitOnGround(this).isEmpty();
+        return moveInProgress && !physics.entitiesHitOnGround(this).isEmpty();
     }
 
     @Override
@@ -80,7 +78,6 @@ public class Player extends PhysicsEntity<GravityPhysics> {
      */
     public void jump(boolean jumping) {
         if (jumping && !jumpExecuted && !physics.entitiesHitOnGround(this).isEmpty()) {
-            moving = false;
             jumpExecuted = true;
             GameSounds.playSickRabbitBeat(); // TODO: clean this up
             setPhysicalState(state.setVelocity(state.velX, state.velY - JUMP_POWER));
@@ -95,14 +92,20 @@ public class Player extends PhysicsEntity<GravityPhysics> {
         switch (direction) {
         case LEFT:
         case RIGHT: {
-            moving = true;
             requested = direction;
             break;
         }
         case STOP: {
-            moving = false;
             requested = direction;
-            setPhysicalState(state.setVelocity(0f, state.velY));
+            if (moveInProgress) {
+                moveInProgress = false;
+                float vel = state.velX;
+                if (vel >= 0) {
+                    setPhysicalState(state.setVelocity(Math.max(0, vel - MOVEMENT_INCREMENT), state.velY));
+                } else {
+                    setPhysicalState(state.setVelocity(Math.min(0, vel + MOVEMENT_INCREMENT), state.velY));
+                }
+            }
             break;
         }
         }
@@ -125,6 +128,7 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     public void slingshotMe(float strength, Vector2f direction) {
         Vector2f velocity = direction.copy().normalise().scale(strength);
         state = state.setVelocity(velocity.x, velocity.y);
+        moveInProgress = false;
     }
 
     // //////////////////////////////////////////////////////////////////////////
@@ -148,9 +152,11 @@ public class Player extends PhysicsEntity<GravityPhysics> {
         super.finishUpdate(millis);
         switch (requested) {
         case LEFT:
+            moveInProgress = true;
             setPhysicalState(state.setVelocity(Math.min(state.velX, -MOVEMENT_INCREMENT), state.velY));
             break;
         case RIGHT:
+            moveInProgress = true;
             setPhysicalState(state.setVelocity(Math.max(state.velX, MOVEMENT_INCREMENT), state.velY));
             break;
         default:

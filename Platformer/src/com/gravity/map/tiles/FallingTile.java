@@ -27,7 +27,7 @@ public class FallingTile extends AbstractEntity implements Renderer {
     private Random rand = new Random();
 
     public FallingTile(GameplayState gameState, Rect shape, TileRendererDelegate renderer) {
-        super(new PhysicalState(shape, 0, 0, 0, 0));
+        super(new PhysicalState(shape, 0, 0, 0, 0, 0));
         this.renderer = renderer;
         this.gameState = gameState;
         this.startX = this.state.getPosition().x;

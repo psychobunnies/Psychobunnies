@@ -67,6 +67,7 @@ public class GravityPhysics implements Physics {
     @Override
     public PhysicalState computePhysics(Entity entity) {
         List<Collidable> coll = entitiesHitOnGround(entity);
+        boolean movingTileMoved = false;
         if (!coll.isEmpty()) {
             PhysicalState state = entity.getPhysicalState();
             if (state.velY >= 0) {
@@ -83,6 +84,12 @@ public class GravityPhysics implements Physics {
                             minY = tmp;
                             minPositiveYVel = Math.min(minPositiveYVel, c.getPhysicalState().velY);
                         }
+                        if (!movingTileMoved && c instanceof MovingEntity) {
+                            MovingEntity mov = (MovingEntity) c;
+                            movingTileMoved = true;
+                            float surfaceVelX = mov.getPhysicalState().velX;
+                            state = new PhysicalState(state.getRectangle(), state.velX, state.velY, state.accX, state.accY, surfaceVelX);
+                        }
                     }
                 }
                 if (!isBouncy) {
@@ -90,17 +97,17 @@ public class GravityPhysics implements Physics {
                     if (minPositiveYVel > maxOnGroundFallSpeed) {
                         r = state.getRectangle();
                     }
-                    state = new PhysicalState(r, state.velX, Math.min(state.velY, 0f), state.accX, Math.min(state.accY, 0));
+                    state = new PhysicalState(r, state.velX, Math.min(state.velY, 0f), state.accX, Math.min(state.accY, 0), state.surfaceVelX);
                 }
             }
             if (Math.abs(state.velX) <= frictionStopCutoff) {
                 state = state.setVelocity(0f, state.velY);
             } else {
-                state = state.addAcceleration(calculateFrictionalAcceleration(state.velX), 0);
+                state = state.addAcceleration(calculateFrictionalAcceleration(state.velX - state.surfaceVelX), 0);
             }
             return state;
         } else {
-            return entity.getPhysicalState().addAcceleration(0f, gravity);
+            return entity.getPhysicalState().addAcceleration(0f, gravity).removeSurfaceSpeed();
         }
     }
 
@@ -231,7 +238,7 @@ public class GravityPhysics implements Physics {
                 accY = 0;
             }
         }
-        return new PhysicalState(r, velX, velY, accX, accY);
+        return new PhysicalState(r, velX, velY, accX, accY, state.surfaceVelX);
     }
 
     @Override

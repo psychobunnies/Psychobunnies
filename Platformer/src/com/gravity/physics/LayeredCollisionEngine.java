@@ -287,6 +287,8 @@ public class LayeredCollisionEngine implements CollisionEngine {
         Vector2f avel, bvel, aacc, bacc, xSolnT, ySolnT;
         avel = a.getPhysicalState().getVelocity();
         bvel = b.getPhysicalState().getVelocity();
+        avel.x += a.getPhysicalState().getSurfaceVelocityX();
+        bvel.x += b.getPhysicalState().getSurfaceVelocityX();
         aacc = a.getPhysicalState().getAcceleration();
         bacc = b.getPhysicalState().getAcceleration();
         Rect arect, brect;

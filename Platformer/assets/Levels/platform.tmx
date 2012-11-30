@@ -78,7 +78,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3OoREAMAgAMaarQHT/cdoVEIBJ7t5/BAAAAAAAAAAAwJ783e0Jyk5TMOUBihSeDEApAAA=
+   H4sIAAAAAAAAC+3OsQ0AMAjAMH6rBP9/RI+AdrGl7IkAAAAAAAAAADadW/2eAIBhuRS80iNg5IhAKQAA
   </data>
  </layer>
  <layer name="checkpoint4" width="110" height="24">
@@ -86,7 +86,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3OoQ0AQAjAQKZ7gWD/cX4FwGDukvpGAAAAAAAAAAAAE3U9wEpeD7DymsHUBzf5s+xAKQAA
+   H4sIAAAAAAAAC+3OwQkAIAwAse5W0P03qiNYKAiSwP0vAgAAAAAAAGBWnvbrCQAAvrAug64C6bzb60ApAAA=
   </data>
  </layer>
 </map>

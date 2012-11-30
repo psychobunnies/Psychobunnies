@@ -106,6 +106,7 @@ public class GravityPhysics implements Physics {
         float velY = state.velY;
         float accX = state.accX;
         float accY = state.accY;
+        float scaleBounce = 1f;
 
         Rect r = entity.getPhysicalState().getRectangle();
         for (RectCollision c : collisions) {
@@ -116,7 +117,7 @@ public class GravityPhysics implements Physics {
             if (Side.isSimpleSet(sides)) {
                 if (sides.contains(Side.TOP)) {
                     if (other instanceof BouncyTile) {
-                        velY = Math.abs(velY);
+                        velY = scaleBounce*Math.abs(velY);
                         accY = Math.max(accY, 0);
                     } else if (other instanceof MovingEntity && other.getPhysicalState().getVelocity().y > 0) {
                         r = r.translate(0f, movingTilePositionFeather);
@@ -133,7 +134,7 @@ public class GravityPhysics implements Physics {
                 }
                 if (sides.contains(Side.LEFT)) {
                     if (other instanceof BouncyTile) {
-                        velX = Math.abs(velX);
+                        velX = scaleBounce*Math.abs(velX);
                         accX = Math.max(accX, 0);
                     } else if (other instanceof MovingEntity && other.getPhysicalState().getVelocity().x > 0) {
                         r = r.translate(movingTilePositionFeather, 0f);
@@ -162,7 +163,7 @@ public class GravityPhysics implements Physics {
                 }
                 if (sides.contains(Side.BOTTOM)) {
                     if (other instanceof BouncyTile) {
-                        velY = -Math.abs(velY);
+                        velY = -scaleBounce*Math.abs(velY);
                         accY = Math.min(accY, 0);
                     } else if (other instanceof MovingEntity && other.getPhysicalState().getVelocity().y < 0) {
                         r = r.translate(0f, -movingTilePositionFeather);
@@ -187,7 +188,7 @@ public class GravityPhysics implements Physics {
                 }
                 if (sides.contains(Side.RIGHT)) {
                     if (other instanceof BouncyTile) {
-                        velX = -Math.abs(velX);
+                        velX = -scaleBounce*Math.abs(velX);
                         accX = Math.min(accX, 0);
                     } else if (other instanceof MovingEntity && other.getPhysicalState().getVelocity().x < 0) {
                         r = r.translate(-movingTilePositionFeather, 0f);

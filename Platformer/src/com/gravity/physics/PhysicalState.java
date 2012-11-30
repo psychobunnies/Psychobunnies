@@ -121,7 +121,7 @@ public class PhysicalState {
     }
 
     public PhysicalState removeSurfaceSpeed() {
-        return new PhysicalState(shape, velX - surfaceVelX, velY, accX, accY, 0f);
+        return new PhysicalState(shape, velX, velY, accX, accY, 0f);
     }
 
     public PhysicalState addAcceleration(float addX, float addY) {

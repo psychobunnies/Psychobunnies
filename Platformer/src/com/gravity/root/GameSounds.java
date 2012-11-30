@@ -25,10 +25,10 @@ public final class GameSounds {
         try {
             gameMusic = new Music("./assets/Sound/Forminas.wav");
             jumpSounds = Lists.newArrayList(
-                    new Sound("./assets/Sound/jump_ha.wav"),
-                    new Sound("./assets/Sound/jump_ho.wav"),
-                    new Sound("./assets/Sound/jump_woo.wav"),
-                    new Sound("./assets/Sound/jump_hup.wav"));
+                    new Sound("./assets/Sound/jump_ha.ogg"),
+                    new Sound("./assets/Sound/jump_ho.ogg"),
+                    new Sound("./assets/Sound/jump_woo.ogg"),
+                    new Sound("./assets/Sound/jump_hup.ogg"));
             slingshotSounds = Lists.newArrayList(
                     new Sound("./assets/Sound/slingshot_1.ogg"),
                     new Sound("./assets/Sound/slingshot_2.ogg"),

@@ -44,7 +44,7 @@
  </layer>
  <layer name="playerkeyed" width="110" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3YSwrAIAwFQC/r/a/QbQgqLaUfzAyIZiX6zMbWAADu6YM6Dv4j51Itq9F5Z/fRTsxvWe1XIbdoltuV+Wn5nVXtt6xP1rH+utcAAAAAYDf+2ABg7QAzimCSQCkAAA==
+   H4sIAAAAAAAAC+3YTQqAIBAG0Lms979CWxlSKihT3wNRV/58zsYIgDWV0RvgEbnNKedWUuM/ci67ZXV23tZ9xIX+K731dsit1srtTv+2/M52rbesNMb1fHStAQAAAMBq/LEBQN8BhB305EApAAA=
   </data>
  </layer>
  <layer name="fast2" width="110" height="24">
@@ -78,7 +78,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3OsQ0AMAjAMH6rBP9/RI+AdrGl7IkAAAAAAAAAADadW/2eAIBhuRS80iNg5IhAKQAA
+   H4sIAAAAAAAAC+3OsQ0AMAjAMK7rwMD/59AjoF1sKXsiAAAAAAAAAIBNeavfEwAw7CwFrzRfC16rQCkAAA==
   </data>
  </layer>
  <layer name="checkpoint4" width="110" height="24">
@@ -86,7 +86,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3OwQkAIAwAse5W0P03qiNYKAiSwP0vAgAAAAAAAGBWnvbrCQAAvrAug64C6bzb60ApAAA=
+   H4sIAAAAAAAAC+3OsQkAIAwAwUyXwsL9x4kjGAgIcgfffwQAAAAAAADArHXarycAAPhCXgZdBX0MY8xAKQAA
   </data>
  </layer>
 </map>

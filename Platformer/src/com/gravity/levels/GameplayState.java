@@ -390,6 +390,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
      */
     @Override
     public void specialMoveSlingshot(Player slingshoter, float strength) {
+        GameSounds.playSlingshotSound();
         if (slingshoter == playerA) {
             playerB.slingshotMe(strength, playerA.getPhysicalState().getPosition().sub(playerB.getPhysicalState().getPosition()));
         } else if (slingshoter == playerB) {

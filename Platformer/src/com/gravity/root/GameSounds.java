@@ -16,17 +16,25 @@ public final class GameSounds {
 
     @SuppressWarnings("unused")
     private static final Music gameMusic;
-    private static final List<Sound> sickRabbitBeats;
+    private static final List<Sound> jumpSounds;
+    private static final List<Sound> slingshotSounds;
     private static final Music gameMusic3;
     private static final Random random;
 
     static {
         try {
             gameMusic = new Music("./assets/Sound/Forminas.wav");
-            sickRabbitBeats = Lists.newArrayList(
-                    new Sound("./assets/Sound/yippee_low.wav"),
-                    new Sound("./assets/Sound/yippee.wav"),
-                    new Sound("./assets/Sound/yippee.wav"));
+            jumpSounds = Lists.newArrayList(
+                    new Sound("./assets/Sound/jump_ha.wav"),
+                    new Sound("./assets/Sound/jump_ho.wav"),
+                    new Sound("./assets/Sound/jump_woo.wav"),
+                    new Sound("./assets/Sound/jump_hup.wav"));
+            slingshotSounds = Lists.newArrayList(
+                    new Sound("./assets/Sound/slingshot_1.ogg"),
+                    new Sound("./assets/Sound/slingshot_2.ogg"),
+                    new Sound("./assets/Sound/slingshot_3.ogg"),
+                    new Sound("./assets/Sound/slingshot_4.ogg"),
+                    new Sound("./assets/Sound/slingshot_5.ogg"));
             gameMusic3 = new Music("./assets/Sound/Caketown 1.ogg");
         } catch (SlickException e) {
             throw new RuntimeException(e);
@@ -38,8 +46,16 @@ public final class GameSounds {
         gameMusic3.loop();
 
     }
+    
+    private static void playRandomSound(List<Sound> sounds) {
+        sounds.get(random.nextInt(sounds.size())).play();
+    }
 
-    public static void playSickRabbitBeat() {
-        sickRabbitBeats.get(random.nextInt(sickRabbitBeats.size())).play();
+    public static void playJumpSound() {
+        playRandomSound(jumpSounds);
+    }
+    
+    public static void playSlingshotSound() {
+        playRandomSound(slingshotSounds);
     }
 }

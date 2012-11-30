@@ -15,14 +15,17 @@
  <tileset firstgid="11" name="levelMarkers" tilewidth="32" tileheight="32">
   <image source="levelMarkers.png" width="128" height="128"/>
  </tileset>
+ <tileset firstgid="27" name="lab-sheet" tilewidth="32" tileheight="32">
+  <image source="../lab-sheet.png" width="128" height="96"/>
+ </tileset>
  <layer name="collisions" width="90" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+1Z7QrDIAxU2z97/xcehRVKMN8xda0HYVBzid40WttKKW1Zillg5UVihj5IsXTOgaav9WIzjHGGPkih6at2XPsAk/THE7N2jGuXGKed1Rf6R8w9GKOVvhaeufPpGGy3jIXjRM33UTqfv5Xw08TM5FjqMOUbVc8xnTk/TcyZONo4o3Jk6eypSx4OxEbEkc7l+osDn1FrC1uLsI5Q0KxXjCPZM0esZ2kb52fZOxrRJo2B4dRRq9n5PkidR7i82H+1EW29OL05MpvOVo7nvduTV8KXxHyrztKaiPG5ZxreE3W25j+wIzzvvYtVZ6xewj1NUlevOe7WGePdpbOU03tXpPwjz72a8xSXxxvrn+qGZ05p11VU/jfprAWls+VeDJ5XudzRd2+9HDPr/BQsnXOwdM7B0jkH3P2GZY+wftPJyMOZBtrxfQFeiOxgwCEAAA==
+   H4sIAAAAAAAAC+2Zaw7EIAiEvYd93P+WmyYlMaQig2Ddxkn8szpIPyu6uzmltBtaNvo82ww5ILlaZPV5aoYctFqcxwjJdUv9+8BTM+SgFZIr+lzluni0Q5kPMi+Pyb2tfq/6jLzDPIdyvMe7x2PQOajlr4n5lscr5yjOpEMYh8Qc6bHU4SyMlfoQSZw1n/eOHe1B40TNMYrz3hG/x/MUo/ddvvZQ68xBOCP7UKOSNfeUeXIPnR8R+1nb1xpnOTtyiuF8iTiizCgf7Z2Hi9ZRqvGanJ64aFhJaxPB2eqJOp88/Nr1qX32Zc6e3+EXZ7/5L20VX++aWTnX6iW/62rqajnH25xrvrc4R3hanEftD+neYI31Zc5lTHRfec6PeP+Vs0USZ8vvYkgNtc6BPt/MnL+ixXmMFucxWpzjRYzPVK/3Up9ns5xF3k17NyJp/7867/YD59HUbsAhAAA=
   </data>
  </layer>
  <layer name="spikes" width="90" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3YSwqAMAxF0Uy7/w07L1hqYl5Iew840qpcf0UzQGtUn8Al6KxBZw06x4xpWW2HfHTWoLMGnWN23s32sn5nnOdYJ/N8B792m7+5kXGdrxfzDY3unbPP8a/nqXvnLjydFfdQ1n6r3vMn3bM78yc6n43OGnTWoLMGnTXorEHneqt/OdG56AN0/BhnwCEAAA==
+   H4sIAAAAAAAAC+2YSw7AIAgF2Xr/C3ff1IpQn8HOJK4ENeM3mgFoabsH8BPwrAHPGvCco92KN+4pnrnIg0MNeNaA5xyes9k69Z68SF8n47kHezleb6N7dCav8nzNeoYY1T2vHuNX+6m65ypEPCvW0Kp2d53zJ61Zz/sJz2eDZw141oBnDXjWgGcNeN7P219O9i16AUYN9WjAIQAA
   </data>
  </layer>
  <layer name="players" width="90" height="24" opacity="0.47">

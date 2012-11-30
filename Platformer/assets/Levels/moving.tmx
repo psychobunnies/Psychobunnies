@@ -92,7 +92,15 @@
    <property name="translationY" value="0"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3WsQkAIAxFwQyp7j+K2olgZRGUO3h9msCPAAAAbtQl4G3+GAAA/lBGLfsIAICDuVXqlu0CkKMDIKp820ApAAA=
+   H4sIAAAAAAAAC+3WIQ4AIAwEwT6S8v+nAK4hQSFqZpL1Jy8CAAD4kSUAAACg39jN7hEAAA/nq+SV7wLQYwFlCs3wQCkAAA==
+  </data>
+ </layer>
+ <layer name="checkpoint1" width="110" height="24">
+  <properties>
+   <property name="type" value="checkpoint"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OMQEAIAwDsKnbwYF/OXjYQXckClIFAAAAAAAAwEY3HWDkpAOMdDoAAHz3ADIyNnBAKQAA
   </data>
  </layer>
 </map>

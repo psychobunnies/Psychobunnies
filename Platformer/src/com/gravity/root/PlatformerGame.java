@@ -24,23 +24,36 @@ import com.gravity.levels.LevelInfo;
  * @author dxiao
  */
 public class PlatformerGame extends StateBasedGame {
-
+    private int i = -1;
     //@formatter:off
     private LevelInfo[] levels = {
-            new LevelInfo("Tutorial", "Controls Tutorial", "assets/Levels/tutorial.tmx", 0),
-            new LevelInfo("Tutorial 2", "Special Blocks Tutorial", "assets/Levels/enemies_tutorial.tmx", 1),
-            new LevelInfo("Slingshot", "Slingshot Turorial", "assets/Levels/slingshot_intro.tmx", 2),
-            new LevelInfo("Platformer", "", "assets/Levels/platform.tmx", 3),
-            new LevelInfo("Moving", "", "assets/Levels/moving.tmx", 4),
-            new LevelInfo("Falling", "So you thought you understood gravity...", "assets/Levels/falling.tmx", 5),
-            new LevelInfo("Split World", "Slingshot Fun", "assets/Levels/split_world.tmx", 6),
-            new LevelInfo("Test Moving", "", "assets/Levels/moving_test.tmx", 7),
-            new LevelInfo("Bouncy 1", "A first brush with bouncing", "assets/Levels/Bouncy_1.tmx", 8),
-            new LevelInfo("Test Stomps", "", "assets/Levels/checkpointing.tmx", 9),
-            new LevelInfo("Checkpointing", "", "assets/Levels/checkpointing.tmx", 10),
-            new LevelInfo("Shortcuts", "Timetest", "assets/levels/shortcuts.tmx", 11),
-            new LevelInfo("Elevators","","assets/levels/Elevators.tmx",12),
-            new LevelInfo("Bouncy 2", "", "assets/Levels/Bouncy_2.tmx", 13),
+
+            // Very Hard (1)
+            new LevelInfo("Moving", "", "assets/Levels/moving.tmx", ++i),
+           
+            // Impossible
+            new LevelInfo("Falling", "So you thought you understood gravity...", "assets/Levels/falling.tmx", ++i),
+            new LevelInfo("Split World", "Slingshot Fun", "assets/Levels/split_world.tmx", ++i),
+            
+            // Very Hard (1)
+            new LevelInfo("Bouncy 2", "", "assets/Levels/Bouncy_2.tmx", ++i),
+            
+            // Hard (4)
+            new LevelInfo("Bouncy 1", "A first brush with bouncing", "assets/Levels/Bouncy_1.tmx", ++i),
+            new LevelInfo("Test Stomps", "", "assets/Levels/checkpointing.tmx", ++i),
+            new LevelInfo("Checkpointing", "", "assets/Levels/checkpointing.tmx", ++i),
+            new LevelInfo("Test Moving", "", "assets/Levels/moving_test.tmx", ++i),
+
+
+            // Medium (4)
+            new LevelInfo("Elevators","","assets/levels/Elevators.tmx", ++i),
+            new LevelInfo("Shortcuts", "Timetest", "assets/levels/shortcuts.tmx", ++i),
+            new LevelInfo("Slingshot", "Slingshot Turorial", "assets/Levels/slingshot_intro.tmx", ++i),
+            new LevelInfo("Platformer", "", "assets/Levels/platform.tmx", ++i),
+            
+            // Easy (2)
+            new LevelInfo("Tutorial", "Controls Tutorial", "assets/Levels/tutorial.tmx", ++i),
+            new LevelInfo("Tutorial 2", "Special Blocks Tutorial", "assets/Levels/enemies_tutorial.tmx", ++i),
     };
     //@formatter:on
 

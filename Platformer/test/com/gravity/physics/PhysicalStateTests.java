@@ -27,7 +27,7 @@ public final class PhysicalStateTests {
         float expectedAccX = 5;
         float expectedAccY = 6;
 
-        PhysicalState state = new PhysicalState(new Rect(posX, posY, 1, 1), velX, velY, accX, accY);
+        PhysicalState state = new PhysicalState(new Rect(posX, posY, 1, 1), velX, velY, accX, accY, 0f);
         PhysicalState newState = state.snapshot(time);
         assertEquals(expectedPosX, newState.getPosition().x, EPS);
         assertEquals(expectedPosY, newState.getPosition().y, EPS);
@@ -54,7 +54,7 @@ public final class PhysicalStateTests {
         float expectedAccX = 5;
         float expectedAccY = 6;
 
-        PhysicalState state = new PhysicalState(new Rect(posX, posY, 1, 1), velX, velY, accX, accY);
+        PhysicalState state = new PhysicalState(new Rect(posX, posY, 1, 1), velX, velY, accX, accY, 0f);
         PhysicalState newState = state.snapshot(time);
         assertEquals(expectedPosX, newState.getPosition().x, EPS);
         assertEquals(expectedPosY, newState.getPosition().y, EPS);

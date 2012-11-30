@@ -31,7 +31,7 @@
   </data>
  </layer>
  <objectgroup name="special levels" width="32" height="24">
-  <object name="resume" type="level" x="749" y="412" width="32" height="32"/>
-  <object name="mainmenu" type="level" x="242" y="412" width="32" height="32"/>
+  <object name="resume" type="level" x="746" y="416" width="32" height="32"/>
+  <object name="mainmenu" type="level" x="244" y="417" width="32" height="32"/>
  </objectgroup>
 </map>

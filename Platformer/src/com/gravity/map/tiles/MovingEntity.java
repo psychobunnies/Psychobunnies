@@ -48,8 +48,16 @@ public class MovingEntity implements Entity, Renderer {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("MovingCollidable [shape=");
+        builder.append("MovingEntity [shape=");
         builder.append(shape);
+        builder.append(", origPosition=");
+        builder.append(origPosition);
+        builder.append(", velForward=");
+        builder.append(velForward);
+        builder.append(", velBackward=");
+        builder.append(velBackward);
+        builder.append(", finalPosition=");
+        builder.append(finalPosition);
         builder.append(", reversed=");
         builder.append(reversed);
         builder.append("]");

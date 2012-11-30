@@ -116,8 +116,12 @@ public class TileWorld implements GameWorld {
                         visited[i][j] = true;
                         j++;
                     }
-                    Rect r = new Rect(i * tileWidth, first * tileHeight, tileWidth, tileHeight * (j - first));
-                    res.add(creator.createCollidable(r));
+                    if (j == first + 1) {
+                        visited[i][first] = false;
+                    } else {
+                        Rect r = new Rect(i * tileWidth, first * tileHeight, tileWidth, tileHeight * (j - first));
+                        res.add(creator.createCollidable(r));
+                    }
                     first = j;
                 } else {
                     first++;
@@ -140,6 +144,29 @@ public class TileWorld implements GameWorld {
                     first = i;
                 } else {
                     first++;
+                }
+            }
+        }
+        return res;
+    }
+
+    public <T extends Collidable> List<T> processLayerSingleSquares(String layerName, CollidableCreator<T> creator) {
+        List<T> res = Lists.newArrayList();
+        int layer = 0;
+        try {
+            layer = map.getLayerID(layerName);
+        } catch (NullPointerException e) {
+            System.err.println("WARNING: Layer " + layerName + " not found, returning empty collidables list.");
+            return res;
+        }
+
+        int i, j, tileId;
+        for (i = 0; i < map.getWidth(); i++) {
+            for (j = 0; j < map.getHeight(); j++) {
+                tileId = map.getTileId(i, j, layer);
+                if (tileId != 0) {
+                    Rect r = new Rect(i * tileWidth, j * tileHeight, tileWidth, tileHeight);
+                    res.add(creator.createCollidable(r));
                 }
             }
         }
@@ -207,7 +234,7 @@ public class TileWorld implements GameWorld {
 
             // Found a moving layer.
             layer.visible = false;
-            List<MovingEntity> colls = processLayer(layer.name, new CollidableCreator<MovingEntity>() {
+            List<MovingEntity> colls = processLayerSingleSquares(layer.name, new CollidableCreator<MovingEntity>() {
                 @Override
                 public MovingEntity createCollidable(Rect r) {
                     TileType tileType = TileType.toTileType(map, Math.round(r.getX()) / tileWidth, Math.round(r.getY()) / tileHeight, layer.index);
@@ -217,10 +244,14 @@ public class TileWorld implements GameWorld {
             });
             entityNoCalls.addAll(colls);
 
+            System.out.println("found moving tiles layer " + layer.name);
+
             List<MovingEntity> movingColls = Lists.newArrayList();
             for (MovingEntity c : colls) {
                 movingColls.add(c);
+                System.out.println("--> " + c.toString());
             }
+
             movingCollMap.put(layer, movingColls);
         }
 

@@ -88,6 +88,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
+        System.err.println(">>>Loading level " + levelName);
         this.container = container;
         this.game = game;
         map.initialize();
@@ -96,7 +97,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     }
 
     public void reloadGame() {
-        System.err.println(">>>Loading level " + levelName);
+        System.err.println(">>>Processing level " + levelName);
         pauseRender();
         pauseUpdate();
 
@@ -182,7 +183,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
             TileRendererDelegate rd = new TileRendererDelegate(tiledMap, TileType.SPIKE);
             try {
                 for (Tile tile : fallSpike.getTiles()) {
-                    FallingTile fsTile = new FallingTile(this, new Rect(tile.x * 32, tile.y * 32, 32, 32), rd, tile.x, tile.y);
+                    FallingTile fsTile = new FallingTile(this, new Rect(tile.x * 32, tile.y * 32, 32, 32), rd);
                     updaters.add(fsTile);
                     collider.addCollidable(fsTile, LayeredCollisionEngine.FALLING_LAYER);
                     renderers.add(fsTile, RenderList.TERRA);

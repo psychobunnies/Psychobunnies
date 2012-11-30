@@ -79,6 +79,7 @@ public class MainMenuState extends GameplayState {
 
         SortedSet<Vector2f> levelLocs = map.getLevelLocations();
         int i = -1;
+        int size = levelLocs.size();
         for (Vector2f loc : levelLocs) {
             i++;
             LevelInfo info = null;
@@ -97,7 +98,7 @@ public class MainMenuState extends GameplayState {
                 throw new RuntimeException(e);
             }
             MenuCage levelCage = new MenuCage(levelRend.getRect(), info.stateId);
-            renderers.add(levelRend, RenderList.FLORA);
+            renderers.add(levelRend, RenderList.FLORA + size - i);
             cages.add(levelCage);
         }
 

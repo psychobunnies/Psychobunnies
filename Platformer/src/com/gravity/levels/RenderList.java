@@ -16,9 +16,9 @@ import com.google.common.collect.Sets;
  * @author xiao
  */
 public class RenderList implements Renderer {
-    static public final Integer TERRA = 0;
-    static public final Integer FLORA = 1;
-    static public final Integer FAUNA = 2;
+    static public final Integer TERRA = 000;
+    static public final Integer FLORA = 100;
+    static public final Integer FAUNA = 200;
 
     private SortedMap<Integer, Collection<Renderer>> renderers;
 

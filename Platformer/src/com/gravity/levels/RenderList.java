@@ -1,6 +1,7 @@
 package com.gravity.levels;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.SortedMap;
 
 import org.newdawn.slick.Graphics;
@@ -43,6 +44,15 @@ public class RenderList implements Renderer {
         }
         renderers.get(order).add(renderer);
         return retval;
+    }
+    
+    /**
+     * Add a list of renderers to the RenderList.
+     */
+    public void addAll(List<Renderer> renderers, Integer order) {
+        for (Renderer r : renderers) {
+            add(r, order);
+        }
     }
 
     /**

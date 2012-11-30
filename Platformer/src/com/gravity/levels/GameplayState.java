@@ -336,6 +336,12 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         if (!controllerA.handleKeyRelease(key)) {
             controllerB.handleKeyRelease(key);
         }
+        
+        if (key == Input.KEY_ESCAPE) {
+            PauseState pause = (PauseState)(game.getState(PauseState.ID));
+            pause.setGameplayState(this);
+            game.enterState(PauseState.ID);
+        }
     }
 
     @Override

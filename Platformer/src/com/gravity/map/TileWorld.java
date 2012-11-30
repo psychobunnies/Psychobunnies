@@ -454,21 +454,31 @@ public class TileWorld implements GameWorld {
     }
 
     /**
+     * Return the location of a cage in the special levels layer.
+     * 
+     * @param name Name of the object to find.
+     * @return null if the location cannot be found.
+     */
+    public Vector2f getSpecialLocation(String name) {
+        ObjectGroup group;
+        if ((group = map.getObjectGroup(SPECIAL_LEVELS_LAYER_NAME)) != null) {
+            GroupObject object;
+            if ((object = group.getObject(name)) != null) {
+                return new Vector2f(object.x, object.y + tileHeight);
+            }
+            System.err.println("WARNING: could not find " + name + " location: " + name + " object does not exit on special levels layer");
+        }
+        System.err.println("WARNING: could not find " + name + " location: special levels layer does not exist");
+        return null;
+    }
+    
+    /**
      * Return the location of the quit cage.
      * 
      * @return null if the location cannot be found.
      */
     public Vector2f getQuitLocation() {
-        ObjectGroup group;
-        if ((group = map.getObjectGroup(SPECIAL_LEVELS_LAYER_NAME)) != null) {
-            GroupObject object;
-            if ((object = group.getObject(QUIT_OBJECT_NAME)) != null) {
-                return new Vector2f(object.x, object.y + tileHeight);
-            }
-            System.err.println("WARNING: could not find quit location: quit object does not exit on special levels layer");
-        }
-        System.err.println("WARNING: could not find quit location: special levels layer does not exist");
-        return null;
+        return getSpecialLocation(QUIT_OBJECT_NAME);
     }
 
     /**
@@ -477,15 +487,6 @@ public class TileWorld implements GameWorld {
      * @return null if the location cannot be found.
      */
     public Vector2f getOptionsLocation() {
-        ObjectGroup group;
-        if ((group = map.getObjectGroup(SPECIAL_LEVELS_LAYER_NAME)) != null) {
-            GroupObject object;
-            if ((object = group.getObject(OPTIONS_OBJECT_NAME)) != null) {
-                return new Vector2f(object.x, object.y + tileHeight);
-            }
-            System.err.println("WARNING: could not find options location: options object does not exit on special levels layer");
-        }
-        System.err.println("WARNING: could not find options location: special levels layer does not exist");
-        return null;
+        return getSpecialLocation(OPTIONS_OBJECT_NAME);
     }
 }

@@ -14,6 +14,7 @@ import org.newdawn.slick.state.transition.Transition;
 
 import com.google.common.collect.Lists;
 import com.gravity.fauna.Player;
+import com.gravity.fauna.Player.Movement;
 import com.gravity.levels.CageRenderer;
 import com.gravity.levels.GameplayState;
 import com.gravity.levels.LevelInfo;
@@ -113,6 +114,8 @@ public class MainMenuState extends GameplayState {
         for (MenuCage cage : cages) {
             if (cage.getRect().contains(x, y)) {
                 try {
+                    playerA.move(Movement.STOP);
+                    playerB.move(Movement.STOP);
                     game.getState(cage.getToState()).init(container, game);
                     game.enterState(cage.getToState(), fadeOut, fadeIn);
                 } catch (SlickException e) {
@@ -128,6 +131,8 @@ public class MainMenuState extends GameplayState {
             for (MenuCage cage : cages) {
                 if (cage.intersects(playerA.getPhysicalState().getRectangle(), playerB.getPhysicalState().getRectangle())) {
                     try {
+                        playerA.move(Movement.STOP);
+                        playerB.move(Movement.STOP);
                         game.getState(cage.getToState()).init(container, game);
                         game.enterState(cage.getToState(), fadeOut, fadeIn);
                     } catch (SlickException e) {

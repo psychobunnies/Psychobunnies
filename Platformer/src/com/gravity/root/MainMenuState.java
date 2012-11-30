@@ -57,9 +57,9 @@ public class MainMenuState extends CageSelectState {
         for (Vector2f loc : levelLocs) {
             reversedLevelLocs.addFirst(loc);
         }
-        int i = -1;
+        int i = levelLocs.size();
         for (Vector2f loc : reversedLevelLocs) {
-            i++;
+            i--;
             LevelInfo info = null;
             for (LevelInfo level : levels) {
                 if (level.levelOrder == i) {

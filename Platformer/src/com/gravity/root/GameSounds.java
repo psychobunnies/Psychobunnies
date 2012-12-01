@@ -26,7 +26,8 @@ public final class GameSounds {
                     new Sound("./assets/Sound/jump_ha.ogg"),
                     new Sound("./assets/Sound/jump_ho.ogg"),
                     new Sound("./assets/Sound/jump_woo.ogg"),
-                    new Sound("./assets/Sound/jump_hup.ogg"));
+                    new Sound("./assets/Sound/jump_hup.ogg"),
+                    new Sound("./assets/Sound/yippee.wav"));
             slingshotSounds = Lists.newArrayList(
                     new Sound("./assets/Sound/slingshot_1.ogg"),
                     new Sound("./assets/Sound/slingshot_2.ogg"),

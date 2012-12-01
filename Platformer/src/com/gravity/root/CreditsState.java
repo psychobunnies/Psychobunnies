@@ -6,6 +6,7 @@ import java.awt.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
@@ -13,6 +14,8 @@ import org.newdawn.slick.font.effects.ShadowEffect;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 public class CreditsState extends BasicGameState {
 
@@ -25,7 +28,7 @@ public class CreditsState extends BasicGameState {
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.game = game;
-        Font awtFont = new Font("Arial", Font.BOLD, 14);
+        Font awtFont = new Font("SansSerif", Font.BOLD, 14);
         font = new UnicodeFont(awtFont);
         font.getEffects().add(new ShadowEffect(Color.black, 2, 2, 0.5f));
         font.getEffects().add(new ColorEffect(Color.white));
@@ -59,7 +62,14 @@ public class CreditsState extends BasicGameState {
     @Override
     public void mouseClicked(int button, int x, int y, int clickCount) {
         if (MenuButton.contains(x, y)) {
-            game.enterState(MainMenuState.ID);
+            game.enterState(MainMenuState.ID, new FadeOutTransition(), new FadeInTransition());
+        }
+    }
+
+    @Override
+    public void keyPressed(int key, char c) {
+        if (key == Input.KEY_RETURN) {
+            game.enterState(MainMenuState.ID, new FadeOutTransition(), new FadeInTransition());
         }
     }
 

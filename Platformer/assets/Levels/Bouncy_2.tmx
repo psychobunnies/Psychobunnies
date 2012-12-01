@@ -44,7 +44,7 @@
  </layer>
  <layer name="moving 2" width="90" height="24">
   <properties>
-   <property name="speed" value="30"/>
+   <property name="speed" value="90"/>
    <property name="translationX" value="5"/>
    <property name="translationY" value="0"/>
   </properties>

@@ -403,6 +403,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
 
     @Override
     public void playerDies(Player player) {
+        reset();
         RestartGameplayState pts = (RestartGameplayState) (game.getState(RestartGameplayState.ID));
         pts.setToState(this);
         game.enterState(RestartGameplayState.ID, new FadeOutTransition(Color.red.darker(), 300), null);

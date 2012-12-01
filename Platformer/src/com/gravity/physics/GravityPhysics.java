@@ -145,6 +145,7 @@ public class GravityPhysics implements Physics {
                         if (collisionEngine.collisionsInLayer(millis, r, LayeredCollisionEngine.FLORA_LAYER, true).isEmpty()) {
                             velY = Math.max(velY, 0);
                             accY = Math.max(accY, 0);
+                            System.out.println("in");
                         } else {
                             entity.unavoidableCollisionFound();
                         }

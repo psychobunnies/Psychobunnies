@@ -8,8 +8,10 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
+
 import com.google.common.collect.Lists;
 import com.gravity.fauna.Player;
+import com.gravity.fauna.Player.Movement;
 import com.gravity.levels.GameplayState;
 import com.gravity.levels.MenuCage;
 import com.gravity.levels.RenderList;
@@ -22,7 +24,7 @@ public abstract class CageSelectState extends GameplayState {
 
     public CageSelectState(String levelName, String mapFile, int id) throws SlickException {
         super(levelName, mapFile, id);
-        
+
         cages = Lists.newLinkedList();
     }
 
@@ -33,13 +35,15 @@ public abstract class CageSelectState extends GameplayState {
 
     public void enterCageState(MenuCage cage) {
         try {
+            playerA.move(Movement.STOP);
+            playerB.move(Movement.STOP);
             game.getState(cage.getToState()).init(container, game);
             game.enterState(cage.getToState(), new FadeOutTransition(), new FadeInTransition());
         } catch (SlickException e) {
             e.printStackTrace();
         }
     }
-    
+
     @Override
     public void mouseClicked(int button, int x, int y, int clickCount) {
         for (MenuCage cage : cages) {
@@ -76,7 +80,7 @@ public abstract class CageSelectState extends GameplayState {
     public void playerFinishes(Player player) {
         throw new RuntimeException("Player " + player + " just found level finish in the main menu!");
     }
-    
+
     @Override
     public void reloadGame() {
         super.reloadGame();
@@ -92,12 +96,12 @@ public abstract class CageSelectState extends GameplayState {
         game.unpauseRender();
         game.unpauseUpdate();
     }
-    
+
     @Override
     public boolean canPause() {
         return false;
     }
-    
+
     protected class CagesAndRenderers {
         public final List<MenuCage> cages;
         public final List<Renderer> renderers;
@@ -109,5 +113,5 @@ public abstract class CageSelectState extends GameplayState {
     }
 
     protected abstract CagesAndRenderers constructCagesAndRenderers();
-    
+
 }

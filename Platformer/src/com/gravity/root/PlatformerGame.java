@@ -72,6 +72,7 @@ public class PlatformerGame extends StateBasedGame {
         addState(new GameWinState());
         addState(new PauseState());
         addState(new GameQuitState());
+        addState(new RestartGameplayState());
     }
 
     public static void main(String args[]) throws SlickException {

@@ -97,6 +97,11 @@ public abstract class CageSelectState extends GameplayState {
         game.unpauseUpdate();
     }
 
+    @Override
+    public boolean canPause() {
+        return false;
+    }
+
     protected class CagesAndRenderers {
         public final List<MenuCage> cages;
         public final List<Renderer> renderers;

@@ -28,6 +28,7 @@ import com.gravity.fauna.Player;
 import com.gravity.fauna.PlayerKeyboardController;
 import com.gravity.fauna.PlayerKeyboardController.Control;
 import com.gravity.fauna.PlayerRenderer;
+import com.gravity.fauna.WallofDeath;
 import com.gravity.geom.Rect;
 import com.gravity.map.LevelFinishZone;
 import com.gravity.map.TileType;
@@ -44,12 +45,10 @@ import com.gravity.physics.GravityPhysics;
 import com.gravity.physics.LayeredCollisionEngine;
 import com.gravity.physics.PhysicalState;
 import com.gravity.physics.PhysicsFactory;
-import com.gravity.root.GameOverState;
 import com.gravity.root.GameSounds;
 import com.gravity.root.GameWinState;
-import com.gravity.root.MainMenuState;
-import com.gravity.root.RestartGameplayState;
 import com.gravity.root.PauseState;
+import com.gravity.root.RestartGameplayState;
 
 public class GameplayState extends BasicGameState implements GameplayControl, Resetable {
 
@@ -75,6 +74,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     protected LevelFinishZone finish;
     protected Player finishedPlayer;
     protected Camera camera;
+    protected WallofDeath wallofDeath;
 
     private boolean leftRemapped, rightRemapped, jumpRemapped;
     private Control remappedControl;
@@ -210,6 +210,13 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
                     map.getHeight()), playerA, playerB);
         }
         updaters.add(pancam);
+
+        // Wall of death initialization
+        if (map.map.getMapProperty("wallofdeath", null) != null) {
+            wallofDeath = new WallofDeath(2000, 32, 0.035f, Lists.newArrayList(playerA, playerB), this, container.getHeight());
+            updaters.add(wallofDeath);
+            renderers.add(wallofDeath, RenderList.FAUNA);
+        }
 
         unpauseRender();
         unpauseUpdate();
@@ -382,21 +389,21 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         if (!controllerA.handleKeyRelease(key)) {
             controllerB.handleKeyRelease(key);
         }
-        
+
         if (key == Input.KEY_ESCAPE && canPause()) {
-            PauseState pause = (PauseState)(game.getState(PauseState.ID));
+            PauseState pause = (PauseState) (game.getState(PauseState.ID));
             pause.setGameplayState(this);
             game.enterState(PauseState.ID, new FadeOutTransition(), new FadeInTransition());
         }
     }
-    
+
     public boolean canPause() {
         return true;
     }
 
     @Override
     public void playerDies(Player player) {
-        RestartGameplayState pts = (RestartGameplayState)(game.getState(RestartGameplayState.ID));
+        RestartGameplayState pts = (RestartGameplayState) (game.getState(RestartGameplayState.ID));
         pts.setToState(this);
         game.enterState(RestartGameplayState.ID, new FadeOutTransition(Color.red.darker(), 300), null);
     }

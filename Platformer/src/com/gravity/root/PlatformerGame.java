@@ -52,8 +52,8 @@ public class PlatformerGame extends StateBasedGame {
             new LevelInfo("Platformer", "", "assets/Levels/platform.tmx", ++i),
             
             // Easy (2)
-            new LevelInfo("Tutorial", "Controls Tutorial", "assets/Levels/tutorial.tmx", ++i),
-            new LevelInfo("Tutorial 2", "Special Blocks Tutorial", "assets/Levels/enemies_tutorial.tmx", ++i),
+            new LevelInfo("Lab Procedures", "Formerly Tutorial 1", "assets/Levels/tutorial.tmx", ++i),
+            new LevelInfo("Lab Safety", "Formerly Tutorial 2", "assets/Levels/enemies_tutorial.tmx", ++i),
     };
     //@formatter:on
 

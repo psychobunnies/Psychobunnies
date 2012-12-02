@@ -20,7 +20,7 @@ public class TriggeredTextRenderer implements Renderer {
     private static UnicodeFont font;
 
     static {
-        Font awtFont = new Font("SansSerif", Font.BOLD, 16);
+        Font awtFont = new Font("SansSerif", Font.PLAIN, 18);
         font = new UnicodeFont(awtFont);
         font.getEffects().add(new ColorEffect(java.awt.Color.white));
         font.addAsciiGlyphs();

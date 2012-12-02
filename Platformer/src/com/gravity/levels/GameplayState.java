@@ -234,7 +234,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
 
             if (playerAX < playerBX) {
                 pinkHand = new Image("./assets/HandAssets/HandRight.png");
-                g.setColor(new Color(255, 168, 236));
+                g.setColor(new Color(26, 106, 255));
                 g.setLineWidth(playerA.slingshotStrength * 10);
                 g.drawImage(pinkHand, playerB.getPhysicalState().getRectangle().getCenter().x + offset.x - 15, playerB.getPhysicalState()
                         .getRectangle().getCenter().y

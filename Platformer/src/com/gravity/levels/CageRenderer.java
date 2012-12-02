@@ -32,7 +32,7 @@ public class CageRenderer implements Renderer {
         skew.put(10, 1);
         skew.put(15, 1);
         skew.put(4, 2.0f);
-        Font awtFont = new Font("Arial", Font.PLAIN, 14);
+        Font awtFont = new Font("SansSerif", Font.PLAIN, 14);
         font = new UnicodeFont(awtFont);
         font.getEffects().add(new ShadowEffect(Color.black, 2, 2, 0.5f));
         font.getEffects().add(new ColorEffect(Color.white));

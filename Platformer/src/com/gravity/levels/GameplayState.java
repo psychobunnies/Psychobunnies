@@ -213,7 +213,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
 
         // Wall of death initialization
         if (map.map.getMapProperty("wallofdeath", null) != null) {
-            wallofDeath = new WallofDeath(2000, 32, 0.035f, Lists.newArrayList(playerA, playerB), this, container.getHeight());
+            wallofDeath = new WallofDeath(2000, panX + 32, 0.035f, Lists.newArrayList(playerA, playerB), this, container.getHeight());
             updaters.add(wallofDeath);
             renderers.add(wallofDeath, RenderList.FAUNA);
         }

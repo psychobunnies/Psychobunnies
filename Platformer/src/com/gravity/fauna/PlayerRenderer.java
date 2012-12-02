@@ -17,7 +17,7 @@ public class PlayerRenderer implements Renderer {
     private Image lastImage;
     private List<Image> runningBunny;
     private List<Image> runningBackBunny;
-    private List<Image> duckingBunny;
+    //private List<Image> duckingBunny;
     private int tweener;
     private int counter = 0;
 
@@ -26,42 +26,28 @@ public class PlayerRenderer implements Renderer {
         try {
             runningBunny = Lists.newArrayList();
             runningBackBunny = Lists.newArrayList();
-            duckingBunny = Lists.newArrayList();
+            //duckingBunny = Lists.newArrayList();
 
             if (player.getName().equals("pink")) {
-                bunnyPlayer = new Image("./assets/BunnyAssets/bunnyStand.png");
-                runningBunny.add(new Image("./assets/BunnyAssets/bunnyRun1.png"));
-                runningBunny.add(new Image("./assets/BunnyAssets/bunnyRun2.png"));
-                runningBunny.add(new Image("./assets/BunnyAssets/bunnyRun3.png"));
-                runningBunny.add(new Image("./assets/BunnyAssets/bunnyRun4.png"));
-                runningBunny.add(new Image("./assets/BunnyAssets/bunnyRun5.png"));
-                runningBunny.add(new Image("./assets/BunnyAssets/bunnyRun6.png"));
-                duckingBunny.add(new Image("./assets/BunnyAssets/bunnyDuck1.png"));
-                duckingBunny.add(new Image("./assets/BunnyAssets/bunnyDuck2.png"));
-                duckingBunny.add(new Image("./assets/BunnyAssets/bunnyDuck3.png"));
-                runningBackBunny.add(new Image("./assets/BunnyAssets/bunnyRunBack1.png"));
-                runningBackBunny.add(new Image("./assets/BunnyAssets/bunnyRunBack2.png"));
-                runningBackBunny.add(new Image("./assets/BunnyAssets/bunnyRunBack3.png"));
-                runningBackBunny.add(new Image("./assets/BunnyAssets/bunnyRunBack4.png"));
-                runningBackBunny.add(new Image("./assets/BunnyAssets/bunnyRunBack5.png"));
-                runningBackBunny.add(new Image("./assets/BunnyAssets/bunnyRunBack6.png"));
+                bunnyPlayer = new Image("./new-assets/bunny/standing-blue.png");
+                runningBunny.add(new Image("./new-assets/bunny/run-1-blue.png"));
+                runningBunny.add(new Image("./new-assets/bunny/run-2-blue.png"));
+                runningBunny.add(new Image("./new-assets/bunny/run-3-blue.png"));
+                runningBunny.add(new Image("./new-assets/bunny/run-4-blue.png"));
+                runningBackBunny.add(new Image("./new-assets/bunny/run-1-blue-back.png"));
+                runningBackBunny.add(new Image("./new-assets/bunny/run-2-blue-back.png"));
+                runningBackBunny.add(new Image("./new-assets/bunny/run-3-blue-back.png"));
+                runningBackBunny.add(new Image("./new-assets/bunny/run-4-blue-back.png"));
             } else {
-                bunnyPlayer = new Image("./assets/BunnyAssets/yellowbunnyStand.png");
-                runningBunny.add(new Image("./assets/BunnyAssets/yellowbunnyRun1.png"));
-                runningBunny.add(new Image("./assets/BunnyAssets/yellowbunnyRun2.png"));
-                runningBunny.add(new Image("./assets/BunnyAssets/yellowbunnyRun3.png"));
-                runningBunny.add(new Image("./assets/BunnyAssets/yellowbunnyRun4.png"));
-                runningBunny.add(new Image("./assets/BunnyAssets/yellowbunnyRun5.png"));
-                runningBunny.add(new Image("./assets/BunnyAssets/yellowbunnyRun6.png"));
-                duckingBunny.add(new Image("./assets/BunnyAssets/bunnyDuck1.png"));
-                duckingBunny.add(new Image("./assets/BunnyAssets/bunnyDuck2.png"));
-                duckingBunny.add(new Image("./assets/BunnyAssets/bunnyDuck3.png"));
-                runningBackBunny.add(new Image("./assets/BunnyAssets/yellowbunnyRunBack1.png"));
-                runningBackBunny.add(new Image("./assets/BunnyAssets/yellowbunnyRunBack2.png"));
-                runningBackBunny.add(new Image("./assets/BunnyAssets/yellowbunnyRunBack3.png"));
-                runningBackBunny.add(new Image("./assets/BunnyAssets/yellowbunnyRunBack4.png"));
-                runningBackBunny.add(new Image("./assets/BunnyAssets/yellowbunnyRunBack5.png"));
-                runningBackBunny.add(new Image("./assets/BunnyAssets/yellowbunnyRunBack6.png"));
+                bunnyPlayer = new Image("./new-assets/bunny/standing-yellow.png");
+                runningBunny.add(new Image("./new-assets/bunny/run-1-yellow.png"));
+                runningBunny.add(new Image("./new-assets/bunny/run-2-yellow.png"));
+                runningBunny.add(new Image("./new-assets/bunny/run-3-yellow.png"));
+                runningBunny.add(new Image("./new-assets/bunny/run-4-yellow.png"));
+                runningBackBunny.add(new Image("./new-assets/bunny/run-1-yellow-back.png"));
+                runningBackBunny.add(new Image("./new-assets/bunny/run-2-yellow-back.png"));
+                runningBackBunny.add(new Image("./new-assets/bunny/run-3-yellow-back.png"));
+                runningBackBunny.add(new Image("./new-assets/bunny/run-4-yellow-back.png"));
             }
 
         } catch (SlickException e) {

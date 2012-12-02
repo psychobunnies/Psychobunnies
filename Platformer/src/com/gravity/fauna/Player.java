@@ -20,7 +20,7 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     // PLAYER STARTING CONSTANTS (Units = pixels, milliseconds)
     private static final float JUMP_POWER = 0.48f; // .6 before reset
     private static final float MOVEMENT_INCREMENT = 1f / 8f;
-    private static final Rect BASE_SHAPE = new Rect(0f, 0f, 15f, 32f);
+    private static final Rect BASE_SHAPE = new Rect(5f, 0f, 22f, 48f);
     private static final Vector2f DEFAULT_VELOCITY = new Vector2f(0, 0);
 
     private final float MAX_SLING_STRENGTH = 0.75f; // 1 before reset

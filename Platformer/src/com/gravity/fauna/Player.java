@@ -163,8 +163,7 @@ public class Player extends PhysicsEntity<GravityPhysics> {
             // no-op
         }
         if (slingshot) {
-            slingshotStrength += millis * SLING_SPEED;
-            slingshotStrength = Math.min(slingshotStrength, MAX_SLING_STRENGTH);
+            slingshotStrength = MAX_SLING_STRENGTH;
         } else {
             slingshotStrength = 0;
         }

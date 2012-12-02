@@ -38,11 +38,11 @@
  <layer name="fast15" width="150" height="24">
   <properties>
    <property name="speed" value="30"/>
-   <property name="translationX" value="-16"/>
+   <property name="translationX" value="-15"/>
    <property name="translationY" value="0"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3OoQ0AMAwEsSdt9t84XSEooLZ0/BIAAAAAAAAAAAAAAADgd+d1B9XOJjDQ/3ee1kA4AAA=
+   H4sIAAAAAAAAC+3OoQ0AMAwEsSdt9t84XSEooLZ0/BIAAAAAAAAAAAAAAADgZ+d1B9XOJjDU3Kz6vkA4AAA=
   </data>
  </layer>
  <layer name="falling spikes" width="150" height="24">

@@ -22,13 +22,13 @@
   <image source="bunnyTiles.png" width="128" height="64"/>
  </tileset>
  <layer name="collisions" width="100" height="24">
-  <data encoding="base64" compression="zlib">
-   eJztmYsKwjAMAPOPezhh//8dMlAmRWVLI5xyB2GlNCn0KIRujIjpKZb799rMV8Xypbr/EkPkyObJZ/TBQh8s9MFCHyz0wUIfLLZzPdobz02e1HPmXIcDY+lDHyz0wYLgY4zcW8/8qtiPQ/Bhj7ejDxb6YKEPFvpgkfXRzre9z/pmbfU/sUeNSip6t0zPuO1Z5aMH78eOPljog4U+WFwK1p6pUZnfuy+RG59yUR0=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2ZiwrCMAwA8497OGH//x0yUCZFZUsjnHIHYaU0KfQohG6MiOkplvv32sxXxfKluv8SQ+TI5sln9MFCHyz0wUIfLPTBQh8stnM92hvPTZ7Uc+ZchwNj6UMfLPTBguBjjNxbz/yq2I9D8GGPt6MPFvpgoQ8W+mCR9dHOt73P+mZt9T+xR41KKnq3TM+47Vnlowfvx44+WOiDhT5YXArWnqlRmd+7L5EbAJ6UPIAlAAA=
   </data>
  </layer>
  <layer name="spikes" width="100" height="24">
-  <data encoding="base64" compression="zlib">
-   eJzt1sEJACAMBMF0av9d2EB+Ip5hBlLB3iNVAAAAAAAAAOdWc8x2q/GL7UzYqx5Z9MiiR5buZ/j5NiMQGZw=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3WwQkAIAwEwXRq/13YQH4inmEGUsHeI1UAAAAAAAAA51ZzzHar8YvtTNirHln0yKJHlu5n+Pk2qeBevIAlAAA=
   </data>
  </layer>
  <objectgroup name="level markers" width="100" height="24">
@@ -38,8 +38,8 @@
   <properties>
    <property name="visible" value="0"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJztzjENAAAIwDC8ceDfEbgggTbZvwgAAPghp9qeAAAAAAAA4JQGcF4Aiw==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OMQ0AAAjAMLxx4N8RuCCBNtm/CAAA+CGn2p4AAAAAAADglAbnN7PAgCUAAA==
   </data>
  </layer>
  <layer name="help1" width="100" height="24">
@@ -48,8 +48,8 @@
    <property name="x" value="40"/>
    <property name="y" value="40"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJzt0UENAAAIA7GZw78lNJCwX5ucgksAAPg2h+jzAwAAAAAAgJYFxG8F7w==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3RQQ0AAAgDsZnDvyU0kLBfm5yCSwAA+DaH6PMDAAAAAACAlgVEOki4gCUAAA==
   </data>
  </layer>
  <layer name="help2" width="100" height="24">
@@ -58,18 +58,18 @@
    <property name="x" value="600"/>
    <property name="y" value="450"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJzt0TENAAAIBLE3h39LGGCDgaFNTsElAAAAAAAATGoR9/wAAOCjBsQNCBc=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3RMQ0AAAgEsTeHf0sYYIOBoU1OwSUAAAAAAABMahH3/AAA4KMGRthOaoAlAAA=
   </data>
  </layer>
  <layer name="falling spikes" width="100" height="24">
-  <data encoding="base64" compression="zlib">
-   eJztw7ENAAAIA6B+6v9fOHd2FBISaHMIAAAAAAAAAACfLMFMBZI=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DsQ0AAAgDoH7q/184d3YUEhJocwgAAAAAAAAAAJ8sF6ipxYAlAAA=
   </data>
  </layer>
  <layer name="playerkeyed" width="100" height="24">
-  <data encoding="base64" compression="zlib">
-   eJztw0EJAAAIBLAra/8Khjg/wgZLAAAAAAAAAH6ZwwAAjQWGvQeA
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DQQkAAAgEsCtr/wqGOD/CBksAAAAAAAAAfpnDAACNBaPE+lqAJQAA
   </data>
  </layer>
  <layer name="help3" width="100" height="24">
@@ -78,8 +78,8 @@
    <property name="x" value="1060"/>
    <property name="y" value="275"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJzt0UEJADAMwMCYq39LE9F+BncQBSkAAACAmkXc8wMAAAAA/vAAsXsIFw==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3RQQkAMAzAwJirf0sT0X4GdxAFKQAAAICaRdzzAwAAAAD+8ACJ8cAhgCUAAA==
   </data>
  </layer>
  <layer name="help4" width="100" height="24">
@@ -88,13 +88,13 @@
    <property name="x" value="1600"/>
    <property name="y" value="450"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJzt0UEJAAAIBMErZ/9KNvAhCD5mYBNsAgAAAAAAwCd1FDt+AAAwaVAIC90=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3RQQkAAAgEwStn/0o28CEIPmZgE2wCAAAAAADAJ3UUO34AADBp0Cyza4AlAAA=
   </data>
  </layer>
  <layer name="bouncys" width="100" height="24">
-  <data encoding="base64" compression="zlib">
-   eJztzrEJAAAIwDCP9f8bfEAcRHBJoHsjAAAAAAAAAGb5PQAArGUTdwpZWgJZ
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OsQkAAAjAMI/1/xt8QBxEcEmgeyMAAAAAAAAAZvk9AACsZRN3CvMjCwKAJQAA
   </data>
  </layer>
  <layer name="help5" width="100" height="24">
@@ -106,8 +106,8 @@
    <property name="x" value="425"/>
    <property name="y" value="640"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJzt0bENACEQwDCWY/+VaL74gv4iYUuZIGsBADBpf9HgR4sfLf8f3szzo8WPFj9a/Gjxo8WPFj9a/Gjxo2VfYo4fLX60+MFLDqpfEcs=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3RsQ0AIRDAMJZj/5VovviC/iJhS5kgawEAMGl/0eBHix8t/x/ezPOjxY8WP1r8aPGjxY8WP1r8aPGjZV9ijh8tfrT4wUsOD8WRkIAlAAA=
   </data>
  </layer>
  <layer name="moving" width="100" height="24">
@@ -116,8 +116,8 @@
    <property name="translationX" value="8"/>
    <property name="translationY" value="0"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJztzrENADAIwDCOhP5/SjmAHQZbyp4IAAAAAAAAALKrobc5BQCc9wFArQJU
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OsQ0AMAjAMI6E/n9KOYAdBlvKnggAAAAAAAAAsquhtzkFAJz3AVP1LLuAJQAA
   </data>
  </layer>
  <layer name="help6" width="100" height="24">
@@ -126,18 +126,18 @@
    <property name="x" value="2250"/>
    <property name="y" value="450"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJzt0UENAAAIxDDM4d8SIuBxJG0yBasCAAAAAGCrF3HPjyx+ZPEjix8AAP8N1xUUOA==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3RQQ0AAAjEMMzh3xIi4HEkbTIFqwIAAAAAYKsXcc+PLH5k8SOLHwAA/w0gKk/YgCUAAA==
   </data>
  </layer>
  <layer name="moving2" width="100" height="24">
   <properties>
    <property name="speed" value="96"/>
    <property name="translationX" value="0"/>
-   <property name="translationY" value="-3"/>
+   <property name="translationY" value="-4"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJzt0aERACAQwDB2RLD/JqzwBq4iUfVdi9f2oPnHjxY/Wvxo8aPFjxY/Wvxo8aPFjxY/Wvxo8aPFjxY/Wvxo8aPlDBoAgDcuiHERjw==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3RoREAIBDAMHZEsP8mrPAGriJR9V2L1/ag+cePFj9a/Gjxo8WPFj9a/Gjxo8WPFj9a/Gjxo8WPFj9a/Gjxo+UMGgCANy4Jr/ZYgCUAAA==
   </data>
  </layer>
  <layer name="help7" width="100" height="24">
@@ -146,8 +146,8 @@
    <property name="x" value="2650"/>
    <property name="y" value="450"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJzt0TENAAAMw7CRG39KY7Cz6mFLQZAZAAAAAACS9ok8P7r40cWPLn4AAHQ6TgwJcA==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3RMQ0AAAzDsJEbf0pjsLPqYUtBkBkAAAAAAJL2iTw/uvjRxY8ufgAAdDrJPUH8gCUAAA==
   </data>
  </layer>
 </map>

@@ -52,6 +52,8 @@ public class TileWorld implements GameWorld {
     public static final float STOMP_SPEED_FORWARD = 50.0f;
     public static final float STOMP_SPEED_BACKWARD = 30.0f;
 
+    public static final float TILE_MARGIN = 2f;
+
     public final int height;
     public final int width;
 

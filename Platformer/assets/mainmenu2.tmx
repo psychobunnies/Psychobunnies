@@ -16,9 +16,9 @@
  </layer>
  <layer name="helptext1" width="32" height="24">
   <properties>
-   <property name="text" value="press 'Enter' while both bunnies$are in a cage to start level"/>
+   <property name="text" value="Press 'Enter' with both$bunnies in front of a$cage to start an experiment."/>
    <property name="type" value="help"/>
-   <property name="x" value="360"/>
+   <property name="x" value="400"/>
    <property name="y" value="500"/>
   </properties>
   <data encoding="base64" compression="zlib">

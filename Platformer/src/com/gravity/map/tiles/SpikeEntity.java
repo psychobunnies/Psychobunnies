@@ -10,6 +10,8 @@ import com.gravity.levels.GameplayControl;
 import com.gravity.map.StaticCollidable;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.RectCollision;
+import com.gravity.root.GameSounds;
+import com.gravity.root.GameSounds.Event;
 
 public final class SpikeEntity extends StaticCollidable {
 
@@ -29,6 +31,7 @@ public final class SpikeEntity extends StaticCollidable {
                 Player p = (Player) e;
                 if (collidedPlayers.add(p)) {
                     controller.playerHitSpikes(p);
+                    GameSounds.playSoundFor(Event.SPIKED);
                 }
             }
         }

@@ -44,7 +44,7 @@
  </layer>
  <layer name="moving 2" width="90" height="24">
   <properties>
-   <property name="speed" value="30"/>
+   <property name="speed" value="90"/>
    <property name="translationX" value="5"/>
    <property name="translationY" value="0"/>
   </properties>
@@ -81,7 +81,10 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0CEOACAMA8A9AIHY/98KGr1sgrukpqppBNRY0wM+4ed6+yafzs8AAAAAAABApwNleABJ
+   eJzt0LENACAMA8EMkIKC/WclC9ChUOROcm99BLyRvw8MoXOPW+ddW51HAAAAAAAAgBEOX1gASQ==
   </data>
  </layer>
+ <objectgroup name="level markers" width="90" height="24">
+  <object name="finish" type="finish" x="2737" y="632" width="121" height="117"/>
+ </objectgroup>
 </map>

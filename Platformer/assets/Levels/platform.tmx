@@ -23,7 +23,7 @@
  </tileset>
  <layer name="collisions" width="110" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2agQ6DIAxE+UfmdMn+/zsWkpk4RlnpOD20LyHbXChnjyJGYwhhUrRb9nt5fz6U/VvbAop7lhYDH4yarKDOhTFHjJrYYMwRoyY2GHPEqIkNxhwxamKDMUclTWw61/31/aDx2fKRGMG3xJGaRsnHKDqvMLYEk29T5T/37RMm32pYNNXmAXpsNCP51ro36XUerPnQHOtB2hda94QWTe4bdjxUvyv4tn0GYdW5jSHVlfuGg73etPfhLL5J81kzz1tg9w09FioOGkln/jzXMkfWfWHreuy+/WavenPf+mK5V2qJXfre0m9L7VoXheMS+XrC/J5CCa83TBw07tt3nH/eK9LUvFTrtfYM+60LI/o2d4qDJulEvdM2G8ex5K5Xvl9dewy2QCkAAA==
+   H4sIAAAAAAAAC+1aAQqDMAzsHzung/3/HaMwQarp2qxnL5qDIpuYnHdNqNoYQpgqxiP7vXyPr8rrW8cCinuVEQMfGDlpgboXRo0YObGBUSNGTmxg1IiRExsYNWLkxAZGjY44sfFc19fPQfnZ9Eiw4FvCSE5W9LDC8w65JTD5NhXOxTCuV7pvemg4leYBOjcaV/at131Y0QPFM60LtX1uy6m2jtw3bD7UdXfwbfsNQstzG0OqK/cNBwv1VrO2ZPFNms8187wFFnxD5kLFQUPimX/P1cyR9TmstR+7b79xVr25b32BfDfR27fSO+co/C8h7yfM+xSO4PWGiYOG+7aP88++opqal2q9NN7hvL5g0be5Uxw0Ek/UnrZZmUejXS+9P1ga0DtAKQAA
   </data>
  </layer>
  <layer name="spikes" width="110" height="24">

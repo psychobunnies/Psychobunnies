@@ -425,13 +425,17 @@ public class Rect {
         }
         return result;
     }
-    
+
     public Rect translateIntoWithMargin(Rect other, float margin) {
         other = other.setSide(Side.TOP, other.getSide(Side.TOP) + 2 * margin);
         other = other.setSide(Side.LEFT, other.getSide(Side.LEFT) + 2 * margin);
         other = other.translate(-margin, -margin);
-        
+
         return translateInto(other);
+    }
+
+    public Rect grow(float amount) {
+        return new Rect(x + amount, y + amount, width + 2 * amount, height + 2 * amount);
     }
 
     public float getHeight() {

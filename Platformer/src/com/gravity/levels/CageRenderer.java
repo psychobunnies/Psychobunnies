@@ -58,7 +58,7 @@ public class CageRenderer implements Renderer {
      */
     public CageRenderer(float x, float y, String label) throws SlickException {
         Preconditions.checkArgument(font != null, "setFont() must be called before this constructor!");
-        this.image = new Image("assets/frontCage.png");
+        this.image = new Image("assets/frontCageII.png");
         this.cageX = x - image.getWidth() / 2f;
         this.cageY = y - image.getHeight();
         this.fontX = x - font.getWidth(label) / 2;

@@ -21,7 +21,7 @@ public class GameLoaderState extends BasicGameState {
     private GameContainer container;
     private Collection<LevelInfo> levels;
     private int loadState = 0;
-    private String loadString = "Writing the proposal...";
+    private String loadString = "Talking with the professor...";
     private int maxLogicUpdateInterval;
 
     private Iterator<LevelInfo> levelItr;
@@ -47,34 +47,38 @@ public class GameLoaderState extends BasicGameState {
         g.drawString(loadString, 50, 50);
     }
 
-    protected void updateLoadString() {
+    protected void updateLoadString(boolean update) {
+        if (update) {
+            loadState++;
+        }
+        loadString += "\n";
         switch (loadState) {
         case 0:
-            loadString = "Setting up lab...";
+            loadString += "Setting up lab...";
             break;
         case 1:
-            loadString = "Building experiment: " + levelInfo.title + "...";
+            loadString += "Building experiment: " + levelInfo.title + "...";
             break;
         case 2:
-            loadString = "Hiring lawyers...";
+            loadString += "Hiring lawyers...";
             break;
         case 3:
-            loadString = "Carving tombstones...";
+            loadString += "Carving tombstones...";
             break;
         case 4:
-            loadString = "Anticipating lab results...";
+            loadString += "Anticipating lab results...";
             break;
         case 5:
-            loadString = "Readying break room...";
+            loadString += "Readying break room...";
             break;
         case 6:
-            loadString = "Discussing exit strategies...";
+            loadString += "Discussing exit strategies...";
             break;
         case 7:
-            loadString = "Starting grad student bunny raising pipeline...";
+            loadString += "Starting grad student bunny raising pipeline...";
             break;
-        default:
-            loadString = "Opening the lab...";
+        case 8:
+            loadString += "Opening the lab...";
             break;
         }
     }
@@ -124,10 +128,7 @@ public class GameLoaderState extends BasicGameState {
         default:
             game.enterState(MainMenuState.ID);
         }
-        if (nextState) {
-            loadState++;
-        }
-        updateLoadString();
+        updateLoadString(nextState);
     }
 
     @Override

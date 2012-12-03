@@ -6,18 +6,25 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.Color;
 
 import com.google.common.collect.Lists;
 import com.gravity.levels.Renderer;
 import com.gravity.physics.PhysicalState;
+import com.gravity.physics.PhysicsFactory;
 
 public class PlayerRenderer implements Renderer {
+    private static String FILE = "./new-assets/bunny/";
     private Player player;
-    private Image bunnyPlayer;
+    private Image bunnyPlayerRight;
+    private Image bunnyPlayerLeft;
+    private Image risingBunnyLeft;
+    private Image risingBunnyRight;
+    private Image fallingBunnyLeft;
+    private Image fallingBunnyRight;
     private Image lastImage;
     private List<Image> runningBunny;
     private List<Image> runningBackBunny;
-    //private List<Image> duckingBunny;
     private int tweener;
     private int counter = 0;
 
@@ -26,10 +33,14 @@ public class PlayerRenderer implements Renderer {
         try {
             runningBunny = Lists.newArrayList();
             runningBackBunny = Lists.newArrayList();
-            //duckingBunny = Lists.newArrayList();
 
             if (player.getName().equals("pink")) {
-                bunnyPlayer = new Image("./new-assets/bunny/standing-blue.png");
+                bunnyPlayerRight = new Image("./new-assets/bunny/standing-blue.png");
+                bunnyPlayerLeft = new Image("./new-assets/bunny/standing-blue-left.png");
+                risingBunnyLeft = new Image("./new-assets/bunny/rising-blue-left.png");
+                risingBunnyRight = new Image("./new-assets/bunny/rising-blue-right.png");
+                fallingBunnyLeft = new Image("./new-assets/bunny/falling-blue-left.png");
+                fallingBunnyRight = new Image("./new-assets/bunny/falling-blue-right.png");
                 runningBunny.add(new Image("./new-assets/bunny/run-1-blue.png"));
                 runningBunny.add(new Image("./new-assets/bunny/run-2-blue.png"));
                 runningBunny.add(new Image("./new-assets/bunny/run-3-blue.png"));
@@ -39,7 +50,12 @@ public class PlayerRenderer implements Renderer {
                 runningBackBunny.add(new Image("./new-assets/bunny/run-3-blue-back.png"));
                 runningBackBunny.add(new Image("./new-assets/bunny/run-4-blue-back.png"));
             } else {
-                bunnyPlayer = new Image("./new-assets/bunny/standing-yellow.png");
+                bunnyPlayerRight = new Image("./new-assets/bunny/standing-yellow.png");
+                bunnyPlayerLeft = new Image("./new-assets/bunny/standing-yellow-left.png");
+                risingBunnyLeft = new Image("./new-assets/bunny/rising-yellow-left.png");
+                risingBunnyRight = new Image("./new-assets/bunny/rising-yellow-right.png");
+                fallingBunnyLeft = new Image("./new-assets/bunny/falling-yellow-left.png");
+                fallingBunnyRight = new Image("./new-assets/bunny/falling-yellow-right.png");
                 runningBunny.add(new Image("./new-assets/bunny/run-1-yellow.png"));
                 runningBunny.add(new Image("./new-assets/bunny/run-2-yellow.png"));
                 runningBunny.add(new Image("./new-assets/bunny/run-3-yellow.png"));
@@ -59,18 +75,47 @@ public class PlayerRenderer implements Renderer {
     public void render(Graphics g, int offsetX, int offsetY) {
         PhysicalState state = player.getPhysicalState();
         if (tweener % 8 == 0) {
+            // if running, animate
             if (player.isRunning()) {
                 if (state.velX > 0) {
                     lastImage = runningBunny.get(counter);
                 } else if (state.velX < 0) {
                     lastImage = runningBackBunny.get(counter);
                 }
-            } else {
-                lastImage = bunnyPlayer;
+                counter++;
+                if (counter == runningBunny.size()) {
+                    counter = 0;
+                }
             }
-            counter++;
-            if (counter == runningBunny.size()) {
-                counter = 0;
+
+            // if floating, fall
+            else if (player.isFalling()) {
+                if (state.velX > 0) {
+                    lastImage = fallingBunnyRight;
+                }
+                else {
+                    lastImage = fallingBunnyLeft;
+                }
+            }
+
+            // if rising, rise
+            else if (player.isRising()) {
+                if (state.velX > 0) {
+                    lastImage = risingBunnyRight;
+                }
+                else {
+                    lastImage = risingBunnyLeft;
+                }
+            }
+
+            // if standing still, stand still
+            else {
+                if (player.lastWalkedRight) {
+                    lastImage = bunnyPlayerRight;
+                }
+                else {
+                    lastImage = bunnyPlayerLeft;
+                }
             }
         }
 
@@ -78,18 +123,16 @@ public class PlayerRenderer implements Renderer {
         g.drawImage(lastImage, pos.x + offsetX, pos.y + offsetY);
         tweener++;
         //@formatter:off
-        /*
-         * // if we ever need to draw hitboxes again:
-        g.pushTransform();
-        g.translate(offsetX, offsetY);
-        g.setColor(Color.red);
-        g.draw(player.getRect(0).toShape());
-        g.setColor(Color.green);
-        g.draw(player.getRect(0).translate(0, PhysicsFactory.DEFAULT_OFFSET_GROUND_CHECK).toShape());
-        g.setColor(Color.white);
-        g.resetTransform();
-        g.popTransform();
-        */
+        // if we ever need to draw hitboxes again:
+        //g.pushTransform();
+        //g.translate(offsetX, offsetY);
+        //g.setColor(Color.red);
+        //g.draw(player.getPhysicalState().getRectangle().toShape());
+        //g.setColor(Color.green);
+        //g.draw(player.getPhysicalState().getRectangle().translate(0, PhysicsFactory.DEFAULT_OFFSET_GROUND_CHECK).toShape());
+        //g.setColor(Color.white);
+        //g.resetTransform();
+        //g.popTransform();
         //@formatter:on
     }
 }

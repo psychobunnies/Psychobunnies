@@ -20,7 +20,7 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     // PLAYER STARTING CONSTANTS (Units = pixels, milliseconds)
     private static final float JUMP_POWER = 0.48f; // .6 before reset
     private static final float MOVEMENT_INCREMENT = 1f / 8f;
-    private static final Rect BASE_SHAPE = new Rect(5f, 0f, 22f, 48f);
+    private static final Rect BASE_SHAPE = new Rect(0f, 0f, 32f, 48f);
     private static final Vector2f DEFAULT_VELOCITY = new Vector2f(0, 0);
 
     private final float MAX_SLING_STRENGTH = 0.75f; // 1 before reset
@@ -38,6 +38,7 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     private boolean moveInProgress = false;
     public boolean slingshot;
     public float slingshotStrength = 0;
+    public boolean lastWalkedRight = true;
 
     public Player(GameplayControl control, GravityPhysics physics, String name, Vector2f startpos) {
         super(new PhysicalState(BASE_SHAPE.translate(startpos.x, startpos.y), DEFAULT_VELOCITY.copy(), 0f), physics);
@@ -51,6 +52,14 @@ public class Player extends PhysicsEntity<GravityPhysics> {
 
     public boolean isRunning() {
         return moveInProgress && !physics.entitiesHitOnGround(this).isEmpty();
+    }
+
+    public boolean isRising() {
+        return physics.entitiesHitOnGround(this).isEmpty() && state.velY < 0;
+    }
+
+    public boolean isFalling() {
+        return physics.entitiesHitOnGround(this).isEmpty() && state.velY >= 0;
     }
 
     @Override
@@ -153,10 +162,12 @@ public class Player extends PhysicsEntity<GravityPhysics> {
         switch (requested) {
         case LEFT:
             moveInProgress = true;
+            lastWalkedRight = false;
             setPhysicalState(state.setVelocity(Math.min(state.velX, -MOVEMENT_INCREMENT), state.velY));
             break;
         case RIGHT:
             moveInProgress = true;
+            lastWalkedRight = true;
             setPhysicalState(state.setVelocity(Math.max(state.velX, MOVEMENT_INCREMENT), state.velY));
             break;
         default:

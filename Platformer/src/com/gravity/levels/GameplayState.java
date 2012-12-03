@@ -46,6 +46,7 @@ import com.gravity.physics.LayeredCollisionEngine;
 import com.gravity.physics.PhysicalState;
 import com.gravity.physics.PhysicsFactory;
 import com.gravity.root.GameSounds;
+import com.gravity.root.GameSounds.Event;
 import com.gravity.root.GameWinState;
 import com.gravity.root.PauseState;
 import com.gravity.root.RestartGameplayState;
@@ -99,7 +100,6 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         this.game = game;
         map.initialize();
         reloadGame();
-        GameSounds.playBGM();
     }
 
     public void reloadGame() {
@@ -260,10 +260,10 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         }
         if (playerB.slingshot) {
             if (playerBX < playerAX) {
-                pinkHand = new Image("./assets/HandAssets/HandRightYellow.png");
+                yellowHand = new Image("./assets/HandAssets/HandRightYellow.png");
                 g.setColor(new Color(255, 246, 0));
                 g.setLineWidth(playerB.slingshotStrength * 10);
-                g.drawImage(pinkHand, playerA.getPhysicalState().getRectangle().getCenter().x + offset.x - 15, playerA.getPhysicalState()
+                g.drawImage(yellowHand, playerA.getPhysicalState().getRectangle().getCenter().x + offset.x - 15, playerA.getPhysicalState()
                         .getRectangle().getCenter().y
                         + offset.y);
                 g.drawLine(playerB.getPhysicalState().getRectangle().getCenter().x + offset.x,
@@ -271,10 +271,10 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
                                 .getCenter().x
                                 + offset.x - 8, playerA.getPhysicalState().getRectangle().getCenter().y + offset.y + 15);
             } else {
-                pinkHand = new Image("./assets/HandAssets/HandLeftYellow.png");
+                yellowHand = new Image("./assets/HandAssets/HandLeftYellow.png");
                 g.setColor(new Color(255, 246, 0));
                 g.setLineWidth(playerB.slingshotStrength * 10);
-                g.drawImage(pinkHand, playerA.getPhysicalState().getRectangle().getCenter().x + offset.x - 15, playerA.getPhysicalState()
+                g.drawImage(yellowHand, playerA.getPhysicalState().getRectangle().getCenter().x + offset.x - 15, playerA.getPhysicalState()
                         .getRectangle().getCenter().y
                         + offset.y);
                 g.drawLine(playerB.getPhysicalState().getRectangle().getCenter().x + offset.x,
@@ -366,6 +366,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         Rect r = camera.getViewport();
         if (pos.x + r.getX() + 32 < 0 || pos.y + r.getY() > r.getHeight() + 32) {
             // if (pos.x + offsetX2 + 32 < 0) {
+            GameSounds.playSoundFor(Event.FELL_OFF_MAP);
             playerDies(player);
         }
     }
@@ -447,14 +448,13 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
      */
     @Override
     public void specialMoveSlingshot(Player slingshoter, float strength) {
-        GameSounds.playSlingshotSound();
         if (slingshoter == playerA) {
             playerB.slingshotMe(strength, playerA.getPhysicalState().getPosition().sub(playerB.getPhysicalState().getPosition()));
         } else if (slingshoter == playerB) {
             playerA.slingshotMe(strength, playerB.getPhysicalState().getPosition().sub(playerA.getPhysicalState().getPosition()));
         } else {
             throw new RuntimeException("Who the **** called this method?");
-            // Now now, Kevin, we don't use that kind of language in these parts.
+            // Now now, Kevin, we don't use that kind of language in these parts. -xiao ^_^
         }
 
     }

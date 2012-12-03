@@ -110,17 +110,9 @@ public class LayeredCollisionEngine implements CollisionEngine {
 
         CollidableContainer cont = collidables.get(layer);
         if (cont != null) {
-            /*
-             * //@formatter:off Preconditions.checkArgument(!cont.getNearbyCollidables(collidableRect).contains(collidable),
-             * "Nearby collidables set contains argument collidable " + collidable.toString() + " from layer " + layerMap.get(collidable) +
-             * " even though it should be from layer " + layer); //@formatter:on
-             */
             for (Collidable collB : cont.getNearbyCollidables(collidableRect)) {
                 collides = collidableRect.intersects(collB.getPhysicalState().getRectangleAt(time));
                 if (collides) {
-                    // if (!(collidable instanceof TriggeredTextCollidable) && !(collB instanceof TriggeredTextCollidable)) {
-                    // System.out.println("Collision: time=" + time + "; collA=" + collidable.toString() + "; collB=" + collB.toString());
-                    // }
                     colls.add(getCollision(time, collidable, collB));
                 }
             }
@@ -142,38 +134,6 @@ public class LayeredCollisionEngine implements CollisionEngine {
         sidesB = rectB.getCollision(rectA);
         sidesA = rectA.getCollision(rectB);
 
-        //@formatter:off
-        /*EnumSet<Side> newSoln = getCollisionSide(time, collA, collB, sidesA).sides;
-        EnumSet<Side> oldSoln = getSmallestCollisionSide(rectA, rectB, sidesA);
-        if (!newSoln.equals(oldSoln) && !(collA instanceof TriggeredTextCollidable)) {
-            System.out.println("Collision A-B side mismatch: time=" + time + "; collA=" + collA.toString() + "; collB=" + collB.toString()
-                    + "; sides=" + sidesA.toString() + "; old=" + oldSoln.toString() + "; new=" + newSoln.toString());
-        }
-
-        newSoln = getCollisionSide(time, collB, collA, sidesB).sides;
-        oldSoln = getSmallestCollisionSide(rectB, rectA, sidesB);
-        if (!newSoln.equals(oldSoln) && !(collA instanceof TriggeredTextCollidable)) {
-            System.out.println("Collision B-A side mismatch: time=" + time + "; collA=" + collA.toString() + "; collB=" + collB.toString()
-                    + "; sides=" + sidesB.toString() + "; old=" + oldSoln.toString() + "; new=" + newSoln.toString());
-        }
-
-        oldSoln = getCollisionSide(time, collA, collB, sidesA).sides;
-        newSoln = getCollisionSide(time, collB, collA, sidesB).sides;
-        if (!oldSoln.equals(Side.opposite(newSoln)) && !(collA instanceof TriggeredTextCollidable)) {
-            System.out.println("Opposites mismatch: time=" + time + "; collA=" + collA.toString() + "; collB=" + collB.toString() + "; Ahit="
-                    + oldSoln.toString() + "; Bhit=" + newSoln.toString());
-        }
-
-        if (!(collA instanceof TriggeredTextCollidable)) {
-            System.out.println(newSoln.toString());
-        }*/
-        
-        /*if (!(collA instanceof TriggeredTextCollidable)) {
-            System.out.println("Collision: time=" + time + "; collA=" + collA.toString() + "; collB=" + collB.toString() + "; sides="
-                    + sidesA.toString() + "; solution=" + getCollisionSide(time, collA, collB, sidesA).toString());
-        }*/
-        //@formatter:on
-
         SidesAndTime a = getCollisionSide(time, collA, collB, sidesA);
         SidesAndTime b = getCollisionSide(time, collB, collA, sidesB);
 
@@ -185,44 +145,6 @@ public class LayeredCollisionEngine implements CollisionEngine {
                 a.sides,
                 b.sides);
         //@formatter:on
-
-        //@formatter:off
-        /*float upper = time;
-        float lower = 0;
-
-        float mid = (upper + lower) / 2;
-        EnumSet<Side> sidesA;
-        EnumSet<Side> sidesB;
-        boolean collides;
-        // if the rectangles start out colliding, forget about binary searching
-        if (collA.getRect(0).intersects(collB.getRect(0))) {
-            Rect rectA = collA.getRect(upper);
-            Rect rectB = collB.getRect(upper);
-            sidesB = rectB.getCollision(rectA);
-            sidesA = rectA.getCollision(rectB);
-            return new RectCollision(collA, collB, 0, sidesA, sidesB);
-        } else {
-
-            while (upper - lower >= TIME_GRAN) {
-                collides = collA.getRect(mid).intersects(collB.getRect(mid));
-                if (collides) { // No collision, time forward
-                    upper = mid;
-                    mid = (upper + lower) / 2;
-                } else {
-                    lower = mid;
-                    mid = (upper + lower) / 2;
-                }
-            }
-            Rect rectA = collA.getRect(upper);
-            Rect rectB = collB.getRect(upper);
-            sidesB = rectB.getCollision(rectA);
-            sidesA = rectA.getCollision(rectB);
-            //@ form atter:off
-            return new RectCollision(collA, collB, time, 
-                    getSmallestCollisionSide(rectA, rectB, sidesA),
-                    getSmallestCollisionSide(rectB, rectA, sidesB));
-            //@formatter:on
-        }*/
     }
 
     /** Solves ax^2 + bx + c = 0, returns solutions as x, y components of a Vector2f */
@@ -258,32 +180,19 @@ public class LayeredCollisionEngine implements CollisionEngine {
             if (Float.isNaN(res) || res < 0 || res > maxAllowed) {
                 // System.out.println("No valid solutions found: maxAllowed=" + maxAllowed + "; solutions=" + solutions.toString());
                 return Float.NaN;
-                // throw new RuntimeException();
             }
         } else {
             res = solutions.x;
             if (!(Float.isNaN(solutions.y) || solutions.y < 0 || solutions.y > maxAllowed)) {
-                throw new RuntimeException("Two valid solutions found: maxAllowed=" + maxAllowed + "; solutions=" + solutions.toString());
+                System.err.println("WARNING: Two valid solutions found: maxAllowed=" + maxAllowed + "; solutions=" + solutions.toString());
+                // throw new RuntimeException("Two valid solutions found: maxAllowed=" + maxAllowed + "; solutions=" + solutions.toString());
+                return Math.min(solutions.x, solutions.y);
             }
         }
         return res;
     }
 
     private SidesAndTime getCollisionSide(float time, Collidable a, Collidable b, EnumSet<Side> sidesA) {
-
-        //@formatter:off
-        /*
-        if (a == b) {
-            for (Map.Entry<Integer, CollidableContainer> ent : collidables.entrySet()) {
-                if (ent.getValue().contains(a)) {
-                    System.out.println("Layer " + ent.getKey());
-                }
-            }
-            Preconditions.checkArgument(a != b, "Object on layers above was collision-checked against itself: " + a.toString());
-        }
-        */
-        //@formatter:on
-
         Vector2f avel, bvel, aacc, bacc, xSolnT, ySolnT;
         avel = a.getPhysicalState().getVelocity();
         bvel = b.getPhysicalState().getVelocity();
@@ -302,7 +211,6 @@ public class LayeredCollisionEngine implements CollisionEngine {
         }
 
         // accel*t^2 + vel*t + dist = 0, for 0<t<time
-
         if (sidesA.contains(Side.RIGHT)) {
             if (sidesA.contains(Side.TOP)) {
                 xRelV = avel.x - bvel.x;
@@ -338,12 +246,6 @@ public class LayeredCollisionEngine implements CollisionEngine {
                     return new SidesAndTime(EnumSet.of(Side.RIGHT), xTime);
                 }
 
-                // Preconditions.checkArgument(xRelV > 0, "RT xRel");
-                // Preconditions.checkArgument(yRelV > 0, "RT yRel");
-                // Preconditions.checkArgument(xDist > 0, "RT xDist");
-                // Preconditions.checkArgument(yDist > 0, "RT yDist - " + "a=" + a.toString() + "; b=" + b.toString() + "; arect=" + arect.toString()
-                // + "; brect=" + brect.toString());
-
                 if (Float.isNaN(xTime)) {
                     Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime));
                     if (Float.isNaN(yTime)) {
@@ -364,12 +266,6 @@ public class LayeredCollisionEngine implements CollisionEngine {
                     System.out.println("Corner collision found: " + a.toString() + " from " + b.toString());
                     return new SidesAndTime(sidesA, Math.min(xTime, yTime));
                 }
-
-                /*
-                 * if (xTime > yTime * CORNER_RELATIVE_DIFF) { return EnumSet.of(Side.RIGHT); } else if (xTime * CORNER_RELATIVE_DIFF < yTime) {
-                 * return EnumSet.of(Side.TOP); } else { System.out.println("Corner collision found: " + a.toString() + " from " + b.toString());
-                 * return sidesA; }
-                 */
             } else if (sidesA.contains(Side.BOTTOM)) {
                 xRelV = avel.x - bvel.x;
                 yRelV = avel.y - bvel.y;
@@ -403,11 +299,6 @@ public class LayeredCollisionEngine implements CollisionEngine {
                     }
                     return new SidesAndTime(EnumSet.of(Side.RIGHT), xTime);
                 }
-
-                // Preconditions.checkArgument(xRelV > 0, "RB xRel");
-                // Preconditions.checkArgument(yRelV > 0, "RB yRel");
-                // Preconditions.checkArgument(xDist > 0, "RB xDist");
-                // Preconditions.checkArgument(yDist > 0, "RB yDist");
 
                 if (Float.isNaN(xTime)) {
                     Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime));
@@ -511,11 +402,6 @@ public class LayeredCollisionEngine implements CollisionEngine {
                     return new SidesAndTime(EnumSet.of(Side.LEFT), xTime);
                 }
 
-                // Preconditions.checkArgument(xRelV > 0, "LT xRel");
-                // Preconditions.checkArgument(yRelV > 0, "LT yRel");
-                // Preconditions.checkArgument(xDist > 0, "LT xDist");
-                // Preconditions.checkArgument(yDist > 0, "LT yDist");
-
                 if (Float.isNaN(xTime)) {
                     Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime));
                     if (Float.isNaN(yTime)) {
@@ -569,11 +455,6 @@ public class LayeredCollisionEngine implements CollisionEngine {
                     }
                     return new SidesAndTime(EnumSet.of(Side.LEFT), xTime);
                 }
-
-                // Preconditions.checkArgument(xRelV > 0, "LB xRel");
-                // Preconditions.checkArgument(yRelV > 0, "LB yRel");
-                // Preconditions.checkArgument(xDist > 0, "LB xDist");
-                // Preconditions.checkArgument(yDist > 0, "LB yDist");
 
                 if (Float.isNaN(xTime)) {
                     Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime));
@@ -708,12 +589,6 @@ public class LayeredCollisionEngine implements CollisionEngine {
                 CollidableContainer cont = collidables.get(layers.get(i));
                 if (cont != null) {
                     for (Collidable collA : cont.collidables()) {
-                        //@formatter:off
-                        /*
-                        Preconditions.checkArgument(!collidables.get(layers.get(j)).contains(collA), "Collidable conflict found: Collidable - "
-                                + collA.toString() + " on layer " + layers.get(i) + ", with layer " + layers.get(j));
-                        */
-                        //@formatter:on
                         colls = checkAgainstLayer(time, collA, layers.get(j));
                         for (RectCollision coll : colls) {
                             if (coll.entityA.causesCollisionsWith(coll.entityB)) {
@@ -733,7 +608,6 @@ public class LayeredCollisionEngine implements CollisionEngine {
 
     @Override
     public void update(float millis) {
-        // System.err.println("Update");
         Preconditions.checkArgument(millis >= 0, "Time since last update() call must be nonnegative");
 
         for (CollidableContainer cont : collidables.values()) {
@@ -749,20 +623,9 @@ public class LayeredCollisionEngine implements CollisionEngine {
         }
         while (!stopped && millis > runCollisionsAndHandling(millis, false))
             ;
-
-        //@formatter:off
-        /*
-        runCollisionsAndHandling(millis, true);
-        for (Collidable c : collidables.get(FAUNA_LAYER).collidables()) {
-            System.err.println(c.toString());
-            System.err.println(c.getPhysicalStateAt(millis).toString());
-            System.err.println(c.getPhysicalState().getRectangleAt(millis).toString());
-        }*/
-        //@formatter:on
     }
 
     private float runCollisionsAndHandling(float millis, boolean report) {
-        // System.err.println(millis);
         Multimap<Collidable, RectCollision> collisions;
         collisions = computeCollisions(millis);
         if (collisions.isEmpty()) {

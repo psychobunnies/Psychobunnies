@@ -5,7 +5,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import com.gravity.levels.GameplayState;
+import com.google.common.collect.Lists;
 import com.gravity.levels.LevelInfo;
 
 /**
@@ -63,16 +63,7 @@ public class PlatformerGame extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {
-        addState(new MainMenuState(levels));
-        for (LevelInfo level : levels) {
-            addState(new GameplayState(level.title, level.mapfile, level.stateId));
-        }
-        addState(new CreditsState());
-        addState(new GameOverState());
-        addState(new GameWinState());
-        addState(new PauseState());
-        addState(new GameQuitState());
-        addState(new RestartGameplayState());
+        addState(new GameLoaderState(Lists.newArrayList(levels), 100));
     }
 
     public static void main(String args[]) throws SlickException {

@@ -100,7 +100,6 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         this.game = game;
         map.initialize();
         reloadGame();
-        GameSounds.playBGM();
     }
 
     public void reloadGame() {

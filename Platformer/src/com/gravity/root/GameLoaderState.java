@@ -21,7 +21,7 @@ public class GameLoaderState extends BasicGameState {
     private GameContainer container;
     private Collection<LevelInfo> levels;
     private int loadState = 0;
-    private String loadString = "";
+    private String loadString = "Writing the proposal...";
     private int maxLogicUpdateInterval;
 
     private Iterator<LevelInfo> levelItr;
@@ -39,7 +39,7 @@ public class GameLoaderState extends BasicGameState {
         this.levelInfo = levelItr.next();
         this.game = game;
         this.container = container;
-        this.loadString = "";
+        this.loadString = "Getting research funding...";
     }
 
     @Override

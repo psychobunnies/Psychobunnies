@@ -20,12 +20,12 @@
  </tileset>
  <layer name="collisions" width="72" height="27">
   <data encoding="base64" compression="zlib">
-   eJztl9EKgzAMRQO+qYwJ+/9vHT6IoWhizZLcbTkgiFR6c9sk7UhE08VnJhsP4/+/zpItAJxXtgBwhmwBAYxkr0OZ9OT4P9aDT/uz7perPawd245H6F9o+2c5efdEWiMPfyzrznsWQj57+GPpy88b83li9UerIRYQ/OFrrcUarTey/mxxSv1F0xPtD8L5uaceRvqDcq7kOrT4o9cTof5wVj1T863Nx2g9SCDlV8Z8Glr+SP3do1ag+XMHzxi+zZ+je0P5s3Okt/zZKX9kyh+Z8kem/JEpf2S28yO/b3jeyRDu7728AU0mB5A=
+   eJztl9sKgzAMhgPeqYwNfP9nFS+GoXSpNYf+2/KBNx5o8rUm7UxEy8VrJR0P5fe/zmt0AOBsowMAZxodQAAz6evQSHr+8X+sB9Z+jvVytYeV71r0PGvQ1g8fI6q/S3Pk4UeTF+9ZCP+zhx9NX37eGM8TCz9eNQTBD5/rVr2MjjdqvDJP7qEn/2g/CPvnnnoY6QdlX8njaOUfPZ8I9YdzxLMU98qaJGG9X0H0o3luvb7Q/LTyq8X7qdZbgObnDp45fJufWn1JPye1eNPPSfqRST8y6Ucm/cikH5n3/pGfNzzPZAjn9152dlcHlw==
   </data>
  </layer>
  <layer name="bouncys" width="72" height="27">
   <data encoding="base64" compression="zlib">
-   eJztmU0KwjAQhbsUf3YewbXu6kLQE6j4sxF7/3OYooUwzEwnYZomdh4M1PKaN/lIWoJVFaaXq3dENYE5uWg3dgOZaz92A5krJR+4N9s9t0LuD1kLoa/5ecdeP9L9zfk2Go0QKoUP1+dWo5GI3BSS5nO+WqORiNwU0uajvZZy5IO9T6DP51AT1xrKkQ+2BqCPYjIFPtgcc+Mz5DehL78EPkN+E/ryS+BzVM4JyS+BTyoZn/B848PnGx8+X4vP2dWFqJlX3b2r9+yB6S+lbP2E5xsfPh+b44nx/DMfOO9W2BzhmXUqfDBJ5kh5jA/vMT68R5sP3P9r5fFjJDn7UR7tc+Mc/F4qjw91c3V39SDqWX3/8+l8WFEeybPS6sb6AFSvQdc=
+   eJztmU0KwjAQhbsUf3YewbXudCHoCVT82Yi9/zlM0UAZZqaTMEkTnQcDpbzmTT6SlmjThOnp6hVRbWBOKdqM3UDh2o3dQOHKyQfuzW7PLZD7KWsm9LVf79jrR7q/Od9KoxFCtfDh+lxrNBKRm0PSfM631WgkIjeHtPlor6US+WDvE+jrc9gS1xoqkQ+2BqCPYpKaz1R5/ND8TtgcS+HjlfKbMJRfA5+U34Sh/Br4HJRzQvJr4JNLxic83/jw+caHz9fic3J1JmrSK3/v0nt2z/SXU7Z+wvOND5+PzfHIeH6ZD5x3J2yO8Mz6L3wwSeZIeYwP7zE+vEebD9z/S+XxYyQ5+1Ee7XMj/L1nrjw+1NXVzdWdqEfz+c/H+7CiPJJnpeXHegMTXkHh
   </data>
  </layer>
  <layer name="spikes" width="72" height="27">
@@ -43,12 +43,12 @@
  </layer>
  <layer name="Bouncy Overflow" width="72" height="27">
   <data encoding="base64" compression="zlib">
-   eJztmMsKwjAQRbP3D1y4EZdCfYHUB6JufPyA4KbV//8GZzBDQ5jGJjRpa3PgUsWbRy+ddqwQkV8kFt4M9HLQu8b9hmbd9AZaTl/yeYIGoIfluFD5YG3mUlRzI1HUbF4iqs1ElNdtpsz7a57M4NG9SFPXz1Qeq97/uH3azuFCU/msLNfnfLZzuNC2fIYl/jXj6Vs+Y3mcMH7yqTXVt3zw3DEj7n5CPnVc3/IxnW9b8pmyrvrpaj4r1lU/Xc1n53Etla7mg8w8rkd0OZ8QxHzM+MxnDlqALqAbo7v0qb+jf6mMXRr2EgKf+aSgDWhrsR/yp/I7jf3HfI6gk6j+/o78Z+1z2V5CQM/JeP/hof9aVfM5MJ5/zkevc6TK+aoevAb3osjOB03lo9c5YpsP4rtXa9P7Z5d8fBPzMXMItA6C/dhVfPuxqyLq0eiZxvV0ukfv/biez1U0V8TMB1NIVUo=
+   eJztWE1rAjEQzb39BT30UnoUrFqQtZWletH6B4Redu3//w2doRkMYRKTYD52Nw8eUXzJTB47ybhCVNzC3EPbAS8B/L1jvqmxzp1A4ZiKPz/AB+DZc14qf7A2e0mquWdxrdneQKrNuTDXbaese2udzqLRtYhcz89Mjq7nH5en7xohyOXPu2d8Tue7RghK8+fJoF8zmqn58yLHV0ZPOrWmpuYP7h094s4T0qnzpuaPbb+l+JPiTkAM1Z8UMU1xhuDPpxzbiDERQ/UH8RYxHqEEfx4dNPV8tmOM/iyAS+AB+M3wJHXq76hfKXNXllxSIKY/DXAD/PDIh/SN/E5zx+jPF3An3N/fkX6vfTblkgJ0T9bzhwf913L1p2U0Y/ZHr3OEy35VDT6DWxG3V8vlj17nCF9/ELF7tZLeP4f4ExvVHzvaRHEQ2I8dxX8/dlRIPRrdaVxPp2v03o/r+UJJa1XY8QfmDVX+
   </data>
  </layer>
  <layer name="Bouncy overflow 2" width="72" height="27">
   <data encoding="base64" compression="zlib">
-   eJzt2LEKgzAUBdDsfkLBJXYRutVFEDJ0bHHqB0j//x+M8Dr2ppDE98R74BEkAS8XcYhzRETn4+N0ca6Jcxc5s/zY27QFcx3NTTuAcYN2AOPYD8Z+MPaDsR+M/WDsB2M/GPvB2A+W08+9WAq7anw/c5wmzkuexwrv2EtOP4/E/lvWT8Y7tPH/g03aAYzzsqbu0c6s1w5AhxK0Axj1lBXdt3/PhLpR6A8ryiAIUA==
+   eJztmLEKwkAMhrv7BhZcapeC4KAgQuEGR8XJBxDf/x28QroIzSW2wUj+D8LRaw5+Po4MV1UAABCPJtc2V1voq6nnOfFvYLNgrn9j9+sAzjkqetdmKfwi9RP1nkn9jH17qyBO0fo5WQVxitZPMsrhFa2faGD+8GD+8MAPD/zwzPFzWDiLRyzuzz3XKteNvs/aUI6Y4+dSOPOg9aVK5AvMH55e2BfVT0Nr6R0tqp+BTtAT2Y+ESH7SF2ci+LnSyr23jz3pY7+f2Ad2vAEBJRAR
   </data>
  </layer>
 </map>

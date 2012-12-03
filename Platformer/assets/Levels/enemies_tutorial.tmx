@@ -23,7 +23,7 @@
  </tileset>
  <layer name="collisions" width="100" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2ZiwrCMAwA8497OGH//x0yUCZFZUsjnHIHYaU0KfQohG6MiOkplvv32sxXxfKluv8SQ+TI5sln9MFCHyz0wUIfLPTBQh8stnM92hvPTZ7Uc+ZchwNj6UMfLPTBguBjjNxbz/yq2I9D8GGPt6MPFvpgoQ8W+mCR9dHOt73P+mZt9T+xR41KKnq3TM+47Vnlowfvx44+WOiDhT5YXArWnqlRmd+7L5EbAJ6UPIAlAAA=
+   H4sIAAAAAAAAC+2ZAQqDMBAE749qqtD/v0OESkvQYi5bWMsMBEPIbSCDcOgYEdPHmF/PpVpXjflHuf8yhsiRrYPv4MMLfHiBDy/w4QU+vMCHF9u9Xu2NS1UHelrudbgwhz7w4QU+vHDwMUbuW085Crs5Dj7o8d7gwwt8eJH1kc1Q1uOjP0NZj4/z9br3eZ7sVf8T2zOUKHq3TM+4ncn74QU+vMCHF/jw4iHY25KhrO8915EVIQYsOIAlAAA=
   </data>
  </layer>
  <layer name="spikes" width="100" height="24">
@@ -94,7 +94,7 @@
  </layer>
  <layer name="bouncys" width="100" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3OsQkAAAjAMI/1/xt8QBxEcEmgeyMAAAAAAAAAZvk9AACsZRN3CvMjCwKAJQAA
+   H4sIAAAAAAAAC+3OsQkAAAjAMI/1/xvE3VFxSaB7IwAAAAAAAGj5PQAAAAdyiD0FHlGoRIAlAAA=
   </data>
  </layer>
  <layer name="help5" width="100" height="24">
@@ -104,10 +104,10 @@
    <property name="r" value="0"/>
    <property name="text" value="Bounce!"/>
    <property name="x" value="425"/>
-   <property name="y" value="640"/>
+   <property name="y" value="550"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3RsQ0AIRDAMJZj/5VovviC/iJhS5kgawEAMGl/0eBHix8t/x/ezPOjxY8WP1r8aPGjxY8WP1r8aPGjZV9ijh8tfrT4wUsOD8WRkIAlAAA=
+   H4sIAAAAAAAAC+3RsQ0AIRDAMJZj/5VovviC/iJhS5kgawEAMGl/0eBHix8t/x/ezPOjxY8WP1r8aPGjxY8WP1r2Jeb40eJHix8tfrT4wUsOvOsuHoAlAAA=
   </data>
  </layer>
  <layer name="moving" width="100" height="24">

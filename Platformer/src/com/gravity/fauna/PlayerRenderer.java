@@ -6,12 +6,10 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
-import org.newdawn.slick.Color;
 
 import com.google.common.collect.Lists;
 import com.gravity.levels.Renderer;
 import com.gravity.physics.PhysicalState;
-import com.gravity.physics.PhysicsFactory;
 
 public class PlayerRenderer implements Renderer {
     private static String FILE = "./new-assets/bunny/";
@@ -74,7 +72,7 @@ public class PlayerRenderer implements Renderer {
     @Override
     public void render(Graphics g, int offsetX, int offsetY) {
         PhysicalState state = player.getPhysicalState();
-        if (tweener % 8 == 0) {
+        if (tweener % 6 == 0) {
             // if running, animate
             if (player.isRunning()) {
                 if (state.velX > 0) {
@@ -92,8 +90,7 @@ public class PlayerRenderer implements Renderer {
             else if (player.isFalling()) {
                 if (state.velX > 0) {
                     lastImage = fallingBunnyRight;
-                }
-                else {
+                } else {
                     lastImage = fallingBunnyLeft;
                 }
             }
@@ -102,8 +99,7 @@ public class PlayerRenderer implements Renderer {
             else if (player.isRising()) {
                 if (state.velX > 0) {
                     lastImage = risingBunnyRight;
-                }
-                else {
+                } else {
                     lastImage = risingBunnyLeft;
                 }
             }
@@ -112,8 +108,7 @@ public class PlayerRenderer implements Renderer {
             else {
                 if (player.lastWalkedRight) {
                     lastImage = bunnyPlayerRight;
-                }
-                else {
+                } else {
                     lastImage = bunnyPlayerLeft;
                 }
             }

@@ -20,7 +20,7 @@ import com.gravity.levels.Renderer;
  */
 public class MainMenuState extends CageSelectState {
 
-    static public final int ID = 0;
+    static public final int ID = 1;
 
     private final LevelInfo[] levels;
 

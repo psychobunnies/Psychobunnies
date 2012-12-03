@@ -14,32 +14,57 @@ public final class GameSounds {
     private GameSounds() {
     }
 
-    private static final List<Sound> jumpSounds;
-    private static final List<Sound> slingshotSounds;
+    private static final List<String> jumpSounds = Lists.newArrayList("jump_ha.ogg", "jump_ho.ogg", "jump_woo.ogg", "jump_hup.ogg");
+    private static final List<String> slingshotSounds = Lists.newArrayList("slingshot_1.ogg", "slingshot_2.ogg", "slingshot_3.ogg",
+            "slingshot_4.ogg", "slingshot_5.ogg", "slingshot_whee.ogg");
+    private static final List<String> spikeSounds = Lists.newArrayList("death_spike.ogg", "death_crush3.ogg", "death_crush4.ogg", "death_crush5.ogg",
+            "death_crush7.ogg");
+    private static final List<String> crushSounds = Lists.newArrayList("death_crush1.ogg", "death_crush2.ogg", "death_crush6.ogg",
+            "death_crush8.ogg", "death_crush5.ogg");
+    private static final List<String> fellSounds = Lists.newArrayList("death_ugh.ogg");
+    private static final List<String> bounceSounds = Lists.newArrayList();
     private static final Music backgroundMusic;
     private static final Random random;
 
+    private static final String soundPath = "./assets/Sound/";
+
     static {
+
         try {
-            //@formatter:off
-            jumpSounds = Lists.newArrayList(
-                    new Sound("./assets/Sound/jump_ha.ogg"),
-                    new Sound("./assets/Sound/jump_ho.ogg"),
-                    new Sound("./assets/Sound/jump_woo.ogg"),
-                    new Sound("./assets/Sound/jump_hup.ogg"));
-            slingshotSounds = Lists.newArrayList(
-                    new Sound("./assets/Sound/slingshot_1.ogg"),
-                    new Sound("./assets/Sound/slingshot_2.ogg"),
-                    new Sound("./assets/Sound/slingshot_3.ogg"),
-                    new Sound("./assets/Sound/slingshot_4.ogg"),
-                    new Sound("./assets/Sound/slingshot_5.ogg"),
-                    new Sound("./assets/Sound/slingshot_whee.ogg"));
             backgroundMusic = new Music("./assets/Sound/Caketown 1.ogg");
-            //@formatter:on
         } catch (SlickException e) {
             throw new RuntimeException(e);
         }
         random = new Random();
+    }
+
+    public static enum Event {
+        //@formatter:off
+        JUMP         (jumpSounds),
+        SLINGSHOT    (slingshotSounds),
+        SPIKED       (spikeSounds),
+        CRUSHED      (crushSounds),
+        WALL_OF_DEATH(spikeSounds),
+        FELL_OFF_MAP (fellSounds),
+        BOUNCE       (bounceSounds);
+        //@formatter:on
+
+        private List<Sound> sounds;
+
+        private Event(List<String> files) {
+            sounds = Lists.newArrayList();
+            for (String file : files) {
+                try {
+                    sounds.add(new Sound(soundPath + file));
+                } catch (SlickException e) {
+                    throw new RuntimeException("Could not load sound file: " + soundPath + file, e);
+                }
+            }
+        }
+
+        private void playRandomSound() {
+            sounds.get(random.nextInt(sounds.size())).play();
+        }
     }
 
     public static void playBGM() {
@@ -47,15 +72,7 @@ public final class GameSounds {
 
     }
 
-    private static void playRandomSound(List<Sound> sounds) {
-        sounds.get(random.nextInt(sounds.size())).play();
-    }
-
-    public static void playJumpSound() {
-        playRandomSound(jumpSounds);
-    }
-
-    public static void playSlingshotSound() {
-        playRandomSound(slingshotSounds);
+    public static void playSoundFor(Event event) {
+        event.playRandomSound();
     }
 }

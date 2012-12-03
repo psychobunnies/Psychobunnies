@@ -5,7 +5,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import com.gravity.levels.GameplayState;
+import com.google.common.collect.Lists;
 import com.gravity.levels.LevelInfo;
 
 /**
@@ -52,8 +52,8 @@ public class PlatformerGame extends StateBasedGame {
             new LevelInfo("Platformer", "", "assets/Levels/platform.tmx", ++i),
             
             // Easy (2)
-            new LevelInfo("Tutorial", "Controls Tutorial", "assets/Levels/tutorial.tmx", ++i),
-            new LevelInfo("Tutorial 2", "Special Blocks Tutorial", "assets/Levels/enemies_tutorial.tmx", ++i),
+            new LevelInfo("Lab Procedures", "Formerly Tutorial 1", "assets/Levels/tutorial.tmx", ++i),
+            new LevelInfo("Lab Safety", "Formerly Tutorial 2", "assets/Levels/enemies_tutorial.tmx", ++i),
     };
     //@formatter:on
 
@@ -63,16 +63,7 @@ public class PlatformerGame extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {
-        addState(new MainMenuState(levels));
-        for (LevelInfo level : levels) {
-            addState(new GameplayState(level.title, level.mapfile, level.stateId));
-        }
-        addState(new CreditsState());
-        addState(new GameOverState());
-        addState(new GameWinState());
-        addState(new PauseState());
-        addState(new GameQuitState());
-        addState(new RestartGameplayState());
+        addState(new GameLoaderState(Lists.newArrayList(levels), 100));
     }
 
     public static void main(String args[]) throws SlickException {
@@ -82,6 +73,7 @@ public class PlatformerGame extends StateBasedGame {
         app.setMaximumLogicUpdateInterval(100);
         app.setMinimumLogicUpdateInterval(10);
         app.setTargetFrameRate(60);
+        app.setAlwaysRender(true);
         // app.setSmoothDeltas(true);
 
         app.start();

@@ -15,11 +15,11 @@ import com.gravity.levels.MenuCage;
 import com.gravity.levels.Renderer;
 
 public class PauseState extends CageSelectState {
-    
+
     public static final int ID = 22;
-    
+
     private MenuCage resumeCage;
-    
+
     public PauseState() throws SlickException {
         super("Pause", "assets/pause.tmx", ID);
     }
@@ -28,12 +28,12 @@ public class PauseState extends CageSelectState {
     public void enterCageState(MenuCage cage) {
         game.enterState(cage.getToState(), new FadeOutTransition(Color.black, 200), new FadeInTransition(Color.black, 2000));
     }
-    
+
     @Override
     protected CagesAndRenderers constructCagesAndRenderers() {
         List<MenuCage> cages = Lists.newLinkedList();
         List<Renderer> renderers = Lists.newLinkedList();
-        
+
         Vector2f resumeLoc = map.getSpecialLocation("resume");
         Vector2f mainMenuLoc = map.getSpecialLocation("mainmenu");
 
@@ -51,7 +51,7 @@ public class PauseState extends CageSelectState {
         renderers.add(mainMenuRend);
         cages.add(resumeCage);
         cages.add(mainMenuCage);
-        
+
         return new CagesAndRenderers(cages, renderers);
     }
 

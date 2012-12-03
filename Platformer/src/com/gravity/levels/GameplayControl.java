@@ -23,6 +23,6 @@ public interface GameplayControl {
     public void specialMoveSlingshot(Player slingshoter, float strength);
 
     public void playerFinishes(Player player);
-    
+
     public void newStartPositions(List<Vector2f> startPositions);
 }

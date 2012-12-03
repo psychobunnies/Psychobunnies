@@ -6,22 +6,31 @@
  <tileset firstgid="1" name="Bunny Dirt" tilewidth="32" tileheight="32">
   <image source="bunnyTiles.png" width="128" height="64"/>
  </tileset>
- <tileset firstgid="9" name="Spikes" tilewidth="32" tileheight="32">
+ <tileset firstgid="9" name="Spikes old" tilewidth="32" tileheight="32">
   <image source="Spikes.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="10" name="Lab Tiles" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/normal/lab-sheet.png" width="96" height="160"/>
+ </tileset>
+ <tileset firstgid="25" name="bouncies" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/bouncy/all.png" width="256" height="320"/>
+ </tileset>
+ <tileset firstgid="105" name="spikes" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/spiky/all.png" width="128" height="96"/>
  </tileset>
  <layer name="collisions" width="72" height="27">
   <data encoding="base64" compression="zlib">
-   eJztmIEKhSAMRbX3//8cQcEIu2uYvtu6BwaFRvO4tCqllCUQPfRenx35wcgP5vfvBCZQ93grkRr+Yr0/7ac2ItLX9meYD7b6me3nyTnK6MdjhJ+e9djuWRn8ePXZA5sftvVy5vpzPj/C5uDlk9GPB6sflvfKbczVHHt9Z8JQPxa0/l61j+QNfiLtUbxnKIOfu3v6eY+404/Nj0cr35FjkJ/4/ZiRH4z8YOQHIz8Y+cHID+bId8S/nhYM36dRVn7OAN8=
+   eJztl9sKgzAMhgPeqYwNfP9nFS+GoXSpNYf+2/KBNx5o8rUm7UxEy8VrJR0P5fe/zmt0AOBsowMAZxodQAAz6evQSHr+8X+sB9Z+jvVytYeV71r0PGvQ1g8fI6q/S3Pk4UeTF+9ZCP+zhx9NX37eGM8TCz9eNQTBD5/rVr2MjjdqvDJP7qEn/2g/CPvnnnoY6QdlX8njaOUfPZ8I9YdzxLMU98qaJGG9X0H0o3luvb7Q/LTyq8X7qdZbgObnDp45fJufWn1JPye1eNPPSfqRST8y6Ucm/cikH5n3/pGfNzzPZAjn9152dlcHlw==
   </data>
  </layer>
  <layer name="bouncys" width="72" height="27">
   <data encoding="base64" compression="zlib">
-   eJztl0EKwCAMBAu9+P8X99KjbBNTE21nIKBSXB0saDt8tEDtyK7rzgI/mkw/kX+zsiqx5qvvZu4BP+O5GeDnnXyLnxl7WdGPZax12vjp9/Gznp8sb/jx5+NH5+zgJ4tqP+ddvfHROd+k2s8T+NF81U/0rT7TuQfOjz8fPzofPzofPxrLmqxeo+DHn1MNfjR/9jN6b6uqC6qHCBo=
+   eJztmU0KwjAQhbsUf3YewbXudCHoCVT82Yi9/zlM0UAZZqaTMEkTnQcDpbzmTT6SlmjThOnp6hVRbWBOKdqM3UDh2o3dQOHKyQfuzW7PLZD7KWsm9LVf79jrR7q/Od9KoxFCtfDh+lxrNBKRm0PSfM631WgkIjeHtPlor6US+WDvE+jrc9gS1xoqkQ+2BqCPYpKaz1R5/ND8TtgcS+HjlfKbMJRfA5+U34Sh/Br4HJRzQvJr4JNLxic83/jw+caHz9fic3J1JmrSK3/v0nt2z/SXU7Z+wvOND5+PzfHIeH6ZD5x3J2yO8Mz6L3wwSeZIeYwP7zE+vEebD9z/S+XxYyQ5+1Ee7XMj/L1nrjw+1NXVzdWdqEfz+c/H+7CiPJJnpeXHegMTXkHh
   </data>
  </layer>
  <layer name="spikes" width="72" height="27">
   <data encoding="base64" compression="zlib">
-   eJztzrEJAAAIBDHb339hpxBRErj+qgD4INsDAAAAAADwVIa6qAGqSwDQ
+   eJztzrEJAAAIwDD/dfL/xStElAS6NwKAD3J7AAAAAAAAnqqhLmr2Sgoi
   </data>
  </layer>
  <objectgroup name="level markers" width="72" height="27">
@@ -30,6 +39,16 @@
  <layer name="players" width="72" height="27">
   <data encoding="base64" compression="zlib">
    eJztw7EJAAAIA7Bu/v+xS38QIYEkAAAAAADAlWkA+GABfFQADw==
+  </data>
+ </layer>
+ <layer name="Bouncy Overflow" width="72" height="27">
+  <data encoding="base64" compression="zlib">
+   eJztWE1rAjEQzb39BT30UnoUrFqQtZWletH6B4Redu3//w2doRkMYRKTYD52Nw8eUXzJTB47ybhCVNzC3EPbAS8B/L1jvqmxzp1A4ZiKPz/AB+DZc14qf7A2e0mquWdxrdneQKrNuTDXbaese2udzqLRtYhcz89Mjq7nH5en7xohyOXPu2d8Tue7RghK8+fJoF8zmqn58yLHV0ZPOrWmpuYP7h094s4T0qnzpuaPbb+l+JPiTkAM1Z8UMU1xhuDPpxzbiDERQ/UH8RYxHqEEfx4dNPV8tmOM/iyAS+AB+M3wJHXq76hfKXNXllxSIKY/DXAD/PDIh/SN/E5zx+jPF3An3N/fkX6vfTblkgJ0T9bzhwf913L1p2U0Y/ZHr3OEy35VDT6DWxG3V8vlj17nCF9/ELF7tZLeP4f4ExvVHzvaRHEQ2I8dxX8/dlRIPRrdaVxPp2v03o/r+UJJa1XY8QfmDVX+
+  </data>
+ </layer>
+ <layer name="Bouncy overflow 2" width="72" height="27">
+  <data encoding="base64" compression="zlib">
+   eJztmLEKwkAMhrv7BhZcapeC4KAgQuEGR8XJBxDf/x28QroIzSW2wUj+D8LRaw5+Po4MV1UAABCPJtc2V1voq6nnOfFvYLNgrn9j9+sAzjkqetdmKfwi9RP1nkn9jH17qyBO0fo5WQVxitZPMsrhFa2faGD+8GD+8MAPD/zwzPFzWDiLRyzuzz3XKteNvs/aUI6Y4+dSOPOg9aVK5AvMH55e2BfVT0Nr6R0tqp+BTtAT2Y+ESH7SF2ci+LnSyr23jz3pY7+f2Ad2vAEBJRAR
   </data>
  </layer>
 </map>

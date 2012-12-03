@@ -93,6 +93,9 @@ public abstract class CageSelectState extends GameplayState {
         cages.addAll(cagesAndRenderers.cages);
         renderers.addAll(cagesAndRenderers.renderers, RenderList.FLORA);
 
+        // remove the level finish zone
+        collider.removeCollidable(finish);
+
         game.unpauseRender();
         game.unpauseUpdate();
     }

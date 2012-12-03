@@ -53,7 +53,7 @@ public class GameLoaderState extends BasicGameState {
             loadString = "Setting up lab...";
             break;
         case 1:
-            loadString = "Making experiment: " + levelInfo.title + "...";
+            loadString = "Building experiment: " + levelInfo.title + "...";
             break;
         case 2:
             loadString = "Hiring lawyers...";
@@ -62,13 +62,13 @@ public class GameLoaderState extends BasicGameState {
             loadString = "Carving tombstones...";
             break;
         case 4:
-            loadString = "Buy bunny rewards...";
+            loadString = "Anticipating lab results...";
             break;
         case 5:
             loadString = "Readying break room...";
             break;
         case 6:
-            loadString = "Finding exit strategy...";
+            loadString = "Discussing exit strategies...";
             break;
         case 7:
             loadString = "Starting grad student bunny raising pipeline...";

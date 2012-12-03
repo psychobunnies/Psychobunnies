@@ -11,7 +11,7 @@
  </tileset>
  <layer name="collisions" width="72" height="27">
   <data encoding="base64" compression="zlib">
-   eJztmIEKhSAMRbX3//8cQcEIu2uYvtu6BwaFRvO4tCqllCUQPfRenx35wcgP5vfvBCZQ93grkRr+Yr0/7ac2ItLX9meYD7b6me3nyTnK6MdjhJ+e9djuWRn8ePXZA5sftvVy5vpzPj/C5uDlk9GPB6sflvfKbczVHHt9Z8JQPxa0/l61j+QNfiLtUbxnKIOfu3v6eY+404/Nj0cr35FjkJ/4/ZiRH4z8YOQHIz8Y+cHID+bId8S/nhYM36dRVn7OAN8=
+   eJztmI0KhiAMRbXe/53jg4IRfncMf7qte2BQaDiPQ6tSStkC0UPv89mRH4z8YPanE1hAPeOtRGr4i/U+2k9tRKSv7c+wHmz1s9rPyDXK6Mdjhp+e/dieWRn8ePXZA5sftv1y5f5zv7/C5uDlk9GPB6sflvfK35yrufb6roShfixo//3XPpM3+Im0jyaDn9FnujceM618Z85BfuLjMSM/GPnByA9GfjDyg5EfzJXvjH89LRi+T6McRcYA2g==
   </data>
  </layer>
  <layer name="bouncys" width="72" height="27">

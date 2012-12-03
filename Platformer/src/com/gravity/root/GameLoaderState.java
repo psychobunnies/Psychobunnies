@@ -39,7 +39,7 @@ public class GameLoaderState extends BasicGameState {
         this.levelInfo = levelItr.next();
         this.game = game;
         this.container = container;
-        this.loadString = "Getting research funding...";
+        this.loadString = "Securing research funding...";
     }
 
     @Override

@@ -391,7 +391,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
             controllerB.handleKeyRelease(key);
         }
 
-        if (key == Input.KEY_ESCAPE && canPause()) {
+        if ((key == Input.KEY_ESCAPE || key == Input.KEY_ENTER) && canPause()) {
             PauseState pause = (PauseState) (game.getState(PauseState.ID));
             pause.setGameplayState(this);
             game.enterState(PauseState.ID, new FadeOutTransition(), new FadeInTransition());

@@ -36,17 +36,18 @@ public class PauseState extends CageSelectState {
 
         Vector2f resumeLoc = map.getSpecialLocation("resume");
         Vector2f mainMenuLoc = map.getSpecialLocation("mainmenu");
+        
+        resumeCage = new MenuCage(game, resumeLoc.x, resumeLoc.y, MainMenuState.ID);
+        MenuCage mainMenuCage = new MenuCage(game, mainMenuLoc.x, mainMenuLoc.y, MainMenuState.ID);
 
         CageRenderer resumeRend, mainMenuRend;
         try {
-            resumeRend = new CageRenderer(resumeLoc.x, resumeLoc.y, "Resume");
-            mainMenuRend = new CageRenderer(mainMenuLoc.x, mainMenuLoc.y, "Main Menu");
+            resumeRend = new CageRenderer(resumeCage, "Resume");
+            mainMenuRend = new CageRenderer(mainMenuCage, "Main Menu");
         } catch (SlickException e) {
             throw new RuntimeException(e);
         }
 
-        resumeCage = new MenuCage(resumeRend.getRect(), MainMenuState.ID);
-        MenuCage mainMenuCage = new MenuCage(mainMenuRend.getRect(), MainMenuState.ID);
         renderers.add(resumeRend);
         renderers.add(mainMenuRend);
         cages.add(resumeCage);

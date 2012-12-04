@@ -19,8 +19,10 @@ import com.gravity.geom.Rect;
 public class CageRenderer implements Renderer {
     private static final FloatBuffer skew;
     private static UnicodeFont font;
+    public static Image image;
+    public static Image imageDisabled;
 
-    private final Image image;
+    private final MenuCage cage;
     private final String label;
     private final float cageX, cageY;
     private final float fontX, fontY;
@@ -39,6 +41,9 @@ public class CageRenderer implements Renderer {
         font.addAsciiGlyphs();
         try {
             font.loadGlyphs();
+            
+            image = new Image("assets/frontCageII.png");
+            imageDisabled = new Image("assets/frontCageIIDisabled.png");
         } catch (SlickException e) {
             e.printStackTrace();
         }
@@ -47,28 +52,27 @@ public class CageRenderer implements Renderer {
     /**
      * Create a cage renderer to render a cage at the specified location
      * 
-     * @param x
-     *            the center x of the cage's position
-     * @param y
-     *            the bottom y of the cage's position
+     * @param cage
+     *            the cage to render
      * @param label
      *            the label for the cage
      * @throws SlickException
      *             if image could not be loaded
      */
-    public CageRenderer(float x, float y, String label) throws SlickException {
+    public CageRenderer(MenuCage cage, String label) throws SlickException {
         Preconditions.checkArgument(font != null, "setFont() must be called before this constructor!");
-        this.image = new Image("assets/frontCageII.png");
-        this.cageX = x - image.getWidth() / 2f;
-        this.cageY = y - image.getHeight();
-        this.fontX = x - font.getWidth(label) / 2;
+        this.cage = cage;
+        this.cageX = cage.getRect().getX();
+        this.cageY = cage.getRect().getY();
+        this.fontX = cageX + image.getWidth() / 2f - font.getWidth(label) / 2;
         this.fontY = cageY + 12 - font.getHeight(label) / 2;
         this.label = label;
     }
 
     @Override
     public void render(Graphics g, int offsetX, int offsetY) {
-        g.drawImage(image, offsetX + cageX, offsetY + cageY);
+        boolean disabled = cage.isDisabled();
+        g.drawImage(disabled ? imageDisabled : image, offsetX + cageX, offsetY + cageY);
         g.setFont(font);
         g.pushTransform();
         GL11.glTranslatef(offsetX + fontX, offsetY + fontY, 0);

@@ -57,7 +57,7 @@ public abstract class CageSelectState extends GameplayState {
     public void keyPressed(int key, char c) {
         if (key == SELECT_KEY) {
             for (MenuCage cage : cages) {
-                if (cage.intersects(playerA.getPhysicalState().getRectangle(), playerB.getPhysicalState().getRectangle())) {
+                if (!cage.isDisabled() && cage.intersects(playerA.getPhysicalState().getRectangle(), playerB.getPhysicalState().getRectangle())) {
                     enterCageState(cage);
                 }
             }

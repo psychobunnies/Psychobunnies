@@ -4,5 +4,5 @@ eclimd.log
 .metadata/
 /slick/
 !/slick/trunk/Slick
-*.psd
+#*.psd
 .DS_Store

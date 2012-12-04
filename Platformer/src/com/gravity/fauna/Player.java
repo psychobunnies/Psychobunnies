@@ -21,12 +21,13 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     // PLAYER STARTING CONSTANTS (Units = pixels, milliseconds)
     private static final float JUMP_POWER = 0.48f; // .6 before reset
     private static final float MOVEMENT_INCREMENT = 1f / 8f;
-    private static final Rect BASE_SHAPE = new Rect(0f, 0f, 30f, 48f);
     private static final Vector2f DEFAULT_VELOCITY = new Vector2f(0, 0);
     private static final float SLINGSHOT_COOLDOWN = 500f;
 
     private final float MAX_SLING_STRENGTH = 0.75f; // 1 before reset
     private final float JUMP_COOLDOWN = 50f;
+
+    public static final Rect BASE_SHAPE = new Rect(6f, 0f, 20f, 48f);
 
     private final GameplayControl control;
 
@@ -40,10 +41,10 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     public boolean slingshot;
     public float slingshotCooldown = 0f;
     public float slingshotStrength = 0;
-    public boolean lastWalkedRight = true;
+    private boolean lastWalkedRight = true;
 
     public Player(GameplayControl control, GravityPhysics physics, String name, Vector2f startpos) {
-        super(new PhysicalState(BASE_SHAPE.translate(startpos.x + 1, startpos.y), DEFAULT_VELOCITY.copy(), 0f), physics);
+        super(new PhysicalState(BASE_SHAPE.translate(startpos.x, startpos.y), DEFAULT_VELOCITY.copy(), 0f), physics);
         this.name = name;
         this.control = control;
     }
@@ -169,17 +170,22 @@ public class Player extends PhysicsEntity<GravityPhysics> {
         switch (requested) {
         case LEFT:
             moveInProgress = true;
-            lastWalkedRight = false;
             setPhysicalState(state.setVelocity(Math.min(state.velX, -MOVEMENT_INCREMENT), state.velY));
             break;
         case RIGHT:
             moveInProgress = true;
-            lastWalkedRight = true;
             setPhysicalState(state.setVelocity(Math.max(state.velX, MOVEMENT_INCREMENT), state.velY));
             break;
         default:
             // no-op
         }
+
+        if (state.getVelocity().x < 0) {
+            lastWalkedRight = false;
+        } else if (state.getVelocity().x > 0) {
+            lastWalkedRight = true;
+        }
+
         if (slingshot) {
             slingshotStrength = MAX_SLING_STRENGTH;
         } else {
@@ -192,5 +198,9 @@ public class Player extends PhysicsEntity<GravityPhysics> {
         System.out.println("Player " + this.toString() + " was probably squashed by a moving platform.");
         GameSounds.playSoundFor(Event.CRUSHED);
         kill();
+    }
+
+    public boolean getLastWalkedRight() {
+        return lastWalkedRight;
     }
 }

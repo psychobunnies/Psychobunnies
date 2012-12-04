@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="110" height="24" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="camera" value="stalking"/>
+  <property name="wallofdeath" value="true"/>
+ </properties>
  <tileset firstgid="1" name="betterBunnyDirt" tilewidth="32" tileheight="32">
   <image source="betterBunnyDirt.png" width="32" height="32"/>
  </tileset>
@@ -28,7 +32,7 @@
  </layer>
  <layer name="spikes" width="110" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3aQQrAIAwEQH/a//+ix0ovUghiujPgwVtkCQTJGLDHVXBOrffP3u9b3bvoWnc6uQHJ5rkjZQ6B3fRUT3LrSW49yQ0e+gHqJP23AwAArKTvKH3d16rYR7sBFVQdYUApAAA=
+   H4sIAAAAAAAAC+3aMQoAIAwDQH/q/3/hqLNUMXgH3YVQKJLW4I5eMK++lzxyyyQ34Gfr3eEOgTPsVCa5ZZJbJrnBZB+gjv92AACA6eeO0k6PrKKPNgCZCMuYQCkAAA==
   </data>
  </layer>
  <objectgroup name="level markers" width="110" height="24">

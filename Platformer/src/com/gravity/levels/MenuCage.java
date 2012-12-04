@@ -19,7 +19,6 @@ public class MenuCage {
     }
 
     public Rect getRect() {
-        System.err.println("getRect: " + rect);
         return rect;
     }
 

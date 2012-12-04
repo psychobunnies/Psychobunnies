@@ -12,6 +12,9 @@
  <tileset firstgid="10" name="levelMarkers" tilewidth="32" tileheight="32">
   <image source="levelMarkers.png" width="128" height="128"/>
  </tileset>
+ <tileset firstgid="26" name="lab-sheet" tilewidth="32" tileheight="32">
+  <image source="../lab-sheet.png" width="128" height="96"/>
+ </tileset>
  <layer name="players" width="90" height="24">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3OoQ0AAAzDsOKB/X/u9kWJLYUnAQAAAAAAgL75tj0BACUHun4qrcAhAAA=
@@ -24,7 +27,7 @@
  </layer>
  <layer name="collisions" width="90" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3YsQ6AIAxF0Sr8/zcbBjZqYigt0nsSFgcLz0ZQEQAAAGDO9XJ9NIrxACxofYx5NXoCOIq2t6yUsYdv53o1oOYOPNdcnOvtJHrd2rn1tPPsqpxbPlVyvotHovs5C3L2YZWz9/P6W39o8/26B7X7eHw39/9Gp+Sc2Yr9m5yRwQNmROKxwCEAAA==
+   H4sIAAAAAAAAC+3VSw6AIAxFUdaBn/0v05DIhKQDpC1I70mcoIH6aCAlAAAAYMwpjB/vO8vnsvghhCT1McaRLTRJd4uliD2cndcr+xrxTvfMOWrGhXc/t+q51eYvjf+VVc675TRqdj9HQc4+tHL23q+/9YdUb+/Zmju//6qe+7vkPGueFdazuL/J2YdWvbfSPKuuN0qq9wHpHdcuwCEAAA==
   </data>
  </layer>
  <objectgroup name="level markers" width="90" height="24">

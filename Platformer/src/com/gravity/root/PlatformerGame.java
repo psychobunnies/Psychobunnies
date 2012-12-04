@@ -49,7 +49,7 @@ public class PlatformerGame extends StateBasedGame {
             new LevelInfo("Elevators","","assets/levels/Elevators.tmx", ++i),
             new LevelInfo("Shortcuts", "Timetest", "assets/levels/shortcuts.tmx", ++i),
             new LevelInfo("Slingshot", "Slingshot Turorial", "assets/Levels/slingshot_intro.tmx", ++i),
-            new LevelInfo("Plat former", "", "assets/Levels/platform.tmx", ++i),
+            new LevelInfo("Platformer", "", "assets/Levels/platform.tmx", ++i),
             
             // Easy (2)
             new LevelInfo("Lab Procedures", "Formerly Tutorial 1", "assets/Levels/tutorial.tmx", ++i),

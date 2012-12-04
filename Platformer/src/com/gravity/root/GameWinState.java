@@ -2,6 +2,7 @@ package com.gravity.root;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
@@ -15,15 +16,18 @@ public class GameWinState extends BasicGameState {
 
     private StateBasedGame game;
     private Rectangle restart;
+    private Image winImage;
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.game = game;
+        winImage = new Image("./new-assets/background/level-end.png");
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-        g.drawString("You win! Congratulations!", 50, 100);
+        //g.drawString("You win! Congratulations!", 50, 100);
+        g.drawImage(winImage, 0, 0);
         g.draw(restart = new Rectangle(48, 148, 200, 48));
         g.drawString("Back to main menu...", 50, 150);
     }

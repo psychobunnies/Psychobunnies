@@ -24,22 +24,22 @@
   </data>
  </layer>
  <layer name="spikes" width="32" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3BAQEAAACCIP+vbkhAAQAALwaEyeZnAAwAAA==
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAAC8GDAAAAQ==
   </data>
  </layer>
  <objectgroup name="level markers" width="32" height="24">
   <object name="finish" type="finish" x="896" y="448" width="128" height="64"/>
  </objectgroup>
- <layer name="players" width="32" height="24">
+ <layer name="players" width="32" height="24" visible="0">
   <properties>
    <property name="visible" value="0"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3NQQkAAAgEsOvmw/6NbHEgbAWWAABA3xSOLRzfHPMotXsADAAA
+  <data encoding="base64" compression="zlib">
+   eJztzUEJAAAIBLDr5sP+jWxxIGwFlgAAQN8Uji0c3xy69ACL
   </data>
  </layer>
- <layer name="help1" width="32" height="24">
+ <layer name="help1" width="32" height="24" visible="0">
   <properties>
    <property name="b" value="0"/>
    <property name="g" value="0"/>
@@ -48,11 +48,11 @@
    <property name="x" value="60"/>
    <property name="y" value="650"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkbBKBgFo4C+wBUPHkz2p9LJPfQEAO8PGXIADAAA
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSgYBaOAvsAVDx5M9qfSyT30BADbAAQs
   </data>
  </layer>
- <layer name="help2" width="32" height="24">
+ <layer name="help2" width="32" height="24" visible="0">
   <properties>
    <property name="b" value="0"/>
    <property name="g" value="0"/>
@@ -61,11 +61,11 @@
    <property name="x" value="275"/>
    <property name="y" value="650"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkbBKBgFgw24ouFR+0eW/bQEADRob9kADAAA
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSgYBYMNuKLhUftHlv20BADjOgRR
   </data>
  </layer>
- <layer name="help3" width="32" height="24">
+ <layer name="help3" width="32" height="24" visible="0">
   <properties>
    <property name="b" value="0"/>
    <property name="g" value="0"/>
@@ -74,11 +74,11 @@
    <property name="x" value="675"/>
    <property name="y" value="650"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3NQQ0AAAjEsDOHf0soAAHQJnsvAQCAW2roy3/TZK+90QAMAAA=
+  <data encoding="base64" compression="zlib">
+   eJztzUENAAAIxLAzh39LKAAB0CZ7LwEAgFtq6Mt/07NWAz0=
   </data>
  </layer>
- <layer name="help4" width="32" height="24">
+ <layer name="help4" width="32" height="24" visible="0">
   <properties>
    <property name="b" value="0"/>
    <property name="g" value="0"/>
@@ -87,11 +87,11 @@
    <property name="x" value="650"/>
    <property name="y" value="650"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkbBKBgFo2DoAlc0PNLsJxUAAFk3XdYADAAA
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSgYBaNg6AJXNDzS7CcVAAAErgIp
   </data>
  </layer>
- <layer name="help5" width="32" height="24">
+ <layer name="help5" width="32" height="24" visible="0">
   <properties>
    <property name="b" value="0"/>
    <property name="g" value="0"/>
@@ -100,41 +100,41 @@
    <property name="x" value="485"/>
    <property name="y" value="600"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkbBKBgFQwW4QvFA2z9Q7hjp9lMDAAC4aQ0PAAwAAA==
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSgYBUMFuELxQNs/UO4Y6fZTAwAASGcDxw==
   </data>
  </layer>
- <layer name="help6" width="32" height="24">
+ <layer name="help6" width="32" height="24" visible="0">
   <properties>
    <property name="text" value="You want to be higher up to use $your special &quot;slingshot&quot; ability"/>
    <property name="x" value="40"/>
    <property name="y" value="525"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkYmcEXCo/YPrP3oeCTYPwpGwUABAPqNYbQADAAA
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGJnBFwqP2D6z96Hgk2D8KRsFAAQDrggY0
   </data>
  </layer>
- <layer name="help7" width="32" height="24">
+ <layer name="help7" width="32" height="24" visible="0">
   <properties>
    <property name="text" value="Hold tab to charge your special ability, $release it to fling your partner towards $you"/>
    <property name="x" value="40"/>
    <property name="y" value="385"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSMglEwCgYPcMWDR4L9o2AUjIJRQGsAAPqYE9UADAAA
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMAoGD3DFg0eC/aNgFIyCUUBrAABUxQPH
   </data>
  </layer>
- <layer name="help8" width="32" height="24">
+ <layer name="help8" width="32" height="24" visible="0">
   <properties>
    <property name="text" value="Jump to position your slingshot properly"/>
    <property name="x" value="40"/>
    <property name="y" value="40"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSAgCsUDwY3DJQ7Btp+ZDeMglEwCkbBKBgFo4A2AADzWyrgAAwAAA==
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUgIArFA8GNwyUOwbafmQ3jIJRMApGwSgYBaOANgAAFgoCsw==
   </data>
  </layer>
- <layer name="help10" width="32" height="24">
+ <layer name="help10" width="32" height="24" visible="0">
   <properties>
    <property name="b" value="0"/>
    <property name="g" value="0"/>
@@ -143,11 +143,11 @@
    <property name="x" value="485"/>
    <property name="y" value="550"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkYBpcAVDx4J9o+CUTAKhg4AAHRiwOIADAAA
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGAaXAFQ8eCfaPglEwCoYOAACeSAPH
   </data>
  </layer>
- <layer name="help11" width="32" height="24">
+ <layer name="help11" width="32" height="24" visible="0">
   <properties>
    <property name="b" value="0"/>
    <property name="g" value="0"/>
@@ -156,8 +156,8 @@
    <property name="x" value="670"/>
    <property name="y" value="630"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAX0Aq5oeKTZj+6OgbR71P6BtX+gwEDaPWr/KBgFo2AUjILBAgAYKYQLAAwAAA==
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF9AKuaHik2Y/ujoG0e9T+gbV/oMBA2j1q/ygYBaNgFIyCwQIAiIMGeQ==
   </data>
  </layer>
  <layer name="help12" width="32" height="24">
@@ -166,13 +166,13 @@
    <property name="x" value="275"/>
    <property name="y" value="200"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSMgqEHXKF4MLhhIN0xEPa7YsGj9g+M/QMBBjrNj4JRMAooBwApuO+wAAwAAA==
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIKhB1yheDC4YSDdMRD2u2LBo/YPjP0DAQY6zY+CUTAKKAcAep0HSA==
   </data>
  </layer>
  <layer name="directions" width="32" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjgHSQMNAOGAU0ASkD7QAcIHGgHTAKRjRIpVB+oEHSQDtgEIPBWuaNAvqBBCLUoOdxfHkKW3kwGOswAP89+LoADAAA
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4B0kDDQDhgFNAEpA+0AHCBxoB0wCkY0SKVQfqBB0kA7YBCDwVrmjQL6gQQi1KDncXx5Clt5MBjrMACRjwSj
   </data>
  </layer>
  <layer name="help13" width="32" height="24">
@@ -181,8 +181,8 @@
    <property name="x" value="40"/>
    <property name="y" value="70"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAVDAbgSiYer/aNgFIyCUTAKRsEoGAWjgDoAABt1LwoADAAA
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFQwG4EomHq/2jYBSMglEwCkbBKBgFo4A6AAAXggVl
   </data>
  </layer>
 </map>

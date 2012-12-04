@@ -2,6 +2,7 @@ package com.gravity.fauna;
 
 import java.util.List;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -25,6 +26,8 @@ public class PlayerRenderer implements Renderer {
     private List<Image> runningBackBunny;
     private int tweener;
     private int counter = 0;
+
+    private static final int DIRECTIONAL_OFFSET = 4;
 
     public PlayerRenderer(Player player) {
         this.player = player;
@@ -72,10 +75,11 @@ public class PlayerRenderer implements Renderer {
     @Override
     public void render(Graphics g, int offsetX, int offsetY) {
         PhysicalState state = player.getPhysicalState();
+        int directionalOffset = 0;
         if (tweener % 6 == 0) {
             // if running, animate
             if (player.isRunning()) {
-                if (state.velX > 0) {
+                if (player.getLastWalkedRight()) {
                     lastImage = runningBunny.get(counter);
                 } else if (state.velX < 0) {
                     lastImage = runningBackBunny.get(counter);
@@ -88,7 +92,7 @@ public class PlayerRenderer implements Renderer {
 
             // if floating, fall
             else if (player.isFalling()) {
-                if (state.velX > 0) {
+                if (player.getLastWalkedRight()) {
                     lastImage = fallingBunnyRight;
                 } else {
                     lastImage = fallingBunnyLeft;
@@ -97,7 +101,7 @@ public class PlayerRenderer implements Renderer {
 
             // if rising, rise
             else if (player.isRising()) {
-                if (state.velX > 0) {
+                if (player.getLastWalkedRight()) {
                     lastImage = risingBunnyRight;
                 } else {
                     lastImage = risingBunnyLeft;
@@ -106,7 +110,7 @@ public class PlayerRenderer implements Renderer {
 
             // if standing still, stand still
             else {
-                if (player.lastWalkedRight) {
+                if (player.getLastWalkedRight()) {
                     lastImage = bunnyPlayerRight;
                 } else {
                     lastImage = bunnyPlayerLeft;
@@ -114,20 +118,21 @@ public class PlayerRenderer implements Renderer {
             }
         }
 
+        directionalOffset = player.getLastWalkedRight() ? DIRECTIONAL_OFFSET : -DIRECTIONAL_OFFSET;
         Vector2f pos = state.getPosition();
-        g.drawImage(lastImage, pos.x + offsetX, pos.y + offsetY);
+        g.drawImage(lastImage, pos.x + offsetX - Player.BASE_SHAPE.getX() - directionalOffset, pos.y + offsetY - Player.BASE_SHAPE.getY());
         tweener++;
         //@formatter:off
         // if we ever need to draw hitboxes again:
-        //g.pushTransform();
-        //g.translate(offsetX, offsetY);
-        //g.setColor(Color.red);
-        //g.draw(player.getPhysicalState().getRectangle().toShape());
+        g.pushTransform();
+        g.translate(offsetX, offsetY);
+        g.setColor(Color.red);
+        g.draw(player.getPhysicalState().getRectangle().toShape());
         //g.setColor(Color.green);
         //g.draw(player.getPhysicalState().getRectangle().translate(0, PhysicsFactory.DEFAULT_OFFSET_GROUND_CHECK).toShape());
         //g.setColor(Color.white);
-        //g.resetTransform();
-        //g.popTransform();
+        g.resetTransform();
+        g.popTransform();
         //@formatter:on
     }
 }

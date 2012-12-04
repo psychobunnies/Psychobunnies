@@ -26,7 +26,7 @@ public class PauseState extends CageSelectState {
 
     @Override
     public void enterCageState(MenuCage cage) {
-        game.enterState(cage.getToState(), new FadeOutTransition(Color.black, 500), new FadeInTransition(Color.black, 2000));
+        game.enterState(cage.getToState(), new FadeOutTransition(Color.black, 200), new FadeInTransition(Color.black, 2000));
     }
 
     @Override

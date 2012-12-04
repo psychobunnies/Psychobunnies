@@ -346,7 +346,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
                     }
                     return new SidesAndTime(EnumSet.of(Side.TOP), yTime);
                 } else {
-                    if (!(a instanceof TriggeredTextCollidable)) {
+                    if (!(a instanceof TriggeredTextCollidable) && !(b instanceof TriggeredTextCollidable)) {
                         System.out.println("Weird collision found " + a.toString() + " from " + b.toString());
                     }
                     return new SidesAndTime(sidesA, time);
@@ -519,7 +519,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
                     }
                     return new SidesAndTime(EnumSet.of(Side.LEFT), xTime);
                 } else {
-                    if (!(a instanceof TriggeredTextCollidable)) {
+                    if (!(a instanceof TriggeredTextCollidable) && !(b instanceof TriggeredTextCollidable)) {
                         System.out.println("Weird collision found: " + a.toString() + " from " + b.toString());
                     }
                     return new SidesAndTime(sidesA, time);

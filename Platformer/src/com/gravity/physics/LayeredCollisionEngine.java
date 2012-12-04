@@ -137,8 +137,8 @@ public class LayeredCollisionEngine implements CollisionEngine {
         SidesAndTime a = getCollisionSide(time, collA, collB, sidesA);
         SidesAndTime b = getCollisionSide(time, collB, collA, sidesB);
 
-        Preconditions.checkArgument(!(collA.causesCollisionsWith(collB) && collB.causesCollisionsWith(collA)) || (Math.abs(a.time - b.time) < EPS),
-                "Collision time mismatch: a=" + a.toString() + "; b=" + b.toString() + "; collA=" + collA.toString() + "; collB=" + collB.toString());
+        // Preconditions.checkArgument(!(collA.causesCollisionsWith(collB) && collB.causesCollisionsWith(collA)) || (Math.abs(a.time - b.time) < EPS),
+        // "Collision time mismatch: a=" + a.toString() + "; b=" + b.toString() + "; collA=" + collA.toString() + "; collB=" + collB.toString());
 
         //@formatter:off
         return new RectCollision(collA, collB, Math.max(a.time, b.time), 
@@ -346,7 +346,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
                     }
                     return new SidesAndTime(EnumSet.of(Side.TOP), yTime);
                 } else {
-                    if (!(a instanceof TriggeredTextCollidable)) {
+                    if (!(a instanceof TriggeredTextCollidable) && !(b instanceof TriggeredTextCollidable)) {
                         System.out.println("Weird collision found " + a.toString() + " from " + b.toString());
                     }
                     return new SidesAndTime(sidesA, time);
@@ -519,7 +519,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
                     }
                     return new SidesAndTime(EnumSet.of(Side.LEFT), xTime);
                 } else {
-                    if (!(a instanceof TriggeredTextCollidable)) {
+                    if (!(a instanceof TriggeredTextCollidable) && !(b instanceof TriggeredTextCollidable)) {
                         System.out.println("Weird collision found: " + a.toString() + " from " + b.toString());
                     }
                     return new SidesAndTime(sidesA, time);

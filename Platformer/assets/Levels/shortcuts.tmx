@@ -25,8 +25,8 @@
    eJztl8EOxCAIRG3//6N7ctcQZYoM6G6cxEtrBJ866FVKuU77tKPDotVh8dVuLG7R2P017caiVXZemSzkGqK1/GcWo/jaPwu7ViPuiD2bhSX3nc5n9L5AY/8SC69PZ8zVWz+qvPsCcYpmcRfe3s44I4zan6HVdUQyYt2bZiRZZOcyWgfm+rwdy7IvJB8Gw7csPB4ewUL2Y/mV5TtS726VwcKiXn5a7BUetto7d6ozPRbe+xXbfzN93HM2M4Tuxcw4jDoSKfSWZcZZWUdm4kblUFlo7/1RbUI+o3kGitX2QyzkHGbi1fYAxYcBgQ==
   </data>
  </layer>
- <objectgroup name="finish" width="67" height="24">
-  <object x="1978" y="607" width="132" height="129"/>
+ <objectgroup name="level markers" width="67" height="24">
+  <object name="finish" x="1978" y="607" width="132" height="129"/>
  </objectgroup>
  <layer name="spikes" width="67" height="24">
   <data encoding="base64" compression="zlib">

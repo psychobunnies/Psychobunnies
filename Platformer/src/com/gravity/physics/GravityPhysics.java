@@ -9,6 +9,7 @@ import com.google.common.collect.Lists;
 import com.gravity.entity.Entity;
 import com.gravity.fauna.Player;
 import com.gravity.geom.Rect;
+import com.gravity.geom.Rect.RectException;
 import com.gravity.geom.Rect.Side;
 import com.gravity.map.tiles.BouncyTile;
 import com.gravity.map.tiles.MovingEntity;
@@ -263,22 +264,26 @@ public class GravityPhysics implements Physics {
             Preconditions.checkArgument(sides != null, "Collision passed did not involve entity: " + entity + ", " + c);
 
             for (Side s : sides) {
-                possiblePos = possiblePos.setSide(s, otherRect.getSide(s.getOpposite()));
-                if (possiblePos == null) {
+                try {
+                    possiblePos = possiblePos.setSide(s, otherRect.getSide(s.getOpposite()));
+                } catch (RectException e) {
                     if (entity instanceof Player) {
                         System.err.println("Crushing player; no possible positions");
+                        e.printStackTrace();
                     }
                     entity.unavoidableCollisionFound();
-                    break;
+                    return entity.getPhysicalState().snapshot(backstep);
                 }
             }
         }
         Rect r = entity.getPhysicalState().getRectangle();
 
-        r = r.translateIntoWithMargin(possiblePos, 0.2f);
-        if (r == null) {
+        try {
+            r = r.translateIntoWithMargin(possiblePos, 0.2f);
+        } catch (RectException e) {
             if (entity instanceof Player) {
                 System.err.println("Crushing player; possible positions too small");
+                e.printStackTrace();
             }
             entity.unavoidableCollisionFound();
             return entity.getPhysicalState().snapshot(backstep);

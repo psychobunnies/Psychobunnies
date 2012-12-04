@@ -81,6 +81,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     private Control remappedControl;
     private float remappedDecay;
     private Polygon controlArrow = new Polygon(new float[] { -50, 10, 20, 10, -10, 50, 10, 50, 50, 0, 10, -50, -10, -50, 20, -10, -50, -10 });
+    private boolean finished = false;;
 
     protected final List<Resetable> resetableTiles = Lists.newArrayList();
     private final String levelName;
@@ -387,14 +388,12 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
 
     @Override
     public void keyReleased(int key, char c) {
-        if (!controllerA.handleKeyRelease(key)) {
-            controllerB.handleKeyRelease(key);
-        }
-
-        if (key == Input.KEY_ESCAPE && canPause()) {
-            PauseState pause = (PauseState) (game.getState(PauseState.ID));
-            pause.setGameplayState(this);
-            game.enterState(PauseState.ID, new FadeOutTransition(), new FadeInTransition());
+        if (!controllerA.handleKeyRelease(key) && !controllerB.handleKeyRelease(key)) {
+            if ((key == Input.KEY_ESCAPE || key == Input.KEY_ENTER) && canPause()) {
+                PauseState pause = (PauseState) (game.getState(PauseState.ID));
+                pause.setGameplayState(this);
+                game.enterState(PauseState.ID, new FadeOutTransition(), new FadeInTransition());
+            }
         }
     }
 
@@ -465,6 +464,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
             finishedPlayer = player;
         } else if (finishedPlayer != player) {
             reset();
+            finished = true;
             game.enterState(GameWinState.ID);
         }
     }
@@ -481,5 +481,9 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         for (Resetable r : resetableTiles) {
             r.reset();
         }
+    }
+
+    public boolean isFinished() {
+        return finished;
     }
 }

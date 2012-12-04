@@ -140,6 +140,12 @@ public class Rect {
         }
 
     }
+    
+    public class RectException extends Exception {
+        public RectException(String message) {
+            super(message);
+        }
+    }
 
     public Rect(Shape rect) {
         x = rect.getMinX();
@@ -363,24 +369,25 @@ public class Rect {
      * @param side
      * @param pos
      * @return
+     * @throws RectException 
      */
-    public Rect setSide(Side side, float pos) {
+    public Rect setSide(Side side, float pos) throws RectException {
         switch (side) {
         case TOP:
             if (height + y - pos < 0)
-                return null;
+                throw new RectException("Shrank to zero");
             return new Rect(x, pos, width, height + y - pos);
         case LEFT:
             if (width + x - pos < 0)
-                return null;
+                throw new RectException("Shrank to zero");
             return new Rect(pos, y, width + x - pos, height);
         case BOTTOM:
             if (pos - y < 0)
-                return null;
+                throw new RectException("Shrank to zero");
             return new Rect(x, y, width, pos - y);
         case RIGHT:
             if (pos - x < 0)
-                return null;
+                throw new RectException("Shrank to zero");
             return new Rect(x, y, pos - x, height);
         default:
             throw new RuntimeException("Bad side");
@@ -412,10 +419,11 @@ public class Rect {
      * 
      * @param other
      * @return
+     * @throws RectException 
      */
-    public Rect translateInto(Rect other) {
+    public Rect translateInto(Rect other) throws RectException {
         if (width > other.getWidth() || height > other.getHeight()) {
-            return null;
+            throw new RectException("Destination rect too small");
         }
         Rect result = this;
         for (Side s : Side.values()) {
@@ -426,7 +434,7 @@ public class Rect {
         return result;
     }
 
-    public Rect translateIntoWithMargin(Rect other, float margin) {
+    public Rect translateIntoWithMargin(Rect other, float margin) throws RectException {
         other = other.setSide(Side.TOP, other.getSide(Side.TOP) + 2 * margin);
         other = other.setSide(Side.LEFT, other.getSide(Side.LEFT) + 2 * margin);
         other = other.translate(-margin, -margin);

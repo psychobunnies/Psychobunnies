@@ -14,7 +14,7 @@
  </tileset>
  <layer name="players" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJztw7EJAAAIA7DO/n+wS48QSSAJ8NU0AAAAAAAAALctdzYAFQ==
+   eJztw6ENAAAIA7A5/v8YM4nFtUkTAIBf0wAAAAAAANwWhBMADw==
   </data>
  </layer>
  <layer name="spikes" width="90" height="24">

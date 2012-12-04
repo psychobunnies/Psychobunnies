@@ -19,7 +19,7 @@
  </layer>
  <layer name="spikes" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt2cEKgCAMgGHz5vu/cASdzNaMObP9H0gdKmVzKpRSDHn2AIIgzj6s4lzOhjbmsw9tnIvQIDtixHz2QZzfo5avWuucV5yi5oN9Za7RezvnCL1SXfENq+aD2lubNlesG32ohf8hl/2IGYDRVllnOCvDyjZ7AMbu6kK6r5+X/itJ33+qx9b7ubM/aRw7gwsDew==
+   eJzt2UsOgCAMRVFkxv43bJwCVmqgtXJPYnTgh7xaJDGlPWTvAWyCnG2Qsw1ytjGacxE2yK6MeJ9tkPN79HKrN89Z5bRrPfiu+Fr9bWcdMa5Ue3xD1HrQe7GN1op5Q4de+B9qqUdmAFaLMs+wVsYsh/cAJrvrC+m4Pl/6ryTd/6kfe9dn5fOkcZxrkQNp
   </data>
  </layer>
  <layer name="collisions" width="90" height="24">
@@ -32,7 +32,7 @@
  </objectgroup>
  <layer name="playerkeyed" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt11sOgCAMRFG+3P+S3YBJcQplgHsSP036gIm2BgDIeIIHqMYZ9HXKPqLcO6XPiHuf6k7c+4Jut90q9bpnUE9tLvX/zY2deluJGYzjMsvZdVTerez33Nc77rnsLju7mfNnr0DM5Z7c+L+uqJwNuwCgGJXl5I+/F1OFAY0=
+   eJzt11sOgCAMRFG+3P+S3YBJcQplgHsSP036gIm2BgDIeIIHqMYZ9HXKPqLcO6XPiHuf6k7c+4Jut90q9bpnUE9tLvX/zY2deluJGYzjMsvZdVTerez33Nc77rnsLju7mfNnr0DM5Z7c+L+uqJwNuwCgGJXn5I+/F17FAZM=
   </data>
  </layer>
  <layer name="Checkpoint A" width="90" height="24">
@@ -65,6 +65,9 @@
   </data>
  </layer>
  <layer name="Checkpoint D" width="90" height="24">
+  <properties>
+   <property name="type" value="checkpoint"/>
+  </properties>
   <data encoding="base64" compression="zlib">
    eJzt0EENACAQBDEM8OCBf6uYIHuEaxVMZgx+MasDmvA5w+cMnzN8zvAZ4D2rOqCBXR0AAAAAwDUHjTEAdQ==
   </data>

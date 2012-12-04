@@ -41,16 +41,6 @@
    eJztw7EJAAAIA7D6/9MuPUIkgSQAAAAAAHDTNAAAfLc3tAAD
   </data>
  </layer>
- <layer name="moving 3" width="90" height="24">
-  <properties>
-   <property name="speed" value="100"/>
-   <property name="translationX" value="22"/>
-   <property name="translationY" value="0"/>
-  </properties>
-  <data encoding="base64" compression="zlib">
-   eJztw7EJAAAIA7D6/9Pu/UBJIAkAAAAAAAAAX0wFblgwmAAF
-  </data>
- </layer>
  <layer name="moving 5" width="90" height="24">
   <properties>
    <property name="speed" value="45"/>
@@ -73,7 +63,7 @@
  </layer>
  <layer name="bouncys" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJztl0EKgDAMBD32h55EBMX//8CC19Y0sV3TugML2oQax4N0mnAEQHLPITeSi6d6bY8jfxd6rsMbj1I9ZK6tjOS55r3kWevNo+fSmXr27ME7PWOo5Vm7b67ek+clZi3spWc7R8yZWJ8Ta/RsI7fnFrMr+qU+67mupG6d0dpvodVMqH8JPWPoxbMWesag8dwq0jwevWnx9g70jGFUz96g5++gZwz0jIGeMdAzhtE9l54t/sAFYZwItQ==
+   eJzt10EKgDAMRNEue0sRvP8ZFFzHNDEd0zgfCkqL1icubA1XBwzpPuxOs3iaj3as/F7oHNMbR22+C8feKjlHnmvOVreMzqN7Wtk5gzudMUU5W68rza/mvA2uozMmOvuSrrlf4zCs19Z5/+tG5r179K73NGtPqG+PzphWcbZGZ0wW51lD209GN2vZnoHOmKo6Z4vO30VnTHTGRGdMdMZU3Xn03+IPnWC4BzU=
   </data>
  </layer>
  <layer name="playerkeyed" width="90" height="24">
@@ -99,12 +89,12 @@
  </layer>
  <layer name="collisions" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJztmk0OgyAQRrHHUGNq4v3P2LBgQxhhfhw+LC9hY4rTvgEcqGsIYSPaatw8+Nxc79lO019J4xUHkenZB0/PnixGn7HCwnNcd6n1fVfe25Kl0p5E6vmw/iIOUM/HVjg5yXMYY1+CmCOuNVrP2tj5vG+Z69MzP7bE2fTMj811dgj6IDCa51PQR0LNC9fbmzyntR6pnku8yTMyCJ459fD0LIt9BV4NPbLnfJ/hsRdMsb+Bt2fm5gWF3uOZOzbjsy7PQeka2t58NM+toK0t07MPaJ4l5x0lap6984DmOaH18K+eS2fbPT1bzZtWeo9nqkbT1m61/t61YW/P1P9O2vFVe48A8QzkKaLnH5mcD30=
+   eJztmt0OgyAMRnGP4RYzE9//GRcuuCFW6I/lw/Uk3Cxj1QOWgltTSm+ircbNg9fF5yPbbnqXNF5xEAnPPnh69mQx+o4VFp5z3qXy+0f525YsjXYnUs+b9YU4QK2PvXDGpB7DHPsQxJwx12g9a2PXz33Psx6e+bFrZ8X7FeGZH5vrbBP0QWA2z7ugj4SWF663J3kuOQepnis8yTMyCJ459XB4lsU+Eq+Gntlzvc/w2AuW2N/E2zNzxwWF0fOZOzfzWtezzqHtzWfz3AtabgnPPqB5lpx3nNHy7D0OaJ4LWg//6vnsbDs8+8WmajRt7dbq710bjvZMvXfSnlG0/keAeAZyF9nzD3N/DxY=
   </data>
  </layer>
  <layer name="bouncy overflow" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJztzsEJADAIADHXFNx/jnYIRZAE7n8RAABclb/anoBBuT0AAAAAANDkAUIMAQ8=
+   eJztwTEBAAAAwqD1T20MH6AAAAAAAAAAAHgaIcAAAQ==
   </data>
  </layer>
  <objectgroup name="level markers" width="90" height="24">

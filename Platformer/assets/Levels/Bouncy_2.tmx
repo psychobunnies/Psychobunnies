@@ -14,22 +14,22 @@
  </tileset>
  <layer name="collisions" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJztmdkOhCAMRdH//2jjwySGIF24ba8TTsLLCAVPsCxzttbOXVLKiLffvSDioceUxcxzRF8MMSpAeD4QA1HGR3qOHvcThOe7/fFSUDE1fUl9W+qiQXlGE7FmVOac7TkHFs/9d/yMqdkbaWDwvJK3fuOvyHsWGDxbmM09qa9KvuLZ6nXUVzSzb+krnp9tvH2h8OSkf/Xc15u1k7x59svSeDKp9NzneM8djAUGz5Y5glr3It5bys/9M+bzIJNniyOG+Wxtg6ynwXunETUeK5H3ot64UeccNs+oc530XhV3ZlVE/p9iyc/b81rsledotucctuccGDyP1r5oz2z3pl40+83bxQVoAQIy
+   eJztmeEOwBAMhPH+D71fkmWx0eJ6nV7il3DrN5qipJQKqFkKFaM0/tVcrDlbCrnOgvOZykCvFZxzp7HI8hu1nJn4jcpy32o5e8w1DJyl+yg4y72f/iOsg7PcW+rvtUbxxDkrxrDIE+feGMZ6rupPnJnFwFmy/oKzzlvKzTPnZ05DnwdbNfSbv2fOlt678jPbv/DGWTI3k07lbHFnZqWvc/csg15c6LjZON/7Zuee6V+t4IxRcMaIgXMrJ+/mzHgHolHv3a6yvAC3ggGE
   </data>
  </layer>
  <layer name="players" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJztzjENAAAIwDAkcOBfK5ggcLTJ/kUAAAAAAAAAsKWmvJ4A3mu3sAAl
+   eJztzjENAAAIBLEXwIh/reAChja5/RKAG7X19QQAAAAAAADAAwPJnQAh
   </data>
  </layer>
  <layer name="spikes" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt17EJACAMBMCs4f6L2oqIiqgo3MG3KQJ5SAQA0JKKANyid85q7TaFzgf2qTtFv8AaNwQAAP/o/cKjnJ7/SmZlMnQIZw==
+   eJzt1jEKACAMA0C/4f8/6i4OBTGK3EHWDgFbWwMAuKdPAQBq3FDgZ/OOs+dgn3eUoecMPWfoOUPPGXo+a/V/r+b0/FdSNQBPQQgc
   </data>
  </layer>
  <layer name="bouncys" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt1EEKgDAMAMEe+/8Xi3gRoXoobpN0BwShAcMKbU1ao69eYBOZO2faPdOupz54p319+3merfNd5M6z85HYmWHn/2S5n2fndbEzI2Lniv8yYueK7MywM8NuDDsz7MywM8PODDsz7MywM6N65/7y7OYAEGYBiQ==
+   eJztl0sKwCAMRF16/xN34VpjPh2TMA+EtgkyPukiY+CYDxdZSC5O9WiPne+FnmPweJTqc/NspZPnyHfJs/YOM3q+zZTZs7cfAT1jiPKs3XdXr+bZ6u+2j5510LMNTf7Td6nPMs9ZZ7xKnr39L/9FesaQ0bMWesag8fzXisqYmQpnqJBRosIZKmTsAD1joGcM9IyBnjHQM4bunj2zRTc+z+YFqQ==
   </data>
  </layer>
  <layer name="moving 1" width="90" height="24">
@@ -45,11 +45,26 @@
  <layer name="moving 2" width="90" height="24">
   <properties>
    <property name="speed" value="30"/>
-   <property name="translationX" value="5"/>
+   <property name="translationX" value="3"/>
    <property name="translationY" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztw7ENAAAIA6D6/9PufcBBSEgAAAAA/pkKAAAAcGkBZFgABQ==
+   eJztw7EJAAAIA7D6/9MuPUIkgSQAAAAAAHDTNAAAfLc3tAAD
+  </data>
+ </layer>
+ <layer name="playerkeyed" width="90" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzt0LkNwDAMBEFGgvuvWA1IjuyDnhngEmbcKgAAAFjXM7mNxv90ztA5Q+cMnTN0ztA5Q+d37cPt7NS/ALhbB8CVAQ0=
+  </data>
+ </layer>
+ <layer name="moving 3" width="90" height="24">
+  <properties>
+   <property name="speed" value="10"/>
+   <property name="translationX" value="22"/>
+   <property name="translationY" value="0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztw7EJAAAIA7D6/9Pu/UBJIAkAAAAAAAAAX0wFblgwmAAF
   </data>
  </layer>
  <layer name="checkpoint 1" width="90" height="24">
@@ -57,31 +72,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztzqENACAMAMEOUIFg/1mLRtU1gbvk/UcAAPCjfVrTE4/JKwAAAAAA6CqpaQBV
-  </data>
- </layer>
- <layer name="checkpoint 2" width="90" height="24">
-  <properties>
-   <property name="type" value="checkpoint"/>
-  </properties>
-  <data encoding="base64" compression="zlib">
-   eJztzrENADAIwDAO6MDA/7fSjROoKlvKnggAABh5q+2Jz53tAQAAAAAAntN+/AAx
-  </data>
- </layer>
- <layer name="checkpoint 3" width="90" height="24">
-  <properties>
-   <property name="type" value="checkpoint"/>
-  </properties>
-  <data encoding="base64" compression="zlib">
-   eJzt0DERACAQBLETQEHx/rVS4QD4gkTBziYAAABsozvgEz7fV/H5hRmfAQAAgDMWBNoAVQ==
-  </data>
- </layer>
- <layer name="checkpoint 4" width="90" height="24">
-  <properties>
-   <property name="type" value="checkpoint"/>
-  </properties>
-  <data encoding="base64" compression="zlib">
-   eJzt0CEOACAMA8A9AIHY/98KGr1sgrukpqppBNRY0wM+4ed6+yafzs8AAAAAAABApwNleABJ
+   eJzt0LEJADAMA0G1gRTef1pniRCC70C9+ITf7dcHhtD5rnVW0RkAAAAAAACYqQFIzQA+
   </data>
  </layer>
 </map>

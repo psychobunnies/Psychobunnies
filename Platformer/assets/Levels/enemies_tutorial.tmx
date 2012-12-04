@@ -23,7 +23,7 @@
  </tileset>
  <layer name="collisions" width="100" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2ZAQqDMBAE749qqtD/v0OESkvQYi5bWMsMBEPIbSCDcOgYEdPHmF/PpVpXjflHuf8yhsiRrYPv4MMLfHiBDy/w4QU+vMCHF9u9Xu2NS1UHelrudbgwhz7w4QU+vHDwMUbuW085Crs5Dj7o8d7gwwt8eJH1kc1Q1uOjP0NZj4/z9br3eZ7sVf8T2zOUKHq3TM+4ncn74QU+vMCHF/jw4iHY25KhrO8915EVIQYsOIAlAAA=
+   H4sIAAAAAAAAC+2Z7QaAQBAA9x37pvd/jkQ/ElHXpnHNsCJ7tzHWrauNiG4X4/acDu+zYnxp31qiCSGhDxb6YKEPFvpgoQ8W+mCx+rg6G/cffeOfuNMfZ7n2WB76YKEPFgQfbZTd9dR4nhF8lK6vsS/1wUIfLPTBQh8ssnwcZ5/5JDfzn9i+biYZs1vJzLjWtD9Y6IOFPljog8WQkHtnj8z1T+sSWQDHd156gCUAAA==
   </data>
  </layer>
  <layer name="spikes" width="100" height="24">
@@ -94,7 +94,7 @@
  </layer>
  <layer name="bouncys" width="100" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3OsQkAAAjAMI/1/xvE3VFxSaB7IwAAAAAAAGj5PQAAAAdyiD0FHlGoRIAlAAA=
+   H4sIAAAAAAAAC+3RsQkAIAADQYd1/xmsBUvBR+4gfeDH4Afz9QE2erTo0aJHix4terTo0aJHix4terTo0aJHix4terTo0aIHAAA/modxzwLUcdX2gCUAAA==
   </data>
  </layer>
  <layer name="help5" width="100" height="24">

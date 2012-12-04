@@ -19,8 +19,8 @@
   <image source="../arrows.png" width="128" height="64"/>
  </tileset>
  <layer name="collisions" width="32" height="24">
-  <data encoding="base64" compression="zlib">
-   eJztlusOgzAIhXnH6qzv/yKucU0acqjQHjd/jISovfBBgNpFRNZG8+e5q3GW5ub99dYk98mV7fTnf5W/yJnzEX7Z26vLrGwjPvpmxu/hIX7bD7/gW/NRQfm1+HUtGhuV2firDygXdVyfX2y+tVbPIR+Y/J54fEa5nOn/KN87z+RvBH6ts1b1meetWY9/zPg9vmsd5TPO7Zn6Y/Gtu1Hvn/DU+KO2nsC/6lkkm7EvaqusRz0T7aHInVvX1gHwg0pF
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2W6w7DIAiFecd2rX3/F9nMZkLIUQHPuj8jIW29fccCxl1EHsrL53mZdpYX9X68fJPv2Wzt7c+/lb/LO+YZfp07ysti1kZ89M3cv4eH+LoefsHv9UcNxbfHb2NRW9ZW9980oFi0dnt+sfm9sbYPaWDyR+bRjGK5Uv9RvrefyT8J/JZn2u2Z581Zjz7m/j3arWf5jHN7Jf9Y/NHd6A7+LJZIR29eVBP7/2f4s5pFdoJ5R2KtOh7VTLSGIndu7VXzE69q2lMADAAA
   </data>
  </layer>
  <layer name="spikes" width="32" height="24">

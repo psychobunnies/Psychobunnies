@@ -15,7 +15,6 @@ import com.gravity.entity.TriggeredCollidable;
 import com.gravity.geom.Rect;
 import com.gravity.geom.Rect.Side;
 import com.gravity.map.LevelFinishZone;
-import com.gravity.map.StaticCollidable;
 
 /**
  * Collision engine using the new Rect system. Also supports having multiple collision layers. Collidables within a layer will not have collisions
@@ -62,11 +61,6 @@ public class LayeredCollisionEngine implements CollisionEngine {
     @Override
     public boolean addCollidable(Collidable collidable, Integer layer) {
         boolean retval = removeCollidable(collidable);
-
-        if (collidable instanceof StaticCollidable && collidable.getPhysicalState().getRectangle().getX() < 3681f
-                && collidable.getPhysicalState().getRectangle().getX() > 3679f && collidable.getPhysicalState().getRectangle().getY() < 1) {
-            System.err.println(collidable.toString());
-        }
 
         if (!collidables.containsKey(layer)) {
             collidables.put(layer, new PartitionedCollidableContainer());

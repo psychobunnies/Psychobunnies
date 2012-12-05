@@ -42,7 +42,7 @@ public class PlatformerGame extends StateBasedGame {
             new LevelInfo("Bouncy 1", VictoryText.BOUNCY1, "assets/Levels/Bouncy_1.tmx", ++i),
             new LevelInfo("Test Stomps", "<test level>", "assets/Levels/checkpointing.tmx", ++i),
             new LevelInfo("Checkpointing", "<test level>", "assets/Levels/checkpointing.tmx", ++i),
-            new LevelInfo("Test Moving", "<test level>", "assets/Levels/moving_test.tmx", ++i),
+            new LevelInfo("intro_tutorial", "<test level>", "assets/Levels/intro_tutorial.tmx", ++i),
 
 
             // Medium (4)

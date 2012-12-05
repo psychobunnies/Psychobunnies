@@ -14,10 +14,10 @@ public class PauseTextRenderer implements UpdateCycling, Renderer {
     public static final int appearLength = 4000;
     public static final int fadeLength = 1000;
     
-    private UnicodeFont font;
+    private static UnicodeFont font;
     private float timePassed = 0;
     
-    public PauseTextRenderer() {
+    static {
         Font awtFont = new Font("SansSerif", Font.PLAIN, 18);
         font = new UnicodeFont(awtFont);
         font.getEffects().add(new ColorEffect(java.awt.Color.white));

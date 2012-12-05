@@ -25,9 +25,15 @@
  <tileset firstgid="96" name="bunnyTiles" tilewidth="32" tileheight="32">
   <image source="bunnyTiles.png" width="128" height="64"/>
  </tileset>
+ <tileset firstgid="104" name="lab-sheet" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/normal/lab-sheet.png" width="96" height="160"/>
+ </tileset>
+ <tileset firstgid="119" name="all" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/bouncy/all.png" width="256" height="320"/>
+ </tileset>
  <layer name="collisions" width="110" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+1aAQqDMAzsHzung/3/HaOwglTTtVlPL5qDIpuYnHdNqNoYQpgaxqP4vXyPr8bre8cCinuVEQMfGDlpgboXRo0YObGBUSNGTmxg1IiRExsYNWLkxAZGjfY4sfHM6+vnSfnZ9Eiw4FvCmZys6GGF5x1yS2Dybaqci+G8Xum+6aHhVJsH6NxoXNm3UfdhRQ8Uz7Qu1Pa5NafWOnLfsPlQ193Ft/ycpOW5/o4h1ZX7hoOFemtZW7L4Js3nlnneAwu+IXOh4qAh8Sy/52rmSH4O6+3H7ttvHFVv7ttYIN9NjPat9s45Cv9LKPsJ8z6FPXi9YeKg4b5t4/yzr6il5qVar413OK4vWPRtHhQHjcQTtadtVubRaDdK7w8Iq3XAQCkAAA==
+   H4sIAAAAAAAAC+2aAQrDIAxFc0fXdYPd/xxDNsFtxtlo9IfmgQw6jL/5JtjSQESbYNzev3fh/Nb4PsojEB6ImqRo3QtijhA1oYGYI0RNaCDmCFETGog5QtSEBmKOSprQdF7oda67LlofLR8RC75FVmqykg8rOs+wNgeSb1vlv0DreqX7JkeiadR9WMmHFZ0aczTjjGSmb/FcKO1zuaZaP+Xm9HB233pie719kmtKz0lSnWl+7fzgvulhod5aei6Kb9x+btnnR7Dgm+ZaWnG04XTm+0O6R9Jz2NF+7L79Z1a9uW9j0Xw3Mdq32jvnwFzn+O4nyN8plPB604mjjfv2G6fnu6KWmudqvTYeNK8vWPRtHxRHm6hT65u2XbiOJHej8v0E9zPc3kApAAA=
   </data>
  </layer>
  <layer name="spikes" width="110" height="24">

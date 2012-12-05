@@ -87,11 +87,13 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     private final String levelName;
     private Image pinkHand;
     private Image yellowHand;
+    private String winText;
 
-    public GameplayState(String levelName, String mapFile, int id) throws SlickException {
-        ID = id;
-        map = new TileWorld(levelName, new TiledMapPlus(mapFile), this);
-        this.levelName = levelName;
+    public GameplayState(LevelInfo info) throws SlickException {
+        ID = info.stateId;
+        this.levelName = info.title;
+        map = new TileWorld(levelName, new TiledMapPlus(info.mapfile), this);
+        winText = info.victoryText;
     }
 
     @Override
@@ -472,6 +474,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         } else if (finishedPlayer != player) {
             reset();
             finished = true;
+            ((GameWinState) game.getState(GameWinState.ID)).setWinText(winText);
             game.enterState(GameWinState.ID);
         }
     }

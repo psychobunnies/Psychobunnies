@@ -11,6 +11,7 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 import com.google.common.collect.Lists;
 import com.gravity.levels.CageRenderer;
 import com.gravity.levels.GameplayState;
+import com.gravity.levels.LevelInfo;
 import com.gravity.levels.MenuCage;
 import com.gravity.levels.Renderer;
 
@@ -21,7 +22,7 @@ public class PauseState extends CageSelectState {
     private MenuCage resumeCage;
 
     public PauseState() throws SlickException {
-        super("Pause", "assets/pause.tmx", ID);
+        super(new LevelInfo("Pause", "assets/pause.tmx", ID));
     }
 
     @Override
@@ -40,7 +41,7 @@ public class PauseState extends CageSelectState {
 
         Vector2f resumeLoc = map.getSpecialLocation("resume");
         Vector2f mainMenuLoc = map.getSpecialLocation("mainmenu");
-        
+
         resumeCage = new MenuCage(game, resumeLoc.x, resumeLoc.y, MainMenuState.ID);
         MenuCage mainMenuCage = new MenuCage(game, mainMenuLoc.x, mainMenuLoc.y, MainMenuState.ID);
 

@@ -13,7 +13,6 @@ import org.newdawn.slick.geom.Polygon;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import org.newdawn.slick.tiled.Layer;
 import org.newdawn.slick.tiled.Tile;
@@ -30,6 +29,7 @@ import com.gravity.fauna.PlayerKeyboardController.Control;
 import com.gravity.fauna.PlayerRenderer;
 import com.gravity.fauna.WallofDeath;
 import com.gravity.geom.Rect;
+import com.gravity.geom.Rect.Side;
 import com.gravity.map.LevelFinishZone;
 import com.gravity.map.TileType;
 import com.gravity.map.TileWorld;
@@ -50,6 +50,7 @@ import com.gravity.root.GameSounds.Event;
 import com.gravity.root.GameWinState;
 import com.gravity.root.PauseState;
 import com.gravity.root.RestartGameplayState;
+import com.gravity.root.SlideTransition;
 
 public class GameplayState extends BasicGameState implements GameplayControl, Resetable {
 
@@ -137,6 +138,9 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         for (List<MovingEntity> l : movingColls) {
             updaters.addAll(l);
         }
+        PauseTextRenderer ptr = new PauseTextRenderer();
+        renderers.add(ptr, RenderList.FLOATING);
+        updaters.add(ptr);
 
         // Player initialization
         List<Vector2f> playerPositions = map.getPlayerStartPositions();
@@ -323,7 +327,6 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
             }
 
             g.fill(controlArrow);
-            g.resetTransform();
             g.popTransform();
         }
     }
@@ -393,6 +396,12 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         if (!controllerA.handleKeyPress(key)) {
             controllerB.handleKeyPress(key);
         }
+        if (c == '*') { // HACK: testing purposes only REMOVE FOR RELEASE
+            reset();
+            finished = true;
+            ((GameWinState) game.getState(GameWinState.ID)).setWinText(winText);
+            game.enterState(GameWinState.ID);
+        }
     }
 
     @Override
@@ -401,7 +410,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
             if ((key == Input.KEY_ESCAPE || key == Input.KEY_ENTER) && canPause()) {
                 PauseState pause = (PauseState) (game.getState(PauseState.ID));
                 pause.setGameplayState(this);
-                game.enterState(PauseState.ID, new FadeOutTransition(), new FadeInTransition());
+                game.enterState(PauseState.ID, new SlideTransition(game.getState(PauseState.ID), Side.BOTTOM, 1000), null);
             }
         }
     }

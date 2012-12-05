@@ -2,13 +2,13 @@ package com.gravity.root;
 
 import java.util.List;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import com.google.common.collect.Lists;
+import com.gravity.geom.Rect.Side;
 import com.gravity.levels.CageRenderer;
 import com.gravity.levels.GameplayState;
 import com.gravity.levels.LevelInfo;
@@ -28,7 +28,7 @@ public class PauseState extends CageSelectState {
     @Override
     public void enterCageState(MenuCage cage) {
         if (cage == resumeCage) {
-            game.enterState(cage.getToState(), new FadeOutTransition(Color.black, 400), new FlashTransition(2000, 3));
+            game.enterState(cage.getToState(), new SlideTransition(game.getState(cage.getToState()), Side.TOP, 1000), null);
         } else {
             game.enterState(cage.getToState(), new FadeOutTransition(), new FadeInTransition());
         }

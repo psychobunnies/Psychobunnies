@@ -3,8 +3,12 @@ package com.gravity.fauna;
 import org.newdawn.slick.geom.Vector2f;
 
 import com.gravity.entity.PhysicsEntity;
+import com.gravity.entity.TriggeredCollidable;
 import com.gravity.geom.Rect;
 import com.gravity.levels.GameplayControl;
+import com.gravity.map.CheckpointCollidable;
+import com.gravity.map.LevelFinishZone;
+import com.gravity.physics.Collidable;
 import com.gravity.physics.GravityPhysics;
 import com.gravity.physics.PhysicalState;
 import com.gravity.root.GameSounds;
@@ -170,12 +174,20 @@ public class Player extends PhysicsEntity<GravityPhysics> {
         super.finishUpdate(millis);
         switch (requested) {
         case LEFT:
-            moveInProgress = true;
-            setPhysicalState(state.setVelocity(Math.min(state.velX, -MOVEMENT_INCREMENT), state.velY));
+            if (physics.entitiesHitLeft(this).isEmpty()) {
+                moveInProgress = true;
+                setPhysicalState(state.setVelocity(Math.min(state.velX, -MOVEMENT_INCREMENT), state.velY));
+            } else {
+                setPhysicalState(state.setVelocity(0, state.velY));
+            }
             break;
         case RIGHT:
-            moveInProgress = true;
-            setPhysicalState(state.setVelocity(Math.max(state.velX, MOVEMENT_INCREMENT), state.velY));
+            if (physics.entitiesHitRight(this).isEmpty()) {
+                moveInProgress = true;
+                setPhysicalState(state.setVelocity(Math.max(state.velX, MOVEMENT_INCREMENT), state.velY));
+            } else {
+                setPhysicalState(state.setVelocity(0, state.velY));
+            }
             break;
         default:
             // no-op
@@ -185,6 +197,8 @@ public class Player extends PhysicsEntity<GravityPhysics> {
             lastWalkedRight = false;
         } else if (state.getVelocity().x > 0) {
             lastWalkedRight = true;
+        } else {
+            moveInProgress = false;
         }
 
         if (slingshot) {
@@ -203,5 +217,10 @@ public class Player extends PhysicsEntity<GravityPhysics> {
 
     public boolean getLastWalkedRight() {
         return lastWalkedRight;
+    }
+
+    @Override
+    public boolean causesCollisionsWith(Collidable other) {
+        return !(other instanceof CheckpointCollidable || other instanceof LevelFinishZone || other instanceof TriggeredCollidable || other instanceof Player);
     }
 }

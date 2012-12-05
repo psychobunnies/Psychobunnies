@@ -31,10 +31,10 @@ public class GameWinState extends BasicGameState {
 
     static {
         skew = BufferUtils.createFloatBuffer(16);
-        skew.put(0, 0.986f);
-        skew.put(1, -0.1667f);
-        skew.put(4, 0.1667f);
-        skew.put(5, 0.986f);
+        skew.put(0, 0.9911f);
+        skew.put(1, -0.1334f);
+        skew.put(4, .1843f);
+        skew.put(5, 0.9828f);
         skew.put(10, 1);
         skew.put(15, 1);
         Font awtFont = new Font("Monospaced", Font.BOLD, 16);
@@ -102,7 +102,7 @@ public class GameWinState extends BasicGameState {
         GL11.glPopAttrib();
         g.popTransform();
         g.draw(restart = new Rectangle(798, 698, 200, 48));
-        g.drawString("Onwards!", 800, 700);
+        g.drawString("Onwards! (Press Enter)", 800, 700);
     }
 
     @Override

@@ -21,7 +21,11 @@ public class TileRendererDelegate {
 
     public TileRendererDelegate(TiledMapPlus map, TileType type) {
         TileSet tileSet = map.getTileSet(map.getTilesetID(type.tileSet));
-        tileImage = tileSet.tiles.getSubImage(type.tileSetX, type.tileSetY);
+        try {
+            tileImage = tileSet.tiles.getSubImage(type.tileSetX, type.tileSetY);
+        } catch (Exception e) {
+            System.err.println("e");
+        }
     }
 
     public void render(Graphics g, int offsetX, int offsetY, Rect location) {

@@ -5,6 +5,7 @@ import java.util.List;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import com.google.common.collect.Lists;
@@ -25,7 +26,11 @@ public class PauseState extends CageSelectState {
 
     @Override
     public void enterCageState(MenuCage cage) {
-        game.enterState(cage.getToState(), new FadeOutTransition(Color.black, 400), new FlashTransition(2000, 3));
+        if (cage == resumeCage) {
+            game.enterState(cage.getToState(), new FadeOutTransition(Color.black, 400), new FlashTransition(2000, 3));
+        } else {
+            game.enterState(cage.getToState(), new FadeOutTransition(), new FadeInTransition());
+        }
     }
 
     @Override

@@ -25,7 +25,7 @@ public class GravityPhysics implements Physics {
     private final CollisionEngine collisionEngine;
     private final float gravity;
     private final float backstep;
-    private final float offsetGroundCheck;
+    private final float offsetSideCheck;
     private final float groundFriction;
     private final float frictionStopCutoff; // the velocity below which friction makes you stop completely
     private final float frictionAccelRatio; // the maximum fraction of your velocity that friction acceleration may represent
@@ -33,14 +33,14 @@ public class GravityPhysics implements Physics {
     private final float maxOnGroundFallSpeed;
     private static final float EPS = 1e-4f;
 
-    GravityPhysics(CollisionEngine collisionEngine, float gravity, float backstep, float offsetGroundCheck, float groundFriction,
+    GravityPhysics(CollisionEngine collisionEngine, float gravity, float backstep, float offsetSideCheck, float groundFriction,
             float frictionStopCutoff, float frictionAccelRatio, float movingTilePositionFeather, float maxOnGroundFallSpeed) {
         Preconditions.checkArgument(backstep <= 0f, "Backstep has to be non-positive.");
         Preconditions.checkArgument(movingTilePositionFeather > 0, "Moving tile position feather amount must be positive.");
         this.collisionEngine = collisionEngine;
         this.gravity = gravity;
         this.backstep = backstep;
-        this.offsetGroundCheck = offsetGroundCheck;
+        this.offsetSideCheck = offsetSideCheck;
         this.groundFriction = groundFriction;
         this.frictionStopCutoff = frictionStopCutoff;
         this.frictionAccelRatio = frictionAccelRatio;
@@ -48,9 +48,23 @@ public class GravityPhysics implements Physics {
         this.maxOnGroundFallSpeed = maxOnGroundFallSpeed;
     }
 
+    public List<Collidable> entitiesHitLeft(Entity entity) {
+        Rect collider = entity.getPhysicalState().getRectangle().translate(-offsetSideCheck, 0);
+        return entitiesHitOnSide(entity, collider);
+    }
+
+    public List<Collidable> entitiesHitRight(Entity entity) {
+        Rect collider = entity.getPhysicalState().getRectangle().translate(offsetSideCheck, 0);
+        return entitiesHitOnSide(entity, collider);
+    }
+
     public List<Collidable> entitiesHitOnGround(Entity entity) {
-        Rect collider = entity.getPhysicalState().getRectangle().translate(0, offsetGroundCheck);
-        List<Collidable> collisions = collisionEngine.collisionsInLayer(0f, collider, LayeredCollisionEngine.FLORA_LAYER, false);
+        Rect collider = entity.getPhysicalState().getRectangle().translate(0, offsetSideCheck);
+        return entitiesHitOnSide(entity, collider);
+    }
+
+    private List<Collidable> entitiesHitOnSide(Entity entity, Rect rectToUse) {
+        List<Collidable> collisions = collisionEngine.collisionsInLayer(0f, rectToUse, LayeredCollisionEngine.FLORA_LAYER, false);
 
         for (Collidable c : collisions) {
             c.handleCollisions(0f, Lists.newArrayList(new RectCollision(entity, c, 0f, null, null)));
@@ -67,10 +81,24 @@ public class GravityPhysics implements Physics {
 
     @Override
     public PhysicalState computePhysics(Entity entity) {
-        List<Collidable> coll = entitiesHitOnGround(entity);
+        List<Collidable> coll;
+        PhysicalState state = entity.getPhysicalState();
+
+        if (state.velX > 0) {
+            coll = entitiesHitRight(entity);
+            if (!coll.isEmpty()) {
+                state.setVelocity(0, state.velY);
+            }
+        } else if (state.velX < 0) {
+            coll = entitiesHitLeft(entity);
+            if (!coll.isEmpty()) {
+                state.setVelocity(0, state.velY);
+            }
+        }
+
+        coll = entitiesHitOnGround(entity);
         boolean movingTileMoved = false;
         if (!coll.isEmpty()) {
-            PhysicalState state = entity.getPhysicalState();
             if (state.velY >= 0) {
                 float minPositiveYVel = 0f;
                 float minY = Float.POSITIVE_INFINITY;

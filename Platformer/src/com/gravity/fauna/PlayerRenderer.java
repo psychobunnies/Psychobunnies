@@ -123,7 +123,7 @@ public class PlayerRenderer implements Renderer {
         tweener++;
         //@formatter:off
         // if we ever need to draw hitboxes again:
-        //g.pushTransform();aaaaaaa
+        //g.pushTransform();
         //g.translate(offsetX, offsetY);
         //g.setColor(Color.red);
         //g.draw(player.getPhysicalState().getRectangle().toShape());

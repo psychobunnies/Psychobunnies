@@ -15,6 +15,7 @@ import com.gravity.entity.TriggeredTextCollidable;
 import com.gravity.geom.Rect;
 import com.gravity.geom.Rect.Side;
 import com.gravity.map.LevelFinishZone;
+import com.gravity.map.StaticCollidable;
 
 /**
  * Collision engine using the new Rect system. Also supports having multiple collision layers. Collidables within a layer will not have collisions
@@ -61,6 +62,11 @@ public class LayeredCollisionEngine implements CollisionEngine {
     @Override
     public boolean addCollidable(Collidable collidable, Integer layer) {
         boolean retval = removeCollidable(collidable);
+
+        if (collidable instanceof StaticCollidable && collidable.getPhysicalState().getRectangle().getX() < 3681f
+                && collidable.getPhysicalState().getRectangle().getX() > 3679f && collidable.getPhysicalState().getRectangle().getY() < 1) {
+            System.err.println(collidable.toString());
+        }
 
         if (!collidables.containsKey(layer)) {
             collidables.put(layer, new PartitionedCollidableContainer());
@@ -346,7 +352,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
                     }
                     return new SidesAndTime(EnumSet.of(Side.TOP), yTime);
                 } else {
-                    if (!(a instanceof TriggeredTextCollidable) && !(b instanceof TriggeredTextCollidable)) {
+                    if (a.causesCollisionsWith(b) || b.causesCollisionsWith(a)) {
                         System.out.println("Weird collision found " + a.toString() + " from " + b.toString());
                     }
                     return new SidesAndTime(sidesA, time);

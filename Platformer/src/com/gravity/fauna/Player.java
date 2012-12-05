@@ -152,6 +152,7 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     @Override
     public void startUpdate(float millis) {
         super.startUpdate(millis);
+
         if (slingshotCooldown > 0) {
             slingshotCooldown -= millis;
         }

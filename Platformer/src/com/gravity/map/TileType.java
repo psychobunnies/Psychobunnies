@@ -121,10 +121,30 @@ public enum TileType {
         if (id == null) {
             throw new RuntimeException("Could not find tileset for " + this);
         }
-        TileSet tileSet = map.findTileSet(id);
+        TileSet tileSet = map.getTileSet(id);
         if (tileSet == null) {
             throw new RuntimeException("Could not get tileset for " + this);
         }
         return tileSet.tiles.getSubImage(tileSetX, tileSetY);
+    }
+
+    static public Image getImage(TiledMapPlus map, Tile tile) {
+        TileSet tileSet = map.findTileSet(tile.gid);
+        Layer layer = map.getLayer(tile.layerName);
+        int id = layer.getLocalTileId(tile.x, tile.y);
+        int lx = tileSet.getTileX(id);
+        int ly = tileSet.getTileY(id);
+
+        return tileSet.tiles.getSubImage(lx, ly);
+    }
+
+    static public Image getImage(TiledMapPlus map, int x, int y, int layerIndex) {
+        TileSet tileSet = map.findTileSet(map.getTileId(x, y, layerIndex));
+        Layer layer = map.getLayer(layerIndex);
+        int id = layer.getLocalTileId(x, y);
+        int lx = tileSet.getTileX(id);
+        int ly = tileSet.getTileY(id);
+
+        return tileSet.tiles.getSubImage(lx, ly);
     }
 }

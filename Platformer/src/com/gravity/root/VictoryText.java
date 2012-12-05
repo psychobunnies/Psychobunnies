@@ -26,12 +26,13 @@ public final class VictoryText {
         		"linear momentum.\n" +
         		"$Results" +
         		"$Polymer 730-X and bunny fur\n" +
-        		"incompatible. Consider shaving\n" +
-        		"subjects before trials.",
+        		"incompatible. Consider\n" +
+        		"shaving subjects before\n" +
+        		"trials.",
         BOUNCY2 = "TEST 2" +
         		"$Hypothesis" +
-        		"$Psychic abilities result in a\n" +
-        		"more robust bunny.\n" +
+        		"$Psychic abilities result in\n" +
+        		"a more robust bunny.\n" +
         		"$Results" +
         		"$Excessive bounce trauma on a\n" +
         		"majority of subjects.\n" +
@@ -54,8 +55,8 @@ public final class VictoryText {
         		"$Stronger cages needed to\n" +
         		"contain increased energy of\n" +
         		"flying bunnies.",
-        MOVING = " $ $<This page intentionally\n" +
-        		"      left blank>$ $ ",
+        MOVING = " $ $  <This page intentionally\n" +
+        		"         left blank>$ $ ",
         SHORTCUTS = " $ $\"Bunny\" redirects here.\n" +
         		"For other uses, see Bunny\n" +
         		"(disambiguation).\n" +
@@ -63,7 +64,7 @@ public final class VictoryText {
                 "For other uses, see coney\n" +
                 "(disambiguation).\n" +
                 "Not to be confused with Rabbet.\n" +
-                " $ $Rabbits are small mammals in\n" +
+                " $ $\nRabbits are small mammals in\n" +
                 "the family Leporidae of the\n" +
                 "order Lagomorpha, found in\n" +
                 "several parts of the world.\n" +
@@ -75,20 +76,21 @@ public final class VictoryText {
                 "do not have free access to\n" +
                 "the test area, and are\n" +
                 "especially not free to design\n" +
-                "their own tests without prior\n" +
-                "management approval." +
+                "their own tests." +
                 "$From: Management$ ",
         FALLING = "TEST 5" +
-        		"$Hypothesis$The fall is more\n" +
-        		"deadly than impact.\n" +
-        		"$Result$Serum 38 has proven\n" +
-        		"to be more deadly than either\n" +
+        		"$Hypothesis" +
+        		"$The fall is more deadly\n" +
+        		"than impact.\n" +
+        		"$Result" +
+        		"$Serum 38 has proven to be\n" +
+        		"more deadly than either\n" +
         		"the fall or the impact.\n\n" +
         		"Findings moved to R&D.",
         SPLITWORLD = "TEST 6" +
         		"$Hypothesis" +
-        		"$Psychic links do not degrade\n" +
-        		"over distance.\n" +
+        		"$Psychic links do not\n" +
+        		"degrade over distance.\n" +
         		"$Result" +
         		"$Confirmed through volatile\n" +
         		"behavior in latest trials.\n" +

@@ -13,7 +13,6 @@ import org.newdawn.slick.geom.Polygon;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import org.newdawn.slick.tiled.Layer;
 import org.newdawn.slick.tiled.Tile;
@@ -396,6 +395,12 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     public void keyPressed(int key, char c) {
         if (!controllerA.handleKeyPress(key)) {
             controllerB.handleKeyPress(key);
+        }
+        if (c == '*') { // HACK: testing purposes only REMOVE FOR RELEASE
+            reset();
+            finished = true;
+            ((GameWinState) game.getState(GameWinState.ID)).setWinText(winText);
+            game.enterState(GameWinState.ID);
         }
     }
 

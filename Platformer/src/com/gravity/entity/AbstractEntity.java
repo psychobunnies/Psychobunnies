@@ -1,5 +1,7 @@
 package com.gravity.entity;
 
+import com.gravity.map.CheckpointCollidable;
+import com.gravity.map.LevelFinishZone;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.PhysicalState;
 
@@ -28,6 +30,6 @@ public abstract class AbstractEntity implements Entity {
 
     @Override
     public boolean causesCollisionsWith(Collidable other) {
-        return true;
+        return !(other instanceof CheckpointCollidable || other instanceof LevelFinishZone || other instanceof TriggeredTextCollidable);
     }
 }

@@ -22,7 +22,7 @@
  </layer>
  <layer name="collisions" width="67" height="24">
   <data encoding="base64" compression="zlib">
-   eJztl8EOxCAIRG3//6N7ctcQZYoM6G6cxEtrBJ866FVKuU77tKPDotVh8dVuLG7R2P017caiVXZemSzkGqK1/GcWo/jaPwu7ViPuiD2bhSX3nc5n9L5AY/8SC69PZ8zVWz+qvPsCcYpmcRfe3s44I4zan6HVdUQyYt2bZiRZZOcyWgfm+rwdy7IvJB8Gw7csPB4ewUL2Y/mV5TtS726VwcKiXn5a7BUetto7d6ozPRbe+xXbfzN93HM2M4Tuxcw4jDoSKfSWZcZZWUdm4kblUFlo7/1RbUI+o3kGitX2QyzkHGbi1fYAxYcBgQ==
+   eJztl0sOwCAIRLX3P3RXtobwKYhIGiZxVeLQBwbtrbVe61mlYjGrWLzKxuICyzueUzYWs6LzimQBayjV8s8sKH/um4bdLIq7xN6bhSb3TOdzd19IexcLX63OjyGJhdTv0lnYzeJqfvWM6AuP2R+hk3OE6qlT7LLO1BM5USywmsFadfDNUs+vLKz3DM4Di9PEWjw0e67ujTGLYKERlh/nnemMRPpnmTMYi9V3sOc7euwXoZW+iMwxIgcNC26O7JT0lvX0OTlHLL67chgsuPc+NZu+3AGoHpa85jiJBfwHi99YN953AYY=
   </data>
  </layer>
  <objectgroup name="finish" width="67" height="24">
@@ -30,7 +30,7 @@
  </objectgroup>
  <layer name="spikes" width="67" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt1YEJACAMA7D+uP9/8QURcQ6SCzpoWQIAAOyo7gAw2Iv92Ci3VfQKgD9M+kknObvuW+S/Az8=
+   eJzt1cEJACAMA8Du6P67+PAv4qcN3E2QEkKrAACAF6s7AHCVstGUnJyu9AXABEk/6Sdn130bjdsDPw==
   </data>
  </layer>
 </map>

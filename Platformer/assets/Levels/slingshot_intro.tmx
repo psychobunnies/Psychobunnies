@@ -24,12 +24,12 @@
  </tileset>
  <layer name="spikes" width="150" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3QAQkAAAgEsQf7dzaAAVTY4ApcAgAAAAAAAAAAAAAAAABTLfTZtRcNndFUAUA4AAA=
+   H4sIAAAAAAAAC+3PMQoAMAgDQMH//1k6FxzjcgeZk1QBAAAAAAAAAAAAAAAAwK8PsvUmviQ6ElueAXmHe3RAOAAA
   </data>
  </layer>
  <layer name="collisions" width="150" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3ZbQvCIBSG4UGt+v+/ePVBWJF6XnW1+wLpQ85zpAdltCwAAAAAAAAAAAA4u/U5boJxn9zf3uye0HcNnhetVdfS07ectliyW2pk5D5z7Uhny5X2uRE1jrR2FHIVNzfiudlrR/n1XFnuBG2usmtokSs/yXml7c1yXmXW0DpCrnrve+RKNpdcvev18C+50txV1lxl1dAiV36a8ypjLyNqaJErP3I1dm2ps+VKcld5cxVdQ4tc+aydurWzJGrPo2poWdeW/F8nHQ/n9/t5M7zqXiqj9F77bO2ltmZkjWjl3V76m32ODZkdDwpAOAAA
+   H4sIAAAAAAAAC+3ZzQ7CIBBG0S5a6/s/sd2QVGNhfqHKPQlxIWWG+AXSuCwAAAAAAAAAAACY3XaMh2Dsg/s7G90T2tbgedFqdS09fctpjSW7pUZG7jPXjjRbrrTP9ahxp7WjkKu4uRHPjV47yq/nynInaHOVXUOLXPlJzittb5bzKrOG1h1y1XrfI1eyueTqXauHf8mV5q6y5iqrhha58tOcVxl76VFDi1z5kau+a0vNlivJXeXNVXQNLXLlszXqXp0lUXvuVUPLurbk/zrpeDq/P88boVa39H71GbGXHjWkyru99Df7HC99SyB/QDgAAA==
   </data>
  </layer>
  <objectgroup name="level markers" width="150" height="24">

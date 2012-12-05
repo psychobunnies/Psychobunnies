@@ -139,6 +139,9 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         for (List<MovingEntity> l : movingColls) {
             updaters.addAll(l);
         }
+        PauseTextRenderer ptr = new PauseTextRenderer();
+        renderers.add(ptr, RenderList.FLOATING);
+        updaters.add(ptr);
 
         // Player initialization
         List<Vector2f> playerPositions = map.getPlayerStartPositions();

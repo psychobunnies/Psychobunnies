@@ -213,8 +213,15 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         updaters.add(pancam);
 
         // Wall of death initialization
-        if (map.map.getMapProperty("wallofdeath", null) != null) {
-            wallofDeath = new WallofDeath(2000, panX + 32, 0.035f, Lists.newArrayList(playerA, playerB), this, container.getHeight());
+        String wallVelStr;
+        if ((wallVelStr = map.map.getMapProperty("wallofdeath", null)) != null) {
+            float wallVel = 0.035f;
+            try {
+                wallVel = Float.parseFloat(wallVelStr);
+            } catch (NumberFormatException e) {
+                System.err.println("Could not format wall of death velocity, using default (0.035) instead.");
+            }
+            wallofDeath = new WallofDeath(2000, panX + 32, wallVel, Lists.newArrayList(playerA, playerB), this, container.getHeight());
             updaters.add(wallofDeath);
             renderers.add(wallofDeath, RenderList.FAUNA);
         }

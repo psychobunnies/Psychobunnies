@@ -25,7 +25,7 @@ public class MainMenuState extends CageSelectState {
     private final LevelInfo[] levels;
 
     public MainMenuState(LevelInfo[] levels) throws SlickException {
-        super("Main Menu", "assets/mainmenu2.tmx", ID);
+        super(new LevelInfo("Main Menu", "assets/mainmenu2.tmx", ID));
         this.levels = levels;
     }
 

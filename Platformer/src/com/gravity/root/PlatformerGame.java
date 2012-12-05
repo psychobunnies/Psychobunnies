@@ -29,31 +29,31 @@ public class PlatformerGame extends StateBasedGame {
     private LevelInfo[] levels = {
 
             // Very Hard (1)
-            new LevelInfo("Moving", "", "assets/Levels/moving.tmx", ++i),
+            new LevelInfo("Moving", VictoryText.MOVING, "assets/Levels/moving.tmx", ++i),
            
             // Impossible
-            new LevelInfo("Falling", "So you thought you understood gravity...", "assets/Levels/falling.tmx", ++i),
-            new LevelInfo("Split World", "Slingshot Fun", "assets/Levels/split_world.tmx", ++i),
+            new LevelInfo("Falling", VictoryText.FALLING, "assets/Levels/falling.tmx", ++i),
+            new LevelInfo("Split World", VictoryText.SLINGSHOT, "assets/Levels/split_world.tmx", ++i),
             
             // Very Hard (1)
-            new LevelInfo("Bouncy 2", "", "assets/Levels/Bouncy_2.tmx", ++i),
+            new LevelInfo("Bouncy 2", VictoryText.BOUNCY2, "assets/Levels/Bouncy_2.tmx", ++i),
             
             // Hard (4)
-            new LevelInfo("Bouncy 1", "A first brush with bouncing", "assets/Levels/Bouncy_1.tmx", ++i),
-            new LevelInfo("Test Stomps", "", "assets/Levels/checkpointing.tmx", ++i),
-            new LevelInfo("Checkpointing", "", "assets/Levels/checkpointing.tmx", ++i),
-            new LevelInfo("Test Moving", "", "assets/Levels/moving_test.tmx", ++i),
+            new LevelInfo("Bouncy 1", VictoryText.BOUNCY1, "assets/Levels/Bouncy_1.tmx", ++i),
+            new LevelInfo("Test Stomps", "<test level>", "assets/Levels/checkpointing.tmx", ++i),
+            new LevelInfo("Checkpointing", "<test level>", "assets/Levels/checkpointing.tmx", ++i),
+            new LevelInfo("Test Moving", "<test level>", "assets/Levels/moving_test.tmx", ++i),
 
 
             // Medium (4)
-            new LevelInfo("Elevators","","assets/levels/Elevators.tmx", ++i),
-            new LevelInfo("Shortcuts", "Timetest", "assets/levels/shortcuts.tmx", ++i),
-            new LevelInfo("Slingshot", "Slingshot Turorial", "assets/Levels/slingshot_intro.tmx", ++i),
-            new LevelInfo("Platformer", "", "assets/Levels/platform.tmx", ++i),
+            new LevelInfo("Elevators", VictoryText.ELEVATORS, "assets/levels/Elevators.tmx", ++i),
+            new LevelInfo("Shortcuts", VictoryText.SHORTCUTS, "assets/levels/shortcuts.tmx", ++i),
+            new LevelInfo("Slingshot", VictoryText.SLINGSHOT, "assets/Levels/slingshot_intro.tmx", ++i),
+            new LevelInfo("Platformer", VictoryText.PLATFORMER, "assets/Levels/platform.tmx", ++i),
             
             // Easy (2)
-            new LevelInfo("Lab Procedures", "Formerly Tutorial 1", "assets/Levels/tutorial.tmx", ++i),
-            new LevelInfo("Lab Safety", "Formerly Tutorial 2", "assets/Levels/enemies_tutorial.tmx", ++i),
+            new LevelInfo("Lab Procedures", VictoryText.PROCEDURES, "assets/Levels/tutorial.tmx", ++i),
+            new LevelInfo("Lab Safety", VictoryText.SAFETY, "assets/Levels/enemies_tutorial.tmx", ++i),
     };
     //@formatter:on
 

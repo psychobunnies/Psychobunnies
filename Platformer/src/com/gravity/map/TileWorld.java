@@ -252,8 +252,8 @@ public class TileWorld implements GameWorld {
             List<MovingEntity> colls = processLayerSingleSquares(layer.name, new CollidableCreator<MovingEntity>() {
                 @Override
                 public MovingEntity createCollidable(Rect r) {
-                    TileType tileType = TileType.toTileType(map, Math.round(r.getX()) / tileWidth, Math.round(r.getY()) / tileHeight, layer.index);
-                    TileRendererDelegate renderer = new TileRendererDelegate(map, tileType);
+                    TileRendererDelegate renderer = new TileRendererDelegate(map, Math.round(r.getX()) / tileWidth,
+                            Math.round(r.getY()) / tileHeight, layer.index);
                     return new MovingEntity(renderer, r, transX * tileWidth, transY * tileHeight, speed);
                 }
             });
@@ -284,8 +284,7 @@ public class TileWorld implements GameWorld {
                         }
                     }
 
-                    TileType tileType = TileType.toTileType(map, tile);
-                    TileRendererDelegate renderer = new TileRendererDelegate(map, tileType);
+                    TileRendererDelegate renderer = new TileRendererDelegate(map, tile);
                     MovingEntity stompColl = new MovingEntity(renderer, r, 0, (Math.round(minBelowY - r.getMaxY())), STOMP_SPEED_FORWARD,
                             STOMP_SPEED_BACKWARD);
 

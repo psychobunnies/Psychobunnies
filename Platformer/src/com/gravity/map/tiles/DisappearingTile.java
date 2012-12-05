@@ -13,6 +13,15 @@ public final class DisappearingTile extends StaticCollidable {
     private final DisappearingTileController controller;
     private final CollisionEngine engine;
 
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("DisappearingTile [");
+        builder.append(super.toString());
+        builder.append("]");
+        return builder.toString();
+    }
+
     public DisappearingTile(Rect shape, DisappearingTileController controller, CollisionEngine engine) {
         super(shape);
         Preconditions.checkArgument(controller != null, "Controller may not be null.");

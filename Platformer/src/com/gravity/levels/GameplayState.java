@@ -87,11 +87,13 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     private final String levelName;
     private Image pinkHand;
     private Image yellowHand;
+    private String winText;
 
-    public GameplayState(String levelName, String mapFile, int id) throws SlickException {
-        ID = id;
-        map = new TileWorld(levelName, new TiledMapPlus(mapFile), this);
-        this.levelName = levelName;
+    public GameplayState(LevelInfo info) throws SlickException {
+        ID = info.stateId;
+        this.levelName = info.title;
+        map = new TileWorld(levelName, new TiledMapPlus(info.mapfile), this);
+        winText = info.victoryText;
     }
 
     @Override
@@ -213,8 +215,15 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         updaters.add(pancam);
 
         // Wall of death initialization
-        if (map.map.getMapProperty("wallofdeath", null) != null) {
-            wallofDeath = new WallofDeath(2000, panX + 32, 0.035f, Lists.newArrayList(playerA, playerB), this, container.getHeight());
+        String wallVelStr;
+        if ((wallVelStr = map.map.getMapProperty("wallofdeath", null)) != null) {
+            float wallVel = 0.035f;
+            try {
+                wallVel = Float.parseFloat(wallVelStr);
+            } catch (NumberFormatException e) {
+                System.err.println("Could not format wall of death velocity, using default (0.035) instead.");
+            }
+            wallofDeath = new WallofDeath(2000, panX + 32, wallVel, Lists.newArrayList(playerA, playerB), this, container.getHeight());
             updaters.add(wallofDeath);
             renderers.add(wallofDeath, RenderList.FAUNA);
         }
@@ -465,6 +474,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         } else if (finishedPlayer != player) {
             reset();
             finished = true;
+            ((GameWinState) game.getState(GameWinState.ID)).setWinText(winText);
             game.enterState(GameWinState.ID);
         }
     }

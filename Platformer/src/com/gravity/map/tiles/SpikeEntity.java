@@ -24,6 +24,17 @@ public final class SpikeEntity extends StaticCollidable {
     }
 
     @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("SpikeEntity [super=");
+        builder.append(super.toString());
+        builder.append(", collidedPlayers=");
+        builder.append(collidedPlayers);
+        builder.append("]");
+        return builder.toString();
+    }
+
+    @Override
     public void handleCollisions(float ticks, Collection<RectCollision> collisions) {
         for (RectCollision c : collisions) {
             Collidable e = c.getOtherEntity(this);

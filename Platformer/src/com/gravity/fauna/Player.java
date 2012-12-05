@@ -22,7 +22,7 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     private static final float JUMP_POWER = 0.48f; // .6 before reset
     private static final float MOVEMENT_INCREMENT = 1f / 8f;
     private static final Vector2f DEFAULT_VELOCITY = new Vector2f(0, 0);
-    private static final float SLINGSHOT_COOLDOWN = 500f;
+    private static final float SLINGSHOT_COOLDOWN = 1000f;
 
     private final float MAX_SLING_STRENGTH = 0.75f; // 1 before reset
     private final float JUMP_COOLDOWN = 50f;
@@ -132,7 +132,7 @@ public class Player extends PhysicsEntity<GravityPhysics> {
         if (pressed && slingshotCooldown <= 0) {
             slingshotCooldown = SLINGSHOT_COOLDOWN;
             slingshot = true;
-        } else {
+        } else if (slingshot) {
             slingshot = false;
             control.specialMoveSlingshot(this, slingshotStrength);
         }
@@ -152,6 +152,7 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     @Override
     public void startUpdate(float millis) {
         super.startUpdate(millis);
+
         if (slingshotCooldown > 0) {
             slingshotCooldown -= millis;
         }

@@ -96,7 +96,7 @@ public class GameLoaderState extends BasicGameState {
             addState(new MainMenuState(levels.toArray(new LevelInfo[0])));
             break;
         case 1:
-            addState(new GameplayState(levelInfo.title, levelInfo.mapfile, levelInfo.stateId));
+            addState(new GameplayState(levelInfo));
             if (levelItr.hasNext()) {
                 levelInfo = levelItr.next();
                 nextState = false;

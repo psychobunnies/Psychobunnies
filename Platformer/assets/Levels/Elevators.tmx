@@ -19,12 +19,12 @@
  </layer>
  <layer name="spikes" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt2UsOgCAMRVFkxv43bJwCVmqgtXJPYnTgh7xaJDGlPWTvAWyCnG2Qsw1ytjGacxE2yK6MeJ9tkPN79HKrN89Z5bRrPfiu+Fr9bWcdMa5Ue3xD1HrQe7GN1op5Q4de+B9qqUdmAFaLMs+wVsYsh/cAJrvrC+m4Pl/6ryTd/6kfe9dn5fOkcZxrkQNp
+   eJzt2cEOwBAQRVG68/8/bK/6kFAz3JNIu2hLjBmShgAAgH1JNGjMETxgnb7V6txf83RrPNhX9lq9t3OO6JeKK2zwGg9yz7feWFE3xpAL5yGWAGCPl9rMWRmzxN0DmOwrL9R9+bz6r6S+38rH2vvPYH9qHBmISwNS
   </data>
  </layer>
  <layer name="collisions" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJztl+sOwyAIhbV9/3de9mMJMUA5R7Dd5klIalWgX70erbVjW7lJjeWo2H4zPitiIkLib868NudaWWvBVR+vzPrJ0FM5M9qcdb+RvQz16ZVZPxl6wnjOirGKcy/wGclVxmW+LZNzF/6qOFd842cu92b/x8N4zsoB9bOCs7bOef0iuSD/12rrzbUZzqewlZzHMjMHRiYZnNEcGF1x7sJkm27UabqqH/Px9nd0Pxk5o+eIVZwz4mSeC2Y5z8bzFFl/NudYPFYMZ2TuIWtGRP/EmfGf1RbNB+GsnQ+r7ilovaXI/sjcZys5R/ZdVlWcZ/Oz7h7fzPl07C7O3rmOHf93c56pz+wnx3D0/Izkkcn5Mw6ZPJj6zH6SbQVnpu2vjGdrDGdy1vpE18iVnDUb793IPVzz7z0j+Xr+tfdXd4C7OUcsGv8pnCv19v8CYokDKw==
+   eJztl+sKwyAMhbV9/3ce+1EIktjkeKLr6oHAiubSb16ao5RybEs3qfbZK9RvJGY0Z0ULIeTfnHFtzrpYnK2z4M6n94zGYehXOSPanPW4nrssojdxzqgBjZPFGdmzDM4yL/JuTM5VxMvinPGO116uxf4fD+M3q4ZonBmctXOu5+epJfL/WnN7e22E8ylsJuf2GdkDLRMG52gNiO44V2FyTjXGNN2Nt/X07vfofdJyjn5HzOLMyMP8LhjlPJqvJ8/5szn78qFCOEf2XuTM8OhNnJH4rLnReiKcte/DrD4lOm7Jcz8i/WwmZ8+9iyqLc1ZP/GTOZ8dWcbZ6vCdzHhln+0l/xntncb7WIVIHMs70k2s4gzMy9x/Xs2TL5Kz5eM/ImZw1a/vuSB8uZa3hbM7eHmA1Z49582tsV3DO1Df+B5yxAyI=
   </data>
  </layer>
  <objectgroup name="level markers" width="90" height="24">
@@ -32,10 +32,10 @@
  </objectgroup>
  <layer name="playerkeyed" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt11sOgCAMRFG+3P+S3YBJcQplgHsSP036gIm2BgDIeIIHqMYZ9HXKPqLcO6XPiHuf6k7c+4Jut90q9bpnUE9tLvX/zY2deluJGYzjMsvZdVTerez33Nc77rnsLju7mfNnr0DM5Z7c+L+uqJwNuwCgGJXn5I+/F17FAZM=
+   eJzt11sOgCAMRFG+3P+S3YBJcQplgHsSP036gIm2BgDIeIIHqMYZ9HXKPqLcO6XPiHuf6k7c+4Jut90q9bpnUE9tLvX/zY2deluJGYzjMsvZdVTerez33Nc77rnsLju7mfNnr0DM4Z7c+K+uqpwP+wCgGJXp5I+/F18lAZM=
   </data>
  </layer>
- <layer name="Checkpoint A" width="90" height="24">
+ <layer name="Checkpoint A" width="90" height="24" visible="0">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
@@ -43,7 +43,7 @@
    eJzt0KERgDAABME0EBFB/60GEYnlQOzOvP+5Mf5nnvEunRs6N3Ru6NzQuaFzQ+eGzg2dGzo3dG7o3NC5oXND58Z1b319AgAAHmx5/gHH
   </data>
  </layer>
- <layer name="Checkpoint B" width="90" height="24">
+ <layer name="Checkpoint B" width="90" height="24" visible="0">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
@@ -70,6 +70,22 @@
   </properties>
   <data encoding="base64" compression="zlib">
    eJzt0EENACAQBDEM8OCBf6uYIHuEaxVMZgx+MasDmvA5w+cMnzN8zvAZ4D2rOqCBXR0AAAAAwDUHjTEAdQ==
+  </data>
+ </layer>
+ <layer name="Checkoint E" width="90" height="24">
+  <properties>
+   <property name="type" value="checkpoint"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0LENACAMA8EsQEGR/VeFCUiXFNxJ7l+OgH5rOuAT1c/7LjtCAAAAAAAAAHg6p10AQQ==
+  </data>
+ </layer>
+ <layer name="checkpoint F" width="90" height="24">
+  <properties>
+   <property name="type" value="checkpoint"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0DERADAIADEMdOhQ/1Z7SGCBgUTB30cAAAAAAADUnemAJXzu4XOP/PymIxbIz3c6Aij7dkIAaA==
   </data>
  </layer>
 </map>

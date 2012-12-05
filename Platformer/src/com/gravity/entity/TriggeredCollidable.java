@@ -1,7 +1,9 @@
 package com.gravity.entity;
 
 import java.util.Collection;
+import java.util.List;
 
+import com.google.common.collect.Lists;
 import com.gravity.fauna.Player;
 import com.gravity.geom.Rect;
 import com.gravity.map.StaticCollidable;
@@ -13,19 +15,25 @@ import com.gravity.physics.RectCollision;
  * 
  * @author phulin
  */
-public class TriggeredTextCollidable extends StaticCollidable {
-    private TriggeredText triggeredText;
+public class TriggeredCollidable extends StaticCollidable {
+    private List<TriggeredBase> triggeredBases;
 
-    public TriggeredTextCollidable(Rect shape, TriggeredText triggeredText) {
+    public TriggeredCollidable(Rect shape) {
         super(shape);
-        this.triggeredText = triggeredText;
+        this.triggeredBases = Lists.newLinkedList();
+    }
+
+    public void addBase(TriggeredBase base) {
+        triggeredBases.add(base);
     }
 
     @Override
     public void handleCollisions(float ticks, Collection<RectCollision> collisions) {
         for (RectCollision c : collisions) {
             if (c.getOtherEntity(this) instanceof Player) {
-                triggeredText.trigger();
+                for (TriggeredBase base : triggeredBases) {
+                    base.trigger();
+                }
             }
         }
     }
@@ -37,7 +45,7 @@ public class TriggeredTextCollidable extends StaticCollidable {
 
     @Override
     public String toString() {
-        return "TriggeredTextCollidable [shape=" + shape + "]";
+        return "TriggeredCollidable [triggeredBases=" + triggeredBases + ", shape=" + shape + "]";
     }
 
     @Override

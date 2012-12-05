@@ -7,6 +7,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import com.google.common.collect.Lists;
+import com.gravity.entity.TriggeredImage;
 import com.gravity.entity.TriggeredText;
 import com.gravity.entity.TriggeredTextRenderer;
 import com.gravity.levels.Renderer;
@@ -27,6 +28,9 @@ public class TileWorldRenderer implements Renderer {
         extraRenderers = Lists.newArrayList();
         for (TriggeredText tt : tileMap.getTriggeredTexts()) {
             extraRenderers.add(new TriggeredTextRenderer(tt));
+        }
+        for (TriggeredImage ti : tileMap.getTriggeredImages()) {
+            extraRenderers.add(ti);
         }
         for (List<MovingEntity> mcs : tileMap.getMovingCollMap().values()) {
             extraRenderers.addAll(mcs);

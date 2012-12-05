@@ -6,6 +6,7 @@ import java.util.SortedSet;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.GroupObject;
@@ -19,8 +20,9 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import com.gravity.entity.TriggeredCollidable;
+import com.gravity.entity.TriggeredImage;
 import com.gravity.entity.TriggeredText;
-import com.gravity.entity.TriggeredTextCollidable;
 import com.gravity.geom.Rect;
 import com.gravity.levels.GameplayControl;
 import com.gravity.map.tiles.BouncyTile;
@@ -62,6 +64,7 @@ public class TileWorld implements GameWorld {
 
     private List<Collidable> entityNoCalls, entityCallColls;
     private List<TriggeredText> triggeredTexts;
+    private List<TriggeredImage> triggeredImages;
     private Map<Layer, List<MovingEntity>> movingCollMap;
 
     private List<Vector2f> startPositions = null;
@@ -201,11 +204,13 @@ public class TileWorld implements GameWorld {
         }));
 
         triggeredTexts = Lists.newArrayList();
+        triggeredImages = Lists.newArrayList();
         for (Layer layer : map.getLayers()) {
             int x = Integer.parseInt(layer.props.getProperty("x", "-1"));
             int y = Integer.parseInt(layer.props.getProperty("y", "-1"));
             String text = layer.props.getProperty("text", null);
-            if (x < 0 || y < 0 || text == null) {
+            String imagePath = layer.props.getProperty("image", null);
+            if (x < 0 || y < 0 || (text == null && imagePath == null)) {
                 continue;
             }
 
@@ -223,14 +228,33 @@ public class TileWorld implements GameWorld {
 
             // if text layer is found, make layer invisible
             layer.visible = false;
-            TriggeredText triggeredText;
-            triggeredText = new TriggeredText(x, y, text, color);
+            TriggeredText triggeredText = null;
+            if (text != null) {
+                triggeredText = new TriggeredText(x, y, text, color);
+                triggeredTexts.add(triggeredText);
+            }
+            TriggeredImage triggeredImage = null;
+            if (imagePath != null) {
+                Image image;
+                try {
+                    image = new Image(imagePath);
+                    triggeredImage = new TriggeredImage(x, y, image);
+                    triggeredImages.add(triggeredImage);
+                } catch (SlickException e) {
+                    System.err.println("ERROR: could not load image " + imagePath + " for triggered layer " + layer.name + " discarding image");
+                }
+            }
             System.out.println("found text layer: " + text);
-            triggeredTexts.add(triggeredText);
             try {
                 for (Tile tile : layer.getTiles()) {
                     Rect rect = new Rect(tile.x * tileWidth, tile.y * tileHeight, tileWidth, tileHeight);
-                    TriggeredTextCollidable tte = new TriggeredTextCollidable(rect, triggeredText);
+                    TriggeredCollidable tte = new TriggeredCollidable(rect);
+                    if (triggeredText != null) {
+                        tte.addBase(triggeredText);
+                    }
+                    if (triggeredImage != null) {
+                        tte.addBase(triggeredImage);
+                    }
                     entityCallColls.add(tte);
                 }
             } catch (SlickException e) {
@@ -431,6 +455,10 @@ public class TileWorld implements GameWorld {
 
     public List<TriggeredText> getTriggeredTexts() {
         return triggeredTexts;
+    }
+
+    public List<TriggeredImage> getTriggeredImages() {
+        return triggeredImages;
     }
 
     /** Returns a list of DisappearingTileController instances if any disappearing tile layers are found. */

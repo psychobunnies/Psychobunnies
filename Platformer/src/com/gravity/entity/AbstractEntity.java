@@ -30,6 +30,6 @@ public abstract class AbstractEntity implements Entity {
 
     @Override
     public boolean causesCollisionsWith(Collidable other) {
-        return !(other instanceof CheckpointCollidable || other instanceof LevelFinishZone || other instanceof TriggeredTextCollidable);
+        return !(other instanceof CheckpointCollidable || other instanceof LevelFinishZone || other instanceof TriggeredCollidable);
     }
 }

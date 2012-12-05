@@ -11,7 +11,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
-import com.gravity.entity.TriggeredTextCollidable;
+import com.gravity.entity.TriggeredCollidable;
 import com.gravity.geom.Rect;
 import com.gravity.geom.Rect.Side;
 import com.gravity.map.LevelFinishZone;
@@ -570,7 +570,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
         boolean collides;
         List<Collidable> result = Lists.newArrayList();
         for (Collidable collB : collidables.get(layer).getNearbyCollidables(rect)) {
-            if (ignoreTextAndFinish && (collB instanceof TriggeredTextCollidable || collB instanceof LevelFinishZone)) {
+            if (ignoreTextAndFinish && (collB instanceof TriggeredCollidable || collB instanceof LevelFinishZone)) {
                 continue;
             }
             collides = rect.intersects(collB.getPhysicalState().getRectangleAt(time));

@@ -54,16 +54,16 @@ public final class VictoryText {
         		"$Stronger cages needed to\n" +
         		"contain increased energy of\n" +
         		"flying bunnies.",
-        MOVING = "$$<This page intentionally\n" +
-        		"      left blank>$$",
-        SHORTCUTS = "$$\"Bunny\" redirects here.\n" +
+        MOVING = " $ $<This page intentionally\n" +
+        		"      left blank>$ $ ",
+        SHORTCUTS = " $ $\"Bunny\" redirects here.\n" +
         		"For other uses, see Bunny\n" +
         		"(disambiguation).\n" +
                 "\"coney\" redirects here.\n" +
                 "For other uses, see coney\n" +
                 "(disambiguation).\n" +
                 "Not to be confused with Rabbet.\n" +
-                "$$Rabbits are small mammals in\n" +
+                " $ $Rabbits are small mammals in\n" +
                 "the family Leporidae of the\n" +
                 "order Lagomorpha, found in\n" +
                 "several parts of the world.\n" +
@@ -77,7 +77,7 @@ public final class VictoryText {
                 "especially not free to design\n" +
                 "their own tests without prior\n" +
                 "management approval." +
-                "$From: Management$",
+                "$From: Management$ ",
         FALLING = "TEST 5" +
         		"$Hypothesis$The fall is more\n" +
         		"deadly than impact.\n" +

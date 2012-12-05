@@ -36,7 +36,7 @@ public class PauseTextRenderer implements UpdateCycling, Renderer {
             g.setColor(new Color(1.0f, 1.0f, 1.0f, Math.max(1.0f - (timePassed - appearLength) / fadeLength, 0f)));
         }
         if (timePassed < appearLength + fadeLength) {
-            g.drawString(text, offsetX + 400, offsetY + 100);
+            g.drawString(text, offsetX + 512 - font.getWidth(text) / 2, offsetY + 100);
         }
     }
 

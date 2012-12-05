@@ -33,15 +33,16 @@ public class CageRenderer implements Renderer {
         skew.put(5, 1);
         skew.put(10, 1);
         skew.put(15, 1);
-        skew.put(4, 2.0f);
-        Font awtFont = new Font("SansSerif", Font.PLAIN, 14);
+        skew.put(4, 0.66f);
+        Font awtFont = new Font("SansSerif", Font.BOLD, 14);
         font = new UnicodeFont(awtFont);
+        font.setPaddingAdvanceX(1);
         font.getEffects().add(new ShadowEffect(Color.black, 2, 2, 0.5f));
         font.getEffects().add(new ColorEffect(Color.white));
         font.addAsciiGlyphs();
         try {
             font.loadGlyphs();
-            
+
             image = new Image("assets/frontCageII.png");
             imageDisabled = new Image("assets/frontCageIIDisabled.png");
         } catch (SlickException e) {
@@ -65,7 +66,7 @@ public class CageRenderer implements Renderer {
         this.cageX = cage.getRect().getX();
         this.cageY = cage.getRect().getY();
         this.fontX = cageX + image.getWidth() / 2f - font.getWidth(label) / 2;
-        this.fontY = cageY + 12 - font.getHeight(label) / 2;
+        this.fontY = cageY + 16 - font.getHeight(label) / 2;
         this.label = label;
     }
 
@@ -76,7 +77,7 @@ public class CageRenderer implements Renderer {
         g.setFont(font);
         g.pushTransform();
         GL11.glTranslatef(offsetX + fontX, offsetY + fontY, 0);
-        // GL11.glMultMatrix(skew);
+        GL11.glMultMatrix(skew);
         g.drawString(label, 0, 0);
         g.popTransform();
     }

@@ -102,7 +102,7 @@ public class GameWinState extends BasicGameState {
         GL11.glPopAttrib();
         g.popTransform();
         g.draw(restart = new Rectangle(798, 698, 200, 48));
-        g.drawString("Onwards! (Press Enter)", 800, 700);
+        g.drawString("Onwards!\n(Press Enter)", 800, 700);
     }
 
     @Override

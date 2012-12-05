@@ -35,9 +35,7 @@
    H4sIAAAAAAAAC+3WMQqAMBAAwfw0//+FWCoWERQXmYFrw8FekTGAs/n1Ahzo0aJHix4terTo0aJHix4terTo0aJHix4AwIp5MfzbE43vvPHWTf3lVvVo0aNFj5arP0NtVvfcbV738WCAJQAA
   </data>
  </layer>
- <objectgroup name="level markers" width="100" height="24">
-  <object name="finish" type="finish" x="3136" y="480" width="64" height="96"/>
- </objectgroup>
+ <objectgroup name="level markers" width="100" height="24"/>
  <layer name="players" width="100" height="24">
   <properties>
    <property name="visible" value="0"/>
@@ -178,4 +176,7 @@
    H4sIAAAAAAAAC+3RMQ3AQAzAwKDr8EP5w+lcBO9IdwgseQb2em4H8ONHix8tfrT40eJHix8tfrT40eJHix8tfrT40eJHix8dZ/woeccPAIBtPoD+cXqAJQAA
   </data>
  </layer>
+ <objectgroup name="special levels" width="100" height="24">
+  <object name="main menu" x="3104" y="448" width="96" height="128"/>
+ </objectgroup>
 </map>

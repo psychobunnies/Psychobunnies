@@ -87,12 +87,12 @@ public class GravityPhysics implements Physics {
         if (state.velX > 0) {
             coll = entitiesHitRight(entity);
             if (!coll.isEmpty()) {
-                state.setVelocity(0, state.velY);
+                entity.setPhysicalState(state.setVelocity(0, state.velY));
             }
         } else if (state.velX < 0) {
             coll = entitiesHitLeft(entity);
             if (!coll.isEmpty()) {
-                state.setVelocity(0, state.velY);
+                entity.setPhysicalState(state.setVelocity(0, state.velY));
             }
         }
 

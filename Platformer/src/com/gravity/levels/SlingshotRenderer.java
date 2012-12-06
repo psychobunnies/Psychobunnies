@@ -10,14 +10,14 @@ import com.gravity.fauna.Player;
 import com.gravity.geom.Rect;
 
 public class SlingshotRenderer implements Renderer {
-    
+
     private Player selfPlayer, otherPlayer;
-    
+
     private static Image blueAura, yellowAura;
     private static Image blueArrow, yellowArrow;
     private Image aura, arrow;
     private Color color;
-    
+
     static {
         try {
             blueAura = new Image("./new-assets/bunny/force-field-blue.png");
@@ -28,11 +28,11 @@ public class SlingshotRenderer implements Renderer {
             e.printStackTrace();
         }
     }
-    
+
     public SlingshotRenderer(Player selfPlayer, Player otherPlayer) {
         this.selfPlayer = selfPlayer;
         this.otherPlayer = otherPlayer;
-        
+
         if (selfPlayer.getName().equals("pink")) {
             aura = blueAura;
             arrow = blueArrow;
@@ -51,9 +51,11 @@ public class SlingshotRenderer implements Renderer {
         if (selfPlayer.slingshot) {
             Rect selfRect = selfPlayer.getPhysicalState().getRectangle();
             Rect otherRect = otherPlayer.getPhysicalState().getRectangle();
-            
+
+            Color c = g.getColor();
             g.setColor(color);
-            
+
+            //@formatter:off
             dottedLine(g, selfRect.getCenter().x, selfRect.getCenter().y,
                        otherRect.getCenter().x, otherRect.getCenter().y);
             
@@ -63,11 +65,13 @@ public class SlingshotRenderer implements Renderer {
             aura.setRotation((float) delta.getTheta());
             g.drawImage(aura, otherRect.getCenter().x - aura.getWidth() / 2,
                         otherRect.getCenter().y - aura.getHeight() / 2);
+            //@formatter:on
+            g.setColor(c);
         }
         g.popTransform();
     }
-    
-    public void dottedLine(Graphics g, float x1, float y1, float x2, float y2) {
+
+    private void dottedLine(Graphics g, float x1, float y1, float x2, float y2) {
         float wavelength = 30.0f;
 
         Vector2f origin = new Vector2f(x1, y1);
@@ -82,8 +86,10 @@ public class SlingshotRenderer implements Renderer {
         Vector2f position = origin.copy();
         arrow.setRotation((float) totalDelta.getTheta());
         for (int i = 0; i < dots; i++) {
+            //@formatter:off
             g.drawImage(arrow, position.x - yellowArrow.getWidth() / 2,
                         position.y - yellowArrow.getHeight() / 2);
+            //@formatter:on
             position.add(eachDelta);
         }
     }

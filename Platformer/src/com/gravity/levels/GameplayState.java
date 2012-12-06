@@ -241,6 +241,8 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         Vector2f offset = camera.getViewport().getPosition();
+        g.setAntiAlias(true);
+
         renderers.render(g, (int) offset.x, (int) offset.y);
         g.setColor(Color.white);
 

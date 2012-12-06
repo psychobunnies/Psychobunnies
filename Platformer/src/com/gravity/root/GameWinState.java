@@ -82,6 +82,7 @@ public class GameWinState extends BasicGameState {
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+        g.setAntiAlias(true);
         g.drawImage(winImage, 0, 0);
         g.pushTransform();
         GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);

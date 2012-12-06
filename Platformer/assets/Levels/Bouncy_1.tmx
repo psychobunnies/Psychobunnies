@@ -37,7 +37,7 @@
   </data>
  </layer>
  <objectgroup name="level markers" width="72" height="27">
-  <object name="finish" type="finish" x="2268" y="350" width="33" height="95"/>
+  <object name="finish" type="finish" x="2234" y="352" width="67" height="97"/>
  </objectgroup>
  <layer name="players" width="72" height="27">
   <data encoding="base64" compression="zlib">

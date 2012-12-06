@@ -32,7 +32,7 @@
   </data>
  </layer>
  <objectgroup name="level markers" width="67" height="24">
-  <object name="finish" x="2116" y="613" width="132" height="129"/>
+  <object name="finish" x="2076" y="613" width="132" height="129"/>
  </objectgroup>
  <layer name="spikes" width="67" height="24">
   <data encoding="base64" compression="zlib">

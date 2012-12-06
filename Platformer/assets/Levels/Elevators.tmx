@@ -40,7 +40,7 @@
   </data>
  </layer>
  <objectgroup name="level markers" width="90" height="24">
-  <object name="finish" x="2850" y="169" width="98" height="120"/>
+  <object name="finish" x="2813" y="168" width="98" height="120"/>
  </objectgroup>
  <layer name="playerkeyed" width="90" height="24">
   <data encoding="base64" compression="zlib">

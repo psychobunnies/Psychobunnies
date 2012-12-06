@@ -14,17 +14,18 @@ public class SlingshotRenderer implements Renderer {
     private Player selfPlayer, otherPlayer;
     
     private static Image blueHandRight, blueHandLeft, yellowHandRight, yellowHandLeft;
-    private static Image yellowArrow;
-    private Image handRight, handLeft;
+    private static Image blueArrow, yellowArrow;
+    private Image handRight, handLeft, arrow;
     private Color color;
     
     static {
         try {
             blueHandRight = new Image("./assets/HandAssets/HandRight.png");
             blueHandLeft = new Image("./assets/HandAssets/HandLeft.png");
+            blueArrow = new Image("./assets/blueArrow2.png");
             yellowHandRight = new Image("./assets/HandAssets/HandRightYellow.png");
             yellowHandLeft = new Image("./assets/HandAssets/HandLeftYellow.png");
-            yellowArrow = new Image("./assets/yellowArrow.png");
+            yellowArrow = new Image("./assets/yellowArrow2.png");
         } catch (SlickException e) {
             e.printStackTrace();
         }
@@ -37,10 +38,12 @@ public class SlingshotRenderer implements Renderer {
         if (selfPlayer.getName().equals("pink")) {
             handRight = blueHandRight;
             handLeft = blueHandLeft;
+            arrow = blueArrow;
             color = new Color(26, 106, 255);
         } else {
             handRight = yellowHandRight;
             handLeft = yellowHandLeft;
+            arrow = yellowArrow;
             color = new Color(255, 246, 0);
         }
     }
@@ -71,7 +74,7 @@ public class SlingshotRenderer implements Renderer {
     
     public void dottedLine(Graphics g, float x1, float y1, float x2, float y2) {
         float wavelength = 30.0f;
-        float radius = 5.0f;
+        //float radius = 5.0f;
 
         Vector2f origin = new Vector2f(x1, y1);
         Vector2f totalDelta = new Vector2f(x2 - x1, y2 - y1);
@@ -81,12 +84,12 @@ public class SlingshotRenderer implements Renderer {
         Vector2f eachDelta = totalDelta.copy().scale(1.0f / dots);
 
         Vector2f position = origin.copy();
-        yellowArrow.setRotation((float) totalDelta.getTheta());
+        arrow.setRotation((float) totalDelta.getTheta());
         for (int i = 0; i < dots; i++) {
-            //g.drawImage(yellowArrow, position.x - yellowArrow.getWidth() / 2,
-            //            position.y - yellowArrow.getHeight() / 2);
-            g.fillOval(position.x - radius, position.y - radius,
-                       2 * radius, 2 * radius);
+            g.drawImage(arrow, position.x - yellowArrow.getWidth() / 2,
+                        position.y - yellowArrow.getHeight() / 2);
+            //g.fillOval(position.x - radius, position.y - radius,
+            //           2 * radius, 2 * radius);
             position.add(eachDelta);
         }
     }

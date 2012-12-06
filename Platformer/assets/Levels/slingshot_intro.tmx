@@ -4,35 +4,38 @@
   <property name="camera" value="stalking"/>
   <property name="wallofdeath" value="true"/>
  </properties>
- <tileset firstgid="1" name="bunnyTile" tilewidth="32" tileheight="32">
-  <image source="bunnyTile.png" width="32" height="32"/>
- </tileset>
- <tileset firstgid="2" name="betterBunnyDirt" tilewidth="32" tileheight="32">
-  <image source="betterBunnyDirt.png" width="32" height="32"/>
- </tileset>
- <tileset firstgid="3" name="spikes" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="spikes" tilewidth="32" tileheight="32">
   <image source="Spikes.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="4" name="lab-sheet" tilewidth="32" tileheight="32">
+ <tileset firstgid="2" name="lab-sheet" tilewidth="32" tileheight="32">
   <image source="../lab-sheet.png" width="128" height="96"/>
  </tileset>
- <tileset firstgid="16" name="levelMarkers" tilewidth="32" tileheight="32">
+ <tileset firstgid="14" name="levelMarkers" tilewidth="32" tileheight="32">
   <image source="levelMarkers.png" width="128" height="128"/>
  </tileset>
- <tileset firstgid="32" name="bunnyTiles" tilewidth="32" tileheight="32">
+ <tileset firstgid="30" name="bunnyTiles" tilewidth="32" tileheight="32">
   <image source="bunnyTiles.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="38" name="new lab tiles" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="160"/>
+ </tileset>
+ <tileset firstgid="53" name="playerkeyed" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/trigger/all-trigger.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="57" name="arrows" tilewidth="32" tileheight="32">
+  <image source="../arrows.png" width="128" height="64"/>
  </tileset>
  <layer name="spikes" width="150" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt0AEJAAAIBLEH+3c2gAFU2OAKXAIAAAAAAAAAAAAAAAAAUy302bUXDdZQAJQ=
+   eJztzzEOADAIAkD9/6dN5yaOuNwlzEAVAAAAAAAAAAAAAAAAAPz6IFtv4kuiI7HlGX04AEI=
   </data>
  </layer>
- <layer name="collisions" width="150" height="24" visible="0">
+ <layer name="collisions" width="150" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt2W0LwiAUhuFBrfr/v3j1QViRel51tfsC6UPOc6QHZbQsAAAAAAAAAAAAOLv1OW6CcZ/c397sntB3DZ4XrVXX0tO3nLZYsltqZOQ+c+1IZ8uV9rkRNY60dhRyFTc34rnZa0f59VxZ7gRtrrJraJErP8l5pe3Ncl5l1tA6Qq5673vkSjaXXL3r9fAvudLcVdZcZdXQIld+mvMqYy8jamiRKz9yNXZtqbPlSnJXeXMVXUOLXPmsnbq1syRqz6NqaFnXlvxfJx0P5/f7eTO86l4qo/Re+2ztpbZmZI1o5d1e+pt9jg3IuwUo
+   eJzt2csOgjAUhGES9VXUBSS8/9Ppho3BnjNtTy/h/5LGRLEDyWBBlgUAAAAAAAAAAABXd/uOu2M8Ou7f++e959J3n2DbKm9XWyo3Z5/OepqyZmZE9T5y7pqu1iv1ey0yRpq7lpl7tQfM2SNjpLlrmblXuddZyrG0yFDN0Cvv+ThirzbHNuqcPTJUI/TKut/znocj90pdq3J6FZmhGqFX1j7MvA4en6lrVU6vIjNU9Kqcsg5GHEuLDBW9Kqf0KuJasUWGil6VU3rlXatKehWRoRqhV9b55T3/cv/HKbEaubvxan3Po0WGKnduz/O61kN59lFT6jnK8dvxOhm1jqVFhtdxb29l/xsfrb8Y8A==
   </data>
  </layer>
- <objectgroup name="level markers" width="150" height="24" visible="0">
+ <objectgroup name="level markers" width="150" height="24">
   <object name="finish" type="finish" x="4768" y="64" width="32" height="672"/>
  </objectgroup>
  <layer name="fast15" width="150" height="24">
@@ -42,12 +45,12 @@
    <property name="translationY" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztzqENADAMBLEnbfbfOF0hKKC2dPwSAAAAAAAAAAAAAAAA4GfndQfVziYw1F3XAE8=
+   eJztzrENACAMBLGXIPuvHFZIlQJbuv4SAAAAAAAAAAAAAAAA4GfndQfVziYw1PvgADU=
   </data>
  </layer>
- <layer name="falling spikes" width="150" height="24" visible="0">
+ <layer name="falling spikes" width="150" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt0MEJADAIA0DB/XfuBm2hQfq4g+AvilU5fUiyK52be3Yz4XXH9E8AAAAAAAAAAAAAAAAA+NcCiFcAwQ==
+   eJzt0MEJADAIA0Ddf+lu0BYapI87CP6iWJXThyS70rm5ZzcTXndM/wQAAAAAAAAAAAAAAACAfy39kwBB
   </data>
  </layer>
  <layer name="slow10" width="150" height="24">
@@ -67,7 +70,7 @@
    <property name="translationY" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztyLEJAAAIwDAX8f+P9QgXJYEujQAAAAAAAADgupxq4QMAAAAAAPBHA+ZJACU=
+   eJztyLEJAAAIwDBB/P9lPcJFSaBLIwAAAAAAAAC4Lqda+AAAAAAAAPzRrEIAGQ==
   </data>
  </layer>
  <layer name="checkpoint1" width="150" height="24">
@@ -75,20 +78,20 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0rEJACAQBMHvwcDA/vsUMwvweJAZuPyCrWJcg9d0RYKuSNAVCboiQVck6IoEXZGgKxJOV6v7BN85Xc3uEwAAAAAAAABAbWDOASo=
+   eJzt0rEJACAQBMFvwcDA/hsVMwvweJAZuPyCrWJcg9d0RYKuSNAVCboiQVck6IoEXZGgKxJOV6v7BN85Xc3uEwAAAAAAAABAbUNDAQw=
   </data>
  </layer>
  <layer name="players" width="150" height="24">
   <data encoding="base64" compression="zlib">
-   eJztzjENAAAIwDBccODfJygg4eJpk/2LAAAAAAAAAAAAAAAAAK5yqu8JgEUDILMAMw==
+   eJztzjENAAAIwDBMcODfKCgg4eJpk/2LAAAAAAAAAAAAAAAAAK5yqu8JgEUDDhsALw==
   </data>
  </layer>
- <layer name="checkpoint2" width="150" height="24" visible="0">
+ <layer name="checkpoint2" width="150" height="24">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0iEOgDAABMH+AYHg//8s2Go2DWEmOX9ix+DLjmXwBi1R0BUFXVHQFQVdUdAVBV1R0BUFXVHQFYWnq/PetfsIAAAAAAAA8FsTBd0BUA==
+   eJzt0iEOgDAABMF+AYHg/x8t2Go2DWEmOX9ix+DLjmXwBi1R0BUFXVHQFQVdUdAVBV1R0BUFXVHQFYWnq/PetfsIAAAAAAAA8FsTZUsBLg==
   </data>
  </layer>
  <layer name="vfast10" width="150" height="24">
@@ -98,12 +101,17 @@
    <property name="translationY" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztzrENADAIwDCWwv8f0w9YkDrUlrInAgAAAAAAAAAAAAAAAOAv55ZD9ewOdjTiRAA9
+   eJztzrEJADAIAEEhuv/KZgMbIUXu4PuPAAAAAAAAAAAAAAAAAPjLueVQPbuDHQ2pjAAp
   </data>
  </layer>
  <layer name="playerkeyed" width="150" height="24">
   <data encoding="base64" compression="zlib">
-   eJztw6EJAAAIADCf8f8XrUaLoLDBIgAAAAAAAOCHbOGqHAYAAAAAAIBtBYGRAeI=
+   eJztw6EJAAAIADCf8v/XrEaLoLDBIgAAAAAAAOCHbOGqHAYAAAAAAIBtBa8bArI=
+  </data>
+ </layer>
+ <layer name="arrows" width="150" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztzjEBAAAIA6Dlsn8wW8xDSEACAAAAAAAAAAAAAAAAQNNcB3hhAcPQADs=
   </data>
  </layer>
 </map>

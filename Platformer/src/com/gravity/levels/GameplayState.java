@@ -6,7 +6,6 @@ import java.util.List;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Polygon;
@@ -86,9 +85,9 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
 
     protected final List<Resetable> resetableTiles = Lists.newArrayList();
     private final String levelName;
-    private Image pinkHand;
-    private Image yellowHand;
     private String winText;
+
+    private static final float MIN_SLINGSHOT_DISTANCE = 32f;
 
     public GameplayState(LevelInfo info) throws SlickException {
         ID = info.stateId;
@@ -411,15 +410,19 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
      */
     @Override
     public void specialMoveSlingshot(Player slingshoter, float strength) {
-        if (slingshoter == playerA) {
-            playerB.slingshotMe(strength, playerA.getPhysicalState().getPosition().sub(playerB.getPhysicalState().getPosition()));
-        } else if (slingshoter == playerB) {
-            playerA.slingshotMe(strength, playerB.getPhysicalState().getPosition().sub(playerA.getPhysicalState().getPosition()));
+        // check for minimum distance between players
+        if (playerA.getPhysicalState().getPosition().sub(playerB.getPhysicalState().getPosition()).length() < MIN_SLINGSHOT_DISTANCE) {
+            // maybe play sound of slingshot fizzling out?
         } else {
-            throw new RuntimeException("Who the **** called this method?");
-            // Now now, Kevin, we don't use that kind of language in these parts. -xiao ^_^
+            if (slingshoter == playerA) {
+                playerB.slingshotMe(strength, playerA.getPhysicalState().getPosition().sub(playerB.getPhysicalState().getPosition()));
+            } else if (slingshoter == playerB) {
+                playerA.slingshotMe(strength, playerB.getPhysicalState().getPosition().sub(playerA.getPhysicalState().getPosition()));
+            } else {
+                throw new RuntimeException("Who the **** called this method?");
+                // Now now, Kevin, we don't use that kind of language in these parts. -xiao ^_^
+            }
         }
-
     }
 
     @Override

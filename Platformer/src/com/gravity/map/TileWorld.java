@@ -54,7 +54,7 @@ public class TileWorld implements GameWorld {
     public static final float STOMP_SPEED_FORWARD = 50.0f;
     public static final float STOMP_SPEED_BACKWARD = 30.0f;
 
-    public static final float TILE_MARGIN = 2f;
+    public static final float TILE_MARGIN = 3f;
 
     public final int height;
     public final int width;
@@ -192,7 +192,7 @@ public class TileWorld implements GameWorld {
         entityCallColls = processLayer(SPIKES_LAYER_NAME, new CollidableCreator<Collidable>() {
             @Override
             public Collidable createCollidable(Rect r) {
-                return new SpikeEntity(controller, r);
+                return new SpikeEntity(controller, r.grow(-TILE_MARGIN));
             }
         });
 

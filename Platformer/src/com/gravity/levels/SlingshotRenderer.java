@@ -72,15 +72,6 @@ public class SlingshotRenderer implements Renderer {
             aura.setRotation((float) delta.getTheta());
             g.drawImage(aura, otherRect.getCenter().x - aura.getWidth() / 2,
                         otherRect.getCenter().y - aura.getHeight() / 2);
-            /*if (selfRect.getX() < otherRect.getX()) {
-                dottedLine(g, selfRect.getCenter().x, selfRect.getCenter().y + 15,
-                           otherRect.getCenter().x - 8, otherRect.getCenter().y + 15);
-                g.drawImage(handRight, otherRect.getCenter().x - 15, otherRect.getCenter().y);
-            } else {
-                dottedLine(g, selfRect.getCenter().x, selfRect.getCenter().y + 15,
-                           otherRect.getCenter().x + 10, otherRect.getCenter().y + 15);
-                g.drawImage(handLeft, otherRect.getCenter().x - 15, otherRect.getCenter().y);
-            }*/
         }
         g.popTransform();
     }
@@ -102,8 +93,6 @@ public class SlingshotRenderer implements Renderer {
         for (int i = 0; i < dots; i++) {
             g.drawImage(arrow, position.x - yellowArrow.getWidth() / 2,
                         position.y - yellowArrow.getHeight() / 2);
-            //g.fillOval(position.x - radius, position.y - radius,
-            //           2 * radius, 2 * radius);
             position.add(eachDelta);
         }
     }

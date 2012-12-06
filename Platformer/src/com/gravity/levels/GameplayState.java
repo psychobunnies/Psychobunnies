@@ -247,7 +247,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         if (playerA.slingshot) {
 
             if (playerAX < playerBX) {
-                pinkHand = new Image("./new-assets/bunny/force-field.png");
+                pinkHand = new Image("./assets/HandAssets/HandRight.png");
                 g.setColor(new Color(26, 106, 255, 175));
                 g.setLineWidth(playerA.slingshotStrength * 10);
                 g.drawImage(pinkHand, playerB.getPhysicalState().getRectangle().getCenter().x + offset.x - 15, playerB.getPhysicalState()
@@ -274,12 +274,16 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         }
         if (playerB.slingshot) {
             if (playerBX < playerAX) {
-                yellowHand = new Image("./new-assets/bunny/force-field.png");
+                yellowHand = new Image("./assets/HandAssets/HandRightYellow.png");
                 g.setColor(new Color(255, 246, 0));
                 g.setLineWidth(playerB.slingshotStrength * 10);
-                g.drawImage(yellowHand, playerA.getPhysicalState().getRectangle().getCenter().x + offset.x - 36, playerA.getPhysicalState()
+                g.drawImage(yellowHand, playerA.getPhysicalState().getRectangle().getCenter().x + offset.x - 15, playerA.getPhysicalState()
                         .getRectangle().getCenter().y
-                        + offset.y - 38);
+                        + offset.y - 7);
+                g.drawLine(playerA.getPhysicalState().getRectangle().getCenter().x + offset.x,
+                        playerA.getPhysicalState().getRectangle().getCenter().y + offset.y + 8,
+                        playerB.getPhysicalState().getRectangle().getCenter().x + offset.x, playerB.getPhysicalState().getRectangle().getCenter().y
+                                + offset.y + 8);
             } else {
                 yellowHand = new Image("./assets/HandAssets/HandLeftYellow.png");
                 g.setColor(new Color(255, 246, 0));

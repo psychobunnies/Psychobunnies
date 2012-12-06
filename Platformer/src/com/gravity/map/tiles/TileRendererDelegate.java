@@ -2,7 +2,7 @@ package com.gravity.map.tiles;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.tiled.TileSet;
+import org.newdawn.slick.tiled.Tile;
 import org.newdawn.slick.tiled.TiledMapPlus;
 
 import com.gravity.geom.Rect;
@@ -20,8 +20,15 @@ public class TileRendererDelegate {
     private Image tileImage;
 
     public TileRendererDelegate(TiledMapPlus map, TileType type) {
-        TileSet tileSet = map.getTileSet(map.getTilesetID(type.tileSet));
-        tileImage = tileSet.tiles.getSubImage(type.tileSetX, type.tileSetY);
+        tileImage = type.getImage(map);
+    }
+
+    public TileRendererDelegate(TiledMapPlus map, Tile tile) {
+        tileImage = TileType.getImage(map, tile);
+    }
+
+    public TileRendererDelegate(TiledMapPlus map, int x, int y, int layerIndex) {
+        tileImage = TileType.getImage(map, x, y, layerIndex);
     }
 
     public void render(Graphics g, int offsetX, int offsetY, Rect location) {

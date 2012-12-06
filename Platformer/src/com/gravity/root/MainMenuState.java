@@ -25,7 +25,7 @@ public class MainMenuState extends CageSelectState {
     private final LevelInfo[] levels;
 
     public MainMenuState(LevelInfo[] levels) throws SlickException {
-        super("Main Menu", "assets/mainmenu2.tmx", ID);
+        super(new LevelInfo("Main Menu", "assets/mainmenu2.tmx", ID));
         this.levels = levels;
     }
 
@@ -37,16 +37,17 @@ public class MainMenuState extends CageSelectState {
         Vector2f quitLoc = map.getQuitLocation();
         Vector2f optLoc = map.getOptionsLocation();
 
+        MenuCage quitCage = new MenuCage(game, quitLoc.x, quitLoc.y, GameQuitState.ID);
+        MenuCage optCage = new MenuCage(game, optLoc.x, optLoc.y, CreditsState.ID);
+
         CageRenderer quitRend, optRend, levelRend;
         try {
-            quitRend = new CageRenderer(quitLoc.x, quitLoc.y, "Quit Game");
-            optRend = new CageRenderer(optLoc.x, optLoc.y, "Credits");
+            quitRend = new CageRenderer(quitCage, "Quit Game");
+            optRend = new CageRenderer(optCage, "Credits");
         } catch (SlickException e) {
             throw new RuntimeException(e);
         }
 
-        MenuCage quitCage = new MenuCage(quitRend.getRect(), GameQuitState.ID);
-        MenuCage optCage = new MenuCage(optRend.getRect(), CreditsState.ID);
         renderers.add(quitRend);
         renderers.add(optRend);
         cages.add(quitCage);
@@ -70,12 +71,12 @@ public class MainMenuState extends CageSelectState {
             if (info == null) {
                 continue;
             }
+            MenuCage levelCage = new MenuCage(game, loc.x, loc.y, info.stateId);
             try {
-                levelRend = new CageRenderer(loc.x, loc.y, info.title);
+                levelRend = new CageRenderer(levelCage, info.title);
             } catch (SlickException e) {
                 throw new RuntimeException(e);
             }
-            MenuCage levelCage = new MenuCage(levelRend.getRect(), info.stateId);
             renderers.add(levelRend);
             cages.add(levelCage);
         }

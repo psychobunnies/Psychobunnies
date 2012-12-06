@@ -32,7 +32,7 @@
  </layer>
  <layer name="level markers" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFowABhMmUI1YNMWaMglEwUAA9fVKSXqlp1igYBfQAo+l/FIwCVEBuuh0K6R0ALVYBCw==
+   eJxjYBgFowABhMmUI1YNMWaMglEwUGA0fY6CkQzQ0z8l+YGaZo2CUTBQgNx0OxTSOwCvcADS
   </data>
  </layer>
  <objectgroup name="special levels" width="32" height="24">

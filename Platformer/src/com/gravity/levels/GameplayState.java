@@ -13,7 +13,6 @@ import org.newdawn.slick.geom.Polygon;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import org.newdawn.slick.tiled.Layer;
 import org.newdawn.slick.tiled.Tile;
@@ -30,6 +29,7 @@ import com.gravity.fauna.PlayerKeyboardController.Control;
 import com.gravity.fauna.PlayerRenderer;
 import com.gravity.fauna.WallofDeath;
 import com.gravity.geom.Rect;
+import com.gravity.geom.Rect.Side;
 import com.gravity.map.LevelFinishZone;
 import com.gravity.map.TileType;
 import com.gravity.map.TileWorld;
@@ -50,6 +50,7 @@ import com.gravity.root.GameSounds.Event;
 import com.gravity.root.GameWinState;
 import com.gravity.root.PauseState;
 import com.gravity.root.RestartGameplayState;
+import com.gravity.root.SlideTransition;
 
 public class GameplayState extends BasicGameState implements GameplayControl, Resetable {
 
@@ -81,16 +82,19 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     private Control remappedControl;
     private float remappedDecay;
     private Polygon controlArrow = new Polygon(new float[] { -50, 10, 20, 10, -10, 50, 10, 50, 50, 0, 10, -50, -10, -50, 20, -10, -50, -10 });
+    private boolean finished = false;;
 
     protected final List<Resetable> resetableTiles = Lists.newArrayList();
     private final String levelName;
     private Image pinkHand;
     private Image yellowHand;
+    private String winText;
 
-    public GameplayState(String levelName, String mapFile, int id) throws SlickException {
-        ID = id;
-        map = new TileWorld(levelName, new TiledMapPlus(mapFile), this);
-        this.levelName = levelName;
+    public GameplayState(LevelInfo info) throws SlickException {
+        ID = info.stateId;
+        this.levelName = info.title;
+        map = new TileWorld(levelName, new TiledMapPlus(info.mapfile), this);
+        winText = info.victoryText;
     }
 
     @Override
@@ -134,6 +138,9 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         for (List<MovingEntity> l : movingColls) {
             updaters.addAll(l);
         }
+        PauseTextRenderer ptr = new PauseTextRenderer();
+        renderers.add(ptr, RenderList.FLOATING);
+        updaters.add(ptr);
 
         // Player initialization
         List<Vector2f> playerPositions = map.getPlayerStartPositions();
@@ -212,8 +219,15 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         updaters.add(pancam);
 
         // Wall of death initialization
-        if (map.map.getMapProperty("wallofdeath", null) != null) {
-            wallofDeath = new WallofDeath(2000, panX + 32, 0.035f, Lists.newArrayList(playerA, playerB), this, container.getHeight());
+        String wallVelStr;
+        if ((wallVelStr = map.map.getMapProperty("wallofdeath", null)) != null) {
+            float wallVel = 0.035f;
+            try {
+                wallVel = Float.parseFloat(wallVelStr);
+            } catch (NumberFormatException e) {
+                System.err.println("Could not format wall of death velocity, using default (0.035) instead.");
+            }
+            wallofDeath = new WallofDeath(2000, panX + 32, wallVel, Lists.newArrayList(playerA, playerB), this, container.getHeight());
             updaters.add(wallofDeath);
             renderers.add(wallofDeath, RenderList.FAUNA);
         }
@@ -309,7 +323,6 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
             }
 
             g.fill(controlArrow);
-            g.resetTransform();
             g.popTransform();
         }
     }
@@ -379,18 +392,22 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         if (!controllerA.handleKeyPress(key)) {
             controllerB.handleKeyPress(key);
         }
+        if (c == '*') { // HACK: testing purposes only REMOVE FOR RELEASE
+            reset();
+            finished = true;
+            ((GameWinState) game.getState(GameWinState.ID)).setWinText(winText);
+            game.enterState(GameWinState.ID);
+        }
     }
 
     @Override
     public void keyReleased(int key, char c) {
-        if (!controllerA.handleKeyRelease(key)) {
-            controllerB.handleKeyRelease(key);
-        }
-
-        if (key == Input.KEY_ESCAPE && canPause()) {
-            PauseState pause = (PauseState) (game.getState(PauseState.ID));
-            pause.setGameplayState(this);
-            game.enterState(PauseState.ID, new FadeOutTransition(), new FadeInTransition());
+        if (!controllerA.handleKeyRelease(key) && !controllerB.handleKeyRelease(key)) {
+            if ((key == Input.KEY_ESCAPE || key == Input.KEY_ENTER) && canPause()) {
+                PauseState pause = (PauseState) (game.getState(PauseState.ID));
+                pause.setGameplayState(this);
+                game.enterState(PauseState.ID, new SlideTransition(game.getState(PauseState.ID), Side.BOTTOM, 1000), null);
+            }
         }
     }
 
@@ -461,6 +478,8 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
             finishedPlayer = player;
         } else if (finishedPlayer != player) {
             reset();
+            finished = true;
+            ((GameWinState) game.getState(GameWinState.ID)).setWinText(winText);
             game.enterState(GameWinState.ID);
         }
     }
@@ -477,5 +496,9 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         for (Resetable r : resetableTiles) {
             r.reset();
         }
+    }
+
+    public boolean isFinished() {
+        return finished;
     }
 }

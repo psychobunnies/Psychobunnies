@@ -13,6 +13,7 @@ import com.google.common.collect.Lists;
 import com.gravity.fauna.Player;
 import com.gravity.fauna.Player.Movement;
 import com.gravity.levels.GameplayState;
+import com.gravity.levels.LevelInfo;
 import com.gravity.levels.MenuCage;
 import com.gravity.levels.RenderList;
 import com.gravity.levels.Renderer;
@@ -22,8 +23,8 @@ public abstract class CageSelectState extends GameplayState {
     private static final int SELECT_KEY = Input.KEY_ENTER;
     private List<MenuCage> cages;
 
-    public CageSelectState(String levelName, String mapFile, int id) throws SlickException {
-        super(levelName, mapFile, id);
+    public CageSelectState(LevelInfo info) throws SlickException {
+        super(info);
 
         cages = Lists.newLinkedList();
     }

@@ -9,8 +9,8 @@
  <tileset firstgid="9" name="Spikes old" tilewidth="32" tileheight="32">
   <image source="Spikes.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="10" name="Lab Tiles" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/normal/lab-sheet.png" width="96" height="160"/>
+ <tileset firstgid="10" name="lab-sheet-2" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="160"/>
  </tileset>
  <tileset firstgid="25" name="bouncies" tilewidth="32" tileheight="32">
   <image source="../../new-assets/tiles/bouncy/all.png" width="256" height="320"/>
@@ -20,12 +20,12 @@
  </tileset>
  <layer name="collisions" width="72" height="27">
   <data encoding="base64" compression="zlib">
-   eJztl9sKgzAMhgPeqYwNfP9nFS+GoXSpNYf+2/KBNx5o8rUm7UxEy8VrJR0P5fe/zmt0AOBsowMAZxodQAAz6evQSHr+8X+sB9Z+jvVytYeV71r0PGvQ1g8fI6q/S3Pk4UeTF+9ZCP+zhx9NX37eGM8TCz9eNQTBD5/rVr2MjjdqvDJP7qEn/2g/CPvnnnoY6QdlX8njaOUfPZ8I9YdzxLMU98qaJGG9X0H0o3luvb7Q/LTyq8X7qdZbgObnDp45fJufWn1JPye1eNPPSfqRST8y6Ucm/cikH5n3/pGfNzzPZAjn9152dlcHlw==
+   eJztl8sKhDAMRQPuVAaF+f9vHVwMhiKpNY9eNQfc+KDJaU3akYimk9dMOj7K75/O2jsAcL69AwBn6B1AACPp61BPWv7xN9YDaz/bejnbw8p3LXqeNWjrh48R1d+lOfLwo8mL9yyE/9nDj6YvLxfG80Trx7OGIPjhc13LNTreqPHKPLmHlvyj/SDsn1vqYaQflH0lj6OWf/R8ItQfzhbPVNwra5KE9X4F0Y/mufX6QvNTy6/W363rBZqfK3jmcDc/R/Ul/ewcxZt+dtKPTPqRST8y6Ucm/cj894/8vOF5JkM4v7fyAzUGB6E=
   </data>
  </layer>
  <layer name="bouncys" width="72" height="27">
   <data encoding="base64" compression="zlib">
-   eJztmU0KwjAQhbsUf3YewbXudCHoCVT82Yi9/zlM0UAZZqaTMEkTnQcDpbzmTT6SlmjThOnp6hVRbWBOKdqM3UDh2o3dQOHKyQfuzW7PLZD7KWsm9LVf79jrR7q/Od9KoxFCtfDh+lxrNBKRm0PSfM631WgkIjeHtPlor6US+WDvE+jrc9gS1xoqkQ+2BqCPYpKaz1R5/ND8TtgcS+HjlfKbMJRfA5+U34Sh/Br4HJRzQvJr4JNLxic83/jw+caHz9fic3J1JmrSK3/v0nt2z/SXU7Z+wvOND5+PzfHIeH6ZD5x3J2yO8Mz6L3wwSeZIeYwP7zE+vEebD9z/S+XxYyQ5+1Ee7XMj/L1nrjw+1NXVzdWdqEfz+c/H+7CiPJJnpeXHegMTXkHh
+   eJztmU0KwjAQhbsUf3YewbXu6kLQE6j4sxF7/3OYooUwzEwnYZomdh4M1PKaN/lIWoJVFaaXq3dENYE5uWg3dgOZaz92A5krJR+4N9s9t0LuD1kLoa/5ecdeP9L9zfk2Go0QKoUP1+dWo5GI3BSS5nO+WqORiNwU0uajvZZy5IO9T6DP51AT1xrKkQ+2BqCPYjIFPtgcc+Mz5DehL78EPkN+E/ryS+BzVM4JyS+BTyoZn/B848PnGx8+X4vP2dWFqJlX3b2r9+yB6S+lbP2E5xsfPh+b44nx/DMfOO9W2BzhmXUqfDBJ5kh5jA/vMT68R5sP3P9r5fFjJDn7UR7tc+Mc/F4qjw91c3V39SDqWX3/8+l8WFEeybPS6sb6AFSvQdc=
   </data>
  </layer>
  <layer name="spikes" width="72" height="27">

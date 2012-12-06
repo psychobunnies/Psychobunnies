@@ -20,12 +20,12 @@
  </tileset>
  <layer name="collisions" width="90" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2Zaw7EIAiEvYd93P+WmyYlMaQig2Ddxkn8szpIPyu6uzmltBtaNvo82ww5ILlaZPV5aoYctFqcxwjJdUv9+8BTM+SgFZIr+lzluni0Q5kPMi+Pyb2tfq/6jLzDPIdyvMe7x2PQOajlr4n5lscr5yjOpEMYh8Qc6bHU4SyMlfoQSZw1n/eOHe1B40TNMYrz3hG/x/MUo/ddvvZQ68xBOCP7UKOSNfeUeXIPnR8R+1nb1xpnOTtyiuF8iTiizCgf7Z2Hi9ZRqvGanJ64aFhJaxPB2eqJOp88/Nr1qX32Zc6e3+EXZ7/5L20VX++aWTnX6iW/62rqajnH25xrvrc4R3hanEftD+neYI31Zc5lTHRfec6PeP+Vs0USZ8vvYkgNtc6BPt/MnL+ixXmMFucxWpzjRYzPVK/3Up9ns5xF3k17NyJp/7867/YD59HUbsAhAAA=
+   H4sIAAAAAAAAC+2ZawrEIAyEvYd93P+WS2EDEmqcxMSKOOCf1YnpZ43ubk4pnYaWjT7PNkMOmlwtsvo8NUMOqDbnMdLkeqT+feCpGXJApclV+1zluni0C8xHMy+Pyb2tfq/6rHmHeQ7leI93j8egcxDlj8T8yuOVcxRn0iWM08Qc6bHU4SyMlfo0kjgjn/eOHe3RxomaYxTnsyN+j+ctRu+7/Oyh1pmj4azZh4hK1txT5sk9dH5E7Ge0rzXOcnbkFMP5EXHUMqN80DsPF62jVOORnN64IKyktYngbPVEnU8efnR9ap+tzNnzO/zm7Df/o6Pi610zK+daveR3XaSulnN8zbnm+4pzhKfFedT+kO4N1lgrcy5javeVx/xlDVqds0USZ8vvYpoaap1D+3wzc15Fm/MYbc5jtDnHixjfqV7vpT7PZjmLvBt6NyKh/1/d//YDtuCdxsAhAAA=
   </data>
  </layer>
  <layer name="spikes" width="90" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2YSw7AIAgF2Xr/C3ff1IpQn8HOJK4ENeM3mgFoabsH8BPwrAHPGvCco92KN+4pnrnIg0MNeNaA5xyes9k69Z68SF8n47kHezleb6N7dCav8nzNeoYY1T2vHuNX+6m65ypEPCvW0Kp2d53zJ61Zz/sJz2eDZw141oBnDXjWgGcNeN7P219O9i16AUYN9WjAIQAA
+   H4sIAAAAAAAAC+2YzQ4AEQwGXb3/C+99w6ba9UlrJnFSPxmUaA1ASz89gUvAswY8a8BzjP4q1rhRPGsRB4ca8KwBzzEsublN6i3tPGNVxnIPetqNYld9z+7grOvl8QzrZPe8e45/nafsnrPgzc872dX/yTxfac9a3k94rg2eNeBZA5414FkDnjXg+TxffznRt+gDmh8nZsAhAAA=
   </data>
  </layer>
  <layer name="players" width="90" height="24" opacity="0.47">
@@ -57,7 +57,15 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3VIQ4AIAwDwL0AgeD/T8WgcCSDIe6S+qamEQAAAAAA/2grACd6dQFI4P/esPM9bQt3jeoCpJtHHs4xwCEAAA==
+   H4sIAAAAAAAAC+3UoREAIBADQSpAIOi/VOY9Oi9+t4LMiawFAAAAAMB0u3vAEDpnVOfTPQJC/EqGzhk6Z1Tn2z2CrwcqN+DHwCEAAA==
+  </data>
+ </layer>
+ <layer name="checkpoint4" width="90" height="24" opacity="0.51">
+  <properties>
+   <property name="type" value="checkpoint"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3QsQkAIAxFQSewsHD/UUVIKVZBQe+qpPu8UgAAAHhJvT3gEzrnWzXVOZ/OZ8ymLe4ev84AAADsDFXpxpXAIQAA
   </data>
  </layer>
 </map>

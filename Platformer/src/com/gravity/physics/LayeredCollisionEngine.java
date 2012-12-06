@@ -11,7 +11,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
-import com.gravity.entity.TriggeredTextCollidable;
+import com.gravity.entity.TriggeredCollidable;
 import com.gravity.geom.Rect;
 import com.gravity.geom.Rect.Side;
 import com.gravity.map.LevelFinishZone;
@@ -26,7 +26,7 @@ import com.gravity.map.LevelFinishZone;
 public class LayeredCollisionEngine implements CollisionEngine {
 
     private static final float EPS = 1e-10f;
-    private static final float CORNER_RELATIVE_DIFF = 1.01f;
+    private static final float CORNER_RELATIVE_DIFF = 1.001f;
     private static final float COLLISION_RELATIVE_DIFF = 1.001f;
     private static final float COLLISION_TIME_DIFF = 1.001f;
 
@@ -137,8 +137,8 @@ public class LayeredCollisionEngine implements CollisionEngine {
         SidesAndTime a = getCollisionSide(time, collA, collB, sidesA);
         SidesAndTime b = getCollisionSide(time, collB, collA, sidesB);
 
-        Preconditions.checkArgument(!(collA.causesCollisionsWith(collB) && collB.causesCollisionsWith(collA)) || (Math.abs(a.time - b.time) < EPS),
-                "Collision time mismatch: a=" + a.toString() + "; b=" + b.toString() + "; collA=" + collA.toString() + "; collB=" + collB.toString());
+        // Preconditions.checkArgument(!(collA.causesCollisionsWith(collB) && collB.causesCollisionsWith(collA)) || (Math.abs(a.time - b.time) < EPS),
+        // "Collision time mismatch: a=" + a.toString() + "; b=" + b.toString() + "; collA=" + collA.toString() + "; collB=" + collB.toString());
 
         //@formatter:off
         return new RectCollision(collA, collB, Math.max(a.time, b.time), 
@@ -232,14 +232,14 @@ public class LayeredCollisionEngine implements CollisionEngine {
                         // objects are colliding while moving apart - probably TriggeredTextCollidable
                         return new SidesAndTime(sidesA, time);
                     } else {
-                        Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime));
+                        // Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime));
                         if (Float.isNaN(yTime)) {
                             yTime = EPS;
                         }
                         return new SidesAndTime(EnumSet.of(Side.TOP), yTime);
                     }
                 } else if (yRelV <= 0 && yRelV + yRelA * time <= 0) {
-                    Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(xTime));
+                    // Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(xTime));
                     if (Float.isNaN(xTime)) {
                         xTime = EPS;
                     }
@@ -247,7 +247,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
                 }
 
                 if (Float.isNaN(xTime)) {
-                    Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime));
+                    // Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime));
                     if (Float.isNaN(yTime)) {
                         yTime = EPS;
                     }
@@ -286,14 +286,14 @@ public class LayeredCollisionEngine implements CollisionEngine {
                         // objects are colliding while moving apart - probably TriggeredTextCollidable
                         return new SidesAndTime(sidesA, time);
                     } else {
-                        Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime));
+                        // Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime));
                         if (Float.isNaN(yTime)) {
                             yTime = EPS;
                         }
                         return new SidesAndTime(EnumSet.of(Side.BOTTOM), yTime);
                     }
                 } else if (yRelV <= 0 && yRelV + yRelA * time <= 0) {
-                    Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(xTime));
+                    // Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(xTime));
                     if (Float.isNaN(xTime)) {
                         xTime = EPS;
                     }
@@ -301,7 +301,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
                 }
 
                 if (Float.isNaN(xTime)) {
-                    Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime));
+                    // Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime));
                     if (Float.isNaN(yTime)) {
                         yTime = EPS;
                     }
@@ -329,7 +329,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
                 if (tmp > 0) {
                     ySolnT = solveQuadratic(yRelA / 2, yRelV, yDist);
                     yTime = getValidSolution(ySolnT, time);
-                    Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime));
+                    // Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime));
                     if (Float.isNaN(yTime)) {
                         yTime = EPS;
                     }
@@ -340,13 +340,13 @@ public class LayeredCollisionEngine implements CollisionEngine {
                     yDist = brect.getMaxY() - arect.getY();
                     ySolnT = solveQuadratic(yRelA / 2, yRelV, yDist);
                     yTime = getValidSolution(ySolnT, time);
-                    Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime));
+                    // Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime));
                     if (Float.isNaN(yTime)) {
                         yTime = EPS;
                     }
                     return new SidesAndTime(EnumSet.of(Side.TOP), yTime);
                 } else {
-                    if (!(a instanceof TriggeredTextCollidable)) {
+                    if (a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) {
                         System.out.println("Weird collision found " + a.toString() + " from " + b.toString());
                     }
                     return new SidesAndTime(sidesA, time);
@@ -360,8 +360,8 @@ public class LayeredCollisionEngine implements CollisionEngine {
                 xSolnT = solveQuadratic(xRelA / 2, xRelV, xDist);
                 xTime = getValidSolution(xSolnT, time);
 
-                Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(xTime),
-                        "No solutions for collision found: time=" + time + "; a=" + a.toString() + "; b=" + b.toString());
+                // Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(xTime),
+                // "No solutions for collision found: time=" + time + "; a=" + a.toString() + "; b=" + b.toString());
                 if (Float.isNaN(xTime)) {
                     xTime = EPS;
                 }
@@ -388,14 +388,14 @@ public class LayeredCollisionEngine implements CollisionEngine {
                         // objects are colliding while moving apart - probably TriggeredTextCollidable
                         return new SidesAndTime(sidesA, time);
                     } else {
-                        Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime));
+                        // Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime));
                         if (Float.isNaN(yTime)) {
                             yTime = EPS;
                         }
                         return new SidesAndTime(EnumSet.of(Side.TOP), yTime);
                     }
                 } else if (yRelV <= 0 && yRelV + yRelA * time <= 0) {
-                    Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(xTime));
+                    // Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(xTime));
                     if (Float.isNaN(xTime)) {
                         xTime = EPS;
                     }
@@ -403,7 +403,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
                 }
 
                 if (Float.isNaN(xTime)) {
-                    Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime));
+                    // Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime));
                     if (Float.isNaN(yTime)) {
                         yTime = EPS;
                     }
@@ -442,14 +442,14 @@ public class LayeredCollisionEngine implements CollisionEngine {
                         // objects are colliding while moving apart - probably TriggeredTextCollidable
                         return new SidesAndTime(sidesA, time);
                     } else {
-                        Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime));
+                        // Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime));
                         if (Float.isNaN(yTime)) {
                             yTime = EPS;
                         }
                         return new SidesAndTime(EnumSet.of(Side.BOTTOM), yTime);
                     }
                 } else if (yRelV <= 0 && yRelV + yRelA * time <= 0) {
-                    Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(xTime));
+                    // Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(xTime));
                     if (Float.isNaN(xTime)) {
                         xTime = EPS;
                     }
@@ -457,7 +457,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
                 }
 
                 if (Float.isNaN(xTime)) {
-                    Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime));
+                    // Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime));
                     if (Float.isNaN(yTime)) {
                         yTime = EPS;
                     }
@@ -485,8 +485,8 @@ public class LayeredCollisionEngine implements CollisionEngine {
                 xSolnT = solveQuadratic(xRelA / 2, xRelV, xDist);
                 xTime = getValidSolution(xSolnT, time);
 
-                Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(xTime),
-                        "No solutions for collision found: time=" + time + "; a=" + a.toString() + "; b=" + b.toString());
+                // Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(xTime),
+                // "No solutions for collision found: time=" + time + "; a=" + a.toString() + "; b=" + b.toString());
                 if (Float.isNaN(xTime)) {
                     xTime = EPS;
                 }
@@ -502,7 +502,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
                 if (tmp > 0) {
                     xSolnT = solveQuadratic(xRelA / 2, xRelV, xDist);
                     xTime = getValidSolution(xSolnT, time);
-                    Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(xTime));
+                    // Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(xTime));
                     if (Float.isNaN(xTime)) {
                         xTime = EPS;
                     }
@@ -513,17 +513,16 @@ public class LayeredCollisionEngine implements CollisionEngine {
                     xDist = brect.getMaxX() - arect.getX();
                     xSolnT = solveQuadratic(xRelA / 2, xRelV, xDist);
                     xTime = getValidSolution(xSolnT, time);
-                    Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(xTime));
+                    // Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(xTime));
                     if (Float.isNaN(xTime)) {
                         xTime = EPS;
                     }
                     return new SidesAndTime(EnumSet.of(Side.LEFT), xTime);
                 } else {
-                    if (!(a instanceof TriggeredTextCollidable)) {
+                    if (a.causesCollisionsWith(b) && b.causesCollisionsWith(a))
                         System.out.println("Weird collision found: " + a.toString() + " from " + b.toString());
-                    }
-                    return new SidesAndTime(sidesA, time);
                 }
+                return new SidesAndTime(sidesA, time);
             } else {
                 // simple top collision occurred
                 yRelV = bvel.y - avel.y;
@@ -533,8 +532,8 @@ public class LayeredCollisionEngine implements CollisionEngine {
                 ySolnT = solveQuadratic(yRelA / 2, yRelV, yDist);
                 yTime = getValidSolution(ySolnT, time);
 
-                Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime),
-                        "No solutions for collision found: time=" + time + "; a=" + a.toString() + "; b=" + b.toString());
+                // Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime),
+                // "No solutions for collision found: time=" + time + "; a=" + a.toString() + "; b=" + b.toString());
                 if (Float.isNaN(yTime)) {
                     yTime = EPS;
                 }
@@ -550,8 +549,8 @@ public class LayeredCollisionEngine implements CollisionEngine {
         ySolnT = solveQuadratic(yRelA / 2, yRelV, yDist);
         yTime = getValidSolution(ySolnT, time);
 
-        Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime),
-                "No solutions for collision found: time=" + time + "; a=" + a.toString() + "; b=" + b.toString());
+        // Preconditions.checkArgument(!(a.causesCollisionsWith(b) && b.causesCollisionsWith(a)) || !Float.isNaN(yTime),
+        // "No solutions for collision found: time=" + time + "; a=" + a.toString() + "; b=" + b.toString());
         if (Float.isNaN(yTime)) {
             yTime = EPS;
         }
@@ -565,7 +564,7 @@ public class LayeredCollisionEngine implements CollisionEngine {
         boolean collides;
         List<Collidable> result = Lists.newArrayList();
         for (Collidable collB : collidables.get(layer).getNearbyCollidables(rect)) {
-            if (ignoreTextAndFinish && (collB instanceof TriggeredTextCollidable || collB instanceof LevelFinishZone)) {
+            if (ignoreTextAndFinish && (collB instanceof TriggeredCollidable || collB instanceof LevelFinishZone)) {
                 continue;
             }
             collides = rect.intersects(collB.getPhysicalState().getRectangleAt(time));

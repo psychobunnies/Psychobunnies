@@ -22,11 +22,11 @@
  </layer>
  <layer name="collisions" width="67" height="24">
   <data encoding="base64" compression="zlib">
-   eJztl8EOxCAIRG3//6N7ctcQZYoM6G6cxEtrBJ866FVKuU77tKPDotVh8dVuLG7R2P017caiVXZemSzkGqK1/GcWo/jaPwu7ViPuiD2bhSX3nc5n9L5AY/8SC69PZ8zVWz+qvPsCcYpmcRfe3s44I4zan6HVdUQyYt2bZiRZZOcyWgfm+rwdy7IvJB8Gw7csPB4ewUL2Y/mV5TtS726VwcKiXn5a7BUetto7d6ozPRbe+xXbfzN93HM2M4Tuxcw4jDoSKfSWZcZZWUdm4kblUFlo7/1RbUI+o3kGitX2QyzkHGbi1fYAxYcBgQ==
+   eJztl0sOgCAMRNH7H9qVShroCJ2WxjBJVxILrz84SinHtse2Notam8WrbCxOYez1mrKxqBW9r0gWMoYoln9m0fOvfRthV6vHHbFnsxjZe6b69M6LTGdFQiysfTqChXV+3LLmBeLkzeIsvNyOqBHG7I/Q6jkiGbHuTTOSLKL30osDMz5f/zWSF5IPg+FXFpYe7sHCo5bYedG6W3mwsKi1P833ih62undmmjMtFtb7Fbv/RvZxS21GCN2LmX4Yc8RT6C3L9DM7R/7KQnvv92YT6jNaz0C+6nWIhTzDjL/bLqb7AX4=
   </data>
  </layer>
- <objectgroup name="finish" width="67" height="24">
-  <object x="1978" y="607" width="132" height="129"/>
+ <objectgroup name="level markers" width="67" height="24">
+  <object name="finish" x="1978" y="607" width="132" height="129"/>
  </objectgroup>
  <layer name="spikes" width="67" height="24">
   <data encoding="base64" compression="zlib">

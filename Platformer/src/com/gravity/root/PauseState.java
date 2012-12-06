@@ -2,15 +2,16 @@ package com.gravity.root;
 
 import java.util.List;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import com.google.common.collect.Lists;
+import com.gravity.geom.Rect.Side;
 import com.gravity.levels.CageRenderer;
 import com.gravity.levels.GameplayState;
+import com.gravity.levels.LevelInfo;
 import com.gravity.levels.MenuCage;
 import com.gravity.levels.Renderer;
 
@@ -21,12 +22,16 @@ public class PauseState extends CageSelectState {
     private MenuCage resumeCage;
 
     public PauseState() throws SlickException {
-        super("Pause", "assets/pause.tmx", ID);
+        super(new LevelInfo("Pause", "assets/pause.tmx", ID));
     }
 
     @Override
     public void enterCageState(MenuCage cage) {
-        game.enterState(cage.getToState(), new FadeOutTransition(Color.black, 500), new FadeInTransition(Color.black, 2000));
+        if (cage == resumeCage) {
+            game.enterState(cage.getToState(), new SlideTransition(game.getState(cage.getToState()), Side.TOP, 1000), null);
+        } else {
+            game.enterState(cage.getToState(), new FadeOutTransition(), new FadeInTransition());
+        }
     }
 
     @Override
@@ -37,16 +42,17 @@ public class PauseState extends CageSelectState {
         Vector2f resumeLoc = map.getSpecialLocation("resume");
         Vector2f mainMenuLoc = map.getSpecialLocation("mainmenu");
 
+        resumeCage = new MenuCage(game, resumeLoc.x, resumeLoc.y, MainMenuState.ID);
+        MenuCage mainMenuCage = new MenuCage(game, mainMenuLoc.x, mainMenuLoc.y, MainMenuState.ID);
+
         CageRenderer resumeRend, mainMenuRend;
         try {
-            resumeRend = new CageRenderer(resumeLoc.x, resumeLoc.y, "Resume");
-            mainMenuRend = new CageRenderer(mainMenuLoc.x, mainMenuLoc.y, "Main Menu");
+            resumeRend = new CageRenderer(resumeCage, "Resume");
+            mainMenuRend = new CageRenderer(mainMenuCage, "Main Menu");
         } catch (SlickException e) {
             throw new RuntimeException(e);
         }
 
-        resumeCage = new MenuCage(resumeRend.getRect(), MainMenuState.ID);
-        MenuCage mainMenuCage = new MenuCage(mainMenuRend.getRect(), MainMenuState.ID);
         renderers.add(resumeRend);
         renderers.add(mainMenuRend);
         cages.add(resumeCage);

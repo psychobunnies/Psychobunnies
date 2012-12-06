@@ -91,8 +91,6 @@ public class WallofDeath implements Renderer, UpdateCycling {
         builder.append(players);
         builder.append(", control=");
         builder.append(control);
-        builder.append(", DELAY=");
-        builder.append(DELAY);
         builder.append(", velX=");
         builder.append(velX);
         builder.append(", posX=");

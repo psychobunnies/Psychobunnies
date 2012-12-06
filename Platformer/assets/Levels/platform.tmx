@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="110" height="24" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="camera" value="stalking"/>
+  <property name="wallofdeath" value="0.02"/>
+ </properties>
  <tileset firstgid="1" name="betterBunnyDirt" tilewidth="32" tileheight="32">
   <image source="betterBunnyDirt.png" width="32" height="32"/>
  </tileset>
@@ -21,14 +25,20 @@
  <tileset firstgid="96" name="bunnyTiles" tilewidth="32" tileheight="32">
   <image source="bunnyTiles.png" width="128" height="64"/>
  </tileset>
+ <tileset firstgid="104" name="all" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/bouncy/all.png" width="256" height="320"/>
+ </tileset>
+ <tileset firstgid="184" name="lab-sheet-2" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="160"/>
+ </tileset>
  <layer name="collisions" width="110" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+1aAQqDMAzsHzung/3/HaMwQarp2qxnL5qDIpuYnHdNqNoYQpgqxiP7vXyPr8rrW8cCinuVEQMfGDlpgboXRo0YObGBUSNGTmxg1IiRExsYNWLkxAZGjY44sfFc19fPQfnZ9Eiw4FvCSE5W9LDC8w65JTD5NhXOxTCuV7pvemg4leYBOjcaV/at131Y0QPFM60LtX1uy6m2jtw3bD7UdXfwbfsNQstzG0OqK/cNBwv1VrO2ZPFNms8187wFFnxD5kLFQUPimX/P1cyR9TmstR+7b79xVr25b32BfDfR27fSO+co/C8h7yfM+xSO4PWGiYOG+7aP88++opqal2q9NN7hvL5g0be5Uxw0Ek/UnrZZmUejXS+9P1ga0DtAKQAA
+   H4sIAAAAAAAAC+2aAQrDIAxFc0fXdYPd/xxDNsFtxtlo9IfmgQw6jL/5JtjSQESbYNzev3fh/Nb4PsojEB6ImqRo3QtijhA1oYGYI0RNaCDmCFETGog5QtSEBmKOSprQdF7oda67LlofLR8RC75FVmqykg8rOs+wNgeSb1vlv0DreqX7JkeiadR9WMmHFZ0aczTjjGSmb/FcKO1zuaZaP+Xm9HB233pie719kmtKz0lSnWl+7fzgvulhod5aei6Kb9x+btnnR7Dgm+ZaWnG04XTm+0O6R9Jz2NF+7L79Z1a9uW9j0Xw3Mdq32jvnwFzn+O4nyN8plPB604mjjfv2G6fnu6KWmudqvTYeNK8vWPRtHxRHm6hT65u2XbiOJHej8v0E9zPc3kApAAA=
   </data>
  </layer>
  <layer name="spikes" width="110" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3aQQrAIAwEQH/a//+ix0ovUghiujPgwVtkCQTJGLDHVXBOrffP3u9b3bvoWnc6uQHJ5rkjZQ6B3fRUT3LrSW49yQ0e+gHqJP23AwAArKTvKH3d16rYR7sBFVQdYUApAAA=
+   H4sIAAAAAAAAC+3aMQoAIAwDQH/q/3/hqLNUMXgH3YVQKJLW4I5eMK++lzxyyyQ34Gfr3eEOgTPsVCa5ZZJbJrnBZB+gjv92AACA6eeO0k6PrKKPNgCZCMuYQCkAAA==
   </data>
  </layer>
  <objectgroup name="level markers" width="110" height="24">

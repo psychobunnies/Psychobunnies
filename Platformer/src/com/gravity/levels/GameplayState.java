@@ -153,6 +153,8 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         renderers.add(new TileWorldRenderer(map), RenderList.TERRA);
         renderers.add(new PlayerRenderer(playerA), RenderList.FAUNA);
         renderers.add(new PlayerRenderer(playerB), RenderList.FAUNA);
+        renderers.add(new SlingshotRenderer(playerA, playerB), RenderList.SLINGSHOT);
+        renderers.add(new SlingshotRenderer(playerB, playerA), RenderList.SLINGSHOT);
         collider.addCollidable(playerA, LayeredCollisionEngine.FAUNA_LAYER);
         collider.addCollidable(playerB, LayeredCollisionEngine.FAUNA_LAYER);
         //@formatter:off
@@ -240,64 +242,6 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         Vector2f offset = camera.getViewport().getPosition();
         renderers.render(g, (int) offset.x, (int) offset.y);
-        float playerBX = playerB.getPhysicalState().getRectangle().getCenter().x + offset.x;
-        float playerAX = playerA.getPhysicalState().getRectangle().getCenter().x + offset.x;
-
-        // Draw slingshot indicator
-        if (playerA.slingshot) {
-
-            if (playerAX < playerBX) {
-                pinkHand = new Image("./assets/HandAssets/HandRight.png");
-                g.setColor(new Color(26, 106, 255, 175));
-                g.setLineWidth(playerA.slingshotStrength * 10);
-                g.drawImage(pinkHand, playerB.getPhysicalState().getRectangle().getCenter().x + offset.x - 15, playerB.getPhysicalState()
-                        .getRectangle().getCenter().y
-                        + offset.y - 7);
-                g.drawLine(playerA.getPhysicalState().getRectangle().getCenter().x + offset.x,
-                        playerA.getPhysicalState().getRectangle().getCenter().y + offset.y + 8,
-                        playerB.getPhysicalState().getRectangle().getCenter().x + offset.x - 8,
-                        playerB.getPhysicalState().getRectangle().getCenter().y + offset.y + 8);
-            } else {
-                pinkHand = new Image("./assets/HandAssets/HandLeft.png");
-                g.setColor(new Color(26, 106, 255, 175));
-                g.setLineWidth(playerA.slingshotStrength * 10);
-                g.drawImage(pinkHand, playerB.getPhysicalState().getRectangle().getCenter().x + offset.x - 15, playerB.getPhysicalState()
-                        .getRectangle().getCenter().y
-                        + offset.y);
-                g.drawLine(playerA.getPhysicalState().getRectangle().getCenter().x + offset.x,
-                        playerA.getPhysicalState().getRectangle().getCenter().y + offset.y + 15, playerB.getPhysicalState().getRectangle()
-                                .getCenter().x
-                                + offset.x + 10, playerB.getPhysicalState().getRectangle().getCenter().y + offset.y + 15);
-
-            }
-
-        }
-        if (playerB.slingshot) {
-            if (playerBX < playerAX) {
-                yellowHand = new Image("./assets/HandAssets/HandRightYellow.png");
-                g.setColor(new Color(255, 246, 0));
-                g.setLineWidth(playerB.slingshotStrength * 10);
-                g.drawImage(yellowHand, playerA.getPhysicalState().getRectangle().getCenter().x + offset.x - 15, playerA.getPhysicalState()
-                        .getRectangle().getCenter().y
-                        + offset.y - 7);
-                g.drawLine(playerA.getPhysicalState().getRectangle().getCenter().x + offset.x,
-                        playerA.getPhysicalState().getRectangle().getCenter().y + offset.y + 8,
-                        playerB.getPhysicalState().getRectangle().getCenter().x + offset.x, playerB.getPhysicalState().getRectangle().getCenter().y
-                                + offset.y + 8);
-            } else {
-                yellowHand = new Image("./assets/HandAssets/HandLeftYellow.png");
-                g.setColor(new Color(255, 246, 0));
-                g.setLineWidth(playerB.slingshotStrength * 10);
-                g.drawImage(yellowHand, playerA.getPhysicalState().getRectangle().getCenter().x + offset.x - 15, playerA.getPhysicalState()
-                        .getRectangle().getCenter().y
-                        + offset.y);
-                g.drawLine(playerB.getPhysicalState().getRectangle().getCenter().x + offset.x,
-                        playerB.getPhysicalState().getRectangle().getCenter().y + offset.y + 15, playerA.getPhysicalState().getRectangle()
-                                .getCenter().x
-                                + offset.x + 10, playerA.getPhysicalState().getRectangle().getCenter().y + offset.y + 15);
-
-            }
-        }
         g.setColor(Color.white);
 
         if (remappedDecay > 0) {

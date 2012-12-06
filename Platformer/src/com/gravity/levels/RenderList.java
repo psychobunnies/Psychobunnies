@@ -20,6 +20,7 @@ public class RenderList implements Renderer {
     static public final Integer TERRA = 000;
     static public final Integer FLORA = 100;
     static public final Integer FAUNA = 200;
+    static public final Integer SLINGSHOT = 190;
     static public final Integer FLOATING = 300;
 
     private SortedMap<Integer, Collection<Renderer>> renderers;

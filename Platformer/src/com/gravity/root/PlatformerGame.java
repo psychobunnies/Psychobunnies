@@ -39,9 +39,9 @@ public class PlatformerGame extends StateBasedGame {
             
             // Hard (4)
             new LevelInfo("Bouncy 1", VictoryText.BOUNCY1, "assets/Levels/Bouncy_1.tmx"),
-            new LevelInfo("Test Stomps", "<test level>", "assets/Levels/checkpointing.tmx"),
-            new LevelInfo("Checkpointing", "<test level>", "assets/Levels/checkpointing.tmx"),
-            new LevelInfo("intro_tutorial", "<test level>", "assets/Levels/intro_tutorial.tmx"),
+            new LevelInfo("Test Stomps", VictoryText.TEST, "assets/Levels/checkpointing.tmx"),
+            new LevelInfo("Checkpointing",  VictoryText.TEST, "assets/Levels/checkpointing.tmx"),
+            new LevelInfo("intro_tutorial", VictoryText.PROCEDURES, "assets/Levels/intro_tutorial.tmx"),
 
             // Medium (4)
             new LevelInfo("Elevators", VictoryText.ELEVATORS, "assets/levels/Elevators.tmx"),
@@ -73,6 +73,9 @@ public class PlatformerGame extends StateBasedGame {
         app.setTargetFrameRate(60);
         app.setAlwaysRender(true);
         app.setVSync(true);
+        if (app.supportsMultiSample()) {
+            app.setMultiSample(4);
+        }
         // app.setSmoothDeltas(true);
 
         app.start();

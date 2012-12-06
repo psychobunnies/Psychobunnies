@@ -48,7 +48,6 @@ public class PlatformerGame extends StateBasedGame {
             new LevelInfo("Shortcuts", VictoryText.SHORTCUTS, "assets/levels/shortcuts.tmx"),
             new LevelInfo("Slingshot", VictoryText.SLINGSHOT, "assets/Levels/slingshot_intro.tmx"),
             new LevelInfo("Platformer", VictoryText.PLATFORMER, "assets/Levels/platform.tmx"),
-            
             // Easy (2)
             new LevelInfo("Lab Procedures", VictoryText.PROCEDURES, "assets/Levels/tutorial.tmx"),
             new LevelInfo("Lab Safety", VictoryText.SAFETY, "assets/Levels/enemies_tutorial.tmx"),

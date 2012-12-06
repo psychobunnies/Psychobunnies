@@ -18,9 +18,12 @@
  <tileset firstgid="105" name="spikes" tilewidth="32" tileheight="32">
   <image source="../../new-assets/tiles/spiky/all.png" width="128" height="96"/>
  </tileset>
+ <tileset firstgid="117" name="signs" tilewidth="32" tileheight="32">
+  <image source="../arrows.png" width="128" height="64"/>
+ </tileset>
  <layer name="collisions" width="72" height="27">
   <data encoding="base64" compression="zlib">
-   eJztl8sKhDAMRQPuVAaF+f9vHVwMhiKpNY9eNQfc+KDJaU3akYimk9dMOj7K75/O2jsAcL69AwBn6B1AACPp61BPWv7xN9YDaz/bejnbw8p3LXqeNWjrh48R1d+lOfLwo8mL9yyE/9nDj6YvLxfG80Trx7OGIPjhc13LNTreqPHKPLmHlvyj/SDsn1vqYaQflH0lj6OWf/R8ItQfzhbPVNwra5KE9X4F0Y/mufX6QvNTy6/W363rBZqfK3jmcDc/R/Ul/ewcxZt+dtKPTPqRST8y6Ucm/cj894/8vOF5JkM4v7fyAzUGB6E=
+   eJztl9EKgzAMRQt70zE22Lf6/dIHMZQstW2S3m054ItsmJzqTbuklNaL1z2N8Rj8/6/zml0AOO/ZBYBzm12AA0saz6GZtHzj/5gH2n7y+3J1hpW/1Zh52qC9P/QZXvNdWiMLPyN90ZmF8D1b+BmZy8+O51nSUgPXt2WGIPihPdd6pWvrgZefsk/qoTeLPEDYP6Pl4QHKvpLWwfnZHGspQVqvTK5nLe6VmSShvV9B9CNRywPtvEDzU+uPm1+fsl4DND89WPbwbX64fAk/J1y94eck/MiEH5nwIxN+ZMKPzLF/pOcNyzM2wvm9lR3rqwfl
   </data>
  </layer>
  <layer name="bouncys" width="72" height="27">
@@ -34,7 +37,7 @@
   </data>
  </layer>
  <objectgroup name="level markers" width="72" height="27">
-  <object name="finish" type="finish" x="2050" y="354" width="219" height="93"/>
+  <object name="finish" type="finish" x="2268" y="350" width="33" height="95"/>
  </objectgroup>
  <layer name="players" width="72" height="27">
   <data encoding="base64" compression="zlib">

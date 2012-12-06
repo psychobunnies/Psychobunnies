@@ -140,7 +140,7 @@ public class Rect {
         }
 
     }
-    
+
     public class RectException extends Exception {
         public RectException(String message) {
             super(message);
@@ -369,7 +369,7 @@ public class Rect {
      * @param side
      * @param pos
      * @return
-     * @throws RectException 
+     * @throws RectException
      */
     public Rect setSide(Side side, float pos) throws RectException {
         switch (side) {
@@ -419,7 +419,7 @@ public class Rect {
      * 
      * @param other
      * @return
-     * @throws RectException 
+     * @throws RectException
      */
     public Rect translateInto(Rect other) throws RectException {
         if (width > other.getWidth() || height > other.getHeight()) {
@@ -443,7 +443,7 @@ public class Rect {
     }
 
     public Rect grow(float amount) {
-        return new Rect(x + amount, y + amount, width + 2 * amount, height + 2 * amount);
+        return new Rect(x - amount, y - amount, width + 2 * amount, height + 2 * amount);
     }
 
     public float getHeight() {

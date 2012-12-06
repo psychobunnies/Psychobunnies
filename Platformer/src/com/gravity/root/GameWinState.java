@@ -25,6 +25,7 @@ public class GameWinState extends BasicGameState {
 
     public static final int ID = 11;
 
+    private static final String[] NO_TEXT = new String[] { "", "", "", "", "" };
     private static final FloatBuffer skew;
     private static final UnicodeFont textFont, titleFont, headerFont;
     private static final float textX = 580, textY = 275, width = 250;
@@ -70,13 +71,14 @@ public class GameWinState extends BasicGameState {
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.game = game;
         this.winImage = new Image("./new-assets/background/level-end.png");
-        this.winText = new String[] { "", "", "", "", "" };
+        this.winText = NO_TEXT;
     }
 
     public void setWinText(String text) {
         this.winText = text.split("\\$");
         if (winText.length != 5) {
-            throw new RuntimeException("ERROR: cannot use victory text: " + text + " must have 4 $'s for field delimiting!");
+            winText = NO_TEXT;
+            System.err.println("ERROR: cannot use victory text: " + text + " must have 4 $'s for field delimiting!");
         }
     }
 

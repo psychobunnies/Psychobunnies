@@ -73,7 +73,9 @@ public class PlatformerGame extends StateBasedGame {
         app.setTargetFrameRate(60);
         app.setAlwaysRender(true);
         app.setVSync(true);
-        app.setMultiSample(4);
+        if (app.supportsMultiSample()) {
+            app.setMultiSample(4);
+        }
         // app.setSmoothDeltas(true);
 
         app.start();

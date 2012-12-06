@@ -87,7 +87,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     private final String levelName;
     private String winText;
 
-    private static final float MIN_SLINGSHOT_DISTANCE = 32f;
+    private static final float MIN_SLINGSHOT_DISTANCE = 5f;
 
     public GameplayState(LevelInfo info) throws SlickException {
         ID = info.stateId;

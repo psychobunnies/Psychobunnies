@@ -248,18 +248,18 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
 
             if (playerAX < playerBX) {
                 pinkHand = new Image("./assets/HandAssets/HandRight.png");
-                g.setColor(new Color(26, 106, 255));
+                g.setColor(new Color(26, 106, 255, 175));
                 g.setLineWidth(playerA.slingshotStrength * 10);
                 g.drawImage(pinkHand, playerB.getPhysicalState().getRectangle().getCenter().x + offset.x - 15, playerB.getPhysicalState()
                         .getRectangle().getCenter().y
-                        + offset.y);
+                        + offset.y - 7);
                 g.drawLine(playerA.getPhysicalState().getRectangle().getCenter().x + offset.x,
-                        playerA.getPhysicalState().getRectangle().getCenter().y + offset.y + 15, playerB.getPhysicalState().getRectangle()
-                                .getCenter().x
-                                + offset.x - 8, playerB.getPhysicalState().getRectangle().getCenter().y + offset.y + 15);
+                        playerA.getPhysicalState().getRectangle().getCenter().y + offset.y + 8,
+                        playerB.getPhysicalState().getRectangle().getCenter().x + offset.x - 8,
+                        playerB.getPhysicalState().getRectangle().getCenter().y + offset.y + 8);
             } else {
                 pinkHand = new Image("./assets/HandAssets/HandLeft.png");
-                g.setColor(new Color(26, 106, 255));
+                g.setColor(new Color(26, 106, 255, 175));
                 g.setLineWidth(playerA.slingshotStrength * 10);
                 g.drawImage(pinkHand, playerB.getPhysicalState().getRectangle().getCenter().x + offset.x - 15, playerB.getPhysicalState()
                         .getRectangle().getCenter().y
@@ -279,11 +279,11 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
                 g.setLineWidth(playerB.slingshotStrength * 10);
                 g.drawImage(yellowHand, playerA.getPhysicalState().getRectangle().getCenter().x + offset.x - 15, playerA.getPhysicalState()
                         .getRectangle().getCenter().y
-                        + offset.y);
-                g.drawLine(playerB.getPhysicalState().getRectangle().getCenter().x + offset.x,
-                        playerB.getPhysicalState().getRectangle().getCenter().y + offset.y + 15, playerA.getPhysicalState().getRectangle()
-                                .getCenter().x
-                                + offset.x - 8, playerA.getPhysicalState().getRectangle().getCenter().y + offset.y + 15);
+                        + offset.y - 7);
+                g.drawLine(playerA.getPhysicalState().getRectangle().getCenter().x + offset.x,
+                        playerA.getPhysicalState().getRectangle().getCenter().y + offset.y + 8,
+                        playerB.getPhysicalState().getRectangle().getCenter().x + offset.x, playerB.getPhysicalState().getRectangle().getCenter().y
+                                + offset.y + 8);
             } else {
                 yellowHand = new Image("./assets/HandAssets/HandLeftYellow.png");
                 g.setColor(new Color(255, 246, 0));

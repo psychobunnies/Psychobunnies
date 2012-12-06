@@ -65,7 +65,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3QIQoAIBREwX8Cg8H7H1UEg6BRFHQmbVxeBAAAAC9Jtw98QuczdN4vxdxV5/1a09x3iXV3AAAAGFVBUzDEwCEAAA==
+   H4sIAAAAAAAAC+3QsQkAIAxFQSewsHD/UUVIKVZBQe+qpPu8UgAAAHhJvT3gEzrnWzXVOZ/OZ8ymLe4ev84AAADsDFXpxpXAIQAA
   </data>
  </layer>
 </map>

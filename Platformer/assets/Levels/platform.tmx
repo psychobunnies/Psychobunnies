@@ -31,6 +31,9 @@
  <tileset firstgid="184" name="lab-sheet-2" tilewidth="32" tileheight="32">
   <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="160"/>
  </tileset>
+ <tileset firstgid="199" name="all-trigger" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/trigger/all-trigger.png" width="64" height="64"/>
+ </tileset>
  <layer name="collisions" width="110" height="24">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2aAQrDIAxFc0fXdYPd/xxDNsFtxtlo9IfmgQw6jL/5JtjSQESbYNzev3fh/Nb4PsojEB6ImqRo3QtijhA1oYGYI0RNaCDmCFETGog5QtSEBmKOSprQdF7oda67LlofLR8RC75FVmqykg8rOs+wNgeSb1vlv0DreqX7JkeiadR9WMmHFZ0aczTjjGSmb/FcKO1zuaZaP+Xm9HB233pie719kmtKz0lSnWl+7fzgvulhod5aei6Kb9x+btnnR7Dgm+ZaWnG04XTm+0O6R9Jz2NF+7L79Z1a9uW9j0Xw3Mdq32jvnwFzn+O4nyN8plPB604mjjfv2G6fnu6KWmudqvTYeNK8vWPRtHxRHm6hT65u2XbiOJHej8v0E9zPc3kApAAA=

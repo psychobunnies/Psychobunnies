@@ -25,6 +25,9 @@
  <tileset firstgid="96" name="bunnyTiles" tilewidth="32" tileheight="32">
   <image source="bunnyTiles.png" width="128" height="64"/>
  </tileset>
+ <tileset firstgid="104" name="all-trigger" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/trigger/all-trigger.png" width="64" height="64"/>
+ </tileset>
  <layer name="collisions" width="100" height="24">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2ZAQqDMAxFe8fppuD9zyFCCyJUm5q1f+49CILENvoMLTqEEMZdTPE4H857xfSlcZ8QrxigAT60wIcW+NACH1rgQwt8aJF8lO6P333K/Bus/ZHLpcd8wIcW+NBCxccQ6r73PG09U/FRe/2v9GWq8+q9w0cbPJ6xJRcf5+BDC3xo0cPHcW1aMrm5dayG/bx3sO7vrOOm+/P+P0h/1FFaJz7agA8t8KGFxcfHMG4u1zKG5/V3521FaZ1b3goUWVpGgCUAAA==

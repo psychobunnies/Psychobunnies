@@ -3,6 +3,11 @@ package com.gravity.root;
 public final class VictoryText {
     //@formatter:off
     public static final String 
+        TEST = "TEST LEVEL" + 
+                "$a" +
+                "$b" + 
+                "$c" +
+                "$d",
         PROCEDURES = "TRAINING 0" +
         		"$Hypothesis" +
         		"$Bunnies are able to learn\n" +

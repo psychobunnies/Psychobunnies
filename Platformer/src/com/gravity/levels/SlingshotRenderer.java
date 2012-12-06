@@ -73,11 +73,11 @@ public class SlingshotRenderer implements Renderer {
         Vector2f origin = new Vector2f(x1, y1);
         Vector2f totalDelta = new Vector2f(x2 - x1, y2 - y1);
         // Make sure arrows don't intersect aura.
-        totalDelta.sub(totalDelta.copy().normalise().scale(16f));
+        totalDelta.sub(totalDelta.copy().normalise().scale(10f));
 
         float distance = totalDelta.length();
         int dots = (int) (distance / wavelength);
-        Vector2f eachDelta = totalDelta.copy().scale(1.0f / dots);
+        Vector2f eachDelta = totalDelta.copy().scale(wavelength / distance);
 
         Vector2f position = origin.copy();
         arrow.setRotation((float) totalDelta.getTheta());

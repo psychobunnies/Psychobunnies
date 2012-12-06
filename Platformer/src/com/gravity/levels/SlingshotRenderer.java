@@ -13,21 +13,16 @@ public class SlingshotRenderer implements Renderer {
     
     private Player selfPlayer, otherPlayer;
     
-    private static Image blueHandRight, blueHandLeft, yellowHandRight, yellowHandLeft;
     private static Image blueAura, yellowAura;
     private static Image blueArrow, yellowArrow;
-    private Image aura, handRight, handLeft, arrow;
+    private Image aura, arrow;
     private Color color;
     
     static {
         try {
             blueAura = new Image("./new-assets/bunny/force-field-blue.png");
-            blueHandRight = new Image("./assets/HandAssets/HandRight.png");
-            blueHandLeft = new Image("./assets/HandAssets/HandLeft.png");
             blueArrow = new Image("./assets/blueArrow2.png");
             yellowAura = new Image("./new-assets/bunny/force-field-yellow.png");
-            yellowHandRight = new Image("./assets/HandAssets/HandRightYellow.png");
-            yellowHandLeft = new Image("./assets/HandAssets/HandLeftYellow.png");
             yellowArrow = new Image("./assets/yellowArrow2.png");
         } catch (SlickException e) {
             e.printStackTrace();
@@ -40,14 +35,10 @@ public class SlingshotRenderer implements Renderer {
         
         if (selfPlayer.getName().equals("pink")) {
             aura = blueAura;
-            handRight = blueHandRight;
-            handLeft = blueHandLeft;
             arrow = blueArrow;
             color = new Color(26, 106, 255);
         } else {
             aura = yellowAura;
-            handRight = yellowHandRight;
-            handLeft = yellowHandLeft;
             arrow = yellowArrow;
             color = new Color(255, 246, 0);
         }

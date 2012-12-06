@@ -77,6 +77,14 @@ public class PlatformerGame extends StateBasedGame {
         }
         // app.setSmoothDeltas(true);
 
+        boolean isDebugging = false;
+        try {
+            isDebugging = java.lang.management.ManagementFactory.getRuntimeMXBean().getInputArguments().toString().indexOf("-agentlib:jdwp") > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        app.setFullscreen(!isDebugging);
+
         app.start();
 
     }

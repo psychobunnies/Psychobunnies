@@ -15,6 +15,12 @@
  <tileset firstgid="83" name="spikes" tilewidth="32" tileheight="32">
   <image source="Spikes.png" width="32" height="32"/>
  </tileset>
+ <tileset firstgid="84" name="Lab Tiles" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="160"/>
+ </tileset>
+ <tileset firstgid="99" name="signs" tilewidth="32" tileheight="32">
+  <image source="../arrows.png" width="128" height="64"/>
+ </tileset>
  <layer name="players" width="67" height="24">
   <data encoding="base64" compression="zlib">
    eJztzqENAAAIwDB+Q/D/R1g+gIRWTS4CAAAAAAB+yNG1dsEFDTBTAIs=
@@ -22,11 +28,11 @@
  </layer>
  <layer name="collisions" width="67" height="24">
   <data encoding="base64" compression="zlib">
-   eJztl0sOgCAMRNH7H9qVShroCJ2WxjBJVxILrz84SinHtse2Notam8WrbCxOYez1mrKxqBW9r0gWMoYoln9m0fOvfRthV6vHHbFnsxjZe6b69M6LTGdFQiysfTqChXV+3LLmBeLkzeIsvNyOqBHG7I/Q6jkiGbHuTTOSLKL30osDMz5f/zWSF5IPg+FXFpYe7sHCo5bYedG6W3mwsKi1P833ih62undmmjMtFtb7Fbv/RvZxS21GCN2LmX4Yc8RT6C3L9DM7R/7KQnvv92YT6jNaz0C+6nWIhTzDjL/bLqb7AX4=
+   eJztVssOAyEI5CPtpukm/f/PaD1sasmCIA89OImHTXQZBxgpAPDYC47vOmGj4oStxYWtxQ+raVHgv3+993NYTYsW2bwytWhzKMnlO4NUg9l1wd1Xq13vbO98hBaaHn45x7Ygui5W9aI79LSw+nSGFl6+Yq2LSytKp2j/68XXILpHPLlGY/Y78kTfM7XDWmRzofLgmR+sNwVNXeDeb9/DUQ2lWpRmaWNIPUujRcQsQMUe9VzLfJblF9QcSN15xgw22ztXemdqXu560zJfed9P6n1W1FocrYssjhw/bw5SLXDcrN7i4nhzkHo23pelBcfPe8anPL73NmGv17xnXMwD7eN8B/9nJF579gMAwVl9
   </data>
  </layer>
  <objectgroup name="level markers" width="67" height="24">
-  <object name="finish" x="1978" y="607" width="132" height="129"/>
+  <object name="finish" x="2116" y="613" width="132" height="129"/>
  </objectgroup>
  <layer name="spikes" width="67" height="24">
   <data encoding="base64" compression="zlib">
@@ -55,6 +61,11 @@
   </properties>
   <data encoding="base64" compression="zlib">
    eJzt0LENACAMA0FPR0HB/uNAlwUikeJOcm99wgTr94FBtChaFC2S87ajBQAAAAB0uAnfAfc=
+  </data>
+ </layer>
+ <layer name="signs" width="67" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztzgENAAAIA6CHtX8GY9w5SEACAAAAAAB8Ne3AUQuGgABl
   </data>
  </layer>
 </map>

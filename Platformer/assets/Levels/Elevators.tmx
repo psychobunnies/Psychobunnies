@@ -21,6 +21,9 @@
  <tileset firstgid="45" name="signs" tilewidth="32" tileheight="32">
   <image source="../arrows.png" width="128" height="64"/>
  </tileset>
+ <tileset firstgid="53" name="New Spikes" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/spiky/all.png" width="128" height="96"/>
+ </tileset>
  <layer name="players" width="90" height="24">
   <data encoding="base64" compression="zlib">
    eJztw6ENAAAIA7A5/v8YM4nFtUkTAIBf0wAAAAAAANwWhBMADw==
@@ -37,7 +40,7 @@
   </data>
  </layer>
  <objectgroup name="level markers" width="90" height="24">
-  <object name="finish" x="2784" y="167" width="98" height="120"/>
+  <object name="finish" x="2850" y="169" width="98" height="120"/>
  </objectgroup>
  <layer name="playerkeyed" width="90" height="24">
   <data encoding="base64" compression="zlib">

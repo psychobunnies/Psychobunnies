@@ -32,7 +32,7 @@
  </objectgroup>
  <layer name="playerkeyed" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt11sOgCAMRFG+3P+S3YBJcQplgHsSP036gIm2BgDIeIIHqMYZ9HXKPqLcO6XPiHuf6k7c+4Jut90q9bpnUE9tLvX/zY2deluJGYzjMsvZdVTerez33Nc77rnsLju7mfNnr0DM4Z7c+K+uqpwP+wCgGJXp5I+/F18lAZM=
+   eJzt11sOgCAMRFG+3P+S3YBJcQplgHsSP036gIm2BgDIeIIHqMYZ9HXKPqLcO6XPiHuf6k7c+4Jut90q9bpnUE9tLvX/zY2deluJGYzjMsvZdVTerez33Nc77rnsLju7mfNnr0DM4Z7c+r+uqJwNuwCgGJXn5I+/F41FAZk=
   </data>
  </layer>
  <layer name="Checkpoint A" width="90" height="24" visible="0">

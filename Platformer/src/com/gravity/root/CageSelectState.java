@@ -34,13 +34,14 @@ public abstract class CageSelectState extends GameplayState {
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         super.init(container, game);
-        
+
         mouseOffsetX = (container.getWidth() - PlatformerGame.WIDTH) / 2;
         mouseOffsetY = (container.getHeight() - PlatformerGame.HEIGHT) / 2;
     }
 
     public void enterCageState(MenuCage cage) {
         try {
+            GameSounds.playBGM();
             playerA.move(Movement.STOP);
             playerB.move(Movement.STOP);
             game.getState(cage.getToState()).init(container, game);

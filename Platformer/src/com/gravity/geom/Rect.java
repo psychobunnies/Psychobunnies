@@ -142,6 +142,9 @@ public class Rect {
     }
 
     public class RectException extends Exception {
+
+        private static final long serialVersionUID = 1L;
+
         public RectException(String message) {
             super(message);
         }

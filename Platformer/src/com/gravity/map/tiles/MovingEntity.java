@@ -20,17 +20,17 @@ import com.gravity.physics.RectCollision;
 
 public class MovingEntity implements Entity, Renderer {
 
-    private final TileRendererDelegate renderer;
+    private final TileRenderer renderer;
     private Rect shape;
     private final Vector2f origPosition;
     private final Vector2f velForward, velBackward, finalPosition;
     private boolean reversed;
 
-    public MovingEntity(TileRendererDelegate renderer, Rect shape, int transX, int transY, float speed) {
+    public MovingEntity(TileRenderer renderer, Rect shape, int transX, int transY, float speed) {
         this(renderer, shape, transX, transY, speed, speed);
     }
 
-    public MovingEntity(TileRendererDelegate renderer, Rect shape, int transX, int transY, float speedForward, float speedBackward) {
+    public MovingEntity(TileRenderer renderer, Rect shape, int transX, int transY, float speedForward, float speedBackward) {
         this.renderer = renderer;
         this.shape = shape;
         this.origPosition = shape.getPoint(Rect.Corner.TOPLEFT);

@@ -23,10 +23,10 @@ public class PlayerKeyedTile extends AbstractEntity implements Renderer, Resetab
     private final Rect shape;
 
     private final CollisionEngine collider;
-    private final TileRendererDelegate renderer;
-    private final TileRendererDelegate yellowRenderer;
-    private final TileRendererDelegate pinkRenderer;
-    private final TileRendererDelegate warningRenderer;
+    private final TileRenderer renderer;
+    private final TileRenderer yellowRenderer;
+    private final TileRenderer pinkRenderer;
+    private final TileRenderer warningRenderer;
 
     private boolean exists = true;
 
@@ -38,8 +38,8 @@ public class PlayerKeyedTile extends AbstractEntity implements Renderer, Resetab
     private float millisElapsed;
     private boolean ticking;
 
-    public PlayerKeyedTile(Rect shape, CollisionEngine collider, TileRendererDelegate renderer, TileRendererDelegate yellowRenderer,
-            TileRendererDelegate pinkRenderer, TileRendererDelegate warningRenderer, Layer layer, int x, int y) {
+    public PlayerKeyedTile(Rect shape, CollisionEngine collider, TileRenderer renderer, TileRenderer yellowRenderer, TileRenderer pinkRenderer,
+            TileRenderer warningRenderer, Layer layer, int x, int y) {
         super(new PhysicalState(shape, 0f, 0f, 0f));
         this.shape = shape;
         this.keyedPlayer = null;
@@ -119,6 +119,7 @@ public class PlayerKeyedTile extends AbstractEntity implements Renderer, Resetab
 
     @Override
     public void reset() {
+        ticking = false;
         millisElapsed = Float.NEGATIVE_INFINITY;
         layer.setTileID(x, y, originalTileId);
     }
@@ -128,7 +129,7 @@ public class PlayerKeyedTile extends AbstractEntity implements Renderer, Resetab
         if (!exists) {
             return;
         } else if (ticking) {
-            warningRenderer.render(g, offsetX, offsetY, shape);
+            warningRenderer.render(g, offsetX, offsetY, shape, millisElapsed / TIME_TO_GTFO);
         } else if (keyedPlayer == null) {
             renderer.render(g, offsetX, offsetY, shape);
         } else if (keyedPlayer.getName().equals("pink")) {

@@ -16,22 +16,28 @@ import com.gravity.map.TileType;
  * @author xiao
  * 
  */
-public class TileRendererDelegate {
+public class StandardTileRenderer implements TileRenderer {
     private Image tileImage;
 
-    public TileRendererDelegate(TiledMapPlus map, TileType type) {
+    public StandardTileRenderer(TiledMapPlus map, TileType type) {
         tileImage = type.getImage(map);
     }
 
-    public TileRendererDelegate(TiledMapPlus map, Tile tile) {
+    public StandardTileRenderer(TiledMapPlus map, Tile tile) {
         tileImage = TileType.getImage(map, tile);
     }
 
-    public TileRendererDelegate(TiledMapPlus map, int x, int y, int layerIndex) {
+    public StandardTileRenderer(TiledMapPlus map, int x, int y, int layerIndex) {
         tileImage = TileType.getImage(map, x, y, layerIndex);
     }
 
+    @Override
     public void render(Graphics g, int offsetX, int offsetY, Rect location) {
+        g.drawImage(tileImage, offsetX + location.getX(), offsetY + location.getY());
+    }
+
+    @Override
+    public void render(Graphics g, int offsetX, int offsetY, Rect location, float progress) {
         g.drawImage(tileImage, offsetX + location.getX(), offsetY + location.getY());
     }
 

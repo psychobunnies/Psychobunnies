@@ -30,7 +30,8 @@ import com.gravity.map.tiles.DisappearingTile;
 import com.gravity.map.tiles.DisappearingTileController;
 import com.gravity.map.tiles.MovingEntity;
 import com.gravity.map.tiles.SpikeEntity;
-import com.gravity.map.tiles.TileRendererDelegate;
+import com.gravity.map.tiles.TileRenderer;
+import com.gravity.map.tiles.StandardTileRenderer;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.CollisionEngine;
 
@@ -277,7 +278,7 @@ public class TileWorld implements GameWorld {
             List<MovingEntity> colls = processLayerSingleSquares(layer.name, new CollidableCreator<MovingEntity>() {
                 @Override
                 public MovingEntity createCollidable(Rect r) {
-                    TileRendererDelegate renderer = new TileRendererDelegate(map, Math.round(r.getX()) / tileWidth,
+                    TileRenderer renderer = new StandardTileRenderer(map, Math.round(r.getX()) / tileWidth,
                             Math.round(r.getY()) / tileHeight, layer.index);
                     return new MovingEntity(renderer, r, transX * tileWidth, transY * tileHeight, speed);
                 }
@@ -309,7 +310,7 @@ public class TileWorld implements GameWorld {
                         }
                     }
 
-                    TileRendererDelegate renderer = new TileRendererDelegate(map, tile);
+                    TileRenderer renderer = new StandardTileRenderer(map, tile);
                     MovingEntity stompColl = new MovingEntity(renderer, r, 0, (Math.round(minBelowY - r.getMaxY())), STOMP_SPEED_FORWARD,
                             STOMP_SPEED_BACKWARD);
 

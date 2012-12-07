@@ -352,7 +352,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     @Override
     public void keyReleased(int key, char c) {
         if (!controllerA.handleKeyRelease(key) && !controllerB.handleKeyRelease(key)) {
-            if ((key == Input.KEY_ESCAPE || key == Input.KEY_ENTER) && canPause()) {
+            if ((key == Input.KEY_ESCAPE) && canPause()) {
                 PauseState pause = (PauseState) (game.getState(PauseState.ID));
                 pause.setGameplayState(this);
                 game.enterState(PauseState.ID, new SlideTransition(game.getState(PauseState.ID), Side.BOTTOM, 1000), null);

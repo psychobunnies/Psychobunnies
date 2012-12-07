@@ -39,16 +39,16 @@ public class SlideTransition extends CrossStateTransition {
         g.pushTransform();
         switch (side) {
         case TOP:
-            g.translate(0, -ratio * container.getHeight());
+            g.translate(0, -ratio * PlatformerGame.HEIGHT);
             break;
         case LEFT:
-            g.translate(-ratio * container.getWidth(), 0);
+            g.translate(-ratio * PlatformerGame.WIDTH, 0);
             break;
         case BOTTOM:
-            g.translate(0, ratio * container.getHeight());
+            g.translate(0, ratio * PlatformerGame.HEIGHT);
             break;
         case RIGHT:
-            g.translate(ratio * container.getWidth(), 0);
+            g.translate(ratio * PlatformerGame.WIDTH, 0);
             break;
         default:
             break;

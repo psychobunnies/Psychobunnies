@@ -31,7 +31,7 @@ public final class GameSounds {
     static {
 
         try {
-            backgroundMusic = new Music("./assets/Sound/Caketown 1.ogg");
+            backgroundMusic = new Music("./assets/Sound/Forminas.ogg");
         } catch (SlickException e) {
             throw new RuntimeException(e);
         }

@@ -16,10 +16,13 @@
   <image source="Spikes.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="84" name="Lab Tiles" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="160"/>
+  <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="192"/>
  </tileset>
- <tileset firstgid="99" name="signs" tilewidth="32" tileheight="32">
+ <tileset firstgid="102" name="signs" tilewidth="32" tileheight="32">
   <image source="../arrows.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="110" name="new spikes" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/spiky/all.png" width="128" height="96"/>
  </tileset>
  <layer name="players" width="67" height="24">
   <data encoding="base64" compression="zlib">
@@ -28,7 +31,7 @@
  </layer>
  <layer name="collisions" width="67" height="24">
   <data encoding="base64" compression="zlib">
-   eJztVssOAyEI5CPtpukm/f/PaD1sasmCIA89OImHTXQZBxgpAPDYC47vOmGj4oStxYWtxQ+raVHgv3+993NYTYsW2bwytWhzKMnlO4NUg9l1wd1Xq13vbO98hBaaHn45x7Ygui5W9aI79LSw+nSGFl6+Yq2LSytKp2j/68XXILpHPLlGY/Y78kTfM7XDWmRzofLgmR+sNwVNXeDeb9/DUQ2lWpRmaWNIPUujRcQsQMUe9VzLfJblF9QcSN15xgw22ztXemdqXu560zJfed9P6n1W1FocrYssjhw/bw5SLXDcrN7i4nhzkHo23pelBcfPe8anPL73NmGv17xnXMwD7eN8B/9nJF579gMAwVl9
+   eJztl90KwyAMhfOQg66MFvb+L7F5UeYCiYn528ADvatJ/IxH3QDgvj7Y398DlppOWCwuLRYf/TuLDb73u0W/xsJzblplsujnKZnvM6OoTtV9wc1Xy240djQ+goWmzw/n3BZF98UZGNtbIxZWL8tgcXOKY+2LixXFKdr/Rvk1it4jnrVGq/ocwbkr2WEW2bVQfuLpM9K11vQF9qj+PJxlKGVh8XCpZ2lYRNwFvPvCcj/L8guqRmrNsu/fTdXeSe2tivto4095+ayHevtv1lodhlxZNXLe4V2DNB7+L+utweXxrkEaD/tZlr9xebxroN76o7MJ+5vmPONy7ug/zndwnJl8/dgXK49cPw==
   </data>
  </layer>
  <objectgroup name="level markers" width="67" height="24">
@@ -36,7 +39,7 @@
  </objectgroup>
  <layer name="spikes" width="67" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt1YEJACAMA7D+uP9/8QURcQ6SCzpoWQIAAOyo7gAw2Iv92Ci3VfQKgD9M+kknObvuW+S/Az8=
+   eJzt1cEJACAMA8CM3P1friAi1sLdBCkkNAEAAHZUdwAY7MV+bJTbKnoFwB8m/aSTnF33LRyIBGE=
   </data>
  </layer>
  <layer name="Checkpoint low" width="67" height="24">
@@ -65,7 +68,7 @@
  </layer>
  <layer name="signs" width="67" height="24">
   <data encoding="base64" compression="zlib">
-   eJztzgENAAAIA6CHtX8GY9w5SEACAAAAAAB8Ne3AUQuGgABl
+   eJztzgENAAAIA6C3tX8DY9w5SEACAAAAAAB8Ne3AUQuJyABo
   </data>
  </layer>
 </map>

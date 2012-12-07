@@ -167,7 +167,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0bEJACAUQ0Gns7Bw/3G01QV+0DtIH3it8ZpefYCDHln0yKJHFj2y6JFFjyx6AAAA/GvszeoTAABwWY4AAsk=
+   eJzt0bEJACAQBMGvzsDA/svR1Ab8Q2bg8oOt4jej+wAXPbLokUWPLHpk0SOLHln0AAAAXppnq/sEAAAQbQN7jwLJ
   </data>
  </layer>
  <layer name="checkpoint2" width="100" height="24">
@@ -175,7 +175,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0TEKwCAABEFfl8LC/z8nae0FNzAD1x/sGHDOc/sAGz1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRAwD+b35bt08AAJD1Anj7A+E=
+   eJzt0TEKgDAABMG8LoWF/3+Oae2CCNliBq4/2DHgP/P0AV70aNGjRY8WPVr0aNGjRY8WPVr0aNGjRQ8AvrjW7tMnAACALQ9migPh
   </data>
  </layer>
  <layer name="checkpoint3" width="100" height="24">
@@ -183,7 +183,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0TENwEAMwMCg6/BD+cPpXATvSHcILHkG9npuB/DjR4sfLX60+NHiR4sfLX60+NHiR4sfLX60+NHiR4sfHWf8KHnHDwCAbT7ZYwU/
+   eJzt0TENwEAMwMCg6/BD+cPpXATvSHcILHkG9npuB/DjR4sfLX60+NHiR4sfLX60+NHiR4sfLX60+NHiR8c7fpSc8aPGDwCAXT7NMgU/
   </data>
  </layer>
  <objectgroup name="special levels" width="100" height="24">

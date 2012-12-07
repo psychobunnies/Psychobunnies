@@ -47,7 +47,7 @@
    eJzt10sKgDAMRdEuqPtfnwOnQjT93dZ7wKGQvJCgpUiSxFeDRzezYTtlHtE+ntJnhN5ndib0vpS322wz9dJv0JvaKPV/vRs79baSGfRDyXJ0HTN3q/V77ukd+l2ma81uZP7OVYoR9uSv/+sZM7NxFpIyet1z7w/fBbtlC90=
   </data>
  </layer>
- <layer name="Checkpoint A" width="90" height="24" visible="0">
+ <layer name="Checkpoint A" width="90" height="24">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
@@ -55,12 +55,12 @@
    eJzt0KERgDAABME0EBFB/60GEYnlQOzOvP+5Mf5nnvEunRs6N3Ru6NzQuaFzQ+eGzg2dGzo3dG7o3NC5oXND58Z1b319AgAAHmx5/gHH
   </data>
  </layer>
- <layer name="Checkpoint B" width="90" height="24" visible="0">
+ <layer name="Checkpoint B" width="90" height="24">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0KERgDAABME0EBFB/60GEY3jEOzOvP+5Mf5pnvEunRs6N3Ru6NzQuaFzQ+eGzg2dGzo3dG7o3NC5oXND54bODZ0bOjd0blz31tcnAB5sRBQCLw==
+   eJzt0rENgDAQBEE3QEBA/62agBa8WPKMdPlr9WOc6frGWjo3dG7o3NC5oXND54bODZ0bOjd0bujc0Lmhc0Pnhs4NnRs6N3Ru3O+ev484gH8GdjcBVOQCLw==
   </data>
  </layer>
  <layer name="moving" width="90" height="24">
@@ -68,23 +68,23 @@
    eJztwTEBAAAAwqD1T20MH6AAAAAAAAAAAHgaIcAAAQ==
   </data>
  </layer>
- <layer name="Checkpoint C" width="90" height="24" visible="0">
+ <layer name="Checkpoint C" width="90" height="24">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0DERACAMBMEYoKCIf6tYoOFTsKvg5qrgzpoO+ITPGT5n+Jzh83tdPifs6QAAAAAAABh0ADzMAHU=
+   eJzt0DERACAMBME3QEGBf6tYoElSsKvg5hJ4s6YDPuFzD597+Fxvx+cOJz4DAAAAAAC1LmycAHU=
   </data>
  </layer>
- <layer name="Checkpoint D" width="90" height="24" visible="0">
+ <layer name="Checkpoint D" width="90" height="24">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0EENACAQBDEM8OCBf6uYIHuEaxVMZgx+MasDmvA5w+cMnzN8zvAZ4D2rOqCBXR0AAAAAwDUHjTEAdQ==
+   eJzt0DERACAQBDEMUFDg3yoaaO4HPlGws2Pwi1kd0ITPGT5n+Jzhc4bPwI1VHQA8ZVcHAAAAAC0ch5EAdQ==
   </data>
  </layer>
- <layer name="Checkoint E" width="90" height="24" visible="0">
+ <layer name="Checkoint E" width="90" height="24">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
@@ -92,15 +92,15 @@
    eJzt0jEKACAMA8B+wMHB/39Vf+AgtFDvIHsIiYB8o7rAJ247z5OVUaQ5fwYAAAAAAABebRmTAE4=
   </data>
  </layer>
- <layer name="checkpoint F" width="90" height="24" visible="0">
+ <layer name="checkpoint F" width="90" height="24">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0DERADAIADEMdOhQ/1Z7SGCBgUTB30cAAAAAAADUnemAJXzu4XOP/PymIxbIz3c6Aij7dkIAaA==
+   eJzt1LENACAMA8EsQEHB/quijECTCOVugpcLRwAAAAAAALxb3QFD2LlG7ry7IwbInU93xAB+A/50AaYSAGg=
   </data>
  </layer>
- <layer name="Signs" width="90" height="24" visible="0">
+ <layer name="Signs" width="90" height="24">
   <data encoding="base64" compression="zlib">
    eJztzjEBAAAMw6Bamn9zk5EHFLABAAD0rg4AAAAAAIQeLeAAMg==
   </data>

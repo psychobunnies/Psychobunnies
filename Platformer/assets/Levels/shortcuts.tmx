@@ -26,7 +26,7 @@
  </tileset>
  <layer name="players" width="67" height="24">
   <data encoding="base64" compression="zlib">
-   eJztzqENAAAIwDB+Q/D/R1g+gIRWTS4CAAAAAAB+yNG1dsEFDTBTAIs=
+   eJztzjENAAAIwDC8ceDfEbiAkDbZvwgAAAAAAL7LqbYn4JAGwNsAiw==
   </data>
  </layer>
  <layer name="collisions" width="67" height="24">
@@ -47,7 +47,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0KENADAMA0FPV1CQ/cdJWXlJA+4kc+sTAAAAAIA36/eBQbS4tEj2WUWLyRqL1AGx
+   eJzt0KENADAMA0FPV1CQ/cdJYXFJA+4kc+sTAAAAAIA36/eBQbRI9llFi5sWczUrAwGx
   </data>
  </layer>
  <layer name="Checkpoint mid" width="67" height="24">
@@ -55,7 +55,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0KENACAUQ8FOh0Cw/zgISP4IELgztc1LAAAA/jP2tqMv7qJF0aJoUbRYerQA4A0TOjMCPQ==
+   eJzt0DERACAMALGqY2DAvxwGhuKgPUgU/H0EAADwi1Ud0NCoDmjEi+RF8uKY4cXNCwBesAHZUwI9
   </data>
  </layer>
  <layer name="Checkpoint high" width="67" height="24">
@@ -63,7 +63,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0LENACAMA0FPR0HB/uNAlwUikeJOcm99wgTr94FBtChaFC2S87ajBQAAAAB0uAnfAfc=
+   eJzt0KERACAQA8FUh0DQfzngeI/gxe5MfOYSOhi/DzSixaVFss5mtKi0AAAAAIB3G6j/Afc=
   </data>
  </layer>
  <layer name="signs" width="67" height="24">

@@ -31,20 +31,20 @@
  <tileset firstgid="62" name="New Spikes" tilewidth="32" tileheight="32">
   <image source="../../new-assets/tiles/spiky/spikes-all.png" width="128" height="96"/>
  </tileset>
- <layer name="spikes" width="150" height="24" visible="0">
+ <layer name="spikes" width="150" height="24">
   <data encoding="base64" compression="zlib">
    eJztzsEJACAMBMGUlv6rEt8BQUL0MwP33osAAAAAAAAAAAAAAAAAgCo/7NTtuOlPN1582RZ3PxBB
   </data>
  </layer>
- <layer name="collisions" width="150" height="24" visible="0">
+ <layer name="collisions" width="150" height="24">
   <data encoding="base64" compression="zlib">
    eJztmUEKgzAQRV31OraUCt7/Yu3GTREzf5JJJvgehC7U/BFenGqWBQAAAAAAAAAAAAAAAO7O+hsPw3gNrO8/+6h5VE1QZmt8Xmuucj01nXl6xduZEeX9LGvqbl6p1/XIyDR3K2b2ag+Yc0RGprlbMbNX3p6g3EuPDJUZvLKux4xebYZz1DlHZKhk8Kr0vmddh5m9UnuVx6vIDJUMXpVqmLkPHsfUXuXxKjJDBa/qUfpgxL30yFDBq3oUryL+K/bIUMGrehSvrL2qxquIDJUMXpXWl3X9eb/j1LAWcvfCb+k6Cz0yVLxzW/brrOPZaIzaN/hcHDueHWf1ttrr7JHhqcXjwheo0yRi
   </data>
  </layer>
- <objectgroup name="level markers" width="150" height="24" visible="0">
+ <objectgroup name="level markers" width="150" height="24">
   <object name="finish" type="finish" x="4768" y="64" width="32" height="672"/>
  </objectgroup>
- <layer name="fast15" width="150" height="24" visible="0">
+ <layer name="fast15" width="150" height="24">
   <properties>
    <property name="speed" value="30"/>
    <property name="translationX" value="-15"/>
@@ -54,12 +54,12 @@
    eJztzqENADAMBLFHXafK/sulKwQF1JaOXwIAAAAAAAAAAAAAAAD87L7OoNrZBIYamjYAow==
   </data>
  </layer>
- <layer name="falling spikes" width="150" height="24" visible="0">
+ <layer name="falling spikes" width="150" height="24">
   <data encoding="base64" compression="zlib">
    eJzt0MEJADAIA0Anc/+xukFbaJA+7iD4i2JVTh+S7Ern5p7dTHjdMf0TAAAAAAAAAAAAAAAAAP61AAUqD4E=
   </data>
  </layer>
- <layer name="slow10" width="150" height="24" visible="0">
+ <layer name="slow10" width="150" height="24">
   <properties>
    <property name="speed" value="16"/>
    <property name="translationX" value="10"/>
@@ -69,7 +69,7 @@
    eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAA8GY4QAAB
   </data>
  </layer>
- <layer name="fast3" width="150" height="24" visible="0">
+ <layer name="fast3" width="150" height="24">
   <properties>
    <property name="speed" value="34"/>
    <property name="translationX" value="-2"/>
@@ -89,7 +89,7 @@
  </layer>
  <layer name="players" width="150" height="24">
   <data encoding="base64" compression="zlib">
-   eJztzjENAAAIwDBccODfJygg4eJpk/2LAAAAAAAAAAAAAAAAAK5yqu8JgEUDILMAMw==
+   eJztwzENAAAIA7BZwL9ZnqmANmkCAAAAAAAAAAAAAABw1zQAfLMmkwAj
   </data>
  </layer>
  <layer name="checkpoint2" width="150" height="24">
@@ -110,7 +110,7 @@
    eJztzrEJADAIAEGrrCPuv5zZwEZIkTv4/iMAAAAAAAAAAAAAAAAA/pK3M1TP7mBHA9CLAJE=
   </data>
  </layer>
- <layer name="playerkeyed" width="150" height="24" visible="0">
+ <layer name="playerkeyed" width="150" height="24">
   <data encoding="base64" compression="zlib">
    eJztw6EJAAAIADCf8f8XrUaLoLDBIgAAAAAAAOCHbOGqHAYAAAAAAIBtBYGRAeI=
   </data>

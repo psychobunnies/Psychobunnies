@@ -28,8 +28,8 @@
  <tileset firstgid="200" name="all-trigger" tilewidth="32" tileheight="32">
   <image source="../../new-assets/tiles/trigger/all-trigger.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="204" name="new spike" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/spiky/all.png" width="128" height="96"/>
+ <tileset firstgid="204" name="New Spikes" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/spiky/spikes-all.png" width="128" height="96"/>
  </tileset>
  <tileset firstgid="216" name="signs" tilewidth="32" tileheight="32">
   <image source="../arrows.png" width="128" height="64"/>

@@ -25,16 +25,16 @@
   <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="192"/>
  </tileset>
  <layer name="spikes" width="80" height="24">
-  <data encoding="base64" compression="zlib">
-   eJztwQENAAAAwqD3T20PBxQAAAAAAAAADwYeAAAB
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ8HFAAAAAAAAAAPBvzwcm0AHgAA
   </data>
  </layer>
  <layer name="players" width="80" height="24">
   <properties>
    <property name="visible" value="0"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJztzjENAAAIAzC8ceDfEcEDyZ5WQasAAAAAAIAz6QBASKcDvFl5FgCL
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OMQ0AAAgDMLxx4N8RwQPJnlZBqwAAAAAAgDPpAEBIpwO8WYBwypAAHgAA
   </data>
  </layer>
  <layer name="help1" width="80" height="24">
@@ -46,8 +46,8 @@
    <property name="x" value="1570"/>
    <property name="y" value="650"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJzt0EENAAAIxLAzh39LOIA3pE1mYAkAAAAAAAD8UkPs/LurAdhYA8c=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3QQQ0AAAjEsDOHf0s4gDekTWZgCQAAAAAAAPxSQ+z8u6sB/4xCOwAeAAA=
   </data>
  </layer>
  <layer name="help4" width="80" height="24">
@@ -59,8 +59,8 @@
    <property name="x" value="1570"/>
    <property name="y" value="510"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJzt0DENAAAIBLE3h39LrKyMkDY5A5cAAAAAAPBVjdjzD4BrGv71AZ8=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3QMQ0AAAgEsTeHf0usrIyQNjkDlwAAAAAA8FWN2PMPgGsaHv/uhAAeAAA=
   </data>
  </layer>
  <layer name="help5" width="80" height="24">
@@ -72,8 +72,8 @@
    <property name="x" value="1700"/>
    <property name="y" value="550"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJzt0LEJAAAIwDCf8/+XXF1FEIcE+kAjAAAAAAAAbmWLOf92/Nvx77cCY7UDPQ==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3QsQkAAAjAMJ/z/5dcXUUQhwT6QCMAAAAAAABuZYs5/3b82/HvtwI7QyrjAB4AAA==
   </data>
  </layer>
  <layer name="help7" width="80" height="24">
@@ -82,8 +82,8 @@
    <property name="x" value="1570"/>
    <property name="y" value="325"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJzt0DENAAAIBLE3h39LrKwExjY5A5cAAABwVSP2/AMAAIAfDf93AZ8=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3QMQ0AAAgEsTeHf0usrATGNjkDlwAAAHBVI/b8AwAAgB8NG09upQAeAAA=
   </data>
  </layer>
  <layer name="help10" width="80" height="24">
@@ -95,8 +95,8 @@
    <property name="x" value="2275"/>
    <property name="y" value="330"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJzt0LEJACAQwMBfzv1XsrWVIDZ3kAUyAwAAwG/riHv+Nf41/jX+Nf41/jX+Nf41/jX+Nf41/r23AW4TCoQ=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3QsQkAIBDAwF/O/VeytZUgNneQBTIDAADAb+uIe/41/jX+Nf41/jX+Nf41/jX+Nf41/jX+vbcBgBMn0AAeAAA=
   </data>
  </layer>
  <layer name="help11" width="80" height="24">
@@ -108,8 +108,8 @@
    <property name="x" value="670"/>
    <property name="y" value="630"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJzt0rENwEAMAzEv5/1XSps2uS++IAEtcNAMAAAAN9rX+GZHv0K/RrvG/xr9Ov3+879Gv0a7xv8a/Rr9znsACDAM8Q==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3SsQ3AQAwDMS/n/VdKmza5L74gAS1w0AwAAAA32tf4Zke/Qr9Gu8b/Gv06/f7zv0a/RrvG/xr9Gv3OewB1U7ZFAB4AAA==
   </data>
  </layer>
  <layer name="help13" width="80" height="24">
@@ -118,21 +118,21 @@
    <property name="x" value="1825"/>
    <property name="y" value="35"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJzt0DENAAAIwDDM4d8SLy+Bi7TJDCwCgK+yxZx/O/7d8A8AAAAAmCgGLwKz
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3QMQ0AAAjAMMzh3xIvL4GLtMkMLAKAr7LFnH87/t3wDwAAAACYKJgE7VYAHgAA
   </data>
  </layer>
  <objectgroup name="special levels" width="80" height="24">
   <object x="1257" y="-36" height="2"/>
  </objectgroup>
  <layer name="collisions" width="80" height="24">
-  <data encoding="base64" compression="zlib">
-   eJztWFsOwkAI7CHVeAWtH5r0/lE+TMhI6Sx9uF06CYktu7RMgdnYdfvG/WNnZT1cL206/mWD/NbG649x13r2ljj4m4eDv3nAHE7d78xaIm50Te3AHIYJvwXhHLUA41hg1tQO5OcJ10yOFseo65Y9it60TkzV15cHL1crRpT3vYHtIcn15vg0pJ+Z2mqBP6vPJHfkysvV8mXVj8g6q4ZxvXwn1JhM/Hl9znATrdHa4eWgz4LIj/ZZs47hr8XzS8THcBPVmNrh1UCUP4ubsf5lzok1m1cDHrfax8w2RmNagDfzdK1o3jPrLyLSs5n1F8HOwyn9YPV37/MPzftPvYS/LPpbApY/qSlGf7OhpP68vVkxEL+ZvRqtzT/Pese8fdeR+zJr34a9iig=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+1Y7Q7CMAjcQ6rxFXT+0GTvH+0PE3IyemUftmWXkDihKCdwjcPQNu4fOwsb4Xltk/kvO9S3NV5/zLvVZ++Jg79lOPhbBqzhNPzurDXyemNqB9YwZfwaEueoBZhHAxNTO5CfJzwzNWoco65r9ij6pnUi119fHqxatRxe3lsDO0Op1jkOtR3K9FYP/Glzlmq/QZxVq+aLqh+eOK2HMT79Tqgxkfiz5pzhxtujtcOqQd4FkR/p03Ydw1+P9xePj+HGqzG1w+oBL38aN3Pzy9wTazarByxupY/ZbYzG9ABr58lekbxH1l+EZ2Yj6y+C3Yc5/WD1t/X9h2b9p17CXxT9LQHLX+opRn+joaT/rLNRMRGvmbMSve0/y0bDrHPXmffTrn0DHUIc3gAeAAA=
   </data>
  </layer>
  <layer name="signs" width="80" height="24">
-  <data encoding="base64" compression="zlib">
-   eJztzgEJAAAMA6BFff8UjzEYmsAEAAAAAAAAoOPagTEPnAAAYQ==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OAQkAAAwDoEV9/xSPMRiawAQAAAAAAACg49qBMQ/E4ftMAB4AAA==
   </data>
  </layer>
  <objectgroup name="level markers" width="80" height="24">

@@ -15,8 +15,8 @@
  <tileset firstgid="26" name="Bouncy Tiles" tilewidth="32" tileheight="32">
   <image source="../../new-assets/tiles/bouncy/all.png" width="256" height="320"/>
  </tileset>
- <tileset firstgid="106" name="Spikies" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/spiky/all.png" width="128" height="96"/>
+ <tileset firstgid="106" name="New Spikes" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/spiky/spikes-all.png" width="128" height="96"/>
  </tileset>
  <tileset firstgid="118" name="Lab Tiles" tilewidth="32" tileheight="32">
   <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="192"/>

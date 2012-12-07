@@ -36,7 +36,7 @@ public enum TileType {
     GROUND_TOP  (MapType.GROUND, "bunnyTiles", 0, 0), 
     GROUND_MID  (MapType.GROUND, "bunnyTiles", 1, 0),
     
-    SPIKE       (MapType.SPIKE, "spikes", 0, 0), 
+    SPIKE       (MapType.SPIKE, "New Spikes", 2, 0), 
     BOUNCY      (MapType.BOUNCY, "mapTiles", 0, 0),
     
     OLD_PLAYER_KEYED_WARNING(MapType.PLAYER_KEYED, "levelMarkers", 1, 2),

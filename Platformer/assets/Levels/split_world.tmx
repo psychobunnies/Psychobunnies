@@ -24,8 +24,8 @@
  <tileset firstgid="57" name="arrows" tilewidth="32" tileheight="32">
   <image source="../arrows.png" width="128" height="64"/>
  </tileset>
- <tileset firstgid="65" name="Green Spikes" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/spiky/all.png" width="128" height="96"/>
+ <tileset firstgid="65" name="New Spikes" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/spiky/spikes-all.png" width="128" height="96"/>
  </tileset>
  <layer name="collisions" width="90" height="24">
   <data encoding="base64" compression="zlib">

@@ -18,6 +18,8 @@ import org.newdawn.slick.font.effects.ColorEffect;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import com.google.common.collect.Maps;
 
@@ -115,14 +117,14 @@ public class GameWinState extends BasicGameState {
     @Override
     public void mouseClicked(int button, int x, int y, int clickCount) {
         if (restart.contains(x, y)) {
-            game.enterState(MainMenuState.ID);
+            game.enterState(MainMenuState.ID, new FadeOutTransition(), new FadeInTransition());
         }
     }
 
     @Override
     public void keyPressed(int key, char c) {
         if (key == Input.KEY_RETURN) {
-            game.enterState(MainMenuState.ID);
+            game.enterState(MainMenuState.ID, new FadeOutTransition(), new FadeInTransition());
         }
     }
 

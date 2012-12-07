@@ -3,14 +3,14 @@ package com.gravity.root;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.Color;
 
 import com.gravity.levels.GameplayState;
 import com.gravity.levels.LevelInfo;
@@ -81,7 +81,7 @@ public class GameLoaderState extends BasicGameState {
             loadString += "Discussing exit strategies...";
             break;
         case 7:
-            loadString += "Starting grad student\nbunny raising pipeline...";
+            loadString += "Starting grad student\n   bunny raising pipeline...";
             break;
         case 8:
             loadString += "Opening the lab...";

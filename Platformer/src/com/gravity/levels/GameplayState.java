@@ -198,13 +198,13 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
             TileRendererDelegate rd = new TileRendererDelegate(tiledMap, TileType.SPIKE);
             try {
                 for (Tile tile : fallSpike.getTiles()) {
-                    FallingTile fsTile = new FallingTile(this, new Rect(tile.x * 32, tile.y * 32, 32, 32), rd);
+                    FallingTile fsTile = new FallingTile(this, new Rect(tile.x * 32, tile.y * 32, 32, 32).grow(-TileWorld.TILE_MARGIN), rd);
                     updaters.add(fsTile);
                     collider.addCollidable(fsTile, LayeredCollisionEngine.FALLING_LAYER);
                     renderers.add(fsTile, RenderList.TERRA);
                 }
             } catch (SlickException e) {
-                throw new RuntimeException("Unable to make keyedplayertile", e);
+                throw new RuntimeException("Unable to make falling tile", e);
             }
         }
 

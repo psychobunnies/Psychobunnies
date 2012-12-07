@@ -6,7 +6,6 @@ import java.util.List;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Polygon;
@@ -49,6 +48,7 @@ import com.gravity.root.GameSounds;
 import com.gravity.root.GameSounds.Event;
 import com.gravity.root.GameWinState;
 import com.gravity.root.PauseState;
+import com.gravity.root.PlatformerGame;
 import com.gravity.root.RestartGameplayState;
 import com.gravity.root.SlideTransition;
 
@@ -86,9 +86,9 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
 
     protected final List<Resetable> resetableTiles = Lists.newArrayList();
     private final String levelName;
-    private Image pinkHand;
-    private Image yellowHand;
     private String winText;
+
+    private static final float MIN_SLINGSHOT_DISTANCE = 5f;
 
     public GameplayState(LevelInfo info) throws SlickException {
         ID = info.stateId;
@@ -138,7 +138,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         for (List<MovingEntity> l : movingColls) {
             updaters.addAll(l);
         }
-        PauseTextRenderer ptr = new PauseTextRenderer();
+        PauseTextRenderer ptr = new PauseTextRenderer(this);
         renderers.add(ptr, RenderList.FLOATING);
         updaters.add(ptr);
 
@@ -198,13 +198,13 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
             TileRendererDelegate rd = new TileRendererDelegate(tiledMap, TileType.SPIKE);
             try {
                 for (Tile tile : fallSpike.getTiles()) {
-                    FallingTile fsTile = new FallingTile(this, new Rect(tile.x * 32, tile.y * 32, 32, 32), rd);
+                    FallingTile fsTile = new FallingTile(this, new Rect(tile.x * 32, tile.y * 32, 32, 32).grow(-TileWorld.TILE_MARGIN), rd);
                     updaters.add(fsTile);
                     collider.addCollidable(fsTile, LayeredCollisionEngine.FALLING_LAYER);
                     renderers.add(fsTile, RenderList.TERRA);
                 }
             } catch (SlickException e) {
-                throw new RuntimeException("Unable to make keyedplayertile", e);
+                throw new RuntimeException("Unable to make falling tile", e);
             }
         }
 
@@ -212,10 +212,10 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         float panX = Math.min(playerA.getPhysicalState().getPosition().x, playerB.getPhysicalState().getPosition().x);
         panX = Math.max(0, panX - 300);
         PanningCamera pancam = new PanningCamera(2000, new Vector2f(panX, 0), new Vector2f(0.035f, 0), new Vector2f(map.getWidth()
-                - container.getWidth(), 0), container.getWidth(), container.getHeight());
+                - PlatformerGame.WIDTH, 0), PlatformerGame.WIDTH, PlatformerGame.HEIGHT);
         camera = pancam;
         if (map.map.getMapProperty("camera", PANNING_CAMERA).equals(STALKING_CAMERA)) {
-            camera = new PlayerStalkingCamera(container.getWidth(), container.getHeight(), new Vector2f(0, 0), new Vector2f(map.getWidth(),
+            camera = new PlayerStalkingCamera(PlatformerGame.WIDTH, PlatformerGame.HEIGHT, new Vector2f(0, 0), new Vector2f(map.getWidth(),
                     map.getHeight()), playerA, playerB);
         }
         updaters.add(pancam);
@@ -229,7 +229,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
             } catch (NumberFormatException e) {
                 System.err.println("Could not format wall of death velocity, using default (0.035) instead.");
             }
-            wallofDeath = new WallofDeath(2000, panX + 32, wallVel, Lists.newArrayList(playerA, playerB), this, container.getHeight());
+            wallofDeath = new WallofDeath(2000, panX + 32, wallVel, Lists.newArrayList(playerA, playerB), this, PlatformerGame.HEIGHT);
             updaters.add(wallofDeath);
             renderers.add(wallofDeath, RenderList.FAUNA);
         }
@@ -333,7 +333,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     private void checkRightSide(Player player, float offsetX2) {
         PhysicalState state = player.getPhysicalState();
         player.setPhysicalState(new PhysicalState(state.getRectangle().translateTo(
-                Math.min(state.getRectangle().getX(), -offsetX2 + container.getWidth() - 32), state.getRectangle().getY()), state.velX, state.velY,
+                Math.min(state.getRectangle().getX(), -offsetX2 + PlatformerGame.WIDTH - 32), state.getRectangle().getY()), state.velX, state.velY,
                 state.accX, state.accY, state.surfaceVelX));
     }
 
@@ -353,7 +353,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     @Override
     public void keyReleased(int key, char c) {
         if (!controllerA.handleKeyRelease(key) && !controllerB.handleKeyRelease(key)) {
-            if ((key == Input.KEY_ESCAPE || key == Input.KEY_ENTER) && canPause()) {
+            if ((key == Input.KEY_ESCAPE) && canPause()) {
                 PauseState pause = (PauseState) (game.getState(PauseState.ID));
                 pause.setGameplayState(this);
                 game.enterState(PauseState.ID, new SlideTransition(game.getState(PauseState.ID), Side.BOTTOM, 1000), null);
@@ -411,15 +411,19 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
      */
     @Override
     public void specialMoveSlingshot(Player slingshoter, float strength) {
-        if (slingshoter == playerA) {
-            playerB.slingshotMe(strength, playerA.getPhysicalState().getPosition().sub(playerB.getPhysicalState().getPosition()));
-        } else if (slingshoter == playerB) {
-            playerA.slingshotMe(strength, playerB.getPhysicalState().getPosition().sub(playerA.getPhysicalState().getPosition()));
+        // check for minimum distance between players
+        if (playerA.getPhysicalState().getPosition().sub(playerB.getPhysicalState().getPosition()).length() < MIN_SLINGSHOT_DISTANCE) {
+            // maybe play sound of slingshot fizzling out?
         } else {
-            throw new RuntimeException("Who the **** called this method?");
-            // Now now, Kevin, we don't use that kind of language in these parts. -xiao ^_^
+            if (slingshoter == playerA) {
+                playerB.slingshotMe(strength, playerA.getPhysicalState().getPosition().sub(playerB.getPhysicalState().getPosition()));
+            } else if (slingshoter == playerB) {
+                playerA.slingshotMe(strength, playerB.getPhysicalState().getPosition().sub(playerA.getPhysicalState().getPosition()));
+            } else {
+                throw new RuntimeException("Who the **** called this method?");
+                // Now now, Kevin, we don't use that kind of language in these parts. -xiao ^_^
+            }
         }
-
     }
 
     @Override

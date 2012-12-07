@@ -2,6 +2,7 @@ package com.gravity.root;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -24,6 +25,9 @@ import com.gravity.levels.LevelInfo;
  * @author dxiao
  */
 public class PlatformerGame extends StateBasedGame {
+    public static final int WIDTH = 1024;
+    public static final int HEIGHT = 768;
+
     //@formatter:off
     private LevelInfo[] levels = {
 
@@ -39,18 +43,16 @@ public class PlatformerGame extends StateBasedGame {
             
             // Hard (4)
             new LevelInfo("Bouncy 1", VictoryText.BOUNCY1, "assets/Levels/Bouncy_1.tmx"),
-            new LevelInfo("Test Stomps", VictoryText.TEST, "assets/Levels/checkpointing.tmx"),
-            new LevelInfo("Checkpointing",  VictoryText.TEST, "assets/Levels/checkpointing.tmx"),
             new LevelInfo("tutorial", VictoryText.PROCEDURES, "assets/Levels/tutorial.tmx"),
+
 
             // Medium (4)
             new LevelInfo("Elevators", VictoryText.ELEVATORS, "assets/levels/Elevators.tmx"),
             new LevelInfo("Shortcuts", VictoryText.SHORTCUTS, "assets/levels/shortcuts.tmx"),
             new LevelInfo("Slingshot", VictoryText.SLINGSHOT, "assets/Levels/slingshot_intro.tmx"),
             new LevelInfo("Platformer", VictoryText.PLATFORMER, "assets/Levels/platform.tmx"),
-            
             // Easy (2)
-            new LevelInfo("Lab Procedures", VictoryText.PROCEDURES, "assets/Levels/tutorial.tmx"),
+            new LevelInfo("Lab Procedures", VictoryText.PROCEDURES, "assets/Levels/intro_tutorial.tmx"),
             new LevelInfo("Lab Safety", VictoryText.SAFETY, "assets/Levels/enemies_tutorial.tmx"),
     };
     //@formatter:on
@@ -64,6 +66,12 @@ public class PlatformerGame extends StateBasedGame {
         addState(new GameLoaderState(Lists.newArrayList(levels), 100));
     }
 
+    @Override
+    protected void preRenderState(GameContainer container, Graphics g) throws SlickException {
+        g.translate((container.getWidth() - 1024) / 2, (container.getHeight() - 768) / 2);
+        g.setWorldClip(0, 0, WIDTH, HEIGHT);
+    }
+
     public static void main(String args[]) throws SlickException {
         AppGameContainer app = new AppGameContainer(new PlatformerGame());
 
@@ -71,12 +79,24 @@ public class PlatformerGame extends StateBasedGame {
         app.setMaximumLogicUpdateInterval(100);
         app.setMinimumLogicUpdateInterval(10);
         app.setTargetFrameRate(60);
+        app.setShowFPS(false);
         app.setAlwaysRender(true);
         app.setVSync(true);
         if (app.supportsMultiSample()) {
             app.setMultiSample(4);
         }
         // app.setSmoothDeltas(true);
+
+        boolean isDebugging = false;
+        try {
+            isDebugging |= java.lang.management.ManagementFactory.getRuntimeMXBean().getInputArguments().toString().indexOf("-agentlib:jdwp") > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        isDebugging |= args.length > 0 && args[0].equals("nofullscreen");
+        if (!isDebugging) {
+            app.setDisplayMode(app.getScreenWidth(), app.getScreenHeight(), true);
+        }
 
         app.start();
 

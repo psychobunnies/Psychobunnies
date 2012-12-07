@@ -15,11 +15,14 @@
  <tileset firstgid="26" name="Bouncy Tiles" tilewidth="32" tileheight="32">
   <image source="../../new-assets/tiles/bouncy/all.png" width="256" height="320"/>
  </tileset>
- <tileset firstgid="106" name="Spikies" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/spiky/all.png" width="128" height="96"/>
+ <tileset firstgid="106" name="New Spikes" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/spiky/spikes-all.png" width="128" height="96"/>
  </tileset>
  <tileset firstgid="118" name="Lab Tiles" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="160"/>
+  <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="192"/>
+ </tileset>
+ <tileset firstgid="136" name="all-trigger" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/trigger/all-trigger.png" width="64" height="64"/>
  </tileset>
  <layer name="moving 1" width="90" height="24">
   <properties>
@@ -28,7 +31,7 @@
    <property name="translationY" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztw7EJAAAIA7D6/9Ne0F0kgSQAAAAAAAAA/0wJcNECPbwABw==
+   eJztzjEKADAIADG/Xf28nQXnQkng9osAAAAAAAAA+M+55aieHgHsGniHAt0=
   </data>
  </layer>
  <layer name="moving 2" width="90" height="24">
@@ -38,7 +41,7 @@
    <property name="translationY" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztw7EJAAAIA7D6/9MuPUIkgSQAAAAAAHDTNAAAfLc3tAAD
+   eJztzrENAAAEAEFri+WZAsVd8v1HAAAAAADATznV9QQAACxomJoA9Q==
   </data>
  </layer>
  <layer name="moving 5" width="90" height="24">
@@ -48,7 +51,7 @@
    <property name="translationY" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztw7EJAAAIA7D6/9PuvUAkgSQAAAAAfDQVAAAAuGsBYMgABQ==
+   eJztzjEKADAIADG/Xf28HZxdCyWB2y8CAAAAgB+dW071+AUAAADYNS1GAek=
   </data>
  </layer>
  <layer name="players" width="90" height="24">
@@ -58,17 +61,17 @@
  </layer>
  <layer name="spikes" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt1zEKgDAMQNEeuJPg/UWcDIKKJFJ9D7KVDF+o2hoAwHt6GDaxi04ARN4NwJfd/QZ2D9bI6uz57WX1mJP2juCo6dl/dw9nr9K5hs41/ty5ks41dM41PZjs/SPNagFYPTNJ
+   eJzt1zsKgDAQBcAcOJXg/cXKKEIU2ZXoDLwubPEC+ZQCAPCe2oRN7QQA3A3Al919AzsHc0T1bP/2ovqYg+aO4KzT3r+7HtZepecces7x554z6TmHnmNNDxI9f6SsFrq4Mt0=
   </data>
  </layer>
  <layer name="bouncys" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt10EKgDAMRNEuezwRvP9VFFzHNDEd0zgfCkqL1icubA1XBwzpPuxOs3iaj3as/F7oHNMbR22+C8feKjlHnmvOVreMzqN7Wtk5gzudMUU5W68rza/mvA2uozMmOvuSrrlf4zCs19Z5/+tG5r179K73NGtPqG+PzphWcbZGZ0wW51lD209GN2vZnoHOmKo6Z4vO30VnTHTGRGdMdMZU3Xn03+IPncawBwg=
+   eJztlk0OwiAQhVn2ErpzrTvdtSdQo3Fj7EG8vZhIMpnADNApTCtfMovy+BkeFDCmHE8bL0+MNrpMHWpjYBxX3jBmz+gbQttJJmL4XJbMkdGpuUv7wuWimQOjc3OjdKhJeL5kn0/oG//reG7YL6zD9j1Rz9cXh0afuX3qwD7jufSJOhx3S7QLlVFo9Bn7F1uP2p8xOuwP3pESPnNrXgMpnzGcHhpXwmduzaU427hG1l2jz9zdIEHseevI9Rn/mxhOHxLaTT2fuVxyCPkW2uO5Pr9/fV484cZJ1b/l8E50aLwHY31LrZ/aby6+N5xGn4fE+tp8/vd33TBnEoA53nUaiPWZOo+nBL4zJHzWyFA7AcRafdZG87kMEu/nRh7N5zI0n8vQfC6DxvfwGulqJzAzNxt3TzxqJlWJD9eMMlg=
   </data>
  </layer>
  <layer name="playerkeyed" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJztz8kJAAAIwDBf7j+yUwgeCXSARgAAAAAAADBRNrbZ1S8Afit0ywC1
+   eJztz8kJAAAIwDBf7j+yUwgeCXSARgAAAAAAADBVNrXZ1S8AfitE+wCv
   </data>
  </layer>
  <layer name="checkpoint B" width="90" height="24">
@@ -89,12 +92,12 @@
  </layer>
  <layer name="collisions" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJztmNEOhSAIQOl+tPeurc1Pbz744iIBCbHL2XypjDoWigkAvkbNgs/N8ZntUH1LHKs4HgnPNlh6tmRTukYLDc8J8Hz8G7y3JlunPYnU8679IAZg8yMVzpi0Y1hiZ0HMFXPNqOfR2O1/T/nXwzM/duuser8jPPNjc53tgj4eWM3zIegjoeeF6+1NnmvO8bSeq7zJs2c8eOash8OzLHYG3hp6Zc9tnWFRC9bYWN2M5dgMstpmNrO/Z+63WcaFMs95q81X80zFW24JzzZ48yzZ77ii59l6HLx5rox6+FfPV3vb4dkudkbOYcep9PqP3p/LbM/c9TOV1DnvcQ/kKYrnE6/XO7Q=
+   eJzdme0KgzAMRfPaOmQXfPEhTJDStEmqSeoB/1huT79WWrcQ0erwfMiHlXm/MO3y6jvu7GQDL09GQH793508GQG9c5157VFSQOPj3Nr3MvU3sp3HbxmG3HZzOzzAQPY6R5I5Kef0yFj2TRgy0SDYXRt7SW42EOwu/YswNxsIdmv9myGTAQS7tX5LxgJ3r5OWl8DYjjuAwd/KnHt9pvPcCYLdWr8lkwEEu49Hcx4+M7MRee/H369pA2jOca7taQv57HEg/j7K+bXzkgUEu7X+cg2c81SS7W6OYPdT/qfqtYJg91P+Xr3e6x3OvtJd+i3fO7i6R8rvxtt3pfVdlHsvpZcfrV+Ll692rmj9P8i9l9LLj9avJcP5ucZou3p5z357nZM5dtKfn6V8B8vfxNHXHxPWb30=
   </data>
  </layer>
  <layer name="bouncy overflow" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20MH6AAAAAAAAAAAHgaIcAAAQ==
+   eJztl8EKgzAMhvsgHmUXQdDDYJfBLlPcdt32/k+yChV6SKqsaWvr/8FPaYMh/LTBKAVK482cf634h1Bl4h0Rs7/l8iznYBuX1AXsnNasnWce+OzmbFZfn+CzGymfgRv4THPXGgXzwec4wGca+19UAs7n+d0MhMY/45JvMAbS927tPi/zxNGI4XOj+PlvbT4sZe67CedDf47D1axcv/VRbj05JHXg/KfA+XOiV3y/9VFuPRkAsD/61AUAAEAGTFpPrYelef9KWRQomh+XGCsd
   </data>
  </layer>
  <objectgroup name="level markers" width="90" height="24">
@@ -124,6 +127,19 @@
   </properties>
   <data encoding="base64" compression="zlib">
    eJzt0KERACAMBMEUgEDQf63E4KOIyO7M+5uPAAAAAAAAgH9Wd8AQ7+edO50hAJRciF8APQ==
+  </data>
+ </layer>
+ <layer name="Bouncy Overflow 2" width="90" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztl8EKwyAMhvsco9DL2GVQaA+DXgq9jD3Btvd/ktWhIwtRq0bnSj4Qh9ESfxPNmkbYIw+i9do2RHzvqPtTumtvUnypnYvuJ4u9t4xDm9HlkNmXfwPqQe2NslPr4VrbeYRovyedW92bXMd7wzGKdYZ3xax/L2AezHlXLlDUqLPaw9CE32VYR6iVAu8V2+F6eGaURlQuuKhRZ+XT1IT7hPfii2+X3dg6Yh2cuxXXmf4KLp0VY4L97FgXqrPvzHPQeeycOnPYOXS2vQ2cOrty5Lq2GxpTObZE+IBzk8tOjafezz5fYrD51FrGzbsfqrPte1zAPOR4B8/UxARcPt3X9kRjpt6o5W2m8jFWZ874xcz+KV/E3s+54KzrcjP6p3wI1TlnjCg46zpfDVCSPcazgvs+TsXUG7njdCtcOgtuROcycNTPQhyicxlE5zKIzmUI/e8lCIKfFwfcKxI=
+  </data>
+ </layer>
+ <layer name="Checkpoint F" width="90" height="24">
+  <properties>
+   <property name="type" value="checkpoint"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0LENACAQA7EMQEHB/rPCEjwgbCl9dAncp50+8Amda+i8V18b0RkAAAAAAIC3TV8XAFU=
   </data>
  </layer>
 </map>

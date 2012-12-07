@@ -22,17 +22,26 @@
  <tileset firstgid="32" name="bunnyTiles" tilewidth="32" tileheight="32">
   <image source="bunnyTiles.png" width="128" height="64"/>
  </tileset>
+ <tileset firstgid="40" name="all-trigger" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/trigger/all-trigger.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="44" name="new lab sheet" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="192"/>
+ </tileset>
+ <tileset firstgid="62" name="New Spikes" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/spiky/spikes-all.png" width="128" height="96"/>
+ </tileset>
  <layer name="spikes" width="150" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt0AEJAAAIBLEH+3c2gAFU2OAKXAIAAAAAAAAAAAAAAAAAUy302bUXDdZQAJQ=
+   eJztzsEJACAMBMGUlv6rEt8BQUL0MwP33osAAAAAAAAAAAAAAAAAgCo/7NTtuOlPN1582RZ3PxBB
   </data>
  </layer>
- <layer name="collisions" width="150" height="24" visible="0">
+ <layer name="collisions" width="150" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt2W0LwiAUhuFBrfr/v3j1QViRel51tfsC6UPOc6QHZbQsAAAAAAAAAAAAOLv1OW6CcZ/c397sntB3DZ4XrVXX0tO3nLZYsltqZOQ+c+1IZ8uV9rkRNY60dhRyFTc34rnZa0f59VxZ7gRtrrJraJErP8l5pe3Ncl5l1tA6Qq5673vkSjaXXL3r9fAvudLcVdZcZdXQIld+mvMqYy8jamiRKz9yNXZtqbPlSnJXeXMVXUOLXPmsnbq1syRqz6NqaFnXlvxfJx0P5/f7eTO86l4qo/Re+2ztpbZmZI1o5d1e+pt9jg3IuwUo
+   eJzt2dsKwjAQhOHeVB9HRSz0/V9Mb3ojtbuT7CYp/h8EwUMmwtS0dpoAAAAAAAAAAADw7+bPuDjGteP6Hl/P3aa+a4JtCX5ftKPckjXt9fTIszAjq/eZc0f6t16pn2uRMdLcUc7cqzVhzh4ZI80d5cy9Kj3PUr5LiwzVGXrlPR5H7NXieI86Z48M1Qi9sq73vOewI/dK3atKepWZoRqhV9YazrwPbq+pe1VJrzIzVPSqnrIPZnyXFhkqelVP6VXGuWKLDBW9qqf0yrtX1fQqI0M1Qq+s48t7/JX+j1NjNnJX49H6nEeLDFXp3J77dd5xDxrKvY9Ir4PXtt+OvfVGXAO3yvDaru2t7F/jDd7cIW4=
   </data>
  </layer>
- <objectgroup name="level markers" width="150" height="24" visible="0">
+ <objectgroup name="level markers" width="150" height="24">
   <object name="finish" type="finish" x="4768" y="64" width="32" height="672"/>
  </objectgroup>
  <layer name="fast15" width="150" height="24">
@@ -45,9 +54,9 @@
    eJztzqENADAMBLEnbfbfOF0hKKC2dPwSAAAAAAAAAAAAAAAA4GfndQfVziYw1F3XAE8=
   </data>
  </layer>
- <layer name="falling spikes" width="150" height="24" visible="0">
+ <layer name="falling spikes" width="150" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt0MEJADAIA0DB/XfuBm2hQfq4g+AvilU5fUiyK52be3Yz4XXH9E8AAAAAAAAAAAAAAAAA+NcCiFcAwQ==
+   eJzt0MEJADAIA0Anc/+xukFbaJA+7iD4i2JVTh+S7Ern5p7dTHjdMf0TAAAAAAAAAAAAAAAAAP61AAUqD4E=
   </data>
  </layer>
  <layer name="slow10" width="150" height="24">
@@ -83,7 +92,7 @@
    eJztzjENAAAIwDBccODfJygg4eJpk/2LAAAAAAAAAAAAAAAAAK5yqu8JgEUDILMAMw==
   </data>
  </layer>
- <layer name="checkpoint2" width="150" height="24" visible="0">
+ <layer name="checkpoint2" width="150" height="24">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>

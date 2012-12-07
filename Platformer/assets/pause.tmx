@@ -10,24 +10,24 @@
   <image source="Levels/levelMarkers.png" width="128" height="128"/>
  </tileset>
  <layer name="collisions" width="32" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NkYGBgHiDMCMUDBUbtH7V/1H5MwMQAyZ/sDLjzLhseOWyYhQT7aREmuOwZtX/UfnQAS/+Upnnk/DOa/kftH7V/aNjPSgP7sZkJs38g298AEeNqfwAMAAA=
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYB4gzAjFAwVG7R+1f9R+TMDEAMmf7Ay48y4bHjlsmIUE+2kRJrjsGbV/1H50AEv/lKZ55Pwzmv5H7R+1f2jYz0oD+7GZCbN/INvfAGRnAZk=
   </data>
  </layer>
  <layer name="helptext1" width="32" height="24">
   <properties>
-   <property name="text" value="click on a cage or$press 'Enter' while both bunnies$are in a cage to select"/>
+   <property name="text" value="Click on a cage or press$'Enter' while both bunnies$are in a cage to select"/>
    <property name="type" value="help"/>
-   <property name="x" value="384"/>
-   <property name="y" value="192"/>
+   <property name="x" value="420"/>
+   <property name="y" value="170"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSMglEwCogH/Gh4pNk/CkbBKBgFQx0AAJYHcA8ADAAA
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMAqIB/xoeKTZPwpGwSgYBUMdAAChDgB5
   </data>
  </layer>
  <layer name="players" width="32" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3OoQ0AAAjAMB5A8P+z8AIYTJvMLwIAdnKq7wkAThonGFXEAAwAAA==
+  <data encoding="base64" compression="zlib">
+   eJztzqENAAAIwDAeQPD/s/ACGEybzC8CAHZyqu8JAE4auLQAHw==
   </data>
  </layer>
  <objectgroup name="special levels" width="32" height="24">

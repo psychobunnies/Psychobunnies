@@ -12,6 +12,7 @@ import com.gravity.entity.TriggeredText;
 import com.gravity.entity.TriggeredTextRenderer;
 import com.gravity.levels.Renderer;
 import com.gravity.map.tiles.MovingEntity;
+import com.gravity.root.PlatformerGame;
 
 public class TileWorldRenderer implements Renderer {
     private TileWorld tileMap;
@@ -39,7 +40,7 @@ public class TileWorldRenderer implements Renderer {
 
     @Override
     public void render(Graphics g, int offsetX, int offsetY) {
-        g.drawImage(background, 0, 0);
+        g.drawImage(background, 0, 0, PlatformerGame.WIDTH, PlatformerGame.HEIGHT, 0, 0, PlatformerGame.WIDTH, PlatformerGame.HEIGHT);
 
         // TiledMap supports easy rendering. Let's use it!
         // Later we'll need to some how adjust x,y for offset/scrolling

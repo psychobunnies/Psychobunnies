@@ -21,11 +21,9 @@
  <tileset firstgid="95" name="arrows" tilewidth="32" tileheight="32">
   <image source="../arrows.png" width="128" height="64"/>
  </tileset>
- <layer name="collisions" width="80" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2ZWQ6EIAyGuaOjzv1PMsOTpOlGWQTKnzQRy5J+YosxhLn1+duZ2Be0a1s6/9UhvtY6Xpy31do9tfmVafMrE4wB5sOz0rzWPqMLxiC1MUXmsBZ45Zfrp/rEe1It9sJPOmtQ/ErXnkHaGGI/iiGWQz3xg+8VxomLde+/sn4afthz2fwen8TGukdHFxdDehbkzokaNh75aX0WftoaM7pa8MPYWM+IM5iGEefz/P5CcXntIHxafivWXyjLnvNcf6Gs/KR5Vs5/2m/6mvxWqb850vLLqb+elLP/uLE541ZSbX53eD9f9bRbcY0Z9U801uwfwgYCkgAeAAA=
-  </data>
- </layer>
+ <tileset firstgid="103" name="lab-sheet-new" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="192"/>
+ </tileset>
  <layer name="spikes" width="80" height="24">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ8HFAAAAAAAAAAPBvzwcm0AHgAA
@@ -126,5 +124,20 @@
  </layer>
  <objectgroup name="special levels" width="80" height="24">
   <object x="1257" y="-36" height="2"/>
+ </objectgroup>
+ <layer name="collisions" width="80" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+1Y7Q7CMAjcQ6rxFXT+0GTvH+0PE3IyemUftmWXkDihKCdwjcPQNu4fOwsb4Xltk/kvO9S3NV5/zLvVZ++Jg79lOPhbBqzhNPzurDXyemNqB9YwZfwaEueoBZhHAxNTO5CfJzwzNWoco65r9ij6pnUi119fHqxatRxe3lsDO0Op1jkOtR3K9FYP/Glzlmq/QZxVq+aLqh+eOK2HMT79Tqgxkfiz5pzhxtujtcOqQd4FkR/p03Ydw1+P9xePj+HGqzG1w+oBL38aN3Pzy9wTazarByxupY/ZbYzG9ABr58lekbxH1l+EZ2Yj6y+C3Yc5/WD1t/X9h2b9p17CXxT9LQHLX+opRn+joaT/rLNRMRGvmbMSve0/y0bDrHPXmffTrn0DHUIc3gAeAAA=
+  </data>
+ </layer>
+ <layer name="signs" width="80" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OAQkAAAwDoEV9/xSPMRiawAQAAAAAAACg49qBMQ/E4ftMAB4AAA==
+  </data>
+ </layer>
+ <objectgroup name="level markers" width="80" height="24">
+  <object name="finish" x="2529" y="639">
+   <polygon points="0,0 27,1 28,95 0,96 -31,100 -33,-1"/>
+  </object>
  </objectgroup>
 </map>

@@ -2,6 +2,7 @@ package com.gravity.root;
 
 import java.util.List;
 
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.transition.FadeInTransition;
@@ -14,15 +15,25 @@ import com.gravity.levels.GameplayState;
 import com.gravity.levels.LevelInfo;
 import com.gravity.levels.MenuCage;
 import com.gravity.levels.Renderer;
+import com.gravity.levels.ResumeCage;
 
 public class PauseState extends CageSelectState {
 
     public static final int ID = 22;
 
-    private MenuCage resumeCage;
+    private ResumeCage resumeCage;
 
     public PauseState() throws SlickException {
         super(new LevelInfo("Pause", "assets/pause.tmx", ID));
+    }
+    
+    @Override
+    public void keyPressed(int key, char c) {
+        if (key == Input.KEY_ESCAPE) {
+            enterCageState(resumeCage);
+        } else {
+            super.keyPressed(key, c);
+        }
     }
 
     @Override
@@ -42,7 +53,7 @@ public class PauseState extends CageSelectState {
         Vector2f resumeLoc = map.getSpecialLocation("resume");
         Vector2f mainMenuLoc = map.getSpecialLocation("mainmenu");
 
-        resumeCage = new MenuCage(game, resumeLoc.x, resumeLoc.y, MainMenuState.ID);
+        resumeCage = new ResumeCage(game, resumeLoc.x, resumeLoc.y, MainMenuState.ID);
         MenuCage mainMenuCage = new MenuCage(game, mainMenuLoc.x, mainMenuLoc.y, MainMenuState.ID);
 
         CageRenderer resumeRend, mainMenuRend;

@@ -24,14 +24,26 @@
  <tileset firstgid="96" name="bunnyTiles" tilewidth="32" tileheight="32">
   <image source="bunnyTiles.png" width="128" height="64"/>
  </tileset>
+ <tileset firstgid="104" name="all-trigger" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/trigger/all-trigger.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="108" name="New Lab Sheet" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="192"/>
+ </tileset>
+ <tileset firstgid="126" name="New Spikes" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/spiky/spikes-all.png" width="128" height="96"/>
+ </tileset>
+ <tileset firstgid="138" name="signs" tilewidth="32" tileheight="32">
+  <image source="../arrows.png" width="128" height="64"/>
+ </tileset>
  <layer name="collisions" width="110" height="24">
   <data encoding="base64" compression="zlib">
-   eJztmEEKgDAMBPNHrdb/f0QEweKpaut2kx0IBQ8lYUwomc0sFZHPc7t9bxW5073RYjLBiLxxIm+cyBsn8saJN28JncBPePMWBXnjRN44kbd6Zrv2FQs4l57ejjrR9XlF/Yah7F30fjLKG3wEvnjTHMQRaU56mgeRvCFp/c888RZ1Lo5Yt/qNE3njpMYbYk54ekP0QP3GyYpOQLyiZt8ixmMHzRk6UA==
+   eJztmFEKhDAMRHPIVfQU4scK3l4CgkWQVbQ7TjIPguCHJLwmth3MrCmiW5/97v1T0VX6braYTLAxmbwxIm+cyBsn8sZJRG9fdAJ/IKK3DMwmb4z4TJE3TuTtPB/b7itacC41vXmd6Pqion7DUPYu+n4ywx78Ddw9B2gOYsh2fosyD7J5Q/LkmrnqLetcfFvd6jdO5I2Ts94QcyLKHqIG6jdO3NmMTkJcxp39um8ZYdmJI/wfsgBuCEbu
   </data>
  </layer>
  <layer name="spikes" width="110" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt14EJADAIA0E37f5bdAQrBQW5g98hiQA2OkkAAB2yTWKXAAAAwLyX/+7HAwDAv8r2Vk8X9W8v4A==
+   eJztw8kJACAQBLAtfUoXK/B4qEgCqQJ+lEEAgBMyEQAAALgrCwEAgH3xqV0DnhpAAQ==
   </data>
  </layer>
  <objectgroup name="level markers" width="110" height="24"/>
@@ -65,7 +77,7 @@
    <property name="translationY" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2bsJACAUA8AMqe4/io3gBs8Pd5A+VZokAABAhb4C8IOWvWvjcBcAAAAAuI1PAOANE8ukAqk=
+   eJzt2bEJACAQBEGLVNsQ+0/8wBLEV5iBzS+/UgAAgBtGNLNHABxSo7bryVsAAAAA4DU+AYA/LEW0AxU=
   </data>
  </layer>
  <layer name="slow3" width="110" height="24">
@@ -85,7 +97,7 @@
    <property name="translationY" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztzrEJAAAIBDGX/P1XsbazEyGB668KAAC4lusBAAAAAABgyDIA/mpxjwOo
+   eJztzqENACAQBMFvkjoIgv7BvsKQnJlJ1m8VAACQttMDAAAAAABAM2/j0YrdAfDDAWKyA/4=
   </data>
  </layer>
  <layer name="fast4" width="110" height="24">
@@ -95,7 +107,7 @@
    <property name="translationY" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1iEOACAMBME+kvL/pwCuIUEhamaS9ScvAgAA+JElAAAAoN/Yze4RAAAP56vkle8C0GMBdEYDqA==
+   eJzt1qENACAQBEGKBNog9G94kCQoxJuZZP3JKwUAAPgxohbN7CEAAADAUaOePQIA4GF/lXbluwDkWMOIA94=
   </data>
  </layer>
  <layer name="checkpoint1" width="110" height="24">
@@ -104,6 +116,11 @@
   </properties>
   <data encoding="base64" compression="zlib">
    eJztzjEBACAMA7Cp28GBfzl42EF3JApSBQAAAAAAAMBGNx1g5KQDjHQ6AAB89wClCADf
+  </data>
+ </layer>
+ <layer name="Arrows" width="110" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztzjEBAAAIA6D1t7TPMugDCUgAAAAAAG7MdwAAAAAAoBZldQCM
   </data>
  </layer>
 </map>

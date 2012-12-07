@@ -49,6 +49,7 @@ public class TileWorld implements GameWorld {
 
     public static final String SPECIAL_LEVELS_LAYER_NAME = "special levels";
     public static final String QUIT_OBJECT_NAME = "quit";
+    public static final String HELP_OBJECT_NAME = "help";
     public static final String OPTIONS_OBJECT_NAME = "options";
 
     public static final float STOMP_SPEED_FORWARD = 50.0f;
@@ -559,5 +560,9 @@ public class TileWorld implements GameWorld {
      */
     public Vector2f getOptionsLocation() {
         return getSpecialLocation(OPTIONS_OBJECT_NAME);
+    }
+
+    public Vector2f getHelpLocation() {
+        return getSpecialLocation(HELP_OBJECT_NAME);
     }
 }

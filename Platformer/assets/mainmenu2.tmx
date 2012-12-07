@@ -13,8 +13,8 @@
   <image source="../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="192"/>
  </tileset>
  <layer name="collisions" width="32" height="24">
-  <data encoding="base64" compression="zlib">
-   eJxTYGBgYMaCFZEwNnliMCH9SkCszoAb4JMjFhAyf9R+3ECLCvbjMwPdfgUG4tMWOiBWnxIe++kNRu0fePupkcbJBSC7FRhIK1NZ8JjHRKJZhMpfWoPBEP8j3f6hlP7xpX0YICUPjKb/UfuHUvqnNgalfwCQugrD
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC1NgYGBgxoIVkTA2eWIwIf1KQKzOgBvgkyMWEDJ/1H7cQIsK9uMzA91+BQbi0xY6IFafEh776Q1G7R94+6mRxskFILsVGEgrU1nwmMdEolmEyl9ag8EQ/yPd/qGU/vGlfRggJQ+Mpv9R+4dS+qc2BqV/APvX5yYADAAA
   </data>
  </layer>
  <layer name="helptext1" width="32" height="24">
@@ -24,23 +24,24 @@
    <property name="x" value="400"/>
    <property name="y" value="500"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApGwSgYBaNg8AJ+Ani4209tAAD94ADx
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkbBKBgFo2DwAn4CeLjbT20AAJMGuqMADAAA
   </data>
  </layer>
  <layer name="players" width="32" height="24">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApGwSgYBaNgFBADBIGYd6AdQSEAACLEAB8=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkbBKBgFo2AUEAMEgZh3oB1BIQAA2N6FiAAMAAA=
   </data>
  </layer>
  <layer name="level markers" width="32" height="24">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFowABhMmUo5b+UTAKBhKMptFRMJIBevqnJD9Q06xRMAoGCpCbbodCegcAr7wA0g==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjAAGEyZSjlv5RMAoGEqCnUUrSLDXNGgWjgB5gNP2PglGACshNt0MhvQMA8TEIOwAMAAA=
   </data>
  </layer>
  <objectgroup name="special levels" width="32" height="24">
-  <object name="options" type="level" x="128" y="702" width="32" height="32"/>
+  <object name="options" type="level" x="640" y="127" width="32" height="32"/>
   <object name="quit" type="level" x="896" y="704" width="32" height="32"/>
+  <object name="help" x="144" y="704" width="32" height="32"/>
  </objectgroup>
  <layer name="moving2" width="32" height="24">
   <properties>
@@ -48,8 +49,8 @@
    <property name="translationX" value="2"/>
    <property name="translationY" value="0"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFo2DoAGYgVkLiK0DFRsEoGAWjYBSMglEwCkYBcQAAp9oASQ==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYOgAZiBWQuIrQMVGwSgYBaNgFIyCUTAKRgFxAADR/ciyAAwAAA==
   </data>
  </layer>
 </map>

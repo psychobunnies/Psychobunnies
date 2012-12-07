@@ -28,11 +28,11 @@
  <tileset firstgid="104" name="all-trigger" tilewidth="32" tileheight="32">
   <image source="../../new-assets/tiles/trigger/all-trigger.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="108" name="lab-sheet-2" tilewidth="32" tileheight="32">
+ <tileset firstgid="108" name="new lab sheet" tilewidth="32" tileheight="32">
   <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="192"/>
  </tileset>
- <tileset firstgid="126" name="New Spikes" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/spiky/spikes-all.png" width="128" height="96"/>
+ <tileset firstgid="126" name="new spikes" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/spiky/all.png" width="128" height="96"/>
  </tileset>
  <tileset firstgid="138" name="Bouncy" tilewidth="32" tileheight="32">
   <image source="../../new-assets/tiles/bouncy/all.png" width="256" height="320"/>
@@ -42,7 +42,7 @@
  </tileset>
  <layer name="collisions" width="100" height="24">
   <data encoding="base64" compression="zlib">
-   eJztmIEKgjAURd9HFthXRIRCf18PWoU49W5veZV7YATxNl4e7c6dzOz8M7r352X0fdToGq17hHF7jcEEC4PJBxPywYV8cCEfXMgHF+7isXUT4oP7uBq2PxbtQP+vcrX3gF5EnA9lUAzywQWLDyTDjpxnvrdi8FE6fy/PZcrXpfsOPU+UjzIirjFSKx/zyAcX//ZR+45fOn8vZwtInxE+pnIqt/dBapdIa9Xus1qdUYz7U55zsLZPlvcP+fjWyUd7EB9I1uRqlefzrO3T63pg3VwtskbkfM/HiDOTiGtQOyf9lieOOWst
+   eJztmAEKwjAQBO+RCvUVQcSCv9eA0VJMm00udlt2IAjlkp6OumlOZnaejOH9epld9xpDp3WPMK6vMZpgYTT5YEI+uJAPLuSDC/ngIrp4bN2E+BB9BMP2x6If6P9Vrvbm0Ivw86EM8kE+uGDxgWTYkfMs7q0YfNTO38vvMuXr2vcOPU+Ujzo8PmOkVj6WkQ8u/u2j9Rm/dv5ezhaQPj18/Mqp3N4HqV0jrdW6z+p1RjHvT3nOQWmfLM8f8vGtk4/+ID6QrMnVKs+XKe0z1t2BdUPmemueIj1MCQ73Ru9f02vJnPRenoCxayM=
   </data>
  </layer>
  <layer name="spikes" width="100" height="24">
@@ -50,8 +50,8 @@
    eJzt1jsOgCAURUGWTqGFu7aywFiAn3hDZhI6eJCchlKAs+XvB9DQI4seWfTIokcWPbLokUWPLHpk0SOLHln0AAB61IvF3NYXZmwf7R0xy39Xjyx6ZNEjT324Rmbcua/nzGEHyawoHQ==
   </data>
  </layer>
- <objectgroup name="level markers" width="100" height="24" visible="0"/>
- <layer name="players" width="100" height="24" visible="0">
+ <objectgroup name="level markers" width="100" height="24"/>
+ <layer name="players" width="100" height="24">
   <properties>
    <property name="visible" value="0"/>
   </properties>
@@ -59,7 +59,7 @@
    eJztzjENAAAIwDC8ceDfEbgggTbZvwgAAPghp9qeAAAAAAAA4JQGcF4Aiw==
   </data>
  </layer>
- <layer name="help1" width="100" height="24" visible="0">
+ <layer name="help1" width="100" height="24">
   <properties>
    <property name="text" value="Do not attempt to leave the experiment boundaries. $ This includes the &quot;moving wall of death&quot; found at $ the left side of some lab areas. $ Touching it would be most unwise..."/>
    <property name="x" value="40"/>
@@ -69,7 +69,7 @@
    eJzt0cEJADAIBEGby9f+y7ECHwElBGZg/wcXAQDAtHMR+/wBAAAAQCdfDwAAvldM/AY9
   </data>
  </layer>
- <layer name="help2" width="100" height="24" visible="0">
+ <layer name="help2" width="100" height="24">
   <properties>
    <property name="text" value="Do NOT walk on the spikes"/>
    <property name="x" value="600"/>
@@ -79,17 +79,17 @@
    eJzt0TENAAAIBLE3h39LGGCDgaFNTsElAAAAAAAATGoR9/wAAOCjBsQNCBc=
   </data>
  </layer>
- <layer name="falling spikes" width="100" height="24" visible="0">
+ <layer name="falling spikes" width="100" height="24">
   <data encoding="base64" compression="zlib">
    eJztw7ENAAAIA6B+6v9fOHd2FBISaHMIAAAAAAAAAACfLMFMBZI=
   </data>
  </layer>
- <layer name="playerkeyed" width="100" height="24" visible="0">
+ <layer name="playerkeyed" width="100" height="24">
   <data encoding="base64" compression="zlib">
    eJzt0bEJACAQBEGbtf8WjDUyc8EZ+PDhYMeAv8zXA9jo0aJHix4terTo0aJHix4terTo0aJHix49mgBAy7y88wcA+MMCY6AJeQ==
   </data>
  </layer>
- <layer name="help3" width="100" height="24" visible="0">
+ <layer name="help3" width="100" height="24">
   <properties>
    <property name="text" value="In fact, don't touch the spikes at all"/>
    <property name="x" value="1060"/>
@@ -99,7 +99,7 @@
    eJzt0UEJADAMwMCYq39LE9F+BncQBSkAAACAmkXc8wMAAAAA/vAAsXsIFw==
   </data>
  </layer>
- <layer name="help4" width="100" height="24" visible="0">
+ <layer name="help4" width="100" height="24">
   <properties>
    <property name="text" value="Always pay attention to new types of objects $ Using them to your advantage is $ the key to success"/>
    <property name="x" value="2450"/>
@@ -109,12 +109,12 @@
    eJzt0QEJAEAIBEHL2b+SHZ4XTpiBTbBVAAAAAAD81o+xw48sfmTxI4sfAAD3DH7LEt8=
   </data>
  </layer>
- <layer name="bouncys" width="100" height="24" visible="0">
+ <layer name="bouncys" width="100" height="24">
   <data encoding="base64" compression="zlib">
    eJzt0bEJgEAABEH7b8LQ0B4U+9LQL0B+kRm4/GCXhT9YZx9gsM0+wECPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPln32AQAA+MDx7Hztmnvnd24YWQ5B
   </data>
  </layer>
- <layer name="help5" width="100" height="24" visible="0">
+ <layer name="help5" width="100" height="24">
   <properties>
    <property name="b" value="0"/>
    <property name="g" value="0"/>
@@ -137,7 +137,7 @@
    eJztzrEJADAIAEGXzBzi/o0ZwF5C7uD7jwAAAAAAAAB4S97OUG1OAQBfatGPAoo=
   </data>
  </layer>
- <layer name="help6" width="100" height="24" visible="0">
+ <layer name="help6" width="100" height="24">
   <properties>
    <property name="text" value="Sometimes the environment will help you"/>
    <property name="x" value="1550"/>

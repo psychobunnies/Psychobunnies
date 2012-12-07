@@ -79,10 +79,11 @@ public class PlatformerGame extends StateBasedGame {
 
         boolean isDebugging = false;
         try {
-            isDebugging = java.lang.management.ManagementFactory.getRuntimeMXBean().getInputArguments().toString().indexOf("-agentlib:jdwp") > 0;
+            isDebugging |= java.lang.management.ManagementFactory.getRuntimeMXBean().getInputArguments().toString().indexOf("-agentlib:jdwp") > 0;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        isDebugging |= args.length > 0 && args[0].equals("nofullscreen");
         app.setFullscreen(!isDebugging);
 
         app.start();

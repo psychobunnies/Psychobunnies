@@ -24,6 +24,8 @@ public class CreditsState extends BasicGameState {
     private Rectangle MenuButton;
     private UnicodeFont font;
     private Image background;
+    private int mouseOffsetX;
+    private int mouseOffsetY;
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
@@ -35,6 +37,9 @@ public class CreditsState extends BasicGameState {
         font.addAsciiGlyphs();
         font.loadGlyphs();
         background = new Image("assets/background-no-shelf.png");
+        
+        mouseOffsetX = (container.getWidth() - PlatformerGame.WIDTH) / 2;
+        mouseOffsetY = (container.getHeight() - PlatformerGame.HEIGHT) / 2;
     }
 
     @Override
@@ -61,7 +66,7 @@ public class CreditsState extends BasicGameState {
 
     @Override
     public void mouseClicked(int button, int x, int y, int clickCount) {
-        if (MenuButton.contains(x, y)) {
+        if (MenuButton.contains(x - mouseOffsetX, y - mouseOffsetY)) {
             game.enterState(MainMenuState.ID, new FadeOutTransition(), new FadeInTransition());
         }
     }

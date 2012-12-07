@@ -19,14 +19,14 @@ public class FallingTile extends AbstractEntity implements Renderer {
     public final float FALL_ACC = PhysicsFactory.DEFAULT_GRAVITY * 2;
     public final float MAX_VEL = 0.15f;
 
-    private TileRendererDelegate renderer;
+    private TileRenderer renderer;
     private GameplayState gameState;
 
     private float startX, startY;
     private boolean falling = false;
     private Random rand = new Random();
 
-    public FallingTile(GameplayState gameState, Rect shape, TileRendererDelegate renderer) {
+    public FallingTile(GameplayState gameState, Rect shape, TileRenderer renderer) {
         super(new PhysicalState(shape, 0, 0, 0, 0, 0));
         this.renderer = renderer;
         this.gameState = gameState;

@@ -34,10 +34,12 @@ import com.gravity.map.TileType;
 import com.gravity.map.TileWorld;
 import com.gravity.map.TileWorldRenderer;
 import com.gravity.map.tiles.DisappearingTileController;
+import com.gravity.map.tiles.DisappearingTileRenderer;
 import com.gravity.map.tiles.FallingTile;
 import com.gravity.map.tiles.MovingEntity;
 import com.gravity.map.tiles.PlayerKeyedTile;
-import com.gravity.map.tiles.TileRendererDelegate;
+import com.gravity.map.tiles.StandardTileRenderer;
+import com.gravity.map.tiles.TileRenderer;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.CollisionEngine;
 import com.gravity.physics.GravityPhysics;
@@ -174,10 +176,10 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         Layer pkLayer = tiledMap.getLayer(TileWorld.PLAYERKEYED_LAYER_NAME);
         if (pkLayer != null) {
             pkLayer.visible = false;
-            TileRendererDelegate rendererDelegate = new TileRendererDelegate(tiledMap, TileType.PLAYER_KEYED_UNSET);
-            TileRendererDelegate rendererDelegateWarning = new TileRendererDelegate(tiledMap, TileType.PLAYER_KEYED_WARNING);
-            TileRendererDelegate rendererDelegateYellow = new TileRendererDelegate(tiledMap, TileType.PLAYER_KEYED_YELLOW);
-            TileRendererDelegate rendererDelegatePink = new TileRendererDelegate(tiledMap, TileType.PLAYER_KEYED_PINK);
+            TileRenderer rendererDelegate = new StandardTileRenderer(tiledMap, TileType.PLAYER_KEYED_UNSET);
+            TileRenderer rendererDelegateWarning = new DisappearingTileRenderer(tiledMap, TileType.PLAYER_KEYED_WARNING);
+            TileRenderer rendererDelegateYellow = new StandardTileRenderer(tiledMap, TileType.PLAYER_KEYED_YELLOW);
+            TileRenderer rendererDelegatePink = new StandardTileRenderer(tiledMap, TileType.PLAYER_KEYED_PINK);
             try {
                 for (Tile tile : pkLayer.getTiles()) {
                     PlayerKeyedTile pkTile = new PlayerKeyedTile(new Rect(tile.x * 32, tile.y * 32, 32, 32), collider, rendererDelegate,
@@ -195,7 +197,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         Layer fallSpike = tiledMap.getLayer(TileWorld.FALLING_SPIKE_LAYER_NAME);
         if (fallSpike != null) {
             fallSpike.visible = false;
-            TileRendererDelegate rd = new TileRendererDelegate(tiledMap, TileType.SPIKE);
+            TileRenderer rd = new StandardTileRenderer(tiledMap, TileType.SPIKE);
             try {
                 for (Tile tile : fallSpike.getTiles()) {
                     FallingTile fsTile = new FallingTile(this, new Rect(tile.x * 32, tile.y * 32, 32, 32).grow(-3 * TileWorld.TILE_MARGIN), rd);

@@ -68,12 +68,17 @@ public class GameWinState extends BasicGameState {
     private Rectangle restart;
     private Image winImage;
     private String[] winText;
+    private int mouseOffsetX;
+    private int mouseOffsetY;
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.game = game;
         this.winImage = new Image("./new-assets/background/level-end.png");
         this.winText = NO_TEXT;
+        
+        this.mouseOffsetX = (container.getWidth() - PlatformerGame.WIDTH) / 2;
+        this.mouseOffsetY = (container.getHeight() - PlatformerGame.HEIGHT) / 2;
     }
 
     public void setWinText(String text) {
@@ -116,7 +121,7 @@ public class GameWinState extends BasicGameState {
 
     @Override
     public void mouseClicked(int button, int x, int y, int clickCount) {
-        if (restart.contains(x, y)) {
+        if (restart.contains(x - mouseOffsetX, y - mouseOffsetY)) {
             game.enterState(MainMenuState.ID, new FadeOutTransition(), new FadeInTransition());
         }
     }

@@ -31,14 +31,12 @@
  <tileset firstgid="62" name="New Spikes" tilewidth="32" tileheight="32">
   <image source="../../new-assets/tiles/spiky/spikes-all.png" width="128" height="96"/>
  </tileset>
+ <tileset firstgid="74" name="signs" tilewidth="32" tileheight="32">
+  <image source="../arrows.png" width="128" height="64"/>
+ </tileset>
  <layer name="spikes" width="150" height="24">
   <data encoding="base64" compression="zlib">
    eJztzsEJACAMBMGUlv6rEt8BQUL0MwP33osAAAAAAAAAAAAAAAAAgCo/7NTtuOlPN1582RZ3PxBB
-  </data>
- </layer>
- <layer name="collisions" width="150" height="24">
-  <data encoding="base64" compression="zlib">
-   eJztmUEKgzAQRV31OraUCt7/Yu3GTREzf5JJJvgehC7U/BFenGqWBQAAAAAAAAAAAAAAAO7O+hsPw3gNrO8/+6h5VE1QZmt8Xmuucj01nXl6xduZEeX9LGvqbl6p1/XIyDR3K2b2ag+Yc0RGprlbMbNX3p6g3EuPDJUZvLKux4xebYZz1DlHZKhk8Kr0vmddh5m9UnuVx6vIDJUMXpVqmLkPHsfUXuXxKjJDBa/qUfpgxL30yFDBq3oUryL+K/bIUMGrehSvrL2qxquIDJUMXpXWl3X9eb/j1LAWcvfCb+k6Cz0yVLxzW/brrOPZaIzaN/hcHDueHWf1ttrr7JHhqcXjwheo0yRi
   </data>
  </layer>
  <objectgroup name="level markers" width="150" height="24">
@@ -113,6 +111,16 @@
  <layer name="playerkeyed" width="150" height="24">
   <data encoding="base64" compression="zlib">
    eJztw6EJAAAIADCf8f8XrUaLoLDBIgAAAAAAAOCHbOGqHAYAAAAAAIBtBYGRAeI=
+  </data>
+ </layer>
+ <layer name="collisions" width="150" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztm9EKgzAMRX3a77gxFPz/Hxt7KAxxJrkmadR7oPgwm5vVW1MpHYdheDi01yAzOsby5JvXc6e1fKY/V6m/pnloeI8b+r+ynx+5B3PvBMgloa9IBPQViYC+IhHQVyQC+opEQF+RCOgrEgF9RSLI9lXVfZzf/NbaLWfuTejJ9pVWr9d7dE8XyWnLp3u8QY0o36Ox6Su9LpqTpV+GRkZs+kqvuwTE7KGREZu+0utm1ISKdecMvtLOx4q+mhX3WGP20LBSwVfS9552Hlb2lbVWIb6K1LBSwVdSvDPXwfabtVYhvorUsILERteJaA5X8JW1Vh2pgxXGC4k9ybe45lBhnFDd9bOOWCtmaFipsCdzJ19pa9URX0VoWKngK2l+aeefd33WMAq6i3CV+mnI0LCCxvY449Xa0bNOvc8J7a0L2rtjK1+vvc4MDSQXxAsfu/A0wA==
+  </data>
+ </layer>
+ <layer name="signs" width="150" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztzjEBAAAIA6D1s38fW8xDSEACAAAAAAAAAAAAAAAAQNNcB3hhAey4AEw=
   </data>
  </layer>
 </map>

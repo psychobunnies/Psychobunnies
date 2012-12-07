@@ -1,7 +1,5 @@
 package com.gravity.root;
 
-import org.lwjgl.LWJGLException;
-import org.lwjgl.opengl.Display;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -70,8 +68,9 @@ public class PlatformerGame extends StateBasedGame {
     
     @Override
     protected void preRenderState(GameContainer container, Graphics g) throws SlickException {
-        //g.translate((container.getScreenWidth() - 1024) / 2,
-        //            (container.getScreenHeight() - 768) / 2);
+        g.translate((container.getWidth() - 1024) / 2,
+                    (container.getHeight() - 768) / 2);
+        g.setWorldClip(0, 0, WIDTH, HEIGHT);
     }
 
     public static void main(String args[]) throws SlickException {
@@ -96,12 +95,7 @@ public class PlatformerGame extends StateBasedGame {
         }
         isDebugging |= args.length > 0 && args[0].equals("nofullscreen");
         if (!isDebugging) {
-            try {
-                Display.setFullscreen(true);
-                Display.setDisplayMode(Display.getDesktopDisplayMode());
-            } catch (LWJGLException e) {
-                e.printStackTrace();
-            }
+            app.setDisplayMode(1280, 800, true);
         }
 
         app.start();

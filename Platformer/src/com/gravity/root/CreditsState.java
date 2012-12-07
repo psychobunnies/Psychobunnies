@@ -39,7 +39,7 @@ public class CreditsState extends BasicGameState {
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-        g.drawImage(background, 0, 0);
+        g.drawImage(background, 0, 0, 0, 0, PlatformerGame.WIDTH, PlatformerGame.HEIGHT);
         g.setFont(font);
         g.drawString("CREDITS", 50, 75);
         g.drawString("Music by Matthew Pablo", 50, 125);

@@ -14,7 +14,7 @@ public final class PhysicsFactory {
     public static final float DEFAULT_OFFSET_SIDE_CHECK = 2f;
     public static final float DEFAULT_MOVING_FEATHER = 0.5f;
     public static final float DEFAULT_MAX_ON_GROUND_FALL_SPEED = 1.0f / 800f;
-    public static final float DEFAULT_MAX_FALLING_SPEED = 0.9f;
+    public static final float DEFAULT_MAX_FALLING_SPEED = 1.1f;
     public static final float DEFAULT_FALLING_SPEED_REVERT_MULTIPLIER = 0.95f;
 
     public static GravityPhysics createDefaultGravityPhysics(CollisionEngine engine) {

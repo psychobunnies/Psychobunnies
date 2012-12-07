@@ -31,35 +31,35 @@
  <tileset firstgid="62" name="New Spikes" tilewidth="32" tileheight="32">
   <image source="../../new-assets/tiles/spiky/spikes-all.png" width="128" height="96"/>
  </tileset>
- <layer name="spikes" width="150" height="24">
+ <layer name="spikes" width="150" height="24" visible="0">
   <data encoding="base64" compression="zlib">
    eJztzsEJACAMBMGUlv6rEt8BQUL0MwP33osAAAAAAAAAAAAAAAAAgCo/7NTtuOlPN1582RZ3PxBB
   </data>
  </layer>
- <layer name="collisions" width="150" height="24">
+ <layer name="collisions" width="150" height="24" visible="0">
   <data encoding="base64" compression="zlib">
-   eJzt2dsKwjAQhOHeVB9HRSz0/V9Mb3ojtbuT7CYp/h8EwUMmwtS0dpoAAAAAAAAAAADw7+bPuDjGteP6Hl/P3aa+a4JtCX5ftKPckjXt9fTIszAjq/eZc0f6t16pn2uRMdLcUc7cqzVhzh4ZI80d5cy9Kj3PUr5LiwzVGXrlPR5H7NXieI86Z48M1Qi9sq73vOewI/dK3atKepWZoRqhV9YazrwPbq+pe1VJrzIzVPSqnrIPZnyXFhkqelVP6VXGuWKLDBW9qqf0yrtX1fQqI0M1Qq+s48t7/JX+j1NjNnJX49H6nEeLDFXp3J77dd5xDxrKvY9Ir4PXtt+OvfVGXAO3yvDaru2t7F/jDd7cIW4=
+   eJztmUEKgzAQRV31OraUCt7/Yu3GTREzf5JJJvgehC7U/BFenGqWBQAAAAAAAAAAAAAAAO7O+hsPw3gNrO8/+6h5VE1QZmt8Xmuucj01nXl6xduZEeX9LGvqbl6p1/XIyDR3K2b2ag+Yc0RGprlbMbNX3p6g3EuPDJUZvLKux4xebYZz1DlHZKhk8Kr0vmddh5m9UnuVx6vIDJUMXpVqmLkPHsfUXuXxKjJDBa/qUfpgxL30yFDBq3oUryL+K/bIUMGrehSvrL2qxquIDJUMXpXWl3X9eb/j1LAWcvfCb+k6Cz0yVLxzW/brrOPZaIzaN/hcHDueHWf1ttrr7JHhqcXjwheo0yRi
   </data>
  </layer>
- <objectgroup name="level markers" width="150" height="24">
+ <objectgroup name="level markers" width="150" height="24" visible="0">
   <object name="finish" type="finish" x="4768" y="64" width="32" height="672"/>
  </objectgroup>
- <layer name="fast15" width="150" height="24">
+ <layer name="fast15" width="150" height="24" visible="0">
   <properties>
    <property name="speed" value="30"/>
    <property name="translationX" value="-15"/>
    <property name="translationY" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztzqENADAMBLEnbfbfOF0hKKC2dPwSAAAAAAAAAAAAAAAA4GfndQfVziYw1F3XAE8=
+   eJztzqENADAMBLFHXafK/sulKwQF1JaOXwIAAAAAAAAAAAAAAAD87L7OoNrZBIYamjYAow==
   </data>
  </layer>
- <layer name="falling spikes" width="150" height="24">
+ <layer name="falling spikes" width="150" height="24" visible="0">
   <data encoding="base64" compression="zlib">
    eJzt0MEJADAIA0Anc/+xukFbaJA+7iD4i2JVTh+S7Ern5p7dTHjdMf0TAAAAAAAAAAAAAAAAAP61AAUqD4E=
   </data>
  </layer>
- <layer name="slow10" width="150" height="24">
+ <layer name="slow10" width="150" height="24" visible="0">
   <properties>
    <property name="speed" value="16"/>
    <property name="translationX" value="10"/>
@@ -69,14 +69,14 @@
    eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAA8GY4QAAB
   </data>
  </layer>
- <layer name="fast3" width="150" height="24">
+ <layer name="fast3" width="150" height="24" visible="0">
   <properties>
    <property name="speed" value="34"/>
    <property name="translationX" value="-2"/>
    <property name="translationY" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztyLEJAAAIwDAX8f+P9QgXJYEujQAAAAAAAADgupxq4QMAAAAAAPBHA+ZJACU=
+   eJztyDENAAAIwDAcEfybAxE8kDbZswgAAAAAAAAArsupFj4AAAAAAAB/NKknASE=
   </data>
  </layer>
  <layer name="checkpoint1" width="150" height="24">
@@ -97,7 +97,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0iEOgDAABMH+AYHg//8s2Go2DWEmOX9ix+DLjmXwBi1R0BUFXVHQFQVdUdAVBV1R0BUFXVHQFYWnq/PetfsIAAAAAAAA8FsTBd0BUA==
+   eJzt0qENgEAABMHvAYGgCPrvDrAEyfIhmUnOn9gx+LPlNniDlijoioKuKOiKgq4o6IqCrijoioKuKOiKwtXVem6bfQQAAAAAAIBH++wD8IEDjnUBfw==
   </data>
  </layer>
  <layer name="vfast10" width="150" height="24">
@@ -107,10 +107,10 @@
    <property name="translationY" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztzrENADAIwDCWwv8f0w9YkDrUlrInAgAAAAAAAAAAAAAAAOAv55ZD9ewOdjTiRAA9
+   eJztzrEJADAIAEGrrCPuv5zZwEZIkTv4/iMAAAAAAAAAAAAAAAAA/pK3M1TP7mBHA9CLAJE=
   </data>
  </layer>
- <layer name="playerkeyed" width="150" height="24">
+ <layer name="playerkeyed" width="150" height="24" visible="0">
   <data encoding="base64" compression="zlib">
    eJztw6EJAAAIADCf8f8XrUaLoLDBIgAAAAAAAOCHbOGqHAYAAAAAAIBtBYGRAeI=
   </data>

@@ -45,7 +45,6 @@ public class PlatformerGame extends StateBasedGame {
             new LevelInfo("Bouncy 1", VictoryText.BOUNCY1, "assets/Levels/Bouncy_1.tmx"),
             new LevelInfo("tutorial", VictoryText.PROCEDURES, "assets/Levels/tutorial.tmx"),
 
-
             // Medium (4)
             new LevelInfo("Elevators", VictoryText.ELEVATORS, "assets/levels/Elevators.tmx"),
             new LevelInfo("Shortcuts", VictoryText.SHORTCUTS, "assets/levels/shortcuts.tmx"),

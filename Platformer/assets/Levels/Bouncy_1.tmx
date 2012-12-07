@@ -24,6 +24,9 @@
  <tileset firstgid="128" name="all-trigger" tilewidth="32" tileheight="32">
   <image source="../../new-assets/tiles/trigger/all-trigger.png" width="64" height="64"/>
  </tileset>
+ <tileset firstgid="132" name="level markers" tilewidth="32" tileheight="32">
+  <image source="levelMarkers.png" width="128" height="128"/>
+ </tileset>
  <layer name="collisions" width="72" height="27">
   <data encoding="base64" compression="zlib">
    eJztmIEKwyAMRP2AuTE62Lfu70dgpSKpQWPS65oHgzE6vJzm1OaU0r3jo+Gh/P+/8zpaADjvowWcEG3Poo2X07lzpKfHr5gHs/2h9VLuX621Uz8rPX8EaOunHOPpMB7RmiMLfzR1lXsWQj9b+KPZl5eB8Szp0cDVbZkhCP6UNUu1ZkddhJc/9Rmk9GE0izxAOD+j5eEKyrmS8vD2+87N18dRSw3SfBFr3+31onQXmX1eQfNH0iPlwey8QPNHqm9hftvL+hmg+TNyl7esAc0fCS5fwp8NTm/4sxH+tAl/2oQ/bcKfNpxeyzskwv20B9Lb835Zi/f7FC3kxRdKzQmy
@@ -31,7 +34,7 @@
  </layer>
  <layer name="bouncys" width="72" height="27">
   <data encoding="base64" compression="zlib">
-   eJztl0sKwjAQhnsAHxvv4Fp3dSHoCWzxsRF7/1uYLIQQZqaTMHnZ+WFAyt/8Mx+JJV0XprepT0RNgTm16Fi6gcp1Kt1A5crJxz+bE/I8Vdm8DTPPerdd+f3DPd+Uby/RCKJW+FB9HiQaicjNIW4+5eslGonIzSFpPtJ7qUY+0P+J73M59MhvCdXIB9oDvg9jsgQ+0Iy18Un5TZjLb4FPym/CXH4LfC7COSH5LfDJJeUTnq986HzlQ+dL8bmZGpAaAc/ovHsm+ssp3T/h+cqHzodmvBKef+bjz20FzejfWZfCBxJnRsyjfGiP8qE90nz8878TXj9GnLsf5kl9b1wlXv9u6mHqidTL1NrxQYV5OO9y67fWFzIIRS8=
+   eJztmU0KAjEMhXsA0Y13cK27cSHoCXTwZyPO/W9hiwwMJcmkJf1z8iAg8qYv+WgdisaE6W3rE1FDYE4tOpRuoHIdSzdQuXLy8c/mgHyfqlzempnnvBtTfv9wzzfl20k0gqgVPlSfe4lGInJziJtP+TqJRiJyc0iaj/ReqpEP9Hvi+6YcOuSzhGrkA+0B34cxWQIfaMba+KR8J8zlt8An5TthLr8FPmfhnJD8FvjkkvIJz1c+dL7yofOl+Fxt3ZDqAU8/efZE9JdTun/C85UPnQ/NeCE8/8zHn9sJmtG/sy6FDyTOjJhH+dAe5UN7pPn4538rvH6MOHc/zJP63rhKvP7d1sPWE6mX+f0HM/qgwjycZ7k1rvUFM1BFMw==
   </data>
  </layer>
  <layer name="spikes" width="72" height="27">
@@ -44,7 +47,7 @@
  </objectgroup>
  <layer name="players" width="72" height="27">
   <data encoding="base64" compression="zlib">
-   eJztw7EJAAAIA7Bu/v+xS38QIYEkAAAAAADAlWkA+GABfFQADw==
+   eJztwzENAAAIA7DJRzbPJHCRNmkCAAAAAAAA/0wDdxap7QER
   </data>
  </layer>
  <layer name="Bouncy Overflow" width="72" height="27">
@@ -55,6 +58,14 @@
  <layer name="Bouncy overflow 2" width="72" height="27">
   <data encoding="base64" compression="zlib">
    eJztmEEKgzAQRXOBHqGCm9KNILiwUAqBLrp06wHE+x+hCMmmkHEmmjoy/20C5gc+jzBgnAMAAHvcwnpfyVUhMyX2Fuq9Sp2Q9ugCynkIstdiLfTC9WP1nnH9xFxXqohSpH6epYooRernXaqIUqR+rIH5Q4P5QwM/NPBDs8VPv3MXjfzj/rwyzmhhi5/PypkxrLOokS4wf2g8M2fVD/cdzaqfhYaRseyHgyU/Of/gFvwMYaXe22Pm16FPfD8Ll6MLZPAFoSUQLg==
+  </data>
+ </layer>
+ <layer name="checkpoint" width="72" height="27">
+  <properties>
+   <property name="type" value="checkpoint"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0KENACAQBMHrHoGgZRIs4g3JI2Yq2GzCa6M74GMz/lT8ua3uAAAAAAAAAI4N2BsCsA==
   </data>
  </layer>
 </map>

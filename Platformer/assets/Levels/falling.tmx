@@ -18,64 +18,78 @@
  <tileset firstgid="38" name="all-trigger" tilewidth="32" tileheight="32">
   <image source="../../new-assets/tiles/trigger/all-trigger.png" width="64" height="64"/>
  </tileset>
+ <tileset firstgid="42" name="new tiles" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="192"/>
+ </tileset>
+ <tileset firstgid="60" name="New spikes" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/spiky/all.png" width="128" height="96"/>
+ </tileset>
+ <tileset firstgid="72" name="signs" tilewidth="32" tileheight="32">
+  <image source="../arrows.png" width="128" height="64"/>
+ </tileset>
  <layer name="players" width="90" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3OoQ0AAAzDsOKB/X/u9kWJLYUnAQAAAAAAgL75tj0BACUHun4qrcAhAAA=
+  <data encoding="base64" compression="zlib">
+   eJztzqENAAAMw7Digf1/7vZFiS2FJwEAAAAAAIC++bY9AQAlB8pIABk=
   </data>
  </layer>
  <layer name="spikes" width="90" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3U0Q6AIAiFYW95/xfutjFkwTQL/m9za1mpR3IMAAAAAAAAAEB1cnoCBVmZkvN6Ylz/Iee356jHi2YlTusk8l9Hs/Ke6ZTzLIfZPau2vbyyfTuc3Nd7TvocfVq32Zrdse4v7asee8XZmfmO907F1sUF14sBOcAhAAA=
+  <data encoding="base64" compression="zlib">
+   eJzt1VkOgCAMRVF+2RT7X5ZfJoaUmlYm6T1JE+MA+EBMCQAAAAAAAABwurJ6AAeSMiXn/opw/IecZ4+x7s+aVVEqEst3bc1KuydSzq0cWuekta3l5b02wsp5feZU76N35fSel2fNjnjvnea17rvH3ulpR3vmS+XN2on2L7oArk0dqA==
   </data>
  </layer>
  <layer name="collisions" width="90" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3VSw6AIAxFUdaBn/0v05DIhKQDpC1I70mcoIH6aCAlAAAAYMwpjB/vO8vnsvghhCT1McaRLTRJd4uliD2cndcr+xrxTvfMOWrGhXc/t+q51eYvjf+VVc675TRqdj9HQc4+tHL23q+/9YdUb+/Zmju//6qe+7vkPGueFdazuL/J2YdWvbfSPKuuN0qq9wHpHdcuwCEAAA==
+  <data encoding="base64" compression="zlib">
+   eJzt10EKgCAQBVDvUR0hIhK6/81qoDbCgOGfKZv/wE2LUX+TUkpERERERG025flwjtF4TBYbopC0PqZ2zJaQtLvFUsQezs7zyXuNeKd75hw1Y+Hdz6X73Crz1573yirnv+XU6u1+joI5+0DlvILqfHW+VlrOT89WqeOxdzn3l9Tfd4habwbWqp3Pypzw9zdqvfs1vHjOhYBar/TAAqpVo7d/d229B8oBC8I=
   </data>
  </layer>
  <objectgroup name="level markers" width="90" height="24">
   <object name="finish" type="finish" x="2817" y="33" width="64" height="320"/>
  </objectgroup>
  <layer name="playerkeyed" width="90" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3WSw6AIAxF0Y66/yUzcGIInxZIqeaexIEgpXkSowgAAABwjt5uAAAAAJ/DP+R5ZBovW+ajfqJ7rffTzvisRr0uQ+aRPbT26u3vzSpDliNR/XnP5G6NDNR4eZ+31JLGvXXOMo/H+zuwmtnsPXrX7p4b4M8K6+HJEcAhAAA=
+  <data encoding="base64" compression="zlib">
+   eJzt1ksOgCAMRdGOuv8lM3BiCJ8WSKnmnsSBIKV5EqMIAAAAcI7ebgAAAACfwz/keWQaL1vmo36ie6330874rEa9LkPmkT209urt780qQ5YjUf15z+RujQzUeHmft9SSxr11zjKPx/s7sJrZ7D161+6eG+DPCgvFAeE=
   </data>
  </layer>
  <layer name="falling spikes" width="90" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3DoQ0AAAwCMCz/P7wTUHNt0iapbwEAAAAAAAAAlgOesSIewCEAAA==
+  <data encoding="base64" compression="zlib">
+   eJztwzENAAAMA6AKq39dk9BrHyQ0SX0LAAAAAAAAALAcXPYUoQ==
   </data>
  </layer>
  <layer name="checkpoint1" width="90" height="24" visible="0">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3QQQ3AMBDAsBLoY4/xpzoSU65SbQRR1uJEezrgEj43fG743PC54XPD54bPDZ8bPjd8bvjc8Lnhc8Pnxl5eV3xuvNMBl3imAwDgJx/viEBswCEAAA==
+  <data encoding="base64" compression="zlib">
+   eJzt0EENwDAQwLAS6GOP8ac6ElOuUm0EUdbiRHs64BI+N3xu+NzwueFzw+eGzw2fGz43fG743PC54XPD58ZeXld8brzTAZd4pgMA4Ccf340BEQ==
   </data>
  </layer>
  <layer name="checkpoint2" width="90" height="24" visible="0">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3QsQ2AMBAEwW/AAQH9twpNsJbMjHT5aWcAAIATrN0HfkLnhs4NnRs6N3Ru6NzQuaFzQ+fvrdG5cL27d58A4HgPHexeLMAhAAA=
+  <data encoding="base64" compression="zlib">
+   eJzt0LENgDAQBMFvwAEB/bcKTbCWzIx0+WlnAACAE6zdB35C54bODZ0bOjd0bujc0Lmhc0Pn763RuXC9u3efAOB4D8lvAMM=
   </data>
  </layer>
  <layer name="checkpoint3" width="90" height="24" visible="0">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3QsQ0AIAwDQRagoGD/VQlLOEjcSe6tH+M9s/vAJ3TO0DlD5wydM3TOuJ1XbXcfAQAAAAAAKAcebZDewCEAAA==
+  <data encoding="base64" compression="zlib">
+   eJzt0LENACAMA0EWoKBg/1UJSzhI3EnurR/jPbP7wCd0ztA5Q+cMnTN0zridV213HwEAAAAAACgHGEoAgg==
   </data>
  </layer>
  <layer name="checkpoint4" width="90" height="24" visible="0">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3QsRGAMBDAsCxAQcH+q3IZgBJ/EWkCn9eCf13TAYfwueFzw+eGzw2fGz43fG743PC54XPD54bPDZ8bPjd8bvjc8LmxPz/TEQfYn+/pCIAPL8UKcoXAIQAA
+  <data encoding="base64" compression="zlib">
+   eJzt0LERgDAQwLAsQEHB/qtyGYASfxFpAp/Xgn9d0wGH8Lnhc8Pnhs8Nnxs+N3xu+NzwueFzw+eGzw2fGz43fG743PC5sT8/0xEH2J/v6QiADy84JQEr
+  </data>
+ </layer>
+ <layer name="Signs" width="90" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztzgEJAAAIA7DXs38hSxxE2BIsAQAAAFrmOgAAAADASwtdIwBK
   </data>
  </layer>
 </map>

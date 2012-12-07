@@ -45,7 +45,7 @@ public enum TileType {
     OLD_PLAYER_KEYED_YELLOW(MapType.PLAYER_KEYED, "levelMarkers", 1, 1),
     PLAYER_KEYED_WARNING(MapType.PLAYER_KEYED, "all-trigger", 1, 1),
     PLAYER_KEYED_UNSET(MapType.PLAYER_KEYED, "all-trigger", 0, 0),
-    PLAYER_KEYED_PINK(MapType.PLAYER_KEYED, "all-trigger", 0, 1),
+    PLAYER_KEYED_BLUE(MapType.PLAYER_KEYED, "all-trigger", 0, 1),
     PLAYER_KEYED_YELLOW(MapType.PLAYER_KEYED, "all-trigger", 1, 0),
     
     PINK_START  (MapType.START, "levelMarkers", 0, 0),

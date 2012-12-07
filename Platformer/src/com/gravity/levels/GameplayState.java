@@ -33,13 +33,15 @@ import com.gravity.map.LevelFinishZone;
 import com.gravity.map.TileType;
 import com.gravity.map.TileWorld;
 import com.gravity.map.TileWorldRenderer;
+import com.gravity.map.tiles.CompositeTileRenderer;
 import com.gravity.map.tiles.DisappearingTileController;
-import com.gravity.map.tiles.DisappearingTileRenderer;
+import com.gravity.map.tiles.FadeOutTileRenderer;
 import com.gravity.map.tiles.FallingTile;
 import com.gravity.map.tiles.MovingEntity;
 import com.gravity.map.tiles.PlayerKeyedTile;
 import com.gravity.map.tiles.StandardTileRenderer;
 import com.gravity.map.tiles.TileRenderer;
+import com.gravity.map.tiles.TransitionTileRenderer;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.CollisionEngine;
 import com.gravity.physics.GravityPhysics;
@@ -177,13 +179,23 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         if (pkLayer != null) {
             pkLayer.visible = false;
             TileRenderer rendererDelegate = new StandardTileRenderer(tiledMap, TileType.PLAYER_KEYED_UNSET);
-            TileRenderer rendererDelegateWarning = new DisappearingTileRenderer(tiledMap, TileType.PLAYER_KEYED_WARNING);
-            TileRenderer rendererDelegateYellow = new StandardTileRenderer(tiledMap, TileType.PLAYER_KEYED_YELLOW);
-            TileRenderer rendererDelegatePink = new StandardTileRenderer(tiledMap, TileType.PLAYER_KEYED_PINK);
+            //@formatter:off
+            TileRenderer rendererDelegateWarningYellow = new CompositeTileRenderer(
+                    new TransitionTileRenderer(tiledMap, TileType.PLAYER_KEYED_YELLOW, TileType.PLAYER_KEYED_WARNING),
+                    new FadeOutTileRenderer(tiledMap, TileType.PLAYER_KEYED_WARNING),
+                    0.5f);
+            TileRenderer rendererDelegateWarningBlue = new CompositeTileRenderer(
+                    new TransitionTileRenderer(tiledMap, TileType.PLAYER_KEYED_BLUE, TileType.PLAYER_KEYED_WARNING),
+                    new FadeOutTileRenderer(tiledMap, TileType.PLAYER_KEYED_WARNING),
+                    0.5f);
+            //@formatter:on
+            TileRenderer rendererDelegateYellow = new TransitionTileRenderer(tiledMap, TileType.PLAYER_KEYED_UNSET, TileType.PLAYER_KEYED_YELLOW);
+            TileRenderer rendererDelegateBlue = new TransitionTileRenderer(tiledMap, TileType.PLAYER_KEYED_UNSET, TileType.PLAYER_KEYED_BLUE);
             try {
                 for (Tile tile : pkLayer.getTiles()) {
                     PlayerKeyedTile pkTile = new PlayerKeyedTile(new Rect(tile.x * 32, tile.y * 32, 32, 32), collider, rendererDelegate,
-                            rendererDelegateYellow, rendererDelegatePink, rendererDelegateWarning, pkLayer, tile.x, tile.y);
+                            rendererDelegateYellow, rendererDelegateBlue, rendererDelegateWarningYellow, rendererDelegateWarningBlue, pkLayer,
+                            tile.x, tile.y);
                     resetableTiles.add(pkTile);
                     updaters.add(pkTile);
                     collider.addCollidable(pkTile, LayeredCollisionEngine.FLORA_LAYER);

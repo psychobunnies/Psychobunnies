@@ -16,7 +16,10 @@ public class TriggeredImage extends TriggeredBase implements Renderer {
 
     @Override
     public void render(Graphics g, int offsetX, int offsetY) {
-        g.drawImage(image, offsetX + x, offsetY + y);
+        // g.drawImage(image, offsetX + x, offsetY + y);
+        // HACK: Display images at 0,0
+        g.drawImage(image, 0, 0);
+
     }
 
 }

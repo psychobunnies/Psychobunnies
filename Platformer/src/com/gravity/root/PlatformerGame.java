@@ -1,7 +1,10 @@
 package com.gravity.root;
 
+import org.lwjgl.LWJGLException;
+import org.lwjgl.opengl.Display;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -24,6 +27,9 @@ import com.gravity.levels.LevelInfo;
  * @author dxiao
  */
 public class PlatformerGame extends StateBasedGame {
+    public static final int WIDTH = 1024;
+    public static final int HEIGHT = 768;
+    
     //@formatter:off
     private LevelInfo[] levels = {
 
@@ -61,6 +67,12 @@ public class PlatformerGame extends StateBasedGame {
     public void initStatesList(GameContainer gc) throws SlickException {
         addState(new GameLoaderState(Lists.newArrayList(levels), 100));
     }
+    
+    @Override
+    protected void preRenderState(GameContainer container, Graphics g) throws SlickException {
+        //g.translate((container.getScreenWidth() - 1024) / 2,
+        //            (container.getScreenHeight() - 768) / 2);
+    }
 
     public static void main(String args[]) throws SlickException {
         AppGameContainer app = new AppGameContainer(new PlatformerGame());
@@ -83,7 +95,14 @@ public class PlatformerGame extends StateBasedGame {
             e.printStackTrace();
         }
         isDebugging |= args.length > 0 && args[0].equals("nofullscreen");
-        app.setFullscreen(!isDebugging);
+        if (!isDebugging) {
+            try {
+                Display.setFullscreen(true);
+                Display.setDisplayMode(Display.getDesktopDisplayMode());
+            } catch (LWJGLException e) {
+                e.printStackTrace();
+            }
+        }
 
         app.start();
 

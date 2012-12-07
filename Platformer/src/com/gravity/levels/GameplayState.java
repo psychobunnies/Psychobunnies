@@ -48,6 +48,7 @@ import com.gravity.root.GameSounds;
 import com.gravity.root.GameSounds.Event;
 import com.gravity.root.GameWinState;
 import com.gravity.root.PauseState;
+import com.gravity.root.PlatformerGame;
 import com.gravity.root.RestartGameplayState;
 import com.gravity.root.SlideTransition;
 
@@ -211,10 +212,10 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         float panX = Math.min(playerA.getPhysicalState().getPosition().x, playerB.getPhysicalState().getPosition().x);
         panX = Math.max(0, panX - 300);
         PanningCamera pancam = new PanningCamera(2000, new Vector2f(panX, 0), new Vector2f(0.035f, 0), new Vector2f(map.getWidth()
-                - container.getWidth(), 0), container.getWidth(), container.getHeight());
+                - PlatformerGame.WIDTH, 0), PlatformerGame.WIDTH, PlatformerGame.HEIGHT);
         camera = pancam;
         if (map.map.getMapProperty("camera", PANNING_CAMERA).equals(STALKING_CAMERA)) {
-            camera = new PlayerStalkingCamera(container.getWidth(), container.getHeight(), new Vector2f(0, 0), new Vector2f(map.getWidth(),
+            camera = new PlayerStalkingCamera(PlatformerGame.WIDTH, PlatformerGame.HEIGHT, new Vector2f(0, 0), new Vector2f(map.getWidth(),
                     map.getHeight()), playerA, playerB);
         }
         updaters.add(pancam);
@@ -228,7 +229,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
             } catch (NumberFormatException e) {
                 System.err.println("Could not format wall of death velocity, using default (0.035) instead.");
             }
-            wallofDeath = new WallofDeath(2000, panX + 32, wallVel, Lists.newArrayList(playerA, playerB), this, container.getHeight());
+            wallofDeath = new WallofDeath(2000, panX + 32, wallVel, Lists.newArrayList(playerA, playerB), this, PlatformerGame.HEIGHT);
             updaters.add(wallofDeath);
             renderers.add(wallofDeath, RenderList.FAUNA);
         }
@@ -332,7 +333,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     private void checkRightSide(Player player, float offsetX2) {
         PhysicalState state = player.getPhysicalState();
         player.setPhysicalState(new PhysicalState(state.getRectangle().translateTo(
-                Math.min(state.getRectangle().getX(), -offsetX2 + container.getWidth() - 32), state.getRectangle().getY()), state.velX, state.velY,
+                Math.min(state.getRectangle().getX(), -offsetX2 + PlatformerGame.WIDTH - 32), state.getRectangle().getY()), state.velX, state.velY,
                 state.accX, state.accY, state.surfaceVelX));
     }
 

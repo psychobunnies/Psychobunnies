@@ -12,7 +12,8 @@ public class ResumeCage extends MenuCage {
         this.stateID = stateID;
     }
     
-    public boolean isDiabeld() {
+    @Override
+    public boolean isDisabled() {
         return false;
     }
 

@@ -16,6 +16,7 @@ public class PauseTextRenderer implements UpdateCycling, Renderer {
     
     private static UnicodeFont font;
     private float timePassed = 0;
+    private GameplayState parentState;
     
     static {
         Font awtFont = new Font("SansSerif", Font.PLAIN, 18);
@@ -29,13 +30,17 @@ public class PauseTextRenderer implements UpdateCycling, Renderer {
         }
     }
     
+    public PauseTextRenderer(GameplayState state) {
+        this.parentState = state;
+    }
+    
     @Override
     public void render(Graphics g, int offsetX, int offsetY) {
         g.setFont(font);
         if (timePassed >= appearLength) {
             g.setColor(new Color(1.0f, 1.0f, 1.0f, Math.max(1.0f - (timePassed - appearLength) / fadeLength, 0f)));
         }
-        if (timePassed < appearLength + fadeLength) {
+        if (timePassed < appearLength + fadeLength && parentState.canPause()) {
             g.drawString(text, offsetX + 512 - font.getWidth(text) / 2, offsetY + 100);
         }
     }

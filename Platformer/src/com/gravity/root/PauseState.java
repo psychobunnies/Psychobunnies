@@ -2,6 +2,7 @@ package com.gravity.root;
 
 import java.util.List;
 
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.transition.FadeInTransition;
@@ -24,6 +25,15 @@ public class PauseState extends CageSelectState {
 
     public PauseState() throws SlickException {
         super(new LevelInfo("Pause", "assets/pause.tmx", ID));
+    }
+    
+    @Override
+    public void keyPressed(int key, char c) {
+        if (key == Input.KEY_ESCAPE) {
+            enterCageState(resumeCage);
+        } else {
+            super.keyPressed(key, c);
+        }
     }
 
     @Override

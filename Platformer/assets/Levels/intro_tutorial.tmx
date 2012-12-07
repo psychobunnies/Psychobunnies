@@ -22,7 +22,7 @@
   <image source="../arrows.png" width="128" height="64"/>
  </tileset>
  <tileset firstgid="103" name="lab-sheet-new" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="160"/>
+  <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="192"/>
  </tileset>
  <layer name="spikes" width="80" height="24">
   <data encoding="base64" compression="zlib">
@@ -127,7 +127,7 @@
  </objectgroup>
  <layer name="collisions" width="80" height="24">
   <data encoding="base64" compression="zlib">
-   eJztmUkOwjAMRXNIQNyAsgCp999AFkjWr+P8uAMZ+iVLrZIa/PAQIIS29fjaVdgd7rc26f92QHx76/1Hv3u99pE6+a3TyW+dMIZLWPasLfx699QujGHOrGuKzHEWoB9NzJ7ahXxecM/EqDHGua7Zs+id1qlcfv04WLFqPrzcWxNbQ5FjiqHWQ5nc6oGfVmdTWMZvxaqtjTo/PPu0HMb98XPCGTMSP6vOGTbeHK1dVgzyLIh85JrW6xh+PZ5fPGsMG++MqV1WDnj5aWxS9cucE2s2KwcstnKN6W3MjOlBVs+TuSK5jzx/UZ6aHXn+oth+mJsf7Pxtvf+hWb+pl/AbZf6WiOWnfVfusVZLVZJ/1rOjaiaumWeleut/lk3EtWap/0Rjr/0ALLGIKw==
+   eJztWFsOwkAI7CHVeAWtH5r0/lE+TMhI6Sx9uF06CYktu7RMgdnYdfvG/WNnZT1cL206/mWD/NbG649x13r2ljj4m4eDv3nAHE7d78xaIm50Te3AHIYJvwXhHLUA41hg1tQO5OcJ10yOFseo65Y9it60TkzV15cHL1crRpT3vYHtIcn15vg0pJ+Z2mqBP6vPJHfkysvV8mXVj8g6q4ZxvXwn1JhM/Hl9znATrdHa4eWgz4LIj/ZZs47hr8XzS8THcBPVmNrh1UCUP4ubsf5lzok1m1cDHrfax8w2RmNagDfzdK1o3jPrLyLSs5n1F8HOwyn9YPV37/MPzftPvYS/LPpbApY/qSlGf7OhpP68vVkxEL+ZvRqtzT/Pese8fdeR+zJr34a9iig=
   </data>
  </layer>
  <layer name="signs" width="80" height="24">

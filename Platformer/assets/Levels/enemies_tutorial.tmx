@@ -28,81 +28,93 @@
  <tileset firstgid="104" name="all-trigger" tilewidth="32" tileheight="32">
   <image source="../../new-assets/tiles/trigger/all-trigger.png" width="64" height="64"/>
  </tileset>
+ <tileset firstgid="108" name="new lab sheet" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="192"/>
+ </tileset>
+ <tileset firstgid="126" name="new spikes" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/spiky/all.png" width="128" height="96"/>
+ </tileset>
+ <tileset firstgid="138" name="Bouncy" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/bouncy/all.png" width="256" height="320"/>
+ </tileset>
+ <tileset firstgid="218" name="signs" tilewidth="32" tileheight="32">
+  <image source="../arrows.png" width="128" height="64"/>
+ </tileset>
  <layer name="collisions" width="100" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2ZAQqDMAxFe8fppuD9zyFCCyJUm5q1f+49CILENvoMLTqEEMZdTPE4H857xfSlcZ8QrxigAT60wIcW+NACH1rgQwt8aJF8lO6P333K/Bus/ZHLpcd8wIcW+NBCxccQ6r73PG09U/FRe/2v9GWq8+q9w0cbPJ6xJRcf5+BDC3xo0cPHcW1aMrm5dayG/bx3sO7vrOOm+/P+P0h/1FFaJz7agA8t8KGFxcfHMG4u1zKG5/V3521FaZ1b3goUWVpGgCUAAA==
+  <data encoding="base64" compression="zlib">
+   eJztmIEKgjAURd9HFthXRIRCf18PWoU49W5veZV7YATxNl4e7c6dzOz8M7r352X0fdToGq17hHF7jcEEC4PJBxPywYV8cCEfXMgHF+7isXUT4oP7uBq2PxbtQP+vcrX3gF5EnA9lUAzywQWLDyTDjpxnvrdi8FE6fy/PZcrXpfsOPU+UjzIirjFSKx/zyAcX//ZR+45fOn8vZwtInxE+pnIqt/dBapdIa9Xus1qdUYz7U55zsLZPlvcP+fjWyUd7EB9I1uRqlefzrO3T63pg3VwtskbkfM/HiDOTiGtQOyf9lieOOWst
   </data>
  </layer>
  <layer name="spikes" width="100" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3WMQqAMBAAwfw0//+FWCoWERQXmYFrw8FekTGAs/n1Ahzo0aJHix4terTo0aJHix4terTo0aJHix4AwIp5MfzbE43vvPHWTf3lVvVo0aNFj5arP0NtVvfcbV738WCAJQAA
+  <data encoding="base64" compression="zlib">
+   eJzt1jsOgCAURUGWTqGFu7aywFiAn3hDZhI6eJCchlKAs+XvB9DQI4seWfTIokcWPbLokUWPLHpk0SOLHln0AAB61IvF3NYXZmwf7R0xy39Xjyx6ZNEjT324Rmbcua/nzGEHyawoHQ==
   </data>
  </layer>
- <objectgroup name="level markers" width="100" height="24"/>
- <layer name="players" width="100" height="24">
+ <objectgroup name="level markers" width="100" height="24" visible="0"/>
+ <layer name="players" width="100" height="24" visible="0">
   <properties>
    <property name="visible" value="0"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3OMQ0AAAjAMLxx4N8RuCCBNtm/CAAA+CGn2p4AAAAAAADglAbnN7PAgCUAAA==
+  <data encoding="base64" compression="zlib">
+   eJztzjENAAAIwDC8ceDfEbgggTbZvwgAAPghp9qeAAAAAAAA4JQGcF4Aiw==
   </data>
  </layer>
- <layer name="help1" width="100" height="24">
+ <layer name="help1" width="100" height="24" visible="0">
   <properties>
    <property name="text" value="Do not attempt to leave the experiment boundaries. $ This includes the &quot;moving wall of death&quot; found at $ the left side of some lab areas. $ Touching it would be most unwise..."/>
    <property name="x" value="40"/>
    <property name="y" value="40"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3RwQkAMAgEQZvL1/7LsQIfASUEZmD/BxcBAMC0cxH7/AEAAABAJ18PAAC+V8l3KheAJQAA
+  <data encoding="base64" compression="zlib">
+   eJzt0cEJADAIBEGby9f+y7ECHwElBGZg/wcXAQDAtHMR+/wBAAAAQCdfDwAAvldM/AY9
   </data>
  </layer>
- <layer name="help2" width="100" height="24">
+ <layer name="help2" width="100" height="24" visible="0">
   <properties>
    <property name="text" value="Do NOT walk on the spikes"/>
    <property name="x" value="600"/>
    <property name="y" value="450"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3RMQ0AAAgEsTeHf0sYYIOBoU1OwSUAAAAAAABMahH3/AAA4KMGRthOaoAlAAA=
+  <data encoding="base64" compression="zlib">
+   eJzt0TENAAAIBLE3h39LGGCDgaFNTsElAAAAAAAATGoR9/wAAOCjBsQNCBc=
   </data>
  </layer>
- <layer name="falling spikes" width="100" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3DsQ0AAAgDoH7q/184d3YUEhJocwgAAAAAAAAAAJ8sF6ipxYAlAAA=
+ <layer name="falling spikes" width="100" height="24" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztw7ENAAAIA6B+6v9fOHd2FBISaHMIAAAAAAAAAACfLMFMBZI=
   </data>
  </layer>
- <layer name="playerkeyed" width="100" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3RsQkAIBAEQZu1/xaMNTJzwRn48OFgx4C/zNcD2OjRokeLHi16tOjRokeLHi16tOjRokeLHj2aAEDLvLzzBwD4wwLCTI9ngCUAAA==
+ <layer name="playerkeyed" width="100" height="24" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJzt0bEJACAQBEGbtf8WjDUyc8EZ+PDhYMeAv8zXA9jo0aJHix4terTo0aJHix4terTo0aJHix49mgBAy7y88wcA+MMCY6AJeQ==
   </data>
  </layer>
- <layer name="help3" width="100" height="24">
+ <layer name="help3" width="100" height="24" visible="0">
   <properties>
    <property name="text" value="In fact, don't touch the spikes at all"/>
    <property name="x" value="1060"/>
    <property name="y" value="275"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3RQQkAMAzAwJirf0sT0X4GdxAFKQAAAICaRdzzAwAAAAD+8ACJ8cAhgCUAAA==
+  <data encoding="base64" compression="zlib">
+   eJzt0UEJADAMwMCYq39LE9F+BncQBSkAAACAmkXc8wMAAAAA/vAAsXsIFw==
   </data>
  </layer>
- <layer name="help4" width="100" height="24">
+ <layer name="help4" width="100" height="24" visible="0">
   <properties>
    <property name="text" value="Always pay attention to new types of objects $ Using them to your advantage is $ the key to success"/>
    <property name="x" value="2450"/>
    <property name="y" value="400"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3RAQkAQAgEQcvZv5IdnhdOmIFNsFUAAAAAAPzWj7HDjyx+ZPEjix8AAPcMvmdhLoAlAAA=
+  <data encoding="base64" compression="zlib">
+   eJzt0QEJAEAIBEHL2b+SHZ4XTpiBTbBVAAAAAAD81o+xw48sfmTxI4sfAAD3DH7LEt8=
   </data>
  </layer>
- <layer name="bouncys" width="100" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3RsQkAIAADQYd1/xmsBUvBR+4gfeDH4Afz9QE2erTo0aJHix4terTo0aJHix4terTo0aJHix4terTo0aIHAAA/modxzwLUcdX2gCUAAA==
+ <layer name="bouncys" width="100" height="24" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJzt0bEJgEAABEH7b8LQ0B4U+9LQL0B+kRm4/GCXhT9YZx9gsM0+wECPFj1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRo0WPln32AQAA+MDx7Hztmnvnd24YWQ5B
   </data>
  </layer>
- <layer name="help5" width="100" height="24">
+ <layer name="help5" width="100" height="24" visible="0">
   <properties>
    <property name="b" value="0"/>
    <property name="g" value="0"/>
@@ -111,8 +123,8 @@
    <property name="x" value="425"/>
    <property name="y" value="550"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3RsQ0AIRDAMJZj/5VovviC/iJhS5kgawEAMGl/0eBHix8t/x/ezPOjxY8WP1r8aPGjxY8WP1r2Jeb40eJHix8tfrT4wUsOvOsuHoAlAAA=
+  <data encoding="base64" compression="zlib">
+   eJzt0bENACEQwDCWY/+VaL74gv4iYUuZIGsBADBpf9HgR4sfLf8f3szzo8WPFj9a/Gjxo8WPFj9a9iXm+NHiR4sfLX60+MFLDgYZElU=
   </data>
  </layer>
  <layer name="moving" width="100" height="24">
@@ -121,18 +133,18 @@
    <property name="translationX" value="8"/>
    <property name="translationY" value="0"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3OsQ0AMAjAMI4s/H8KPYAdVbWl7IkAAAAAAAAAeMu55VBtTgEAX2q4ktFEgCUAAA==
+  <data encoding="base64" compression="zlib">
+   eJztzrEJADAIAEGXzBzi/o0ZwF5C7uD7jwAAAAAAAAB4S97OUG1OAQBfatGPAoo=
   </data>
  </layer>
- <layer name="help6" width="100" height="24">
+ <layer name="help6" width="100" height="24" visible="0">
   <properties>
    <property name="text" value="Sometimes the environment will help you"/>
    <property name="x" value="1550"/>
    <property name="y" value="450"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3RMQ0AAAgEMczh3xIOmBg+oU1OwVUBAAAAAPzQB3HHjyx+ZPEjix8AAGwG2TeYEoAlAAA=
+  <data encoding="base64" compression="zlib">
+   eJzt0TENAAAIBDHM4d8SDpgYPqFNTsFVAQAAAAD80Adxx48sfmTxI4sfAABsBlfiFuo=
   </data>
  </layer>
  <layer name="moving2" width="100" height="24">
@@ -141,8 +153,8 @@
    <property name="translationX" value="0"/>
    <property name="translationY" value="-4"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3RoQ0AIADAMH5E8P8nWCSKjKRV8xuD07xo3vGjxY8WP1r8aPGjxY8WP1r8aPGjxY8WP1r8aPGjxY8WP1r8aFkXDQDAPzaQHkUjgCUAAA==
+  <data encoding="base64" compression="zlib">
+   eJzt0SEKACAAwEBfLfh7q9EkE+7S+sbgNC+ad/xo8aPFjxY/Wvxo8aPFjxY/Wvxo8aPFjxY/Wvxo8aPFjxY/WtZFAwDwjw3UlRju
   </data>
  </layer>
  <layer name="help7" width="100" height="24">
@@ -151,35 +163,40 @@
    <property name="x" value="1950"/>
    <property name="y" value="450"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3RQQ0AQAgEMczh3xIK7r5sQpuMgqkCAAAAAOCnH7HDjyx+ZPEjix8AADcMTlE32YAlAAA=
+  <data encoding="base64" compression="zlib">
+   eJzt0UENAEAIBDHM4d8SCu6+bEKbjIKpAgAAAADgpx+xw48sfmTxI4sfAAA3DLrbCBc=
   </data>
  </layer>
  <layer name="checkpoint1" width="100" height="24">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3RsQkAIBRDQaezsHD/cbTVBX7QO0gfeK3xml59gIMeWfTIokcWPbLokUWPLHoAAAD8a+zN6hMAAHBZ06g2Q4AlAAA=
+  <data encoding="base64" compression="zlib">
+   eJzt0bEJACAUQ0Gns7Bw/3G01QV+0DtIH3it8ZpefYCDHln0yKJHFj2y6JFFjyx6AAAA/GvszeoTAABwWY4AAsk=
   </data>
  </layer>
  <layer name="checkpoint2" width="100" height="24">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3RMQrAIAAEQV+XwsL/Pydp7QU3MAPXH+wYcM5z+wAbPVr0aNGjRY8WPVr0aNGjRY8WPVr0aNEDAP5vflu3TwAAkPUCNKQDooAlAAA=
+  <data encoding="base64" compression="zlib">
+   eJzt0TEKwCAABEFfl8LC/z8nae0FNzAD1x/sGHDOc/sAGz1a9GjRo0WPFj1a9GjRo0WPFj1a9GjRAwD+b35bt08AAJD1Anj7A+E=
   </data>
  </layer>
  <layer name="checkpoint3" width="100" height="24">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3RMQ3AQAzAwKDr8EP5w+lcBO9IdwgseQb2em4H8ONHix8tfrT40eJHix8tfrT40eJHix8tfrT40eJHix8dZ/woeccPAIBtPoD+cXqAJQAA
+  <data encoding="base64" compression="zlib">
+   eJzt0TENwEAMwMCg6/BD+cPpXATvSHcILHkG9npuB/DjR4sfLX60+NHiR4sfLX60+NHiR4sfLX60+NHiR4sfHWf8KHnHDwCAbT7ZYwU/
   </data>
  </layer>
  <objectgroup name="special levels" width="100" height="24">
   <object name="main menu" x="3104" y="448" width="96" height="128"/>
  </objectgroup>
+ <layer name="bouncy overflow" width="100" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzt0bEJgEAUBNHrvwhBA8FEMBWtxGaU43PYgPw5nAebL0wp6t0QG7OPqJpjS/YRVfZgsQeLPVjswWIPFnuw2IPFHiz2YLEHiz1Y7MFiD5Y1tmUfUTNlH+jclX1AkvRr+7PjtTP3jvSpGyqhJHk=
+  </data>
+ </layer>
 </map>

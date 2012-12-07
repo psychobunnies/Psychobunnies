@@ -31,7 +31,7 @@
  </layer>
  <layer name="collisions" width="67" height="24">
   <data encoding="base64" compression="zlib">
-   eJztl90KwyAMhfOQg66MFvb+L7F5UeYCiYn528ADvatJ/IxH3QDgvj7Y398DlppOWCwuLRYf/TuLDb73u0W/xsJzblplsujnKZnvM6OoTtV9wc1Xy240djQ+goWmzw/n3BZF98UZGNtbIxZWL8tgcXOKY+2LixXFKdr/Rvk1it4jnrVGq/ocwbkr2WEW2bVQfuLpM9K11vQF9qj+PJxlKGVh8XCpZ2lYRNwFvPvCcj/L8guqRmrNsu/fTdXeSe2tivto4095+ayHevtv1lodhlxZNXLe4V2DNB7+L+utweXxrkEaD/tZlr9xebxroN76o7MJ+5vmPONy7ug/zndwnJl8/dgXK49cPw==
+   eJztl9sKwyAMhvOQg66MFfb+L7F5UeYCOZmDHfhDLwraxM/k124AcF8P7J/ngKWmAxaLU4vFV//OYoPffvfoaiwi12ZVJYt+nZr1viqS6jS7Lrj1WtlJc6X5GSwsdf4Mju1Rdl1cyYskSSy8XlbB4hb0HW9dnKwoTtn+J8W3KLtHInPN1uxz5IHeZ7LDLKpzofYhcn8wb0qWusAe1Z+Howy1LDwervUsC4uMu0B0XXjuZ1V+QeVI7Vn1/btptndSvTXjPtr4R/ZmPz/Kf7Xe51XjP1oXVTly+UXnoGWB41b1FhcnOgetT+FxVf7GxYnOgfrXl84m7G+W84yLuaNxnO/g74zE6+e+AYtoXIE=
   </data>
  </layer>
  <objectgroup name="level markers" width="67" height="24">

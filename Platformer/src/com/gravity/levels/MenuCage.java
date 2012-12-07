@@ -8,7 +8,7 @@ import com.gravity.geom.Rect;
 public class MenuCage {
     private final StateBasedGame game;
     private Rect rect;
-    private int stateID;
+    protected int stateID;
 
     public MenuCage(StateBasedGame game, float x, float y, int stateID) {
         this.game = game;
@@ -24,10 +24,6 @@ public class MenuCage {
 
     public int getToState() {
         return stateID;
-    }
-    
-    public void setToState(int stateID) {
-        this.stateID = stateID;
     }
 
     public boolean intersects(Rect... rects) {

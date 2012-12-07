@@ -39,9 +39,8 @@ public class PlatformerGame extends StateBasedGame {
             
             // Hard (4)
             new LevelInfo("Bouncy 1", VictoryText.BOUNCY1, "assets/Levels/Bouncy_1.tmx"),
-            new LevelInfo("Test Stomps", VictoryText.TEST, "assets/Levels/checkpointing.tmx"),
-            new LevelInfo("Checkpointing",  VictoryText.TEST, "assets/Levels/checkpointing.tmx"),
-            new LevelInfo("intro_tutorial", VictoryText.PROCEDURES, "assets/Levels/intro_tutorial.tmx"),
+            //new LevelInfo("Test Stomps", VictoryText.TEST, "assets/Levels/checkpointing.tmx"),
+            //new LevelInfo("Checkpointing",  VictoryText.TEST, "assets/Levels/checkpointing.tmx"),
 
             // Medium (4)
             new LevelInfo("Elevators", VictoryText.ELEVATORS, "assets/levels/Elevators.tmx"),
@@ -49,7 +48,7 @@ public class PlatformerGame extends StateBasedGame {
             new LevelInfo("Slingshot", VictoryText.SLINGSHOT, "assets/Levels/slingshot_intro.tmx"),
             new LevelInfo("Platformer", VictoryText.PLATFORMER, "assets/Levels/platform.tmx"),
             // Easy (2)
-            new LevelInfo("Lab Procedures", VictoryText.PROCEDURES, "assets/Levels/tutorial.tmx"),
+            new LevelInfo("Lab Procedures", VictoryText.PROCEDURES, "assets/Levels/intro_tutorial.tmx"),
             new LevelInfo("Lab Safety", VictoryText.SAFETY, "assets/Levels/enemies_tutorial.tmx"),
     };
     //@formatter:on

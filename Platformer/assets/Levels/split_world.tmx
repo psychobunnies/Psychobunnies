@@ -18,19 +18,25 @@
  <tileset firstgid="27" name="lab-sheet" tilewidth="32" tileheight="32">
   <image source="../lab-sheet.png" width="128" height="96"/>
  </tileset>
+ <tileset firstgid="39" name="New lab sheet" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="160"/>
+ </tileset>
+ <tileset firstgid="54" name="arrows" tilewidth="32" tileheight="32">
+  <image source="../arrows.png" width="128" height="64"/>
+ </tileset>
  <layer name="collisions" width="90" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2ZawrEIAyEvYd93P+WS2EDEmqcxMSKOOCf1YnpZ43ubk4pnYaWjT7PNkMOmlwtsvo8NUMOqDbnMdLkeqT+feCpGXJApclV+1zluni0C8xHMy+Pyb2tfq/6rHmHeQ7leI93j8egcxDlj8T8yuOVcxRn0iWM08Qc6bHU4SyMlfo0kjgjn/eOHe3RxomaYxTnsyN+j+ctRu+7/Oyh1pmj4azZh4hK1txT5sk9dH5E7Ge0rzXOcnbkFMP5EXHUMqN80DsPF62jVOORnN64IKyktYngbPVEnU8efnR9ap+tzNnzO/zm7Df/o6Pi610zK+daveR3XaSulnN8zbnm+4pzhKfFedT+kO4N1lgrcy5javeVx/xlDVqds0USZ8vvYpoaap1D+3wzc15Fm/MYbc5jtDnHixjfqV7vpT7PZjmLvBt6NyKh/1/d//YDtuCdxsAhAAA=
+  <data encoding="base64" compression="zlib">
+   eJztWttqwzAM9Yese03HaKD//3NDUFEhFFk3G8/0gB6a6JYTRXKcHq21W0DuQbtKWSEHq5wthqhdJVbIwYpors/SLGLYleev9n4Ofsak48KuPHtrmN6XCvk25uOJy31y2975qv7sqWGeA9WvqD3u42gyF55YkbxG2HhqWNOt6Oc8V/r7oeh5fM60ifThQ9HVznmg8Ww5ntWdbSNhdC1LfmbxfEv4z9hwVNQy6PVmDvdzlTvcj19DTM0HB+Wa22CePD86P0bMJwprLUt6PVspLvD76OTU83EF5NrL2fkS65qHA++j1uOttSzVQs9Winsq56w+qm2Q5yyy/Vfjyxt3Z55xTWXtiRwaX5a4kt1Inr11VcUz9ecF9BepP2T3t6I8S/MYQGcy7hP2+iqNUclztH9IOWR9/ae+4fUXfR+R4mR97cwzAPiJPFcSIvtWaJNZT1bbjOA5gqs4uM73yL35emgkhvc5W53nXfDheQ4+PI8HvFPA9c3YZ+thhW+No/B8iTYHZn23X+H/Ada1EcL6/QquDebmH6hwQXc=
   </data>
  </layer>
  <layer name="spikes" width="90" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2YzQ4AEQwGXb3/C+99w6ba9UlrJnFSPxmUaA1ASz89gUvAswY8a8BzjP4q1rhRPGsRB4ca8KwBzzEsublN6i3tPGNVxnIPetqNYld9z+7grOvl8QzrZPe8e45/nafsnrPgzc872dX/yTxfac9a3k94rg2eNeBZA5414FkDnjXg+TxffznRt+gDmh8nZsAhAAA=
+  <data encoding="base64" compression="zlib">
+   eJztmM0OABEMBl29/wvvfcOm2vVJayZxUj8ZlGgNQEs/PYFLwLMGPGvAc4z+Kta4UTxrEQeHGvCsAc8xLLm5Teot7TxjVcZyD3rajWJXfc/u4Kzr5fEM62T3vHuOf52n7J6z4M3PO9nV/8k8X2nPWt5PeK4NnjXgWQOeNeBZA5414Pk8X3850bfoA80hAxk=
   </data>
  </layer>
  <layer name="players" width="90" height="24" opacity="0.47">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3OsQ0AAAQAMLvB/986gsSgvaARAAAAfJbXAQAAAIChug7AggZ7GhH+wCEAAA==
+  <data encoding="base64" compression="zlib">
+   eJztzrENAAAEADC7wf/fOoLEoL2gEQAAAHyW1wEAAACAoboOwIIGI78AGw==
   </data>
  </layer>
  <objectgroup name="level markers" width="90" height="24">
@@ -40,32 +46,37 @@
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3QsQkAIBAEwa/AwMD+SzV6sAF91Bm4/NgIXtCqD3xC5zOycy99AQC8oi1jv2w9qo8AAAAAwGUmgAhhBsAhAAA=
+  <data encoding="base64" compression="zlib">
+   eJzt0LEJACAQBMGvwMDA/ks1erABfdQZuPzYCF7Qqg98QuczsnMvfQEAvKItY79sPaqPAAAAAMBlJmJSAJk=
   </data>
  </layer>
  <layer name="checkpoint2" width="90" height="24" opacity="0.37">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3UoQ0AIBRDQSZAINh/VBQJntAvuJugeaKtAQAAAADc69UDPqFzhs4ZZ+dRtgLe8icZOmfonLE7z9IVVFgTgjfVwCEAAA==
+  <data encoding="base64" compression="zlib">
+   eJzt1KENACAUQ0EmQCDYf1QUCZ7QL7iboHmirQEAAAAA3OvVAz6hc4bOGWfnUbYC3vInGTpn6JyxO8/SFVRYSZQAmQ==
   </data>
  </layer>
  <layer name="checkpoint3" width="90" height="24" opacity="0.46">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3UoREAIBADQSpAIOi/VOY9Oi9+t4LMiawFAAAAAMB0u3vAEDpnVOfTPQJC/EqGzhk6Z1Tn2z2CrwcqN+DHwCEAAA==
+  <data encoding="base64" compression="zlib">
+   eJzt1KERACAQA0EqQCDov1TmPTovfreCzImsBQAAAADAdLt7wBA6Z1Tn0z0CQvxKhs4ZOmdU59s9gq8HXfUAiw==
   </data>
  </layer>
  <layer name="checkpoint4" width="90" height="24" opacity="0.51">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3QsQkAIAxFQSewsHD/UUVIKVZBQe+qpPu8UgAAAHhJvT3gEzrnWzXVOZ/OZ8ymLe4ev84AAADsDFXpxpXAIQAA
+  <data encoding="base64" compression="zlib">
+   eJzt0LEJACAMRUEnsLBw/1FFSClWQUHvqqT7vFIAAAB4Sb094BM651s11TmfzmfMpi3uHr/OAAAA7Axf5gCn
+  </data>
+ </layer>
+ <layer name="Arrows" width="90" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzt1TEBAAAIw7C5wr8zThwAR6KgXxMAPqjrAABY5n0AAAAAAKMBvtIAbw==
   </data>
  </layer>
 </map>

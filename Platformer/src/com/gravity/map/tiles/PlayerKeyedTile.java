@@ -29,6 +29,7 @@ public class PlayerKeyedTile extends AbstractEntity implements Renderer, Resetab
     private final TileRenderer blueRenderer;
     private final TileRenderer warningYellowRenderer;
     private final TileRenderer warningBlueRenderer;
+    private final TileRenderer warningBothRenderer;
 
     private boolean exists = true;
 
@@ -41,7 +42,7 @@ public class PlayerKeyedTile extends AbstractEntity implements Renderer, Resetab
     private boolean ticking;
 
     public PlayerKeyedTile(Rect shape, CollisionEngine collider, TileRenderer renderer, TileRenderer yellowRenderer, TileRenderer blueRenderer,
-            TileRenderer warningYellowRenderer, TileRenderer warningBlueRenderer, Layer layer, int x, int y) {
+            TileRenderer warningYellowRenderer, TileRenderer warningBlueRenderer, TileRenderer warningBothRenderer, Layer layer, int x, int y) {
         super(new PhysicalState(shape, 0f, 0f, 0f));
         this.shape = shape;
         this.keyedPlayer = null;
@@ -55,6 +56,7 @@ public class PlayerKeyedTile extends AbstractEntity implements Renderer, Resetab
         this.blueRenderer = blueRenderer;
         this.warningYellowRenderer = warningYellowRenderer;
         this.warningBlueRenderer = warningBlueRenderer;
+        this.warningBothRenderer = warningBothRenderer;
     }
 
     @Override
@@ -72,7 +74,8 @@ public class PlayerKeyedTile extends AbstractEntity implements Renderer, Resetab
     public void startUpdate(float millis) {
         if (ticking) {
             millisElapsedToGTFO += millis;
-        } else if (keyedPlayer != null) {
+        }
+        if (keyedPlayer != null) {
             millisSinceKeyed += millis;
         }
     }
@@ -135,7 +138,9 @@ public class PlayerKeyedTile extends AbstractEntity implements Renderer, Resetab
         if (!exists) {
             return;
         } else if (ticking) {
-            if (keyedPlayer.getName().equals("yellow")) {
+            if (millisSinceKeyed < TRANSITION_TIME) {
+                warningBothRenderer.render(g, offsetX, offsetY, shape, millisElapsedToGTFO / TIME_TO_GTFO);
+            } else if (keyedPlayer.getName().equals("yellow")) {
                 warningYellowRenderer.render(g, offsetX, offsetY, shape, millisElapsedToGTFO / TIME_TO_GTFO);
             } else {
                 warningBlueRenderer.render(g, offsetX, offsetY, shape, millisElapsedToGTFO / TIME_TO_GTFO);

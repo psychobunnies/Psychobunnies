@@ -67,18 +67,24 @@ public class GameWinState extends BasicGameState {
     private StateBasedGame game;
     private Rectangle restart;
     private Image winImage;
+    private Image eyesImage;
     private String[] winText;
     private int mouseOffsetX;
     private int mouseOffsetY;
+    private int mouseX;
+    private int mouseY;
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.game = game;
-        this.winImage = new Image("./new-assets/background/level-end.png");
+        this.winImage = new Image("./new-assets/background/level-end-no-pupils.png");
+        this.eyesImage = new Image("./new-assets/background/pupils.png");
         this.winText = NO_TEXT;
         
         this.mouseOffsetX = (container.getWidth() - PlatformerGame.WIDTH) / 2;
         this.mouseOffsetY = (container.getHeight() - PlatformerGame.HEIGHT) / 2;
+        this.mouseX = 400;
+        this.mouseY = 100;
     }
 
     public void setWinText(String text) {
@@ -91,7 +97,11 @@ public class GameWinState extends BasicGameState {
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+        int eyesX = Math.max(Math.min(mouseX, 600), 400);
+        int eyesY = Math.max(Math.min(mouseY, 200), 100);
+ 
         g.setAntiAlias(true);
+        g.drawImage(eyesImage, eyesX, eyesY);
         g.drawImage(winImage, 0, 0);
         g.pushTransform();
         GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
@@ -117,6 +127,11 @@ public class GameWinState extends BasicGameState {
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
+    }
+    
+    @Override
+    public void mouseMoved(int oldx, int oldy, int newx, int newy) {
+        
     }
 
     @Override

@@ -2,16 +2,6 @@ package com.gravity.levels;
 
 public class LevelInfo {
     static private final int STATE_ID_OFFSET = 1000;
-    
-    private static class NextOrder {
-        private int nextOrder = 0;
-        
-        public synchronized int get() {
-            nextOrder++;
-            return nextOrder - 1;
-        }
-    }
-    private static NextOrder nextOrder = new NextOrder();
 
     public final String title;
     public final String victoryText;
@@ -22,11 +12,11 @@ public class LevelInfo {
     /**
      * Constructor for standard levels (slingshot, bouncy, etc.)
      */
-    public LevelInfo(String title, String description, String mapfile) {
+    public LevelInfo(String title, String description, String mapfile, int levelOrder) {
         this.title = title;
         this.victoryText = description;
         this.mapfile = mapfile;
-        this.levelOrder = nextOrder.get();
+        this.levelOrder = levelOrder;
         this.stateId = this.levelOrder + STATE_ID_OFFSET;
     }
 

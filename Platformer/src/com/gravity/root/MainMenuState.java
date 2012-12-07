@@ -20,7 +20,7 @@ import com.gravity.levels.Renderer;
  */
 public class MainMenuState extends CageSelectState {
 
-    static public final int ID = 1;
+    static public final int ID = 50;
 
     private final LevelInfo[] levels;
 
@@ -36,22 +36,27 @@ public class MainMenuState extends CageSelectState {
 
         Vector2f quitLoc = map.getQuitLocation();
         Vector2f optLoc = map.getOptionsLocation();
+        Vector2f helpLoc = map.getHelpLocation();
 
         MenuCage quitCage = new MenuCage(game, quitLoc.x, quitLoc.y, GameQuitState.ID);
         MenuCage optCage = new MenuCage(game, optLoc.x, optLoc.y, CreditsState.ID);
+        MenuCage helpCage = new MenuCage(game, helpLoc.x, helpLoc.y, PlatformerGame.TUTORIAL1);
 
-        CageRenderer quitRend, optRend, levelRend;
+        CageRenderer quitRend, optRend, helpRend, levelRend;
         try {
             quitRend = new CageRenderer(quitCage, "Quit Game");
             optRend = new CageRenderer(optCage, "Credits");
+            helpRend = new CageRenderer(helpCage, "Help!");
         } catch (SlickException e) {
             throw new RuntimeException(e);
         }
 
         renderers.add(quitRend);
         renderers.add(optRend);
+        renderers.add(helpRend);
         cages.add(quitCage);
         cages.add(optCage);
+        cages.add(helpCage);
 
         SortedSet<Vector2f> levelLocs = map.getLevelLocations();
         LinkedList<Vector2f> reversedLevelLocs = Lists.newLinkedList();

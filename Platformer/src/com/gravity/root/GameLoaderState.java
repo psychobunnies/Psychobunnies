@@ -7,12 +7,17 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import com.gravity.levels.GameplayState;
+import com.gravity.levels.IntroLevelState;
 import com.gravity.levels.LevelInfo;
 
 public class GameLoaderState extends BasicGameState {
@@ -22,16 +27,23 @@ public class GameLoaderState extends BasicGameState {
     private StateBasedGame game;
     private GameContainer container;
     private Collection<LevelInfo> levels;
+    private Collection<LevelInfo> introLevels;
     private int loadState = 0;
     private String loadString = "Talking with the professor...";
     private int maxLogicUpdateInterval;
     private Image splashImage;
 
     private Iterator<LevelInfo> levelItr;
+    private Iterator<LevelInfo> introLevelItr;
     private LevelInfo levelInfo;
+    private LevelInfo introLevelInfo;
 
-    public GameLoaderState(Collection<LevelInfo> levels, int maxLogicUpdateInterval) {
+    private Rectangle restart;
+    private String[] winText;
+
+    public GameLoaderState(Collection<LevelInfo> levels, Collection<LevelInfo> introLevels, int maxLogicUpdateInterval) {
         this.levels = levels;
+        this.introLevels = introLevels;
         this.maxLogicUpdateInterval = maxLogicUpdateInterval;
     }
 
@@ -40,6 +52,8 @@ public class GameLoaderState extends BasicGameState {
         this.loadState = 0;
         this.levelItr = levels.iterator();
         this.levelInfo = levelItr.next();
+        this.introLevelItr = introLevels.iterator();
+        this.introLevelInfo = introLevelItr.next();
         this.game = game;
         this.container = container;
         this.loadString = "Securing research funding...";
@@ -84,8 +98,20 @@ public class GameLoaderState extends BasicGameState {
             loadString += "Starting grad student\n   bunny raising pipeline...";
             break;
         case 8:
+            loadString += "Planning 'escapes': " + introLevelInfo.title + "...";
+            break;
+        case 9:
             loadString += "Opening the lab...";
             break;
+        case 10:
+            loadString += "\nREADY!!! Press [Enter] to begin.";
+        }
+    }
+
+    @Override
+    public void keyPressed(int key, char c) {
+        if (key == Input.KEY_RETURN && loadState > 9) {
+            game.enterState(PlatformerGame.TUTORIAL1, new FadeOutTransition(), new FadeInTransition());
         }
     }
 
@@ -127,12 +153,17 @@ public class GameLoaderState extends BasicGameState {
             addState(new RestartGameplayState());
             break;
         case 8:
+            addState(new IntroLevelState(introLevelInfo, introLevelInfo.stateId + 1));
+            if (introLevelItr.hasNext()) {
+                introLevelInfo = introLevelItr.next();
+                nextState = false;
+            }
+            break;
+        case 9:
             @SuppressWarnings("unused")
             // assignment so we can get the classloader to run the static code
             GameSounds.Event event = GameSounds.Event.BOUNCE;
             GameSounds.playBGM();
-        default:
-            game.enterState(MainMenuState.ID);
         }
         updateLoadString(nextState);
     }

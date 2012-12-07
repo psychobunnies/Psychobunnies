@@ -27,35 +27,37 @@ import com.gravity.levels.LevelInfo;
 public class PlatformerGame extends StateBasedGame {
     public static final int WIDTH = 1024;
     public static final int HEIGHT = 768;
-    
+
     //@formatter:off
     private LevelInfo[] levels = {
 
             // Very Hard (1)
-            new LevelInfo("Moving", VictoryText.MOVING, "assets/Levels/moving.tmx"),
+            new LevelInfo("Moving", VictoryText.MOVING, "assets/Levels/moving.tmx", 0),
            
             // Impossible
-            new LevelInfo("Falling", VictoryText.FALLING, "assets/Levels/falling.tmx"),
-            new LevelInfo("Split World", VictoryText.SLINGSHOT, "assets/Levels/split_world.tmx"),
+            new LevelInfo("Falling", VictoryText.FALLING, "assets/Levels/falling.tmx", 1),
+            new LevelInfo("Split World", VictoryText.SLINGSHOT, "assets/Levels/split_world.tmx", 3),
             
             // Very Hard (1)
-            new LevelInfo("Bouncy 2", VictoryText.BOUNCY2, "assets/Levels/Bouncy_2.tmx"),
+            new LevelInfo("Bouncy 2", VictoryText.BOUNCY2, "assets/Levels/Bouncy_2.tmx", 4),
             
             // Hard (4)
-            new LevelInfo("Bouncy 1", VictoryText.BOUNCY1, "assets/Levels/Bouncy_1.tmx"),
+            new LevelInfo("Bouncy 1", VictoryText.BOUNCY1, "assets/Levels/Bouncy_1.tmx", 7),
             //new LevelInfo("Test Stomps", VictoryText.TEST, "assets/Levels/checkpointing.tmx"),
             //new LevelInfo("Checkpointing",  VictoryText.TEST, "assets/Levels/checkpointing.tmx"),
 
             // Medium (4)
-            new LevelInfo("Elevators", VictoryText.ELEVATORS, "assets/levels/Elevators.tmx"),
-            new LevelInfo("Shortcuts", VictoryText.SHORTCUTS, "assets/levels/shortcuts.tmx"),
-            new LevelInfo("Slingshot", VictoryText.SLINGSHOT, "assets/Levels/slingshot_intro.tmx"),
-            new LevelInfo("Platformer", VictoryText.PLATFORMER, "assets/Levels/platform.tmx"),
+            new LevelInfo("Elevators", VictoryText.ELEVATORS, "assets/levels/Elevators.tmx", 8),
+            new LevelInfo("Shortcuts", VictoryText.SHORTCUTS, "assets/levels/shortcuts.tmx", 11),
+            new LevelInfo("Slingshot", VictoryText.SLINGSHOT, "assets/Levels/slingshot_intro.tmx", 12),
+            new LevelInfo("Platformer", VictoryText.PLATFORMER, "assets/Levels/platform.tmx", 15),
             // Easy (2)
-            new LevelInfo("Lab Procedures", VictoryText.PROCEDURES, "assets/Levels/intro_tutorial.tmx"),
-            new LevelInfo("Lab Safety", VictoryText.SAFETY, "assets/Levels/enemies_tutorial.tmx"),
     };
     //@formatter:on
+    static public final int TUTORIAL1 = 48;
+    static public final int TUTORIAL2 = 49;
+    public LevelInfo tutorial1 = new LevelInfo("Lab Procedures", "assets/Levels/tutorial.tmx", TUTORIAL1);
+    public LevelInfo tutorial2 = new LevelInfo("Lab Safety", "assets/Levels/enemies_tutorial.tmx", TUTORIAL2);
 
     public PlatformerGame() {
         super("Psychic Psycho Bunnies v1.1");
@@ -63,13 +65,12 @@ public class PlatformerGame extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {
-        addState(new GameLoaderState(Lists.newArrayList(levels), 100));
+        addState(new GameLoaderState(Lists.newArrayList(levels), Lists.newArrayList(tutorial1, tutorial2), 100));
     }
-    
+
     @Override
     protected void preRenderState(GameContainer container, Graphics g) throws SlickException {
-        g.translate((container.getWidth() - 1024) / 2,
-                    (container.getHeight() - 768) / 2);
+        g.translate((container.getWidth() - 1024) / 2, (container.getHeight() - 768) / 2);
         g.setWorldClip(0, 0, WIDTH, HEIGHT);
     }
 

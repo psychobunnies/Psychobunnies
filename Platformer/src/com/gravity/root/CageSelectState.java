@@ -22,6 +22,8 @@ public abstract class CageSelectState extends GameplayState {
 
     private static final int SELECT_KEY = Input.KEY_ENTER;
     private List<MenuCage> cages;
+    private int mouseOffsetX;
+    private int mouseOffsetY;
 
     public CageSelectState(LevelInfo info) throws SlickException {
         super(info);
@@ -32,6 +34,9 @@ public abstract class CageSelectState extends GameplayState {
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         super.init(container, game);
+        
+        mouseOffsetX = (container.getWidth() - PlatformerGame.WIDTH) / 2;
+        mouseOffsetY = (container.getHeight() - PlatformerGame.HEIGHT) / 2;
     }
 
     public void enterCageState(MenuCage cage) {
@@ -48,7 +53,7 @@ public abstract class CageSelectState extends GameplayState {
     @Override
     public void mouseClicked(int button, int x, int y, int clickCount) {
         for (MenuCage cage : cages) {
-            if (cage.getRect().contains(x, y)) {
+            if (cage.getRect().contains(x - mouseOffsetX, y - mouseOffsetY)) {
                 enterCageState(cage);
             }
         }

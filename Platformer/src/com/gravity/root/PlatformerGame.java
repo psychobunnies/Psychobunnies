@@ -96,7 +96,7 @@ public class PlatformerGame extends StateBasedGame {
         }
         isDebugging |= args.length > 0 && args[0].equals("nofullscreen");
         if (!isDebugging) {
-            app.setDisplayMode(1280, 800, true);
+            app.setDisplayMode(app.getScreenWidth(), app.getScreenHeight(), true);
         }
 
         app.start();

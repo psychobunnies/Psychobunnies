@@ -16,6 +16,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
@@ -67,18 +68,26 @@ public class GameWinState extends BasicGameState {
     private StateBasedGame game;
     private Rectangle restart;
     private Image winImage;
+    private Image eyesImage;
+    private Image pupilsImage;
     private String[] winText;
     private int mouseOffsetX;
     private int mouseOffsetY;
+    private int mouseX;
+    private int mouseY;
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         this.game = game;
-        this.winImage = new Image("./new-assets/background/level-end.png");
+        this.winImage = new Image("./new-assets/background/level-end-no-eyes.png");
+        this.eyesImage = new Image("./new-assets/background/eyes.png");
+        this.pupilsImage = new Image("./new-assets/background/pupils.png");
         this.winText = NO_TEXT;
         
         this.mouseOffsetX = (container.getWidth() - PlatformerGame.WIDTH) / 2;
         this.mouseOffsetY = (container.getHeight() - PlatformerGame.HEIGHT) / 2;
+        this.mouseX = 400;
+        this.mouseY = 100;
     }
 
     public void setWinText(String text) {
@@ -91,8 +100,16 @@ public class GameWinState extends BasicGameState {
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+        Vector2f mouse = new Vector2f(mouseX, mouseY);
+        Vector2f eyes = new Vector2f(390f, 100f);
+        Vector2f eyesCenter = eyes.copy().add(new Vector2f(eyesImage.getWidth(), eyesImage.getHeight()).scale(0.5f));
+        Vector2f mouseDelta = eyesCenter.copy().sub(mouse);
+        Vector2f pupils = mouseDelta.copy().normalise().scale(-Math.min(mouseDelta.length(), 5.0f)).add(eyes);
+
         g.setAntiAlias(true);
         g.drawImage(winImage, 0, 0);
+        g.drawImage(eyesImage, (pupils.x + eyes.x) / 2, (pupils.y + eyes.y) / 2);
+        g.drawImage(pupilsImage, pupils.x, pupils.y);
         g.pushTransform();
         GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
         GL11.glEnable(GL11.GL_BLEND);
@@ -117,6 +134,12 @@ public class GameWinState extends BasicGameState {
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
+    }
+    
+    @Override
+    public void mouseMoved(int oldx, int oldy, int newx, int newy) {
+        mouseX = newx - mouseOffsetX;
+        mouseY = newy - mouseOffsetY;
     }
 
     @Override

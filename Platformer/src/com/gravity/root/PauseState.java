@@ -41,6 +41,9 @@ public class PauseState extends CageSelectState {
         if (cage == resumeCage) {
             game.enterState(cage.getToState(), new SlideTransition(game.getState(cage.getToState()), Side.TOP, 1000), null);
         } else {
+            // Main menu
+            GameplayState fromState = (GameplayState)game.getState(resumeCage.getToState());
+            fromState.reset();
             game.enterState(cage.getToState(), new FadeOutTransition(), new FadeInTransition());
         }
     }

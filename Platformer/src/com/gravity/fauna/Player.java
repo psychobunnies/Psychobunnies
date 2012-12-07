@@ -26,7 +26,7 @@ public class Player extends PhysicsEntity<GravityPhysics> {
     private static final float JUMP_POWER = 0.48f; // .6 before reset
     private static final float MOVEMENT_INCREMENT = 1f / 8f;
     private static final Vector2f DEFAULT_VELOCITY = new Vector2f(0, 0);
-    private static final float SLINGSHOT_COOLDOWN = 1000f;
+    private static final float SLINGSHOT_COOLDOWN = 700f;
 
     private final float MAX_SLING_STRENGTH = 0.75f; // 1 before reset
     private final float JUMP_COOLDOWN = 50f;

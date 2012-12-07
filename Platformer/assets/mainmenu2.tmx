@@ -9,9 +9,12 @@
  <tileset firstgid="13" name="levelMarkers" tilewidth="32" tileheight="32">
   <image source="Levels/levelMarkers.png" width="128" height="128"/>
  </tileset>
+ <tileset firstgid="29" name="New lab tiles" tilewidth="32" tileheight="32">
+  <image source="../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="192"/>
+ </tileset>
  <layer name="collisions" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJxjZGBgYMaBGfHIEYvxmcEIxbgAPjliASHzR+0fPPaTknbQASnpD5f99Aaj9o/aT2oZy4LHPCYSzRos/h+1f2TbT420DwOk5IHB4v9R+0e2/ZS2sSlpmwMAYzYBsQ==
+   eJxTYGBgYMaCFZEwNnliMCH9SkCszoAb4JMjFhAyf9R+3ECLCvbjMwPdfgUG4tMWOiBWnxIe++kNRu0fePupkcbJBSC7FRhIK1NZ8JjHRKJZhMpfWoPBEP8j3f6hlP7xpX0YICUPjKb/UfuHUvqnNgalfwCQugrD
   </data>
  </layer>
  <layer name="helptext1" width="32" height="24">
@@ -32,7 +35,7 @@
  </layer>
  <layer name="level markers" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFowABhMmUI1YNMWaMglEwUGA0fY6CkQzQ0z8l+YGaZo2CUTBQgNx0OxTSOwCvcADS
+   eJxjYBgFowABhMmUo5b+UTAKBhKMptFRMJIBevqnJD9Q06xRMAoGCpCbbodCegcAr7wA0g==
   </data>
  </layer>
  <objectgroup name="special levels" width="32" height="24">
@@ -46,7 +49,7 @@
    <property name="translationY" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztxzEKAAAIxLAD//9nF1fdhQQ6NIE/atoeAIBbA3tIAA0=
+   eJxjYBgFo2DoAGYgVkLiK0DFRsEoGAWjYBSMglEwCkYBcQAAp9oASQ==
   </data>
  </layer>
 </map>

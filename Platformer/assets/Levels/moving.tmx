@@ -38,7 +38,7 @@
  </tileset>
  <layer name="collisions" width="110" height="24">
   <data encoding="base64" compression="zlib">
-   eJztmFEKhDAMRHPIVfQU4scK3l4CgkWQVbQ7TjIPguCHJLwmth3MrCmiW5/97v1T0VX6braYTLAxmbwxIm+cyBsn8sZJRG9fdAJ/IKK3DMwmb4z4TJE3TuTtPB/b7itacC41vXmd6Pqion7DUPYu+n4ywx78Ddw9B2gOYsh2fosyD7J5Q/LkmrnqLetcfFvd6jdO5I2Ts94QcyLKHqIG6jdO3NmMTkJcxp39um8ZYdmJI/wfsgBuCEbu
+   eJztmNEKgzAMRfORE7qvEB8m+PcSNljxYVi0u73JPRAEHyThNLHtbGZTFeXzfB7e3xWl03ezxWqCjdXkjRF540TeOJE3TiJ6e6ET+AMRvWVgM3ljxGeKvHEib+eZ7XtfsYBz6enN60TXFxX1G4a6d9H3kxn24CNw9RygOYgh2/ktyjzI5g3JnWum1VvWuTha3eo3TuSNk7PeEHMiyh6iB+o3TtzZhk5CNOPOHvb7PmWkfZR44/+QHbP7SE0=
   </data>
  </layer>
  <layer name="spikes" width="110" height="24">
@@ -67,7 +67,7 @@
    <property name="translationY" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt06ERACAMBMEUGei/FCIQ8QgidmfOv/kIAAAAAADgRVbrtj9vgWn6P/wEAACASQ4IfwNT
+   eJzt0zEOABAURMF/SFxD3L8hQRxAQTGTvH6bjQAAAAAAAG7UUV61x1vgNynOP3bl6SIAAACYOsogA4k=
   </data>
  </layer>
  <layer name="fast3" width="110" height="24">
@@ -77,7 +77,7 @@
    <property name="translationY" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2bEJACAQBEGLVNsQ+0/8wBLEV5iBzS+/UgAAgBtGNLNHABxSo7bryVsAAAAA4DU+AYA/LEW0AxU=
+   eJzt2TEKACAMA8B+0ndI/7+o4OJeFOEOsmfKkggAAOCGPpOvSwAUWZvWdmwbAAAAAJx8AgB/GIdbA0s=
   </data>
  </layer>
  <layer name="slow3" width="110" height="24">
@@ -87,7 +87,7 @@
    <property name="translationY" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztzLENADAIwDCOLPx/Ch14gQ6VLWVNBAAAAAAAL5xbTrX43vgDAAAAwG8aU34C/g==
+   eJztzLENADAIwDCe7B2I/xc68AIdKlvKmggAAAAAAF7I25lq8b3xBwAAAIDfNIvaA2o=
   </data>
  </layer>
  <layer name="slow8" width="110" height="24" opacity="0.9">
@@ -107,7 +107,7 @@
    <property name="translationY" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1qENACAQBEGKBNog9G94kCQoxJuZZP3JKwUAAPgxohbN7CEAAADAUaOePQIA4GF/lXbluwDkWMOIA94=
+   eJzt2TEKACAMA8B+0neI/1+sguDuUIc7yN4xoREAAMCLnmmZUX0IAAAAsK2tbqcDAL86f4U7ugtAjQnv9ARK
   </data>
  </layer>
  <layer name="checkpoint1" width="110" height="24">

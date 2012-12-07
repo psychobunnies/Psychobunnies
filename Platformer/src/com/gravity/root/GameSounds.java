@@ -22,7 +22,8 @@ public final class GameSounds {
     private static final List<String> crushSounds = Lists.newArrayList("death_crush1.ogg", "death_crush2.ogg", "death_crush6.ogg",
             "death_crush8.ogg", "death_crush5.ogg");
     private static final List<String> fellSounds = Lists.newArrayList("death_ugh.ogg");
-    private static final List<String> bounceSounds = Lists.newArrayList();
+    private static final List<String> bounceSounds = Lists.newArrayList(/* "bounce.ogg" */);
+    private static final List<String> bonkSounds = Lists.newArrayList("ceiling_bonk.ogg");
     private static final Music backgroundMusic;
     private static final Music menuMusic;
     private static final Random random;
@@ -48,7 +49,8 @@ public final class GameSounds {
         CRUSHED      (crushSounds),
         WALL_OF_DEATH(spikeSounds),
         FELL_OFF_MAP (fellSounds),
-        BOUNCE       (bounceSounds);
+        BOUNCE       (bounceSounds),
+        BONK         (bonkSounds);
         //@formatter:on
 
         private List<Sound> sounds;
@@ -76,7 +78,7 @@ public final class GameSounds {
     }
 
     public static void playMenuMusic() {
-        if (menuMusic.playing()) {
+        if (!menuMusic.playing()) {
             menuMusic.loop();
         }
     }

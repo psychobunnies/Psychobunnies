@@ -10,7 +10,7 @@ import org.newdawn.slick.font.effects.ColorEffect;
 
 public class PauseTextRenderer implements UpdateCycling, Renderer {
     
-    public static final String text = "Press Enter to pause.";
+    public static final String text = "Press Esc to pause.";
     public static final int appearLength = 4000;
     public static final int fadeLength = 1000;
     

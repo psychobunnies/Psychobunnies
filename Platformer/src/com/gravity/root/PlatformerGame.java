@@ -80,6 +80,7 @@ public class PlatformerGame extends StateBasedGame {
         app.setMaximumLogicUpdateInterval(100);
         app.setMinimumLogicUpdateInterval(10);
         app.setTargetFrameRate(60);
+        app.setShowFPS(false);
         app.setAlwaysRender(true);
         app.setVSync(true);
         if (app.supportsMultiSample()) {

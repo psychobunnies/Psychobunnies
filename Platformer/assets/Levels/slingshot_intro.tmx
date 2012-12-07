@@ -89,7 +89,7 @@
  </layer>
  <layer name="players" width="150" height="24">
   <data encoding="base64" compression="zlib">
-   eJztwzENAAAIA7BZwL9ZnqmANmkCAAAAAAAAAAAAAABw1zQAfLMmkwAj
+   eJztwwEJAAAIA7BXsH9ZOZhCNlgCAAAAAAAAAAAAAABAzQWADxYguwAj
   </data>
  </layer>
  <layer name="checkpoint2" width="150" height="24">

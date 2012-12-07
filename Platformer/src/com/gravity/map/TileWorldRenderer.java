@@ -27,11 +27,11 @@ public class TileWorldRenderer implements Renderer {
             throw new RuntimeException(e);
         }
         extraRenderers = Lists.newArrayList();
-        for (TriggeredText tt : tileMap.getTriggeredTexts()) {
-            extraRenderers.add(new TriggeredTextRenderer(tt));
-        }
         for (TriggeredImage ti : tileMap.getTriggeredImages()) {
             extraRenderers.add(ti);
+        }
+        for (TriggeredText tt : tileMap.getTriggeredTexts()) {
+            extraRenderers.add(new TriggeredTextRenderer(tt));
         }
         for (List<MovingEntity> mcs : tileMap.getMovingCollMap().values()) {
             extraRenderers.addAll(mcs);

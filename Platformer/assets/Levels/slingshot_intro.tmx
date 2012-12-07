@@ -106,7 +106,7 @@
  </layer>
  <layer name="playerkeyed" width="150" height="24">
   <data encoding="base64" compression="zlib">
-   eJztw6EJAAAIADCf8v/XrEaLoLDBIgAAAAAAAOCHbOGqHAYAAAAAAIBtBa8bArI=
+   eJztw6EJAAAIADB/8f8frUaLoLDBIgAAAAAAAOCHbOGqHAYAAAAAAIBtBbvcAcg=
   </data>
  </layer>
  <layer name="arrows" width="150" height="24">

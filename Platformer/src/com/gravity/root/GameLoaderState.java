@@ -9,6 +9,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.Color;
 
 import com.gravity.levels.GameplayState;
 import com.gravity.levels.LevelInfo;
@@ -23,6 +25,7 @@ public class GameLoaderState extends BasicGameState {
     private int loadState = 0;
     private String loadString = "Talking with the professor...";
     private int maxLogicUpdateInterval;
+    private Image splashImage;
 
     private Iterator<LevelInfo> levelItr;
     private LevelInfo levelInfo;
@@ -40,11 +43,14 @@ public class GameLoaderState extends BasicGameState {
         this.game = game;
         this.container = container;
         this.loadString = "Securing research funding...";
+        this.splashImage = new Image("./new-assets/background/splash.png");
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-        g.drawString(loadString, 50, 50);
+        g.drawImage(this.splashImage, 0, 0);
+        g.setColor(Color.black);
+        g.drawString(loadString, 624f, 50f);
     }
 
     protected void updateLoadString(boolean update) {
@@ -75,7 +81,7 @@ public class GameLoaderState extends BasicGameState {
             loadString += "Discussing exit strategies...";
             break;
         case 7:
-            loadString += "Starting grad student bunny raising pipeline...";
+            loadString += "Starting grad student\nbunny raising pipeline...";
             break;
         case 8:
             loadString += "Opening the lab...";

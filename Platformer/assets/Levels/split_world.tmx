@@ -29,17 +29,17 @@
  </tileset>
  <layer name="collisions" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJztWttuwzAI9YdsfY2adFUj9f+/bUIaGkKYAMauG/VIflhtLj6FE9fZWkr5DowtaJc5ZsjBOvYSQ9QuEzPkYEU012dqFjGcleev8t8Htz7puHBWnr01TL+XjHEx5uOJy31yWz6/BnM/4tlTwwvJA9ZeyVxG7XEfGItz4YkVyauHjaeGH0l+auC50r8fyjqPz5E2WMNwbrLqMNTytTK3Ovxo0Hi2fN66drSNhN61LPkZwbNUI6/i+V7aaxnWSc8cqvfW/cL3sRhiaj44NF2C/pd6nz4/MnjW6tVay9K6I1spd9ibR+88+0euvZzBeu2cwuuLA3Vc2pM2xyHVvKUPpP3uypzVR7bNHozD0aq/Gl/euGfmGfvpHrTX+NLwo9j15NlbV1k8U39egL5I+tB6vxXluaZX9Pca3hMe6SqNkclzVD+iuqH5eifd8OoA6If1PMXz4Ij+tnlHniM54LnK21cSvP2xEJuW82S2TQ+eI6jFidyNbcWnoZEY3j6bneez4MPzGHx47g84S8D+Mu4mWjHDu8ZeeP6N2nNgK+Pe28/w/wHWsxHC+m4M77R+AV9URHM=
+   eJztWu0OwiAM5EX07+KmxiW+/7MZEomkoaVXCuLiJcQ4+sVRCjLXEMLJ0DajnmebIQZt24MNVj1PzBCDFtZYn65R2HBUntfwWQfXPuFAOCrPaA7n8+LR6Nxy8SB+qU2qW+v3qs9IDi+ZfJS9ZH0euUdt5L4kOcTmt3SQHH442eFAY82/PwQ5xOZInZQn8dykrcMxly9M3wrYkSDxrHneKjtap4TeuVyyM4LnUo58i+d7aM/lklx8tmVNO944H4vCp2SDQqpLKU5uz7wCfiRI+arN5ZJcTZereUi9Q8afuEY5i/LSOaUWK7ff1/pKsqVcqOmWxrsLfVob3jq70Q9Fa/2V+EL9HpnntJ7uRn2JLwk3Qa8nz2heefGc20PB1YfW+y0rz1w8eX1N94RnwIcnz9b6Ya0bkq1fqhtoHYj1Q3ueonFQWH/b/CLP1jqQ1lXr2QpdH0um03Ke9NbpwbMFnB/L3dhGPrVn05Z7Q834Zub5KPjzPAZ/nvsjniXi+DzuJloxw7vGXni+G7cPpDuyEe/cZ/h/ALq3affPdKf1AuOcRbU=
   </data>
  </layer>
  <layer name="spikes" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt1kEOgCAMBVHuRrz/ldwbSNoin7TMS1yJSkZFWwO0+ukJXILOGnTWoPOa/tms40bjuRfraKhBZw06r7GszW2y33Jc5FqVWb6DkeNGY729Z9/grPcr0hl+2TvvnuNf71P2zllE1+eddp3/5Dpf6Zm1/D/RuTY6a9BZg84adNagswadz3scm9cLB50XHw==
+   eJztmF0OABEMBt3N/e+07xs21a5PWjOJJ/WTQYnWALT00xO4BDxrwLMGPMfor2KNG8WzFnFwqAHPGvAcw5Kb26Te0s4zVmUs96Cn3Sh21ffsDs66Xh7PsE52z7vn+Nd5yu45C978vJNd/Z/M85X2rOX9hOfa4FkDnjXgWQOeNeBZA57P8/WXE32LPgFtFwk=
   </data>
  </layer>
  <layer name="players" width="90" height="24" opacity="0.47">
   <data encoding="base64" compression="zlib">
-   eJztzrENAAAEADC7wf/fOoLEoL2gEQAAAHyW1wEAAACAoboOwIIGI78AGw==
+   eJztzrENAAAEADC7wf/fOsKApL2gEQAAADfldgAAAABgqLYDwBsNSE8AGw==
   </data>
  </layer>
  <objectgroup name="level markers" width="90" height="24">
@@ -50,7 +50,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0LEJACAQBMGvwMDA/ks1erABfdQZuPzYCF7Qqg98QuczsnMvfQEAvKItY79sPaqPAAAAAMBlJmJSAJk=
+   eJzt0rEJACAMRUEnSGHh/qOKhWBpIQTMHaR/fNIaP4jsgCL2zj214n/+GQB4KY5bRmJLBefWAAAAAMC9CZqSAJk=
   </data>
  </layer>
  <layer name="checkpoint2" width="90" height="24" opacity="0.37">
@@ -58,7 +58,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1KENACAUQ0EmQCDYf1QUCZ7QL7iboHmirQEAAAAA3OvVAz6hc4bOGWfnUbYC3vInGTpn6JyxO8/SFVRYSZQAmQ==
+   eJzt0sEJACAMBEEr8OHD/kv1lQqEBJKZCo7l1gIAAAAA+LerBwyhc47ofEpX9OfPTODnOXTOEZ1v6Yr+/HmuB4IcAJk=
   </data>
  </layer>
  <layer name="checkpoint3" width="90" height="24" opacity="0.46">
@@ -66,7 +66,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1KERACAQA0EqQCDov1TmPTovfreCzImsBQAAAADAdLt7wBA6Z1Tn0z0CQvxKhs4ZOmdU59s9gq8HXfUAiw==
+   eJzt0rENACAMA8FMQEHB/qMiClZIELmb4GU5AgAAAACA7kZ1QBNn51kd0YA/04m/57BzjrvzKq34nz+/awOV3QCL
   </data>
  </layer>
  <layer name="checkpoint4" width="90" height="24" opacity="0.51">
@@ -74,7 +74,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0LEJACAMRUEnsLBw/1FFSClWQUHvqqT7vFIAAAB4Sb094BM651s11TmfzmfMpi3uHr/OAAAA7Axf5gCn
+   eJzt0LEJACAMRUEnsLBw/1FFsAhiGRD0rgq/Cq8UAAAAXlJvP/AJnfOdmuqcbzZt6+5hI9fetB42AAAAiAaYJgCn
   </data>
  </layer>
  <layer name="Arrows" width="90" height="24">

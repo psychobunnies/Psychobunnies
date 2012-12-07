@@ -97,12 +97,12 @@ public class GameWinState extends BasicGameState {
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-        int eyesX = Math.max(Math.min(mouseX, 600), 400);
-        int eyesY = Math.max(Math.min(mouseY, 200), 100);
+        int eyesX = Math.max(Math.min(mouseX - eyesImage.getWidth() / 2, 600), 400);
+        int eyesY = Math.max(Math.min(mouseY - eyesImage.getHeight() / 2, 200), 100);
  
         g.setAntiAlias(true);
-        g.drawImage(eyesImage, eyesX, eyesY);
         g.drawImage(winImage, 0, 0);
+        g.drawImage(eyesImage, eyesX, eyesY);
         g.pushTransform();
         GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
         GL11.glEnable(GL11.GL_BLEND);
@@ -131,7 +131,8 @@ public class GameWinState extends BasicGameState {
     
     @Override
     public void mouseMoved(int oldx, int oldy, int newx, int newy) {
-        
+        mouseX = newx - mouseOffsetX;
+        mouseY = newy - mouseOffsetY;
     }
 
     @Override

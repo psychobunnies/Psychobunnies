@@ -24,6 +24,7 @@ public final class GameSounds {
     private static final List<String> fellSounds = Lists.newArrayList("death_ugh.ogg");
     private static final List<String> bounceSounds = Lists.newArrayList();
     private static final Music backgroundMusic;
+    private static final Music menuMusic;
     private static final Random random;
 
     private static final String soundPath = "./assets/Sound/";
@@ -32,6 +33,7 @@ public final class GameSounds {
 
         try {
             backgroundMusic = new Music("./assets/Sound/Forminas.ogg");
+            menuMusic = new Music("./assets/Sound/levelselect_theme.ogg");
         } catch (SlickException e) {
             throw new RuntimeException(e);
         }
@@ -68,8 +70,15 @@ public final class GameSounds {
     }
 
     public static void playBGM() {
-        backgroundMusic.loop();
+        if (!backgroundMusic.playing()) {
+            backgroundMusic.loop();
+        }
+    }
 
+    public static void playMenuMusic() {
+        if (menuMusic.playing()) {
+            menuMusic.loop();
+        }
     }
 
     public static void playSoundFor(Event event) {

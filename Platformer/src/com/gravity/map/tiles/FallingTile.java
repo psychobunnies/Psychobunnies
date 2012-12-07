@@ -25,13 +25,15 @@ public class FallingTile extends AbstractEntity implements Renderer {
     private float startX, startY;
     private boolean falling = false;
     private Random rand = new Random();
+    private int hitReduction;
 
-    public FallingTile(GameplayState gameState, Rect shape, TileRenderer renderer) {
+    public FallingTile(GameplayState gameState, Rect shape, int hitReduction, TileRenderer renderer) {
         super(new PhysicalState(shape, 0, 0, 0, 0, 0));
         this.renderer = renderer;
         this.gameState = gameState;
         this.startX = this.state.getPosition().x;
         this.startY = this.state.getPosition().y;
+        this.hitReduction = hitReduction;
     }
 
     @Override
@@ -56,7 +58,7 @@ public class FallingTile extends AbstractEntity implements Renderer {
 
     @Override
     public void render(Graphics g, int offsetX, int offsetY) {
-        renderer.render(g, offsetX, offsetY, state.getRectangle());
+        renderer.render(g, offsetX - hitReduction, offsetY - hitReduction, state.getRectangle());
         // if we ever need hitboxes again
         // g.setColor(Color.cyan);
         // g.draw(state.getRectangle().translate(offsetX, offsetY).toShape());

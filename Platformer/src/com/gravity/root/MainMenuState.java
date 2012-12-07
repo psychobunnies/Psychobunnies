@@ -30,6 +30,12 @@ public class MainMenuState extends CageSelectState {
     }
 
     @Override
+    public void reloadGame() {
+        GameSounds.playMenuMusic();
+        super.reloadGame();
+    }
+
+    @Override
     protected CagesAndRenderers constructCagesAndRenderers() {
         List<MenuCage> cages = Lists.newLinkedList();
         List<Renderer> renderers = Lists.newLinkedList();

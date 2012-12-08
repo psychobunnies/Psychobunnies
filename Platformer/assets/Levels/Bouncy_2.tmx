@@ -24,7 +24,7 @@
  <tileset firstgid="136" name="all-trigger" tilewidth="32" tileheight="32">
   <image source="../../new-assets/tiles/trigger/all-trigger.png" width="64" height="64"/>
  </tileset>
- <layer name="moving 1" width="90" height="24">
+ <layer name="moving 1" width="90" height="24" visible="0">
   <properties>
    <property name="speed" value="60"/>
    <property name="translationX" value="19"/>
@@ -34,7 +34,7 @@
    eJztzjEKADAIADG/Xf28nQXnQkng9osAAAAAAAAA+M+55aieHgHsGniHAt0=
   </data>
  </layer>
- <layer name="moving 2" width="90" height="24">
+ <layer name="moving 2" width="90" height="24" visible="0">
   <properties>
    <property name="speed" value="30"/>
    <property name="translationX" value="3"/>
@@ -44,7 +44,7 @@
    eJztzrENAAAEAEFri+WZAsVd8v1HAAAAAADATznV9QQAACxomJoA9Q==
   </data>
  </layer>
- <layer name="moving 5" width="90" height="24">
+ <layer name="moving 5" width="90" height="24" visible="0">
   <properties>
    <property name="speed" value="45"/>
    <property name="translationX" value="15"/>
@@ -92,7 +92,7 @@
  </layer>
  <layer name="collisions" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJzdme0KhCAQRee13Yi90ItvQUKIXzPqzLQH/FN7PZqtqAUi+igVDUqeUGnX6rKdBTM7WUHL4xGQXv8PJY9HQP/5nm3WDUgAjT/n2rznqb+W7bz+yxDk9snt0AAD2ecY9YxJOqZXRjJvQpCxBsbu3LPvyb0NGLtTf+jMvQ0Yu7n+XZDxAIzdXL8kI6G1f+TuLyFsxwwg8Ncyca73tJ6LwNjN9UsyHgDz9zPPY3AXzno4Zt6G5b4ft5/TBtA7n3NuTgukM8eByvvRkp87Ll6AsZvrT9+BOE4p3vbmMHav8q+qVwqM3av8rXq133co+1J36pecd5TqHrk/G23fk9q5aOl6L638aP1cLp/GN8rcuqL2fbB0vZdWfrR+Lh7WzzlG29XKa/Zba51c4iD++rmX1vmqxzOQVXzP8gOr/XBm
+   eJzdmesKwyAMRvParpR90BdfCxOGeEvUJO6Afzo+j5dO1AYieikVDUoerT7mynEXzOxkBS2PR0B6/b+UPB4B/ed7dlg3IAE0Ps6B6uuSFyzb+fyXIcidk9uhAQayv3PUMyfpnD4ZyboJQcYaGLtzY9+T2w0Yu1N/6MztBozdXP8pyHgAxm6uX5KR0Do/cs+XELZjBhD4a5m41nvaz0Vg7Ob6JRkPwNj9FM5+OGZ2w/Lcj6+f0wbQnuOcW9MC6axxoPJ5tOTnzosXYOzm+tN3IM5TirezOYzdq/yr6pUCY/cqf6te7fcdyr7Unfol9x2lukd+n42275favWjpeS+t/Gj9XLR8uX1F7ftg6Xkvrfxo/Vw87J9zjLarldfst9Y+ucRF/P1zL637VY93IKt43+UDCTZvcw==
   </data>
  </layer>
  <layer name="bouncy overflow" width="90" height="24">

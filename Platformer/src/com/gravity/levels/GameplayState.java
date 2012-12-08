@@ -90,7 +90,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
 
     protected final List<Resetable> resetableTiles = Lists.newArrayList();
     private final String levelName;
-    private String winText;
+    protected String winText;
 
     private static final float MIN_SLINGSHOT_DISTANCE = 5f;
 
@@ -451,7 +451,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         }
     }
 
-    private void stateWin() {
+    protected void stateWin() {
         reset();
         map.reset();
         finished = true;

@@ -95,4 +95,10 @@ public class MainMenuState extends CageSelectState {
         return new CagesAndRenderers(cages, renderers);
     }
 
+    @Override
+    protected void stateWin() {
+        ((GameWinState) game.getState(GameWinState.ID)).setWinText(winText);
+        game.enterState(GameWinState.ID);
+    }
+
 }

@@ -362,11 +362,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
             controllerB.handleKeyPress(key);
         }
         if (c == '*') { // HACK: testing purposes only REMOVE FOR RELEASE
-            reset();
-            map.reset();
-            finished = true;
-            ((GameWinState) game.getState(GameWinState.ID)).setWinText(winText);
-            game.enterState(GameWinState.ID);
+            stateWin();
         }
     }
 
@@ -451,12 +447,16 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         if (finishedPlayer == null) {
             finishedPlayer = player;
         } else if (finishedPlayer != player) {
-            reset();
-            map.reset();
-            finished = true;
-            ((GameWinState) game.getState(GameWinState.ID)).setWinText(winText);
-            game.enterState(GameWinState.ID);
+            stateWin();
         }
+    }
+
+    private void stateWin() {
+        reset();
+        map.reset();
+        finished = true;
+        ((GameWinState) game.getState(GameWinState.ID)).setWinText(winText);
+        game.enterState(GameWinState.ID);
     }
 
     @Override

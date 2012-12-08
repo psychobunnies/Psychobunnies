@@ -13,6 +13,8 @@ import com.gravity.geom.Rect.RectException;
 import com.gravity.geom.Rect.Side;
 import com.gravity.map.tiles.BouncyTile;
 import com.gravity.map.tiles.MovingEntity;
+import com.gravity.root.GameSounds;
+import com.gravity.root.GameSounds.Event;
 
 /**
  * A Physics simulator which assumes gravity, but no bouncing.
@@ -181,6 +183,7 @@ public class GravityPhysics implements Physics {
 
             if (Side.isSimpleSet(sides)) {
                 if (sides.contains(Side.TOP)) {
+                    GameSounds.playSoundFor(Event.BONK);
                     if (other instanceof BouncyTile) {
                         velY = scaleBounce * Math.abs(velY);
                         accY = Math.max(accY, 0);

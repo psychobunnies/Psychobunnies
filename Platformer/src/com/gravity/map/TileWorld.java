@@ -25,17 +25,18 @@ import com.gravity.entity.TriggeredImage;
 import com.gravity.entity.TriggeredText;
 import com.gravity.geom.Rect;
 import com.gravity.levels.GameplayControl;
+import com.gravity.levels.Resetable;
 import com.gravity.map.tiles.BouncyTile;
 import com.gravity.map.tiles.DisappearingTile;
 import com.gravity.map.tiles.DisappearingTileController;
 import com.gravity.map.tiles.MovingEntity;
 import com.gravity.map.tiles.SpikeEntity;
-import com.gravity.map.tiles.TileRenderer;
 import com.gravity.map.tiles.StandardTileRenderer;
+import com.gravity.map.tiles.TileRenderer;
 import com.gravity.physics.Collidable;
 import com.gravity.physics.CollisionEngine;
 
-public class TileWorld implements GameWorld {
+public class TileWorld implements GameWorld, Resetable {
 
     public static final String TILES_LAYER_NAME = "collisions";
     public static final String SPIKES_LAYER_NAME = "spikes";
@@ -278,8 +279,8 @@ public class TileWorld implements GameWorld {
             List<MovingEntity> colls = processLayerSingleSquares(layer.name, new CollidableCreator<MovingEntity>() {
                 @Override
                 public MovingEntity createCollidable(Rect r) {
-                    TileRenderer renderer = new StandardTileRenderer(map, Math.round(r.getX()) / tileWidth,
-                            Math.round(r.getY()) / tileHeight, layer.index);
+                    TileRenderer renderer = new StandardTileRenderer(map, Math.round(r.getX()) / tileWidth, Math.round(r.getY()) / tileHeight,
+                            layer.index);
                     return new MovingEntity(renderer, r, transX * tileWidth, transY * tileHeight, speed);
                 }
             });
@@ -413,10 +414,13 @@ public class TileWorld implements GameWorld {
 
     @Override
     public List<Vector2f> getPlayerStartPositions() {
-        if (startPositions != null) {
-            return startPositions;
+        if (startPositions == null) {
+            startPositions = getOriginalStartPositions();
         }
+        return startPositions;
+    }
 
+    private List<Vector2f> getOriginalStartPositions() {
         Layer layer = map.getLayer(PLAYERS_LAYER_NAME);
         if (layer == null) {
             System.err.println("WARNING: Map \"" + name + "\" doesn't contain player start positions, using default positions instead.");
@@ -565,5 +569,10 @@ public class TileWorld implements GameWorld {
 
     public Vector2f getHelpLocation() {
         return getSpecialLocation(HELP_OBJECT_NAME);
+    }
+
+    @Override
+    public void reset() {
+        startPositions = getOriginalStartPositions();
     }
 }

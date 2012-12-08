@@ -20,13 +20,16 @@ import com.gravity.physics.RectCollision;
 public class PlayerKeyedTile extends AbstractEntity implements Renderer, Resetable {
 
     private final float TIME_TO_GTFO = 1000;
+    private final float TRANSITION_TIME = 500f;
     private final Rect shape;
 
     private final CollisionEngine collider;
     private final TileRenderer renderer;
     private final TileRenderer yellowRenderer;
-    private final TileRenderer pinkRenderer;
-    private final TileRenderer warningRenderer;
+    private final TileRenderer blueRenderer;
+    private final TileRenderer warningYellowRenderer;
+    private final TileRenderer warningBlueRenderer;
+    private final TileRenderer warningBothRenderer;
 
     private boolean exists = true;
 
@@ -35,11 +38,11 @@ public class PlayerKeyedTile extends AbstractEntity implements Renderer, Resetab
     private final int originalTileId;
 
     private Player keyedPlayer;
-    private float millisElapsed;
+    private float millisElapsedToGTFO = 0f, millisSinceKeyed = 0f;
     private boolean ticking;
 
-    public PlayerKeyedTile(Rect shape, CollisionEngine collider, TileRenderer renderer, TileRenderer yellowRenderer, TileRenderer pinkRenderer,
-            TileRenderer warningRenderer, Layer layer, int x, int y) {
+    public PlayerKeyedTile(Rect shape, CollisionEngine collider, TileRenderer renderer, TileRenderer yellowRenderer, TileRenderer blueRenderer,
+            TileRenderer warningYellowRenderer, TileRenderer warningBlueRenderer, TileRenderer warningBothRenderer, Layer layer, int x, int y) {
         super(new PhysicalState(shape, 0f, 0f, 0f));
         this.shape = shape;
         this.keyedPlayer = null;
@@ -50,14 +53,16 @@ public class PlayerKeyedTile extends AbstractEntity implements Renderer, Resetab
         originalTileId = layer.getTileID(x, y);
         this.renderer = renderer;
         this.yellowRenderer = yellowRenderer;
-        this.pinkRenderer = pinkRenderer;
-        this.warningRenderer = warningRenderer;
+        this.blueRenderer = blueRenderer;
+        this.warningYellowRenderer = warningYellowRenderer;
+        this.warningBlueRenderer = warningBlueRenderer;
+        this.warningBothRenderer = warningBothRenderer;
     }
 
     @Override
     public void finishUpdate(float millis) {
         // HACK: should also be in controller for this class, like I'm interested enough to care -DX
-        if (millisElapsed > TIME_TO_GTFO) {
+        if (millisElapsedToGTFO > TIME_TO_GTFO) {
             collider.removeCollidable(this);
             layer.setTileID(x, y, 0);
             exists = false;
@@ -68,7 +73,10 @@ public class PlayerKeyedTile extends AbstractEntity implements Renderer, Resetab
     @Override
     public void startUpdate(float millis) {
         if (ticking) {
-            millisElapsed += millis;
+            millisElapsedToGTFO += millis;
+        }
+        if (keyedPlayer != null) {
+            millisSinceKeyed += millis;
         }
     }
 
@@ -83,7 +91,7 @@ public class PlayerKeyedTile extends AbstractEntity implements Renderer, Resetab
                     TileType tileType;
                     try {
                         if (keyedPlayer.getName().equals("pink")) {
-                            tileType = TileType.PLAYER_KEYED_PINK;
+                            tileType = TileType.PLAYER_KEYED_BLUE;
                         } else {
                             tileType = TileType.PLAYER_KEYED_YELLOW;
                         }
@@ -107,20 +115,21 @@ public class PlayerKeyedTile extends AbstractEntity implements Renderer, Resetab
     @Override
     public boolean causesCollisionsWith(Collidable other) {
         if (keyedPlayer != null && other != keyedPlayer) {
-            return millisElapsed < TIME_TO_GTFO;
+            return millisElapsedToGTFO < TIME_TO_GTFO;
         }
         return true;
     }
 
     @Override
     public String toString() {
-        return "PlayerKeyedTile [shape=" + shape + ", keyedPlayer=" + keyedPlayer + ", millisElapsed=" + millisElapsed + ", ticking=" + ticking + "]";
+        return "PlayerKeyedTile [shape=" + shape + ", keyedPlayer=" + keyedPlayer + ", millisElapsed=" + millisElapsedToGTFO + ", ticking=" + ticking
+                + "]";
     }
 
     @Override
     public void reset() {
         ticking = false;
-        millisElapsed = Float.NEGATIVE_INFINITY;
+        millisElapsedToGTFO = Float.NEGATIVE_INFINITY;
         layer.setTileID(x, y, originalTileId);
     }
 
@@ -129,13 +138,19 @@ public class PlayerKeyedTile extends AbstractEntity implements Renderer, Resetab
         if (!exists) {
             return;
         } else if (ticking) {
-            warningRenderer.render(g, offsetX, offsetY, shape, millisElapsed / TIME_TO_GTFO);
+            if (millisSinceKeyed < TRANSITION_TIME) {
+                warningBothRenderer.render(g, offsetX, offsetY, shape, millisElapsedToGTFO / TIME_TO_GTFO);
+            } else if (keyedPlayer.getName().equals("yellow")) {
+                warningYellowRenderer.render(g, offsetX, offsetY, shape, millisElapsedToGTFO / TIME_TO_GTFO);
+            } else {
+                warningBlueRenderer.render(g, offsetX, offsetY, shape, millisElapsedToGTFO / TIME_TO_GTFO);
+            }
         } else if (keyedPlayer == null) {
             renderer.render(g, offsetX, offsetY, shape);
         } else if (keyedPlayer.getName().equals("pink")) {
-            pinkRenderer.render(g, offsetX, offsetY, shape);
+            blueRenderer.render(g, offsetX, offsetY, shape, Math.min(1, millisSinceKeyed / TRANSITION_TIME));
         } else if (keyedPlayer.getName().equals("yellow")) {
-            yellowRenderer.render(g, offsetX, offsetY, shape);
+            yellowRenderer.render(g, offsetX, offsetY, shape, Math.min(1, millisSinceKeyed / TRANSITION_TIME));
         }
     }
 

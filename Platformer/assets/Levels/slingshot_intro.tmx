@@ -54,7 +54,7 @@
  </layer>
  <layer name="falling spikes" width="150" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt0LEJADAIBEAnc/+xskGS4hGLO3jsXrEqpx9JdiXze89tJiR2TP8FAAAAAAAAAAAAAAAAgJ0OcvUPBQ==
+   eJzt0MEJADAIA0Anc/+xukFbaJA+7iD4i2JVTh+S7Ern5p7dTHjdMf0TAAAAAAAAAAAAAAAAAP61AAUqD4E=
   </data>
  </layer>
  <layer name="slow10" width="150" height="24">
@@ -82,7 +82,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0rEJADAMBDHvkCJF9t8zeIjHYKQJrrgqIOlMB7CSr0jwFQm+IsFXJPiKBF+R4CsS+qs3HcE6/dWdjgAAAAAAAAAA6gMUogDx
+   eJzt1bEJACAQBEF7MDCw/z7FzAI8XmQGPr9g4VujHwe36YoEXZGgKxJ0RYKuSNAVCboiYXc1qkfwnd3VrB7Bd/xBAAAAAAAAAHjDAsyeASo=
   </data>
  </layer>
  <layer name="players" width="150" height="24">
@@ -95,7 +95,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0rENwCAUQ0F2SEGRIdh/O6CMROt8Cd1J7l281gC+nuoDXElXJOiKBF2RoCsSdEWCrkjQFQm6IkFXJOyu+tpbfQQAAAAAAICjUX0AfjABYU0BMw==
+   eJzt1LENwCAQBEF6cEBAEfTfnSEl5oxtzUiXf7D6UviyaxnsoCUSdEWCrkjQFQm6IkFXJOiKBF2RoCsSZld1rJ0+hF/xrwAAAAAAAN6tnz4AHnADA7QBfw==
   </data>
  </layer>
  <layer name="vfast10" width="150" height="24">

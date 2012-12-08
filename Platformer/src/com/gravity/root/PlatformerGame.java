@@ -36,7 +36,7 @@ public class PlatformerGame extends StateBasedGame {
            
             // Impossible
             new LevelInfo("Falling", VictoryText.FALLING, "assets/Levels/falling.tmx", 1),
-            new LevelInfo("Split World", VictoryText.SLINGSHOT, "assets/Levels/split_world.tmx", 3),
+            new LevelInfo("Split World", VictoryText.SPLITWORLD, "assets/Levels/split_world.tmx", 3),
             
             // Very Hard (1)
             new LevelInfo("Bouncy 2", VictoryText.BOUNCY2, "assets/Levels/Bouncy_2.tmx", 4),

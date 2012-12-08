@@ -91,14 +91,27 @@ public class GravityPhysics implements Physics {
         List<Collidable> coll;
         PhysicalState state = entity.getPhysicalState();
 
+        boolean hasBouncy = false;
         if (state.velX > 0) {
             coll = entitiesHitRight(entity);
-            if (!coll.isEmpty()) {
+            for (Collidable c : coll) {
+                if (c instanceof BouncyTile) {
+                    hasBouncy = true;
+                    break;
+                }
+            }
+            if (!coll.isEmpty() && !hasBouncy) {
                 state = state.setVelocity(0, state.velY);
             }
         } else if (state.velX < 0) {
             coll = entitiesHitLeft(entity);
-            if (!coll.isEmpty()) {
+            for (Collidable c : coll) {
+                if (c instanceof BouncyTile) {
+                    hasBouncy = true;
+                    break;
+                }
+            }
+            if (!coll.isEmpty() && !hasBouncy) {
                 state = state.setVelocity(0, state.velY);
             }
         }

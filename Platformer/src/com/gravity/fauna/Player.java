@@ -144,6 +144,7 @@ public class Player extends PhysicsEntity<GravityPhysics> {
 
     public void slingshotMe(float strength, Vector2f direction) {
         GameSounds.playSoundFor(Event.SLINGSHOT);
+        GameSounds.playSoundFor(Event.WHEE);
         Vector2f velocity = direction.copy().normalise().scale(strength);
         float velX = velocity.x, velY = velocity.y;
         if (state.velX > 0 && velX > 0) {

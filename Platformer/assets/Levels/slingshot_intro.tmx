@@ -34,15 +34,15 @@
  <tileset firstgid="74" name="signs" tilewidth="32" tileheight="32">
   <image source="../arrows.png" width="128" height="64"/>
  </tileset>
- <layer name="spikes" width="150" height="24">
+ <layer name="spikes" width="150" height="24" visible="0">
   <data encoding="base64" compression="zlib">
    eJztzsEJACAMBMGUlv6rEt8BQUL0MwP33osAAAAAAAAAAAAAAAAAgCo/7NTtuOlPN1582RZ3PxBB
   </data>
  </layer>
- <objectgroup name="level markers" width="150" height="24">
+ <objectgroup name="level markers" width="150" height="24" visible="0">
   <object name="finish" type="finish" x="4768" y="64" width="32" height="672"/>
  </objectgroup>
- <layer name="fast15" width="150" height="24">
+ <layer name="fast15" width="150" height="24" visible="0">
   <properties>
    <property name="speed" value="30"/>
    <property name="translationX" value="-15"/>
@@ -54,10 +54,10 @@
  </layer>
  <layer name="falling spikes" width="150" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt0MEJADAIA0Anc/+xukFbaJA+7iD4i2JVTh+S7Ern5p7dTHjdMf0TAAAAAAAAAAAAAAAAAP61AAUqD4E=
+   eJzt0LEJADAIBEAnc/+xskGS4hGLO3jsXrEqpx9JdiXze89tJiR2TP8FAAAAAAAAAAAAAAAAgJ0OcvUPBQ==
   </data>
  </layer>
- <layer name="slow10" width="150" height="24">
+ <layer name="slow10" width="150" height="24" visible="0">
   <properties>
    <property name="speed" value="16"/>
    <property name="translationX" value="10"/>
@@ -67,7 +67,7 @@
    eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAA8GY4QAAB
   </data>
  </layer>
- <layer name="fast3" width="150" height="24">
+ <layer name="fast3" width="150" height="24" visible="0">
   <properties>
    <property name="speed" value="34"/>
    <property name="translationX" value="-2"/>
@@ -77,7 +77,7 @@
    eJztyDENAAAIwDAcEfybAxE8kDbZswgAAAAAAAAArsupFj4AAAAAAAB/NKknASE=
   </data>
  </layer>
- <layer name="checkpoint1" width="150" height="24">
+ <layer name="checkpoint1" width="150" height="24" visible="0">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
@@ -85,12 +85,12 @@
    eJzt1bEJACAQBEF7MDCw/z7FzAI8XmQGPr9g4VujHwe36YoEXZGgKxJ0RYKuSNAVCboiYXc1qkfwnd3VrB7Bd/xBAAAAAAAAAHjDAsyeASo=
   </data>
  </layer>
- <layer name="players" width="150" height="24">
+ <layer name="players" width="150" height="24" visible="0">
   <data encoding="base64" compression="zlib">
    eJztwwEJAAAIA7BXsH9ZOZhCNlgCAAAAAAAAAAAAAABAzQWADxYguwAj
   </data>
  </layer>
- <layer name="checkpoint2" width="150" height="24">
+ <layer name="checkpoint2" width="150" height="24" visible="0">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
@@ -98,7 +98,7 @@
    eJzt1LENwCAQBEF6cEBAEfTfnSEl5oxtzUiXf7D6UviyaxnsoCUSdEWCrkjQFQm6IkFXJOiKBF2RoCsSZld1rJ0+hF/xrwAAAAAAAN6tnz4AHnADA7QBfw==
   </data>
  </layer>
- <layer name="vfast10" width="150" height="24">
+ <layer name="vfast10" width="150" height="24" visible="0">
   <properties>
    <property name="speed" value="42"/>
    <property name="translationX" value="10"/>
@@ -108,17 +108,17 @@
    eJztzrEJADAIAEGrrCPuv5zZwEZIkTv4/iMAAAAAAAAAAAAAAAAA/pK3M1TP7mBHA9CLAJE=
   </data>
  </layer>
- <layer name="playerkeyed" width="150" height="24">
+ <layer name="playerkeyed" width="150" height="24" visible="0">
   <data encoding="base64" compression="zlib">
    eJztw6EJAAAIADCf8f8XrUaLoLDBIgAAAAAAAOCHbOGqHAYAAAAAAIBtBYGRAeI=
   </data>
  </layer>
- <layer name="collisions" width="150" height="24">
+ <layer name="collisions" width="150" height="24" visible="0">
   <data encoding="base64" compression="zlib">
    eJztm9EKgzAMRX3a77gxFPz/Hxt7KAxxJrkmadR7oPgwm5vVW1MpHYdheDi01yAzOsby5JvXc6e1fKY/V6m/pnloeI8b+r+ynx+5B3PvBMgloa9IBPQViYC+IhHQVyQC+opEQF+RCOgrEgF9RSLI9lXVfZzf/NbaLWfuTejJ9pVWr9d7dE8XyWnLp3u8QY0o36Ox6Su9LpqTpV+GRkZs+kqvuwTE7KGREZu+0utm1ISKdecMvtLOx4q+mhX3WGP20LBSwVfS9552Hlb2lbVWIb6K1LBSwVdSvDPXwfabtVYhvorUsILERteJaA5X8JW1Vh2pgxXGC4k9ybe45lBhnFDd9bOOWCtmaFipsCdzJ19pa9URX0VoWKngK2l+aeefd33WMAq6i3CV+mnI0LCCxvY449Xa0bNOvc8J7a0L2rtjK1+vvc4MDSQXxAsfu/A0wA==
   </data>
  </layer>
- <layer name="signs" width="150" height="24">
+ <layer name="signs" width="150" height="24" visible="0">
   <data encoding="base64" compression="zlib">
    eJztzjEBAAAIA6D1s38fW8xDSEACAAAAAAAAAAAAAAAAQNNcB3hhAey4AEw=
   </data>

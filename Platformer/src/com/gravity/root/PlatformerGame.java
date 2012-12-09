@@ -36,21 +36,19 @@ public class PlatformerGame extends StateBasedGame {
            
             // Impossible
             new LevelInfo("Falling", VictoryText.FALLING, "assets/Levels/falling.tmx", 1),
-            new LevelInfo("Split World", VictoryText.SPLITWORLD, "assets/Levels/split_world.tmx", 3),
+            new LevelInfo("Split World", VictoryText.SPLITWORLD, "assets/Levels/split_world.tmx", 2),
             
             // Very Hard (1)
-            new LevelInfo("Bouncy 2", VictoryText.BOUNCY2, "assets/Levels/Bouncy_2.tmx", 4),
+            new LevelInfo("Bouncy 2", VictoryText.BOUNCY2, "assets/Levels/Bouncy_2.tmx", 3),
             
             // Hard (4)
+            new LevelInfo("Platformer", VictoryText.PLATFORMER, "assets/Levels/platform.tmx", 4),
             new LevelInfo("Bouncy 1", VictoryText.BOUNCY1, "assets/Levels/Bouncy_1.tmx", 7),
-            //new LevelInfo("Test Stomps", VictoryText.TEST, "assets/Levels/checkpointing.tmx"),
-            //new LevelInfo("Checkpointing",  VictoryText.TEST, "assets/Levels/checkpointing.tmx"),
 
             // Medium (4)
             new LevelInfo("Elevators", VictoryText.ELEVATORS, "assets/levels/Elevators.tmx", 8),
             new LevelInfo("Shortcuts", VictoryText.SHORTCUTS, "assets/levels/shortcuts.tmx", 11),
-            new LevelInfo("Slingshot", VictoryText.SLINGSHOT, "assets/Levels/slingshot_intro.tmx", 12),
-            new LevelInfo("Platformer", VictoryText.PLATFORMER, "assets/Levels/platform.tmx", 15),
+            new LevelInfo("Slingshot", VictoryText.SLINGSHOT, "assets/Levels/slingshot_intro.tmx", 13),
             // Easy (2)
     };
     //@formatter:on

@@ -30,7 +30,7 @@
  </layer>
  <layer name="players" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApGwSgYBaNgFBADBIGYd6AdQSEAACLEAB8=
+   eJxjYBgFo2AUjIJRMApGwSgYBaNgaABBIOYdaEcMcQAAMcQAHw==
   </data>
  </layer>
  <layer name="level markers" width="32" height="24">

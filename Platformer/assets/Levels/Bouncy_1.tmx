@@ -28,44 +28,49 @@
   <image source="levelMarkers.png" width="128" height="128"/>
  </tileset>
  <layer name="collisions" width="72" height="27">
-  <data encoding="base64" compression="zlib">
-   eJztmIEKwyAMRP2AuTE62Lfu70dgpSKpQWPS65oHgzE6vJzm1OaU0r3jo+Gh/P+/8zpaADjvowWcEG3Poo2X07lzpKfHr5gHs/2h9VLuX621Uz8rPX8EaOunHOPpMB7RmiMLfzR1lXsWQj9b+KPZl5eB8Szp0cDVbZkhCP6UNUu1ZkddhJc/9Rmk9GE0izxAOD+j5eEKyrmS8vD2+87N18dRSw3SfBFr3+31onQXmX1eQfNH0iPlwey8QPNHqm9hftvL+hmg+TNyl7esAc0fCS5fwp8NTm/4sxH+tAl/2oQ/bcKfNpxeyzskwv20B9Lb835Zi/f7FC3kxRdKzQmy
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2YAQrDIAxFPUBdGR3s/jcdgZWGYhM0Rn+3PCiUYjH5JtGYU0qPisfCavz/13nNNgCc92wDbog1Z9Hmy+nedaQmx/+xHvTWh+KF719S7JzHauNngBY/fI7ngPkIaY089LH4xfcshHz20MeyL28N83lSY0PJb88agqAP91nzNQ+0ixilz/kMwnVorUUjQDg/o9XDHZRzJdXD5fuOsF4cpPUi9ry7ykWtF+l9XkHTR7NHi6/e8Yemj+bfVvh2Vet7gKZPSy/v6QOaPhql+hL6HJTsDX0OQh+Z0Ecm9JEJfWRK9nr2JGj9jgbZW3O/bGX0fYoV0uID0VCb6GAeAAA=
   </data>
  </layer>
  <layer name="bouncys" width="72" height="27">
-  <data encoding="base64" compression="zlib">
-   eJztmU0KAjEMhXsA0Y13cK27cSHoCXTwZyPO/W9hiwwMJcmkJf1z8iAg8qYv+WgdisaE6W3rE1FDYE4tOpRuoHIdSzdQuXLy8c/mgHyfqlzempnnvBtTfv9wzzfl20k0gqgVPlSfe4lGInJziJtP+TqJRiJyc0iaj/ReqpEP9Hvi+6YcOuSzhGrkA+0B34cxWQIfaMba+KR8J8zlt8An5TthLr8FPmfhnJD8FvjkkvIJz1c+dL7yofOl+Fxt3ZDqAU8/efZE9JdTun/C85UPnQ/NeCE8/8zHn9sJmtG/sy6FDyTOjJhH+dAe5UN7pPn4538rvH6MOHc/zJP63rhKvP7d1sPWE6mX+f0HM/qgwjycZ7k1rvUFM1BFMw==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2ZTQoCMQyFewDRjXdwrbtxIegJdPBnI879b2GLDAwlyaQl/XPyICDypi/5aB2KxoTpbesTUUNgTi06lG6gch1LN1C5cvLxz+aAfJ+qXN6amee8G1N+/3DPN+XbSTSCqBU+VJ97iUYicnOIm0/5OolGInJzSJqP9F6qkQ/0e+L7phw65LOEauQD7QHfhzFZAh9oxtr4pHwnzOW3wCflO2EuvwU+Z+GckPwW+OSS8gnPVz50vvKh86X4XG3dkOoBTz959kT0l1O6f8LzlQ+dD814ITz/zMef2wma0b+zLoUPJM6MmEf50B7lQ3uk+fjnfyu8fow4dz/Mk/reuEq8/t3Ww9YTqZf5/Qcz+qDCPJxnuTWu9QXpAT5EYB4AAA==
   </data>
  </layer>
  <layer name="spikes" width="72" height="27">
-  <data encoding="base64" compression="zlib">
-   eJztzrEJAAAIwDAvdvJ/vEJESaB7IwD4ILcHAAAAAADgqRrqogZ6TQpn
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OsQkAAAjAMC928n+8QkRJoHsjAPggtwcAAAAAAOCpGuqiBhk+ddFgHgAA
   </data>
  </layer>
  <objectgroup name="level markers" width="72" height="27">
   <object name="finish" type="finish" x="2234" y="352" width="67" height="97"/>
  </objectgroup>
  <layer name="players" width="72" height="27">
-  <data encoding="base64" compression="zlib">
-   eJztwzENAAAIA7DJRzbPJHCRNmkCAAAAAAAA/0wDdxap7QER
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DMQ0AAAgDsMlHNs8kcJE2aQIAAAAAAAD/TAN3Fhl0/+xgHgAA
   </data>
  </layer>
  <layer name="Bouncy Overflow" width="72" height="27">
-  <data encoding="base64" compression="zlib">
-   eJztmF9qwzAMxn2AXmGvpY+DrmshjBrK2pf+uUSy3f8Gi5jFRLCV2Eyy0/gHoqF8tpSPylViTGWMbYS27eMrIb7/sV5tmtwFFI6GP2uFHFJo/X6gNzsXtOewZ7tAoG5rwn3bkn3H9mkZzVAL5OqvV/c59fzz1Rm7Rwq5/DlE5vfpYvdIoTR/XgL6xqNZmj94jm88etTRnlqaP3Dv4JHvPEEdXbc0f7j7LcUfjf8EYK7+aOQM5ZmDP9Z9ngRzAnP1B3gTzIeU4M9qgqaezzzP6M+ujzsTD6e7ku/e+9i7tXgdqkUDSX8+Ems6krVHphYNJP357ONs4t/jXcjaC1OLBtaTv54/f+Cz1lR/Th7NM/sz7HNgyv1SjXXXkrNaLn+GfQ7E+gNIz2olvZ9P8Uea6g+P9HMWBeaxm/mdx24kcEazTsfNdpbsNTbzpQbuVeH5Aa3/WIA=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2YX2rDMAzGfYBeYa+lj4OuayGMGsral/65RLLd/waLmMVEsJXYTLLT+AeioXy2lI/KVWJMZYxthLbt4yshvv+xXm2a3AUUjoY/a4UcUmj9fqA3Oxe057Bnu0CgbmvCfduSfcf2aRnNUAvk6q9X9zn1/PPVGbtHCrn8OUTm9+li90ihNH9eAvrGo1maP3iObzx61NGeWpo/cO/gke88QR1dtzR/uPstxR+N/wRgrv5o5AzlmYM/1n2eBHMCc/UHeBPMh5Tgz2qCpp7PPM/oz66POxMPp7uS79772Lu1eB2qRQNJfz4SazqStUemFg0k/fns42zi3+NdyNoLU4sG1pO/nj9/4LPWVH9OHs0z+zPsc2DK/VKNddeSs1ouf4Z9DsT6A0jPaiW9n0/xR5rqD4/0cxYF5rGb+Z3HbiRwRrNOx812luw1NvOlBu5V4fkBwej0DWAeAAA=
   </data>
  </layer>
  <layer name="Bouncy overflow 2" width="72" height="27">
-  <data encoding="base64" compression="zlib">
-   eJzt2LEJgDAQheEs4AgKNmIjCDaCjeAALuH+M4gQGyHPixhy4d7XCHrF8SOCcY6IyJ7OX/uXucbPHIFnl/avpQo05l5AuTlitk62hV7SPlbfM2mfe25KtYhSsX2WVIsoFdtnS7WIUrF9rOH3B+P3B2MfjH0w9sHYB2MfjH2wVThntY/0HM1qn8sgmLHcR8JSny//4Bb67P6KztvvmWfDNXC/FFXuBT44AWUrDrU=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3YsQmAMBCF4SzgCAo2YiMINoKN4AAu4f4ziBAbIc+LGHLh3tcIesXxI4JxjojIns5f+5e5xs8cgWeX9q+lCjTmXkC5OWK2TraFXtI+Vt8zaZ97bkq1iFKxfZZUiygV22dLtYhSsX2s4fcH4/cHYx+MfTD2wdgHYx+MfbBVOGe1j/QczWqfyyCYsdxHwlKfL//gFvrs/orO2++ZZ8M1cL8UVe4FPjgBW3kTDWAeAAA=
   </data>
  </layer>
  <layer name="checkpoint" width="72" height="27">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJzt0KENACAQBMHrHoGgZRIs4g3JI2Yq2GzCa6M74GMz/lT8ua3uAAAAAAAAAI4N2BsCsA==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3QoQ0AIBAEwesegaBlEiziDckjZirYbMJrozvgYzP+VPy5re4AAAAAAAAAjg1R8aU+YB4AAA==
+  </data>
+ </layer>
+ <layer name="signs" width="72" height="27">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OMQEAAAgDoNW2vf8K6AEJSAAAAICP5joAAAAAZQFsKszvYB4AAA==
   </data>
  </layer>
 </map>

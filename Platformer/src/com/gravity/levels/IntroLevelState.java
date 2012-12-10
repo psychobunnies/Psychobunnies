@@ -21,7 +21,7 @@ public class IntroLevelState extends GameplayState {
         if (!controllerA.handleKeyPress(key)) {
             controllerB.handleKeyPress(key);
         }
-        if (!finished && c == '*') { // HACK: testing purposes only REMOVE FOR RELEASE
+        if (c == '*') { // HACK: testing purposes only REMOVE FOR RELEASE
             stateWin();
         }
     }
@@ -30,23 +30,25 @@ public class IntroLevelState extends GameplayState {
     public void playerFinishes(Player player) {
         if (finishedPlayer == null) {
             finishedPlayer = player;
-        } else if (!finished && finishedPlayer != player) {
+        } else if (finishedPlayer != player) {
             stateWin();
         }
     }
 
     @Override
     protected void stateWin() {
-        reset();
-        finished = true;
-        playerA.move(Movement.STOP);
-        playerB.move(Movement.STOP);
-        try {
-            game.getState(destinationId).init(container, game);
-        } catch (SlickException e) {
-            throw new RuntimeException(e);
+        if (!finished) {
+            reset();
+            finished = true;
+            playerA.move(Movement.STOP);
+            playerB.move(Movement.STOP);
+            try {
+                game.getState(destinationId).init(container, game);
+            } catch (SlickException e) {
+                throw new RuntimeException(e);
+            }
+            game.enterState(destinationId, new FadeOutTransition(), new FadeInTransition());
         }
-        game.enterState(destinationId, new FadeOutTransition(), new FadeInTransition());
     }
 
     @Override

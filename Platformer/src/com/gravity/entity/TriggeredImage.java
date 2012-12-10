@@ -18,7 +18,9 @@ public class TriggeredImage extends TriggeredBase implements Renderer {
     public void render(Graphics g, int offsetX, int offsetY) {
         // g.drawImage(image, offsetX + x, offsetY + y);
         // HACK: Display images at 0,0
-        g.drawImage(image, 0, 0);
+        if (triggered) {
+            g.drawImage(image, 0, 0);
+        }
 
     }
 

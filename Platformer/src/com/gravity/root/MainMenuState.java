@@ -97,8 +97,7 @@ public class MainMenuState extends CageSelectState {
 
     @Override
     protected void stateWin() {
-        ((GameWinState) game.getState(GameWinState.ID)).setWinText(winText);
-        game.enterState(GameWinState.ID);
+        // No-op
     }
 
 }

@@ -60,7 +60,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3QMRGAQBDAwDdAQYF/q1RIIAfzuwoyWYsvOqYDNuFzw+eGzw2fGz43fG743PC54XPD54bPDZ8bPjd8bvj8vufxOVqxj2s6AAD4lRuGOqLowCEAAA==
+   H4sIAAAAAAAAC+3QsRGAIADAQBagsGD/Va0cwaDH/wS5jMEXzd0Bh/C54XPD54bPDZ8bPjd8bvjc8Lnhc8Pnhs8Nnxs+v28OnwvP42trxTnW7gAA4Fdunf1g7cAhAAA=
   </data>
  </layer>
  <layer name="checkpoint2" width="90" height="24">
@@ -68,7 +68,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3SsQ2AQAwEQTfwAQH9twpNsC/xM5Lz08ozAADAH6zdAw6hc0Pnhs4NnRs6N3Ru6NzQ+XtrdC7c7127RxzAPwNQeAAGdVrMwCEAAA==
+   H4sIAAAAAAAAC+3QQQ3AMAwEQRPwI4/yp1qVQ3KWmhkEq60CAAD+oKcDLuFzhs8ZPmf4nOFzhs8ZPp/X5XPC9/iZjrjEmg4AALZ4AY85JrXAIQAA
   </data>
  </layer>
  <layer name="checkpoint3" width="90" height="24">

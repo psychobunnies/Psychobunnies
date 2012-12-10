@@ -4,14 +4,22 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.SortedSet;
 
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.tiled.Layer;
+import org.newdawn.slick.tiled.TiledMapPlus;
 
 import com.google.common.collect.Lists;
+import com.gravity.fauna.Player;
+import com.gravity.geom.Rect;
 import com.gravity.levels.CageRenderer;
 import com.gravity.levels.LevelInfo;
 import com.gravity.levels.MenuCage;
 import com.gravity.levels.Renderer;
+import com.gravity.map.LevelFinishZone;
+import com.gravity.physics.LayeredCollisionEngine;
 
 /**
  * The main menu loop.
@@ -21,12 +29,15 @@ import com.gravity.levels.Renderer;
 public class MainMenuState extends CageSelectState {
 
     static public final int ID = 50;
+    static private Rect finalWinBox = new Rect(31 * 32, 20 * 32, 1 * 32, 3 * 32);
 
     private final LevelInfo[] levels;
+    private LevelFinishZone finalWinColl;
 
     public MainMenuState(LevelInfo[] levels) throws SlickException {
         super(new LevelInfo("Main Menu", "assets/mainmenu2.tmx", ID));
         this.levels = levels;
+        finalWinColl = new LevelFinishZone(finalWinBox, this);
     }
 
     @Override
@@ -97,8 +108,46 @@ public class MainMenuState extends CageSelectState {
 
     @Override
     protected void stateWin() {
-        ((GameWinState) game.getState(GameWinState.ID)).setWinText(winText);
-        game.enterState(GameWinState.ID);
+        // No-op
     }
 
+    @Override
+    public void enter(GameContainer container, StateBasedGame game) throws SlickException {
+        int numCompleted = 0;
+        for (MenuCage cage : cages) {
+            if (cage.isDisabled()) {
+                numCompleted++;
+            }
+        }
+        // Plus 1 because of tutorials
+        if (numCompleted == levels.length + 1) {
+            openPortalEndgame();
+        }
+    }
+
+    private void openPortalEndgame() {
+        TiledMapPlus menuMap = map.map;
+        Layer layer = menuMap.getLayer("collisions");
+        for (int i = 20; i <= 22; i++) {
+            layer.data[31][i][0] = -1;
+            layer.data[31][i][1] = 0;
+            layer.data[31][i][2] = 0;
+        }
+        menuMap.getLayer("finish").visible = true;
+
+        collider.addCollidable(finalWinColl, LayeredCollisionEngine.FLORA_LAYER);
+    }
+
+    @Override
+    public void playerFinishes(Player player) {
+        if (finishedPlayer == null) {
+            finishedPlayer = player;
+        } else if (finishedPlayer != player) {
+            gotoWinSequence();
+        }
+    }
+
+    private void gotoWinSequence() {
+        enterCageState(PlatformerGame.TUTORIAL1);
+    }
 }

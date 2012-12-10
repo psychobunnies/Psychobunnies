@@ -148,6 +148,6 @@ public class MainMenuState extends CageSelectState {
     }
 
     private void gotoWinSequence() {
-        enterCageState(PlatformerGame.TUTORIAL1);
+        enterCageState(PlatformerGame.INTROHALL);
     }
 }

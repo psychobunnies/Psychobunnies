@@ -32,28 +32,30 @@ public class PlatformerGame extends StateBasedGame {
     private LevelInfo[] levels = {
 
             // Very Hard (1)
-            new LevelInfo("Moving", VictoryText.MOVING, "assets/Levels/moving.tmx", 0),
+            new LevelInfo("White", VictoryText.MOVING, "assets/Levels/moving.tmx", 0),
            
             // Impossible
-            new LevelInfo("Falling", VictoryText.FALLING, "assets/Levels/falling.tmx", 1),
-            new LevelInfo("Split World", VictoryText.SPLITWORLD, "assets/Levels/split_world.tmx", 2),
+            new LevelInfo("Free Fall", VictoryText.FALLING, "assets/Levels/falling.tmx", 1),
+            new LevelInfo("Isolation", VictoryText.SPLITWORLD, "assets/Levels/split_world.tmx", 2),
             
             // Very Hard (1)
-            new LevelInfo("Bouncy 2", VictoryText.BOUNCY2, "assets/Levels/Bouncy_2.tmx", 3),
+            new LevelInfo("Ricochet", VictoryText.BOUNCY2, "assets/Levels/Bouncy_2.tmx", 3),
             
             // Hard (4)
-            new LevelInfo("Platformer", VictoryText.PLATFORMER, "assets/Levels/platform.tmx", 4),
-            new LevelInfo("Bouncy 1", VictoryText.BOUNCY1, "assets/Levels/Bouncy_1.tmx", 7),
+            new LevelInfo("Cognition", VictoryText.PLATFORMER, "assets/Levels/platform.tmx", 4),
+            new LevelInfo("Elastic", VictoryText.BOUNCY1, "assets/Levels/Bouncy_1.tmx", 7),
 
             // Medium (4)
-            new LevelInfo("Elevators", VictoryText.ELEVATORS, "assets/levels/Elevators.tmx", 8),
-            new LevelInfo("Shortcuts", VictoryText.SHORTCUTS, "assets/levels/shortcuts.tmx", 11),
-            new LevelInfo("Slingshot", VictoryText.SLINGSHOT, "assets/Levels/slingshot_intro.tmx", 13),
+            new LevelInfo("Survival", VictoryText.ELEVATORS, "assets/levels/Elevators.tmx", 8),
+            new LevelInfo("Parkour", VictoryText.SHORTCUTS, "assets/levels/shortcuts.tmx", 11),
+            new LevelInfo("Psychic", VictoryText.SLINGSHOT, "assets/Levels/slingshot_intro.tmx", 13),
             // Easy (2)
     };
     //@formatter:on
+    static public final int INTROHALL = 47;
     static public final int TUTORIAL1 = 48;
     static public final int TUTORIAL2 = 49;
+    public LevelInfo introHall = new LevelInfo("Intro Hallway", "assets/introhall.tmx", INTROHALL);
     public LevelInfo tutorial1 = new LevelInfo("Lab Procedures", "assets/Levels/tutorial.tmx", TUTORIAL1);
     public LevelInfo tutorial2 = new LevelInfo("Lab Safety", "assets/Levels/enemies_tutorial.tmx", TUTORIAL2);
 
@@ -63,7 +65,7 @@ public class PlatformerGame extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {
-        addState(new GameLoaderState(Lists.newArrayList(levels), Lists.newArrayList(tutorial1, tutorial2), 100));
+        addState(new GameLoaderState(Lists.newArrayList(levels), Lists.newArrayList(introHall, tutorial1, tutorial2), 100));
     }
 
     @Override

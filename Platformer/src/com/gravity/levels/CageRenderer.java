@@ -65,7 +65,7 @@ public class CageRenderer implements Renderer {
         this.cage = cage;
         this.cageX = cage.getRect().getX();
         this.cageY = cage.getRect().getY();
-        this.fontX = cageX + 5 + image.getWidth() / 2f - font.getWidth(label) / 2;
+        this.fontX = cageX + 7 + image.getWidth() / 2f - font.getWidth(label) / 2;
         this.fontY = cageY + 16 - font.getHeight(label) / 2;
         this.label = label;
     }
@@ -77,7 +77,7 @@ public class CageRenderer implements Renderer {
         g.setFont(font);
         g.pushTransform();
         GL11.glTranslatef(offsetX + fontX, offsetY + fontY, 0);
-        //GL11.glMultMatrix(skew);
+        // GL11.glMultMatrix(skew);
         g.drawString(label, 0, 0);
         g.popTransform();
     }

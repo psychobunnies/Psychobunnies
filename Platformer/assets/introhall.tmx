@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="96" height="24" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="lab-sheet-2" tilewidth="32" tileheight="32">
+  <image source="../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="192"/>
+ </tileset>
+ <tileset firstgid="19" name="levelMarkers" tilewidth="32" tileheight="32">
+  <image source="Levels/levelMarkers.png" width="128" height="128"/>
+ </tileset>
+ <layer name="collisions" width="96" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3UsQ0AMAjAMBb+f7kLO6wFW8oLiQAAAAAA2CkrAG7JJgB26v4/CX71AOixz3MAJAAA
+  </data>
+ </layer>
+ <layer name="players" width="96" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OQQ0AAAgEIDv4sH9TW3ibgwRUAQAAAAAAH3U6AEDEpAMAnFta+DMcACQAAA==
+  </data>
+ </layer>
+ <objectgroup name="level markers" width="96" height="24">
+  <object name="finish" type="finish" x="420" y="581" width="116" height="123"/>
+ </objectgroup>
+</map>

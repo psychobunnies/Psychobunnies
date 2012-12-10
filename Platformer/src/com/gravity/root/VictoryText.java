@@ -25,77 +25,100 @@ public final class VictoryText {
         		"$Complete failure to engage \n" +
         		"implants. Immediate removal\n" +
         		"suggested.",
-        BOUNCY1 = "TEST 1" +
+        BOUNCY1 = "ELASTIC" +
         		"$Hypothesis" +
         		"$Polymer 730-X conserves\n" +
         		"linear momentum.\n" +
         		"$Results" +
         		"$Polymer 730-X and bunny fur\n" +
-        		"incompatible. Consider\n" +
-        		"shaving subjects before\n" +
-        		"trials.",
-        BOUNCY2 = "TEST 2" +
+        		"highly incompatible.\n" +
+        		"Consider shaving subjects\n" +
+        		"before trials.",
+        BOUNCY2 = "RICOCHET" +
         		"$Hypothesis" +
-        		"$Psychic abilities result in\n" +
-        		"a more robust bunny.\n" +
+        		"$Bunnies are aware of\n" +
+        		"physical properties of\n" +
+        		"lab environment.\n" +
         		"$Results" +
-        		"$Excessive bounce trauma on a\n" +
-        		"majority of subjects.\n" +
-        		"Research on a softer polymer\n" +
-        		"needed.",
-        PLATFORMER = "TEST 3" +
+        		"$Bunnies have trouble\n" +
+        		"calculating trajectories\n"+
+        		"that avoid sharp objects.\n" +
+        		"Grad students had trouble\n" +
+        		"awarding partial credit.\n"+
+        		"Requesting bunnies familiar\n" +
+        		"with Newtonian mechanics.",
+        PLATFORMER = "COGNITION" +
         		"$Hypothesis" +
-        		"$Drug 3Z allows cooperation\n" +
-        		"under high stress.\n" +
+        		"$Time pressure improves\n" +
+        		"bunny paw-eye coordination.\n" +
         		"$Results" +
-        		"$Many bunnies lost due to\n" +
-        		"homicidal and suicidal\n" +
-        		"tendencies.\n" +
-        		"Hypothesis appears incorrect.",
-        SLINGSHOT = "TEST 4" +
+        		"$Stressed-out bunnies prone\n" +
+        		"to procrastination and\n" +
+        		"hasty decisions. Consider\n" +
+        		"granting more deadline\n" +
+        		"extensions to bunnies\n" + 
+        		"participating in more than\n" + 
+        		"four research projects.",
+        SLINGSHOT = "PSYCHIC" +
         		"$Hypothesis" +
-        		"$Cooperation is naturally\n" +
-        		"emergent.\n" +
+        		"$Telekinetic abilities\n" +
+        		"improve naturally emergent\n" +
+        		"cooperation skills.\n" +
         		"$Result" +
-        		"$Stronger cages needed to\n" +
-        		"contain increased energy of\n" +
+        		"$Psychic abilities make\n" +
+        		"subjects exhibit suicidal\n"+
+        		"and bunnycidal behavior.\n"+
+        		"Stronger cages needed to\n"+
+        		"contain the kinetic\n"+
+        		"energy of irrational\n"+
         		"flying bunnies.",
-        MOVING = " $ $  <This page intentionally\n" +
-        		"         left blank>$ $ ",
-        SHORTCUTS = " $ $\"Bunny\" redirects here.\n" +
-        		"For other uses, see Bunny\n" +
-        		"(disambiguation).\n" +
-                "\"coney\" redirects here.\n" +
-                "For other uses, see coney\n" +
-                "(disambiguation).\n" +
-                "Not to be confused with Rabbet.\n" +
-                " $ $\nRabbits are small mammals in\n" +
-                "the family Leporidae of the\n" +
-                "order Lagomorpha, found in\n" +
-                "several parts of the world.\n" +
-                "There are eight different\n" +
-                "genera, including the...",
-        ELEVATORS = "MEMO" +
-                "$To: Faculty$" +
-                "This is a reminder that RAs\n" +
-                "do not have free access to\n" +
-                "the test area, and are\n" +
-                "especially not free to design\n" +
-                "their own tests." +
-                "$From: Management$ ",
-        FALLING = "TEST 5" +
+        MOVING = " $ $\n\n"+
+        		 "         <This page\n\n" +
+        		 "        intentionally\n\n" +
+        		 "         left blank>$ $ ",
+        SHORTCUTS = "PARKOUR" +
+                "$Hypothesis" +
+                "$Drug 46Z increases\n" +
+                "bunny hop distance and\n" +
+                "accuracy.\n" +
+                "$Result" +
+                "$Bunnies exposed to\n" +
+                "drug 46Z ceased to be\n"+
+                "afraid of heights.\n" +
+                "Research on softer\n" +
+                "lab benches in progress.",
+        ELEVATORS = "SURVIVAL" +
+                "$Hypothesis" +
+                "$Disappearing platforms\n" +
+                "stimulate bunny speed\n" +
+                "and endurance.\n" +
+                "$Result" +
+                "$Subjects using increased\n" +
+                "speed to run headfirst into\n"+
+                "sharp objects. Punctured\n"+
+                "bunny fur fetches lower\n"+
+                "price on the black market\n"+
+                "due to damage. Financial\n"+
+                "losses unacceptable;\n"+
+                "experiment to be terminated\n"+
+                "immediately.",
+        FALLING = "FREE FALL" +
         		"$Hypothesis" +
-        		"$The fall is more deadly\n" +
-        		"than impact.\n" +
+        		"$The fall is deadlier\n" +
+        		"than the impact.\n" +
         		"$Result" +
-        		"$Serum 38 has proven to be\n" +
-        		"more deadly than either\n" +
-        		"the fall or the impact.\n\n" +
-        		"Findings moved to R&D.",
-        SPLITWORLD = "TEST 6" +
+        		"$Unstable sharp objects\n" +
+        		"fogotten on lab ceiling\n" +
+        		"more deadly than both fall\n" +
+        		"and impact. Careless grad\n"+
+        		"student reassigned to\n"+
+        		"cleaning bunny cages\n"+
+        		"until thesis defense.",
+        SPLITWORLD = "ISOLATION" +
         		"$Hypothesis" +
-        		"$Psychic links do not\n" +
-        		"degrade over distance.\n" +
+        		"$Telekinetic bunny powers\n" +
+        		"do not degrade over\n" +
+        		"distance.\n"+
         		"$Result" +
         		"$Confirmed through volatile\n" +
         		"behavior in latest trials.\n" +

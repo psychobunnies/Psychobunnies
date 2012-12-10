@@ -138,6 +138,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         finishedPlayer = null;
         System.out.println("Got finish zone at: " + finish + " for map " + map);
         updaters.addAll(map.getTriggeredTexts());
+        updaters.addAll(map.getTriggeredImages());
         Collection<List<MovingEntity>> movingColls = map.getMovingCollMap().values();
         for (List<MovingEntity> l : movingColls) {
             updaters.addAll(l);

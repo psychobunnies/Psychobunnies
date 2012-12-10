@@ -7,7 +7,7 @@ public abstract class TriggeredBase implements UpdateCycling {
     public final int x;
     public final int y;
 
-    private boolean triggered = false;
+    protected boolean triggered = false;
 
     public TriggeredBase(int x, int y) {
         this.x = x;

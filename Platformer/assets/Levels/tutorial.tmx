@@ -31,7 +31,9 @@
    H4sIAAAAAAAAC+3BAQEAAACCIP+vbkhAAQAALwaEyeZnAAwAAA==
   </data>
  </layer>
- <objectgroup name="level markers" width="32" height="24"/>
+ <objectgroup name="level markers" width="32" height="24">
+  <object name="finish" x="896" y="448" width="128" height="64"/>
+ </objectgroup>
  <layer name="help1" width="32" height="24">
   <properties>
    <property name="b" value="0"/>
@@ -191,7 +193,4 @@
    H4sIAAAAAAAAC2NgGAVDAbgSiYer/aNgFIyCUTAKRsEoGAWjgDoAABt1LwoADAAA
   </data>
  </layer>
- <objectgroup name="special levels" width="32" height="24">
-  <object name="enemies_tutorial" x="896" y="448" width="128" height="64"/>
- </objectgroup>
 </map>

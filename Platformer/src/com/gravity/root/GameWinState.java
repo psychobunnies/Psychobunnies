@@ -83,7 +83,7 @@ public class GameWinState extends BasicGameState {
         this.eyesImage = new Image("./new-assets/background/eyes.png");
         this.pupilsImage = new Image("./new-assets/background/pupils.png");
         this.winText = NO_TEXT;
-        
+
         this.mouseOffsetX = (container.getWidth() - PlatformerGame.WIDTH) / 2;
         this.mouseOffsetY = (container.getHeight() - PlatformerGame.HEIGHT) / 2;
         this.mouseX = 400;
@@ -117,15 +117,15 @@ public class GameWinState extends BasicGameState {
         GL11.glTranslatef(textX, textY, 0);
         GL11.glMultMatrix(skew);
         g.setFont(titleFont);
-        g.drawString(winText[0], (width - titleFont.getWidth(winText[0])) / 2, 0);
+        g.drawString(winText[0], (width - titleFont.getWidth(winText[0])) / 2, -10);
         g.setFont(headerFont);
         g.drawString(winText[1], 0, 60);
         g.setFont(textFont);
         g.drawString(winText[2], 0, 85);
         g.setFont(headerFont);
-        g.drawString(winText[3], 0, 200);
+        g.drawString(winText[3], 0, 170);
         g.setFont(textFont);
-        g.drawString(winText[4], 0, 225);
+        g.drawString(winText[4], 0, 195);
         GL11.glPopAttrib();
         g.popTransform();
         g.draw(restart = new Rectangle(798, 698, 200, 48));
@@ -135,7 +135,7 @@ public class GameWinState extends BasicGameState {
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
     }
-    
+
     @Override
     public void mouseMoved(int oldx, int oldy, int newx, int newy) {
         mouseX = newx - mouseOffsetX;

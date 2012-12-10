@@ -52,8 +52,10 @@ public class PlatformerGame extends StateBasedGame {
             // Easy (2)
     };
     //@formatter:on
+    static public final int INTROHALL = 47;
     static public final int TUTORIAL1 = 48;
     static public final int TUTORIAL2 = 49;
+    public LevelInfo introHall = new LevelInfo("Intro Hallway", "assets/introhall.tmx", INTROHALL);
     public LevelInfo tutorial1 = new LevelInfo("Lab Procedures", "assets/Levels/tutorial.tmx", TUTORIAL1);
     public LevelInfo tutorial2 = new LevelInfo("Lab Safety", "assets/Levels/enemies_tutorial.tmx", TUTORIAL2);
 
@@ -63,7 +65,7 @@ public class PlatformerGame extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {
-        addState(new GameLoaderState(Lists.newArrayList(levels), Lists.newArrayList(tutorial1, tutorial2), 100));
+        addState(new GameLoaderState(Lists.newArrayList(levels), Lists.newArrayList(introHall, tutorial1, tutorial2), 100));
     }
 
     @Override

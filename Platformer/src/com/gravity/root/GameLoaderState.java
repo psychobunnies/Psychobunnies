@@ -111,7 +111,7 @@ public class GameLoaderState extends BasicGameState {
     @Override
     public void keyPressed(int key, char c) {
         if (key == Input.KEY_RETURN && loadState > 9) {
-            game.enterState(PlatformerGame.TUTORIAL1, new FadeOutTransition(), new FadeInTransition());
+            game.enterState(PlatformerGame.INTROHALL, new FadeOutTransition(), new FadeInTransition());
         }
     }
 

@@ -22,16 +22,7 @@ public class IntroLevelState extends GameplayState {
             controllerB.handleKeyPress(key);
         }
         if (!finished && c == '*') { // HACK: testing purposes only REMOVE FOR RELEASE
-            reset();
-            finished = true;
-            playerA.move(Movement.STOP);
-            playerB.move(Movement.STOP);
-            try {
-                game.getState(destinationId).init(container, game);
-            } catch (SlickException e) {
-                throw new RuntimeException(e);
-            }
-            game.enterState(destinationId, new FadeOutTransition(), new FadeInTransition());
+            stateWin();
         }
     }
 
@@ -40,16 +31,28 @@ public class IntroLevelState extends GameplayState {
         if (finishedPlayer == null) {
             finishedPlayer = player;
         } else if (!finished && finishedPlayer != player) {
-            reset();
-            finished = true;
-            playerA.move(Movement.STOP);
-            playerB.move(Movement.STOP);
-            try {
-                game.getState(destinationId).init(container, game);
-            } catch (SlickException e) {
-                throw new RuntimeException(e);
-            }
-            game.enterState(destinationId, new FadeOutTransition(), new FadeInTransition());
+            stateWin();
+        }
+    }
+
+    @Override
+    protected void stateWin() {
+        reset();
+        finished = true;
+        playerA.move(Movement.STOP);
+        playerB.move(Movement.STOP);
+        try {
+            game.getState(destinationId).init(container, game);
+        } catch (SlickException e) {
+            throw new RuntimeException(e);
+        }
+        game.enterState(destinationId, new FadeOutTransition(), new FadeInTransition());
+    }
+
+    @Override
+    public void reset() {
+        for (Resetable r : resetableTiles) {
+            r.reset();
         }
     }
 }

@@ -52,7 +52,7 @@
    <property name="visible" value="0"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3OMQ0AAAjAMKxx4N8SuICQNtm/CAAAAAAAAAAA4KucansC4KAGysrY00ApAAA=
+   H4sIAAAAAAAAC+3OMQ0AAAjAMKxx4N8SOOAh4WmT/YsAAAAAAAAAAIBdTvU9AQBHGmZOuRFAKQAA
   </data>
  </layer>
  <layer name="playerkeyed" width="110" height="24">
@@ -70,12 +70,12 @@
    H4sIAAAAAAAAC+3OQQkAAAgAMTOK/bNoC0U2uP9FAADAPznV9gQAAAAAAAAAZzVSN0MDQCkAAA==
   </data>
  </layer>
- <layer name="checkpoint1" width="110" height="24" visible="0">
+ <layer name="checkpoint1" width="110" height="24">
   <properties>
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3RwQkAIBADwRTnw4f912MPghyBmQoWNoG/1nQAT3zr5FufHd8anfgGAAAAAAAAAO0u0gHLNUApAAA=
+   H4sIAAAAAAAAC+3RwQkAIBADwRTnw4f912MPghyBmQoWNoG/1nQAT3zrc+Jbox3fWvkGAAAAAAAAAN0unbZDVUApAAA=
   </data>
  </layer>
  <layer name="checkpoint2" width="110" height="24">
@@ -83,7 +83,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3RsQkAIBAEwSvOwMD+69EW/EQeZ+Dyg03gP+P1AUp060m3nnTrZZ6t6AYAAAAAAAAANzbyOEZZQCkAAA==
+   H4sIAAAAAAAAC+3RsQkAIBAEwSvOwMD+69ES5BN5nIHLDzaB/4zXByjRrSfdeplnK7p1pRsAAAAAAAAA3NucU7OTQCkAAA==
   </data>
  </layer>
  <layer name="checkpoint3" width="110" height="24">
@@ -91,7 +91,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3OsQ0AMAjAMI7rwMD/99AjoF1sKXsiAAAAAAAAAIBNeavfEwAw7CwFrzTQE7UTQCkAAA==
+   H4sIAAAAAAAAC+3OsQkAMAgAQYezSJH959ElogTu4PuPAAAAAAAAAOAXp7vbEwAALR8FUwq/WcjjQCkAAA==
   </data>
  </layer>
  <layer name="checkpoint4" width="110" height="24">
@@ -99,7 +99,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3OsQkAIAwAwQyXwsL954kbSCAgyB18/xEAAAAAAAAAs9Zpv54AAOAreQm6CtU8ewdAKQAA
+   H4sIAAAAAAAAC+3OoQ0AMAgAQYarQLD/PO0GBEXFXfL+IwAAAAAAAOBf+artCQAAYN1pgqkLRVz32UApAAA=
   </data>
  </layer>
  <layer name="signs" width="110" height="24">

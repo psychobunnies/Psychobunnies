@@ -12,6 +12,7 @@ import org.newdawn.slick.geom.Polygon;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import org.newdawn.slick.tiled.Layer;
 import org.newdawn.slick.tiled.Tile;
@@ -456,8 +457,9 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         reset();
         map.reset();
         finished = true;
+        GameSounds.playSoundFor(Event.CAGE_SLAM);
         ((GameWinState) game.getState(GameWinState.ID)).setWinText(winText);
-        game.enterState(GameWinState.ID);
+        game.enterState(GameWinState.ID, new FadeOutTransition(), new FadeInTransition());
     }
 
     @Override

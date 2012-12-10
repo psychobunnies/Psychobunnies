@@ -25,6 +25,8 @@ public final class GameSounds {
     private static final List<String> fellSounds = Lists.newArrayList("death_ugh.ogg");
     private static final List<String> bounceSounds = Lists.newArrayList(/* "bounce.ogg" */);
     private static final List<String> bonkSounds = Lists.newArrayList("ceiling_bonk.ogg");
+    private static final List<String> cageSlams = Lists.newArrayList("cage_shut.ogg");
+    private static final List<String> endOfGame = Lists.newArrayList("city_endoflevel.ogg");
     private static final Music backgroundMusic;
     private static final Music menuMusic;
     private static final Random random;
@@ -52,7 +54,9 @@ public final class GameSounds {
         WALL_OF_DEATH(spikeSounds),
         FELL_OFF_MAP (fellSounds),
         BOUNCE       (bounceSounds),
-        BONK         (bonkSounds);
+        BONK         (bonkSounds),
+        CAGE_SLAM    (cageSlams),
+        END_OF_GAME  (endOfGame);
         //@formatter:on
 
         private List<Sound> sounds;

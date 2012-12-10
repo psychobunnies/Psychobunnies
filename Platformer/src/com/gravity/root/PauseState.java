@@ -26,25 +26,25 @@ public class PauseState extends CageSelectState {
     public PauseState() throws SlickException {
         super(new LevelInfo("Pause", "assets/pause.tmx", ID));
     }
-    
+
     @Override
     public void keyPressed(int key, char c) {
         if (key == Input.KEY_ESCAPE) {
-            enterCageState(resumeCage);
+            enterCageState(resumeCage.getToState());
         } else {
             super.keyPressed(key, c);
         }
     }
 
     @Override
-    public void enterCageState(MenuCage cage) {
-        if (cage == resumeCage) {
-            game.enterState(cage.getToState(), new SlideTransition(game.getState(cage.getToState()), Side.TOP, 1000), null);
+    public void enterCageState(int state) {
+        if (state == resumeCage.getToState()) {
+            game.enterState(state, new SlideTransition(game.getState(state), Side.TOP, 1000), null);
         } else {
             // Main menu
-            GameplayState fromState = (GameplayState)game.getState(resumeCage.getToState());
+            GameplayState fromState = (GameplayState) game.getState(state);
             fromState.reset();
-            game.enterState(cage.getToState(), new FadeOutTransition(), new FadeInTransition());
+            game.enterState(state, new FadeOutTransition(), new FadeInTransition());
         }
     }
 

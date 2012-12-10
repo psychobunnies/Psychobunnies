@@ -454,12 +454,14 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     }
 
     protected void stateWin() {
-        reset();
-        map.reset();
-        finished = true;
-        GameSounds.playSoundFor(Event.CAGE_SLAM);
-        ((GameWinState) game.getState(GameWinState.ID)).setWinText(winText);
-        game.enterState(GameWinState.ID, new FadeOutTransition(), new FadeInTransition());
+        if (!finished) {
+            reset();
+            map.reset();
+            finished = true;
+            GameSounds.playSoundFor(Event.CAGE_SLAM);
+            ((GameWinState) game.getState(GameWinState.ID)).setWinText(winText);
+            game.enterState(GameWinState.ID, new FadeOutTransition(), new FadeInTransition());
+        }
     }
 
     @Override

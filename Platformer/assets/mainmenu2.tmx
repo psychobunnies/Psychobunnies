@@ -12,12 +12,9 @@
  <tileset firstgid="29" name="New lab tiles" tilewidth="32" tileheight="32">
   <image source="../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="192"/>
  </tileset>
- <tileset firstgid="47" name="arrows" tilewidth="32" tileheight="32">
-  <image source="arrows.png" width="128" height="64"/>
- </tileset>
  <layer name="collisions" width="32" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2UQQrAIAwEF/qRNJdC///AVmihSIxRQoOQgT2JOyCLBGATsn8inVvSu893DrTRzqz0+tPf5nTwax21n2DfVo31Hiv+v0l/vN9j47MUN2HsT2Wp6GGmK/r90x/rX2n/2vZfRvui3z/9sf6V9u+dsv8Lys+2JgAMAAA=
+  <data encoding="base64" compression="zlib">
+   eJztlEEKwCAMBBf6kTSXQv//wFZooUiMUUKDkIE9iTsgiwRgE7J/Ip1b0rvPdw600c6s9PrT3+Z08GsdtZ9g31aN9R4r/r9Jf7zfY+OzFDdh7E9lqehhpiv6/dMf619p/9r2X0b7ot8//bH+lfbvnbL/C8vICzs=
   </data>
  </layer>
  <layer name="helptext1" width="32" height="24">
@@ -27,18 +24,18 @@
    <property name="x" value="400"/>
    <property name="y" value="500"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkbBKBgFo2DwAn4CeLjbT20AAJMGuqMADAAA
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSgY/IAfBx5Iu+nlhlH7R7b91AYAUC8Csw==
   </data>
  </layer>
  <layer name="players" width="32" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkbBKBgFo2AUEAMEgZh3oB1BIQAA2N6FiAAMAAA=
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSgYBaNgaABBIOYdaEcMcQAAMcQAHw==
   </data>
  </layer>
  <layer name="level markers" width="32" height="24">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjAAGEyZSjlv5RMAoGEqCnUUrSLDXNGgWjgB5gNP2PglGACshNt0MhvQMA8TEIOwAMAAA=
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFowABhMmUo5b+UTAKBhKgp1FK0iw1zRoFo4AeYDT9j4JRgArITbdDIb0DAC2iAQs=
   </data>
  </layer>
  <objectgroup name="special levels" width="32" height="24">
@@ -52,16 +49,8 @@
    <property name="translationX" value="2"/>
    <property name="translationY" value="0"/>
   </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYOgAZiBWQuIrQMVGwSgYBaNgFIyCUTAKRgFxAADR/ciyAAwAAA==
-  </data>
- </layer>
- <layer name="finish" width="32" height="24">
-  <properties>
-   <property name="visible" value="0"/>
-  </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3OMQ0AAAgDsEnCvzqeWSA8rYImAADAtfkO1ALiVPegAAwAAA==
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2DoAGYgVkLiK0DFRsEoGAWjYBSMglEwCkYBcQAAp9oASQ==
   </data>
  </layer>
 </map>

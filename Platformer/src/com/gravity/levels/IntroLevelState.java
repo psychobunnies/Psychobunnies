@@ -21,7 +21,7 @@ public class IntroLevelState extends GameplayState {
         if (!controllerA.handleKeyPress(key)) {
             controllerB.handleKeyPress(key);
         }
-        if (c == '*') { // HACK: testing purposes only REMOVE FOR RELEASE
+        if (!finished && c == '*') { // HACK: testing purposes only REMOVE FOR RELEASE
             reset();
             finished = true;
             playerA.move(Movement.STOP);
@@ -39,7 +39,7 @@ public class IntroLevelState extends GameplayState {
     public void playerFinishes(Player player) {
         if (finishedPlayer == null) {
             finishedPlayer = player;
-        } else if (finishedPlayer != player) {
+        } else if (!finished && finishedPlayer != player) {
             reset();
             finished = true;
             playerA.move(Movement.STOP);

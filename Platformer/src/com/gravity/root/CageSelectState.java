@@ -21,7 +21,7 @@ import com.gravity.levels.Renderer;
 public abstract class CageSelectState extends GameplayState {
 
     private static final int SELECT_KEY = Input.KEY_ENTER;
-    private List<MenuCage> cages;
+    protected List<MenuCage> cages;
     private int mouseOffsetX;
     private int mouseOffsetY;
 
@@ -39,13 +39,13 @@ public abstract class CageSelectState extends GameplayState {
         mouseOffsetY = (container.getHeight() - PlatformerGame.HEIGHT) / 2;
     }
 
-    public void enterCageState(MenuCage cage) {
+    public void enterCageState(int state) {
         try {
             GameSounds.playBGM();
             playerA.move(Movement.STOP);
             playerB.move(Movement.STOP);
-            game.getState(cage.getToState()).init(container, game);
-            game.enterState(cage.getToState(), new FadeOutTransition(), new FadeInTransition());
+            game.getState(state).init(container, game);
+            game.enterState(state, new FadeOutTransition(), new FadeInTransition());
         } catch (SlickException e) {
             e.printStackTrace();
         }
@@ -55,7 +55,7 @@ public abstract class CageSelectState extends GameplayState {
     public void mouseClicked(int button, int x, int y, int clickCount) {
         for (MenuCage cage : cages) {
             if (cage.getRect().contains(x - mouseOffsetX, y - mouseOffsetY)) {
-                enterCageState(cage);
+                enterCageState(cage.getToState());
             }
         }
     }
@@ -65,7 +65,7 @@ public abstract class CageSelectState extends GameplayState {
         if (key == SELECT_KEY) {
             for (MenuCage cage : cages) {
                 if (cage.intersects(playerA.getPhysicalState().getRectangle(), playerB.getPhysicalState().getRectangle())) {
-                    enterCageState(cage);
+                    enterCageState(cage.getToState());
                 }
             }
         } else {

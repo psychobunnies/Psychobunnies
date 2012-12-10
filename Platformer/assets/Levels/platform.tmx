@@ -57,7 +57,7 @@
  </layer>
  <layer name="playerkeyed" width="110" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3YMQrAIAwFUO+a+9+hqwS1dGgt5j2QxEnlk8XWAM4Uuy8AhUVa/EfOplpWo/eO+n6/ql9ZnVcht94styf1bXdzVmXespj0/X73rAEAAADAafyxAcDaBUfBjFlAKQAA
+   H4sIAAAAAAAAC+3Yuw3AIAwFQHb1/jukRVZApEiI8J2EgIrPww2tAZwpdm8ACsn1FqnxHzmXalndnXd0H22h/8psvQq59Ua5Penflt9Z1XrLYjDu57trDQAAAABO448NAOYuyT9Nw0ApAAA=
   </data>
  </layer>
  <layer name="fast2" width="110" height="24">

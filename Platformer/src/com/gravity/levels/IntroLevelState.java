@@ -37,6 +37,7 @@ public class IntroLevelState extends GameplayState {
 
     @Override
     protected void stateWin() {
+        done = true;
         if (!finished) {
             reset();
             finished = true;

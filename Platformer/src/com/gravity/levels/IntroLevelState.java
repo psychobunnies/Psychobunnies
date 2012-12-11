@@ -40,6 +40,7 @@ public class IntroLevelState extends GameplayState {
         done = true;
         if (!finished) {
             reset();
+            map.reset();
             finished = true;
             playerA.move(Movement.STOP);
             playerB.move(Movement.STOP);
@@ -52,10 +53,4 @@ public class IntroLevelState extends GameplayState {
         }
     }
 
-    @Override
-    public void reset() {
-        for (Resetable r : resetableTiles) {
-            r.reset();
-        }
-    }
 }

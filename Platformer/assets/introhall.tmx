@@ -24,6 +24,18 @@
  <tileset firstgid="103" name="new lab" tilewidth="32" tileheight="32">
   <image source="../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="192"/>
  </tileset>
+ <tileset firstgid="121" name="bunny-with-mother" tilewidth="32" tileheight="32">
+  <image source="../new-assets/backstory/bunny-with-mother.png" width="320" height="294"/>
+ </tileset>
+ <tileset firstgid="211" name="bunny-acid-pour" tilewidth="32" tileheight="32">
+  <image source="../new-assets/backstory/bunny-acid-pour.png" width="320" height="300"/>
+ </tileset>
+ <tileset firstgid="301" name="bunny-escaping" tilewidth="32" tileheight="32">
+  <image source="../new-assets/backstory/bunny-escaping.png" width="320" height="203"/>
+ </tileset>
+ <tileset firstgid="361" name="black tile" tilewidth="32" tileheight="32">
+  <image source="../new-assets/background/black tile.png" width="32" height="32"/>
+ </tileset>
  <layer name="collisions" width="60" height="24">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC8tiYGAIheJsCjEpZoQOEC5kGDkgmGHUv8MZjPp3eINR/w5vMOrf4Q1G/Tu8wah/hzcA+ZfSPtFQwyMtfkf9O3zBSPTvQJcfo+UV7cBITM8jzb8lDITHMCkdP8Wln955NxyIATCMd0CAFgAA
@@ -44,7 +56,7 @@
    <property name="y" value="650"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3PQQ0AAAjEMMzh3xIOeBOuTSZgVQAAAADAJb30UdpvkgGpWE6xgBYAAA==
+   H4sIAAAAAAAAC+3PQQ0AAAjEMMzh3xIWeBKuTSZgVQAAAADAJb3ok7TfJANVqE/+gBYAAA==
   </data>
  </layer>
  <layer name="help3" width="60" height="24">
@@ -57,7 +69,33 @@
    <property name="y" value="650"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3PQQ0AAAjEMMzh3xIO+B+0yQSsCgAAAABI10sXfftNNazQ+S6AFgAA
+   H4sIAAAAAAAAC+3SQQ0AAAgDMczh3xIaeMLaZAIuWRUAAACQrpe7Lq2X39L+nNZ73QA4hEmCgBYAAA==
+  </data>
+ </layer>
+ <layer name="help4" width="60" height="24">
+  <properties>
+   <property name="b" value="0"/>
+   <property name="g" value="0"/>
+   <property name="r" value="0"/>
+   <property name="text" value="Press d"/>
+   <property name="x" value="60"/>
+   <property name="y" value="650"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3SQQ0AMAwDsZIrf0rDsL26xpYC4KRUAQAAALzpy/0urZfd0v6c1jvFAQ/F+meAFgAA
+  </data>
+ </layer>
+ <layer name="help5" width="60" height="24">
+  <properties>
+   <property name="b" value="0"/>
+   <property name="g" value="0"/>
+   <property name="r" value="0"/>
+   <property name="text" value="Press d"/>
+   <property name="x" value="60"/>
+   <property name="y" value="650"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3SAQkAMAwDwZqrf0vTMBiFNXcQAQ+pAgAAAJjVl/tdWi+7pf05rfe1A5sCeC6AFgAA
   </data>
  </layer>
  <layer name="help2" width="60" height="24">
@@ -65,12 +103,12 @@
    <property name="b" value="0"/>
    <property name="g" value="0"/>
    <property name="r" value="0"/>
-   <property name="text" value="Press d"/>
+   <property name="text" value="Press right"/>
    <property name="x" value="60"/>
    <property name="y" value="480"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3SAQ0AAAgCQcvZv5INDAB3GwF+YwYAAABItM8StfWSre3Pbb1NDvEQ/e+AFgAA
+   H4sIAAAAAAAAC+3PQQ0AAAjEsDOHf0tY4Au0yQQsAQAAAC6qQZd8+wXYoAFyMyA/gBYAAA==
   </data>
  </layer>
  <layer name="directions" width="60" height="24">
@@ -89,4 +127,14 @@
  <objectgroup name="level markers" width="60" height="24">
   <object name="finish" x="1792" y="480" width="128" height="256"/>
  </objectgroup>
+ <layer name="background" width="60" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3PQREAIAzAsCEX/wYwwatL7iqgM/vcsyO/7fy289vObzu/7fy2AwDgvwf/9eVVgBYAAA==
+  </data>
+ </layer>
+ <layer name="history" width="60" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3PRdOWBRgF4Peju7u7FJSSbpDuEkERyb8AitLdoKCAdKfSDUqDAkp3g1LSHRc7Fs+Gb3hXPGfm2twzZ+bckUiYMO93utODb/iWnnzH9/SiN30Cev9wkEMc5ghHOcZxTnAyutNjlb70oz8DGMggBjOEoQwL6J3iNGc4yznOc4GLXOJydKfHKsMZwUhGMZoxjGUcP/BjQO8KV/mX/7jGdW5wk1v8H9ArGhOJFOMjPqY4JShJKUrzScy7/fHNjGcCP/EzE5nEZH5hClMDere5w13ucZ8HPOQRj3kS0Cvjl7KUozwVqEglKlOFqlH8dxrTmcFMZjGbOcxlHvMDek95xnNe8PL10c4Y4hCXeAG7q7lVpwY1qcWn1KYOdakXxX8XsJBFLGYJS/mV31jG8oBefJsSkJBEJCYJSUlGclIE7K7v1oCGNKIxTWhKM5rTIor/rmAlq1jNGtayjvVsYGNAL6VNqUhNGtKSjvRkICOZAna3dGtFaz6jDZ/TlnZ8wZdR/HcTm9nC7/zBVraxnR3sDOhltikLWclGdnKQk1zkJk/A7vZuX9GBr+lIJzrTha50i+K/u9jNHvbyJ3+xj/0c4O+AXl6b8pGfAhSkEIUpwgd8GMXdYcKECRMmTJgwYcKEebu8AunAC/eAFgAA
+  </data>
+ </layer>
 </map>

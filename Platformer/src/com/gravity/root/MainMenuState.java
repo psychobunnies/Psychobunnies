@@ -18,6 +18,7 @@ import com.gravity.levels.CageRenderer;
 import com.gravity.levels.LevelInfo;
 import com.gravity.levels.MenuCage;
 import com.gravity.levels.Renderer;
+import com.gravity.levels.Resetable;
 import com.gravity.map.LevelFinishZone;
 import com.gravity.physics.LayeredCollisionEngine;
 
@@ -109,6 +110,13 @@ public class MainMenuState extends CageSelectState {
     @Override
     protected void stateWin() {
         // No-op
+    }
+
+    @Override
+    public void reset() {
+        for (Resetable r : resetableTiles) {
+            r.reset();
+        }
     }
 
     @Override

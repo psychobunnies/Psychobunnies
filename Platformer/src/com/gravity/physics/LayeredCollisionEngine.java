@@ -37,6 +37,9 @@ public class LayeredCollisionEngine implements CollisionEngine {
     private static final int PARTS_PER_TICK = 7;
     private static final float MIN_INCREMENT = 3f;
 
+    private static final float MIN_ALLOWED_REPEATED_COLLISION_DELTA = 1e-4f;
+    private static final float MAX_ALLOWED_REPEATS = 10;
+
     // package private for testing
     final Map<Integer, CollidableContainer> collidables;
     final Map<Collidable, Integer> layerMap;
@@ -607,6 +610,12 @@ public class LayeredCollisionEngine implements CollisionEngine {
 
     @Override
     public void update(float millis) {
+        float last = Float.NEGATIVE_INFINITY;
+        int counter = 0;
+        boolean forceRehandle = false;
+        float time;
+        float increment = Math.max(MIN_INCREMENT, millis / PARTS_PER_TICK);
+
         Preconditions.checkArgument(millis >= 0, "Time since last update() call must be nonnegative");
 
         for (CollidableContainer cont : collidables.values()) {
@@ -614,17 +623,42 @@ public class LayeredCollisionEngine implements CollisionEngine {
         }
 
         if (millis > MIN_INCREMENT) {
-            float increment = Math.max(MIN_INCREMENT, millis / PARTS_PER_TICK);
-            float time;
             for (time = increment; !stopped && time < millis; time += increment) {
-                time = runCollisionsAndHandling(time, false);
+                time = runCollisionsAndHandling(time, false, forceRehandle);
+                if (last + MIN_ALLOWED_REPEATED_COLLISION_DELTA > time) {
+                    counter++;
+                    if (counter >= MAX_ALLOWED_REPEATS) {
+                        forceRehandle = true;
+                    } else {
+                        forceRehandle = false;
+                    }
+                } else {
+                    last = time;
+                    forceRehandle = false;
+                    counter = 0;
+                }
             }
         }
-        while (!stopped && millis > runCollisionsAndHandling(millis, false))
-            ;
+
+        time = 0;
+        while (!stopped && time < millis) {
+            time = runCollisionsAndHandling(millis, false, forceRehandle);
+            if (last + MIN_ALLOWED_REPEATED_COLLISION_DELTA > time) {
+                counter++;
+                if (counter >= MAX_ALLOWED_REPEATS) {
+                    forceRehandle = true;
+                } else {
+                    forceRehandle = false;
+                }
+            } else {
+                last = time;
+                forceRehandle = false;
+                counter = 0;
+            }
+        }
     }
 
-    private float runCollisionsAndHandling(float millis, boolean report) {
+    private float runCollisionsAndHandling(float millis, boolean report, boolean forceRehandle) {
         Multimap<Collidable, RectCollision> collisions;
         collisions = computeCollisions(millis);
         if (collisions.isEmpty()) {
@@ -654,7 +688,13 @@ public class LayeredCollisionEngine implements CollisionEngine {
                     collisionsToReport.add(coll);
                 }
             }
-            collidable.handleCollisions(cutoff, collisionsToReport);
+            if (forceRehandle) {
+                System.out.println("Force rehandling collisions at t=" + cutoff + " between " + collidable.toString() + " and "
+                        + collisionsToReport.toString());
+                collidable.rehandleCollisions(cutoff, collisionsToReport);
+            } else {
+                collidable.handleCollisions(cutoff, collisionsToReport);
+            }
         }
 
         if (stopped) {
@@ -680,8 +720,8 @@ public class LayeredCollisionEngine implements CollisionEngine {
                 if (other.causesCollisionsWith(collidable) && collidable.causesCollisionsWith(other)) {
                     // Die if we still have any "real" collisions.
                     // TODO: fix this - should separate things that can overlap from things that want to be notified of overlap
-                    throw new RuntimeException("Could not rehandle collisions at time " + millis + "; stopped=" + stopped + "; collisions=: "
-                            + collisions);
+                    throw new RuntimeException("Could not rehandle collisions at time " + millis + "; forceRehandle=" + forceRehandle + "; stopped="
+                            + stopped + "; collisions=: " + collisions);
                 }
             }
         }

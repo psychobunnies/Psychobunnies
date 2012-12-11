@@ -215,7 +215,8 @@ public class GravityPhysics implements Physics {
                 }
                 if (sides.contains(Side.LEFT)) {
                     if (other instanceof BouncyTile) {
-                        velX = scaleBounce * Math.abs(velX);
+                        surfX = Math.max(surfX, 0);
+                        velX = scaleBounce * Math.abs(velX + state.surfaceVelX);
                         accX = Math.max(accX, 0);
                     } else if (other instanceof MovingEntity && other.getPhysicalState().getVelocity().x > 0) {
                         r = r.translate(Math.max(movingTilePositionFeather, other.getPhysicalState().getVelocity().x * millis), 0f);
@@ -271,7 +272,8 @@ public class GravityPhysics implements Physics {
                 }
                 if (sides.contains(Side.RIGHT)) {
                     if (other instanceof BouncyTile) {
-                        velX = -scaleBounce * Math.abs(velX);
+                        surfX = Math.min(surfX, 0);
+                        velX = -scaleBounce * Math.abs(velX + state.surfaceVelX);
                         accX = Math.min(accX, 0);
                     } else if (other instanceof MovingEntity && other.getPhysicalState().getVelocity().x < 0) {
                         r = r.translate(Math.min(-movingTilePositionFeather, other.getPhysicalState().getVelocity().x * millis), 0f);

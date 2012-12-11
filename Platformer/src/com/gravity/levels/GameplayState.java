@@ -12,6 +12,7 @@ import org.newdawn.slick.geom.Polygon;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import org.newdawn.slick.tiled.Layer;
 import org.newdawn.slick.tiled.Tile;
@@ -86,7 +87,8 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     private Control remappedControl;
     private float remappedDecay;
     private Polygon controlArrow = new Polygon(new float[] { -50, 10, 20, 10, -10, 50, 10, 50, 50, 0, 10, -50, -10, -50, 20, -10, -50, -10 });
-    protected boolean finished = false;;
+    protected boolean finished = false;
+    protected boolean done = false;
 
     protected final List<Resetable> resetableTiles = Lists.newArrayList();
     private final String levelName;
@@ -111,6 +113,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     }
 
     public void reloadGame() {
+        finished = false;
         System.err.println(">>>Processing level " + levelName);
         pauseRender();
         pauseUpdate();
@@ -453,11 +456,15 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     }
 
     protected void stateWin() {
-        reset();
-        map.reset();
-        finished = true;
-        ((GameWinState) game.getState(GameWinState.ID)).setWinText(winText);
-        game.enterState(GameWinState.ID);
+        done = true;
+        if (!finished) {
+            reset();
+            map.reset();
+            finished = true;
+            ((GameWinState) game.getState(GameWinState.ID)).setWinText(winText);
+            game.enterState(GameWinState.ID, new FadeOutTransition(), new FadeInTransition());
+            GameSounds.playSoundFor(Event.CAGE_SLAM);
+        }
     }
 
     @Override
@@ -475,6 +482,6 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     }
 
     public boolean isFinished() {
-        return finished;
+        return done;
     }
 }

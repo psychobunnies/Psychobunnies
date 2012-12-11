@@ -720,8 +720,8 @@ public class LayeredCollisionEngine implements CollisionEngine {
                 if (other.causesCollisionsWith(collidable) && collidable.causesCollisionsWith(other)) {
                     // Die if we still have any "real" collisions.
                     // TODO: fix this - should separate things that can overlap from things that want to be notified of overlap
-                    throw new RuntimeException("Could not rehandle collisions at time " + millis + "; stopped=" + stopped + "; collisions=: "
-                            + collisions);
+                    throw new RuntimeException("Could not rehandle collisions at time " + millis + "; forceRehandle=" + forceRehandle + "; stopped="
+                            + stopped + "; collisions=: " + collisions);
                 }
             }
         }

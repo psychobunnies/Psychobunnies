@@ -34,7 +34,7 @@
  </layer>
  <layer name="spikes" width="90" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2YXQ4AEQwGezf3v9O+b9hUuz4pM4kn9ZNBCTMALW33BC4BzxrwrAHPOdqreON68axFHhxqwLMGPOfw5GYb1HvaRcY6Gc89GGnXi531PbqDq65XxDPMU93z6jn+dZ6qe67CrGdFjlzV/848f9Ke9byf8Hw2eNaAZw141oBnDXjWgOf9fP3lZN+iD7xnbAzAIQAA
+   H4sIAAAAAAAAC+2XTw+CMAzF+9WMUVFPmviPo571+x8dyQiRjC5Y27nt/ZJ3gbI1r6UMIgBseaROoBLa1AlUAny2AT7LODgtvI5MXDuKDcUvNRKsDPSzDfDZBvgsY+20ctpE4kI+z53Hjd9rO/O50rgz96b6uatTrEZS+vqMlWu9uNmAufE7cve5UV6/n7HS9yl3n3OB8/IZuNbVV3tGct8MCTunq9deaY8pSurZ2FnoRMN/7Vk/nQ9K8vmfgc82wGcb4LMN8NkG+GzDK3UCgC40nOs53b5Y+w0gj1YAwCEAAA==
   </data>
  </layer>
  <layer name="players" width="90" height="24" opacity="0.47">

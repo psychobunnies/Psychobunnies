@@ -51,10 +51,12 @@ public class CreditsState extends BasicGameState {
         g.drawString("Cake Town: Matthew Pablo", 50, 150);
         g.drawString("Almost Out: HorrorPen", 50, 175);
         g.drawString("Sound effects: Even Martinez and Zachary Segal", 50, 200);
-        g.drawString("Lead Programmers: Predrag Gruevski, David Xiao and Patrick Hulin", 50, 225);
-        g.drawString("Level Design: Kevin Yue, Eli Davis, and Ziad Baaklini", 50, 250);
-        g.drawString("Art Assets: Turner Bohlen and Zachary Segal", 50, 275);
-        g.drawString("*Special thanks to Chris Dessonville for his work on the original prototype*", 50, 300);
+        g.drawString("       sound effects from fressound.org, by CGEffex, Sagetyrtle, Patchen, Buzzbox\n" +
+        		     "       Plingativator, Streety, Denis Chapon, Setuniman, Morgantj", 50, 220);
+        g.drawString("Lead Programmers: Predrag Gruevski, David Xiao and Patrick Hulin", 50, 265);
+        g.drawString("Level Design: Kevin Yue, Eli Davis, and Ziad Baaklini", 50, 290);
+        g.drawString("Art Assets: Turner Bohlen and Zachary Segal", 50, 315);
+        g.drawString("*Special thanks to Chris Dessonville for his work on the original prototype*", 50, 340);
 
         g.draw(MenuButton = new Rectangle(48, 383, 100, 48));
         g.drawString("Back", 50, 385);

@@ -54,7 +54,7 @@ public abstract class CageSelectState extends GameplayState {
     @Override
     public void mouseClicked(int button, int x, int y, int clickCount) {
         for (MenuCage cage : cages) {
-            if (cage.getRect().contains(x - mouseOffsetX, y - mouseOffsetY)) {
+            if (cage.getRect().contains(x - mouseOffsetX, y - mouseOffsetY) && PlatformerGame.CHEATS_ENABLED) {
                 enterCageState(cage.getToState());
             }
         }

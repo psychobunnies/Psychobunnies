@@ -27,6 +27,8 @@ import com.gravity.levels.LevelInfo;
 public class PlatformerGame extends StateBasedGame {
     public static final int WIDTH = 1024;
     public static final int HEIGHT = 768;
+    
+    public static boolean CHEATS_ENABLED = false;
 
     //@formatter:off
     private LevelInfo[] levels = {
@@ -92,10 +94,16 @@ public class PlatformerGame extends StateBasedGame {
         boolean isDebugging = false;
         try {
             isDebugging |= java.lang.management.ManagementFactory.getRuntimeMXBean().getInputArguments().toString().indexOf("-agentlib:jdwp") > 0;
+            CHEATS_ENABLED |= isDebugging;
         } catch (Exception e) {
             e.printStackTrace();
         }
         isDebugging |= args.length > 0 && args[0].equals("nofullscreen");
+        for (String arg : args) {
+            if (arg.equals("mewanthack")) {
+                CHEATS_ENABLED = true;
+            }
+        }
         if (!isDebugging) {
             app.setDisplayMode(app.getScreenWidth(), app.getScreenHeight(), true);
         }

@@ -365,7 +365,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         if (!controllerA.handleKeyPress(key)) {
             controllerB.handleKeyPress(key);
         }
-        if (c == '*') { // HACK: testing purposes only REMOVE FOR RELEASE
+        if (c == '*' && PlatformerGame.CHEATS_ENABLED) { // HACK: testing purposes only REMOVE FOR RELEASE
             stateWin();
         }
     }

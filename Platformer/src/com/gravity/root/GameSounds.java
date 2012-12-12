@@ -23,7 +23,7 @@ public final class GameSounds {
     private static final List<String> crushSounds = Lists.newArrayList("death_crush1.ogg", "death_crush2.ogg", "death_crush6.ogg",
             "death_crush8.ogg", "death_crush5.ogg");
     private static final List<String> fellSounds = Lists.newArrayList("death_ugh.ogg");
-    private static final List<String> bounceSounds = Lists.newArrayList(/* "bounce.ogg" */);
+    private static final List<String> bounceSounds = Lists.newArrayList(/*"bounce.ogg"*/);
     private static final List<String> bonkSounds = Lists.newArrayList("ceiling_bonk.ogg");
     private static final List<String> cageSlams = Lists.newArrayList("cage_shut.ogg");
     private static final List<String> endOfGame = Lists.newArrayList("city_endoflevel.ogg");

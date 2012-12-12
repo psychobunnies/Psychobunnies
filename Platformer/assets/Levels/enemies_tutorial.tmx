@@ -32,17 +32,17 @@
   <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="192"/>
  </tileset>
  <tileset firstgid="126" name="New Spikes" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/spiky/spikes-all.png" width="128" height="96"/>
+  <image source="../../new-assets/tiles/spiky/spikes-all.png" width="352" height="160"/>
  </tileset>
- <tileset firstgid="138" name="Bouncy" tilewidth="32" tileheight="32">
+ <tileset firstgid="181" name="Bouncy" tilewidth="32" tileheight="32">
   <image source="../../new-assets/tiles/bouncy/all.png" width="256" height="320"/>
  </tileset>
- <tileset firstgid="218" name="signs" tilewidth="32" tileheight="32">
+ <tileset firstgid="261" name="signs" tilewidth="32" tileheight="32">
   <image source="../arrows.png" width="128" height="64"/>
  </tileset>
  <layer name="spikes" width="100" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3WOw6AIBRFQZZOoYW7trLAWICfeENmEjp4kJyGUoCz5e8H0NAjix5Z9MiiRxY9suiRRY8semTRI4seWfQAAHrUi8Xc1hdmbB/tHTHLf1ePLHpk0SNPfbhGZty5r+fMYQcSq4QigCUAAA==
+   H4sIAAAAAAAAC+3WOw6AIBRFQZZOr73btbLAWICfeENmEjp4kJyGUoCz5e8H0NAjix5Z9MiiRxY9suiRRY8semTRI4seWfQAAHrUi8Xc1hdmbB/tHTHLf1ePLHpk0SNPfbhGZty5r+fMYQffpkNsgCUAAA==
   </data>
  </layer>
  <objectgroup name="level markers" width="100" height="24">
@@ -100,17 +100,17 @@
  </layer>
  <layer name="bouncys" width="100" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3RsQmAQAAEQftvwtDQHhT70tAvQH6RGbj8YJeFP1hnH2CwzT7AQI8WPVr0aNGjRY8WPVr0aNGjRY8WPVr0aNGjRY+WffYBAAD4wPHsfO2ae+d3blbincqAJQAA
+   H4sIAAAAAAAAC+3RsQmAQAAEQfsvzdDQHhRL0NAvQH6RGbj8YJeFP1hnH2CwzT7AQI8WPVr0aNGjRY8WPVr0aNGjRY8WPVr0aNGjRY+WffYBAAD4wPHsfO2ae+d3boOwTFmAJQAA
   </data>
  </layer>
  <layer name="help5" width="100" height="24">
   <properties>
-   <property name="b" value="0"/>
-   <property name="g" value="0"/>
-   <property name="r" value="0"/>
+   <property name="b" value="255"/>
+   <property name="g" value="255"/>
+   <property name="r" value="255"/>
    <property name="text" value="Bounce!"/>
    <property name="x" value="425"/>
-   <property name="y" value="550"/>
+   <property name="y" value="575"/>
   </properties>
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3RsQ0AIRDAMJZj/5VovviC/iJhS5kgawEAMGl/0eBHix8t/x/ezPOjxY8WP1r8aPGjxY8WP1r2Jeb40eJHix8tfrT4wUsOvOsuHoAlAAA=
@@ -182,7 +182,7 @@
  </layer>
  <layer name="bouncy overflow" width="100" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3RsQmAQBQE0eu/CEEDwUQwFa3EZpTjc9iA/DmcB5svTCnq3RAbs4+ommNL9hFV9mCxB4s9WOzBYg8We7DYg8UeLPZgsQeLPVjswWIPljW2ZR9RM2Uf6NyVfUCS9Gv7s+O1M/eO9KkbreiPl4AlAAA=
+   H4sIAAAAAAAAC+3RsQmAQBQE0TOx/7YEDQQTwVS0DOX4iA3In8N5sPnClKLWDbEx+4iqObZkH1FlDxZ7sNiDxR4s9mCxB4s9WOzBYg8We7DYg8UeLPZgWWNb9hE9puwDjeu77AeSpD/b7x2vnbl3pE9dT2lfVYAlAAA=
   </data>
  </layer>
  <layer name="collisions" width="100" height="24">

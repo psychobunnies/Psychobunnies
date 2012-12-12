@@ -51,7 +51,7 @@
    <property name="b" value="0"/>
    <property name="g" value="0"/>
    <property name="r" value="0"/>
-   <property name="text" value="Press d"/>
+   <property name="text" value="Press right"/>
    <property name="x" value="60"/>
    <property name="y" value="650"/>
   </properties>
@@ -59,51 +59,12 @@
    H4sIAAAAAAAAC+3PQQ0AAAjEMMzh3xIWeBKuTSZgVQAAAADAJb3ok7TfJANVqE/+gBYAAA==
   </data>
  </layer>
- <layer name="help3" width="60" height="24">
-  <properties>
-   <property name="b" value="0"/>
-   <property name="g" value="0"/>
-   <property name="r" value="0"/>
-   <property name="text" value="Press d"/>
-   <property name="x" value="60"/>
-   <property name="y" value="650"/>
-  </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3SQQ0AAAgDMczh3xIaeMLaZAIuWRUAAACQrpe7Lq2X39L+nNZ73QA4hEmCgBYAAA==
-  </data>
- </layer>
- <layer name="help4" width="60" height="24">
-  <properties>
-   <property name="b" value="0"/>
-   <property name="g" value="0"/>
-   <property name="r" value="0"/>
-   <property name="text" value="Press d"/>
-   <property name="x" value="60"/>
-   <property name="y" value="650"/>
-  </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3SQQ0AMAwDsZIrf0rDsL26xpYC4KRUAQAAALzpy/0urZfd0v6c1jvFAQ/F+meAFgAA
-  </data>
- </layer>
- <layer name="help5" width="60" height="24">
-  <properties>
-   <property name="b" value="0"/>
-   <property name="g" value="0"/>
-   <property name="r" value="0"/>
-   <property name="text" value="Press d"/>
-   <property name="x" value="60"/>
-   <property name="y" value="650"/>
-  </properties>
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3SAQkAMAwDwZqrf0vTMBiFNXcQAQ+pAgAAAJjVl/tdWi+7pf05rfe1A5sCeC6AFgAA
-  </data>
- </layer>
  <layer name="help2" width="60" height="24">
   <properties>
    <property name="b" value="0"/>
    <property name="g" value="0"/>
    <property name="r" value="0"/>
-   <property name="text" value="Press right"/>
+   <property name="text" value="Press d"/>
    <property name="x" value="60"/>
    <property name="y" value="480"/>
   </properties>
@@ -124,10 +85,8 @@
    H4sIAAAAAAAAC+3OMQkAAAgAMLt52L+RHUQQZEuwCAAAAOCrug4AY3kdgAUNpcx0JYAWAAA=
   </data>
  </layer>
- <objectgroup name="level markers" width="60" height="24">
-  <object name="finish" x="1792" y="480" width="128" height="256"/>
- </objectgroup>
- <layer name="background" width="60" height="24">
+ <objectgroup name="level markers" width="60" height="24"/>
+ <layer name="background" width="60" height="24" opacity="0.73">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3PQREAIAzAsCEX/wYwwatL7iqgM/vcsyO/7fy289vObzu/7fy2AwDgvwf/9eVVgBYAAA==
   </data>

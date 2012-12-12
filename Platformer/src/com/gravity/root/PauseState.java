@@ -44,6 +44,11 @@ public class PauseState extends CageSelectState {
             // Main menu
             GameplayState fromState = (GameplayState) game.getState(state);
             fromState.reset();
+            try {
+                fromState.init(container, game);
+            } catch (SlickException e) {
+                e.printStackTrace();
+            }
             game.enterState(state, new FadeOutTransition(), new FadeInTransition());
         }
     }

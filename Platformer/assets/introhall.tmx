@@ -38,7 +38,7 @@
  </tileset>
  <layer name="collisions" width="60" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC8tiYGAIheJsCjEpZoQOEC5kGDkgmGHUv8MZjPp3eINR/w5vMOrf4Q1G/Tu8wah/hzcA+ZfSPtFQwyMtfkf9O3zBSPTvQJcfo+UV7cBITM8jzb8lDITHMCkdP8Wln955NxyIATCMd0CAFgAA
+   H4sIAAAAAAAAC+2YQQqAMAwE94/ST9ST4P+RQK8iEmxxMwN7bMNQGki6pDayJ/PmjrYoh+qwCV9n8PUGX2/w9QZfb/D1JnyzM9HfUul9A3y9qea7un/Qr74FX29OPe8ws/vTu/Oz/27UvADu+f8wgBYAAA==
   </data>
  </layer>
  <layer name="spikes" width="60" height="24">

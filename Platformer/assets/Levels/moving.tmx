@@ -45,7 +45,7 @@
  </tileset>
  <layer name="collisions" width="110" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2Y0QqDMAxF85EbuK+QPUzwAwd70H3TCNuYyKaWtaY3uQeKUKE2nCa2bUXkOGnN63ma9edqTaFx321ceHf/0X/70jesjDkkfuOaOc5OCBqd0Bsi9IYJvWFCb5h49HaxnsAOePQWgV7oDRGtKfSGCb1tp5XPfcXZeC4lvWmc1vF5hflmwzR3re8nI+zBa+DfcwDroA3Rzm9e6kE0b5bkXDOp3qLWxdriZr5hQm+YbPVmUSe87CFKwHzDRJ311pMgyaizgyzfp9S0jyJP9B/yAG5XxuNAKQAA
+   H4sIAAAAAAAAC+2ZUQqDMAyGc0gH9RSyhw12QGEP3c40io4V0W52rWmS/4MgRKgJv03bdCCiU2RufvYLfylzlcZ92yPx7rnhv6/4/Jcx/c5vjIXzBPK4cgcAsoBuMoFuMoFuMtGo24U7gAPQqJsFbtwBgCws1BQABvr0K87MsdQk5Kk5P2CPeO5y9yexXh7Dv+cA1EEerJ3ftNQDa7pxUvKf2aub1brYWt6YbzKBbjL5VTeOOqFlD1EDzDeZQDeZhHucjtL9lJb2UWAirCEvoE0nREApAAA=
   </data>
  </layer>
  <layer name="spikes" width="110" height="24">

@@ -25,11 +25,11 @@
   <image source="../arrows.png" width="128" height="64"/>
  </tileset>
  <tileset firstgid="65" name="New Spikes" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/spiky/spikes-all.png" width="128" height="96"/>
+  <image source="../../new-assets/tiles/spiky/spikes-all.png" width="352" height="160"/>
  </tileset>
  <layer name="collisions" width="90" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+1abYoDIQz1It2/Q2e6pQO9Qe9/p0VY2RBMJi9G1w59IKVjvnzGaJ2uKaWLo21Ovcg2QwzWticfvHqRmCEGK7yxPkOj8OGsPK/pbx3c+oQD4aw8ozlM5yWi8bmV4kH8cptc96g/qj4jObwQ+Sx7JX2e3Huxxm1QXxSIL09cPXSQHH4E2ZHAY6XfH4ocYnOkTsmTfG6y1uGcy1ehbwXsaNB4tjxvlR2tU0PvXK7ZGcFzLUf+i+d7as/lmlx+tpFmHW+ej8XgU7PBodWlEqe0Z94APxq0fLXmck3uSFeqeUi9Q8ZfuEY5y/LaOeUoVmm/P+qrydZy4Ui3Nt5d6bPaiNbZnX44Wuuvxhfq98w8l/V0d+prfGn4VvR68ozmVRTP1B4KqT603m95eZbiofW13BN+AT4iefbWD2/d0Gy9U91A60CuH9bzFI+Dw/vb5h159taBsq5az1bo+liITst5MlqnB88eSH48d2Mb+7SeTVvuDS3jm5nns+DD8xh8eO6PfJbI44u4m2jFDO8ae+H526R9oNyRjXjnPsP/A9C9zbp/ljutH0Oq2PLAIQAA
+   H4sIAAAAAAAAC+1a7Q7CIAzkRfTv4qbGJb7/sxkSiaShpVcK4uIlxDj6xVEKMtcQwsnQNqOeZ5shBm3bgw1WPU/MEIMW1lifrlHYcFSe1/BZB9c+4UA4Ks9oDufz4tHo3HLxIH6pTapb6/eqz0gOL5l8lL1kfR65R23kviQ5xOa3dJAcfjjZ4UBjzb8/BDnE5kidlCfx3KStwzGXL0zfCtiRIPGsed4qO1qnhN65XLIzgudSjnyL53toz+WSXHy2ZU073jgfi8KnZINCqkspTm7PvAJ+JEj5qs3lklxNl6t5SL1Dxp+4RjmL8tI5pRYrt9/X+kqypVyo6ZbGuwt9WhveOrvRD0Vr/ZX4Qv0emee0nu5GfYkvCTdBryfPaF558ZzbQ8HVh9b7LSvPXDx5fU33hGfAhyfP1vphrRuSrV+qG2gdiPVDe56icVBYf9v8Is/WOpDWVevZCl0fS6bTcp701unBswWcH8vd2EY+tWfTlntDzfhm5vko+PM8Bn+e+yOeJeL4PO4mWjHDu8ZeeL4btw+kO7IR79xn+H8Aurdp9890p/UCuTJYSMAhAAA=
   </data>
  </layer>
  <layer name="spikes" width="90" height="24">

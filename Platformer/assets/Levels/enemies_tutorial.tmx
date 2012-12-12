@@ -46,7 +46,7 @@
   </data>
  </layer>
  <objectgroup name="level markers" width="100" height="24">
-  <object name="finish" x="3104" y="448" width="96" height="128"/>
+  <object name="finish" x="3136" y="448" width="64" height="128"/>
  </objectgroup>
  <layer name="help1" width="100" height="24">
   <properties>
@@ -196,6 +196,16 @@
   </properties>
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3DMQ0AAAgDsHnDvyeeWeAhbdIEAIBL0wAAAAAAAMA/C2JfM9eAJQAA
+  </data>
+ </layer>
+ <layer name="help8" width="100" height="24">
+  <properties>
+   <property name="text" value="In the future, press * to skip the introduction"/>
+   <property name="x" value="2900"/>
+   <property name="y" value="500"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3RSQ0AAAjAMMzh3xIS+HEkbTIFiwAAAAAAAPghm5jlxy1+AADsKCEET02AJQAA
   </data>
  </layer>
 </map>

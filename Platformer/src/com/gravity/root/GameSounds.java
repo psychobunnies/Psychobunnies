@@ -37,8 +37,8 @@ public final class GameSounds {
     static {
 
         try {
-            backgroundMusic = new Music("./assets/Sound/Caketown 1.ogg");
-            menuMusic = new Music("./assets/Sound/levelselect_theme.ogg");
+            backgroundMusic = new Music("./assets/Sound/Caketown 1.ogg", true);
+            menuMusic = new Music("./assets/Sound/levelselect_theme.ogg", true);
         } catch (SlickException e) {
             throw new RuntimeException(e);
         }

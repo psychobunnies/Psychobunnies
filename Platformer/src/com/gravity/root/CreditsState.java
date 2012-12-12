@@ -37,7 +37,7 @@ public class CreditsState extends BasicGameState {
         font.addAsciiGlyphs();
         font.loadGlyphs();
         background = new Image("assets/background-no-shelf.png");
-        
+
         mouseOffsetX = (container.getWidth() - PlatformerGame.WIDTH) / 2;
         mouseOffsetY = (container.getHeight() - PlatformerGame.HEIGHT) / 2;
     }
@@ -47,14 +47,14 @@ public class CreditsState extends BasicGameState {
         g.drawImage(background, 0, 0, 0, 0, PlatformerGame.WIDTH, PlatformerGame.HEIGHT);
         g.setFont(font);
         g.drawString("CREDITS", 50, 75);
-        g.drawString("Music by Matthew Pablo", 50, 125);
-        g.drawString("Sound effects were made by Zachary Segal", 50, 150);
-        g.drawString("Game design by Kevin Yue, David Xiao and Predrag Gruevski", 50, 175);
-        g.drawString("Game frameworks were written by Predrag Gruevski, David Xiao and Kevin Yue", 50, 200);
-        g.drawString("Maps were made by Chris Dessonville", 50, 225);
-        g.drawString("Graphics and rendering designed and implemented by Chris Dessonville and Zachary Segal", 50, 250);
-        g.drawString("Assets from 'The Independent Gaming Source's Assemblee Competition' were used", 50, 275);
-        g.drawString(" with permission from the authors.", 50, 300);
+        g.drawString("Music:", 50, 125);
+        g.drawString("Cake Town: Matthew Pablo", 50, 150);
+        g.drawString("Almost Out: HorrorPen", 50, 175);
+        g.drawString("Sound effects: Even Martinez and Zachary Segal", 50, 200);
+        g.drawString("Lead Programmers: Predrag Gruevski, David Xiao and Patrick Hulin", 50, 225);
+        g.drawString("Level Design: Kevin Yue, Eli Davis, and Ziad Baaklini", 50, 250);
+        g.drawString("Art Assets: Turner Bohlen and Zachary Segal", 50, 275);
+        g.drawString("*Special thanks to Chris Dessonville for his work on the original prototype*", 50, 300);
 
         g.draw(MenuButton = new Rectangle(48, 383, 100, 48));
         g.drawString("Back", 50, 385);

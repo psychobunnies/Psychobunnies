@@ -433,7 +433,7 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     public void specialMoveSlingshot(Player slingshoter, float strength) {
         // check for minimum distance between players
         if (playerA.getPhysicalState().getPosition().sub(playerB.getPhysicalState().getPosition()).length() < MIN_SLINGSHOT_DISTANCE) {
-            // maybe play sound of slingshot fizzling out?
+            GameSounds.playSoundFor(Event.NO_SLING);
         } else {
             if (slingshoter == playerA) {
                 playerB.slingshotMe(strength, playerA.getPhysicalState().getPosition().sub(playerB.getPhysicalState().getPosition()));

@@ -61,12 +61,12 @@
  </layer>
  <layer name="spikes" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt18sKgCAQhWHfV6pXiJbto9dNwaDEIBczlvN/cKDVaKfo4hwAAEA7Y8gQMrXeyMecvZRCVwCAKH9XAEBPar9/V9ntIFmE5nL97qR6lpr7B6V7zLvn/+782eMr1rLcs+a5W+55U1zLcs+a6FkHPcuaU/bL8dvUzO890QGJfze9
+   eJzt10EKgCAURVH3K9UWomHzaLslSKgY6OB/S++BB43UnlFmDAAAQDvznclnabyWLwl7SUNPAAAn/VYAQA9y5+CS8+8uuSg8NqFx2b+YVM9S4/5B7hmz5v2/O3332Iq5Ru5Z895H7vlQnGvknjXRsw56lrX6nMF1aWrG7z3OBW8xOQU=
   </data>
  </layer>
  <layer name="bouncys" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJztlk0OwiAQhVl6CN251p3u6gnU2Lgx9nZ6UDGRZDKBGaBTmFa+ZBblURgev8aU42Hj6YnBxjtTh9oQ6MeVN4zZMfqa0LaSiRg+lzlzYHRq7NK+cLloZs/o3NgoHWoSns/Z5yP6xnsdjw37hXX4f0fU87XFodFnbp06sM94LF2iDvvdEP+Fyig0+oz9i61Hrc8YHbYH70gJn7k5r4GUzxhOD/Ur4TM351KcbVwj6y7RZ+5ukCD2vHXk+oz3JobTTwn/jT2fuVxyCPkWWuO5Pr9+bV484fpJ1b/l8E50aLwHY31LrZ/abi6+N5xGn0P7MYQ2n//9XZc6f7lM8a7TQKzP1Hk8JvCdIeGzRkqt01iW6rM2ms9lkHg/N/JoPpeh+VyG5nMZNL6Hl8iqdgITc7PRe+JeM6lKfADnYjPB
+   eJztljsOwjAMhnMQ2Jhhg62cABCoC6K3g4MSJCJFVmI7rkndkk/y0PxpHn9edq4edx+PRAw+XkI91oZMP6G84dyW0FeIttEciKPHMmf2hI7NXdsXaiyW2RE6NTdMjzUNz+fs8wF8w7MO5wb9gnr8f4fUS7VFYdFnap8GoM9wLl2hHve7Rv7LlWFY9Bn6x62H7U+OHrcXv5EaPlNrPgVaPkMoPdevhs/Ummtx8nFh1l2iz9TboAH3vg1IfYZnE0Lpx4L/xt7P1Fgk5HzL7XGpz89vm+dEhH5K9U95/CYGLL6DXN9K65e2KyWVw1n0OXcec1jz+d/zutL1k/KLvM4CXJ+x+3hMwDdDw2eL1NqnXJbqszWaz3XQyJ8bMprPdWg+16H5XAeL+XBjflx93BLRTzmoiXgD2AIzuQ==
   </data>
  </layer>
  <layer name="playerkeyed" width="90" height="24">
@@ -92,7 +92,7 @@
  </layer>
  <layer name="collisions" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJzlmVsKxCAMRbP/bTilTME9toURBvEVtcmNPeBXiYk3EhLriOgjtCTI+ZE6Y2pt1zqmnjKPlB9UpM7vhfygsuI927QDSDCqs6NyXUJBO84enffpUTzPyH36z1FLTuKc3jY9ddNirdGM+fad0r7FzhraOsf+XaOdNdB0rrF32CBgTecemx5q8yN3vlxJ51Drkfq5wEo6I4OgM6cftqqz5tx//PxzYrCqc6qmOZKbBXPzaM4/Ny8oINQNDvEdCHmKQZvNrenM2RuJt+osfd/RdO5578jtPfJ9Npo6+4L/0bjeqnOqryj9H1xNZ4T+OcVoXDV7yXNL9ck5PPH751Zq76uIbyBP8b3WCfTkklo=
+   eJzlmVsKxCAMRd3/NpxSpuAeO8IUisRH1CY39oBfbZrkRkK03jn3EVoS5PxI5Uit7beOqVnmkfKDilT+QcgPKivus007AIJRnb0r9yUUtOPs0XmfHsXzjOyne41aapLWNNr09E2LvUYz5uib0r7FzhraOqf+faOdNdB0rrF32CBgTecemx5q50fu+XIlna9ejzTPXaykMzIIOnPmYas6a577j79/TgxWddbsadT8XJujuXVBAaFvcIh1udfgm3kP7WxuTWfOt5F4q87S+x1N5577jty3R57PRlPnUPA/GtdbdabmitL/wdV0RpifKUbjqtlL5p3OSNIEx5+fW6ndryLegTxFnH1PbQ+QdA==
   </data>
  </layer>
  <layer name="bouncy overflow" width="90" height="24">
@@ -110,7 +110,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt17ENwCAMRFEGSEHB/lUGReyAfFH83gSnLzcegy960gOaOJ1nekQD7rnG6fymRzTgnmvoXEPnGjoDZK30ALjIzwcAAPBvG2wIAc0=
+   eJzt0rENACAMA0EGoKBg/1kRG1A5SLmbwHp5DH40qwc0cTuv6hEN+HOGzhk6Z+icoXOGzgC1dvUAAAAAgEcHlGMAhQ==
   </data>
  </layer>
  <layer name="checkpoint C" width="90" height="24">

@@ -126,7 +126,7 @@
    <property name="type" value="checkpoint"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztzrENADAIwDAOYOD/a9sTmGDAlrInAgAAAAAAAOblr7YnDsjtAQBaHixvACk=
+   eJztzrEJADAIAEEHsEiR/WfVEVJFkDv4/iMAAAAAAADgv+xOd6dHlsvpAQCeFLmvAD0=
   </data>
  </layer>
  <layer name="Bouncy Overflow 2" width="90" height="24">

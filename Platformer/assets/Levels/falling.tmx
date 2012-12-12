@@ -34,7 +34,7 @@
  </layer>
  <layer name="spikes" width="90" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3UYQ6AIAiGYU/G/Y/VX8eQBaMsfJ/NrWmhfZZjAAAAAAAAAAC6k90LaMjKlJzriXH9h5zfXqOeL5qVOO0kkf86mpV3z0k5r3JY9VnftpdXduwJO/d1zkmfo6sxr4Y15j1X7Uv7queuODszdeY9rGxVNe+8W6Zedxf1fp/6wCEAAA==
+   H4sIAAAAAAAAC+3T3QnDMAxG0UxWSrNBGz06A3j/AZo+GIyQlAaM3Zp7wDgI/ygfybIAAAAAAAAAAGaXRjcwIStT6d7F/OpMk1H7Vb3/OX1fcuoeMZ7lwv5ZWO8bZSBqPjvby/kfvukWon/Yqun1ouoWnefInPfO9xVRXjqD+rv0Zu+OnjnfTnoZIcpL9yTGulY5r8e4NxiPoI+PfIzXl2Or9j0v7LNGdub6udyXg/VR/9k5t9R7egN0jfN0wCEAAA==
   </data>
  </layer>
  <layer name="collisions" width="90" height="24">
@@ -47,7 +47,7 @@
  </objectgroup>
  <layer name="playerkeyed" width="90" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3WSw6AIAxF0Y66/yUzcGIInxZIqeaexIEgpXkSowgAAABwjt5uAAAAAJ/DP+R5ZBovW+ajfqJ7rffTzvisRr0uQ+aRPbT26u3vzSpDliNR/XnP5G6NDNR4eZ+31JLGvXXOMo/H+zuwmtnsPXrX7p4b4M8K6+HJEcAhAAA=
+   H4sIAAAAAAAAC+3W0QqAMAiF4V35/o/cbcjmNMRc/R/sZiw9k6DGAAAAAPLI2wEAAABwHP4h8zHTet1mbuWpzqr7yWJ/V0M/12HmlRlmvXb9vfk6zNJSkS/aY3W++yw1ca7oeauOrmdli+xj7j73p98G653w9M9YX/eHO8LnAiNv7GHAIQAA
   </data>
  </layer>
  <layer name="falling spikes" width="90" height="24">

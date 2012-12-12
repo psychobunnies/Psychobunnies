@@ -36,7 +36,7 @@
  </tileset>
  <layer name="spikes" width="150" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3OwQkAIAwEwZSW/qsS3wFBQvQzA/feiwAAAAAAAAAAAAAAAACAKj/s1O246U83XnzZFsdUieZAOAAA
+   H4sIAAAAAAAAC+3QMQoAIAwDwD5S/f9TdHEqCCJ2uoNMHUIaAQAAAAAAAAAAAAAAAABZW+mFGYfeffu5paLj9hcvJs3BuM5AOAAA
   </data>
  </layer>
  <objectgroup name="level markers" width="150" height="24">

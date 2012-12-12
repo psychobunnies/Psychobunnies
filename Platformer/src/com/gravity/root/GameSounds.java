@@ -16,14 +16,15 @@ public final class GameSounds {
 
     private static final List<String> jumpSounds = Lists.newArrayList("jump_ha.ogg", "jump_ho.ogg", "jump_hup.ogg");
     private static final List<String> slingshotSounds = Lists.newArrayList("slingshot_1.ogg", "slingshot_2.ogg", "slingshot_3.ogg",
-            "slingshot_4.ogg", "slingshot_whee.ogg");
+            "slingshot_4.ogg");
+    private static final List<String> noSlingshotSounds = Lists.newArrayList("slingshot_fail.ogg");
     private static final List<String> wheeSounds = Lists.newArrayList("slingshot_whee.ogg", "jump_woo.ogg");
     private static final List<String> spikeSounds = Lists.newArrayList("death_spike.ogg", "death_crush3.ogg", "death_crush4.ogg", "death_crush5.ogg",
             "death_crush7.ogg");
     private static final List<String> crushSounds = Lists.newArrayList("death_crush1.ogg", "death_crush2.ogg", "death_crush6.ogg",
             "death_crush8.ogg", "death_crush5.ogg");
     private static final List<String> fellSounds = Lists.newArrayList("death_ugh.ogg");
-    private static final List<String> bounceSounds = Lists.newArrayList(/* "bounce.ogg" */);
+    private static final List<String> bounceSounds = Lists.newArrayList(/*"bounce.ogg"*/);
     private static final List<String> bonkSounds = Lists.newArrayList("ceiling_bonk.ogg");
     private static final List<String> cageSlams = Lists.newArrayList("cage_shut.ogg");
     private static final List<String> endOfGame = Lists.newArrayList("city_endoflevel.ogg");
@@ -48,6 +49,7 @@ public final class GameSounds {
         //@formatter:off
         JUMP         (jumpSounds),
         SLINGSHOT    (slingshotSounds),
+        NO_SLING     (noSlingshotSounds),
         WHEE         (wheeSounds),
         SPIKED       (spikeSounds),
         CRUSHED      (crushSounds),

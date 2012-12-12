@@ -139,11 +139,12 @@ public class Player extends PhysicsEntity<GravityPhysics> {
         } else if (slingshot) {
             slingshot = false;
             control.specialMoveSlingshot(this, slingshotStrength);
+        } else if (pressed==false) {
+            GameSounds.playSoundFor(Event.NO_SLING);
         }
     }
 
     public void slingshotMe(float strength, Vector2f direction) {
-        GameSounds.playSoundFor(Event.SLINGSHOT);
         GameSounds.playSoundFor(Event.WHEE);
         Vector2f velocity = direction.copy().normalise().scale(strength);
         float velX = velocity.x, velY = velocity.y;

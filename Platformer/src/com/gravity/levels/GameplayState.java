@@ -328,19 +328,23 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         for (UpdateCycling uc : updaters) {
             uc.finishUpdate(delta);
         }
-
-        // Tell player when to die if off the screen
-        checkDeath(playerA);
-        checkDeath(playerB);
-
-        float xOffset = camera.getViewport().getX();
-        // Prevent player from going off right side
-        checkRightSide(playerA, xOffset);
-        checkRightSide(playerB, xOffset);
-        remappedDecay -= delta / 1000f;
-
-        // if both bunnies did not collide with win box this turn, reset
-        finishedPlayer = null;
+        
+        if(collider.hasFailedRehandle()) {
+            playerDies(playerA);
+        } else {
+            // Tell player when to die if off the screen
+            checkDeath(playerA);
+            checkDeath(playerB);
+    
+            float xOffset = camera.getViewport().getX();
+            // Prevent player from going off right side
+            checkRightSide(playerA, xOffset);
+            checkRightSide(playerB, xOffset);
+            remappedDecay -= delta / 1000f;
+    
+            // if both bunnies did not collide with win box this turn, reset
+            finishedPlayer = null;
+        }
     }
 
     private void checkDeath(Player player) {

@@ -21,4 +21,6 @@ public interface CollisionEngine {
 
     public void stop();
 
+    public boolean hasFailedRehandle();
+    
 }

@@ -24,6 +24,8 @@ import com.gravity.map.LevelFinishZone;
  * 
  */
 public class LayeredCollisionEngine implements CollisionEngine {
+    
+    private boolean failedRehandle = false;
 
     private static final float EPS = 1e-10f;
     private static final float CORNER_RELATIVE_DIFF = 1.001f;
@@ -718,10 +720,11 @@ public class LayeredCollisionEngine implements CollisionEngine {
             for (RectCollision collision : collisions.get(collidable)) {
                 Collidable other = collision.getOtherEntity(collidable);
                 if (other.causesCollisionsWith(collidable) && collidable.causesCollisionsWith(other)) {
+                    failedRehandle = true;
                     // Die if we still have any "real" collisions.
                     // TODO: fix this - should separate things that can overlap from things that want to be notified of overlap
-                    throw new RuntimeException("Could not rehandle collisions at time " + millis + "; forceRehandle=" + forceRehandle + "; stopped="
-                            + stopped + "; collisions=: " + collisions);
+                    //throw new RuntimeException("Could not rehandle collisions at time " + millis + "; forceRehandle=" + forceRehandle + "; stopped="
+                    //        + stopped + "; collisions=: " + collisions);
                 }
             }
         }
@@ -760,4 +763,10 @@ public class LayeredCollisionEngine implements CollisionEngine {
     public void stop() {
         stopped = true;
     }
+    
+    @Override
+    public boolean hasFailedRehandle() {
+        return failedRehandle;
+    }
+    
 }

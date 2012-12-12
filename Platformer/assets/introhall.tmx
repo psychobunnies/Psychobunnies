@@ -36,9 +36,12 @@
  <tileset firstgid="361" name="black tile" tilewidth="32" tileheight="32">
   <image source="../new-assets/background/black tile.png" width="32" height="32"/>
  </tileset>
+ <tileset firstgid="362" name="lab-sheet-2" tilewidth="32" tileheight="32">
+  <image source="../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="192"/>
+ </tileset>
  <layer name="collisions" width="60" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2YQQqAMAwE94/ST9ST4P+RQK8iEmxxMwN7bMNQGki6pDayJ/PmjrYoh+qwCV9n8PUGX2/w9QZfb/D1JnyzM9HfUul9A3y9qea7un/Qr74FX29OPe8ws/vTu/Oz/27UvADu+f8wgBYAAA==
+   H4sIAAAAAAAAC+3XwQkAIAxD0XRGxxAFT64vHcIqSR707j+04AxgCs2Cjgb3MnMvN/dycy8393JT7N3x+hV1srXj/Z/F/6N73MtN6V4l3ytuar1q+zs+2KnKOVmgWLeAFgAA
   </data>
  </layer>
  <layer name="spikes" width="60" height="24">

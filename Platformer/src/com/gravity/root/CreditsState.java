@@ -53,7 +53,7 @@ public class CreditsState extends BasicGameState {
         g.drawString("Sound effects: Even Martinez and Zachary Segal", 50, 200);
         g.drawString("Lead Programmers: Predrag Gruevski, David Xiao and Patrick Hulin", 50, 225);
         g.drawString("Level Design: Kevin Yue, Eli Davis, and Ziad Baaklini", 50, 250);
-        g.drawString("Art Assets: Turner Bohlen", 50, 275);
+        g.drawString("Art Assets: Turner Bohlen and Zachary Segal", 50, 275);
         g.drawString("*Special thanks to Chris Dessonville for his work on the original prototype*", 50, 300);
 
         g.draw(MenuButton = new Rectangle(48, 383, 100, 48));

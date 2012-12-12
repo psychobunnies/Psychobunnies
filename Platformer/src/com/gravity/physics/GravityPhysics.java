@@ -196,7 +196,6 @@ public class GravityPhysics implements Physics {
 
             if (Side.isSimpleSet(sides)) {
                 if (sides.contains(Side.TOP)) {
-                    GameSounds.playSoundFor(Event.BONK);
                     if (other instanceof BouncyTile) {
                         velY = scaleBounce * Math.abs(velY);
                         accY = Math.max(accY, 0);
@@ -208,9 +207,11 @@ public class GravityPhysics implements Physics {
                         } else {
                             entity.unavoidableCollisionFound();
                         }
+                        GameSounds.playSoundFor(Event.BONK);
                     } else {
                         velY = Math.max(velY, 0);
                         accY = Math.max(accY, 0);
+                        GameSounds.playSoundFor(Event.BONK);
                     }
                 }
                 if (sides.contains(Side.LEFT)) {

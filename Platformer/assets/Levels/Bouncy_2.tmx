@@ -24,6 +24,9 @@
  <tileset firstgid="262" name="signs" tilewidth="32" tileheight="32">
   <image source="../arrows.png" width="128" height="64"/>
  </tileset>
+ <tileset firstgid="270" name="More bouncy" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/bouncy/column-both-merge.png" width="96" height="128"/>
+ </tileset>
  <layer name="moving 1" width="90" height="24">
   <properties>
    <property name="speed" value="60"/>
@@ -66,7 +69,7 @@
  </layer>
  <layer name="bouncys" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJztljEOwjAMAPMRNmZG2PgBRSAWRMXIyMLO2A/DA8hApCp1Gjt1XbfySZbaOk2sU+rUOTmuPm5A1D6+hfl2rk6sE54bzj0G5HPvUrkzz6cJTZ6555Mkt0fMMw9x7W/GfDu3A9be9JfWQaNnbC+La+e8T10Htv2lddDoGVtTzlszIN8kngeonp/RvYZzkcszdd5UnsPzmlhLKZWPI3LsEj3H+3cMzy/i+CV6zvUsDlL1Hxy8x7Ge4573+c9ZARHWKclD/xsaz0HqGtjxK2ohhXDsZ+r4EqjfCNaz1Jk9F89USvvGWHB43nMUwgzWc18/HhLxmcHhWSNS+xTLUj1rwzzLAH1f5lkG8yyDeZbBPMug8X/YmB8nH2cgLlMWNRE/7fJGog==
+   eJztljsOwjAMQNMLwAnYmBlh4wYUgVgQFSMjCztjL8wFqASRqjQfO3Vdt/KTrNI6JNZT6tQYPq5N3DyxKIxZFr8rNt/OVYF1KqNYHj3yqf9iuRPPJwlJnqnn4yS1R9QzDW7tb8J8O7fzrL2Jl9ZBomdoL3Nrp7wP/bZs46V1kOgZWlPKW90jXweeW7Cen869hHORyjN23lCewvMaWUsuZRNH4Ng5enb37xCeX8jxc/Sc6lkUhOo/GP8eh3p2e97nP2fpCbtOTt73vSHxHMSuAR2/whaSCcV+xo7PAfuOQD1zndlT8Ywlt28MBYXnPUUhxEA9x/pxn3DPDArPEuHap1Dm6lka6pkH3/ulnnlQzzyoZx7UMw8Sv4eV6XFq4uyJy5hFjcQX46RCMQ==
   </data>
  </layer>
  <layer name="playerkeyed" width="90" height="24">
@@ -92,7 +95,7 @@
  </layer>
  <layer name="collisions" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJztmdEKwyAMRfu9Y3/fjrJCYRVWKKJLEzW50R3wrZrkxqbRLtM0LUpDg5wdrRhzY6saZR4tO6hoxb8r2UGlt302H+N5jIe1IxGlOoe4cjXpVbh2Taz9lOi8VveiPSX76ZqjOzlJ5VRSNz3WGkufg23JO/TXmW87tj/fnOcNNJ0pVsEcBLzpLJkjgTo/cs+XPel8fmeR+rmTnnRGBkFnTj/sVWfLc//2tc/xwavOljUt1T9TfTQ3Lygg1A0OYV9cc/DOPId2NvemM2dtJEbVWXu/o+kc3zVJvxtUXNpxW+q8/7Bf6teoOufuuUfRGaF/TlHqFzVfM+64R9ImxNrqXw51v4p4B9KKoMUHVC/Wow==
+   eJztmWEKwyAMhd0tdsax27ejrFBYhRWK6GwSjS+6D/zV2iQvNo12ds7NSkODlB2tGFNjLRplGi07qGjFvynZQaW3dTbt47mPR2tHAqQ6+7hSNeklfHZJWvvJ0Xkp7kV9JOvpnKMrOYnllFM3Ldaalj5725x36K8z3XZof7o4zxpoOudYGHMQsKYzZw6H+012PaQnnY/vLFI/d9CTzsgg6Ezph63q3HLfv37tU3ywqnPLmhbrn3N9NDUvKCDUDQp+XZxz8E7ch7Y3t6Yz5dlIjKqz9npH0zk8a+J+N3JxacfdUufth32pX6PqnDrnHkVnhP45htSv3HzNuMMeSRsfa61/ObnzVcQzkFp4LT7CjtTt
   </data>
  </layer>
  <layer name="bouncy overflow" width="90" height="24">
@@ -131,7 +134,7 @@
  </layer>
  <layer name="Bouncy Overflow 2" width="90" height="24">
   <data encoding="base64" compression="zlib">
-   eJztlzFLQzEQx+9zOLiIiyDo0EVw0cHNUaciCOIgpQjqQ7A4lU7qVzahFyzH5SWXXGOU+0G4Jpe89++/eZdXAOM/csW0R8w9RdaM5VNrpUwx3ihdryfuMN4n8iVrtbX0DN0jz669uDZgn363WB6YPF37wNx/R6D1L/tMtS8wvgvzwOTp2iNY15Av7E9BRo8+59Yyql2zz/my+Xms5uRo7YFcTSnflhhXBXmao3qkPs8wzjH2cC5q+fzh2if8POuSPM1RPVKf9zDuR7Ro4M+XYaO/m5iv5bP0uql8jc+HGMP+3YbP/nzxZwv3LurP9wsyVurzBONbZP5rZb7G56Atd0+UMImMLyLjuRpozTuBtUeX+dKyGUDXZ64u1RLzOdzrmoxLf+tQh85cO3ftVqQuTfhvWOuz3xfz1MQKToXzc31udWZzekr387Y5FsyV1o1YPdVCw2fpXmtBb+/0Gj57DhS0aELPt99Gy2djHPO5DdzzZT63wXxug/ncBvO5DbP0FMMwhHwDUGRfng==
+   eJztl0FLQzEMx/s5PHgRL4Kgh10EL4p486inIQjiQcYQ1Ifg8CSe1K9sy1IcIXlt2qzWkR+UrE36XvZfX/LmnLGJXBLjAXyPzJ4xf2qvlCnYa6Xr9cQt2LuEv2Svdi49g8/Ikx/Pfgwwx9+N8zvCj/feE/ffEuT6n3XGuS/Avgn9jvDjvQduWUO+YT51MnrUObeW4dw155Quq5/Hak5Orj2Qm1NKt3ewHwV+7MP5SHWegZ2D7aEvaun86ceX+33WJX7sw/lIdd4Bu8vkokHoL8PKfDsRr6Wz9Lopf43O+2Dj+V2HzqG/hN5CvYuG/n6O1kp1noB9ZeJfKv01Osfccs9ECRNmfcGs5+aAa96RW2p0wcTH3/OswD84XZ2pulQLp3O81xVal/7WsQ6d+HHqx40ouzTxv2GtzuFczFOBFRwL43N1btWzqXxKz/O6ORTESusGV0+10NBZetZa0Ns7vYbOgT2FXDTB/e2v0dLZGMd0bgP1fJnObTCd22A6t8F0bsMsHWIYhpAfIm9gtg==
   </data>
  </layer>
  <layer name="Checkpoint F" width="90" height="24">

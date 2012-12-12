@@ -70,6 +70,10 @@ public class GameWinState extends BasicGameState {
     private Image winImage;
     private Image eyesImage;
     private Image pupilsImage;
+    private Image nextButton;
+    private Image nextButtonHover;
+    private Image nextButtonClick;
+    private int buttonState; // 0 for none, 1 for hover, 2 for click
     private String[] winText;
     private int mouseOffsetX;
     private int mouseOffsetY;
@@ -82,6 +86,10 @@ public class GameWinState extends BasicGameState {
         this.winImage = new Image("./new-assets/background/level-end-no-eyes.png");
         this.eyesImage = new Image("./new-assets/background/eyes.png");
         this.pupilsImage = new Image("./new-assets/background/pupils.png");
+        this.nextButton = new Image("./new-assets/background/next-button.png");
+        this.nextButtonHover = new Image("./new-assets/background/next-button-hover.png");
+        this.nextButtonClick = new Image("./new-assets/background/next-button-click.png");
+        this.buttonState = 0;
         this.winText = NO_TEXT;
 
         this.mouseOffsetX = (container.getWidth() - PlatformerGame.WIDTH) / 2;
@@ -128,8 +136,17 @@ public class GameWinState extends BasicGameState {
         g.drawString(winText[4], 0, 195);
         GL11.glPopAttrib();
         g.popTransform();
-        g.draw(restart = new Rectangle(798, 698, 200, 48));
-        g.drawString("Onwards!\n(Press Enter)", 800, 700);
+        if (buttonState == 0) {
+            g.drawImage(nextButton, 850, 685);
+        }
+        else if (buttonState == 1) {
+            g.drawImage(nextButtonHover, 850, 685);
+        }
+        else {
+            g.drawImage(nextButtonClick, 850, 685);
+        }
+        //g.drawString("Onwards!\n(Press Enter)", 800, 700);
+        restart = new Rectangle(850, 695, 200, 59);// cuts 25 px of x, 10 px off top and bottom y. Actual image (about) 225 x 79
     }
 
     @Override
@@ -140,11 +157,18 @@ public class GameWinState extends BasicGameState {
     public void mouseMoved(int oldx, int oldy, int newx, int newy) {
         mouseX = newx - mouseOffsetX;
         mouseY = newy - mouseOffsetY;
+        if (restart.contains(mouseX, mouseY)) {
+            buttonState = 1;
+        }
+        else {
+            buttonState = 0;
+        }
     }
 
     @Override
     public void mouseClicked(int button, int x, int y, int clickCount) {
         if (restart.contains(x - mouseOffsetX, y - mouseOffsetY)) {
+            buttonState = 2;
             game.enterState(MainMenuState.ID, new FadeOutTransition(), new FadeInTransition());
         }
     }

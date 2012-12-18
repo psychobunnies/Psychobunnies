@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="72" height="24" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="camera" value="stalking"/>
+  <property name="wallofdeath" value="true"/>
+ </properties>
+ <tileset firstgid="1" name="betterBunnyDirt" tilewidth="32" tileheight="32">
+  <image source="betterBunnyDirt.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="2" name="perspective_walls" tilewidth="32" tileheight="32">
+  <image source="perspective_walls.png" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="66" name="markers" tilewidth="32" tileheight="32">
+  <image source="levelMarkers.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="82" name="Lab Tiles" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="192"/>
+ </tileset>
+ <tileset firstgid="100" name="signs" tilewidth="32" tileheight="32">
+  <image source="../arrows.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="108" name="New Spikes" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/spiky/spikes-all.png" width="352" height="160"/>
+ </tileset>
+ <layer name="players" width="72" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztzjENAAAIwDC0ceBfErgAkjbZvwgAAAAAAOCKnGp7Ap5r2DcAiQ==
+  </data>
+ </layer>
+ <layer name="collisions" width="72" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztmdEKwyAMRfONg3aMFfb/fzF8GCuhidEbEze84EMp6vUYE7vtRLSvJraDliQdtPhoWnx0/SOfjb654w6O9Qt8PNfbqmw+57VbGLwiTJ2UzedKGoNWnrW+tf5RfDLPCKKM+JktXjX18EFjIYLPzWmcEfHz4SexG51ja/O3KON8efofrRnr14M9Z/K08In2J/nx3Ee+B5LQ+Hkq73q5WvkgdcKaA2c8X97xg9wpM/lIvqW9jf62KJoxfmaqb2VPLHzQO6H3mq35FVXJrxl1AZXm2dsDwod7iTqr2jzeHpC8x/tG5VBtHm8PyH8fPJ/w+1BLbZV+n+F9NmWMq3F65ju3N4jBXGo=
+  </data>
+ </layer>
+ <objectgroup name="level markers" width="72" height="24">
+  <object name="finish" x="2236" y="613" width="132" height="129"/>
+ </objectgroup>
+ <layer name="spikes" width="72" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzt1TsKgDAQBcCcOK3pvbg2ggRjwOYJmYEtFrKfZkkpAADA6mp6AVhU6vbcPCnbGS29BAAE/ekv3G/xlM9qZm/7mrceoz5f5l0Ops0PcQ==
+  </data>
+ </layer>
+ <layer name="Checkpoint low" width="72" height="24">
+  <properties>
+   <property name="type" value="checkpoint"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0LsJACAQRMFtzsDA/tvRAoQL/TADmy8vAQAAAADgB+30gcvps9fXRvSp6POWCWgnAas=
+  </data>
+ </layer>
+ <layer name="Checkpoint mid" width="72" height="24">
+  <properties>
+   <property name="type" value="checkpoint"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0LEJACAQBEGbMzCw/3a0gsueF5mBy48dAwCg3uw+8Dh9Mn0yfTJ9Mn0yfaDOutvdJwCAbx2rBwJ6
+  </data>
+ </layer>
+ <layer name="Checkpoint high" width="72" height="24">
+  <properties>
+   <property name="type" value="checkpoint"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0LEJACAUQ8EsZ2Hh/uvoAKKlfriD9OElVNJeH/icPmf67I21Hn1u9AEAAAAAqpgQUAHw
+  </data>
+ </layer>
+ <layer name="signs" width="72" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztzgENAAAIA6CXtX8FY1w3SEACAAAAAADAddMOPLKRXABm
+  </data>
+ </layer>
+</map>

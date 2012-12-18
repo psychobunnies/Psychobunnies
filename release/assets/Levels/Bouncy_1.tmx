@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="72" height="27" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="camera" value="stalking"/>
+ </properties>
+ <tileset firstgid="1" name="Bunny Dirt" tilewidth="32" tileheight="32">
+  <image source="bunnyTiles.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="9" name="lab-sheet-2" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="192"/>
+ </tileset>
+ <tileset firstgid="27" name="bouncies" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/bouncy/all.png" width="256" height="640"/>
+ </tileset>
+ <tileset firstgid="187" name="New Spikes" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/spiky/spikes-all.png" width="352" height="160"/>
+ </tileset>
+ <tileset firstgid="242" name="signs" tilewidth="32" tileheight="32">
+  <image source="../arrows.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="250" name="all-trigger" tilewidth="32" tileheight="32">
+  <image source="../../new-assets/tiles/trigger/all-trigger.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="254" name="level markers" tilewidth="32" tileheight="32">
+  <image source="levelMarkers.png" width="128" height="128"/>
+ </tileset>
+ <layer name="collisions" width="72" height="27">
+  <data encoding="base64" compression="zlib">
+   eJztmNEKwzAIRfO+bIwV9o37/y8YwkpDSXXGmNwWDxT6YIneqInNKaW74rHwMH5/dZbZDoDznu3ACfm3Zjk7Td172a7kdO4+oqnxq/SDj8K2tz6UL+X5xeXO3laynwFa/pRrPAesJ+2Rhz6WuMozC6GePfSxnMuvhvU80fhQi9uzhyDoU8YsxZoH+kWM0md/Byl1aO1FI0C4P6P1wxWUeyX1w9vvHWG/SpD2i1jr7qgWpfmi930FTR/JHym/eucfmj5SfLXz66jX9wBNn5b53DMGNH0kav0l9Nmo+Rv6bIQ+PKEPT+jDE/rw1Pz1nEnQ5h0J8lfzf9nK6P8pVkiLL9RfCUM=
+  </data>
+ </layer>
+ <layer name="bouncys" width="72" height="27">
+  <data encoding="base64" compression="zlib">
+   eJztlrEOwiAQhtlNJ3ffwdHBwSdQo7iYmo4dfYSOPrY0YbDI/V6BCiH3JX9q4YTrF2lUah53kzYgj5n7lMI2dwOFs8vdQOH804/vbCrPmC+ojrvGeMYbog/qfZD799MnqOOuEYL4wYgfjPjBlOhnYNQNxFwX184XJfrhjPWMzymozc8zuqMplJ8lz/SvfWL8bKI7mlKbny62IQfKzyvxPhTy/sGIH4z4wYgfzJJ+jiYnkNa5P398d2+vNftJgfjBiB9Mbj++/1m+Z3TremKuNj8+OM9I1YgfXCN+cE1qPwfnfp14/RBK8uOyWnj9i8nVRBMZ5xp7paJtjWaOh+Rm13oDr+9Y5A==
+  </data>
+ </layer>
+ <layer name="spikes" width="72" height="27">
+  <data encoding="base64" compression="zlib">
+   eJztzkEJAAAIADH7xxMDmUJE2eD+FwHAB7U9AAAAAAAAT+VQFzVmVBLh
+  </data>
+ </layer>
+ <objectgroup name="level markers" width="72" height="27">
+  <object name="finish" type="finish" x="2234" y="352" width="67" height="97"/>
+ </objectgroup>
+ <layer name="players" width="72" height="27">
+  <data encoding="base64" compression="zlib">
+   eJztwzENAAAIA7CBf9EcWOAibdIEAAAAAAAA/unawJ0BMmIABw==
+  </data>
+ </layer>
+ <layer name="Bouncy Overflow" width="72" height="27">
+  <data encoding="base64" compression="zlib">
+   eJztmM9KAzEQxnP3FewzCKtVEFlBtBerryDSVempB8E/CC2exJP6xk5wgsM4m2a7k3FZ9oOPpLuTZPiRhOk6N2idigaxM/DNBr5VzNdahwZrPIKfwM8Ga2nLgs+RwRq5ZMHnFHwGrtD+zN3juwf8XdU4nM3C/T23dI4qcZ5ZJIbHelnwkXSH7TwxTsozdY42+i8+B4nrx/ikztFGXeIj3eMSn+3IHNrqEp8Vtq/kGeezg23B5rjC/rVijjw/S0l8pPuE86HjaD92DtuoS3xizNbxWWD/RDFHnosX3b85pc1npJ2gkAtfP6e0+VjdP8fYau9TLm0+uWohaZ/sKq8hqQt8thJi+nI/W+4fC+Xkswe+iPgSY8/JszF4H8eGPs/FUjn5bPq9oCRjSyEXS+XkE74XNP2ONyFjJ0IulpLq3eH++VVTPnMhps983rAtyTOJT4h7F2Lou77x4efcS+LzAf4Efwkx9F3f+EhK+W9TFzPwicfk4pP7fxaVr8em7qcemxKHGu0F45auvrari0kZm+pQPw6K6xvk7nZJ
+  </data>
+ </layer>
+ <layer name="checkpoint" width="72" height="27">
+  <properties>
+   <property name="type" value="checkpoint"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0LENACAMBLF8QcH+CzMABU0kUtgTnK6KbsnvgrlW/Hnx57Y9AQAAAAAAGOEAbtEAFw==
+  </data>
+ </layer>
+ <layer name="signs" width="72" height="27">
+  <data encoding="base64" compression="zlib">
+   eJztzjEBAAAIA6D1r2sB/xXQAxKQAAAAAB/NdQAAAADKAgx2APQ=
+  </data>
+ </layer>
+</map>

@@ -51,7 +51,7 @@ public class WallofDeath implements Renderer, UpdateCycling {
         this.players = players;
         this.control = control;
         try {
-            image = new Image("assets/wallofdeath.png");
+            image = new Image("new-assets/background/wallofdeath.png");
             imageHeight = image.getHeight();
         } catch (SlickException e) {
             throw new RuntimeException("Could not load wall of death image", e);

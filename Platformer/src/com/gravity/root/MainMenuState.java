@@ -36,7 +36,7 @@ public class MainMenuState extends CageSelectState {
     private LevelFinishZone finalWinColl;
 
     public MainMenuState(LevelInfo[] levels) throws SlickException {
-        super(new LevelInfo("Main Menu", "assets/mainmenu2.tmx", ID));
+        super(new LevelInfo("Main Menu", "new-assets/levels/mainmenu.tmx", ID));
         this.levels = levels;
         finalWinColl = new LevelFinishZone(finalWinBox, this);
     }

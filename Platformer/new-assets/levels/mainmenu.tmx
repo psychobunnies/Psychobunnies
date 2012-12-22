@@ -4,13 +4,13 @@
   <property name="camera" value="stalking"/>
  </properties>
  <tileset firstgid="1" name="lab-sheet" tilewidth="32" tileheight="32">
-  <image source="lab-sheet.png" width="128" height="96"/>
+		<image source="../tiles/normal/lab-sheet.png" width="128" height="96"/>
  </tileset>
  <tileset firstgid="13" name="levelMarkers" tilewidth="32" tileheight="32">
-  <image source="Levels/levelMarkers.png" width="128" height="128"/>
+  <image source="levelMarkers.png" width="128" height="128"/>
  </tileset>
  <tileset firstgid="29" name="New lab tiles" tilewidth="32" tileheight="32">
-  <image source="../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="192"/>
+  <image source="../tiles/normal/lab-sheet-2.png" width="96" height="192"/>
  </tileset>
  <tileset firstgid="47" name="arrows" tilewidth="32" tileheight="32">
   <image source="arrows.png" width="128" height="64"/>

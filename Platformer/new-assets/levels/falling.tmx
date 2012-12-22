@@ -13,19 +13,19 @@
   <image source="levelMarkers.png" width="128" height="128"/>
  </tileset>
  <tileset firstgid="26" name="lab-sheet" tilewidth="32" tileheight="32">
-  <image source="../lab-sheet.png" width="128" height="96"/>
+  <image source="../tiles/normal/lab-sheet.png" width="128" height="96"/>
  </tileset>
  <tileset firstgid="38" name="all-trigger" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/trigger/all-trigger.png" width="64" height="64"/>
+  <image source="../tiles/trigger/all-trigger.png" width="64" height="64"/>
  </tileset>
  <tileset firstgid="42" name="New Lab Sheet" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="192"/>
+  <image source="../tiles/normal/lab-sheet-2.png" width="96" height="192"/>
  </tileset>
  <tileset firstgid="60" name="New Spikes" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/spiky/spikes-all.png" width="352" height="160"/>
+  <image source="../tiles/spiky/spikes-all.png" width="352" height="160"/>
  </tileset>
  <tileset firstgid="115" name="signs" tilewidth="32" tileheight="32">
-  <image source="../arrows.png" width="128" height="64"/>
+  <image source="arrows.png" width="128" height="64"/>
  </tileset>
  <layer name="players" width="90" height="24">
   <data encoding="base64" compression="gzip">

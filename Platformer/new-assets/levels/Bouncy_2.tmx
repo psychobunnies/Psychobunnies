@@ -10,22 +10,22 @@
   <image source="levelMarkers.png" width="128" height="128"/>
  </tileset>
  <tileset firstgid="25" name="Bouncy Tiles" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/bouncy/all.png" width="256" height="640"/>
+  <image source="../tiles/bouncy/all.png" width="256" height="640"/>
  </tileset>
  <tileset firstgid="185" name="New Spikes" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/spiky/spikes-all.png" width="352" height="160"/>
+  <image source="../tiles/spiky/spikes-all.png" width="352" height="160"/>
  </tileset>
  <tileset firstgid="240" name="Lab Tiles" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="192"/>
+  <image source="../tiles/normal/lab-sheet-2.png" width="96" height="192"/>
  </tileset>
  <tileset firstgid="258" name="all-trigger" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/trigger/all-trigger.png" width="64" height="64"/>
+  <image source="../tiles/trigger/all-trigger.png" width="64" height="64"/>
  </tileset>
  <tileset firstgid="262" name="signs" tilewidth="32" tileheight="32">
-  <image source="../arrows.png" width="128" height="64"/>
+  <image source="arrows.png" width="128" height="64"/>
  </tileset>
  <tileset firstgid="270" name="More bouncy" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/bouncy/column-both-merge.png" width="96" height="128"/>
+  <image source="../tiles/bouncy/column-both-merge.png" width="96" height="128"/>
  </tileset>
  <layer name="moving 1" width="90" height="24">
   <properties>

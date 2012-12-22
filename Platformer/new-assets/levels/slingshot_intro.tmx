@@ -14,7 +14,7 @@
   <image source="Spikes.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="4" name="lab-sheet" tilewidth="32" tileheight="32">
-  <image source="../lab-sheet.png" width="128" height="96"/>
+  <image source="../tiles/normal/lab-sheet.png" width="128" height="96"/>
  </tileset>
  <tileset firstgid="16" name="levelMarkers" tilewidth="32" tileheight="32">
   <image source="levelMarkers.png" width="128" height="128"/>
@@ -23,16 +23,16 @@
   <image source="bunnyTiles.png" width="128" height="64"/>
  </tileset>
  <tileset firstgid="40" name="all-trigger" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/trigger/all-trigger.png" width="64" height="64"/>
+  <image source="../tiles/trigger/all-trigger.png" width="64" height="64"/>
  </tileset>
  <tileset firstgid="44" name="new lab sheet" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="192"/>
+  <image source="../tiles/normal/lab-sheet-2.png" width="96" height="192"/>
  </tileset>
  <tileset firstgid="62" name="New Spikes" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/spiky/spikes-all.png" width="352" height="160"/>
+  <image source="../tiles/spiky/spikes-all.png" width="352" height="160"/>
  </tileset>
  <tileset firstgid="117" name="signs" tilewidth="32" tileheight="32">
-  <image source="../arrows.png" width="128" height="64"/>
+  <image source="arrows.png" width="128" height="64"/>
  </tileset>
  <layer name="spikes" width="150" height="24">
   <data encoding="base64" compression="gzip">

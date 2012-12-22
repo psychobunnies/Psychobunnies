@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="90" height="24" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="camera" value="stalking"/>
+ </properties>
+ <tileset firstgid="1" name="bunnyTiles" tilewidth="32" tileheight="32">
+  <image source="bunnyTiles.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="9" name="spikes" tilewidth="32" tileheight="32">
+  <image source="Spikes.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="10" name="levelMarkers" tilewidth="32" tileheight="32">
+  <image source="levelMarkers.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="26" name="lab-sheet" tilewidth="32" tileheight="32">
+  <image source="../tiles/normal/lab-sheet.png" width="128" height="96"/>
+ </tileset>
+ <tileset firstgid="38" name="New lab sheet" tilewidth="32" tileheight="32">
+  <image source="../tiles/normal/lab-sheet-2.png" width="96" height="192"/>
+ </tileset>
+ <tileset firstgid="56" name="arrows" tilewidth="32" tileheight="32">
+  <image source="arrows.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="64" name="New Spikes" tilewidth="32" tileheight="32">
+  <image source="../tiles/spiky/spikes-all.png" width="352" height="160"/>
+ </tileset>
+ <layer name="collisions" width="90" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztWu0OwiAM5EH07+KmxiW+/7sZEomkoaVXCuLiJcQ4+sVRCjLXEMLJ0DajnmebIQZt24MNVj1PzBCDFtZYn65R2HBUntfwWQfXPuFAOCrPaA7n8+LR6Nxy8SB+qU2qW+v3qs9IDi+ZfJS9ZH0euUdt5L4kOcTmt3SQHH442eFAY82/PwQ5xOZInZQn8dykrcMxly9M3wrYkSDxrHneKjtap4TeuVyyM4LnUo58i+d7aM/lklx8tmVNO944H4vCp2SDQqpLKU5uz7wCfiRI+arN5ZJcTZereUi9Q8afuEY5i/LSOaUWK7ff1/pKsqVcqOmWxrsLfVob3jq70Q9Fa/2V+EL9HpnntJ7uRn2JLwk3Qa8nz2heefGc20PB1YfW+y0rz1w8eX1N94RnwIcnz9b6Ya0bkq1fqhtoHYj1Q3ueonFQWH/b/CLP1jqQ1lXr2QpdH0um03Ke9NbpwbMFnB/L3dhGPrVn05Z7Q834Zub5KPjzPAZ/nvsjniXi+DzuJloxw7vGXni+G7cPpDuyEe/cZ/h/ALq3affPdKf1AldhQ9k=
+  </data>
+ </layer>
+ <layer name="spikes" width="90" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztl08PgjAMxfvRjFERT5r4jyOe9ftfHckIyTK6YFnntvdL3gXK1ryWMogA0OWVOoFK6FInUAnwWQf4LONstLG6MHGdE+uL366cW42gn3WAzzrAZxl7o53RIRDn83npPG7sXseFz5VGz9yb6+ehTqEaSRnr4yrXenGzAXNjPXL3uYm8/jhjpe9T7j7nAufl23NtqG/sGcl9MyS0Rg+rU6Q95iipZ0NnoStN/7W32Mk4lOTzPwOfdYDPOsBnHeCzDvBZh0/qBADdaTrXc3r+sPYXJtIZqQ==
+  </data>
+ </layer>
+ <layer name="players" width="90" height="24" opacity="0.47">
+  <data encoding="base64" compression="zlib">
+   eJztzrENAAAEADCzwf/nOsKApL2gEQAAADfldgAAAABgqLYDwBsNLw8AGQ==
+  </data>
+ </layer>
+ <objectgroup name="level markers" width="90" height="24">
+  <object name="finish" type="finish" x="2814" y="32" width="62" height="258"/>
+ </objectgroup>
+ <layer name="checkpoint1" width="90" height="24" opacity="0.37">
+  <properties>
+   <property name="type" value="checkpoint"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0rEJACAMRUEXSGHh/quKhWBpIQTMHaR/fNIaP4jsgCL2zj214n/+GQB4KY5bRmJLBefWAAAAAMC9CaaDAI8=
+  </data>
+ </layer>
+ <layer name="checkpoint2" width="90" height="24" opacity="0.37">
+  <properties>
+   <property name="type" value="checkpoint"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0sEJACAMBEEb8OHD/lv1lQqEBJKZCo7l1gIAAAAA+LerBwyhc47ofEpX9OfPTODnOXTOEZ1v6Yr+/HmuBzcEAI8=
+  </data>
+ </layer>
+ <layer name="checkpoint3" width="90" height="24" opacity="0.46">
+  <properties>
+   <property name="type" value="checkpoint"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0rENACAMA8EsQEHB/qsiClZIELmb4GU5AgAAAACA7kZ1QBNn51kd0YA/04m/57BzjrvzKq34nz+/awNbVQCC
+  </data>
+ </layer>
+ <layer name="checkpoint4" width="90" height="24" opacity="0.51">
+  <properties>
+   <property name="type" value="checkpoint"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0LEJACAMRUEXsLBw/1VFsAhiGRD0rgq/Cq8UAAAAXlJvP/AJnfOdmuqcbzZt6+5hI9fetB42AAAAiAbmPwCc
+  </data>
+ </layer>
+ <layer name="Arrows" width="90" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzt1TEBAAAIw7DZwr8xThwAR6KgXxMAPqjrAABY5n0AAAAAAKMBIakAcw==
+  </data>
+ </layer>
+</map>

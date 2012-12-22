@@ -43,8 +43,8 @@ public class CageRenderer implements Renderer {
         try {
             font.loadGlyphs();
 
-            image = new Image("assets/frontCageII.png");
-            imageDisabled = new Image("assets/frontCageIIDisabled.png");
+            image = new Image("new-assets/background/front-cage.png");
+            imageDisabled = new Image("new-assets/background/front-cage-disabled.png");
         } catch (SlickException e) {
             e.printStackTrace();
         }

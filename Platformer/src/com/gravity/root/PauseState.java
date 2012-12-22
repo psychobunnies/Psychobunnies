@@ -24,7 +24,7 @@ public class PauseState extends CageSelectState {
     private ResumeCage resumeCage;
 
     public PauseState() throws SlickException {
-        super(new LevelInfo("Pause", "assets/pause.tmx", ID));
+        super(new LevelInfo("Pause", "new-assets/levels/pause.tmx", ID));
     }
 
     @Override

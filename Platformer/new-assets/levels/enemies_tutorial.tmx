@@ -17,7 +17,7 @@
   <image source="levelMarkers.png" width="128" height="128"/>
  </tileset>
  <tileset firstgid="83" name="lab-sheet" tilewidth="32" tileheight="32">
-  <image source="../lab-sheet.png" width="128" height="96"/>
+  <image source="../tiles/normal/lab-sheet.png" width="128" height="96"/>
  </tileset>
  <tileset firstgid="95" name="spikes" tilewidth="32" tileheight="32">
   <image source="Spikes.png" width="32" height="32"/>
@@ -26,22 +26,22 @@
   <image source="bunnyTiles.png" width="128" height="64"/>
  </tileset>
  <tileset firstgid="104" name="all-trigger" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/trigger/all-trigger.png" width="64" height="64"/>
+  <image source="../tiles/trigger/all-trigger.png" width="64" height="64"/>
  </tileset>
  <tileset firstgid="108" name="new lab sheet" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/normal/lab-sheet-2.png" width="96" height="192"/>
+  <image source="../tiles/normal/lab-sheet-2.png" width="96" height="192"/>
  </tileset>
  <tileset firstgid="126" name="New Spikes" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/spiky/spikes-all.png" width="352" height="160"/>
+  <image source="../tiles/spiky/spikes-all.png" width="352" height="160"/>
  </tileset>
  <tileset firstgid="181" name="Bouncy" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/bouncy/all.png" width="256" height="640"/>
+  <image source="../tiles/bouncy/all.png" width="256" height="640"/>
  </tileset>
  <tileset firstgid="341" name="signs" tilewidth="32" tileheight="32">
-  <image source="../arrows.png" width="128" height="64"/>
+  <image source="arrows.png" width="128" height="64"/>
  </tileset>
  <tileset firstgid="349" name="all" tilewidth="32" tileheight="32">
-  <image source="../../new-assets/tiles/bouncy/all.png" width="256" height="640"/>
+  <image source="../tiles/bouncy/all.png" width="256" height="640"/>
  </tileset>
  <layer name="spikes" width="100" height="24">
   <data encoding="base64" compression="gzip">

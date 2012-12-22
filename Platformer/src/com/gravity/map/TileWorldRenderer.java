@@ -22,7 +22,7 @@ public class TileWorldRenderer implements Renderer {
     public TileWorldRenderer(TileWorld tileMap) {
         this.tileMap = tileMap;
         try {
-            background = new Image("assets/background-no-shelf.png");
+            background = new Image("new-assets/background/background-no-shelf.png");
         } catch (SlickException e) {
             throw new RuntimeException(e);
         }

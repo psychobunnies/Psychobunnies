@@ -29,7 +29,7 @@ public class LevelInfoTests {
         new TestSlick() {
             @Override
             public void init(GameContainer container) throws SlickException {
-                TiledMapPlus map = new TiledMapPlus("assets/Levels/tutorial.tmx");
+                TiledMapPlus map = new TiledMapPlus("new-assets/levels/tutorial.tmx");
                 int layerIndex = map.getLayerIndex("collisions");
                 Assert.assertEquals(TileType.GROUND_MID, TileType.toTileType(map, 0, 0, layerIndex));
             }

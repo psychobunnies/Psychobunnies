@@ -36,7 +36,7 @@ public class CreditsState extends BasicGameState {
         font.getEffects().add(new ColorEffect(Color.white));
         font.addAsciiGlyphs();
         font.loadGlyphs();
-        background = new Image("assets/background-no-shelf.png");
+        background = new Image("new-assets/background/background-no-shelf.png");
 
         mouseOffsetX = (container.getWidth() - PlatformerGame.WIDTH) / 2;
         mouseOffsetY = (container.getHeight() - PlatformerGame.HEIGHT) / 2;

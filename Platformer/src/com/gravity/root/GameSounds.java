@@ -32,13 +32,13 @@ public final class GameSounds {
     private static final Music menuMusic;
     private static final Random random;
 
-    private static final String soundPath = "./assets/Sound/";
+    private static final String soundPath = "./new-assets/sounds/";
 
     static {
 
         try {
-            backgroundMusic = new Music("./assets/Sound/Caketown 1.ogg", true);
-            menuMusic = new Music("./assets/Sound/levelselect_theme.ogg", true);
+            backgroundMusic = new Music("./new-assets/music/Caketown 1.ogg", true);
+            menuMusic = new Music("./new-assets/music/levelselect_theme.ogg", true);
         } catch (SlickException e) {
             throw new RuntimeException(e);
         }

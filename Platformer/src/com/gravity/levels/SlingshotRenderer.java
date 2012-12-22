@@ -21,9 +21,9 @@ public class SlingshotRenderer implements Renderer {
     static {
         try {
             blueAura = new Image("./new-assets/bunny/force-field-blue.png");
-            blueArrow = new Image("./assets/blueArrow2.png");
+            blueArrow = new Image("./new-assets/bunny/blue-arrow.png");
             yellowAura = new Image("./new-assets/bunny/force-field-yellow.png");
-            yellowArrow = new Image("./assets/yellowArrow2.png");
+            yellowArrow = new Image("./new-assets/bunny/yellow-arrow.png");
         } catch (SlickException e) {
             e.printStackTrace();
         }

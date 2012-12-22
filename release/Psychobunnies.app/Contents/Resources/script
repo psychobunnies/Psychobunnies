@@ -1,1 +1,3 @@
-/Users/phulin/Library/Application Support/Platypus/TempScript.1804
+#!/bin/sh
+
+java -cp lib: -Djava.library.path=lib -jar Platformer.jar

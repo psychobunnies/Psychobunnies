@@ -15,10 +15,18 @@ else
   read -r response
   if [ "$response" == "y" ] || [ "$response" == "Y" ] || [ "$response" == "" ]
   then
+    echo -n "Did you package a new JAR [y/N]? "
+    read -r response
     echo "Bumping version to $newversion."
-    echo "$newversion" > VERSION
-    git commit VERSION -m "Bumped version to $newversion."
-    version=$newversion
+    if [ "$response" == "y" ] || [ "$response" == "Y" ] || [ "$response" == "" ]
+    then
+      echo "$newversion" > VERSION
+      git commit VERSION -m "Bumped version to $newversion."
+      git tag "v$newversion"
+      version=$newversion
+    else
+      echo "Making a copy of release $version."
+    fi
   else
     echo "Making a copy of release $version."
   fi
@@ -39,7 +47,7 @@ rm -f $ass/*.psd $ass/*/*.psd $ass/*/*/*.psd $ass/*/*/*/*.psd $ass/*/*/*/*/*.psd
 cd $curdir
 
 releasedir="Psychobunnies-$version"
-echo "Deleting existing release dir (Psychobunnies-1.0)..."
+echo "Deleting existing release dir (Psychobunnies-$version)..."
 rm -rf "$releasedir" 2>&1 >/dev/null
 mv $dir "$releasedir"
 echo "Creating tar $releasedir.tar.gz..."
@@ -47,3 +55,5 @@ tar -cz "$releasedir" > "$releasedir".tar.gz
 echo "Creating zip $releasedir.zip..."
 rm -rf "$releasedir".zip 2>&1 >/dev/null
 zip -q -r --symlinks "$releasedir".zip "$releasedir"
+echo "Cleaning up..."
+rm -rf "$releasedir" 2>&1 >/dev/null

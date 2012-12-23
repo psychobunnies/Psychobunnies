@@ -75,6 +75,7 @@ public class CageRenderer implements Renderer {
         boolean disabled = cage.isDisabled();
         g.drawImage(disabled ? imageDisabled : image, offsetX + cageX, offsetY + cageY);
         g.setFont(font);
+        g.setColor(org.newdawn.slick.Color.white);
         g.pushTransform();
         GL11.glTranslatef(offsetX + fontX, offsetY + fontY, 0);
         // GL11.glMultMatrix(skew);

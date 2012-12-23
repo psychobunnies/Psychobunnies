@@ -105,7 +105,7 @@ public class PlatformerGame extends StateBasedGame {
             }
         }
         if (!isDebugging) {
-            app.setDisplayMode(app.getScreenWidth(), app.getScreenHeight(), true);
+            //app.setDisplayMode(app.getScreenWidth(), app.getScreenHeight(), true);
         }
 
         app.start();

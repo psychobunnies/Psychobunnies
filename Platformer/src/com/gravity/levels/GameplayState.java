@@ -8,7 +8,6 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Polygon;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -25,7 +24,6 @@ import com.gravity.camera.PanningCamera;
 import com.gravity.camera.PlayerStalkingCamera;
 import com.gravity.fauna.Player;
 import com.gravity.fauna.PlayerKeyboardController;
-import com.gravity.fauna.PlayerKeyboardController.Control;
 import com.gravity.fauna.PlayerRenderer;
 import com.gravity.fauna.WallofDeath;
 import com.gravity.geom.Rect;
@@ -83,10 +81,6 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     protected Camera camera;
     protected WallofDeath wallofDeath;
 
-    private boolean leftRemapped, rightRemapped, jumpRemapped;
-    private Control remappedControl;
-    private float remappedDecay;
-    private Polygon controlArrow = new Polygon(new float[] { -50, 10, 20, 10, -10, 50, 10, 50, 50, 0, 10, -50, -10, -50, 20, -10, -50, -10 });
     protected boolean finished = false;
     protected boolean done = false;
 
@@ -173,9 +167,6 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
                 .setLeft(Input.KEY_LEFT).setRight(Input.KEY_RIGHT)
                 .setJump(Input.KEY_UP).setMisc(Input.KEY_SPACE);
         //@formatter:on
-        leftRemapped = false;
-        jumpRemapped = false;
-        rightRemapped = false;
 
         // Map-tile construction
         TiledMapPlus tiledMap = map.map;
@@ -267,56 +258,6 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         g.setAntiAlias(true);
 
         renderers.render(g, (int) offset.x, (int) offset.y);
-        g.setColor(Color.white);
-
-        if (remappedDecay > 0) {
-            g.pushTransform();
-            g.translate(512, 384);
-            g.scale(6 * remappedDecay, 6 * remappedDecay);
-            switch (remappedControl) {
-            case JUMP:
-                g.rotate(0, 0, 270);
-                if (jumpRemapped) {
-                    g.setColor(Color.red);
-                }
-                break;
-            case LEFT:
-                if (leftRemapped) {
-                    g.setColor(Color.red);
-                }
-                g.rotate(0, 0, 180);
-                break;
-            case RIGHT:
-                if (rightRemapped) {
-                    g.setColor(Color.red);
-                }
-                break;
-            default:
-                break;
-            }
-
-            g.fill(controlArrow);
-            g.popTransform();
-        }
-    }
-
-    public void renderControls(Graphics g, String playername, PlayerKeyboardController controller) {
-        g.setColor(Color.red);
-        if (jumpRemapped) {
-            g.fillRoundRect(120, 12, 80, 16, 3);
-        }
-        if (leftRemapped) {
-            g.fillRoundRect(50, 36, 80, 16, 3);
-        }
-        if (rightRemapped) {
-            g.fillRoundRect(190, 36, 80, 12, 3);
-        }
-        g.setColor(Color.black);
-        g.drawString(playername, 12, 12);
-        g.drawString("Jump: " + Input.getKeyName(controller.getJump()), 120, 12);
-        g.drawString("Left: " + Input.getKeyName(controller.getLeft()), 50, 36);
-        g.drawString("Right: " + Input.getKeyName(controller.getRight()), 190, 36);
-        g.setColor(Color.white);
     }
 
     @Override
@@ -337,7 +278,6 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
         // Prevent player from going off right side
         checkRightSide(playerA, xOffset);
         checkRightSide(playerB, xOffset);
-        remappedDecay -= delta / 1000f;
 
         // if both bunnies did not collide with win box this turn, reset
         finishedPlayer = null;
@@ -394,36 +334,10 @@ public class GameplayState extends BasicGameState implements GameplayControl, Re
     }
 
     @Override
-    public void swapPlayerControls(Control ctrl) {
-        int akey, bkey;
-        akey = controllerA.getControl(ctrl);
-        bkey = controllerB.getControl(ctrl);
-        controllerA.setControl(ctrl, bkey);
-        controllerB.setControl(ctrl, akey);
-        switch (ctrl) {
-        case JUMP:
-            jumpRemapped = !jumpRemapped;
-            break;
-        case LEFT:
-            leftRemapped = !leftRemapped;
-            break;
-        case RIGHT:
-            rightRemapped = !rightRemapped;
-            break;
-        default:
-            break;
-        }
-        remappedControl = ctrl;
-        remappedDecay = 1;
-    }
-
-    @Override
     public void playerHitSpikes(Player player) {
         // swapPlayerControls(Control.getById(rand.nextInt(Control.size())));
         playerDies(player);
-        System.out.println("Player " + player.toString() + " hit spikes -- remapping controls.");
-        System.out.println("ControllerA: " + controllerA.toString());
-        System.out.println("ControllerB: " + controllerB.toString());
+        System.out.println("Player " + player.toString() + " hit spikes.");
     }
 
     /**

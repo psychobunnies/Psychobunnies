@@ -12,7 +12,6 @@ import com.gravity.levels.Renderer;
 import com.gravity.physics.PhysicalState;
 
 public class PlayerRenderer implements Renderer {
-    private static String FILE = "./new-assets/bunny/";
     private Player player;
     private Image bunnyPlayerRight;
     private Image bunnyPlayerLeft;

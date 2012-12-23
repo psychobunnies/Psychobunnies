@@ -1,7 +1,8 @@
 #!/bin/bash
 
 curdir="`pwd`"
-cd "`dirname $0`"
+psychodir="`dirname $0`"
+cd "$psychodir"
 
 version="`cat VERSION`"
 echo "Current version: $version"
@@ -9,6 +10,7 @@ echo -n "New version [$version]: "
 read -r newversion
 if [ "$newversion" == "" ] || [ "$newversion" == "$version" ]
 then
+  newversion="$version"
   echo "Making a copy of release $version."
 else
   echo -n "Are you sure [y/N]? "
@@ -23,7 +25,6 @@ else
       echo "$newversion" > VERSION
       git commit VERSION -m "Bumped version to $newversion."
       git tag "v$newversion"
-      version=$newversion
     else
       echo "Making a copy of release $version."
     fi
@@ -44,10 +45,10 @@ cp -a new-assets $dir
 ass=$dir/new-assets
 echo "Stripping unnecessary assets..."
 rm -f $ass/*.psd $ass/*/*.psd $ass/*/*/*.psd $ass/*/*/*/*.psd $ass/*/*/*/*/*.psd
-cd $curdir
+cd "$curdir"
 
-releasedir="Psychobunnies-$version"
-echo "Deleting existing release dir (Psychobunnies-$version)..."
+releasedir="Psychobunnies-$newversion"
+echo "Deleting existing release dir ($releasedir)..."
 rm -rf "$releasedir" 2>&1 >/dev/null
 mv $dir "$releasedir"
 echo "Creating tar $releasedir.tar.gz..."
@@ -55,5 +56,25 @@ tar -cz "$releasedir" > "$releasedir".tar.gz
 echo "Creating zip $releasedir.zip..."
 rm -rf "$releasedir".zip 2>&1 >/dev/null
 zip -q -r --symlinks "$releasedir".zip "$releasedir"
+
 echo "Cleaning up..."
 rm -rf "$releasedir" 2>&1 >/dev/null
+
+zip="$releasedir".zip
+if [ "$newversion" != "$version" ]
+then
+  echo "Updating site..."
+  cp "$zip" "$psychodir/site/releases/"
+  cd "$psychodir/site/releases"
+  rm latest.zip
+  echo "Fixing latest link..."
+  ln -s "$zip" latest.zip
+  git add "$zip"
+  git commit "$zip" latest.zip -m "Uploaded version $newversion"
+  git pull --rebase
+  git push
+  cd ../..
+  git commit site -m "Bumped site version to $newversion"
+  git pull --rebase
+  git push
+fi

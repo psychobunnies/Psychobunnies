@@ -4,6 +4,5 @@ eclimd.log
 .metadata/
 /slick/
 !/slick/trunk/Slick
-*.psd
 .DS_Store
 /Psychobunnies-*

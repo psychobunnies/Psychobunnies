@@ -6,3 +6,6 @@ eclimd.log
 !/slick/trunk/Slick
 .DS_Store
 /Psychobunnies-*
+.idea/
+*.iml
+out/
